@@ -1,0 +1,173 @@
+/* Variables en CSS */
+:root {
+    /* #224b88 */
+    --color-principal: #175cc3;  
+    --color-secundario: #054393;
+    --color-claro: #e3e9f0;
+    --color-fondo: #f5f5f5;
+    --color-texto: #353d35;
+    --color-footer: white;
+  
+    --fuente-principal: Arial, sans-serif;
+    --padding-contenedor: 20px;
+    --borde-redondeado: 10px;
+    --sombra-suave: 0 4px 10px rgba(11, 25, 153, 30);
+  }
+/* fijar  footer al final */
+  html, body {
+    height: 90%;
+  }
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: var(--fuente-principal);
+    background-color:var(--color-fondo);
+    padding: var(--padding-contenedor);
+    color: var(--color-texto);
+  }
+  
+  /* Contenedor general usando Grid */
+  .contenedor {
+    display: grid;
+    grid-template-areas: 
+      "header header"
+      "menu menu"
+      "aside main"
+      "footer footer";
+    grid-template-columns: 1fr 3fr;
+    gap: 15px;
+
+    /* fijar  footer al final */
+    grid-template-rows: auto auto 1fr auto; /* <-- esto es importante */
+    min-height: 100vh; /* hace que el contenedor tenga al menos la altura de la ventana */
+    
+    position: relative; /* Necesario para que el footer se posicione correctamente */
+
+  }
+  
+  /* Header */
+  header {
+    grid-area: header;
+    background-color: var(--color-principal);
+    color: var(--color-footer);
+    padding: var(--padding-contenedor);
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    box-shadow: var(--sombra-suave);
+  }
+  
+  .logo {
+    height: 100px;
+  }
+  
+  /* Menú */
+  .menu {
+    grid-area: menu;
+    background-color:var(--color-secundario);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+
+    box-shadow: var(--sombra-suave);
+  }
+  
+  .menu a {
+    color:  var(--color-footer);
+    text-decoration: none;
+    font-weight: bold;
+
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  .menu a:hover{
+
+    background-color: rgb(57, 50, 244);
+  }
+  
+  /* Barra lateral */
+  .temas {
+    grid-area: aside;
+    background-color: var(--color-claro);
+    padding: 20px;
+    border-radius: var(--borde-redondeado);
+
+    box-shadow: var(--sombra-suave);
+  }
+  /* Titulo H2 */
+  .temas h2 {
+    font-size: 1.2rem;
+    color: var(--color-secundario);
+    margin: 20px 0 10px 0;
+    border-bottom: 2px solid var(--color-secundario);
+    padding-bottom: 5px;
+  }
+
+  .temas ul {
+      list-style: none;
+      
+      /* margin-top: 30px; */ 
+      margin: 10px 0 20px 0;
+     padding: 0;
+  }
+  /* Mejoras visual de los enlaces  */
+  .temas li {
+    background-color: white;
+    margin-bottom: 8px;
+    padding: 2px;
+    border-left: 4px solid var(--color-principal);
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+
+  .temas li:hover {
+    background-color: #e8f0ff;
+  }
+
+  .temas a {
+    text-decoration: none;
+    color: #132fe5;
+  }
+  
+  /* Contenido principal */
+  .contenido {
+    /* height: 100%; */
+    grid-area: main;
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--borde-redondeado);
+
+    box-shadow: var(--sombra-suave);
+
+    margin-bottom: 60px; /* Da espacio para que el footer no se sobreponga */
+  }
+  
+  /* Pie de página */
+  footer {
+
+    grid-area: footer;
+    text-align: center;
+    background-color: var(--color-principal);
+    color: var(--color-footer);
+    padding: 10px;
+   
+
+    box-shadow: var(--sombra-suave);
+
+     /* Fijamos al fondo */
+  position: absolute;
+  bottom: 0;
+  width: 100%; /* Aseguramos que ocupe todo el ancho */
+}
+  
+
+
+  
