@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p>Configuración de routers, redes Wi-Fi y cableado estructurado para hogares y pequeñas empresas.</p>
       `,
       tecnologia: `
-      <h2>HTML Básico</h2>
+      <h2>Tecnologia</h2>
       <p>Asesoría en compra de equipos y nuevas Tecnología.</p>
     `, 
     impresoras: `
