@@ -15,7 +15,7 @@
       <h2>Redes Domésticas</h2>
       <p>Configuración de routers, redes Wi-Fi y cableado estructurado para hogares y pequeñas empresas.</p>
     `,
-    html: `
+    tecnologia: `
       <h2>HTML Básico</h2>
       <p>Aprende a estructurar tu sitio web con etiquetas semánticas.</p>
     `,
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
          ` ,
       mantenimiento: `
         <h2>Mantenimiento de Computadores</h2>
-        <p>Ofrecemos limpieza interna, cambio de pasta térmica, revisión de hardware, y más.</p>
+        <p> Brindamos Soluciones basadas en nuevas tecnologías, Soporte técnico , redes informáticas, mantenimiento de equipos de Computo (Pc, portátil, Tablet, celulares, impresoras) <br>Ofrecemos limpieza interna, cambio de pasta térmica, revisión de hardware, y más.</p>
       `,
       ofimatica: `
         <h2>Ofimática</h2>
@@ -83,6 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
         <h2>Redes Domésticas</h2>
         <p>Configuración de routers, redes Wi-Fi y cableado estructurado para hogares y pequeñas empresas.</p>
       `,
+      tecnologia: `
+      <h2>Tecnologia</h2>
+      <p>Asesoría en compra de equipos y nuevas Tecnología.</p>
+    `, 
+    impresoras: `
+      <h2>Impresoras</h2>
+      <p>Mantenimiento y reparación de Impresoras</p>
+    `, 
       html: `
         <h2>HTML Básico</h2>
         <p>Aprende a estructurar tu sitio web con etiquetas semánticas.</p>
