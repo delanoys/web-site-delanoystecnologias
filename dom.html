@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de DOM con JavaScript</title>
+    <link rel="stylesheet" href="estilos/dom.css">
+</head>
+<body>
+    <header>
+        <div class="logo">DOM</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="card">
+            <h2>¿Qué es el DOM?</h2>
+            <p>El DOM (Document Object Model) es una interfaz de programación que nos permite crear, cambiar, o remover elementos del documento HTML o XML.</p>
+        </section>
+        <section class="card">
+            <h2>Características del DOM</h2>
+            <ul>
+                <li>Permite agregar eventos a los elementos del documento.</li>
+                <li>Permite crear, cambiar, o remover elementos del documento.</li>
+                <li>Representa el documento HTML o XML como un árbol de objetos.</li>
+            </ul>
+        </section>
+        <section class="card">
+            <h2>Estructura de árbol del DOM</h2>
+            <p>El DOM visualiza el documento de HTML como un árbol de nodos. Un nodo representa un elemento del documento HTML.</p>
+            <img src="imagenes/DOM.png" alt="Estructura de árbol del DOM">
+        </section>
+        <section class="card">
+            <h2>Diagrama de ciclo de vida de un webcomponent</h2>
+            <p>El ciclo de vida de un webcomponent incluye las siguientes fases: creación, configuración, actualización y eliminación.</p>
+            <a href="https://lenguajejs.com/webcomponents/funcionalidad/ciclo-vida-webcomponent/">
+                <img src="imagenes/webcomponents-lifecycle-diagram.png" alt="Diagrama de ciclo de vida de un webcomponent">
+            </a>
+            <a href="https://lenguajejs.com/webcomponents/funcionalidad/ciclo-vida-webcomponent/">Leer más</a>
+        </section>
+    </main>
+    <footer>
+        <p>© 2023</p>
+    </footer>
+    <script src="JavaScript/DomJs.js"></script>
+</body>
+</html>
