@@ -9,7 +9,7 @@
     --link-color: #60a5fa;
     --link-hover: #2563eb;
     --shadow: 0 4px 10px rgba(11, 25, 153, 0.3);
-    --fuente-principal: Arial, sans-serif;
+    --fuente-principal: 'Nunito', sans-serif;
     --fuenteTitulo: "Allerta Stencil";
     --fuente1: "Nothing You Could Do";
     --fuente2: "Fredericka the Great";
@@ -99,44 +99,83 @@ main.contenido {
     margin-bottom: 60px;
 }
 
-.card {
-    background-color: var(--color-principal);
+section {
+    background: var(--color-principal);
     padding: 20px;
-    border: 1px solid var(--color-claro);
+    margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: var(--shadow);
+}
+
+section h2 {
+    font-family: var(--fuenteTitulo);
+    font-size: 1.5rem;
+    color: var(--color-secundario);
+    margin-bottom: 15px;
+}
+
+section p, section ol, section ul {
+    font-size: 1rem;
+    line-height: 1.6;
     margin-bottom: 20px;
 }
 
-.card h2 {
-    margin-top: 0;
-    font-size: 24px;
-    font-family: var(--fuenteTitulo);
-    color: var(--color-secundario);
+.imagen {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 1rem 0;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
 }
 
-.card ul {
-    list-style: none;
-    padding: 0;
+.imagen:hover {
+    transform: scale(1.02);
 }
 
-.card li {
-    margin-bottom: 10px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
-.card a {
-    text-decoration: none;
-    color: var(--link-color);
+table th, table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-claro);
+    text-align: left;
 }
 
-.card a:hover {
-    color: var(--link-hover);
+table th {
+    background-color: var(--link-color);
+    color: var(--color-footer);
 }
 
-.card img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
+table tr:nth-child(even) {
+    background-color: var(--color-fondo);
+}
+
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    background-color: var(--link-color);
+    color: var(--color-footer);
+    border: none;
+    padding: 12px 16px;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+    background-color: var(--color-secundario);
 }
 
 /* Estilos del Footer */
@@ -169,7 +208,7 @@ footer p {
         padding: 15px;
     }
 
-    .card {
+    section {
         padding: 15px;
         margin: 10px;
     }
