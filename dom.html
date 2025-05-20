@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ejemplo de DOM con JavaScript para aprender sobre el Document Object Model y su uso en desarrollo web.">
     <title>Ejemplo de DOM con JavaScript</title>
+    <link rel="stylesheet" href="estilos/header.css">
     <link rel="stylesheet" href="estilos/dom.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">DOM</div>
+    <div class="contenedor">
+        <header>
+            <div class="logo">
+                <img src="imagenes/DTecno.png" alt="Soporte técnico y desarrollo web">
+                <h1>Soporte Técnico y Desarrollo Web</h1>
+            </div>
+        </header>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="pedagogia.html">Educación</a></li>
+                <li><a href="dom.html">DOM - JavaScript</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
             <div class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false">
@@ -21,37 +35,38 @@
                 <span></span>
             </div>
         </nav>
-    </header>
-    <main>
-        <section class="card">
-            <h2>¿Qué es el DOM?</h2>
-            <p>El DOM (Document Object Model) es una interfaz de programación que nos permite crear, cambiar, o remover elementos del documento HTML o XML.</p>
-        </section>
-        <section class="card">
-            <h2>Características del DOM</h2>
-            <ul>
-                <li>Permite agregar eventos a los elementos del documento.</li>
-                <li>Permite crear, cambiar, o remover elementos del documento.</li>
-                <li>Representa el documento HTML o XML como un árbol de objetos.</li>
-            </ul>
-        </section>
-        <section class="card">
-            <h2>Estructura de árbol del DOM</h2>
-            <p>El DOM visualiza el documento de HTML como un árbol de nodos. Un nodo representa un elemento del documento HTML.</p>
-            <img src="imagenes/DOM.png" alt="Estructura de árbol del DOM">
-        </section>
-        <section class="card">
-            <h2>Diagrama de ciclo de vida de un webcomponent</h2>
-            <p>El ciclo de vida de un webcomponent incluye las siguientes fases: creación, configuración, actualización y eliminación.</p>
-            <a href="https://lenguajejs.com/webcomponents/funcionalidad/ciclo-vida-webcomponent/">
-                <img src="imagenes/webcomponents-lifecycle-diagram.png" alt="Diagrama de ciclo de vida de un webcomponent">
-            </a>
-            <a href="https://lenguajejs.com/webcomponents/funcionalidad/ciclo-vida-webcomponent/">Leer más</a>
-        </section>
-    </main>
-    <footer>
-        <p>© 2023</p>
-    </footer>
-    <script src="JavaScript/DomJs.js"></script>
+        <main>
+            <section class="card">
+                <h2>¿Qué es el DOM?</h2>
+                <p>El DOM (Document Object Model) es una interfaz de programación que nos permite crear, cambiar, o remover elementos del documento HTML o XML.</p>
+            </section>
+            <section class="card">
+                <h2>Características del DOM</h2>
+                <ul>
+                    <li>Permite agregar eventos a los elementos del documento.</li>
+                    <li>Permite crear, cambiar, o remover elementos del documento.</li>
+                    <li>Representa el documento HTML o XML como un árbol de objetos.</li>
+                </ul>
+            </section>
+            <section class="card">
+                <h2>Estructura de árbol del DOM</h2>
+                <p>El DOM visualiza el documento de HTML como un árbol de nodos. Un nodo representa un elemento del documento HTML.</p>
+                <img src="imagenes/DOM.png" alt="Estructura de árbol del DOM">
+            </section>
+            <section class="card">
+                <h2>Diagrama de ciclo de vida de un webcomponent</h2>
+                <p>El ciclo de vida de un webcomponent incluye las siguientes fases: creación, configuración, actualización y eliminación.</p>
+                <a href="https://lenguajejs.com/webcomponents/funcionalidad/ciclo-vida-webcomponent/">
+                    <img src="imagenes/webcomponents-lifecycle-diagram.png" alt="Diagrama de ciclo de vida de un webcomponent">
+                </a>
+                <a href="https://lenguajejs.com/webcomponents/funcionalidad/ciclo-vida-webcomponent/">Leer más</a>
+            </section>
+        </main>
+        <footer>
+            <p>Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres; Colosenses 3:23</p>
+            <p>© 2025 Hever Torres Delanoys</p>
+        </footer>
+    </div>
+    <script src="JavaScript/scripts.js"></script>
 </body>
 </html>

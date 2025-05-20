@@ -4,102 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experiencias significativas en el aula para transformar el aprendizaje con prácticas educativas innovadoras.">
     <title>Experiencias Significativas en el Aula</title>
     <link rel="stylesheet" href="pedagogia.css">
+     <link rel="stylesheet" href="estilos/header.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+    </style>
 </head>
 <body>
+    <div class="contenedor">
+        <header>
+            <div class="logo">
+                <img src="imagenes/DTecno.png" alt="Soporte técnico y desarrollo web">
+                <h1>Soporte Técnico y Desarrollo Web</h1>
+            </div>
+        </header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="pedagogia.html">Educación</a></li>
+                <li><a href="dom.html">DOM - JavaScript</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <main>
+            <section id="definicion">
+                <h2>Definición</h2>
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/classroom-1869461_960_720.jpg" alt="Docente en aula" class="imagen">
+                <p>Las experiencias significativas del docente en el aula son prácticas educativas que generan un impacto profundo en el aprendizaje, integrando aspectos cognitivos, emocionales y sociales.</p>
+            </section>
+            <section id="fomentar">
+                <h2>Cómo Fomentar Experiencias Significativas</h2>
+                <img src="https://cdn.pixabay.com/photo/2016/11/21/16/55/board-1846860_960_720.jpg" alt="Fomentar experiencias" class="imagen">
+                <ol>
+                    <li>Conocer a los estudiantes para diseñar actividades relevantes.</li>
+                    <li>Usar metodologías activas como aprendizaje basado en proyectos.</li>
+                    <li>Crear un ambiente positivo con empatía y refuerzo.</li>
+                    <li>Integrar tecnología y creatividad en la enseñanza.</li>
+                    <li>Reflexionar sobre el impacto de las experiencias.</li>
+                </ol>
+            </section>
+            <section id="beneficios">
+                <h2>Beneficios</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Beneficio</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Motivación</td>
+                            <td>Incrementa el interés y participación del estudiante.</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrollo Integral</td>
+                            <td>Fomenta habilidades cognitivas, emocionales y sociales.</td>
+                        </tr>
+                        <tr>
+                            <td>Mejor Desempeño</td>
+                            <td>Se traduce en mejores resultados académicos.</td>
+                        </tr>
+                        <tr>
+                            <td>Ambiente Positivo</td>
+                            <td>Promueve relaciones sanas entre docente y estudiantes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="ejemplos">
+                <h2>Ejemplos Prácticos</h2>
+                <ul>
+                    <li>Proyecto de reciclaje comunitario para fomentar conciencia ambiental.</li>
+                    <li>Simulación de una empresa para aplicar conocimientos de matemáticas y contabilidad.</li>
+                    <li>Creación de cuentos colaborativos para promover la escritura creativa.</li>
+                </ul>
+            </section>
+            <section id="conclusiones">
+                <h2>Conclusiones</h2>
+                <p>Las experiencias significativas transforman el aula en un espacio de crecimiento y conexión, dejando huellas duraderas en la vida de los estudiantes.</p>
+            </section>
+        </main>
+        <button id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
+        <footer>
+            <p>Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres; Colosenses 3:23</p>
+            <p>© 2025 Hever Torres Delanoys</p>
+        </footer>
+    </div>
+    <script src="JavaScript/scripts.js"></script>
+    <script>
+        window.onscroll = function () {
+            const btn = document.getElementById("scrollTopBtn");
+            btn.style.display = window.scrollY > 200 ? "block" : "none";
+        };
 
-<header>
-    <h1>Experiencias Significativas en el Aula</h1>
-</header>
-
-<nav>
-    <ul>
-        <li><a href="#definicion">Definición</a></li>
-        <li><a href="#fomentar">Cómo Fomentarlas</a></li>
-        <li><a href="#beneficios">Beneficios</a></li>
-        <li><a href="#ejemplos">Ejemplos</a></li>
-        <li><a href="#conclusiones">Conclusiones</a></li>
-    </ul>
-</nav>
-
-<main>
-    <section id="definicion">
-        <h2>Definición</h2>
-        <img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/classroom-1869461_960_720.jpg" alt="Docente en aula" class="imagen">
-        <p>Las experiencias significativas del docente en el aula son prácticas educativas que generan un impacto profundo en el aprendizaje, integrando aspectos cognitivos, emocionales y sociales.</p>
-    </section>
-
-    <section id="fomentar">
-        <h2>Cómo Fomentar Experiencias Significativas</h2>
-        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/55/board-1846860_960_720.jpg" alt="Fomentar experiencias" class="imagen">
-        <ol>
-            <li>Conocer a los estudiantes para diseñar actividades relevantes.</li>
-            <li>Usar metodologías activas como aprendizaje basado en proyectos.</li>
-            <li>Crear un ambiente positivo con empatía y refuerzo.</li>
-            <li>Integrar tecnología y creatividad en la enseñanza.</li>
-            <li>Reflexionar sobre el impacto de las experiencias.</li>
-        </ol>
-    </section>
-
-    <section id="beneficios">
-        <h2>Beneficios</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Beneficio</th>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Motivación</td>
-                    <td>Incrementa el interés y participación del estudiante.</td>
-                </tr>
-                <tr>
-                    <td>Desarrollo Integral</td>
-                    <td>Fomenta habilidades cognitivas, emocionales y sociales.</td>
-                </tr>
-                <tr>
-                    <td>Mejor Desempeño</td>
-                    <td>Se traduce en mejores resultados académicos.</td>
-                </tr>
-                <tr>
-                    <td>Ambiente Positivo</td>
-                    <td>Promueve relaciones sanas entre docente y estudiantes.</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="ejemplos">
-        <h2>Ejemplos Prácticos</h2>
-        <ul>
-            <li>Proyecto de reciclaje comunitario para fomentar conciencia ambiental.</li>
-            <li>Simulación de una empresa para aplicar conocimientos de matemáticas y contabilidad.</li>
-            <li>Creación de cuentos colaborativos para promover la escritura creativa.</li>
-        </ul>
-    </section>
-
-    <section id="conclusiones">
-        <h2>Conclusiones</h2>
-        <p>Las experiencias significativas transforman el aula en un espacio de crecimiento y conexión, dejando huellas duraderas en la vida de los estudiantes.</p>
-    </section>
-</main>
-
-<button id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
-
-<script>
-    window.onscroll = function () {
-        const btn = document.getElementById("scrollTopBtn");
-        btn.style.display = window.scrollY > 200 ? "block" : "none";
-    };
-
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-</script>
-
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
