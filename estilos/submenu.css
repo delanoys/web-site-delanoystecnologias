@@ -1,0 +1,52 @@
+/* Estilos mínimos para el submenú y otros elementos no cubiertos por header.css */
+body {
+  font-family: Arial, sans-serif; /* Coincide con --fuente-principal */
+  background-color: #f3f4f6;
+}
+iframe {
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+}
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 250px;
+  background: var(--color-secundario);
+  border: 2px solid var(--link-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 10px;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 20;
+}
+.menu-item:hover .submenu {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+.submenu:hover {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+.submenu li a {
+  font-size: 16px;
+  display: block;
+  padding: 5px 0;
+}
+@media (max-width: 768px) {
+  .submenu {
+    position: relative;
+    min-width: 100%;
+    display: none;
+  }
+  .submenu.active {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

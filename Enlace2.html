@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de Enlaces con Target</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+    }
+    iframe {
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Encabezado -->
+  <header class="bg-blue-600 text-white py-6 text-center">
+    <h1 class="text-3xl font-bold">Ejemplo de Enlaces con Atributo Target</h1>
+    <p class="mt-2 text-lg">Demostración de los diferentes valores de target en enlaces</p>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Lista de enlaces -->
+      <article class="bg-white p-6 rounded-lg shadow-lg w-3/4 mx-auto">
+        <h2 class="text-2xl font-semibold mb-4">Enlaces con diferentes valores de target</h2>
+        <ul class="space-y-4 text-blue-500 hover:text-blue-700 font-medium underline">
+          <li>
+            <a href="https://delanoystecnologias.site/" target="_self">
+              Abrir en la misma pestaña (_self)
+            </a>
+          </li>
+          <li>
+            <a href="https://delanoystecnologias.site/" target="_blank" rel="noopener noreferrer">
+              Abrir en nueva pestaña (_blank)
+            </a>
+          </li>
+          <li>
+            <a href="https://delanoystecnologias.site/" target="_parent">
+              Abrir en marco padre (_parent)
+            </a>
+          </li>
+          <li>
+            <a href="https://delanoystecnologias.site/" target="_top">
+              Abrir en ventana principal (_top)
+            </a>
+          </li>
+          <li>
+            <a href="https://delanoystecnologias.site/" target="customFrame">
+              Abrir en iframe Delanoy's Tecnologías (customFrame)
+            </a>
+          </li>
+          <li>
+            <a href="https://delanoys.github.io/ProyectoWeb-Grupo3-AvanzaTech/" target="customFrame2">
+              Abrir en iframe Developers in Process (customFrame2)
+            </a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Iframe para Delanoy's Tecnologías -->
+      <article class="bg-white p-6 rounded-lg shadow-lg w-3/4 mx-auto">
+        <h2 class="text-2xl font-semibold mb-4">Delanoy's Tecnologías</h2>
+        <iframe 
+          name="customFrame" 
+          src="https://delanoystecnologias.site/" 
+          class="w-3/4 h-96 rounded-lg mx-auto"
+        ></iframe>
+        <p class="mt-4 text-gray-600">
+          Este iframe tiene el nombre <code>customFrame</code>. Usa el enlace con <code>target="customFrame"</code> para cargar el sitio aquí.
+        </p>
+      </article>
+
+      <!-- Iframe para Developers in Process -->
+      <article class="bg-white p-6 rounded-lg shadow-lg w-3/4 mx-auto">
+        <h2 class="text-2xl font-semibold mb-4">Developers in Process</h2>
+        <iframe 
+          name="customFrame2" 
+          src="https://delanoys.github.io/ProyectoWeb-Grupo3-AvanzaTech/" 
+          class="w-3/4 h-96 rounded-lg mx-auto"
+        ></iframe>
+        <p class="mt-4 text-gray-600">
+          Este iframe tiene el nombre <code>customFrame2</code>. Usa el enlace con <code>target="customFrame2"</code> para cargar el sitio aquí.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="bg-gray-800 text-white py-4 text-center">
+    <p>© 2025 Ejemplo de Enlaces. Creado con fines educativos.</p>
+  </footer>
+</body>
+</html>

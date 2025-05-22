@@ -7,13 +7,15 @@
     <title>Ejemplo de DOM con JavaScript</title>
     <link rel="stylesheet" href="estilos/estilos.css">
     <link rel="stylesheet" href="estilos/header.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
     </style>
 </head>
-<body>
+<body id="inicio">
     <div class="contenedor">
         <header>
             <div class="logo">
@@ -94,5 +96,18 @@
         </footer>
     </div>
     <script src="JavaScript/scripts.js"></script>
+    <!-- <a href="#inicio" id="scrollToTopBtn"
+
+   class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 z-50"
+   title="Volver al inicio">
+   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+   </svg>
+    </a> -->
+    <a href="#inicio" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-50" title="Volver al inicio">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+</a>
 </body>
 </html>

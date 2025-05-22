@@ -108,3 +108,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// const scrollBtn = document.getElementById('scrollToTopBtn');
+
+//   window.addEventListener('scroll', () => {
+//     if (window.scrollY > 200) {
+//       scrollBtn.classList.remove('hidden');
+//     } else {
+//       scrollBtn.classList.add('hidden');
+//     }
+//   });

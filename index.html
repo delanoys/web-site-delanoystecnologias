@@ -7,17 +7,20 @@
     <title>Web Sites Delanoys Tecnologias</title>
     <link rel="stylesheet" href="estilos/estilos.css">
     <link rel="stylesheet" href="estilos/header.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
     </style>
 </head>
-<body>
+<body id="inicio">
+
     <div class="contenedor">
         <header>
             <div class="logo">
-                <img src="imagenes/DTecno.png" alt="Soporte técnico y desarrollo web">
+                <img class="max-w-[250px] md:max-w-[260px] h-auto rounded-lg hover:scale-110 transition-transform duration-300" src="imagenes/DTecno.png" alt="Soporte técnico y desarrollo web">
                 <h1>Soporte Técnico y Desarrollo Web</h1>
             </div>
         </header>
@@ -28,7 +31,8 @@
                 <li><a href="pedagogia.html">Educación</a></li>
                 <li><a href="dom.html">DOM - JavaScript</a></li>
                 <li><a href="Soporte.html">Soporte tecnico</a></li>
-                <li><a href="https://delanoys.github.io/ProyectoWeb-Grupo3-AvanzaTech/">Developers in Process</a></li>
+                <li><a href="https://delanoys.github.io/ProyectoWeb-Grupo3-AvanzaTech/" target="_blank">Developers in Process</a></li>
+                <li><a href="EnlacesHtml.html" target="_blank">Target</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
             <div class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false">
@@ -79,5 +83,21 @@
         </footer>
     </div>
     <script src="JavaScrpt/script.js"></script>
+
+    <!-- Botón volver al inicio (oculto al cargar) -->
+<!-- <a href="#inicio" id="scrollToTopBtn"
+   class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 z-50"
+   title="Volver al inicio">
+   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+   </svg>
+</a> -->
+<a href="#inicio" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-50" title="Volver al inicio">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+</a>
+
+
 </body>
 </html>
