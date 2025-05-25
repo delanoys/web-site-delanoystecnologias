@@ -1,140 +1,194 @@
-/* Variables globales para consistencia */
-:root {
-    --color-secundario: #054393;
-    --link-color: #60a5fa;
-    --link-hover: #2563eb;
-    --color-footer: rgb(250, 248, 248);
-    --shadow: 0 4px 10px rgba(11, 25, 153, 0.3);
-    --fuente-principal: Arial, sans-serif;
-    --fuente2: "Fredericka the Great";
-    --fuente3: "Allerta Stencil";
-    --fuente4: "Nothing You Could Do";
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Contenedor principal */
-.contenedor {
-    display: grid;
-    grid-template-areas: 
-        "header header"
-        "temas contenido"
-        "footer footer";
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 80px auto 20px; /* Margen superior para no superponerse con el menú fijo */
-    padding: 0 20px;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F8F9FA;
+  color: #333;
+  padding-top: 260px; /* 60px del menú + 200px del banner */
 }
 
-/* Aside (temas) */
-.temas {
-    grid-area: temas;
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+
+/* Menú principal */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  padding: 10px 0;
 }
 
-.temas h2 {
-    font-family: var(--fuente2);
-    font-size: 22px;
-    color: var(--color-secundario);
-    margin-bottom: 15px;
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
 }
 
-.temas ul {
-    list-style: none;
-    padding: 0;
+.menu-item {
+  position: relative;
 }
 
-.temas li {
-    margin-bottom: 10px;
+.menu-button {
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.temas a {
-    color: var(--color-secundario);
-    text-decoration: none;
-    font-family: var(--fuente-principal);
-    font-size: 16px;
-    transition: color 0.3s ease;
+.menu-button:hover {
+  background-color: #007bff;
+  color: #fff;
 }
 
-.temas a:hover {
-    color: var(--link-hover);
+/* Submenús */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 1200px;
+  background-color: #FFFFFF;
+  border: 1px solid #E3F2FD;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000;
 }
 
-/* Main (contenido) */
-.contenido {
-    grid-area: contenido;
-    padding: 20px;
-    background-color: var(--color-footer);
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+
+.submenu a {
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+  padding: 10px;
+  margin: 5px 0;
 }
 
-.contenido h2 {
-    font-family: var(--fuente2);
-    font-size: 24px;
-    color: var(--color-secundario);
-    margin-bottom: 15px;
+.submenu a:hover {
+  background-color: #e3f2fd;
 }
 
-.contenido p {
-    font-family: var(--fuente-principal);
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
+/* Banner publicitario */
+.banner-publicitario {
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  height: 70px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-/* Footer */
+/* .banner-publicitario img {
+  max-height: 100%;
+  object-fit: contain;
+} */
+/* .banner-publicitario {
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  height: 200px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  overflow: hidden;
+} */
+.banner-publicitario {
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  height: 200px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.banner-publicitario img {
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.banner-publicitario img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para que se adapte sin deformarse */
+}
+
+
+/* Contenido principal */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.intro h1 {
+  color: #007bff;
+  margin-bottom: 40px;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  background-color: #fff;
+  border: 1px solid #e3f2fd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.article-card h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.article-card p {
+  margin-bottom: 15px;
+}
+
+.article-link {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+/* Pie de página */
 footer {
-    grid-area: footer;
-    background: linear-gradient(135deg, var(--color-secundario), var(--link-color));
-    color: var(--color-footer);
-    text-align: center;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-}
-
-footer p {
-    font-family: var(--fuente4);
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-/* Botón Volver al inicio */
-#scrollToTopBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Diseño responsivo */
-@media screen and (max-width: 768px) {
-    .contenedor {
-        grid-template-areas: 
-            "header"
-            "contenido"
-            "temas"
-            "footer";
-        grid-template-columns: 1fr;
-        margin-top: 120px; /* Ajustado para pantallas pequeñas */
-    }
-
-    .temas {
-        padding: 15px;
-    }
-
-    .contenido {
-        padding: 15px;
-    }
-
-    .temas h2 {
-        font-size: 20px;
-    }
-
-    .contenido h2 {
-        font-size: 22px;
-    }
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #666;
 }
