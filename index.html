@@ -7,8 +7,8 @@
     <title>Web Sites Delanoys Tecnologias</title>
     <link rel="stylesheet" href="estilos/estilos.css">
     <link rel="stylesheet" href="estilos/header.css">
+    <link rel="stylesheet" href="estilos/menu.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
@@ -16,6 +16,23 @@
     </style>
 </head>
 <body id="inicio">
+    <div class="nav-container">
+        <div class="nav-buttons">
+            <div class="nav-button"><a href="index.html">Inicio</a></div>
+            <div class="nav-button"><a href="#">Servicios</a></div>
+            <div class="nav-button"><a href="pedagogia.html">Educación</a></div>
+            <div class="nav-button"><a href="dom.html">DOM - JavaScript</a></div>
+            <div class="nav-button"><a href="Soporte.html">Soporte técnico</a></div>
+            <div class="nav-button"><a href="https://delanoys.github.io/ProyectoWeb-Grupo3-AvanzaTech/" target="_blank">Developers in Process</a></div>
+            <div class="nav-button"><a href="EnlacesHtml.html" target="_blank">Target</a></div>
+            <div class="nav-button"><a href="#">Contacto</a></div>
+        </div>
+        <div class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 
     <div class="contenedor">
         <header>
@@ -24,23 +41,6 @@
                 <h1>Soporte Técnico y Desarrollo Web</h1>
             </div>
         </header>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="pedagogia.html">Educación</a></li>
-                <li><a href="dom.html">DOM - JavaScript</a></li>
-                <li><a href="Soporte.html">Soporte tecnico</a></li>
-                <li><a href="https://delanoys.github.io/ProyectoWeb-Grupo3-AvanzaTech/" target="_blank">Developers in Process</a></li>
-                <li><a href="EnlacesHtml.html" target="_blank">Target</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-            <div class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
         <aside class="temas">
             <h2>Soporte Técnico Informático</h2>
             <ul>
@@ -82,22 +82,11 @@
             <p>© 2025 Hever Torres Delanoys</p>
         </footer>
     </div>
+    <a href="#inicio" id="scrollToTopBtn" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-50" title="Volver al inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
     <script src="JavaScrpt/script.js"></script>
-
-    <!-- Botón volver al inicio (oculto al cargar) -->
-<!-- <a href="#inicio" id="scrollToTopBtn"
-   class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 z-50"
-   title="Volver al inicio">
-   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-   </svg>
-</a> -->
-<a href="#inicio" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-50" title="Volver al inicio">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-    </svg>
-</a>
-
-
 </body>
 </html>

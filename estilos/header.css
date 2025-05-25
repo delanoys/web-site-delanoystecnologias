@@ -15,8 +15,8 @@ header {
     color: var(--color-footer);
     padding: 20px 30px;
     position: sticky;
-    top: 0;
-    z-index: 1000;
+    top: 60px; /* Ajustado para estar debajo del nav-container */
+    z-index: 900; /* Menor que el z-index del nav-container */
     box-shadow: var(--shadow);
     transition: padding 0.3s ease, transform 0.3s ease;
 }
@@ -51,85 +51,7 @@ header .logo h1 {
     color: var(--color-footer);
 }
 
-/* NAV */
-nav {
-    grid-area: nav;
-    background: var(--color-secundario);
-    padding: 10px 30px;
-    box-shadow: var(--shadow);
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-nav li {
-    position: relative;
-}
-
-nav a {
-    color: var(--color-footer);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    font-family: var(--fuente-principal);
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-nav a:hover {
-    color: var(--link-color);
-    transform: translateY(-2px);
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: var(--link-color);
-    bottom: -5px;
-    left: 0;
-    transition: width 0.3s ease;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* Menú hamburguesa */
-nav .menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    margin-left: auto;
-}
-
-nav .menu-icon span {
-    background: var(--color-footer);
-    height: 3px;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-nav .menu-icon.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-nav .menu-icon.active span:nth-child(2) {
-    opacity: 0;
-}
-
-nav .menu-icon.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* MEDIA QUERIES */
+/* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
     header .logo h1 {
         font-size: 1.2rem;
@@ -137,29 +59,5 @@ nav .menu-icon.active span:nth-child(3) {
 
     header .logo img {
         max-width: 50px;
-    }
-
-    nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: var(--color-secundario);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        padding: 20px;
-        transform: translateY(-10px);
-        opacity: 0;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    nav ul.active {
-        display: flex;
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    nav .menu-icon {
-        display: flex;
     }
 }

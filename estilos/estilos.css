@@ -1,170 +1,125 @@
+/* Variables globales para consistencia */
 :root {
-    --color-principal: #fafafa;
-    --color-claro: #e3e9f0;
-    --color-fondo: #f5f5f5;
-    --color-texto: #353d35;
-    --color-fondofooter: #054393;
+    --color-secundario: #054393;
+    --link-color: #60a5fa;
+    --link-hover: #2563eb;
     --color-footer: rgb(250, 248, 248);
     --shadow: 0 4px 10px rgba(11, 25, 153, 0.3);
-
     --fuente-principal: Arial, sans-serif;
-    --fuenteTitulo: "Allerta Stencil";
-    --fuente1: "Nothing You Could Do";
     --fuente2: "Fredericka the Great";
-
-    --padding-contenedor: 20px;
-    --borde-redondeado: 10px;
+    --fuente3: "Allerta Stencil";
+    --fuente4: "Nothing You Could Do";
 }
 
-/* FUENTES PERSONALIZADAS */
-@font-face {
-    font-family: 'MiFuente';
-    src: url('fuentes/Zodiak_Complete/Zodiak-Regular.woff2') format('woff2');
-}
-
-.allerta-stencil-regular {
-    font-family: "Allerta Stencil", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.fredericka-the-great-regular {
-    font-family: "Fredericka the Great", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.nothing-you-could-do-regular {
-    font-family: "Nothing You Could Do", cursive;
-    font-weight: 400;
-    font-style: normal;
-}
-
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-}
-
-body {
-    font-family: var(--fuente-principal);
-    background-color: var(--color-fondo);
-    padding: var(--padding-contenedor);
-    color: var(--color-texto);
-}
-
-/* GRID LAYOUT */
+/* Contenedor principal */
 .contenedor {
     display: grid;
-    grid-template-areas:
+    grid-template-areas: 
         "header header"
-        "nav nav"
-        "aside main"
+        "temas contenido"
         "footer footer";
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: auto auto 1fr auto;
-    gap: 15px;
-    min-height: 100vh;
-    max-width: 1400px;
-    margin: 0 auto;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 80px auto 20px; /* Margen superior para no superponerse con el menú fijo */
+    padding: 0 20px;
 }
 
-/* ASIDE */
+/* Aside (temas) */
 .temas {
-    grid-area: aside;
-    background-color: var(--color-claro);
+    grid-area: temas;
+    background-color: #f8f9fa;
     padding: 20px;
-    border-radius: var(--borde-redondeado);
+    border-radius: 8px;
     box-shadow: var(--shadow);
 }
 
 .temas h2 {
-    font-size: 1.2rem;
-    font-family: var(--fuenteTitulo);
-    color: var(--color-fondofooter);
-    margin: 20px 0 10px 0;
-    border-bottom: 2px solid var(--color-fondofooter);
-    padding-bottom: 5px;
+    font-family: var(--fuente2);
+    font-size: 22px;
+    color: var(--color-secundario);
+    margin-bottom: 15px;
 }
 
 .temas ul {
     list-style: none;
-    margin: 10px 0 20px 0;
     padding: 0;
 }
 
 .temas li {
-    background-color: white;
-    margin-bottom: 8px;
-    padding: 2px;
-    border-left: 4px solid var(--color-principal);
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-}
-
-.temas li:hover {
-    background-color: #e8f0ff;
+    margin-bottom: 10px;
 }
 
 .temas a {
+    color: var(--color-secundario);
     text-decoration: none;
-    color: #132fe5;
     font-family: var(--fuente-principal);
+    font-size: 16px;
+    transition: color 0.3s ease;
 }
 
-/* CONTENIDO PRINCIPAL */
+.temas a:hover {
+    color: var(--link-hover);
+}
+
+/* Main (contenido) */
 .contenido {
-    grid-area: main;
-    background-color: white;
+    grid-area: contenido;
     padding: 20px;
-    border-radius: var(--borde-redondeado);
+    background-color: var(--color-footer);
+    border-radius: 8px;
     box-shadow: var(--shadow);
-    margin-bottom: 60px;
 }
 
 .contenido h2 {
-    font-family: var(--fuenteTitulo);
-    font-size: 1.5rem;
-    color: var(--color-fondofooter);
+    font-family: var(--fuente2);
+    font-size: 24px;
+    color: var(--color-secundario);
     margin-bottom: 15px;
 }
 
 .contenido p {
-    font-size: 1rem;
+    font-family: var(--fuente-principal);
+    font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 20px;
+    color: #333;
 }
 
-/* FOOTER */
+/* Footer */
 footer {
     grid-area: footer;
-    text-align: center;
-    background-color: var(--color-fondofooter);
+    background: linear-gradient(135deg, var(--color-secundario), var(--link-color));
     color: var(--color-footer);
-    padding: 10px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
     box-shadow: var(--shadow);
 }
 
 footer p {
-    font-family: var(--fuente1);
-    font-size: 0.9rem;
+    font-family: var(--fuente4);
+    font-size: 16px;
+    margin: 5px 0;
 }
 
-/* MEDIA QUERIES */
-@media (max-width: 768px) {
+/* Botón Volver al inicio */
+#scrollToTopBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Diseño responsivo */
+@media screen and (max-width: 768px) {
     .contenedor {
-        grid-template-areas:
+        grid-template-areas: 
             "header"
-            "nav"
-            "main"
-            "aside"
+            "contenido"
+            "temas"
             "footer";
         grid-template-columns: 1fr;
+        margin-top: 120px; /* Ajustado para pantallas pequeñas */
     }
 
     .temas {
@@ -173,5 +128,13 @@ footer p {
 
     .contenido {
         padding: 15px;
+    }
+
+    .temas h2 {
+        font-size: 20px;
+    }
+
+    .contenido h2 {
+        font-size: 22px;
     }
 }
