@@ -102,9 +102,10 @@
       max-width: 100%;
     }
     main {
+      margin: 15px;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 32px 16px;
+      padding: 42px 16px;
       text-align: center;
     }
     .articles {
@@ -299,16 +300,65 @@
   <!-- Encabezado principal con navegación y banner -->
   <header>
     <nav id="menu-container" class="navbar" role="navigation" aria-label="Menú principal">
-      <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/acerca">Acerca</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
+      <div class="navbar-content" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 18px;">
+        <a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+          <img src="/imagenes/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).gif" alt="Logo Delanoys Tecnologías" style="height: 48px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,123,255,0.08);" />
+          <span style="font-size: 1.25rem; color: var(--primary); font-weight: bold;">Delanoys Tecnologías</span>
+        </a>
+        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/acerca">Acerca</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+      </div>
     </nav>
-    <div class="banner-publicitario" role="banner">
-      <img src="/imagenes/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).gif" alt="Publicidad de Delanoys Tecnologías" />
+    <!-- Banner publicitario animado y más grande -->
+    <div class="banner-publicitario" role="banner" style="margin-top: 0; height: 260px; max-width: 1200px;">
+      <div style="width: 100%; height: 100%; overflow: hidden; position: relative;">
+        <img 
+          src="/imagenes/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).gif" 
+          alt="Publicidad de Delanoys Tecnologías"
+          style="
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 220px;
+            min-width: 700px;
+            animation: banner-move 12s linear infinite;
+          "
+        />
+      </div>
     </div>
+    <style>
+      @keyframes banner-move {
+        0% {
+          left: 100%;
+        }
+        100% {
+          left: -800px;
+        }
+      }
+      @media (max-width: 900px) {
+        .banner-publicitario {
+          height: 140px !important;
+        }
+        .banner-publicitario img {
+          height: 100px !important;
+          min-width: 400px !important;
+        }
+      }
+      @media (max-width: 600px) {
+        .banner-publicitario {
+          height: 80px !important;
+        }
+        .banner-publicitario img {
+          height: 60px !important;
+          min-width: 220px !important;
+        }
+      }
+    </style>
   </header>
 
   <!-- Contenido principal -->
