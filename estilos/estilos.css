@@ -18,12 +18,12 @@
     --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --bg-hero: linear-gradient(120deg, #e3f2fd 0%, #ffffff 100%);
     
-    --border-color: #dee2e6;
+    --border-color: #0b65be;
     --border-radius: 12px;
     --border-radius-sm: 6px;
     --border-radius-lg: 18px;
     
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-sm: 0 2px 4px rgba(9, 169, 218, 0.1);
     --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
     --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
     --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
@@ -103,7 +103,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: #e5f3fd;
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
@@ -118,6 +118,7 @@ body {
     padding: 1rem var(--container-padding);
     max-width: var(--container-width);
     margin: 0 auto;
+    border-radius: var(--border-radius);
 }
 
 .nav-brand {
@@ -232,13 +233,13 @@ body {
 
 .banner-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-rows: 2fr 1fr;
+    gap: 1rem;
     align-items: center;
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 var(--container-padding);
-    width: 150%;
+    padding: 1vh var(--container-padding);
+    width: 50%;
 }
 
 .banner-slider {
@@ -514,7 +515,7 @@ body {
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 4rem;
     margin-bottom: 2rem;
 }
 

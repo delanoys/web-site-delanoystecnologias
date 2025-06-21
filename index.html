@@ -1,36 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delanoys Tecnologías - Soporte Técnico y Educación Web</title>
-    <meta name="description" content="Servicios de soporte técnico, desarrollo web y capacitación tecnológica profesional">
+    <meta name="description"
+        content="Servicios de soporte técnico, desarrollo web y capacitación tecnológica profesional">
     <link rel="stylesheet" href="estilos/estilos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Navegación principal -->
     <nav class="navbar" role="navigation" aria-label="Navegación principal">
         <div class="nav-container">
             <div class="nav-brand">
-                <img src="/imagenes/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).gif" 
-                     alt="Logo Delanoys Tecnologías" 
-                     class="brand-logo">
+                <img src="/imagenes/Logo/Dtecnologias NIT ver 7.jpg" alt="Logo Delanoys Tecnologías" class="brand-logo">
                 <span class="brand-text">Delanoys Tecnologías</span>
             </div>
-            
-            <button class="menu-icon" 
-                    aria-label="Abrir menú de navegación" 
-                    aria-expanded="false"
-                    aria-controls="nav-menu">
+
+            <button class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false"
+                aria-controls="nav-menu">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
-            
+
             <div class="nav-buttons" id="nav-menu">
                 <a href="#inicio" class="nav-link">Inicio</a>
                 <a href="#servicios" class="nav-link">Servicios</a>
@@ -44,14 +42,22 @@
     <section class="hero-banner" id="inicio">
         <div class="banner-content">
             <div class="banner-slider">
-                <img src="/imagenes/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).gif" 
-                     alt="Promoción Delanoys Tecnologías"
-                     class="banner-image">
+                <video class="banner-video"
+                    src="/video/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).mp4" autoplay loop
+                    muted playsinline style="width:100%;height:auto;object-fit:cover;" playbackRate="0.5"></video>
+
             </div>
+            <script>
+                // Ajusta la velocidad de reproducción del video a 0.5x (lento)
+                document.addEventListener('DOMContentLoaded', function () {
+                    var video = document.querySelector('.banner-video');
+                    if (video) video.playbackRate = 0.5;
+                });
+            </script>
             <div class="hero-text">
                 <h1 class="hero-title">Soluciones Tecnológicas Avanzadas</h1>
-                <p class="hero-subtitle">Transformamos tu negocio con tecnología de vanguardia</p>
-                <button class="cta-button">Comenzar Ahora</button>
+                <!-- <p class="hero-subtitle">Transformamos tu negocio con tecnología de vanguardia</p>
+                <button class="cta-button">Comenzar Ahora</button> -->
             </div>
         </div>
     </section>
@@ -63,9 +69,55 @@
             <div class="container">
                 <h2 class="section-title">Bienvenidos a Nuestra Plataforma</h2>
                 <p class="section-description">
-                    Ofrecemos soluciones integrales en tecnología, desde soporte técnico especializado 
+                    Ofrecemos soluciones integrales en tecnología, desde soporte técnico especializado
                     hasta educación web de calidad profesional.
                 </p>
+
+                <section class="intro-section">
+
+                    <div class="container">
+                        <h2 class="section-title">Quienes Somos ?</h2>
+                        <p class="section-description">
+                            Somos un equipo de especialistas en soporte técnico de computadoras, comprometidos con la
+                            excelencia
+                            y la innovación. Nuestro personal altamente capacitado ofrece soluciones integrales que
+                            abarcan
+                            desde la reparación de hardware hasta la optimización de software, asegurando que tu
+                            infraestructura
+                            tecnológica funcione de manera eficiente y confiable. Transformamos la tecnología en una
+                            herramienta
+                            estratégica para potenciar el crecimiento y productividad de tu negocio.
+                        </p>
+
+
+                    </div>
+                    <div class="container">
+                        <h2 class="section-title">Mision</h2>
+                        <p class="section-description">
+                            Brindamos Soluciones basadas en nuevas tecnologías, Soporte técnico , redes informáticas,
+                            mantenimiento de equipos de Computo (Pc, portátil, Tablet, celulares, impresoras), CCTV
+                            (circuito
+                            cerrado de televisión y vigilancia), diseño de sitios web, cloud computing y
+                            telecomunicaciones.
+
+                            Nuestras asesorías son Gratuitas
+                        </p>
+
+
+                    </div>
+
+                </section>
+            </div>
+            <div class="container">
+                <h2 class="section-title">Vision</h2>
+                <p class="section-description">
+                    Para el año 2030 convertirnos con la sabiduría y la dirección de Dios en la mas grande empresa de
+                    soporte asistencial para Hogares y Empresas, Brindando soluciones tecnológicas, soporte técnico
+                    especializado y capacitaciones en el uso de nuevas tecnologías para el desarrollo de educativo,
+                    social y laboral de nuestra patria Colombia
+                </p>
+
+
             </div>
         </section>
 
@@ -78,7 +130,7 @@
                         <div class="service-icon">🔧</div>
                         <h3 class="service-title">Optimización de Redes</h3>
                         <p class="service-description">
-                            Servicios de soporte técnico para optimizar redes empresariales, 
+                            Servicios de soporte técnico para optimizar redes empresariales,
                             garantizando conectividad estable y segura.
                         </p>
                         <button class="service-link">Conocer más</button>
@@ -88,7 +140,7 @@
                         <div class="service-icon">💻</div>
                         <h3 class="service-title">Desarrollo Web</h3>
                         <p class="service-description">
-                            Contenido educativo que cubre HTML, CSS, JavaScript y más. 
+                            Contenido educativo que cubre HTML, CSS, JavaScript y más.
                             Ideal para principiantes y profesionales.
                         </p>
                         <button class="service-link">Conocer más</button>
@@ -98,7 +150,7 @@
                         <div class="service-icon">⚡</div>
                         <h3 class="service-title">DOM y JavaScript</h3>
                         <p class="service-description">
-                            Aprende a manipular el DOM con JavaScript para crear 
+                            Aprende a manipular el DOM con JavaScript para crear
                             interfaces interactivas y dinámicas.
                         </p>
                         <button class="service-link">Conocer más</button>
@@ -130,11 +182,10 @@
     </main>
 
     <!-- Botón volver al inicio -->
-    <button id="scrollToTopBtn" 
-            class="scroll-to-top hidden" 
-            aria-label="Volver al inicio">
+    <button id="scrollToTopBtn" class="scroll-to-top hidden" aria-label="Volver al inicio">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
     </button>
 
@@ -143,28 +194,34 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Delanoys Tecnologías</h4>
-                    <p>Soluciones tecnológicas profesionales para tu negocio.</p>
-                </div>
-                <div class="footer-section">
                     <h4>Enlaces</h4>
                     <a href="agenda.html" target="_blank" class="footer-link">Agenda</a>
                     <a href="#servicios" class="footer-link">Servicios</a>
                     <a href="#educacion" class="footer-link">Educación</a>
-                    <a href="https://sites.google.com/view/delanoystecnologias/home" class="footer-link" target="_blank">Soporte tecnico </a>
-                    
+                </div>
+                <div class="footer-section">
+
+                    <h4>Delanoys Tecnologías</h4>
+                    <p>Soluciones tecnológicas profesionales para tu negocio.</p>
+
+                    <a href="https://sites.google.com/view/delanoystecnologias/home" class="footer-link"
+                        target="_blank">Soporte tecnico </a>
+
+                </div>
+
                 <div class="footer-section">
                     <h4>Contacto</h4>
                     <p>info@delanoys.com</p>
                     <p>+1 (555) 123-4567</p>
                 </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Delanoys Tecnologías. Todos los derechos reservados.</p>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Delanoys Tecnologías. Todos los derechos reservados.</p>
-            </div>
-        </div>
     </footer>
 
     <script src="JavaScrpt/script.js"></script>
 </body>
+
 </html>
