@@ -6,29 +6,33 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #F8F9FA;
-  color: #333;
-  padding-top: 260px; /* 60px del menú + 200px del banner */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #e3f2fd 0%, #ffffff 100%);
+  color: #222;
+  padding-top: 260px;
+  background-size: 400% 400%;
+  animation: animarFondo 15s ease infinite;
+  min-height: 100vh;
 }
-
 
 /* Menú principal */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   z-index: 1000;
-  padding: 10px 0;
+  padding: 24px 0 18px 0;
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s;
 }
 
 .menu {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 16px;
   list-style: none;
 }
 
@@ -37,139 +41,221 @@ body {
 }
 
 .menu-button {
-  background-color: #ffffff;
-  color: #007BFF;
-  border: 1px solid #007BFF;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-
-.menu-button:hover {
-  background-color: #007bff;
+  background: linear-gradient(90deg, #007BFF 0%, #00c6ff 100%);
   color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  outline: none;
 }
 
-/* Submenús */
+.menu-button:hover,
+.menu-button:focus {
+  background: linear-gradient(90deg, #0056b3 0%, #00aaff 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Submenús mejorados */
 .submenu {
-  display: none;
+  display: block;
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 50%;
   transform: translateX(-50%);
-  width: 90vw;
-  max-width: 1200px;
-  background-color: #FFFFFF;
-  border: 1px solid #E3F2FD;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  min-width: 220px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #b6e0fe;
+  box-shadow: 0 12px 32px rgba(0,123,255,0.10);
+  padding: 18px 0;
+  border-radius: 14px;
   z-index: 1000;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
+.menu-item:hover .submenu,
+.menu-item:focus-within .submenu {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(-50%) translateY(8px);
+}
 
 .submenu a {
   display: block;
   color: #007bff;
   text-decoration: none;
-  padding: 10px;
-  margin: 5px 0;
+  padding: 12px 32px;
+  margin: 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
 }
 
-.submenu a:hover {
-  background-color: #e3f2fd;
+.submenu a:hover,
+.submenu a:focus {
+  background: #007bff;
+  color: #fff;
 }
 
 /* Banner publicitario */
 .banner-publicitario {
   position: fixed;
-  top: 60px; /* ajusta según la altura del menú */
+  top: 70px;
   width: 100%;
-  height: 40vh; /* 70% de la altura de la pantalla */
-  background-color: #ffffff;
+  height: 38vh;
+  background: linear-gradient(90deg, #e3f2fd 0%, #ffffff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
   overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0,123,255,0.08);
+  border-bottom: 2px solid #b6e0fe;
 }
 
 .banner-publicitario img {
-  max-height: 100%;
+  max-height: 90%;
   width: auto;
   height: auto;
   object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,123,255,0.06);
 }
-
 
 /* Contenido principal */
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px 16px;
   text-align: center;
 }
 
 .intro h1 {
   color: #007bff;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .articles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
 }
 
 .article-card {
-  background-color: #fff;
-  border: 1px solid #e3f2fd;
-  border-radius: 8px;
-  padding: 20px;
+  background: linear-gradient(120deg, #fafdff 0%, #e3f2fd 100%);
+  border: 1px solid #b6e0fe;
+  border-radius: 18px;
+  transition: box-shadow 0.3s, transform 0.2s;
+  padding: 28px 22px;
   text-align: left;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0,123,255,0.06);
+}
+
+.article-card:hover {
+  box-shadow: 0 8px 32px rgba(0,123,255,0.13);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .article-card h2 {
   color: #007bff;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .article-card p {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  color: #444;
 }
 
 .article-link {
   color: #007bff;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
-.article-link:hover {
+.article-link:hover,
+.article-link:focus {
+  color: #0056b3;
   text-decoration: underline;
 }
 
 /* Pie de página */
 footer {
-  background-color: #004aad;
+  background: linear-gradient(90deg, #004aad 0%, #007bff 100%);
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  font-size: 0.9rem;
+  padding: 28px 0 18px 0;
+  margin-top: 48px;
+  font-size: 1rem;
   color: #ffffff;
-}
-
-body {
-  /* background: linear-gradient(-45deg, #00a5e9, #00d4ff, #008ac7, #00a5e9); */
-  background-color: #ffffff;
-  background-size: 400% 400%;
-  animation: animarFondo 15s ease infinite;
+  letter-spacing: 0.5px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -2px 12px rgba(0,123,255,0.08);
 }
 
 @keyframes animarFondo {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* Responsive improvements */
+@media (max-width: 900px) {
+  .banner-publicitario {
+    height: 28vh;
+    top: 70px;
+  }
+  .articles {
+    grid-template-columns: 1fr;
+  }
+  .navbar {
+    padding: 16px 0 12px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding-top: 180px;
+  }
+  .banner-publicitario {
+    height: 18vh;
+    top: 60px;
+  }
+  .menu {
+    gap: 8px;
+  }
+  .menu-button {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
+  .submenu {
+    min-width: 140px;
+    padding: 8px 0;
+  }
+  main {
+    padding: 16px 4px;
+  }
+  .intro h1 {
+    font-size: 1.5rem;
+  }
+  footer {
+    padding: 18px 0 10px 0;
+    font-size: 0.95rem;
+  }
 }

@@ -5,19 +5,307 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soporte Técnico y Educación Web</title>
   <link rel="stylesheet" href="/estilos/estilos.css" />
+  <style>
+    :root {
+      --primary: #007bff;
+      --primary-dark: #0056b3;
+      --bg-light: #e3f2fd;
+      --bg-gradient: linear-gradient(120deg, #e3f2fd 0%, #ffffff 100%);
+      --card-radius: 18px;
+      --shadow: 0 2px 12px rgba(0,123,255,0.06);
+    }
+    html {
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg-gradient);
+      color: #222;
+      padding-top: 180px;
+      padding-bottom: 90px;
+      background-size: 400% 400%;
+      animation: animarFondo 15s ease infinite;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      z-index: 1000;
+      padding: 18px 0 12px 0;
+      backdrop-filter: blur(8px);
+      transition: padding 0.3s;
+    }
+    .navbar ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .navbar a:hover,
+    .navbar a:focus {
+      background: var(--primary);
+      color: #fff;
+    }
+    /* Hamburger menu */
+    .navbar .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      margin-right: 18px;
+      color: var(--primary);
+    }
+    .banner-publicitario {
+      position: relative;
+      margin: 0 auto 32px auto;
+      width: 90%;
+      max-width: 900px;
+      height: 180px;
+      background: linear-gradient(90deg, #e3f2fd 0%, #ffffff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 900;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0,123,255,0.08);
+      border-bottom: 2px solid #b6e0fe;
+      border-radius: var(--card-radius);
+      top: 80px;
+    }
+    .banner-publicitario img {
+      max-height: 90%;
+      width: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      max-width: 100%;
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 16px;
+      text-align: center;
+    }
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+    .article-card {
+      background: linear-gradient(120deg, #fafdff 0%, #e3f2fd 100%);
+      border: 1px solid #b6e0fe;
+      border-radius: var(--card-radius);
+      transition: box-shadow 0.3s, transform 0.2s;
+      padding: 28px 22px;
+      text-align: left;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .article-card h2 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    .article-card p {
+      margin-bottom: 18px;
+      color: #444;
+      flex: 1;
+    }
+    .article-link {
+      color: var(--primary);
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.2s;
+      align-self: flex-start;
+    }
+    .article-link:hover,
+    .article-link:focus {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    .extra-section {
+      background: linear-gradient(90deg, #f0f7ff 0%, #e3f2fd 100%);
+      border-radius: 16px;
+      margin: 24px auto;
+      padding: 32px 18px;
+      max-width: 900px;
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+    .extra-section h2 {
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #004aad 0%, #007bff 100%);
+      text-align: center;
+      padding: 18px 0 10px 0;
+      font-size: 1rem;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      box-shadow: 0 -2px 12px rgba(0,123,255,0.08);
+      z-index: 2000;
+    }
+    footer nav {
+      margin-bottom: 6px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      margin: 0 8px;
+      font-weight: 500;
+    }
+    /* Responsive styles */
+    @media (max-width: 1100px) {
+      main {
+        padding: 24px 8px;
+      }
+      .banner-publicitario {
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 900px) {
+      .banner-publicitario {
+        height: 120px;
+      }
+      .articles {
+        grid-template-columns: 1fr;
+      }
+      .extra-section {
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 700px) {
+      .navbar ul {
+        gap: 14px;
+      }
+      .banner-publicitario {
+        height: 90px;
+      }
+      .article-card {
+        padding: 18px 8px;
+      }
+      .extra-section {
+        padding: 18px 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      body {
+        padding-top: 70px;
+        padding-bottom: 110px;
+      }
+      .navbar {
+        padding: 10px 0 8px 0;
+      }
+      .banner-publicitario {
+        height: 60px;
+        margin-bottom: 18px;
+      }
+      main {
+        padding: 10px 2vw;
+      }
+      .extra-section {
+        padding: 12px 2vw;
+      }
+      footer {
+        font-size: 0.95rem;
+        padding: 12px 0 6px 0;
+      }
+      /* Hamburger menu visible */
+      .navbar .menu-toggle {
+        display: block;
+      }
+      .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(255,255,255,0.98);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100vw;
+        padding: 0;
+        gap: 0;
+        display: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      }
+      .navbar ul.open {
+        display: flex;
+      }
+      .navbar ul li {
+        width: 100%;
+        border-bottom: 1px solid #e3f2fd;
+      }
+      .navbar ul li:last-child {
+        border-bottom: none;
+      }
+      .navbar a {
+        display: block;
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 1.08rem;
+      }
+    }
+    @media (max-width: 400px) {
+      .banner-publicitario {
+        height: 40px;
+      }
+      .article-card h2 {
+        font-size: 1.1rem;
+      }
+      .extra-section h2 {
+        font-size: 1.1rem;
+      }
+    }
+    @keyframes animarFondo {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- Encabezado principal con navegación y banner -->
   <header>
     <nav id="menu-container" class="navbar" role="navigation" aria-label="Menú principal">
-  <ul>
-    <li><a href="/">Inicio</a></li>
-    <li><a href="/acerca">Acerca</a></li>
-    <li><a href="/contacto">Contacto</a></li>
-  </ul>
-</nav>
-
+      <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/acerca">Acerca</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </nav>
     <div class="banner-publicitario" role="banner">
       <img src="/imagenes/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).gif" alt="Publicidad de Delanoys Tecnologías" />
     </div>
@@ -35,63 +323,66 @@
         <p>Ofrecemos servicios de soporte técnico para optimizar redes empresariales, garantizando conectividad estable y segura.</p>
         <a href="#" class="article-link">Leer más</a>
       </article>
-
       <article class="article-card">
         <h2>Aprende Desarrollo Web desde Cero</h2>
         <p>Nuestro contenido educativo cubre HTML, CSS, JavaScript y más. Ideal para quienes comienzan o buscan mejorar habilidades.</p>
         <a href="#" class="article-link">Leer más</a>
       </article>
-
       <article class="article-card">
         <h2>DOM y JavaScript: Guía Práctica</h2>
         <p>Aprende a manipular el DOM con JavaScript para crear interfaces interactivas y dinámicas.</p>
         <a href="#" class="article-link">Leer más</a>
       </article>
     </section>
-     <section class="articles" aria-label="Artículos informativos">
-      <article class="article-card">
-        <h2>Optimización de Redes para Empresas</h2>
-        <p>Ofrecemos servicios de soporte técnico para optimizar redes empresariales, garantizando conectividad estable y segura.</p>
-        <a href="#" class="article-link">Leer más</a>
-      </article>
 
-      <article class="article-card">
-        <h2>Aprende Desarrollo Web desde Cero</h2>
-        <p>Nuestro contenido educativo cubre HTML, CSS, JavaScript y más. Ideal para quienes comienzan o buscan mejorar habilidades.</p>
-        <a href="#" class="article-link">Leer más</a>
-      </article>
-
-      <article class="article-card">
-        <h2>DOM y JavaScript: Guía Práctica</h2>
-        <p>Aprende a manipular el DOM con JavaScript para crear interfaces interactivas y dinámicas.</p>
-        <a href="#" class="article-link">Leer más</a>
-      </article>
+    <!-- Nuevas secciones -->
+    <section class="extra-section">
+      <h2>Soporte Remoto</h2>
+      <p>Brindamos asistencia remota para resolver problemas técnicos de manera rápida y eficiente, sin importar tu ubicación.</p>
+    </section>
+    <section class="extra-section">
+      <h2>Capacitación Personalizada</h2>
+      <p>Ofrecemos cursos y talleres adaptados a las necesidades de tu empresa o proyecto, para potenciar tus habilidades digitales.</p>
+    </section>
+    <section class="extra-section">
+      <h2>Consultoría en Seguridad Informática</h2>
+      <p>Te ayudamos a proteger tus datos y sistemas con auditorías, recomendaciones y soluciones de seguridad a medida.</p>
     </section>
   </main>
 
-  <!-- Pie de página -->
+  <!-- Pie de página fijo -->
   <footer>
-    <a href="agenda.html" target="_blank">Agenda</a>
+    <nav aria-label="Enlaces de pie de página">
+      <a href="agenda.html" target="_blank">Agenda</a>
+    </nav>
     <p>&copy; 2025 Delanoys Tecnologías. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- JS para cargar menú -->
+  <!-- JS para menú responsive y cargar menú externo -->
   <script>
-    fetch('menu.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('menu-container').innerHTML = data;
+    // Responsive hamburger menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('.navbar ul');
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('open');
+    });
 
-        const menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(item => {
-          item.addEventListener('click', () => {
-            const submenu = item.querySelector('.submenu');
-            document.querySelectorAll('.submenu').forEach(sub => {
-              if (sub !== submenu) sub.style.display = 'none';
-            });
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-          });
-        });
+    // Cerrar menú al hacer click fuera (en móvil)
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 600) {
+        if (!e.target.closest('.navbar')) {
+          navUl.classList.remove('open');
+        }
+      }
+    });
+
+    // Cargar menú externo si existe (opcional)
+    fetch('menu.html')
+      .then(res => res.ok ? res.text() : null)
+      .then(data => {
+        if (data) {
+          document.getElementById('menu-container').innerHTML = data;
+        }
       });
   </script>
 
