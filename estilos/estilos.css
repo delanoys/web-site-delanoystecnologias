@@ -3,7 +3,7 @@
     --primary-color: #007bff;
     --primary-dark: #0056b3;
     --primary-light: #e3f2fd;
-    --secondary-color: #6c757d;
+    --secondary-color: #2f8de0;
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
@@ -25,8 +25,13 @@
     
     --shadow-sm: 0 2px 4px rgba(9, 169, 218, 0.1);
     --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-    --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+    --shadow-lg: 0 10px 15px rgb(0, 64, 163,0.5);
+    /* 
+        --shadow-xl: Esta variable define una sombra grande y destacada para elementos.
+        Utiliza un desplazamiento de 30px en el eje Y y 50px de difuminado, con un color negro semitransparente (opacidad 25%).
+        Ideal para resaltar elementos importantes en la interfaz, proporcionando profundidad y enfoque visual.
+    */
+    --shadow-xl: 0 30px 50px rgba(12, 14, 18, 0.5);
     
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
@@ -224,7 +229,7 @@ body {
 /* Banner hero */
 .hero-banner {
     position: relative;
-    min-height: 100vh;
+    min-height: 10vh;
     background: var(--bg-hero);
     display: flex;
     align-items: center;
@@ -232,13 +237,14 @@ body {
 }
 
 .banner-content {
-    display: grid;
-    grid-template-rows: 2fr 1fr;
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
     align-items: center;
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 1vh var(--container-padding);
+    padding: 10vh var(--container-padding);
     width: 50%;
 }
 
@@ -321,6 +327,7 @@ body {
 /* Contenido principal */
 .main-content {
     padding: 4rem 0;
+    background-color: #ffffff;
 }
 
 .section-title {
@@ -357,7 +364,7 @@ body {
 .intro-section,
 .services-section,
 .education-section {
-    padding: 4rem 0;
+    padding: 1rem 0;
 }
 
 .services-section {
