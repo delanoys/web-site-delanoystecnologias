@@ -1,0 +1,157 @@
+<!-- agenda-web/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── app.js
+└── README.md -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Agenda Personal</title>
+    <link rel="stylesheet" href="agenda.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📅 Mi Agenda Personal</h1>
+            <div class="header-controls">
+                <button id="btn-nueva-actividad" class="btn btn-primary">+ Nueva Actividad</button>
+                <div class="filtros">
+                    <select id="filtro-categoria">
+                        <option value="">Todas las categorías</option>
+                        <option value="trabajo">Trabajo</option>
+                        <option value="personal">Personal</option>
+                        <option value="estudio">Estudio</option>
+                        <option value="salud">Salud</option>
+                    </select>
+                    <select id="filtro-estado">
+                        <option value="">Todos los estados</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="en-proceso">En Proceso</option>
+                        <option value="completada">Completada</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Calendario Vista Rápida -->
+        <section class="calendario-section">
+            <h2>Vista del Mes</h2>
+            <div class="calendario-navegacion">
+                <button id="mes-anterior">‹</button>
+                <span id="mes-actual"></span>
+                <button id="mes-siguiente">›</button>
+            </div>
+            <div id="calendario-grid" class="calendario-grid">
+                <!-- Se genera dinámicamente con JS -->
+            </div>
+        </section>
+
+        <!-- Lista de Actividades -->
+        <section class="actividades-section">
+            <h2>Mis Actividades</h2>
+            <div class="actividades-stats">
+                <div class="stat-card">
+                    <span class="stat-numero" id="total-actividades">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-numero" id="pendientes">0</span>
+                    <span class="stat-label">Pendientes</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-numero" id="completadas">0</span>
+                    <span class="stat-label">Completadas</span>
+                </div>
+            </div>
+            <div id="lista-actividades" class="lista-actividades">
+                <!-- Se genera dinámicamente con JS -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal para Nueva/Editar Actividad -->
+    <div id="modal-actividad" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Nueva Actividad</h3>
+                <button id="cerrar-modal" class="btn-cerrar">×</button>
+            </div>
+            <form id="form-actividad">
+                <div class="form-group">
+                    <label for="titulo">Título *</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha">Fecha *</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora">Hora</label>
+                        <input type="time" id="hora" name="hora">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" name="categoria">
+                            <option value="personal">Personal</option>
+                            <option value="trabajo">Trabajo</option>
+                            <option value="estudio">Estudio</option>
+                            <option value="salud">Salud</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prioridad">Prioridad</label>
+                        <select id="prioridad" name="prioridad">
+                            <option value="baja">Baja</option>
+                            <option value="media">Media</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <select id="estado" name="estado">
+                        <option value="pendiente">Pendiente</option>
+                        <option value="en-proceso">En Proceso</option>
+                        <option value="completada">Completada</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="cancelar-modal" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="modal-confirmacion" class="modal">
+        <div class="modal-content modal-small">
+            <h3>¿Estás seguro?</h3>
+            <p id="mensaje-confirmacion">Esta acción no se puede deshacer.</p>
+            <div class="modal-actions">
+                <button id="cancelar-confirmacion" class="btn btn-secondary">Cancelar</button>
+                <button id="confirmar-accion" class="btn btn-danger">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="JavaScrpt/agenda.js"></script>
+</body>
+</html>
