@@ -87,36 +87,242 @@
 
   <div class="content" id="loveLetter">
 
-    <img src="https://cdn.pixabay.com/photo/2017/03/12/13/41/wedding-2130999_1280.jpg" alt="Amor" />
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <img src="imagenes/carta/4249271_cf5c2.gif" alt="Amor 1" />
+        <img src="imagenes/carta/artworks-000035196723-0nh4cx-t500x500.jpg" alt="Amor 2" />
+        <img src="imagenes/carta/images (1).jpg" alt="Amor 3" />
+        <img src="imagenes/carta/images (2).jpg" alt="Amor 4" />
+        <img src="imagenes/carta/images.jpg" alt="Amor 5" />
+      </div>
+      <!-- <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button> -->
+    </div>
+    <style>
+      .slider-container {
+        position: relative;
+        max-width: 600px;
+        aspect-ratio: 1.3/1;
+        margin: 30px auto 40px auto;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(233,30,99,0.15);
+        background: rgba(255,255,255,0.7);
+      }
+      .slider {
+        display: flex;
+        transition: transform 1s cubic-bezier(.77,0,.18,1);
+        will-change: transform;
+        height: 100%;
+      }
+      .slider img {
+        min-width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0.98) saturate(1.15) blur(0.2px) drop-shadow(0 0 10px #e91e63aa);
+        transition: filter 0.7s, transform 0.5s cubic-bezier(.77,0,.18,1);
+        border-radius: 15px;
+        cursor: pointer;
+      }
+      .slider img:hover {
+        filter: brightness(1.05) saturate(1.3) blur(0px) drop-shadow(0 0 20px #e91e63cc);
+        transform: scale(1.13);
+        z-index: 3;
+      }
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(233,30,99,0.7);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 2px 8px #e91e6340;
+        transition: background 0.3s;
+      }
+      .slider-btn:hover {
+        background: #e91e63;
+      }
+      .slider-btn.prev { left: 10px; }
+      .slider-btn.next { right: 10px; }
+    </style>
+    <script>
+      let currentSlide = 0;
+      const slider = document.getElementById('slider');
+      const slides = slider.children;
+      const totalSlides = slides.length;
 
-    <p style="font-style: italic;">“Puestos los ojos en Jesús, el autor y consumador de la fe.” – Hebreos 12:2</p>
+      function showSlide(index) {
+        currentSlide = (index + totalSlides) % totalSlides;
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
 
-    <p style="text-align: left; line-height: 1.6;">
-      Mi amor,<br><br>
+      function moveSlide(step) {
+        showSlide(currentSlide + step);
+      }
 
-      No sé si estas palabras lleguen en el mejor momento, pero necesitaba escribirte desde lo más profundo de mi corazón. No para convencerte, sino para decirte con sinceridad cuánto te amo, cuánto reconozco mis errores y cuánto anhelo que Dios nos dé una nueva oportunidad.<br><br>
+      // Auto-slide every 3 seconds
+      let autoSlide = setInterval(() => moveSlide(1), 3000);
 
-      Sé que he fallado. Sé que hemos vivido momentos dolorosos. Y también sé que tú llevaste cargas pesadas. Muchas veces no supe amarte como merecías. Luché con heridas del pasado, con mi salud, con mis deseos, con el pecado, con la frustración de no poder liderar mi hogar como soñé. Y aun así, tú seguiste luchando... hasta que te cansaste.<br><br>
+      // Pause on hover (container)
+      slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
+      slider.parentElement.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(() => moveSlide(1), 3000);
+      });
 
-      Hoy no te escribo para reclamarte nada. Al contrario, te doy gracias por todo lo que diste. Por las veces que estuviste, por las veces que diste más de lo que podías. Hoy, con lágrimas en los ojos, te digo: te amo. Y si aún queda algo en tu corazón, aunque sea una chispa, te pido que no dejemos esto sin pelear al menos una vez más —pero ahora con Dios como el centro.<br><br>
+      // Initialize
+      showSlide(0);
+    </script>
+    <script>
+      let currentSlide = 0;
+      const slider = document.getElementById('slider');
+      const slides = slider.children;
+      const totalSlides = slides.length;
 
-      Quiero reconstruir, restaurar, y renacer. No te obligo a quedarte, pero te ruego que pongas esta historia en las manos del Autor de la fe. Jesús puede hacer lo que yo no he podido. Puede sanar nuestras heridas, restaurar nuestra intimidad, y volver a encender el amor que un día nos unió.<br><br>
+      function showSlide(index) {
+        currentSlide = (index + totalSlides) % totalSlides;
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
 
-      Gracias por ser mi compañera, la madre de nuestras hijas, y por tantos momentos vividos. Te perdono, te pido perdón, y te amo en libertad.<br><br>
+      function moveSlide(step) {
+        showSlide(currentSlide + step);
+      }
 
-      Con esperanza en Dios,<br>
-      Tu esposo 💖
-    </p>
+      // Auto-slide every 4 seconds
+      let autoSlide = setInterval(() => moveSlide(1), 4000);
 
-    <img src="https://cdn.pixabay.com/photo/2020/06/06/10/15/love-5268121_1280.jpg" alt="Esperanza y amor">
+      // Pause on hover
+      slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
+      slider.parentElement.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(() => moveSlide(1), 4000);
+      });
+
+      // Initialize
+      showSlide(0);
+    </script>
+
+    <div id="letterText" style="background: linear-gradient(135deg, #e91e63 0%, #e6023f 100%); padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 24px #e91e6330; margin-bottom: 30px; font-size: 1.375rem; min-height: 350px; background-color: rgba(233,30,99,0.22); background-blend-mode: lighten;">
+        <p style="font-style: italic; color: #fffcfc; text-shadow: 0 1px 12px #e91e6380;">“Puestos los ojos en Jesús, el autor y consumador de la fe.” – Hebreos 12:2</p>
+        <div id="animatedLetter" style="text-align: left; line-height: 1.7; color: #fff; text-shadow: 0 1px 8px #e91e6380;"></div>
+    </div>
+    <script>
+        // Texto de la carta
+        const letterText = `Mi amor,
+
+    No sé si estas palabras lleguen en el mejor momento, pero necesitaba escribirte desde lo más profundo de mi corazón. No para convencerte, sino para decirte con sinceridad cuánto te amo, cuánto reconozco mis errores y cuánto anhelo que Dios nos dé una nueva oportunidad.
+
+    Sé que he fallado. Sé que hemos vivido momentos dolorosos. Y también sé que tú llevaste cargas pesadas. Muchas veces no supe amarte como merecías. Luché con heridas del pasado, con mi salud, con mis deseos, con el pecado, con la frustración de no poder liderar mi hogar como soñé. Y aun así, tú seguiste luchando... hasta que te cansaste.
+
+    Hoy no te escribo para reclamarte nada. Al contrario, te doy gracias por todo lo que diste. Por las veces que estuviste, por las veces que diste más de lo que podías. Hoy, con lágrimas en los ojos, te digo: te amo. Y si aún queda algo en tu corazón, aunque sea una chispa, te pido que no dejemos esto sin pelear al menos una vez más —pero ahora con Dios como el centro.
+
+    Quiero reconstruir, restaurar, y renacer. No te obligo a quedarte, pero te ruego que pongas esta historia en las manos del Autor de la fe. Jesús puede hacer lo que yo no he podido. Puede sanar nuestras heridas, restaurar nuestra intimidad, y volver a encender el amor que un día nos unió.
+
+    Gracias por ser mi compañera, la madre de nuestras hijas, y por tantos momentos vividos. Te perdono, te pido perdón, y te amo en libertad.
+
+    Con esperanza en Dios,
+    Tu esposo 💖`;
+
+        // Divide el texto en palabras y mantiene los saltos de línea
+        function splitTextWithLineBreaks(text) {
+            const lines = text.split('\n');
+            let words = [];
+            lines.forEach((line, idx) => {
+                if (line.trim() === "") {
+                    words.push("<br><br>");
+                } else {
+                    const lineWords = line.split(' ');
+                    lineWords.forEach((w, i) => {
+                        words.push(w);
+                        if (i < lineWords.length - 1) words.push(" "); // Agrega espacio entre palabras
+                    });
+                    if (idx < lines.length - 1) words.push("<br>");
+                }
+            });
+            return words;
+        }
+
+        const words = splitTextWithLineBreaks(letterText);
+        const container = document.getElementById('animatedLetter');
+        let i = 0;
+
+        function showNextWord() {
+            if (i < words.length) {
+                if (words[i] === "<br>") {
+                    container.appendChild(document.createElement('br'));
+                } else if (words[i] === "<br><br>") {
+                    container.appendChild(document.createElement('br'));
+                    container.appendChild(document.createElement('br'));
+                } else if (words[i] === " ") {
+                    container.appendChild(document.createTextNode(" "));
+                } else {
+                    // Crea un span para animar el tamaño de la palabra
+                    const span = document.createElement('span');
+                    span.style.display = 'inline-block';
+                    span.style.transition = 'transform 0.4s cubic-bezier(.77,0,.18,1)';
+                    span.style.transform = 'scale(0.7)';
+                    span.textContent = words[i];
+                    container.appendChild(span);
+                    setTimeout(() => {
+                        span.style.transform = 'scale(1.15)';
+                        setTimeout(() => {
+                            span.style.transform = 'scale(1)';
+                        }, 200);
+                    }, 10);
+                }
+                i++;
+                setTimeout(showNextWord, 70); // velocidad de aparición
+            }
+        }
+
+        // Inicia la animación cuando se muestra la carta
+        function startLetterAnimation() {
+            container.innerHTML = "";
+            i = 0;
+            showNextWord();
+        }
+
+        // Detecta cuando la carta se muestra
+        const observer = new MutationObserver(() => {
+            const letter = document.getElementById("loveLetter");
+            if (letter && letter.style.display === "block") {
+                startLetterAnimation();
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.getElementById("loveLetter"), { attributes: true, attributeFilter: ['style'] });
+    </script>
+
+    <img src="imagenes/carta/Fe.png" alt="Esperanza y amor">
 
     <h3>🎵 Nuestra canción: Siempre en mi mente</h3>
-    <audio controls>
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <audio id="loveAudio" controls autoplay>
+      <source src="video/Juan Gabriel - Siempre en Mi Mente (Cover Audio).mp3" type="audio/mpeg">
       Tu navegador no soporta audio.
     </audio>
+    <script>
+      // Reproducir audio automáticamente cuando se muestre la carta
+      function playLoveAudio() {
+        const audio = document.getElementById('loveAudio');
+        if (audio) {
+          audio.play().catch(() => {
+            // Autoplay puede estar bloqueado por el navegador
+          });
+        }
+      }
+      // Llama a playLoveAudio cuando la carta se muestra
+      const originalCheckCode = checkCode;
+      window.checkCode = function() {
+        originalCheckCode();
+        setTimeout(playLoveAudio, 500);
+      };
+    </script>
 
-    <p style="margin-top: 40px;">Gracias por leer hasta el final. Esta página es para ti. Y si Dios toca tu corazón... aún hay esperanza. 💫</p>
+    <p style="margin-top: 40px; color: red; font-size: larger;">Gracias por leer hasta el final. Esta página es para ti. Y si Dios toca tu corazón... aún hay esperanza. 💫</p>
   </div>
 
   <script>
