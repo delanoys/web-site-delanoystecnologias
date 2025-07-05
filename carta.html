@@ -503,12 +503,13 @@
     <img src="imagenes/carta/Fe.png" alt="Esperanza y amor">
 
     <h3>🎵 Nuestra canción: Siempre en mi mente</h3>
-    <audio id="loveAudio" autoplay style="display:none">
+    <!-- El audio debe estar fuera de cualquier contenedor oculto para autoplay en móviles -->
+    <audio id="loveAudio" preload="auto">
       <source src="siempre.mp3" type="audio/mpeg">
       Tu navegador no soporta audio.
     </audio>
     <script>
-      // Reproducir audio automáticamente cuando se muestre la carta
+      // Reproducir audio en respuesta directa al clic del botón
       function playLoveAudio() {
         const audio = document.getElementById('loveAudio');
         if (audio) {
@@ -517,11 +518,10 @@
           });
         }
       }
-      // Llama a playLoveAudio cuando la carta se muestra
-      const originalCheckCode = checkCode;
-      window.checkCode = function() {
-        originalCheckCode();
-        setTimeout(playLoveAudio, 500);
+      // Modifica el botón para llamar a checkCode y playLoveAudio en el mismo evento de usuario
+      document.querySelector('button[onclick="checkCode()"]').onclick = function() {
+        checkCode();
+        playLoveAudio();
       };
     </script>
 
