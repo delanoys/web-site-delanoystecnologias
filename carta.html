@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Ti, Mi Amor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f8e1e7, #fdfbfb);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #e91e63;
+      color: white;
+      padding: 30px 20px;
+    }
+
+    .form-container {
+      padding: 50px 20px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .content {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      display: none;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    audio {
+      margin-top: 30px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Para Ti, Mi Amor</h1>
+    <p>Una carta desde lo profundo de mi alma</p>
+  </header>
+
+  <div class="form-container" id="form-container">
+    <h2>Ingresa nuestro código secreto</h2>
+    <input type="password" id="codeInput" placeholder="Código secreto">
+    <button onclick="checkCode()">Abrir carta</button>
+  </div>
+
+  <div class="content" id="loveLetter">
+
+    <img src="https://cdn.pixabay.com/photo/2017/03/12/13/41/wedding-2130999_1280.jpg" alt="Amor" />
+
+    <p style="font-style: italic;">“Puestos los ojos en Jesús, el autor y consumador de la fe.” – Hebreos 12:2</p>
+
+    <p style="text-align: left; line-height: 1.6;">
+      Mi amor,<br><br>
+
+      No sé si estas palabras lleguen en el mejor momento, pero necesitaba escribirte desde lo más profundo de mi corazón. No para convencerte, sino para decirte con sinceridad cuánto te amo, cuánto reconozco mis errores y cuánto anhelo que Dios nos dé una nueva oportunidad.<br><br>
+
+      Sé que he fallado. Sé que hemos vivido momentos dolorosos. Y también sé que tú llevaste cargas pesadas. Muchas veces no supe amarte como merecías. Luché con heridas del pasado, con mi salud, con mis deseos, con el pecado, con la frustración de no poder liderar mi hogar como soñé. Y aun así, tú seguiste luchando... hasta que te cansaste.<br><br>
+
+      Hoy no te escribo para reclamarte nada. Al contrario, te doy gracias por todo lo que diste. Por las veces que estuviste, por las veces que diste más de lo que podías. Hoy, con lágrimas en los ojos, te digo: te amo. Y si aún queda algo en tu corazón, aunque sea una chispa, te pido que no dejemos esto sin pelear al menos una vez más —pero ahora con Dios como el centro.<br><br>
+
+      Quiero reconstruir, restaurar, y renacer. No te obligo a quedarte, pero te ruego que pongas esta historia en las manos del Autor de la fe. Jesús puede hacer lo que yo no he podido. Puede sanar nuestras heridas, restaurar nuestra intimidad, y volver a encender el amor que un día nos unió.<br><br>
+
+      Gracias por ser mi compañera, la madre de nuestras hijas, y por tantos momentos vividos. Te perdono, te pido perdón, y te amo en libertad.<br><br>
+
+      Con esperanza en Dios,<br>
+      Tu esposo 💖
+    </p>
+
+    <img src="https://cdn.pixabay.com/photo/2020/06/06/10/15/love-5268121_1280.jpg" alt="Esperanza y amor">
+
+    <h3>🎵 Nuestra canción: Siempre en mi mente</h3>
+    <audio controls>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
+
+    <p style="margin-top: 40px;">Gracias por leer hasta el final. Esta página es para ti. Y si Dios toca tu corazón... aún hay esperanza. 💫</p>
+  </div>
+
+  <script>
+    function checkCode() {
+      const code = document.getElementById("codeInput").value;
+      const secret = "SandyDs18Parasiempre"; // Reemplaza por tu código real
+
+      if (code === secret) {
+        document.getElementById("form-container").style.display = "none";
+        const letter = document.getElementById("loveLetter");
+        letter.style.display = "block";
+        // Forzar animación reiniciando offsetHeight
+        void letter.offsetHeight;
+        letter.style.animation = "fadeIn 2s ease forwards";
+      } else {
+        alert("Código incorrecto. Intenta de nuevo.");
+      }
+    }
+  </script>
+
+</body>
+</html>
