@@ -1,5 +1,6 @@
 const cursos = [
   "AvanzaTech Desarrollo de sitios para la web",
+  "Fundamentos técnicos de AWS (Español LATAM) Curso digital",
   "AvanzaTech AWS",
   "AvanzaTech IA",
   "Udemy Python Total",
