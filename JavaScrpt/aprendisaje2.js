@@ -1,5 +1,5 @@
 const cursos = [
-  "AvanzaTech Python",
+  "AvanzaTech Desarrollo de sitios para la web",
   "AvanzaTech AWS",
   "AvanzaTech IA",
   "Udemy Python Total",
