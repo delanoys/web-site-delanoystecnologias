@@ -1,3 +1,40 @@
+/**
+ * Agenda Personal - Gestión de actividades y calendario.
+ * 
+ * Este archivo contiene la lógica principal para la gestión de actividades personales,
+ * incluyendo almacenamiento en LocalStorage, filtrado, edición, eliminación, y visualización
+ * en un calendario interactivo. También gestiona la interfaz de usuario y las notificaciones.
+ * 
+ * Variables globales:
+ * - actividades: Array de actividades cargadas.
+ * - fechaActual: Fecha actual mostrada en el calendario.
+ * - actividadEditando: ID de la actividad en edición.
+ * 
+ * Constantes:
+ * - MESES: Nombres de los meses en español.
+ * - DIAS_SEMANA: Nombres de los días de la semana en español.
+ * 
+ * Clases principales:
+ * - BaseDatos: Métodos estáticos para cargar, guardar, exportar e importar actividades en LocalStorage.
+ * - GestorActividades: Métodos para crear, actualizar, eliminar, filtrar y obtener estadísticas de actividades.
+ * - GestorCalendario: Métodos para renderizar el calendario y navegar entre meses.
+ * - UI: Métodos para mostrar/ocultar modales, renderizar actividades, mostrar notificaciones y actualizar estadísticas.
+ * 
+ * Funciones globales:
+ * - editarActividad(id): Abre el formulario para editar una actividad existente.
+ * - confirmarEliminar(id): Muestra un modal de confirmación para eliminar una actividad.
+ * - actualizarVista(): Actualiza la vista de actividades, estadísticas y calendario.
+ * - aplicarFiltros(): Aplica los filtros seleccionados a la lista de actividades.
+ * - limpiarFormulario(): Limpia el formulario de actividad y lo prepara para una nueva entrada.
+ * - marcarSubtarea(id, index): Marca/desmarca una subtarea y actualiza el estado de la actividad.
+ * 
+ * Inicialización:
+ * - Al cargar el DOM, se inicializan los datos, eventos y la vista principal.
+ * 
+ * @file agenda.js
+ * @author Delanoys Tecnologias
+ * @version 1.0
+ */
 // ====================================
 // VARIABLES GLOBALES Y CONFIGURACIÓN
 // ====================================
