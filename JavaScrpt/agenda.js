@@ -80,13 +80,12 @@ class GestorActividades {
             hora: datosActividad.hora || '',
             categoria: datosActividad.categoria || 'personal',
             prioridad: datosActividad.prioridad || 'media',
-            estado: datosActividad.estado || 'pendiente',
+            estado: 'pendiente', // <-- Estado inicial
             diasDuracion: parseInt(datosActividad['dias-duracion']) || 1,
             subtareas: subtareas,
             fechaCreacion: new Date().toISOString(),
             fechaModificacion: new Date().toISOString()
         };
-
         actividades.unshift(nuevaActividad);
         BaseDatos.guardar(actividades);
         return nuevaActividad;
@@ -97,11 +96,20 @@ class GestorActividades {
         if (indice === -1) return false;
         const subtareas = datosActividad.subtareas
             ? datosActividad.subtareas.split('\n').map((s, i) => {
-                // Mantener estado si existe
                 const prev = actividades[indice].subtareas?.[i];
                 return { nombre: s.trim(), completada: prev ? prev.completada : false };
             }).filter(s => s.nombre)
             : [];
+        let estado = actividades[indice].estado;
+        const total = subtareas.length || actividades[indice].diasDuracion || 1;
+        const completadas = subtareas.filter(s => s.completada).length || 0;
+        if (completadas === total && total > 0) {
+            estado = 'completada';
+        } else if (completadas > 0) {
+            estado = 'en-proceso';
+        } else {
+            estado = 'pendiente';
+        }
         actividades[indice] = {
             ...actividades[indice],
             titulo: datosActividad.titulo.trim(),
@@ -110,12 +118,11 @@ class GestorActividades {
             hora: datosActividad.hora || '',
             categoria: datosActividad.categoria || 'personal',
             prioridad: datosActividad.prioridad || 'media',
-            estado: datosActividad.estado || 'pendiente',
+            estado: estado,
             diasDuracion: parseInt(datosActividad['dias-duracion']) || 1,
             subtareas: subtareas,
             fechaModificacion: new Date().toISOString()
         };
-
         BaseDatos.guardar(actividades);
         return true;
     }
@@ -707,6 +714,16 @@ function marcarSubtarea(id, index) {
     const actividad = GestorActividades.obtenerPorId(id);
     if (!actividad || !actividad.subtareas?.[index]) return;
     actividad.subtareas[index].completada = !actividad.subtareas[index].completada;
+    // Actualizar estado automáticamente
+    const total = actividad.subtareas.length || actividad.diasDuracion || 1;
+    const completadas = actividad.subtareas.filter(s => s.completada).length || 0;
+    if (completadas === total && total > 0) {
+        actividad.estado = 'completada';
+    } else if (completadas > 0) {
+        actividad.estado = 'en-proceso';
+    } else {
+        actividad.estado = 'pendiente';
+    }
     GestorActividades.actualizar(id, {
         ...actividad,
         subtareas: actividad.subtareas.map(s => s.nombre).join('\n'),
