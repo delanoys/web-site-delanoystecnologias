@@ -69,6 +69,9 @@ class BaseDatos {
 
 class GestorActividades {
     static crear(datosActividad) {
+        const subtareas = datosActividad.subtareas
+            ? datosActividad.subtareas.split('\n').map(s => ({ nombre: s.trim(), completada: false })).filter(s => s.nombre)
+            : [];
         const nuevaActividad = {
             id: this.generarId(),
             titulo: datosActividad.titulo.trim(),
@@ -78,6 +81,8 @@ class GestorActividades {
             categoria: datosActividad.categoria || 'personal',
             prioridad: datosActividad.prioridad || 'media',
             estado: datosActividad.estado || 'pendiente',
+            diasDuracion: parseInt(datosActividad['dias-duracion']) || 1,
+            subtareas: subtareas,
             fechaCreacion: new Date().toISOString(),
             fechaModificacion: new Date().toISOString()
         };
@@ -90,7 +95,13 @@ class GestorActividades {
     static actualizar(id, datosActividad) {
         const indice = actividades.findIndex(act => act.id === id);
         if (indice === -1) return false;
-
+        const subtareas = datosActividad.subtareas
+            ? datosActividad.subtareas.split('\n').map((s, i) => {
+                // Mantener estado si existe
+                const prev = actividades[indice].subtareas?.[i];
+                return { nombre: s.trim(), completada: prev ? prev.completada : false };
+            }).filter(s => s.nombre)
+            : [];
         actividades[indice] = {
             ...actividades[indice],
             titulo: datosActividad.titulo.trim(),
@@ -100,6 +111,8 @@ class GestorActividades {
             categoria: datosActividad.categoria || 'personal',
             prioridad: datosActividad.prioridad || 'media',
             estado: datosActividad.estado || 'pendiente',
+            diasDuracion: parseInt(datosActividad['dias-duracion']) || 1,
+            subtareas: subtareas,
             fechaModificacion: new Date().toISOString()
         };
 
@@ -342,6 +355,17 @@ class UI {
         const completadas = actividad.subtareas?.filter(s => s.completada).length || 0;
         const progreso = Math.round((completadas / total) * 100);
 
+        // Calcular retraso
+        let retraso = '';
+        if (actividad.diasDuracion && actividad.fecha) {
+            const fechaLimite = new Date(actividad.fecha);
+            fechaLimite.setDate(fechaLimite.getDate() + actividad.diasDuracion);
+            const hoy = new Date();
+            if (hoy > fechaLimite && completadas < total) {
+                retraso = `<div style="color:#dc2626;font-weight:bold;">⚠️ Retraso: Debías terminar antes del ${fechaLimite.toLocaleDateString('es-ES')}</div>`;
+            }
+        }
+
         return `
             <div class="actividad-card prioridad-${actividad.prioridad}">
                 <div class="actividad-header">
@@ -357,6 +381,7 @@ class UI {
                 <div style="font-size:0.85em; color:var(--text-secondary); margin-bottom:0.5rem;">
                     Avance: ${progreso}% (${completadas}/${total})
                 </div>
+                ${retraso}
                 ${actividad.subtareas?.length ? `
                     <ul style="margin-bottom:1rem;">
                         ${actividad.subtareas.map((s, i) => `
@@ -374,7 +399,6 @@ class UI {
                         ${this.escaparHTML(actividad.descripcion)}
                     </div>
                 ` : ''}
-                
                 <div class="actividad-info">
                     <div class="actividad-meta">
                         📅 ${fechaFormateada} ${horaFormateada}
@@ -530,6 +554,7 @@ function aplicarFiltros() {
 function limpiarFormulario() {
     document.getElementById('form-actividad').reset();
     document.getElementById('fecha').value = new Date().toISOString().split('T')[0];
+    document.getElementById('dias-duracion').value = 1;
     actividadEditando = null;
     document.getElementById('modal-titulo').textContent = 'Nueva Actividad';
 }
@@ -605,7 +630,9 @@ document.addEventListener('DOMContentLoaded', function() {
             hora: formData.get('hora'),
             categoria: formData.get('categoria'),
             prioridad: formData.get('prioridad'),
-            estado: formData.get('estado')
+            estado: formData.get('estado'),
+            subtareas: formData.get('subtareas'), // <-- AGREGADO
+            'dias-duracion': formData.get('dias-duracion') // <-- AGREGADO
         };
 
         // Validar datos
@@ -675,3 +702,15 @@ estilosAnimaciones.textContent = `
     }
 `;
 document.head.appendChild(estilosAnimaciones);
+
+function marcarSubtarea(id, index) {
+    const actividad = GestorActividades.obtenerPorId(id);
+    if (!actividad || !actividad.subtareas?.[index]) return;
+    actividad.subtareas[index].completada = !actividad.subtareas[index].completada;
+    GestorActividades.actualizar(id, {
+        ...actividad,
+        subtareas: actividad.subtareas.map(s => s.nombre).join('\n'),
+        'dias-duracion': actividad.diasDuracion
+    });
+    actualizarVista();
+}
