@@ -338,21 +338,37 @@ class UI {
     static crearTarjetaActividad(actividad) {
         const fechaFormateada = this.formatearFecha(actividad.fecha);
         const horaFormateada = actividad.hora ? this.formatearHora(actividad.hora) : '';
+        const total = actividad.subtareas?.length || actividad.diasDuracion || 1;
+        const completadas = actividad.subtareas?.filter(s => s.completada).length || 0;
+        const progreso = Math.round((completadas / total) * 100);
 
         return `
             <div class="actividad-card prioridad-${actividad.prioridad}">
                 <div class="actividad-header">
                     <h3 class="actividad-titulo">${this.escaparHTML(actividad.titulo)}</h3>
                     <div class="actividad-acciones">
-                        <button class="btn btn-small btn-secondary" onclick="editarActividad('${actividad.id}')">
-                            ✏️ Editar
-                        </button>
-                        <button class="btn btn-small btn-danger" onclick="confirmarEliminar('${actividad.id}')">
-                            🗑️ Eliminar
-                        </button>
+                        <button class="btn btn-small btn-secondary" onclick="editarActividad('${actividad.id}')">✏️ Editar</button>
+                        <button class="btn btn-small btn-danger" onclick="confirmarEliminar('${actividad.id}')">🗑️ Eliminar</button>
                     </div>
                 </div>
-                
+                <div class="barra-avance">
+                    <div class="barra-avance-progreso" style="width:${progreso}%"></div>
+                </div>
+                <div style="font-size:0.85em; color:var(--text-secondary); margin-bottom:0.5rem;">
+                    Avance: ${progreso}% (${completadas}/${total})
+                </div>
+                ${actividad.subtareas?.length ? `
+                    <ul style="margin-bottom:1rem;">
+                        ${actividad.subtareas.map((s, i) => `
+                            <li>
+                                <label style="cursor:pointer;">
+                                    <input type="checkbox" ${s.completada ? 'checked' : ''} onchange="marcarSubtarea('${actividad.id}',${i})">
+                                    ${this.escaparHTML(s.nombre)}
+                                </label>
+                            </li>
+                        `).join('')}
+                    </ul>
+                ` : ''}
                 ${actividad.descripcion ? `
                     <div class="actividad-descripcion">
                         ${this.escaparHTML(actividad.descripcion)}
@@ -458,10 +474,7 @@ class UI {
 function editarActividad(id) {
     const actividad = GestorActividades.obtenerPorId(id);
     if (!actividad) return;
-
     actividadEditando = id;
-    
-    // Llenar el formulario
     document.getElementById('titulo').value = actividad.titulo;
     document.getElementById('descripcion').value = actividad.descripcion;
     document.getElementById('fecha').value = actividad.fecha;
@@ -469,7 +482,8 @@ function editarActividad(id) {
     document.getElementById('categoria').value = actividad.categoria;
     document.getElementById('prioridad').value = actividad.prioridad;
     document.getElementById('estado').value = actividad.estado;
-    
+    document.getElementById('dias-duracion').value = actividad.diasDuracion || 1;
+    document.getElementById('subtareas').value = actividad.subtareas?.map(s => s.nombre).join('\n') || '';
     document.getElementById('modal-titulo').textContent = 'Editar Actividad';
     UI.mostrarModal('modal-actividad');
 }
