@@ -37,7 +37,7 @@ header {
 
 main {
   padding: 20px;
-  max-width: 900px;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -79,8 +79,8 @@ main {
 }
 
 .section-content.open {
-  padding: 20px;
-  max-height: 1000px; /* Suficiente para mostrar contenido */
+  padding: 10px;
+  max-height: 5000px; /* Suficiente para mostrar contenido */
 }
 
 footer {

@@ -10,9 +10,11 @@
 
   <nav>
     <ul>
-         <li><a href="/index.html">INICIO</a></li>
+      <li><a href="/index.html">INICIO</a></li>
       <li><a href="#intro">Introducción</a></li>
       <li><a href="#leyes">Leyes</a></li>
+      <li><a href="#ofensiva">Ciberseguridad: ¡A la ofensiva!</a></li>
+
     </ul>
   </nav>
 
@@ -55,7 +57,166 @@
         <li><strong>Ley 1437 de 2011:</strong> Trámites electrónicos del Estado.</li>
         <li><strong>Decreto 1377 de 2013:</strong> Reglamento de la Ley 1581 sobre datos personales.</li>
       </ul>
+    <section id="ofensiva" class="section collapsible">
+        <div class="section-header">
+            <h2>Ciberseguridad: ¡A la ofensiva!</h2>
+            <button class="toggle-btn">▼</button>
+        </div>
+        <div class="section-content" style="display: block;">
+            <ol>
+                <li>
+                    <strong>Comparar los cinco principales grupos de actores de amenazas:</strong><br>
+                    <ul>
+                        <li><strong>Cibercriminales:</strong> Motivados por fines financieros, atacan mediante ransomware, phishing, etc.</li>
+                        <li><strong>Hacktivistas:</strong> Grupos con fines políticos o sociales (ej. Anonymous), realizan ataques de denegación de servicio (DDoS).</li>
+                        <li><strong>Estados nación:</strong> Atacantes patrocinados por gobiernos para espionaje o sabotaje.</li>
+                        <li><strong>Insiders (internos):</strong> Empleados o exempleados con acceso legítimo que abusan del sistema.</li>
+                        <li><strong>Script kiddies:</strong> Individuos sin conocimientos avanzados que usan herramientas de terceros por curiosidad o notoriedad.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Tipos comunes de ciberataques:</strong><br>
+                    Malware, ransomware, phishing, DDoS, ataques de intermediario (Man-in-the-Middle), inyección SQL, entre otros.
+                </li>
+                <li>
+                    <strong>Cyber Kill Chain (cadena de muerte cibernética):</strong><br>
+                    Modelo de 7 pasos desarrollado por Lockheed Martin para entender cómo se desarrolla un ciberataque:
+                    <ol type="a">
+                        <li>Reconocimiento</li>
+                        <li>Armamento</li>
+                        <li>Entrega</li>
+                        <li>Explotación</li>
+                        <li>Instalación</li>
+                        <li>Comando y control (C2)</li>
+                        <li>Acciones sobre objetivos</li>
+                    </ol>
+                </li>
+                <li>
+                    <strong>Matriz ATT&CK de MITRE:</strong><br>
+                    Marco que clasifica tácticas y técnicas utilizadas por atacantes, como:
+                    <ul>
+                        <li><em>Initial Access:</em> Acceso inicial al sistema</li>
+                        <li><em>Execution:</em> Ejecución de código malicioso</li>
+                        <li><em>Persistence:</em> Mantener acceso continuo</li>
+                        <li><em>Exfiltration:</em> Robo de datos</li>
+                    </ul>
+                    Permite mapear amenazas y diseñar defensas eficaces.
+                </li>
+                <li>
+                    <strong>Elementos del ecosistema de la ciberdelincuencia:</strong><br>
+                    Incluye:
+                    <ul>
+                        <li>Foros clandestinos</li>
+                        <li>Mercados de datos y herramientas (Dark Web)</li>
+                        <li>Infraestructura de comando y control</li>
+                        <li>Servicios como Malware-as-a-Service (MaaS)</li>
+                        <li>Redes de afiliados y redes de lavado de dinero digital</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Técnicas comunes de ingeniería social:</strong><br>
+                    Phishing, pretexting, baiting, vishing (voz), smishing (SMS), shoulder surfing. Apelan a la confianza o el miedo para manipular a las personas.
+                </li>
+                <li>
+                    <strong>OSINT (Inteligencia de fuentes abiertas):</strong><br>
+                    Uso de fuentes públicas para recolectar información:
+                    <ul>
+                        <li>Redes sociales</li>
+                        <li>Dominios y WHOIS</li>
+                        <li>Metadatos de archivos</li>
+                        <li>Repositorios públicos (GitHub, foros, etc.)</li>
+                    </ul>
+                    Utilizado tanto por defensores como atacantes.
+                </li>
+                <li>
+                    <strong>Técnicas típicas de escaneo técnico:</strong><br>
+                    Incluyen escaneos de puertos, servicios y vulnerabilidades mediante herramientas como Nmap, Nessus o OpenVAS. Sirven para identificar puntos débiles antes de un ataque o para fortalecer defensas.
+                </li>
+                <li>
+                    <strong>Reconocimiento de red con herramientas:</strong><br>
+                    Se utilizan herramientas como:
+                    <ul>
+                        <li><strong>Nmap:</strong> Descubre hosts, puertos abiertos y servicios</li>
+                        <li><strong>Wireshark:</strong> Analiza tráfico de red</li>
+                        <li><strong>Netcat:</strong> Herramienta para redes y pruebas de conexión</li>
+                    </ul>
+                    Permiten entender la arquitectura de red y detectar vulnerabilidades.
+                </li>
+                <li>
+                    <strong>Ciberataques de gran repercusión y lecciones aprendidas:</strong><br>
+                    <ul>
+                        <li><strong>WannaCry (2017):</strong> Ransomware global que afectó a hospitales y empresas. Lección: importancia de actualizaciones de seguridad.</li>
+                        <li><strong>SolarWinds (2020):</strong> Ataque sofisticado a través de una actualización de software comprometida. Lección: seguridad en la cadena de suministro.</li>
+                        <li><strong>Colonial Pipeline (2021):</strong> Ransomware que detuvo el suministro de combustible en EE.UU. Lección: crítica del respaldo y planes de respuesta.</li>
+                    </ul>
+                </li>
+                <div class="threat-actors-info">
+                    <p>
+                        <strong>¿Qué es un atacante o actor de amenazas?</strong><br>
+                        Un <strong>atacante</strong> o <strong>ciberatacante</strong> es quien intenta vulnerar la seguridad de un sistema o red sin autorización, con fines maliciosos.<br>
+                        Un <strong>actor de amenazas</strong> es cualquier entidad (persona, grupo u organización) que representa una amenaza potencial para la ciberseguridad. Puede que aún no haya atacado, pero tiene la intención o capacidad de hacerlo.<br>
+                        Aunque ambos términos son similares, “actor de amenazas” enfatiza la amenaza potencial, no solo la acción.
+                    </p>
+                    <p>
+                        Los profesionales de la ciberseguridad clasifican a los actores de amenazas en grupos según su motivación, recursos y técnicas. Los cinco principales grupos son:
+                    </p>
+                    <figure>
+                        <img src="/imagenes/actores de amenaza.png" alt="Grupos principales de actores de amenazas">
+                        <figcaption>Grupos principales de actores de amenazas</figcaption>
+                    </figure>
+                    <ul>
+                        <li>
+                            <strong>Script kiddies:</strong> Individuos sin conocimientos avanzados que usan herramientas de terceros por curiosidad o notoriedad. Un script kiddie, o hacker novato, es alguien que usa programas, a menudo herramientas básicas de hackeo, sin comprender realmente cómo funcionan. Generalmente carecen de habilidades técnicas avanzadas y dependen de herramientas desarrolladas por otros. Suelen atacar por curiosidad o para ganar notoriedad, pero no tienen un objetivo claro ni una motivación política o financiera.
+                        </li>
+                        <li>
+                            <strong>Hacktivistas:</strong> Grupos con fines políticos o sociales (ej. Anonymous), realizan ataques de denegación de servicio (DDoS). El término hacktivista es un neologismo creado a partir de la combinación de los términos hacker y activista. Los hacktivistas buscan cambios políticos o económicos y utilizan la piratería como medio para lograrlos.
+                        </li>
+                        <li>
+                            <strong>Cibercriminales:</strong> Motivados por fines financieros, atacan mediante ransomware, phishing, etc. Los cibercriminales son aquellos que utilizan sus habilidades para cometer delitos informáticos con fines económicos. Pueden ser individuos o grupos organizados que buscan obtener beneficios financieros a través de actividades ilegales como el robo de datos, fraudes, extorsiones o ataques de ransomware.
+                            <ul>
+                                <li>
+                                    <strong>Bandas criminales:</strong> Allí donde haya dinero fácil de ganar, habrá delincuentes. Internet ofrece a los criminales una nueva forma de aprovecharse de las víctimas con una escala, un alcance y una facilidad sin precedentes. En lugar de correr riesgos en persona, los aspirantes a delincuentes pueden enviar millones de correos electrónicos infectados desde cualquier parte del mundo y conseguir un rescate de sus víctimas para luego transferir los fondos a criptomonedas, evadiendo los métodos policiales convencionales. Capturar a estos delincuentes es extremadamente agotador y, debido a las legislaciones internacionales, procesarlos es prácticamente imposible. Y, lamentablemente, la mayoría de los delincuentes son conscientes de ello.
+                                </li>
+                                <li>
+                                    <strong>Dark web:</strong> La <strong>dark web</strong> es un subconjunto de Internet compuesto por sitios web a los que únicamente se puede acceder a través de navegadores web especializados. La actividad en estos sitios es cifrada, privada y anónima, lo que la convierte en un popular centro de reunión para los ciberdelincuentes. Sin embargo, algunas personas utilizan la dark web por motivos legítimos, como los activistas políticos que la utilizan para comunicarse de forma anónima y evitar la persecución gubernamental.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Estados nación:</strong> Atacantes patrocinados por gobiernos para espionaje o sabotaje. Los <strong>hackers de Estado-nación</strong> son quienes reciben mayor atención por parte de los medios de comunicación de entre todos los grupos de actores de amenazas, tal vez inmerecidamente. Muchas organizaciones militares de todo el mundo consideran el ciberespacio una quinta esfera de conflicto junto con el mar, la tierra, el aire y el espacio. Y muchas naciones han demostrado la capacidad de proyectar poder a través de las fronteras nacionales con una gran variedad de consecuencias.
+                            <ul>
+                                <li>
+                                    <strong>Características:</strong>
+                                    <ul>
+                                        <li>El papel de los hackers de Estado-nación consiste en proporcionar una ventaja estratégica a sus respectivos países. Estas ventajas pueden ir desde el reconocimiento y la recogida de información, como el espionaje tradicional o la inteligencia de señales, hasta la subversión y la manipulación de información.</li>
+                                        <li>Los miembros de estas organizaciones cuentan con un alto nivel de educación o formación y provienen de diversos orígenes. Trabajan a tiempo completo y, por lo general, se encuentran a la vanguardia de sus respectivos campos.</li>
+                                        <li>Sus motivaciones suelen alinearse estrechamente con objetivos políticos o estratégicos. Un ejemplo reciente son las actividades rusas relacionadas con las elecciones presidenciales de 2016 en Estados Unidos: su objetivo era interferir en las elecciones y aumentar la discordia política y social.</li>
+                                        <li>Desde el punto de vista de los recursos, los hackers de Estado-nación tienen acceso a investigaciones avanzadas, equipos de infraestructura especializados y un enorme apoyo político.</li>
+                                        <li>Actualmente, los hackers de Estado-nación utilizan herramientas avanzadas de inteligencia artificial (IA) y aprendizaje automático (ML) para automatizar sus ataques, haciéndolos más sofisticados y difíciles de detectar. Además, con el auge de los dispositivos de Internet de las cosas (IoT), los hackers de Estado-nación tienen muchos más objetivos que atacar.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li></li>
+                            <strong>Insiders (internos):</strong> Empleados o exempleados con acceso legítimo que abusan del sistema. Los <strong>insiders</strong> son empleados o exempleados que tienen acceso legítimo a los sistemas y datos de una organización, pero que abusan de ese acceso para cometer actos maliciosos. Pueden robar información confidencial, sabotear sistemas o realizar actividades ilegales desde dentro de la organización.
+                            <ul>
+                                <li></li>
+                                    <strong>Defensa:</strong> La mejor manera de defenderse contra las amenazas internas es investigar a los empleados, poner en práctica una gestión eficaz y aplicar los controles técnicos. Recurrir a los controles técnicos puede parecer una solución obvia para las empresas, pero con frecuencia fracasa porque tratan de detener a usuarios que están familiarizados con el sistema. A menudo, hay numerosas señales de advertencia que preceden a un ataque interno. Algunos ejemplos de señales de advertencia que indican que alguien está planeando un ataque son trabajar en soledad, expresar resentimiento, producir trabajo de menor calidad o llevar a cabo actividades inexplicables. Identificar estas señales puede ayudar a prevenir un ataque.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <p><strong>Investigador de seguridad ofensiva</strong>
+                Ya conoces los cinco tipos comunes de atacantes cibernéticos que tienen motivaciones personales o amenazadoras, a menudo ilegales. Pero no todos los hackers actúan con fines maliciosos. Los investigadores de seguridad ofensiva eligen usar y monetizar su conjunto de habilidades para el bien en lugar de para actividades delictivas o explotadoras. A menudo llamados hackers éticos, adoptan una mentalidad de hacker para utilizar los mismos métodos que los atacantes de la vida real, pero con el objetivo de poner a prueba los sistemas y fortalecerlos para ayudar a los clientes y consumidores a estar mejor protegidos del incidente real.
+
+Te presentamos a dos expertos líderes en materia de ciberseguridad: Brian Krebs y Georgia Wiedman. Ambos utilizan sus habilidades para ofrecer a organizaciones de todo el mundo consejos y conocimientos valiosos y, a menudo, muy bien remunerados.
+                </p>
+                
+            </ol>
+        </div>
     </section>
+
   </main>
 
   <footer>
