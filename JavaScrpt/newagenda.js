@@ -1,5 +1,5 @@
 // Contraseña correcta
-const CORRECT_PASSWORD = '13234152*';
+const CORRECT_PASSWORD = '13234152.';
 
 // Datos de los cursos basados en tu agenda
 const courses = [
@@ -101,6 +101,15 @@ const courses = [
         status: "En proceso",
         date: "01/08/2025",
         url: "https://skills.yourlearning.ibm.com/activity/PLAN-4FB8400F05FC"
+    },
+    {
+        title: "Python TOTAL - Programador Avanzado en 16 días",
+        progress: 12,
+        total: 17,
+        completed: 2,
+        status: "En proceso",
+        date: "21/07/2025",
+        url: "https://www.udemy.com/course/python-total/"
     }
 ];
 
