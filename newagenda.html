@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Nueva Agenda de Aprendizaje</title>
+    <link rel="stylesheet" href="/estilos/newagenda.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="password-prompt">
+        <h2>Ingresar Contraseña</h2>
+        <p>Por favor, ingresa la contraseña para acceder a la agenda.</p>
+        <input type="password" id="password-input" placeholder="Contraseña">
+        <button onclick="checkPassword()">Acceder</button>
+        <p id="password-error" class="error-message" style="display: none;">Contraseña incorrecta. Intenta de nuevo.</p>
+    </div>
+    <main id="main-content" style="display: none;">
+        <header>
+            <h1>Mi Nueva Agenda de Aprendizaje</h1>
+            <p>Sigue tu progreso en los cursos y mantente enfocado en tus metas.</p>
+        </header>
+        <section id="course-list">
+            <h2>Mis Cursos</h2>
+            <div id="courses"></div>
+        </section>
+        <section id="summary">
+            <h2>Resumen de Progreso</h2>
+            <p>Total de cursos: <span id="total-courses">0</span></p>
+            <p>Cursos completados: <span id="completed-courses">0</span></p>
+            <p>Cursos en proceso: <span id="in-progress-courses">0</span></p>
+            <p>Cursos pendientes: <span id="pending-courses">0</span></p>
+        </section>
+        <section id="study-plan">
+            <h2>Plan de Estudios: Desarrollador Full-Stack en 6 Meses</h2>
+            <p>Este plan está diseñado para convertirme en un desarrollador full-stack, con énfasis en frontend (React), backend (Node.js, Express, MongoDB) y cloud (AWS). Integra mis cursos actuales, práctica intensiva y estrategias de neurociencia para manejar somnolencia, dolor y distracciones.</p>
+            <h3>Objetivos Generales</h3>
+            <ul>
+                <li><strong>Meses 1-2</strong>: Dominar frontend (CSS3, JavaScript, React). Crear 2-3 proyectos frontend.</li>
+                <li><strong>Meses 3-4</strong>: Aprender backend (Node.js, Express, MongoDB) y AWS básico. Crear una API y desplegarla.</li>
+                <li><strong>Meses 5-6</strong>: Desarrollar un proyecto full-stack avanzado, obtener una certificación AWS y buscar oportunidades freelance/empleo.</li>
+                <li><strong>Paralelo</strong>: Usar mi experiencia en pedagogía para documentar mi aprendizaje y explorar oportunidades de enseñanza técnica.</li>
+            </ul>
+            <h3>Principios del Plan</h3>
+            <ul>
+                <li><strong>Prioridad en práctica</strong>: 70% del tiempo en proyectos, 30% en teoría.</li>
+                <li><strong>Neurociencia aplicada</strong>: Pomodoro, repetición espaciada, ergonomía y mindfulness para manejar salud.</li>
+                <li><strong>Progresión incremental</strong>: De sitios estáticos a apps full-stack en cloud.</li>
+                <li><strong>Portafolio profesional</strong>: Actualizar mis sitios con proyectos, certificaciones y un blog educativo.</li>
+                <li><strong>Horario</strong>: 5 horas diarias (8-11 a.m., 2-5 p.m.), con pausas activas.</li>
+            </ul>
+            <h3>Horario Diario</h3>
+            <table>
+                <tr><th>Hora</th><th>Actividad</th></tr>
+                <tr><td>8:00-9:15 a.m.</td><td>Teoría (curso o tutorial, Pomodoro: 25 min trabajo, 5 min descanso)</td></tr>
+                <tr><td>9:15-9:30 a.m.</td><td>Pausa activa (estiramientos suaves, caminar, respiración profunda)</td></tr>
+                <tr><td>9:30-11:00 a.m.</td><td>Práctica (codificar, ejercicios)</td></tr>
+                <tr><td>2:00-3:30 p.m.</td><td>Proyecto práctico (construir/mejorar)</td></tr>
+                <tr><td>3:30-3:45 p.m.</td><td>Pausa activa (estiramientos, mindfulness)</td></tr>
+                <tr><td>3:45-5:00 p.m.</td><td>Revisión (Anki, notas) y actualización de agenda</td></tr>
+            </table>
+            <h3>Meses 1-2: Frontend (CSS3, JavaScript, React)</h3>
+            <p><strong>Cursos clave</strong>: Udemy "Maestría en CSS3" (11% completado), IBM "Creación de sitios web dinámicos con JavaScript" (21%), Udemy "React: De cero a experto" (0%).</p>
+            <h4>Semana 1-2: CSS3 Avanzado</h4>
+            <ul>
+                <li><strong>Teoría</strong>: Completar secciones 3-5 de "Maestría en CSS3" (lecciones 38-107: Flexbox, Grid, SASS).</li>
+                <li><strong>Práctica</strong>: Crear un sitio estático responsive (por ejemplo, un portafolio personal) con CSS Grid y Flexbox. Subir a GitHub y Netlify. Actualizar <a href="https://delanoystecnologias.site/plandeaprendizaje2" target="_blank">plandeaprendizaje2</a>.</li>
+                <li><strong>Hito</strong>: Sitio estático publicado (50% de "Maestría en CSS3" completado).</li>
+                <li><strong>Neurociencia</strong>: Usar Anki para memorizar propiedades CSS. Estiramientos cervicales/lumbares cada 45 min.</li>
+            </ul>
+            <h4>Semana 3-4: JavaScript Intermedio</h4>
+            <ul>
+                <li><strong>Teoría</strong>: Completar secciones 2-4 de IBM "Creación de sitios web dinámicos con JavaScript" (lecciones 8-25: DOM, eventos, MySQL).</li>
+                <li><strong>Práctica</strong>: Crear una app de lista de tareas con JavaScript puro (CRUD en el DOM). Subir a GitHub y Netlify.</li>
+                <li><strong>Hito</strong>: App interactiva funcional (50% de JavaScript curso completado).</li>
+                <li><strong>Neurociencia</strong>: Dividir conceptos (funciones un día, arrays otro). Recompensa: 10 min de video favorito tras completar lecciones.</li>
+            </ul>
+            <h4>Semana 5-8: React Básico</h4>
+            <ul>
+                <li><strong>Teoría</strong>: Completar secciones 1-5 de Udemy "React: De cero a experto" (introducción, componentes, hooks).</li>
+                <li><strong>Práctica</strong>: Proyecto 3: App de notas (como Google Keep) con React. Proyecto 4: Mejorar portafolio en <a href="https://delanoystecnologias.site" target="_blank">delanoystecnologias.site</a> con React. Desplegar en Netlify.</li>
+                <li><strong>Hito</strong>: 2 proyectos React en portafolio (30% de React curso completado).</li>
+                <li><strong>Neurociencia</strong>: Practicar mindfulness (5 min/día). Evitar pantallas 1 h antes de dormir.</li>
+            </ul>
+            <h3>Meses 3-4: Backend y Cloud (Node.js, Express, MongoDB, AWS)</h3>
+            <p><strong>Cursos clave</strong>: Udemy "Python TOTAL" (12% completado, backend relevante), AWS "Technical Essentials" (25%), AWS "Cloud Practitioner Essentials" (0%).</p>
+            <h4>Semana 9-12: Node.js y Express</h4>
+            <ul>
+                <li><strong>Teoría</strong>: Curso freeCodeCamp "Node.js and Express" (APIs REST, CRUD).</li>
+                <li><strong>Práctica</strong>: Proyecto 5: API REST (CRUD para tareas) con Node.js, Express, MongoDB Atlas. Conectar a un frontend React.</li>
+                <li><strong>Hito</strong>: API funcional conectada a frontend.</li>
+                <li><strong>Neurociencia</strong>: Usar Pomodoro. Caminar 5 min cada hora.</li>
+            </ul>
+            <h4>Semana 13-16: AWS Básico</h4>
+            <ul>
+                <li><strong>Teoría</strong>: Completar AWS "Technical Essentials" (módulos 3-6) y empezar "Cloud Practitioner Essentials" (módulos 1-2).</li>
+                <li><strong>Práctica</strong>: Configurar EC2 en AWS Free Tier. Usar S3 para almacenar archivos. Desplegar Proyecto 5 in AWS.</li>
+                <li><strong>Hito</strong>: Proyecto full-stack en AWS (75% de "Technical Essentials" completado).</li>
+                <li><strong>Neurociencia</strong>: Usar repetición espaciada (Anki) para conceptos de AWS. Consultar neurólogo si la somnolencia aumenta.</li>
+            </ul>
+            <h3>Meses 5-6: Proyecto Avanzado y Empleo/Freelance</h3>
+            <p><strong>Cursos clave</strong>: AWS "Cloud Practitioner Essentials", Udemy "Python TOTAL" (proyectos avanzados).</p>
+            <h4>Semana 17-20: Proyecto Full-Stack Avanzado</h4>
+            <ul>
+                <li><strong>Teoría</strong>: Completar "Cloud Practitioner Essentials" y secciones 6-10 de "Python TOTAL" (proyectos web, machine learning).</li>
+                <li><strong>Práctica</strong>: Proyecto 6: App full-stack (sistema de reservas o tienda online) con React, Node.js, MongoDB, AWS. Integrar API pública (por ejemplo, Google Maps).</li>
+                <li><strong>Hito</strong>: App avanzada en portafolio.</li>
+                <li><strong>Neurociencia</strong>: Visualizar el éxito (imaginar trabajando como freelance) para liberar dopamina.</li>
+            </ul>
+            <h4>Semana 21-24: Certificación y Oportunidades</h4>
+            <ul>
+                <li><strong>Teoría</strong>: Preparar examen AWS Cloud Practitioner.</li>
+                <li><strong>Práctica</strong>: Crear perfil en Upwork/Freelancer. Crear tutorial en <a href="https://delanoystecnologias.site" target="_blank">delanoystecnologias.site</a> (por ejemplo, "Guía de React"). Actualizar LinkedIn.</li>
+                <li><strong>Hito</strong>: Certificación AWS obtenida, 1-2 propuestas freelance enviadas.</li>
+                <li><strong>Neurociencia</strong>: Usar recompensas (por ejemplo, un café) para reforzar hábitos.</li>
+            </ul>
+            <h3>Estrategias de Salud (Neurociencia)</h3>
+            <ul>
+                <li><strong>Somnolencia</strong>: Dormir 7-8 h, evitar pantallas 1 h antes de dormir, café solo por la mañana (máx. 1 taza). Consultar neurólogo si la fatiga persiste.</li>
+                <li><strong>Dolor (hernias)</strong>: Usar silla ergonómica, monitor a altura de ojos, estiramientos suaves cada 45 min. Mindfulness (5 min/día).</li>
+                <li><strong>Distracciones</strong>: Bloquear YouTube/política con StayFocusd (máx. 30 min/día). Usar Pomodoro.</li>
+                <li><strong>Motivación</strong>: Repetición espaciada con Anki, visualizar metas, recompensas tras hitos.</li>
+            </ul>
+            <h3>Uso de Mis Sitios Web</h3>
+            <ul>
+                <li><a href="https://delanoystecnologias.site/plandeaprendizaje2" target="_blank">plandeaprendizaje2</a>: Actualizar con porcentajes, enlaces a proyectos, certificaciones.</li>
+                <li><a href="https://delanoystecnologias.site/agenda" target="_blank">agenda</a>: Registrar tareas diarias, usar JavaScript (por ejemplo, FullCalendar).</li>
+            </ul>
+            <h3>Aprovechar Pedagogía e IA</h3>
+            <ul>
+                <li><strong>Enseñanza</strong>: Crear tutoriales en mi sitio (por ejemplo, "Cómo usar Git").</li>
+                <li><strong>IA</strong>: Usar Grok o Claude para depurar código o generar ideas.</li>
+                <li><strong>Mini-curso</strong>: Diseñar un curso corto (por ejemplo, "Introducción a React") y ofrecerlo localmente o en YouTube.</li>
+            </ul>
+            <h3>Recursos Recomendados</h3>
+            <ul>
+                <li><strong>Cursos</strong>: Udemy (CSS3, React, Python TOTAL), AWS Skill Builder, freeCodeCamp.</li>
+                <li><strong>Herramientas</strong>: GitHub, Netlify, MongoDB Atlas, AWS Free Tier, Anki.</li>
+                <li><strong>Comunidades</strong>: Reddit (r/learnprogramming), Discord (The Odin Project), LinkedIn.</li>
+            </ul>
+            <h3>Evaluación del Progreso</h3>
+            <ul>
+                <li><strong>Semanal</strong>: Actualizar agenda con tareas completadas.</li>
+                <li><strong>Mensual</strong>: Actualizar plandeaprendizaje2 con proyectos/certificaciones.</li>
+                <li><strong>Final (6 meses)</strong>: Portafolio con 4-6 proyectos, certificación AWS, 1 propuesta freelance enviada.</li>
+            </ul>
+        </section>
+        <section id="links">
+            <h2>Enlaces Útiles</h2>
+            <ul>
+                <li><a href="https://delanoystecnologias.site/plandeaprendizaje2" target="_blank">Plan de Aprendizaje</a></li>
+                <li><a href="https://delanoystecnologias.site/agenda" target="_blank">Agenda Actual</a></li>
+                <li><a href="https://github.com" target="_blank">GitHub</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer id="footer" style="display: none;">
+        <p>&copy; 2025 Hever Torres. Todos los derechos reservados.</p>
+    </footer>
+    <script src="/JavaScrpt/newagenda.js"></script>
+</body>
+</html>
