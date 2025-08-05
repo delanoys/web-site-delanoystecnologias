@@ -1,5 +1,5 @@
 // Contraseña correcta
-const CORRECT_PASSWORD = '13234152';
+const CORRECT_PASSWORD = '13234152*';
 
 // Datos de los cursos basados en tu agenda
 const courses = [
