@@ -676,3 +676,20 @@ window.addEventListener('unhandledrejection', (e) => {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = ModernWebApp;
 }
+
+// scrip carta
+function checkCode() {
+      const code = document.getElementById("codeInput").value;
+      const secret = "SandyDs18Parasiempre"; // Reemplaza por tu código real
+
+      if (code === secret) {
+        document.getElementById("form-container").style.display = "none";
+        const letter = document.getElementById("loveLetter");
+        letter.style.display = "block";
+        // Forzar animación reiniciando offsetHeight
+        void letter.offsetHeight;
+        letter.style.animation = "fadeIn 2s ease forwards";
+      } else {
+        alert("Código incorrecto. Intenta de nuevo.");
+      }
+    }

@@ -528,23 +528,7 @@
     <p style="margin-top: 40px; color: red; font-size: larger;">Gracias por leer hasta el final. Esta página es para ti. Y si Dios toca tu corazón... aún hay esperanza. 💫</p>
   </div>
 
-  <script>
-    function checkCode() {
-      const code = document.getElementById("codeInput").value;
-      const secret = "SandyDs18Parasiempre"; // Reemplaza por tu código real
-
-      if (code === secret) {
-        document.getElementById("form-container").style.display = "none";
-        const letter = document.getElementById("loveLetter");
-        letter.style.display = "block";
-        // Forzar animación reiniciando offsetHeight
-        void letter.offsetHeight;
-        letter.style.animation = "fadeIn 2s ease forwards";
-      } else {
-        alert("Código incorrecto. Intenta de nuevo.");
-      }
-    }
-  </script>
+  <script src="/JavaScrpt/script.js"></script>
 
 </body>
 </html>
