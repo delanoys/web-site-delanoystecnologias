@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fa;
+    color: #333;
+}
+
+header {
+    background-color: #2d89ef;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+main {
+    padding: 1rem 2rem;
+    max-width: 900px;
+    margin: auto;
+}
+
+section {
+    background: white;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #2d89ef;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    background-color: #2d89ef;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1b5cb8;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.week-card {
+    background-color: #eef3fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.week-card h3 {
+    margin-top: 0;
+    color: #1b5cb8;
+}
+
+.resources {
+    margin-top: 0.5rem;
+}
+
+.resources a {
+    color: #2d89ef;
+    text-decoration: none;
+}
+
+.resources a:hover {
+    text-decoration: underline;
+}
