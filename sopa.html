@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sopa de Letras – Valores de la Amistad (Grado 9) Evelyn Sarith Torres Cuentas</title>
+  <link rel="stylesheet" href="sopa.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Sopa de Letras: Valores de la Amistad</h1>
+    <div class="controls">
+      <label for="size">Tamaño:</label>
+      <select id="size">
+        <option value="12">12×12</option>
+        <option value="14">14×14</option>
+        <option value="16" selected>16×16</option>
+        <option value="18">18×18</option>
+        <option value="20">20×20</option>
+      </select>
+      <button id="newGame">Nueva sopa</button>
+      <button id="showSolution">Mostrar solución</button>
+      <span id="timer" aria-live="polite">00:00</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="grid-panel">
+      <div id="grid" class="grid" aria-label="Tablero de la sopa de letras" role="grid"></div>
+    </section>
+    <aside class="wordlist-panel">
+      <h2>Encuentra estos 20 valores</h2>
+      <ul id="wordList" class="word-list" aria-live="polite"></ul>
+      <div class="progress">
+        <span id="foundCount">0</span>/20 encontrados
+      </div>
+      <details class="tips">
+        <summary>Consejos</summary>
+        <ul>
+          <li>Puedes seleccionar arrastrando el mouse o haciendo clic en la primera y última letra.</li>
+          <li>Las palabras pueden estar en horizontal, vertical o diagonal; en ambos sentidos.</li>
+          <li>Se ignoran acentos y espacios al validar.</li>
+        </ul>
+      </details>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <small>Hecho para grado 9 • © 2025</small>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="sopa.js"></script>
+</body>
+</html>
