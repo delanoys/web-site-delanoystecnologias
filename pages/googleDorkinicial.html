@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google Dork – Toolkit Interactivo</title>
+  <meta name="description" content="Guía interactiva y generador de consultas Google Dork con diseño responsive y modo oscuro." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config (optional fonts/extend)
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', 'Arial'],
+          },
+          boxShadow: {
+            soft: '0 10px 30px -10px rgba(0,0,0,0.3)'
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#2563eb',
+              dark: '#1d4ed8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Smooth hover lift for cards */
+    .lift { transition: transform .2s ease, box-shadow .2s ease; }
+    .lift:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(0,0,0,.35); }
+  </style>
+  <script>
+    // Modo oscuro con preferencia persistente
+    (function () {
+      const user = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (user === 'dark' || (!user && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 text-slate-800 dark:text-slate-100 font-display">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand -->
+        <a href="#inicio" class="flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Google Dork Toolkit</span>
+        </a>
+        <!-- Desktop menu -->
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#operadores" class="hover:text-brand">Operadores</a>
+          <a href="#generador" class="hover:text-brand">Generador</a>
+          <a href="#consejos" class="hover:text-brand">Consejos</a>
+          <a href="#ayuda" class="hover:text-brand">Ayuda</a>
+          <button id="themeToggle" class="rounded-xl px-3 py-2 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Cambiar tema">
+            <span id="themeLabel" class="inline-flex items-center gap-2">
+              <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" class="hidden dark:inline"><path d="M12 4V2M12 22v-2M4.93 4.93 3.52 3.52M20.48 20.48l-1.41-1.41M4 12H2m20 0h-2M4.93 19.07 3.52 20.48M20.48 3.52l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
+              <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" class="dark:hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <span class="hidden md:inline">Tema</span>
+            </span>
+          </button>
+        </nav>
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-xl border border-slate-300 dark:border-slate-700" aria-label="Abrir menú">
+          <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu panel -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
+      <nav class="px-4 py-3 space-y-2">
+        <a href="#operadores" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Operadores</a>
+        <a href="#generador" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Generador</a>
+        <a href="#consejos" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Consejos</a>
+        <a href="#ayuda" class="block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Ayuda</a>
+        <button id="themeToggleMobile" class="w-full text-left px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700">Cambiar tema</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="inicio" class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+            Domina <span class="text-brand">Google Dork</span> con un generador visual
+          </h1>
+          <p class="mt-4 text-slate-600 dark:text-slate-300 text-lg">
+            Construye consultas avanzadas, descubre operadores útiles y busca de forma precisa. Diseño responsive, modo oscuro y ejemplos listos para usar.
+          </p>
+          <div class="mt-6 flex gap-3">
+            <a href="#generador" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-brand hover:bg-brand-dark text-white shadow-soft">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              Abrir generador
+            </a>
+            <a href="#operadores" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+              Ver operadores
+            </a>
+          </div>
+          <p class="mt-6 text-xs text-slate-500 dark:text-slate-400">Uso responsable: esta herramienta es educativa; no fomenta actividades ilegales ni el acceso no autorizado.</p>
+        </div>
+        <div class="relative">
+          <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-6 shadow-soft lift">
+            <div class="text-sm text-slate-500 dark:text-slate-400 mb-2">Previsualización de consulta</div>
+            <pre id="previewBox" class="whitespace-pre-wrap break-words text-sm sm:text-base bg-slate-50 dark:bg-slate-800 rounded-2xl p-4">(aún no hay consulta)
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Generador -->
+  <section id="generador" class="py-14 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Generador de consultas</h2>
+      <div class="grid lg:grid-cols-3 gap-6 items-start">
+        <form id="builder" class="lg:col-span-2 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-6 shadow-soft">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm mb-1">Palabras clave</label>
+              <input type="text" id="keywords" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2" placeholder="ej: ciberseguridad fundamentos" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Frase exacta</label>
+              <input type="text" id="exact" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2" placeholder="entre comillas automáticas" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Excluir palabras</label>
+              <input type="text" id="exclude" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2" placeholder="separadas por espacio" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Domino (site:)</label>
+              <input type="text" id="site" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2" placeholder="ej: example.com" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Tipo de archivo (filetype:)</label>
+              <select id="filetype" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2">
+                <option value="">— Cualquiera —</option>
+                <option>pdf</option>
+                <option>docx</option>
+                <option>pptx</option>
+                <option>xlsx</option>
+                <option>txt</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm mb-1">En URL (inurl:)</label>
+              <input type="text" id="inurl" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2" placeholder="palabras en la URL" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1">En título (intitle:)</label>
+              <input type="text" id="intitle" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2" placeholder="palabras en el título" />
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Términos alternativos (OR)</label>
+              <input type="text" id="orTerms" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2" placeholder="ej: guía manual" />
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button type="button" id="buildBtn" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-brand hover:bg-brand-dark text-white shadow-soft">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              Construir consulta
+            </button>
+            <button type="button" id="searchBtn" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              Buscar en Google
+            </button>
+            <button type="button" id="copyBtn" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+            <button type="reset" id="clearBtn" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+              Limpiar
+            </button>
+          </div>
+
+          <div class="mt-6">
+            <label class="block text-sm mb-1">Consulta generada</label>
+            <textarea id="output" rows="2" class="w-full rounded-2xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-2" placeholder="Aparecerá aquí"></textarea>
+          </div>
+        </form>
+
+        <!-- Pistas rápidas -->
+        <aside class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-6 shadow-soft">
+          <h3 class="font-semibold mb-3">Atajos & trucos</h3>
+          <ul class="space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+            <li><code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">"frase exacta"</code> fuerza coincidencia literal.</li>
+            <li><code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">-palabra</code> excluye términos.</li>
+            <li><code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">OR</code> combina alternativas.</li>
+            <li><code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">site:</code> limita a un dominio.</li>
+            <li><code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">filetype:</code> filtra por tipo de archivo.</li>
+            <li><code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">intitle:</code> debe aparecer en el título.</li>
+            <li><code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">inurl:</code> debe aparecer en la URL.</li>
+          </ul>
+          <div class="mt-4 text-xs text-slate-500 dark:text-slate-400">Consejo: empieza amplio y añade filtros gradualmente.</div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operadores -->
+  <section id="operadores" class="py-14 sm:py-20 bg-white/60 dark:bg-slate-900/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Operadores principales</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Card component template repeated with different content -->
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">site:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Filtro</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Restringe resultados a un dominio.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">site:bbc.com inteligencia artificial</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=site%3Abbc.com+inteligencia+artificial">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">filetype:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Formato</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Limita por tipo de archivo.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">filetype:pdf ciberseguridad</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=filetype%3Apdf+ciberseguridad">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">intitle:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Título</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Palabras en el título de la página.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">intitle:"historia de Roma"</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=intitle%3A%22historia+de+Roma%22">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">inurl:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">URL</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Términos que aparecen en la URL.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">inurl:blog viaje Japón</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=inurl%3Ablog+viaje+Jap%C3%B3n">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">allintitle:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Título</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Todas las palabras deben estar en el título.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">allintitle:curso programación Python</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=allintitle%3Acurso+programaci%C3%B3n+Python">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">allinurl:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">URL</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Todas las palabras deben aparecer en la URL.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">allinurl:pdf matemáticas álgebra</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=allinurl%3Apdf+matem%C3%A1ticas+%C3%A1lgebra">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">"frase exacta"</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Exactitud</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Coincidencia literal de la cadena.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">"La educación es el arma más poderosa"</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=%22La+educaci%C3%B3n+es+el+arma+m%C3%A1s+poderosa%22">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">-excluir</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Filtro</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Elimina resultados con ese término.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">Jaguar -auto</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=Jaguar+-auto">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">OR</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Lógico</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Resultados con uno u otro término.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">fútbol OR baloncesto</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=f%C3%BAtbol+OR+baloncesto">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">cache:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Utilidad</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Muestra la copia en caché de Google.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">cache:wikipedia.org</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://webcache.googleusercontent.com/search?q=wikipedia.org">Probar</a>
+        </article>
+
+        <article class="lift rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">related:</h3>
+            <span class="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Descubrimiento</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Encuentra sitios similares.</p>
+          <code class="block mt-3 text-sm bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl">related:nytimes.com</code>
+          <a class="inline-block mt-3 text-brand hover:underline" target="_blank" rel="noopener" href="https://www.google.com/search?q=related%3Anytimes.com">Probar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consejos -->
+  <section id="consejos" class="py-14 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Buenas prácticas</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 lift">
+          <h3 class="font-semibold">Estrategia de búsqueda</h3>
+          <ul class="mt-3 list-disc list-inside text-slate-600 dark:text-slate-300 space-y-2 text-sm">
+            <li>Empieza con términos generales y ve afinando.</li>
+            <li>Combina <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">site:</code> con <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">filetype:</code> para documentos específicos.</li>
+            <li>Usa comillas para citas o nombres propios.</li>
+            <li>Revisa la fecha y la fuente de los resultados.</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 lift">
+          <h3 class="font-semibold">Ética & legalidad</h3>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Google Dorking es una técnica de búsqueda. No intentes acceder a información privada ni vulnerar sistemas. Úsalo con fines académicos, periodísticos o de productividad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ayuda -->
+  <section id="ayuda" class="py-14 sm:py-20 bg-white/60 dark:bg-slate-900/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Ayuda rápida</h2>
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+        <details class="group open:shadow-soft rounded-2xl p-4 border border-slate-200 dark:border-slate-800">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">
+            ¿Cómo construyo una buena consulta?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <div class="mt-3 text-sm text-slate-600 dark:text-slate-300">
+            Elige palabras clave → añade filtros (site, filetype) → usa comillas para precisión → excluye ruido con <code>-palabras</code>.
+          </div>
+        </details>
+        <details class="group mt-3 rounded-2xl p-4 border border-slate-200 dark:border-slate-800">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">
+            ¿Puedo combinar varios operadores?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <div class="mt-3 text-sm text-slate-600 dark:text-slate-300">
+            Sí. Ejemplo: <code>site:edu filetype:pdf "machine learning" -resumen</code>.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-center text-sm text-slate-500 dark:text-slate-400">
+    Hecho con ❤️ para aprendizaje y productividad. 
+  </footer>
+
+  <script>
+    // Utilidades
+    const $ = (id) => document.getElementById(id);
+
+    function sanitize(str) {
+      return (str || '').trim().replace(/\s+/g, ' ');
+    }
+
+    function quoteIfNeeded(str) {
+      const s = sanitize(str);
+      return s ? '"' + s.replace(/"/g, '\\"') + '"' : '';
+    }
+
+    function buildQuery() {
+      const parts = [];
+      const keywords = sanitize($("keywords").value);
+      if (keywords) parts.push(keywords);
+
+      const exact = sanitize($("exact").value);
+      if (exact) parts.push(quoteIfNeeded(exact));
+
+      const exclude = sanitize($("exclude").value);
+      if (exclude) {
+        exclude.split(' ').filter(Boolean).forEach(w => parts.push('-' + w));
+      }
+
+      const site = sanitize($("site").value);
+      if (site) parts.push('site:' + site);
+
+      const ft = sanitize($("filetype").value);
+      if (ft) parts.push('filetype:' + ft);
+
+      const inurl = sanitize($("inurl").value);
+      if (inurl) inurl.split(' ').filter(Boolean).forEach(w => parts.push('inurl:' + w));
+
+      const intitle = sanitize($("intitle").value);
+      if (intitle) intitle.split(' ').filter(Boolean).forEach(w => parts.push('intitle:' + w));
+
+      const orTerms = sanitize($("orTerms").value);
+      if (orTerms) {
+        const terms = orTerms.split(' ').filter(Boolean);
+        if (terms.length) parts.push(terms.join(' OR '));
+      }
+
+      return parts.join(' ').trim();
+    }
+
+    function updatePreview() {
+      const q = buildQuery();
+      $("output").value = q;
+      $("previewBox").textContent = q || '(aún no hay consulta)';
+    }
+
+    // Event handlers
+    ["keywords","exact","exclude","site","filetype","inurl","intitle","orTerms"].forEach(id => {
+      $(id).addEventListener('input', updatePreview);
+      $(id).addEventListener('change', updatePreview);
+    });
+
+    $("buildBtn").addEventListener('click', updatePreview);
+
+    $("searchBtn").addEventListener('click', () => {
+      const q = buildQuery();
+      if (!q) return;
+      const url = 'https://www.google.com/search?q=' + encodeURIComponent(q);
+      window.open(url, '_blank', 'noopener');
+    });
+
+    $("copyBtn").addEventListener('click', async () => {
+      const q = buildQuery();
+      if (!q) return;
+      try {
+        await navigator.clipboard.writeText(q);
+        $("copyBtn").textContent = '¡Copiado!';
+        setTimeout(() => $("copyBtn").textContent = 'Copiar', 1200);
+      } catch {
+        alert('No se pudo copiar. Copia manualmente.');
+      }
+    });
+
+    $("clearBtn").addEventListener('click', () => {
+      setTimeout(updatePreview, 0);
+    });
+
+    // Theme toggle
+    function toggleTheme() {
+      const root = document.documentElement;
+      const isDark = root.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    $("themeToggle").addEventListener('click', toggleTheme);
+    $("themeToggleMobile").addEventListener('click', toggleTheme);
+
+    // Mobile menu toggle
+    $("menuBtn").addEventListener('click', () => {
+      const panel = $("mobileMenu");
+      panel.classList.toggle('hidden');
+    });
+
+    // Initialize preview on load
+    updatePreview();
+  </script>
+</body>
+</html>

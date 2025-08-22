@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendario de Estudio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .course {
+      background: #fff;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .course-header {
+      padding: 15px;
+      cursor: pointer;
+      background: #007bff;
+      color: #fff;
+      font-weight: bold;
+    }
+    .course-content {
+      display: none;
+      padding: 15px;
+    }
+    .progress-container {
+      margin-top: 10px;
+    }
+    .progress-bar {
+      height: 10px;
+      background: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #28a745;
+      transition: width 0.3s;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calendario de Estudio – Septiembre a Noviembre</h1>
+
+  <!-- Cursos con acordeón -->
+  <div class="course" data-course="sena-tic">
+    <div class="course-header">SENA Virtual – Asesoría TIC en la Formación (3 semanas)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="sena-english">
+    <div class="course-header">SENA Virtual – English Does Work Level 1 (3 semanas)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="sena-stem">
+    <div class="course-header">SENA Virtual – Acercamiento a la Metodología STEM (3 semanas)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="python-total">
+    <div class="course-header">Udemy – Python TOTAL (17 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="claude">
+    <div class="course-header">Udemy – Programación con Claude IA (25 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="css3">
+    <div class="course-header">Udemy – Maestría en CSS3 (24 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="master-python">
+    <div class="course-header">MinTic Udemy Business – Master en Python (47 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="ml">
+    <div class="course-header">MinTic Udemy Business – Machine Learning y Data Science (15 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="cyber">
+    <div class="course-header">MinTic Udemy Business – Hacking Ético y Ciberseguridad (13 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <script>
+    const courses = {
+      "sena-tic": 3,
+      "sena-english": 3,
+      "sena-stem": 3,
+      "python-total": 17,
+      "claude": 25,
+      "css3": 24,
+      "master-python": 47,
+      "ml": 15,
+      "cyber": 13
+    };
+
+    document.querySelectorAll(".course").forEach(course => {
+      const key = course.getAttribute("data-course");
+      const total = courses[key];
+      const content = course.querySelector(".course-content");
+      const progressFill = course.querySelector(".progress-fill");
+      const progressText = course.querySelector(".progress-text");
+
+      // Generar checks
+      for (let i = 1; i <= total; i++) {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.dataset.index = i;
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(" Sección/Semana " + i));
+        content.appendChild(label);
+      }
+
+      // Cargar progreso almacenado
+      const saved = JSON.parse(localStorage.getItem(key) || "[]");
+      saved.forEach(i => {
+        const cb = content.querySelector(`input[data-index='${i}']`);
+        if (cb) cb.checked = true;
+      });
+
+      // Actualizar progreso
+      function updateProgress() {
+        const checked = content.querySelectorAll("input:checked").length;
+        const percent = Math.round((checked / total) * 100);
+        progressFill.style.width = percent + "%";
+        progressText.textContent = percent + "%";
+        const checkedIndexes = Array.from(content.querySelectorAll("input:checked")).map(cb => parseInt(cb.dataset.index));
+        localStorage.setItem(key, JSON.stringify(checkedIndexes));
+      }
+
+      content.addEventListener("change", updateProgress);
+      updateProgress();
+
+      // Acordeón toggle
+      const header = course.querySelector(".course-header");
+      header.addEventListener("click", () => {
+        content.style.display = content.style.display === "block" ? "none" : "block";
+      });
+    });
+  </script>
+</body>
+</html>

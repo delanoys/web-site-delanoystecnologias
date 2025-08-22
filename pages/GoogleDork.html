@@ -1,0 +1,73 @@
+<!-- !-- index.html --> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Dork - Guía Interactiva</title>
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/281/281764.png" type="image/png">
+<link rel="stylesheet" href="/estilos/GoogleDork.css">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body id="body" class="bg-gray-50 text-gray-800 transition-colors duration-300">
+<!-- Menú superior -->
+<header class="bg-blue-600 text-white shadow-md sticky top-0 z-50">
+<nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
+<h1 class="text-xl font-bold">Google Dork</h1>
+<div class="flex items-center space-x-4">
+<button id="darkmode-btn" class="bg-gray-800 px-2 py-1 rounded text-sm hover:bg-gray-700 transition-transform transform hover:scale-110">🌙</button>
+<button id="menu-btn" class="md:hidden focus:outline-none text-2xl">☰</button>
+</div>
+<ul id="menu" class="hidden md:flex space-x-6">
+<li><a href="#operadores" class="hover:underline transition-colors hover:text-yellow-300">Operadores</a></li>
+<li><a href="#ejemplos" class="hover:underline transition-colors hover:text-yellow-300">Ejemplos</a></li>
+<li><a href="#recursos" class="hover:underline transition-colors hover:text-yellow-300">Recursos</a></li>
+</ul>
+</nav>
+</header>
+
+
+<!-- Contenido principal -->
+<main class="max-w-6xl mx-auto p-6 space-y-12">
+<!-- Operadores -->
+<section id="operadores" class="fade-in">
+<h2 class="text-2xl font-bold mb-4">Operadores más usados</h2>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="card">
+<h3 class="font-semibold">site:</h3>
+<p>Restringe la búsqueda a un dominio específico.<br><strong>Ejemplo:</strong> <code>site:bbc.com inteligencia artificial</code></p>
+</div>
+<div class="card">
+<h3 class="font-semibold">filetype:</h3>
+<p>Busca archivos de un tipo concreto (PDF, DOCX, PPT).<br><strong>Ejemplo:</strong> <code>filetype:pdf ciberseguridad</code></p>
+</div>
+</div>
+</section>
+
+
+<!-- Ejemplos interactivos -->
+<section id="ejemplos" class="fade-in">
+<h2 class="text-2xl font-bold mb-4">Probar consultas</h2>
+<div class="card space-y-4">
+<input id="query" type="text" placeholder="Escribe tu Google Dork aquí..." class="w-full p-2 border rounded">
+<div class="flex space-x-4">
+<button onclick="buscar()" class="btn-primary">Buscar en Google</button>
+<button onclick="copiar()" class="btn-secondary">Copiar</button>
+</div>
+</div>
+</section>
+
+
+<!-- Recursos -->
+<section id="recursos" class="fade-in">
+<h2 class="text-2xl font-bold mb-4">Recursos adicionales</h2>
+<div class="card space-y-2">
+<p>Para explorar más ejemplos de búsquedas avanzadas, visita la <a href="https://www.exploit-db.com/google-hacking-database" target="_blank" class="text-blue-600 underline hover:text-yellow-400">Google Hacking Database (GHDB)</a>. Aunque está en inglés, existen traducciones y explicaciones en español en comunidades de ciberseguridad.</p>
+</div>
+</section>
+</main>
+
+
+<script src="/JavaScrpt/GoogleDork.js"></script>
+</body>
+</html>
