@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Plan de Acción y Estudio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    /* Login */
+    #login {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background: #222;
+      color: #fff;
+      flex-direction: column;
+    }
+    #login input {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin: 5px;
+      font-size: 16px;
+    }
+    #login button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      background: #28a745;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #error { color: red; display: none; margin-top: 5px; }
+
+    /* Contenido */
+    #contenido { display: none; padding: 20px; }
+
+    h1, h2 { text-align: center; }
+    .section { background: #fff; margin: 15px 0; padding: 15px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .course { background: #fafafa; margin: 10px 0; border-radius: 8px; overflow: hidden; }
+    .course-header { padding: 12px; cursor: pointer; background: #007bff; color: #fff; font-weight: bold; }
+    .course-content { display: none; padding: 10px 15px; }
+    .progress-container { margin: 8px 15px 15px; }
+    .progress-bar { height: 10px; background: #ddd; border-radius: 5px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; background: #28a745; transition: width 0.3s; }
+    .progress-text { font-size: 12px; }
+    label { display: block; margin: 5px 0; }
+    textarea { width: 100%; min-height: 80px; border-radius: 6px; padding: 8px; border: 1px solid #ccc; }
+    .btn { padding: 8px 15px; margin: 5px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-dark { background: #333; color: #fff; }
+    .btn-pdf { background: #28a745; color: #fff; }
+    .btn-biblia { background: #007bff; color: #fff; }
+    .dark { background: #222; color: #f4f4f4; }
+    .dark .section { background: #333; color: #f4f4f4; }
+    .dark .course { background: #444; }
+    .dark .course-header { background: #0056b3; }
+    #global-progress { text-align: center; font-weight: bold; margin-top: 10px; }
+    #global-bar { height: 20px; background: #ddd; border-radius: 10px; overflow: hidden; margin: 10px auto; width: 80%; }
+    #global-fill { height: 100%; width: 0%; background: #28a745; transition: width 0.5s; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <h2>🔒 Acceso Restringido</h2>
+  <p>Ingrese la clave para continuar:</p>
+  <input type="password" id="clave" placeholder="Contraseña">
+  <button onclick="verificarClave()">Ingresar</button>
+  <p id="error">Clave incorrecta</p>
+</div>
+
+<!-- CONTENIDO -->
+<div id="contenido">
+
+<h1>📚 Plan de Acción y Estudio</h1>
+
+<div class="section">
+  <button class="btn btn-dark" onclick="toggleDarkMode()">🌙 Modo Claro/Oscuro</button>
+  <button class="btn btn-pdf" onclick="exportarPDF()">📄 Exportar a PDF</button>
+</div>
+
+<!-- Progreso Global -->
+<div class="section">
+  <h2>📊 Progreso Global</h2>
+  <div id="global-progress">0% completado</div>
+  <div id="global-bar"><div id="global-fill"></div></div>
+</div>
+
+<!-- Plan de Acción -->
+<div class="section">
+  <h2>✅ Plan de Acción</h2>
+  <h3>Corto Plazo (1-3 meses)</h3>
+  <label><input type="checkbox" data-plan="corto"> Finalizar cursos activos (SENA, Udemy, MinTIC)</label>
+  <label><input type="checkbox" data-plan="corto"> Crear portafolio online (GitHub + proyectos)</label>
+  <label><input type="checkbox" data-plan="corto"> Mejorar CV y perfil en LinkedIn</label>
+
+  <h3>Mediano Plazo (3-12 meses)</h3>
+  <label><input type="checkbox" data-plan="mediano"> Postular a empleos en desarrollo de software</label>
+  <label><input type="checkbox" data-plan="mediano"> Participar en comunidades tech o hackatones</label>
+  <label><input type="checkbox" data-plan="mediano"> Desarrollar un proyecto personal/publicar en GitHub</label>
+
+  <h3>Largo Plazo (+1 año)</h3>
+  <label><input type="checkbox" data-plan="largo"> Estabilizar ingresos en el sector tecnológico</label>
+  <label><input type="checkbox" data-plan="largo"> Obtener certificaciones internacionales</label>
+  <label><input type="checkbox" data-plan="largo"> Enseñar y compartir conocimiento (docencia/mentorías)</label>
+</div>
+
+<!-- Calendario de Estudio -->
+<div class="section">
+  <h2>📅 Calendario de Estudio</h2>
+
+  <div class="course" data-course="sena-tic">
+    <div class="course-header">SENA – Asesoría TIC en la Formación (3 semanas)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="sena-english">
+    <div class="course-header">SENA – English Does Work Level 1 (3 semanas)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="sena-stem">
+    <div class="course-header">SENA – Metodología STEM (3 semanas)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="python-total">
+    <div class="course-header">Udemy – Python TOTAL (17 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="claude">
+    <div class="course-header">Udemy – Programación con Claude IA (25 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="css3">
+    <div class="course-header">Udemy – Maestría en CSS3 (24 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="master-python">
+    <div class="course-header">MinTIC – Master en Python (47 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="ml">
+    <div class="course-header">MinTIC – Machine Learning y Data Science (15 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+  <div class="course" data-course="cyber">
+    <div class="course-header">MinTIC – Hacking Ético y Ciberseguridad (13 secciones)</div>
+    <div class="course-content"></div>
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-text">0%</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Notas -->
+<div class="section">
+  <h2>📝 Notas Personales</h2>
+  <textarea id="notas" placeholder="Escribe tus reflexiones, aprendizajes o metas..."></textarea>
+</div>
+
+<!-- Consejos Bíblicos -->
+<div class="section">
+  <h2>🙏 Consejo Bíblico</h2>
+  <p id="versiculo"></p>
+  <button class="btn btn-biblia" onclick="nuevoVersiculo()">🔄 Nuevo Versículo</button>
+</div>
+
+</div> <!-- FIN CONTENIDO -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>
+  // AUTENTICACION
+  function verificarClave() {
+    const claveIngresada = document.getElementById("clave").value;
+    if(claveIngresada === "13234152") {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("contenido").style.display = "block";
+    } else {
+      document.getElementById("error").style.display = "block";
+    }
+  }
+
+  // Cursos
+  const courses = {
+    "sena-tic": 3, "sena-english": 3, "sena-stem": 3,
+    "python-total": 17, "claude": 25, "css3": 24,
+    "master-python": 47, "ml": 15, "cyber": 13
+  };
+
+  function updateGlobalProgress() {
+    let totalSecciones = 0;
+    let completadas = 0;
+    document.querySelectorAll(".course").forEach(course => {
+      const total = courses[course.dataset.course];
+      totalSecciones += total;
+      completadas += course.querySelectorAll("input:checked").length;
+    });
+    const porcentaje = Math.round((completadas / totalSecciones) * 100);
+    document.getElementById("global-progress").textContent = porcentaje + "% completado";
+    document.getElementById("global-fill").style.width = porcentaje + "%";
+  }
+
+  document.querySelectorAll(".course").forEach(course => {
+    const key = course.dataset.course;
+    const total = courses[key];
+    const content = course.querySelector(".course-content");
+    const progressFill = course.querySelector(".progress-fill");
+    const progressText = course.querySelector(".progress-text");
+
+    for(let i=1;i<=total;i++){
+      const label = document.createElement("label");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.dataset.index = i;
+      label.appendChild(checkbox);
+      label.appendChild(document.createTextNode(" Sección/Semana "+i));
+      content.appendChild(label);
+    }
+
+    const saved = JSON.parse(localStorage.getItem(key)||"[]");
+    saved.forEach(i=>{
+      const cb = content.querySelector(`input[data-index='${i}']`);
+      if(cb) cb.checked = true;
+    });
+
+    function updateProgress() {
+      const checked = content.querySelectorAll("input:checked").length;
+      const percent = Math.round((checked/total)*100);
+      progressFill.style.width = percent + "%";
+      progressText.textContent = percent + "%";
+      const checkedIndexes = Array.from(content.querySelectorAll("input:checked")).map(cb=>parseInt(cb.dataset.index));
+      localStorage.setItem(key, JSON.stringify(checkedIndexes));
+      updateGlobalProgress();
+    }
+
+    content.addEventListener("change", updateProgress);
+    updateProgress();
+
+    const header = course.querySelector(".course-header");
+    header.addEventListener("click", ()=>{
+      content.style.display = content.style.display==="block"?"none":"block";
+    });
+  });
+
+  // Notas
+  const notas = document.getElementById("notas");
+  notas.value = localStorage.getItem("notas")||"";
+  notas.addEventListener("input",()=>{localStorage.setItem("notas",notas.value);});
+
+  // Versículos
+  const versiculos = [
+    "Filipenses 4:13 – Todo lo puedo en Cristo que me fortalece.",
+    "Isaías 41:10 – No temas, porque yo estoy contigo.",
+    "Jeremías 29:11 – Mis planes son para tu bienestar y no para tu mal.",
+    "Salmo 37:5 – Encomienda a Jehová tu camino, y él hará.",
+    "Proverbios 16:3 – Pon en manos del Señor todas tus obras, y tus proyectos se cumplirán."
+  ];
+  function nuevoVersiculo(){
+    const v = versiculos[Math.floor(Math.random()*versiculos.length)];
+    document.getElementById("versiculo").textContent = v;
+  }
+  nuevoVersiculo();
+
+  // Plan de acción
+  document.querySelectorAll("input[type=checkbox][data-plan]").forEach(cb=>{
+    const key="plan-"+cb.dataset.plan;
+    cb.checked = localStorage.getItem(key)==="true";
+    cb.addEventListener("change",()=>{localStorage.setItem(key,cb.checked);});
+  });
+
+  // Modo oscuro
+  function toggleDarkMode(){
+    document.body.classList.toggle("dark");
+    localStorage.setItem("darkMode",document.body.classList.contains("dark"));
+  }
+  if(localStorage.getItem("darkMode")==="true"){document.body.classList.add("dark");}
+
+  // PDF
+  function exportarPDF(){
+    const element = document.body;
+    html2pdf().from(element).save("plan_de_accion.pdf");
+  }
+
+  updateGlobalProgress();
+</script>
+</body>
+</html>
+

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plan de Acción — Proyecto de Vida</title>
+  <style>
+    :root{
+      --bg: #0f172a;          /* slate-900 */
+      --panel:#111827;        /* gray-900 */
+      --muted:#334155;        /* slate-700 */
+      --card:#0b1220;         /* deep */
+      --text:#e5e7eb;         /* gray-200 */
+      --accent:#22c55e;       /* green-500 */
+      --accent-2:#38bdf8;     /* sky-400 */
+      --warning:#f59e0b;      /* amber-500 */
+      --danger:#ef4444;       /* red-500 */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -20%, #122036 0%, var(--bg) 40%) no-repeat fixed;
+      color: var(--text);
+      line-height:1.6;
+    }
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(15,23,42,.75);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:16px 20px;}
+    h1{margin:8px 0 0; font-size: clamp(1.5rem, 2vw + 1rem, 2.2rem); letter-spacing:.3px}
+    .sub{opacity:.8; font-size:.95rem; margin-top:2px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+      padding: 18px 20px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 30%);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+    .card h2{margin:0 0 10px; font-size:1.1rem}
+    .span-4{grid-column: span 4}
+    .span-6{grid-column: span 6}
+    .span-8{grid-column: span 8}
+    .span-12{grid-column: span 12}
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr}
+      .span-4,.span-6,.span-8,.span-12{grid-column: 1 / -1}
+    }
+    .progress{
+      width:100%; height:12px; border-radius:999px;
+      background: rgba(255,255,255,.06);
+      overflow: hidden; border:1px solid rgba(255,255,255,.06);
+      margin:8px 0 2px;
+    }
+    .bar{height:100%; width:0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition:width .25s}
+    .muted{opacity:.7; font-size:.85rem}
+    .tasks{display:flex; flex-direction:column; gap:8px; margin-top:10px}
+    .task{
+      display:grid; grid-template-columns: 24px 1fr 130px 30px; gap:10px; align-items:center;
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:14px; padding:8px 10px;
+    }
+    .task input[type="text"]{width:100%; background: transparent; border:none; color:var(--text); outline:none}
+    .task input[type="date"]{width:100%; background: transparent; border:1px solid rgba(255,255,255,.12); color:var(--text); outline:none; border-radius:10px; padding:4px 6px}
+    .task .remove{border:none; background:transparent; color:#fff; opacity:.6; cursor:pointer; font-size:18px}
+    .task .remove:hover{opacity:1}
+    .controls{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    button, .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding:10px 14px; border-radius:12px; font-weight:600;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      color:var(--text); border:1px solid rgba(255,255,255,.1);
+      box-shadow: var(--shadow);
+    }
+    button:hover{transform: translateY(-1px)}
+    .btn-accent{background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#052e16; border:none}
+    .taggroup{display:flex; gap:6px; flex-wrap:wrap; margin:6px 0}
+    .tag{
+      padding:4px 10px; border-radius:999px; font-size:.8rem;
+      border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
+    }
+    .kpi{display:grid; grid-template-columns: repeat(4, 1fr); gap:12px}
+    .pill{
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:12px
+    }
+    .pill .big{font-size:1.2rem; font-weight:800}
+    .verse-box{
+      background: linear-gradient(180deg, rgba(56,189,248,.12), rgba(34,197,94,.08));
+      border:1px solid rgba(56,189,248,.25);
+    }
+    .footer{opacity:.7; font-size:.8rem; text-align:center; padding:12px}
+    .toggle{display:flex; align-items:center; gap:8px}
+    .toggle input{transform: scale(1.2)}
+    .note-area{
+      width:100%; min-height:120px; resize:vertical; padding:10px;
+      border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03); color: var(--text);
+    }
+    .small{font-size:.85rem; opacity:.8}
+    .link{color:#93c5fd; text-decoration:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap">
+        <div>
+          <h1>Plan de Acción — Tecnología + Docencia</h1>
+          <div class="sub">Seguimiento de metas (corto, mediano y largo plazo) con registro local en tu navegador.</div>
+        </div>
+        <div class="toggle">
+          <label for="darkMode" class="small">Modo claro/oscuro</label>
+          <input id="darkMode" type="checkbox" />
+          <button id="btnExport" title="Imprimir o guardar como PDF">📄 Exportar</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <section class="card span-8">
+        <h2>Progreso general</h2>
+        <div class="progress"><div id="overallBar" class="bar"></div></div>
+        <div class="muted"><span id="overallText">0%</span> completado — Marca tareas para avanzar.</div>
+
+        <div class="kpi" style="margin-top:10px">
+          <div class="pill">
+            <div class="small">Corto plazo</div>
+            <div class="big" id="kpiShort">0%</div>
+          </div>
+          <div class="pill">
+            <div class="small">Mediano plazo</div>
+            <div class="big" id="kpiMid">0%</div>
+          </div>
+          <div class="pill">
+            <div class="small">Largo plazo</div>
+            <div class="big" id="kpiLong">0%</div>
+          </div>
+          <div class="pill">
+            <div class="small">Hábitos</div>
+            <div class="big" id="kpiHabits">0%</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card span-4 verse-box">
+        <h2>Consejo bíblico para hoy</h2>
+        <div id="verseText" style="font-size:1.02rem; margin-bottom:8px"></div>
+        <div class="muted" id="verseRef"></div>
+        <div class="controls">
+          <button class="btn-accent" id="btnNextVerse">Otro consejo</button>
+          <button id="btnSaveVerse">Guardar favorito</button>
+        </div>
+        <div class="small" style="margin-top:8px">Ver tus favoritos abajo.</div>
+      </aside>
+
+      <!-- Short term -->
+      <section class="card span-12">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap">
+          <h2>🎯 Corto Plazo (0–12 meses)</h2>
+          <div style="min-width:200px">
+            <div class="progress"><div id="bar-short" class="bar"></div></div>
+            <div class="muted"><span id="txt-short">0%</span> completado</div>
+          </div>
+        </div>
+        <div class="taggroup">
+          <span class="tag">Empleabilidad inmediata</span>
+          <span class="tag">Freelance</span>
+          <span class="tag">Docencia online</span>
+          <span class="tag">Certificaciones base</span>
+        </div>
+        <div id="tasks-short" class="tasks"></div>
+        <div class="controls">
+          <button class="btn-accent" onclick="addTask('short')">+ Agregar tarea</button>
+          <button onclick="clearCompleted('short')">Limpiar completadas</button>
+        </div>
+      </section>
+
+      <!-- Mid term -->
+      <section class="card span-12">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap">
+          <h2>🚧 Mediano Plazo (1–3 años)</h2>
+          <div style="min-width:200px">
+            <div class="progress"><div id="bar-mid" class="bar"></div></div>
+            <div class="muted"><span id="txt-mid">0%</span> completado</div>
+          </div>
+        </div>
+        <div class="taggroup">
+          <span class="tag">Especialización</span>
+          <span class="tag">Portafolio</span>
+          <span class="tag">Docencia formal</span>
+          <span class="tag">Clientes estables</span>
+        </div>
+        <div id="tasks-mid" class="tasks"></div>
+        <div class="controls">
+          <button class="btn-accent" onclick="addTask('mid')">+ Agregar tarea</button>
+          <button onclick="clearCompleted('mid')">Limpiar completadas</button>
+        </div>
+      </section>
+
+      <!-- Long term -->
+      <section class="card span-12">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap">
+          <h2>🏁 Largo Plazo (3–7 años)</h2>
+          <div style="min-width:200px">
+            <div class="progress"><div id="bar-long" class="bar"></div></div>
+            <div class="muted"><span id="txt-long">0%</span> completado</div>
+          </div>
+        </div>
+        <div class="taggroup">
+          <span class="tag">Emprendimiento educativo/tech</span>
+          <span class="tag">Estabilidad financiera</span>
+          <span class="tag">Proyección internacional</span>
+        </div>
+        <div id="tasks-long" class="tasks"></div>
+        <div class="controls">
+          <button class="btn-accent" onclick="addTask('long')">+ Agregar tarea</button>
+          <button onclick="clearCompleted('long')">Limpiar completadas</button>
+        </div>
+      </section>
+
+      <!-- Habits -->
+      <section class="card span-8">
+        <h2>📆 Hábitos semanales</h2>
+        <div class="muted">Pequeños pasos constantes.</div>
+        <div id="tasks-habits" class="tasks"></div>
+        <div class="controls">
+          <button class="btn-accent" onclick="addTask('habits')">+ Agregar hábito</button>
+          <button onclick="clearCompleted('habits')">Reiniciar completadas</button>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section class="card span-4">
+        <h2>📝 Notas & Reflexiones</h2>
+        <textarea id="notes" class="note-area" placeholder="Escribe aprendizajes, ideas para clases, feedback de entrevistas, metas espirituales..."></textarea>
+        <div class="controls">
+          <button id="btnSaveNotes">Guardar notas</button>
+        </div>
+        <div class="small">Se guarda localmente en tu navegador.</div>
+      </section>
+
+      <!-- Saved verses -->
+      <section class="card span-12">
+        <h2>⭐ Consejos/Versos favoritos</h2>
+        <div id="savedVerses" class="tasks"></div>
+      </section>
+
+      <section class="span-12 footer">
+        Hecho con 💚 para enfocarte en lo importante. <a class="link" href="#" id="resetAll">Restablecer todo</a>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // ---------------------------
+    // Data model and persistence
+    // ---------------------------
+    const STORAGE_KEY = "planaccion_v1";
+    const defaultData = {
+      tasks:{
+        short:[
+          {text:"Actualizar LinkedIn y hoja de vida (enfatizar docencia + tecnología).", done:false, due:""},
+          {text:"Completar certificaciones base (programación básica, IA para pedagogía).", done:false, due:""},
+          {text:"Abrir perfiles en Upwork/Workana/Superprof y postular a 3 proyectos/semana.", done:false, due:""},
+          {text:"Diseñar 1 taller: 'Programación básica con IA para docentes' y dictarlo online.", done:false, due:""},
+          {text:"Construir 2 proyectos simples para portafolio (sitio personal + app CRUD).", done:false, due:""},
+          {text:"Mantener cotizaciones PSAP y revisar semanas cotizadas.", done:false, due:""}
+        ],
+        mid:[
+          {text:"Elegir ruta: Fullstack / Soporte TI / Educación con IA.", done:false, due:""},
+          {text:"Publicar 4 proyectos en GitHub con documentación y demo.", done:false, due:""},
+          {text:"Dictar 1 curso virtual pago (Hotmart/Udemy) y obtener 20 alumnos.", done:false, due:""},
+          {text:"Conseguir 2 clientes recurrentes o un contrato estable remoto.", done:false, due:""},
+          {text:"Postular a docencia en instituciones virtuales (UNAD, poli, etc.).", done:false, due:""}
+        ],
+        long:[
+          {text:"Lanzar marca educativa/tech para zonas rurales (alfabetización digital + IA).", done:false, due:""},
+          {text:"Lograr flujo de ingresos diversificado (docencia + freelance + cursos).", done:false, due:""},
+          {text:"Consolidar ahorro/pensión y un fondo de emergencia (6 meses).", done:false, due:""},
+          {text:"Trabajar con clientes internacionales (remoto).", done:false, due:""}
+        ],
+        habits:[
+          {text:"Estudiar 1–2 horas diarias enfocadas.", done:false, due:""},
+          {text:"Publicar 1 avance/semana en LinkedIn.", done:false, due:""},
+          {text:"Tiempo devocional: lectura y oración diaria.", done:false, due:""},
+          {text:"Hacer ejercicio 3 veces por semana.", done:false, due:""}
+        ]
+      },
+      notes:"",
+      theme:"dark",
+      savedVerses:[],
+      lastVerseIndex:0
+    };
+    function loadState(){
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return structuredClone(defaultData);
+      try{ return JSON.parse(raw) }catch(e){ return structuredClone(defaultData) }
+    }
+    function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)) }
+    let state = loadState();
+
+    // ---------------------------
+    // Verses (short counsel)
+    // ---------------------------
+    const VERSES = [
+      {ref:"Filipenses 4:13", text:"Todo lo puedo en Cristo que me fortalece."},
+      {ref:"Isaías 41:10", text:"No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo."},
+      {ref:"Jeremías 29:11", text:"Porque yo sé los planes que tengo para ustedes, planes de bienestar y no de calamidad."},
+      {ref:"Proverbios 3:5-6", text:"Confía en el Señor de todo corazón... y él enderezará tus sendas."},
+      {ref:"Salmo 37:5", text:"Encomienda al Señor tu camino; confía en él, y él actuará."},
+      {ref:"Mateo 6:33", text:"Busquen primero el reino de Dios y su justicia, y todo lo demás les será añadido."},
+      {ref:"Salmo 23:1", text:"El Señor es mi pastor; nada me faltará."},
+      {ref:"Romanos 12:11-12", text:"Sean diligentes, fervientes en espíritu; gozosos en la esperanza, constantes en la oración."},
+      {ref:"Josué 1:9", text:"Esfuérzate y sé valiente... porque el Señor tu Dios estará contigo dondequiera que vayas."},
+      {ref:"Santiago 1:5", text:"Si a alguno le falta sabiduría, pídala a Dios... y le será dada."}
+    ];
+    function showVerse(idx){
+      const v = VERSES[idx % VERSES.length];
+      document.getElementById("verseText").textContent = "“" + v.text + "”";
+      document.getElementById("verseRef").textContent = v.ref;
+      state.lastVerseIndex = idx % VERSES.length;
+      saveState();
+    }
+
+    // ---------------------------
+    // Task rendering helpers
+    // ---------------------------
+    function pct(a,b){ return b===0?0:Math.round((a/b)*100) }
+    function sectionStats(key){
+      const arr = state.tasks[key] || [];
+      const total = arr.length;
+      const done = arr.filter(t=>t.done).length;
+      return {done,total,percent: pct(done,total)}
+    }
+    function updateProgressUI(){
+      const s = sectionStats('short');
+      const m = sectionStats('mid');
+      const l = sectionStats('long');
+      const h = sectionStats('habits');
+      const overallDone = s.done + m.done + l.done + h.done;
+      const overallTotal = s.total + m.total + l.total + h.total;
+      const overallPct = pct(overallDone, overallTotal);
+
+      document.getElementById("bar-short").style.width = s.percent + "%";
+      document.getElementById("txt-short").textContent = s.percent + "%";
+      document.getElementById("bar-mid").style.width = m.percent + "%";
+      document.getElementById("txt-mid").textContent = m.percent + "%";
+      document.getElementById("bar-long").style.width = l.percent + "%";
+      document.getElementById("txt-long").textContent = l.percent + "%";
+
+      document.getElementById("overallBar").style.width = overallPct + "%";
+      document.getElementById("overallText").textContent = overallPct + "%";
+
+      document.getElementById("kpiShort").textContent = s.percent + "%";
+      document.getElementById("kpiMid").textContent = m.percent + "%";
+      document.getElementById("kpiLong").textContent = l.percent + "%";
+      document.getElementById("kpiHabits").textContent = h.percent + "%";
+    }
+    function taskRow(task, key, idx){
+      const wrapper = document.createElement('div');
+      wrapper.className = "task";
+      const cb = document.createElement('input');
+      cb.type = "checkbox"; cb.checked = !!task.done;
+      cb.addEventListener('change', ()=>{ state.tasks[key][idx].done = cb.checked; saveState(); updateProgressUI(); });
+      const txt = document.createElement('input');
+      txt.type = "text"; txt.value = task.text || "";
+      txt.placeholder = "Describe la tarea...";
+      txt.addEventListener('input', ()=>{ state.tasks[key][idx].text = txt.value; saveState(); });
+      const due = document.createElement('input');
+      due.type = "date"; due.value = task.due || "";
+      due.addEventListener('change', ()=>{ state.tasks[key][idx].due = due.value; saveState(); });
+      const rm = document.createElement('button');
+      rm.className = "remove"; rm.innerHTML = "✕";
+      rm.title = "Eliminar";
+      rm.addEventListener('click', ()=>{
+        state.tasks[key].splice(idx,1); saveState(); renderSection(key);
+      });
+      wrapper.append(cb, txt, due, rm);
+      return wrapper;
+    }
+    function renderSection(key){
+      const container = document.getElementById('tasks-'+key);
+      container.innerHTML = "";
+      (state.tasks[key]||[]).forEach((t,i)=> container.appendChild(taskRow(t,key,i)) );
+      updateProgressUI();
+    }
+    function addTask(key){
+      state.tasks[key] = state.tasks[key] || [];
+      state.tasks[key].push({text:"",done:false,due:""});
+      saveState();
+      renderSection(key);
+    }
+    function clearCompleted(key){
+      state.tasks[key] = (state.tasks[key]||[]).filter(t=>!t.done);
+      saveState(); renderSection(key);
+    }
+
+    // Notes
+    const notesEl = document.getElementById('notes');
+    function loadNotes(){ notesEl.value = state.notes || "" }
+    function saveNotes(){ state.notes = notesEl.value; saveState() }
+
+    // Saved verses
+    function renderSavedVerses(){
+      const box = document.getElementById('savedVerses');
+      box.innerHTML = "";
+      (state.savedVerses||[]).forEach((v, i)=>{
+        const row = document.createElement('div');
+        row.className = "task";
+        const icon = document.createElement('div'); icon.textContent = "⭐"; icon.style.textAlign="center";
+        const txt = document.createElement('div'); txt.textContent = "“"+v.text+"” — "+v.ref;
+        const fake = document.createElement('div'); // spacer
+        const rm = document.createElement('button'); rm.className="remove"; rm.textContent="✕";
+        rm.addEventListener('click',()=>{ state.savedVerses.splice(i,1); saveState(); renderSavedVerses() });
+        row.style.gridTemplateColumns="30px 1fr 30px 30px";
+        row.append(icon, txt, fake, rm);
+        box.append(row);
+      });
+    }
+
+    // Theme toggle
+    const darkToggle = document.getElementById('darkMode');
+    function applyTheme(){
+      const dark = state.theme !== "light";
+      darkToggle.checked = !dark; // checked => light
+      if(dark){
+        document.documentElement.style.setProperty('--bg', '#0f172a');
+        document.documentElement.style.setProperty('--panel', '#111827');
+        document.documentElement.style.setProperty('--card', '#0b1220');
+        document.body.style.color = '#e5e7eb';
+      }else{
+        document.documentElement.style.setProperty('--bg', '#f8fafc');
+        document.documentElement.style.setProperty('--panel', '#f1f5f9');
+        document.documentElement.style.setProperty('--card', '#ffffff');
+        document.body.style.color = '#0b1220';
+      }
+    }
+    darkToggle.addEventListener('change', ()=>{
+      state.theme = darkToggle.checked? "light":"dark"; saveState(); applyTheme();
+    });
+
+    // Export/print
+    document.getElementById('btnExport').addEventListener('click', ()=> window.print() );
+
+    // Verse actions
+    document.getElementById('btnNextVerse').addEventListener('click', ()=>{
+      showVerse(state.lastVerseIndex + 1);
+    });
+    document.getElementById('btnSaveVerse').addEventListener('click', ()=>{
+      const v = VERSES[state.lastVerseIndex];
+      state.savedVerses.push(v); saveState(); renderSavedVerses();
+    });
+
+    // Reset all
+    document.getElementById('resetAll').addEventListener('click', (e)=>{
+      e.preventDefault();
+      if(confirm("¿Seguro que quieres restablecer todo el plan? Esto borrará tus datos locales.")){
+        state = structuredClone(defaultData);
+        saveState();
+        renderAll();
+      }
+    });
+
+    // Render all
+    function renderAll(){
+      renderSection('short');
+      renderSection('mid');
+      renderSection('long');
+      renderSection('habits');
+      loadNotes();
+      renderSavedVerses();
+      applyTheme();
+      if(typeof state.lastVerseIndex !== 'number') state.lastVerseIndex = 0;
+      showVerse(state.lastVerseIndex);
+    }
+    document.getElementById('btnSaveNotes').addEventListener('click', saveNotes);
+    notesEl.addEventListener('input', ()=>{ /* autosave light */ setTimeout(saveNotes, 300) });
+
+    // Init
+    renderAll();
+  </script>
+</body>
+</html>
