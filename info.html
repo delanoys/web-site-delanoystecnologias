@@ -63,186 +63,112 @@
             .container { padding: 12px 4vw; }
         }
     </style>
-    <div class="container">
-        <h1>Google Hacking: Comandos y Operadores Booleanos</h1>
-        <p>Estos comandos permiten refinar búsquedas y descubrir información sensible o útil dentro de un proceso de hacking ético y de investigación OSINT. A continuación, encontrarás cada uno con su descripción, un ejemplo de uso y la explicación de qué hace específicamente.</p>
 
-        <h2>Comandos de Google Hacking</h2>
-
-        <div class="command-block">
-            <span class="command-title">define:<i>término</i></span>
-            <div class="desc">Muestra definiciones de diversas páginas web para el término buscado.</div>
-            <div class="example">Ejemplo: <code>define:osint</code></div>
-            <div class="explain">Devuelve definiciones de “OSINT”, ayudando a comprender su significado.</div>
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Google Hacking: Comandos y Operadores Booleanos</button>
+            <div class="toggle-content">
+                <h1>Google Hacking: Comandos y Operadores Booleanos</h1>
+                <p>Estos comandos permiten refinar búsquedas y descubrir información sensible o útil dentro de un proceso de hacking ético y de investigación OSINT. A continuación, encontrarás cada uno con su descripción, un ejemplo de uso y la explicación de qué hace específicamente.</p>
+                <h2>Comandos de Google Hacking</h2>
+                <div class="command-block">
+                    <ul>
+                        <li><span class="command-title">site:</span> <span class="desc">Limita la búsqueda a un dominio específico. <span class="example">Ejemplo: <code>site:example.com</code></span></span></li>
+                        <li><span class="command-title">filetype:</span> <span class="desc">Busca archivos de un tipo específico. <span class="example">Ejemplo: <code>filetype:pdf</code></span></span></li>
+                        <li><span class="command-title">intitle:</span> <span class="desc">Busca páginas con palabras específicas en el título. <span class="example">Ejemplo: <code>intitle:"login"</code></span></span></li>
+                        <li><span class="command-title">inurl:</span> <span class="desc">Busca páginas con palabras específicas en la URL. <span class="example">Ejemplo: <code>inurl:admin</code></span></span></li>
+                        <li><span class="command-title">intext:</span> <span class="desc">Busca páginas que contengan ciertas palabras en el texto. <span class="example">Ejemplo: <code>intext:"confidencial"</code></span></span></li>
+                        <li><span class="command-title">cache:</span> <span class="desc">Muestra la versión en caché de una página. <span class="example">Ejemplo: <code>cache:example.com</code></span></span></li>
+                        <li><span class="command-title">link:</span> <span class="desc">Encuentra páginas que enlazan a una URL específica. <span class="example">Ejemplo: <code>link:example.com</code></span></span></li>
+                        <li><span class="command-title">related:</span> <span class="desc">Encuentra páginas similares a una URL dada. <span class="example">Ejemplo: <code>related:example.com</code></span></span></li>
+                        <li><span class="command-title">allinurl:</span> <span class="desc">Busca páginas que contengan todas las palabras en la URL. <span class="example">Ejemplo: <code>allinurl:admin login</code></span></span></li>
+                        <li><span class="command-title">allintitle:</span> <span class="desc">Busca páginas que contengan todas las palabras en el título. <span class="example">Ejemplo: <code>allintitle:seguridad acceso</code></span></span></li>
+                    </ul>
+                </div>
+                <h2>Operadores Booleanos Google Hacking</h2>
+                <div class="command-block">
+                    <ul>
+                        <li><span class="command-title">AND</span> <span class="desc">Busca resultados que contengan todas las palabras. <span class="example">Ejemplo: <code>login AND admin</code></span></span></li>
+                        <li><span class="command-title">OR</span> <span class="desc">Busca resultados que contengan una palabra u otra. <span class="example">Ejemplo: <code>login OR acceso</code></span></span></li>
+                        <li><span class="command-title">"" (comillas)</span> <span class="desc">Busca una frase exacta. <span class="example">Ejemplo: <code>"contraseña olvidada"</code></span></span></li>
+                        <li><span class="command-title">- (guion)</span> <span class="desc">Excluye una palabra de los resultados. <span class="example">Ejemplo: <code>admin -login</code></span></span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <div class="command-block">
-            <span class="command-title">filetype:<i>término</i> (o ext:<i>término</i>)</span>
-            <div class="desc">Restringe la búsqueda a documentos con la extensión especificada (PDF, XLS, DOCX, etc.). Útil para localizar informes, listados o archivos confidenciales.</div>
-            <div class="example">Ejemplo: <code>filetype:xls "password"</code></div>
-            <div class="explain">Muestra hojas de cálculo en formato XLS que contengan la palabra “password”, pudiendo revelar credenciales.</div>
+    </article>
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Shodan: Comandos principales</button>
+            <div class="toggle-content">
+                <h1>Shodan: Comandos principales</h1>
+                <p>Comandos relevantes para Shodan. A continuación se presentan algunos de los filtros más relevantes para el uso de Shodan:</p>
+                <div class="command-block">
+                    <ul>
+                        <li><span class="command-title">after:</span> <span class="desc">Solo muestra resultados después de la fecha dada (<i>dd/mm/yyyy</i>). <span class="example">Ejemplo: <code>after:01/01/2023</code></span></span></li>
+                        <li><span class="command-title">asn:</span> <span class="desc">Número de sistema autónomo. <span class="example">Ejemplo: <code>asn:AS15169</code></span></span></li>
+                        <li><span class="command-title">before:</span> <span class="desc">Solo muestra resultados antes de la fecha dada (<i>dd/mm/yyyy</i>). <span class="example">Ejemplo: <code>before:31/12/2022</code></span></span></li>
+                        <li><span class="command-title">category:</span> <span class="desc">Categorías disponibles: <code>ics</code>, <code>malware</code>. <span class="example">Ejemplo: <code>category:ics</code></span></span></li>
+                        <li><span class="command-title">city:</span> <span class="desc">Nombre de la ciudad. <span class="example">Ejemplo: <code>city:"Madrid"</code></span></span></li>
+                        <li><span class="command-title">country:</span> <span class="desc">Código de país de 2 letras. <span class="example">Ejemplo: <code>country:ES</code></span></span></li>
+                        <li><span class="command-title">geo:</span> <span class="desc">Coordenadas geográficas (latitud, longitud, rango, etc.). <span class="example">Ejemplo: <code>geo:40.4168,-3.7038,50</code></span></span></li>
+                        <li><span class="command-title">hash:</span> <span class="desc">Hash de la propiedad <code>data</code> (entero).</span></li>
+                        <li><span class="command-title">has_ipv6:</span> <span class="desc">True/False. Filtra por dispositivos con IPv6.</span></li>
+                        <li><span class="command-title">has_screenshot:</span> <span class="desc">True/False. Filtra por dispositivos con captura de pantalla.</span></li>
+                        <li><span class="command-title">server:</span> <span class="desc">Dispositivos o servidores con un encabezado <code>server</code> específico. <span class="example">Ejemplo: <code>server:Apache</code></span></span></li>
+                        <li><span class="command-title">hostname:</span> <span class="desc">Nombre completo del host. <span class="example">Ejemplo: <code>hostname:example.com</code></span></span></li>
+                        <li><span class="command-title">ip:</span> <span class="desc">Alias para el filtro <code>net</code>. <span class="example">Ejemplo: <code>ip:8.8.8.8</code></span></span></li>
+                        <li><span class="command-title">isp:</span> <span class="desc">Proveedor de servicios de Internet. <span class="example">Ejemplo: <code>isp:Telefonica</code></span></span></li>
+                        <li><span class="command-title">net:</span> <span class="desc">Rango de red en notación CIDR. <span class="example">Ejemplo: <code>net:199.4.1.0/24</code></span></span></li>
+                        <li><span class="command-title">org:</span> <span class="desc">Organización asignada al bloque de red. <span class="example">Ejemplo: <code>org:Google</code></span></span></li>
+                        <li><span class="command-title">os:</span> <span class="desc">Sistema operativo. <span class="example">Ejemplo: <code>os:Windows</code></span></span></li>
+                        <li><span class="command-title">port:</span> <span class="desc">Número de puerto del servicio. <span class="example">Ejemplo: <code>port:22</code></span></span></li>
+                        <li><span class="command-title">postal:</span> <span class="desc">Código postal (solo EE.UU.).</span></li>
+                        <li><span class="command-title">product:</span> <span class="desc">Nombre del software/producto que provee el banner. <span class="example">Ejemplo: <code>product:nginx</code></span></span></li>
+                        <li><span class="command-title">region:</span> <span class="desc">Nombre de la región/estado. <span class="example">Ejemplo: <code>region:Madrid</code></span></span></li>
+                        <li><span class="command-title">state:</span> <span class="desc">Alias para <code>region</code>.</span></li>
+                        <li><span class="command-title">version:</span> <span class="desc">Versión del producto. <span class="example">Ejemplo: <code>version:1.2.3</code></span></span></li>
+                        <li><span class="command-title">vuln:</span> <span class="desc">ID de CVE para una vulnerabilidad. <span class="example">Ejemplo: <code>vuln:CVE-2021-12345</code></span></span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <div class="command-block">
-            <span class="command-title">site:<i>sitio/dominio</i></span>
-            <div class="desc">Filtra los resultados a las páginas de un dominio concreto. Ideal para investigar un objetivo específico.</div>
-            <div class="example">Ejemplo: <code>site:pastebin.com "email list"</code></div>
-            <div class="explain">Busca dentro de Pastebin contenido que incluya la frase “email list”, posible indicio de fuga de datos.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">link:<i>url</i></span>
-            <div class="desc">Muestra qué páginas enlazan a la URL indicada (solo se reflejan enlaces de sitios con cierta relevancia para Google).</div>
-            <div class="example">Ejemplo: <code>link:https://example.com</code></div>
-            <div class="explain">Permite averiguar quién enlaza a example.com, útil para investigación OSINT y reputacional.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">cache:<i>url</i></span>
-            <div class="desc">Muestra la versión que Google tiene guardada en caché de la página indicada.</div>
-            <div class="example">Ejemplo: <code>cache:https://example.com</code></div>
-            <div class="explain">Permite ver la última copia de example.com, incluso si el contenido original ha cambiado o sido eliminado.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">info:<i>url</i></span>
-            <div class="desc">Ofrece información que Google tiene sobre la página o dominio especificado.</div>
-            <div class="example">Ejemplo: <code>info:https://example.com</code></div>
-            <div class="explain">Muestra datos relacionados con example.com, por ejemplo la versión en caché o páginas similares.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">related:<i>url</i></span>
-            <div class="desc">Devuelve páginas que Google considera similares al sitio indicado.</div>
-            <div class="example">Ejemplo: <code>related:https://example.com</code></div>
-            <div class="explain">Muestra sitios “relacionados” con example.com, útil para descubrir competencia o dominios similares.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">allinanchor:<i>términos</i></span>
-            <div class="desc">Restringe resultados a páginas que reciben enlaces (backlinks) cuyo texto contenga todos los términos indicados.</div>
-            <div class="example">Ejemplo: <code>allinanchor:"database leaked"</code></div>
-            <div class="explain">Muestra páginas enlazadas con la frase “database leaked” en su anchor text, revelando brechas de datos.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">inanchor:<i>término</i></span>
-            <div class="desc">Similar a allinanchor, pero se puede combinar con otros términos en la misma búsqueda.</div>
-            <div class="example">Ejemplo: <code>inanchor:breach "credit cards"</code></div>
-            <div class="explain">Encuentra páginas cuyo anchor text incluya “breach” y que mencionen “credit cards” en el contenido.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">allintext:<i>términos</i></span>
-            <div class="desc">Muestra solo páginas que contengan todos los términos en el texto.</div>
-            <div class="example">Ejemplo: <code>allintext:"internal use only confidential"</code></div>
-            <div class="explain">Filtra resultados a aquellos que incluyan la frase exacta “internal use only confidential” en el cuerpo del texto.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">intext:<i>término</i></span>
-            <div class="desc">Busca páginas que incluyan un término en su texto. Puede combinarse con más palabras.</div>
-            <div class="example">Ejemplo: <code>intext:exposed "api key"</code></div>
-            <div class="explain">Retorna páginas donde aparezca “exposed” en el texto y que incluyan la frase “api key”, útil para detectar posibles credenciales filtradas.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">allinurl:<i>términos</i></span>
-            <div class="desc">Muestra solo resultados que tengan todos los términos en la URL.</div>
-            <div class="example">Ejemplo: <code>allinurl:"admin portal"</code></div>
-            <div class="explain">Localiza URLs que incluyan “admin” y “portal”, útil para encontrar paneles de administración expuestos.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">inurl:<i>término</i></span>
-            <div class="desc">Similar a allinurl, pero se puede combinar con otras palabras de búsqueda. Devuelve URLs que contengan el término.</div>
-            <div class="example">Ejemplo: <code>inurl:wp-admin "vulnerabilities"</code></div>
-            <div class="explain">Filtra páginas donde la URL contenga “wp-admin” y mencione “vulnerabilities” en el texto, para detectar fallos en WordPress.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">allintitle:<i>términos</i></span>
-            <div class="desc">Limita los resultados a páginas cuyo título contenga todos los términos indicados.</div>
-            <div class="example">Ejemplo: <code>allintitle:"database dump"</code></div>
-            <div class="explain">Muestra resultados con “database dump” en el título, posible indicio de bases de datos expuestas.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">intitle:<i>término</i></span>
-            <div class="desc">Similar a allintitle, pero se puede combinar con otros términos. Devuelve páginas cuyo título contenga el término.</div>
-            <div class="example">Ejemplo: <code>intitle:"sql injection" "bypass authentication"</code></div>
-            <div class="explain">Retorna resultados que en el título incluyan “sql injection” y mencionen “bypass authentication” en el contenido.</div>
-        </div>
-
-        <h2>Operadores Booleanos Google Hacking</h2>
-        <p>Estos operadores permiten combinar o filtrar términos para obtener resultados más específicos en búsquedas OSINT o de información sensible.</p>
-
-        <div class="command-block">
-            <span class="command-title">" "</span>
-            <div class="desc">Busca la frase exacta, sin variaciones.</div>
-            <div class="example">Ejemplo: <code>"employee private data"</code></div>
-            <div class="explain">Devuelve resultados que incluyan exactamente “employee private data”, revelando posible exposición de datos.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">-</span>
-            <div class="desc">Excluye una palabra de la búsqueda.</div>
-            <div class="example">Ejemplo: <code>"database dump" -site:github.com</code></div>
-            <div class="explain">Muestra resultados de “database dump” excluyendo GitHub, centrando la búsqueda en otros dominios.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">OR (ó |)</span>
-            <div class="desc">Funciona como un “o lógico”. Devuelve resultados que contengan uno u otro término.</div>
-            <div class="example">Ejemplo: <code>"mysql dump" OR "database leak"</code></div>
-            <div class="explain">Amplía la búsqueda para incluir fugas de bases de datos bajo cualquiera de esos términos.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">+</span>
-            <div class="desc">Fuerza la inclusión de palabras que Google suele ignorar (artículos, preposiciones) o caracteres especiales (tildes, ñ, etc.).</div>
-            <div class="example">Ejemplo: <code>+la "exposed password"</code></div>
-            <div class="explain">Impide que Google omita “la” y fuerza la frase “exposed password”.</div>
-        </div>
-
-        <div class="command-block">
-            <span class="command-title">*</span>
-            <div class="desc">El asterisco se usa como comodín para uno o varios términos desconocidos. Suele usarse con comillas para mantener la posición.</div>
-            <div class="example">Ejemplo: <code>"confidential * report"</code></div>
-            <div class="explain">Encuentra frases con “confidential”, luego cualquier palabra, y termina con “report” (por ejemplo, “confidential company report”).</div>
-        </div>
-    <div class="container">
-        <h2>Shodan: Comandos principales</h2>
-        <p>Comandos relevantes para Shodan. A continuación se presentan algunos de los filtros más relevantes para el uso de Shodan:</p>
-        <div class="command-block">
-            <ul>
-                <li><span class="command-title">after:</span> <span class="desc">Solo muestra resultados después de la fecha dada (<i>dd/mm/yyyy</i>). <span class="example">Ejemplo: <code>after:01/01/2023</code></span></span></li>
-                <li><span class="command-title">asn:</span> <span class="desc">Número de sistema autónomo. <span class="example">Ejemplo: <code>asn:AS15169</code></span></span></li>
-                <li><span class="command-title">before:</span> <span class="desc">Solo muestra resultados antes de la fecha dada (<i>dd/mm/yyyy</i>). <span class="example">Ejemplo: <code>before:31/12/2022</code></span></span></li>
-                <li><span class="command-title">category:</span> <span class="desc">Categorías disponibles: <code>ics</code>, <code>malware</code>. <span class="example">Ejemplo: <code>category:ics</code></span></span></li>
-                <li><span class="command-title">city:</span> <span class="desc">Nombre de la ciudad. <span class="example">Ejemplo: <code>city:"Madrid"</code></span></span></li>
-                <li><span class="command-title">country:</span> <span class="desc">Código de país de 2 letras. <span class="example">Ejemplo: <code>country:ES</code></span></span></li>
-                <li><span class="command-title">geo:</span> <span class="desc">Coordenadas geográficas (latitud, longitud, rango, etc.). <span class="example">Ejemplo: <code>geo:40.4168,-3.7038,50</code></span></span></li>
-                <li><span class="command-title">hash:</span> <span class="desc">Hash de la propiedad <code>data</code> (entero).</span></li>
-                <li><span class="command-title">has_ipv6:</span> <span class="desc">True/False. Filtra por dispositivos con IPv6.</span></li>
-                <li><span class="command-title">has_screenshot:</span> <span class="desc">True/False. Filtra por dispositivos con captura de pantalla.</span></li>
-                <li><span class="command-title">server:</span> <span class="desc">Dispositivos o servidores con un encabezado <code>server</code> específico. <span class="example">Ejemplo: <code>server:Apache</code></span></span></li>
-                <li><span class="command-title">hostname:</span> <span class="desc">Nombre completo del host. <span class="example">Ejemplo: <code>hostname:example.com</code></span></span></li>
-                <li><span class="command-title">ip:</span> <span class="desc">Alias para el filtro <code>net</code>. <span class="example">Ejemplo: <code>ip:8.8.8.8</code></span></span></li>
-                <li><span class="command-title">isp:</span> <span class="desc">Proveedor de servicios de Internet. <span class="example">Ejemplo: <code>isp:Telefonica</code></span></span></li>
-                <li><span class="command-title">net:</span> <span class="desc">Rango de red en notación CIDR. <span class="example">Ejemplo: <code>net:199.4.1.0/24</code></span></span></li>
-                <li><span class="command-title">org:</span> <span class="desc">Organización asignada al bloque de red. <span class="example">Ejemplo: <code>org:Google</code></span></span></li>
-                <li><span class="command-title">os:</span> <span class="desc">Sistema operativo. <span class="example">Ejemplo: <code>os:Windows</code></span></span></li>
-                <li><span class="command-title">port:</span> <span class="desc">Número de puerto del servicio. <span class="example">Ejemplo: <code>port:22</code></span></span></li>
-                <li><span class="command-title">postal:</span> <span class="desc">Código postal (solo EE.UU.).</span></li>
-                <li><span class="command-title">product:</span> <span class="desc">Nombre del software/producto que provee el banner. <span class="example">Ejemplo: <code>product:nginx</code></span></span></li>
-                <li><span class="command-title">region:</span> <span class="desc">Nombre de la región/estado. <span class="example">Ejemplo: <code>region:Madrid</code></span></span></li>
-                <li><span class="command-title">state:</span> <span class="desc">Alias para <code>region</code>.</span></li>
-                <li><span class="command-title">version:</span> <span class="desc">Versión del producto. <span class="example">Ejemplo: <code>version:1.2.3</code></span></span></li>
-                <li><span class="command-title">vuln:</span> <span class="desc">ID de CVE para una vulnerabilidad. <span class="example">Ejemplo: <code>vuln:CVE-2021-12345</code></span></span></li>
-            </ul>
-        </div>
-    </div>
+    </article>
+    <script>
+    function toggleArticle(btn) {
+        const content = btn.nextElementSibling;
+        if (content.style.display === "none" || !content.style.display) {
+            content.style.display = "block";
+            // El texto del botón no cambia, permanece como el título
+        } else {
+            content.style.display = "none";
+            // El texto del botón no cambia, permanece como el título
+        }
+    }
+    // Inicializa oculto por defecto
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.toggle-content').forEach(function(div) {
+            div.style.display = "none";
+        });
+        // No es necesario cambiar el texto de los botones aquí
+    });
+    </script>
+    <style>
+    .toggle-btn {
+        background: #1a73e8;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 18px;
+        margin-bottom: 18px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background 0.2s;
+    }
+    .toggle-btn:hover {
+        background: #155ab6;
+    }
+    </style>
 </body>
 </body>
 </html>
