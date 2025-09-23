@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chocolatey — Guía rápida</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa5b1;--accent:#7c3aed;--glass:rgba(255,255,255,0.03);--glass-2:rgba(255,255,255,0.02)}
+    *{box-sizing:border-box}
+    body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:linear-gradient(180deg,#071025 0%, #071425 60%); color:#e6eef6; line-height:1.45}
+    .container{max-width:1000px;margin:32px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+    .logo{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4f46e5);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(30,41,59,0.6)}
+    .logo svg{filter:drop-shadow(0 6px 18px rgba(124,58,237,0.35))}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:4px 0 0;color:var(--muted)}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr} .aside{order:-1}}
+
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    h2{margin:0 0 10px;font-size:16px}
+    .muted{color:var(--muted);font-size:14px}
+
+    pre{background:var(--glass);padding:12px;border-radius:8px;overflow:auto;margin:8px 0}
+    code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;font-size:13px}
+
+    .cmd-row{display:flex;gap:8px;align-items:center}
+    .btn{background:linear-gradient(180deg,rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);color:inherit;padding:8px 10px;border-radius:8px;cursor:pointer}
+    .btn.small{padding:6px 8px;font-size:13px}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#4f46e5);border:none;color:white}
+    .btn.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.04)}
+
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{padding:8px 6px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.02);vertical-align:top}
+    th{color:var(--muted);font-weight:600;font-size:13px}
+    td .muted{font-size:13px}
+
+    .search{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+    input[type=text]{flex:1;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+
+    .pkg-list{display:flex;flex-direction:column;gap:6px;max-height:200px;overflow:auto;padding-right:6px}
+    .pkg-item{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;background:var(--glass-2)}
+    label{cursor:pointer}
+    .download-link{display:inline-block;margin-top:10px}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    .kbd{background:#081124;border:1px solid rgba(255,255,255,0.03);padding:4px 8px;border-radius:6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace}
+
+    .toast{position:fixed;right:20px;bottom:20px;background:#0b1a2b;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(2,6,23,0.6);display:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo" aria-hidden>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12a9 9 0 1118 0 9 9 0 01-18 0z" fill="white" opacity="0.06"/>
+          <path d="M7 9.5c1-2.5 4-4.5 8-3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          <path d="M7 14.5c1 2.5 4 4.5 8 3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Chocolatey — Guía rápida</h1>
+        <p class="lead">Instalación, comandos básicos y generador de script para automatizar instalaciones en Windows</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section class="card">
+          <h2>¿Qué es Chocolatey?</h2>
+          <p class="muted">Chocolatey es un <strong>administrador de paquetes para Windows</strong> que permite instalar, actualizar y desinstalar software desde la línea de comandos usando el comando <span class="kbd">choco</span>. Ideal para automatizar configuraciones y crear scripts reproducibles.</p>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+          <h2>Instalación (comando único)</h2>
+          <p class="muted">Abre PowerShell como administrador y ejecuta:</p>
+          <div class="cmd-row">
+            <pre id="installCmd" style="flex:1"><code>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))</code></pre>
+            <button class="btn small" onclick="copyText('#installCmd')">Copiar</button>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+          <h2>Comandos básicos</h2>
+          <p class="muted">Tabla con los comandos más usados y ejemplos.</p>
+
+          <div class="search">
+            <input id="cmdSearch" type="text" placeholder="Buscar comando (ej: install, upgrade, uninstall)..." oninput="filterCmds()" />
+            <button class="btn ghost" onclick="resetFilter()">Limpiar</button>
+          </div>
+
+          <table id="cmdTable" aria-live="polite">
+            <thead>
+              <tr><th>Comando</th><th>Descripción</th><th>Ejemplo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>choco install &lt;paquete&gt;</code></td><td class="muted">Instala un paquete.</td><td><pre><code>choco install googlechrome -y</code></pre><button class="btn small" onclick="copyExample('choco install googlechrome -y')">Copiar</button></td></tr>
+              <tr><td><code>choco search &lt;texto&gt;</code></td><td class="muted">Busca paquetes en el repositorio.</td><td><pre><code>choco search vscode</code></pre><button class="btn small" onclick="copyExample('choco search vscode')">Copiar</button></td></tr>
+              <tr><td><code>choco list --local-only</code></td><td class="muted">Lista los paquetes instalados con Chocolatey.</td><td><pre><code>choco list --local-only</code></pre><button class="btn small" onclick="copyExample('choco list --local-only')">Copiar</button></td></tr>
+              <tr><td><code>choco upgrade &lt;paquete&gt;</code></td><td class="muted">Actualiza un paquete específico.</td><td><pre><code>choco upgrade vscode -y</code></pre><button class="btn small" onclick="copyExample('choco upgrade vscode -y')">Copiar</button></td></tr>
+              <tr><td><code>choco upgrade all</code></td><td class="muted">Actualiza todos los paquetes instalados.</td><td><pre><code>choco upgrade all -y</code></pre><button class="btn small" onclick="copyExample('choco upgrade all -y')">Copiar</button></td></tr>
+              <tr><td><code>choco uninstall &lt;paquete&gt;</code></td><td class="muted">Desinstala un paquete.</td><td><pre><code>choco uninstall 7zip -y</code></pre><button class="btn small" onclick="copyExample('choco uninstall 7zip -y')">Copiar</button></td></tr>
+              <tr><td><code>choco feature list</code></td><td class="muted">Lista las características de Chocolatey (experimental, gui, etc.).</td><td><pre><code>choco feature list</code></pre><button class="btn small" onclick="copyExample('choco feature list')">Copiar</button></td></tr>
+              <tr><td><code>choco source list</code></td><td class="muted">Lista orígenes (repositories) configurados.</td><td><pre><code>choco source list</code></pre><button class="btn small" onclick="copyExample('choco source list')">Copiar</button></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+          <h2>Cómo crear un script (PowerShell) para instalar paquetes</h2>
+          <p class="muted">Puedes crear un archivo <code>.ps1</code> que ejecute instalaciones de forma desatendida. Ejemplo básico generado automáticamente desde el panel derecho.</p>
+
+          <p class="muted">Ejemplo básico:</p>
+          <pre><code id="exampleScript"># Ejecutar en PowerShell (como Administrador)
+Set-ExecutionPolicy Bypass -Scope Process -Force
+$packages = @('googlechrome','vscode','git','7zip')
+foreach ($p in $packages) { choco install $p -y }
+</code></pre>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+            <button class="btn primary" onclick="copyText('#exampleScript')">Copiar script</button>
+            <button class="btn" onclick="downloadExample()">Descargar .ps1</button>
+          </div>
+        </section>
+
+      </main>
+
+      <aside class="aside">
+        <div class="card">
+          <h2>Generador de script</h2>
+          <p class="muted">Selecciona paquetes comunes y genera un script PowerShell listo para ejecutar.</p>
+
+          <div class="pkg-list" id="pkgList">
+            <!-- items inserted by JS -->
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn primary" onclick="buildScript()">Generar script</button>
+            <button class="btn" onclick="clearSelection()">Limpiar</button>
+          </div>
+
+          <div id="scriptPreview" style="margin-top:10px;display:none">
+            <p class="muted">Vista previa:</p>
+            <pre id="previewArea"><code></code></pre>
+            <div style="display:flex;gap:8px">
+              <button class="btn" onclick="downloadScript()">Descargar .ps1</button>
+              <button class="btn" onclick="copyPreview()">Copiar al portapapeles</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h2>Consejos rápidos</h2>
+          <ul class="muted">
+            <li>Ejecuta PowerShell <strong>como administrador</strong> para instalar Chocolatey y paquetes.</li>
+            <li>Usa la opción <code>-y</code> para evitar confirmaciones interactivas.</li>
+            <li>Para seguridad, revisa el script antes de ejecutarlo en máquinas críticas.</li>
+          </ul>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>
+      <small>Archivo creado: <strong>chocolatey.html</strong> — Usa el generador para crear scripts personalizados y mantener tus instalaciones reproducibles.</small>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script>
+    const pkgs = [
+      {id:'googlechrome', label:'Google Chrome'},
+      {id:'vscode', label:'Visual Studio Code (vscode)'},
+      {id:'git', label:'Git'},
+      {id:'7zip', label:'7-Zip'},
+      {id:'nodejs', label:'Node.js'},
+      {id:'python', label:'Python'},
+      {id:'notepadplusplus', label:'Notepad++'},
+      {id:'putty', label:'PuTTY'},
+      {id:'docker-desktop', label:'Docker Desktop'},
+      {id:'googlecloudsdk', label:'Google Cloud SDK'}
+    ];
+
+    function el(tag, attrs={}, ...children){const e=document.createElement(tag);for(const k in attrs)if(k.startsWith('on')) e.addEventListener(k.slice(2),attrs[k]); else e.setAttribute(k,attrs[k]); children.forEach(c=>{if(typeof c==='string') e.appendChild(document.createTextNode(c)); else e.appendChild(c)}); return e}
+
+    // populate package list
+    const pkgList = document.getElementById('pkgList');
+    pkgs.forEach(p=>{
+      const div = el('div',{class:'pkg-item'},
+        el('input',{type:'checkbox',id:p.id}),
+        el('label',{for:p.id}, p.label)
+      );
+      pkgList.appendChild(div);
+    });
+
+    function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',1800)}
+
+    function copyText(selector){
+      const el = document.querySelector(selector);
+      if(!el) return;
+      const text = el.innerText || el.textContent;
+      navigator.clipboard.writeText(text).then(()=> showToast('Copiado al portapapeles'))
+        .catch(()=> alert('No se pudo copiar. Usa Ctrl+C'));
+    }
+
+    function copyExample(text){navigator.clipboard.writeText(text).then(()=> showToast('Comando copiado'))}
+
+    function resetFilter(){document.getElementById('cmdSearch').value='';filterCmds()}
+    function filterCmds(){
+      const q = document.getElementById('cmdSearch').value.toLowerCase();
+      const rows = document.querySelectorAll('#cmdTable tbody tr');
+      rows.forEach(r=>{ r.style.display = (r.innerText.toLowerCase().includes(q)) ? '' : 'none' })
+    }
+
+    function buildScript(){
+      const checked = Array.from(document.querySelectorAll('#pkgList input:checked')).map(i=>i.id);
+      if(checked.length===0){alert('Selecciona al menos un paquete');return}
+      const pwr = [];
+      pwr.push("# Script generado por chocolatey.html");
+      pwr.push("Set-ExecutionPolicy Bypass -Scope Process -Force");
+      pwr.push('Write-Host "Instalando paquetes con Chocolatey..."');
+      pwr.push('$packages = @(' + checked.map(s=>"'"+s+"'").join(',') + ')');
+      pwr.push('foreach ($p in $packages) { choco install $p -y }');
+      pwr.push('Write-Host "Listo."');
+      const content = pwr.join('\n');
+      document.getElementById('previewArea').textContent = content;
+      document.getElementById('scriptPreview').style.display = 'block';
+      showToast('Script generado')
+    }
+
+    function clearSelection(){document.querySelectorAll('#pkgList input').forEach(i=>i.checked=false);document.getElementById('scriptPreview').style.display='none'}
+
+    function downloadScript(){
+      const txt = document.getElementById('previewArea').textContent;
+      if(!txt) return alert('No hay script para descargar');
+      const blob = new Blob([txt], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='chocolatey-install.ps1'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      showToast('Descargando .ps1')
+    }
+
+    function copyPreview(){
+      const txt = document.getElementById('previewArea').textContent;
+      navigator.clipboard.writeText(txt).then(()=>showToast('Script copiado'))
+    }
+
+    function downloadExample(){
+      const txt = document.getElementById('exampleScript').textContent;
+      const blob = new Blob([txt],{type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='example-choco.ps1'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+
+    function copyPreview(){navigator.clipboard.writeText(document.getElementById('previewArea').textContent).then(()=>showToast('Script copiado'))}
+
+    // accessibility: keyboard shortcut to focus search ( / )
+    document.addEventListener('keydown', e=>{ if(e.key==='/' && document.activeElement.tagName!=='INPUT'){ e.preventDefault(); document.getElementById('cmdSearch').focus() } });
+  </script>
+</body>
+</html>

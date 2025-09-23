@@ -260,6 +260,36 @@
             </div>
         </div>
     </article>
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Script: Habilitar Hyper-V en Windows</button>
+            <div class="toggle-content">
+                <h1>Script: Habilitar Hyper-V en Windows</h1>
+                <p>Este script por lotes permite instalar y habilitar Hyper-V en sistemas Windows compatibles. Debe ejecutarse con privilegios de administrador.</p>
+                <div class="command-block">
+                    <span class="command-title">Script por lotes:</span>
+                    <pre style="background:#f3f6fa; border-radius:6px; padding:12px; overflow-x:auto;"><code>pushd "%~dp0"
+
+    dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum &gt;hyper-v.txt
+
+    for /f %%i in ('findstr /i . hyper-v.txt 2^&gt;nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+
+    del hyper-v.txt
+
+    Dism /online /enable-feature /featurename:Microsoft-Hyper-V -All /LimitAccess /ALL
+
+    pause</code></pre>
+                </div>
+                <h2>Notas</h2>
+                <ul>
+                    <li><strong>Requisitos:</strong> El script debe ejecutarse con permisos de administrador, ya que <code>dism</code> requiere privilegios elevados.</li>
+                    <li><strong>Sistema operativo:</strong> Hyper-V solo está disponible en ediciones específicas de Windows (Pro, Enterprise, Education) y requiere hardware con soporte para virtualización (como Intel VT-x o AMD-V).</li>
+                    <li><strong>Errores posibles:</strong> Si no hay archivos <code>.mum</code> relacionados con Hyper-V o si el sistema no soporta Hyper-V, el script podría fallar.</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
     <script>
     function toggleArticle(btn) {
         const content = btn.nextElementSibling;
@@ -296,5 +326,5 @@
     }
     </style>
 </body>
-</body>
+
 </html>

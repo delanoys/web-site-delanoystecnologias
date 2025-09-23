@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cuidados - Ácido Úrico</title>
+  <style>
+    :root{
+      --bg:#f7faf9; --card:#ffffff; --accent:#2b8a6b; --muted:#6b7280; --glass: rgba(255,255,255,0.6);
+      --maxw:1000px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#eef7f2 0%,var(--bg) 100%);color:#0f172a}
+    header{background:linear-gradient(90deg,var(--accent),#6fcf97);color:white;padding:36px 20px 24px}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
+    h1{margin:0;font-size:28px}
+    p.lead{margin-top:8px;opacity:0.95}
+    .grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:20px}
+    @media(min-width:900px){.grid{grid-template-columns:2fr 1fr}}
+    .card{background:var(--card);border-radius:14px;box-shadow:0 8px 30px rgba(11,20,12,0.06);padding:20px}
+    .pill{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--accent);font-size:13px}
+    h2{font-size:18px;margin:0 0 8px}
+    ul{margin:8px 0 12px 20px}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{padding:10px;border:1px solid #e6eef0;text-align:left}
+    th{background:#f1fbf7;color:var(--accent);font-weight:700}
+    .small{font-size:13px;color:var(--muted)}
+    .food-list{display:grid;grid-template-columns:1fr;gap:10px}
+    @media(min-width:700px){.food-list{grid-template-columns:1fr 1fr}}
+    .tag-good{background:#e8f8f0;border-left:4px solid #2b8a6b;padding:10px;border-radius:8px}
+    .tag-bad{background:#fff5f6;border-left:4px solid #d1434a;padding:10px;border-radius:8px}
+    .tag-mod{background:#fffef2;border-left:4px solid #f5a524;padding:10px;border-radius:8px}
+    footer{padding:20px;text-align:center;color:var(--muted);font-size:13px}
+    .btn{display:inline-block;background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    .print-hide{display:inline-block}
+    @media print{body{background:white} header, .print-hide{display:none} .container{padding:0} .card{box-shadow:none;border-radius:0}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <span class="pill">Guía práctica</span>
+      <h1>Cuidados para controlar el Ácido Úrico</h1>
+      <p class="lead">Información, recomendaciones, plan de alimentación semanal y listas de alimentos para reducir y normalizar el ácido úrico.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <!-- left column -->
+      <section class="card">
+        <h2>¿Qué es y cuál es su función?</h2>
+        <p class="small">El ácido úrico es el producto final del metabolismo de las purinas. En niveles normales actúa como antioxidante en la sangre y permite la eliminación de purinas; se elimina por riñones (≈70%) e intestino.</p>
+
+        <h2>¿Qué ocurre si sube (hiperuricemia)?</h2>
+        <ul>
+          <li>Formación de cristales que pueden causar <strong>gota</strong> (articulaciones dolorosas, rojas, inflamadas).</li>
+          <li>Riesgo de <strong>cálculos renales</strong> por cristales en el tracto urinario.</li>
+          <li>Potencial asociación con hipertensión, resistencia a la insulina y enfermedad renal crónica.</li>
+        </ul>
+
+        <h2>Medidas generales para normalizarlo</h2>
+        <ul>
+          <li>Hidratación: 2–3 litros de agua al día.</li>
+          <li>Perder peso si hay sobrepeso y mantener actividad física regular.</li>
+          <li>Reducir alcohol (especialmente cerveza) y bebidas con fructosa o azúcares añadidos.</li>
+          <li>Limitar carnes rojas, vísceras y mariscos; priorizar lácteos bajos en grasa, frutas y verduras.</li>
+          <li>Consultar al médico antes de iniciar o cambiar medicación; en casos necesarios se usan alopurinol, febuxostat o uricosúricos.</li>
+        </ul>
+
+        <h2>Consejos rápidos</h2>
+        <ul>
+          <li>Evita ayunos estrictos y pérdida de peso muy rápida (pueden elevar temporalmente el ácido úrico).</li>
+          <li>Preferir métodos de cocción sencillos: al vapor, al horno, a la plancha.</li>
+          <li>Controlar comorbilidades: diabetes, hipertensión, colesterol.</li>
+        </ul>
+
+      </section>
+
+      <!-- right column -->
+      <aside class="card">
+        <h2>Tips útiles</h2>
+        <p class="small">Registra tus alimentos y episodios de dolor; mantén una botella de agua visible; evita exceso de sal y alimentos ultraprocesados.</p>
+        <p style="margin-top:12px;"><a class="btn" href="#plan">Ver plan semanal</a> <span class="print-hide">&nbsp;&nbsp;<a class="btn" href="#lista">Ir a lista de alimentos</a></span></p>
+      </aside>
+    </div>
+
+    <!-- Plan semanal -->
+    <section id="plan" class="card" style="margin-top:22px">
+      <h2>Plan de alimentación semanal (bajo en purinas)</h2>
+      <p class="small">Ejemplo práctico. Ajusta por calorías y preferencias. Beber 2–3 L de agua al día.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Día</th><th>Desayuno</th><th>Media mañana</th><th>Comida</th><th>Merienda</th><th>Cena</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Lunes</td><td>Yogur descremado con avena y plátano</td><td>1 manzana</td><td>Pechuga de pollo a la plancha + ensalada + arroz integral</td><td>Tostada integral con aguacate</td><td>Crema de calabacín + tortilla francesa</td></tr>
+          <tr><td>Martes</td><td>Leche descremada + pan integral con queso fresco</td><td>1 pera</td><td>Pescado blanco al horno + verduras al vapor + patata cocida</td><td>Yogur con frutos rojos</td><td>Ensalada de lechuga, zanahoria y garbanzos</td></tr>
+          <tr><td>Miércoles</td><td>Avena con leche descremada y fresas</td><td>1 mandarina</td><td>Lentejas con verduras + ensalada</td><td>Batido de plátano con leche vegetal</td><td>Puré de calabaza + pollo al horno</td></tr>
+          <tr><td>Jueves</td><td>Yogur con granola casera y kiwi</td><td>1 manzana</td><td>Merluza a la plancha + brócoli + arroz integral</td><td>Tostada integral con hummus</td><td>Ensalada con huevo duro</td></tr>
+          <tr><td>Viernes</td><td>Leche descremada + pan integral y queso fresco</td><td>1 pera</td><td>Pechuga de pavo al horno + puré de patata + ensalada</td><td>Yogur con melocotón</td><td>Crema de zanahoria + tortilla (2 claras + 1 yema)</td></tr>
+          <tr><td>Sábado</td><td>Avena con leche vegetal y frutos secos (pocos)</td><td>1 plátano</td><td>Arroz con verduras salteadas + pescado blanco</td><td>Batido de frutas (sin azúcar)</td><td>Ensalada de garbanzos con pepino y tomate</td></tr>
+          <tr><td>Domingo</td><td>Yogur con avena, plátano y canela</td><td>1 manzana</td><td>Pollo guisado con verduras + arroz integral</td><td>Pan integral con aguacate</td><td>Puré de calabacín + tortilla francesa</td></tr>
+        </tbody>
+      </table>
+
+      <p class="small" style="margin-top:10px">Nota: Si sufres gota recurrente o tienes ácido úrico muy alto, consulta a tu médico para valorar tratamiento farmacológico.</p>
+    </section>
+
+    <!-- Lista de alimentos -->
+    <section id="lista" class="card" style="margin-top:22px">
+      <h2>Lista de alimentos: disminuyen / aumentan el ácido úrico</h2>
+      <div class="food-list" style="margin-top:12px">
+        <div class="tag-good">
+          <h3 style="margin:0 0 6px">✅ Alimentos recomendados (bajos en purinas)</h3>
+          <ul>
+            <li>Lácteos bajos en grasa: leche descremada, yogur, quesos frescos.</li>
+            <li>Huevos (especialmente claras).</li>
+            <li>Verduras y hortalizas: calabacín, zanahoria, lechuga, tomate, pepino, brócoli.</li>
+            <li>Frutas: manzana, pera, plátano, fresa, kiwi, naranja, melón.</li>
+            <li>Cereales integrales: arroz, avena, pan y pasta integrales.</li>
+            <li>Legumbres en porciones moderadas: lentejas, garbanzos.</li>
+            <li>Frutos secos y semillas (sin exceso).</li>
+            <li>Agua e infusiones sin azúcar.</li>
+          </ul>
+        </div>
+
+        <div class="tag-mod">
+          <h3 style="margin:0 0 6px">⚖️ Alimentos a moderar</h3>
+          <ul>
+            <li>Carnes magras: pollo, pavo (consumo moderado).</li>
+            <li>Pescados blancos: merluza, lenguado, bacalao.</li>
+            <li>Legumbres en exceso y frutos secos en exceso.</li>
+            <li>Espárragos, champiñones, coliflor (tolerados con moderación).</li>
+          </ul>
+        </div>
+
+        <div class="tag-bad">
+          <h3 style="margin:0 0 6px">🚫 Alimentos a evitar (ricos en purinas)</h3>
+          <ul>
+            <li>Vísceras: hígado, riñón, sesos, mollejas.</li>
+            <li>Carnes rojas y procesadas: ternera, cordero, cerdo, embutidos.</li>
+            <li>Mariscos: camarones, langosta, mejillones, ostras, sardinas, anchoas.</li>
+            <li>Alcohol (especialmente cerveza y licores fuertes).</li>
+            <li>Refrescos azucarados y jugos con fructosa.</li>
+            <li>Alimentos ultraprocesados: bollería industrial, snacks, comida rápida.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:12px">Si necesitas una lista personalizada según alergias, preferencias dietarias o presupuesto, puedo adaptarla.</p>
+    </section>
+
+    <footer style="margin-top:18px" class="card">
+      <p class="small">Esta guía es informativa y no sustituye la opinión médica. Para cambios de medicación o diagnóstico consulta con tu médico o especialista.</p>
+      <p class="small">Creada: Guía práctica - Ácido úrico</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

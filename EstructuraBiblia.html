@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Estructura_Biblia — Biblioteca (Offline)</title>
+<style>
+  @media print { .no-print{display:none} } 
+  :root{font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f7f7f9; color:#111;}
+  body{margin:0; padding:20px;}
+  header{display:flex; gap:16px; align-items:center; margin-bottom:20px;}
+  h1{margin:0; font-size:1.6rem;}
+  .container{display:grid; grid-template-columns: 320px 1fr; gap:20px;}
+  .sidebar{background:white; padding:12px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+  .main{background:white; padding:16px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+  input[type="search"]{width:100%; padding:8px 10px; border-radius:8px; border:1px solid #ddd;}
+  .book-list{margin-top:8px; max-height:64vh; overflow:auto;}
+  .book-item{padding:8px; border-radius:8px; cursor:pointer; border:1px solid transparent; margin-bottom:6px;}
+  .book-item:hover{border-color:#e0e0e0; background:linear-gradient(180deg, #ffffff, #fbfbfb);}
+  .book-title{font-weight:600;}
+  .book-meta{font-size:0.9rem; color:#444;}
+  .details h2{margin-top:0;}
+  .controls{display:flex; gap:8px; margin-bottom:12px;}
+  .btn{padding:8px 10px; border-radius:8px; border:1px solid #bbb; background:#fff; cursor:pointer;}
+  .btn.primary{background:#0b6efd; color:white; border-color:transparent;}
+  .tag{display:inline-block; padding:4px 8px; background:#eef3ff; border-radius:999px; font-size:0.85rem; margin-right:6px;}
+  .favorite{float:right; font-size:0.9rem; cursor:pointer;}
+  .para{margin-top:8px; font-style:italic; color:#333;}
+</style>
+</head>
+<body>
+<header class="no-print">
+  <h1>Estructura de la Biblia — Biblioteca (Offline)</h1>
+  <div style="margin-left:auto">
+    <button class="btn" id="downloadPdf">Descargar PDF (Esquema completo)</button>
+    <button class="btn" onclick="window.print()">Imprimir</button>
+  </div>
+</header>
+
+<div class="container">
+  <aside class="sidebar no-print">
+    <input id="search" type="search" placeholder="Buscar libro, autor o referencia..." />
+    <div class="filters">
+      <div class="controls">
+        <button class="btn" onclick="resetFilters()">Mostrar todos</button>
+        <button class="btn" onclick="filterTestament('Antiguo Testamento')">Antiguo</button>
+        <button class="btn" onclick="filterTestament('Nuevo Testamento')">Nuevo</button>
+      </div>
+      <div style="margin-top:8px; font-size:0.9rem; color:#444;">Filtrar por sección:</div>
+      <select id="sectionFilter" style="width:100%; padding:8px; margin-top:6px; border-radius:8px; border:1px solid #ddd;" onchange="applyFilters()">
+        <option value="">— Todas las secciones —</option>
+      </select>
+      <div style="margin-top:10px;">
+        <button class="btn" onclick="showFavorites()">Ver favoritos</button>
+        <button class="btn" onclick="exportCsv()">Exportar CSV</button>
+      </div>
+    </div>
+    <div class="book-list" id="bookList" aria-live="polite"></div>
+  </aside>
+
+  <main class="main">
+    <div class="details" id="details">
+      <h2>Selecciona un libro para ver detalles</h2>
+      <p>Panel con autor tradicional, sección, referencia y una breve paráfrasis (no cita literal). Puedes marcar favoritos y exportar la lista.</p>
+    </div>
+  </main>
+</div>
+
+<footer class="no-print">Hecho automáticamente — esquema de estudio. Paráfrasis incluidas para evitar problemas de derechos de autor. Si quieres citas textuales completas, sube o indica una traducción de dominio público y volveré a generar los archivos.</footer>
+
+<script>
+const books = [
+{"title":"Génesis","section":"Antiguo Testamento - Pentateuco","author":"Moisés","ref":"Génesis 1:1","para":"En el principio Dios creó los cielos y la tierra (paráfrasis)."},
+{"title":"Éxodo","section":"Antiguo Testamento - Pentateuco","author":"Moisés","ref":"Éxodo 3:14","para":"Dios se revela a Moisés como 'Yo soy' (paráfrasis)."},
+{"title":"Levítico","section":"Antiguo Testamento - Pentateuco","author":"Moisés","ref":"Levítico 19:2","para":"Mandatos de santidad para el pueblo (paráfrasis)."},
+{"title":"Números","section":"Antiguo Testamento - Pentateuco","author":"Moisés","ref":"Números 6:24-26","para":"Bendición sacerdotal: Dios te bendiga y te guarde (paráfrasis)."},
+{"title":"Deuteronomio","section":"Antiguo Testamento - Pentateuco","author":"Moisés","ref":"Deuteronomio 6:5","para":"Amarás al Señor con todo tu corazón (paráfrasis)."},
+{"title":"Josué","section":"Antiguo Testamento - Históricos","author":"Josué","ref":"Josué 1:9","para":"Fuerza y valentía: Jehová está contigo (paráfrasis)."},
+{"title":"Jueces","section":"Antiguo Testamento - Históricos","author":"Anónimo/compilación","ref":"Jueces 21:25","para":"Cada uno hacía lo que bien le parecía (paráfrasis)."},
+{"title":"Rut","section":"Antiguo Testamento - Históricos","author":"Samuel (posible)","ref":"Rut 1:16","para":"Lealtad de Rut hacia Noemí (paráfrasis)."},
+{"title":"1 Samuel","section":"Antiguo Testamento - Históricos","author":"Samuel/Natán/Gad","ref":"1 Samuel 16:7","para":"Dios mira el corazón, no la apariencia (paráfrasis)."},
+{"title":"2 Samuel","section":"Antiguo Testamento - Históricos","author":"Cronistas","ref":"2 Samuel 7:16","para":"Promesa davídica de continuidad dinástica (paráfrasis)."},
+{"title":"1 Reyes","section":"Antiguo Testamento - Históricos","author":"Cronista","ref":"1 Reyes 8:56","para":"Gratitud por la fidelidad de Dios (paráfrasis)."},
+{"title":"2 Reyes","section":"Antiguo Testamento - Históricos","author":"Cronista","ref":"2 Reyes 17:7-8","para":"Consecuencias de la infidelidad de Israel (paráfrasis)."},
+{"title":"1 Crónicas","section":"Antiguo Testamento - Históricos","author":"Cronista (Esdras)","ref":"1 Crónicas 29:11","para":"Soberanía y gloria de Dios (paráfrasis)."},
+{"title":"2 Crónicas","section":"Antiguo Testamento - Históricos","author":"Cronista","ref":"2 Crónicas 7:14","para":"Arrepentimiento y restauración nacional (paráfrasis)."},
+{"title":"Esdras","section":"Antiguo Testamento - Históricos","author":"Esdras","ref":"Esdras 7:10","para":"Esdras buscó la Ley y enseñarla (paráfrasis)."},
+{"title":"Nehemías","section":"Antiguo Testamento - Históricos","author":"Nehemías","ref":"Nehemías 8:10","para":"La alegría del Señor es nuestra fortaleza (paráfrasis)."},
+{"title":"Ester","section":"Antiguo Testamento - Históricos","author":"Anónimo","ref":"Ester 4:14","para":"Posible propósito de liberación para los judíos (paráfrasis)."},
+{"title":"Job","section":"Antiguo Testamento - Poéticos","author":"Desconocido","ref":"Job 1:21","para":"Nacido desnudo y desnudo regresarás (paráfrasis)."},
+{"title":"Salmos","section":"Antiguo Testamento - Poéticos","author":"David y otros","ref":"Salmos 23:1","para":"El Señor es mi pastor; nada me faltará (paráfrasis)."},
+{"title":"Proverbios","section":"Antiguo Testamento - Poéticos","author":"Salomón","ref":"Proverbios 3:5-6","para":"Confía en el Señor y él enderezará tus veredas (paráfrasis)."},
+{"title":"Eclesiastés","section":"Antiguo Testamento - Poéticos","author":"Salomón","ref":"Eclesiastés 3:1","para":"Todo tiene su tiempo bajo el cielo (paráfrasis)."},
+{"title":"Cantares","section":"Antiguo Testamento - Poéticos","author":"Salomón","ref":"Cantares 2:4","para":"El amado me introdujo en su casa (paráfrasis)."},
+{"title":"Isaías","section":"Antiguo Testamento - Profetas Mayores","author":"Isaías","ref":"Isaías 40:31","para":"Los que esperan en Jehová renovarán sus fuerzas (paráfrasis)."},
+{"title":"Jeremías","section":"Antiguo Testamento - Profetas Mayores","author":"Jeremías","ref":"Jeremías 29:11","para":"Planes de bienestar y esperanza (paráfrasis)."},
+{"title":"Lamentaciones","section":"Antiguo Testamento - Profetas Mayores","author":"Jeremías (trad.)","ref":"Lamentaciones 3:22-23","para":"La misericordia de Dios es nueva cada mañana (paráfrasis)."},
+{"title":"Ezequiel","section":"Antiguo Testamento - Profetas Mayores","author":"Ezequiel","ref":"Ezequiel 36:26","para":"Dios dará un corazón nuevo y espíritu nuevo (paráfrasis)."},
+{"title":"Daniel","section":"Antiguo Testamento - Profetas Mayores","author":"Daniel","ref":"Daniel 6:22","para":"Dios protegió a Daniel en el foso de los leones (paráfrasis)."},
+{"title":"Oseas","section":"Antiguo Testamento - Profetas Menores","author":"Oseas","ref":"Oseas 6:6","para":"Deseo misericordia y no sacrificio (paráfrasis)."},
+{"title":"Joel","section":"Antiguo Testamento - Profetas Menores","author":"Joel","ref":"Joel 2:28","para":"Derramaré mi espíritu sobre toda carne (paráfrasis)."},
+{"title":"Amós","section":"Antiguo Testamento - Profetas Menores","author":"Amós","ref":"Amós 5:24","para":"Que fluya la justicia como aguas (paráfrasis)."},
+{"title":"Abdías","section":"Antiguo Testamento - Profetas Menores","author":"Abdías","ref":"Abdías 1:15","para":"Juicio sobre Edom anunciado (paráfrasis)."},
+{"title":"Jonás","section":"Antiguo Testamento - Profetas Menores","author":"Jonás","ref":"Jonás 2:2","para":"Oración de Jonás desde el vientre del gran pez (paráfrasis)."},
+{"title":"Miqueas","section":"Antiguo Testamento - Profetas Menores","author":"Miqueas","ref":"Miqueas 6:8","para":"Hacer justicia, amar misericordia, caminar humildemente (paráfrasis)."},
+{"title":"Nahúm","section":"Antiguo Testamento - Profetas Menores","author":"Nahúm","ref":"Nahúm 1:7","para":"Dios es buen refugio en tiempo de angustia (paráfrasis)."},
+{"title":"Habacuc","section":"Antiguo Testamento - Profetas Menores","author":"Habacuc","ref":"Habacuc 2:4","para":"El justo vivirá por su fe (paráfrasis)."},
+{"title":"Sofonías","section":"Antiguo Testamento - Profetas Menores","author":"Sofonías","ref":"Sofonías 3:17","para":"Dios se goza por ti con alegría (paráfrasis)."},
+{"title":"Hageo","section":"Antiguo Testamento - Profetas Menores","author":"Hageo","ref":"Hageo 2:4","para":"Ánimo; yo estoy contigo, dice Jehová (paráfrasis)."},
+{"title":"Zacarías","section":"Antiguo Testamento - Profetas Menores","author":"Zacarías","ref":"Zacarías 4:6","para":"No con ejército ni fuerza, sino con mi espíritu (paráfrasis)."},
+{"title":"Malaquías","section":"Antiguo Testamento - Profetas Menores","author":"Malaquías","ref":"Malaquías 3:1","para":"Enviaré mi mensajero para preparar el camino (paráfrasis)."},
+{"title":"Mateo","section":"Nuevo Testamento - Evangelios","author":"Mateo","ref":"Mateo 5:3","para":"Bienaventurados los pobres en espíritu (paráfrasis)."},
+{"title":"Marcos","section":"Nuevo Testamento - Evangelios","author":"Marcos","ref":"Marcos 1:11","para":"Voz desde el cielo: 'Tú eres mi Hijo amado' (paráfrasis)."},
+{"title":"Lucas","section":"Nuevo Testamento - Evangelios","author":"Lucas","ref":"Lucas 2:11","para":"Hoy os ha nacido en la ciudad de David un Salvador (paráfrasis)."},
+{"title":"Juan","section":"Nuevo Testamento - Evangelios","author":"Juan","ref":"Juan 3:16","para":"Porque de tal manera amó Dios al mundo (paráfrasis)."},
+{"title":"Hechos","section":"Nuevo Testamento - Historia","author":"Lucas","ref":"Hechos 1:8","para":"Recibiréis poder al recibir el Espíritu Santo (paráfrasis)."},
+{"title":"Romanos","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"Romanos 8:28","para":"Todas las cosas cooperan para bien a los que aman a Dios (paráfrasis)."},
+{"title":"1 Corintios","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"1 Corintios 13:1","para":"El amor es la mayor de las virtudes (paráfrasis)."},
+{"title":"2 Corintios","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"2 Corintios 5:17","para":"Nueva creación en Cristo (paráfrasis)."},
+{"title":"Gálatas","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"Gálatas 2:20","para":"Vivo por la fe en el Hijo de Dios (paráfrasis)."},
+{"title":"Efesios","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"Efesios 2:8-9","para":"Salvos por gracia mediante la fe (paráfrasis)."},
+{"title":"Filipenses","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"Filipenses 4:13","para":"Todo lo puedo en Cristo que me fortalece (paráfrasis)."},
+{"title":"Colosenses","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"Colosenses 3:12","para":"Vestíos de compasión y humildad (paráfrasis)."},
+{"title":"1 Tesalonicenses","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"1 Tesalonicenses 5:16-18","para":"Estad siempre gozosos y dad gracias (paráfrasis)."},
+{"title":"2 Tesalonicenses","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"2 Tesalonicenses 3:3","para":"Dios es fiel y os guardará del mal (paráfrasis)."},
+{"title":"1 Timoteo","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"1 Timoteo 4:12","para":"Sé ejemplo en palabra y conducta (paráfrasis)."},
+{"title":"2 Timoteo","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"2 Timoteo 3:16","para":"Toda Escritura es inspirada por Dios (paráfrasis)."},
+{"title":"Tito","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"Tito 2:7-8","para":"Enseña con sana doctrina y buen comportamiento (paráfrasis)."},
+{"title":"Filemón","section":"Nuevo Testamento - Cartas Paulinas","author":"Pablo","ref":"Filemón 1:6","para":"Que la fe obre por el conocimiento de todo bien (paráfrasis)."},
+{"title":"Hebreos","section":"Nuevo Testamento - Cartas Generales","author":"Autor desconocido","ref":"Hebreos 11:1","para":"La fe es la certeza de lo que se espera (paráfrasis)."},
+{"title":"Santiago","section":"Nuevo Testamento - Cartas Generales","author":"Santiago","ref":"Santiago 1:2-3","para":"Tened por sumo gozo las pruebas que producen paciencia (paráfrasis)."},
+{"title":"1 Pedro","section":"Nuevo Testamento - Cartas Generales","author":"Pedro","ref":"1 Pedro 5:7","para":"Echad vuestra ansiedad sobre él porque él cuida de vosotros (paráfrasis)."},
+{"title":"2 Pedro","section":"Nuevo Testamento - Cartas Generales","author":"Pedro","ref":"2 Pedro 1:21","para":"La profecía no provino de voluntad humana (paráfrasis)."},
+{"title":"1 Juan","section":"Nuevo Testamento - Cartas Generales","author":"Juan","ref":"1 Juan 4:7","para":"Amémonos los unos a los otros porque el amor es de Dios (paráfrasis)."},
+{"title":"2 Juan","section":"Nuevo Testamento - Cartas Generales","author":"Juan","ref":"2 Juan 1:6","para":"Amor y obediencia van juntos (paráfrasis)."},
+{"title":"3 Juan","section":"Nuevo Testamento - Cartas Generales","author":"Juan","ref":"3 Juan 1:4","para":"Gozo al ver a los hermanos andar en verdad (paráfrasis)."},
+{"title":"Judas","section":"Nuevo Testamento - Cartas Generales","author":"Judas","ref":"Judas 1:3","para":"Contiende por la fe que ha sido una vez entregada (paráfrasis)."},
+{"title":"Apocalipsis","section":"Nuevo Testamento - Profecía","author":"Juan","ref":"Apocalipsis 1:3","para":"Bienaventurado el que lee y oye las palabras de la profecía (paráfrasis)."}
+];
+
+
+// Utilidades DOM
+const bookListEl = document.getElementById('bookList');
+const detailsEl = document.getElementById('details');
+const sectionFilter = document.getElementById('sectionFilter');
+const searchInput = document.getElementById('search');
+
+// Llenar select de secciones
+const sections = [...new Set(books.map(b=>b.section))].sort();
+sections.forEach(s => {
+  const opt = document.createElement('option');
+  opt.value = s; opt.textContent = s;
+  sectionFilter.appendChild(opt);
+});
+
+function renderList(items){
+  bookListEl.innerHTML = '';
+  items.forEach((b,i) => {
+    const el = document.createElement('div');
+    el.className = 'book-item';
+    const isFav = isFavorite(b.title);
+    el.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;"><div><div class="book-title">${b.title}</div><div class="book-meta">${b.author} · <span class="tag">${b.section.split(' - ')[1]||b.section}</span></div></div><div><span class="favorite" title="Marcar favorito" onclick="toggleFav(event,'${b.title}')">${isFav? '★' : '☆'}</span></div></div><div style="font-size:0.9rem;color:#666;margin-top:6px;">${b.ref}</div>`;
+    el.onclick = () => showDetails(b);
+    bookListEl.appendChild(el);
+  });
+  if(items.length===0) bookListEl.innerHTML='<div style="color:#777;padding:8px;">No se encontraron libros.</div>';
+}
+
+function showDetails(b){
+  const favText = isFavorite(b.title) ? 'Quitar de favoritos' : 'Marcar favorito';
+  detailsEl.innerHTML = `<h2>${b.title} <button class="btn" onclick="toggleFav(event,'${b.title}')">${favText}</button></h2>
+    <p><strong>Sección:</strong> ${b.section}</p>
+    <p><strong>Autor tradicional:</strong> ${b.author}</p>
+    <p><strong>Referencia representativa:</strong> ${b.ref}</p>
+    <div class="para">${b.para}</div>
+    <div style="margin-top:12px;">
+      <button class="btn" onclick="addToStudy('${b.title}')">Añadir a mi lista de estudio</button>
+      <button class="btn" onclick="copyReference('${b.ref}')">Copiar referencia</button>
+    </div>`;
+}
+
+function applyFilters(){
+  const q = searchInput.value.trim().toLowerCase();
+  const section = sectionFilter.value;
+  let items = books.slice();
+  if(section) items = items.filter(b=>b.section===section);
+  if(q) items = items.filter(b=> (b.title+' '+b.author+' '+b.ref+' '+b.section+' '+b.para).toLowerCase().includes(q));
+  renderList(items);
+}
+
+function filterTestament(term){
+  sectionFilter.value = '';
+  const items = books.filter(b=> b.section.startsWith(term));
+  renderList(items);
+}
+
+function resetFilters(){ sectionFilter.value=''; searchInput.value=''; renderList(books); }
+
+// Favoritos en localStorage
+function getFavorites(){ try{ return JSON.parse(localStorage.getItem('bib_favs')||'[]'); }catch(e){return [];} }
+function isFavorite(title){ return getFavorites().includes(title); }
+function toggleFav(e,title){ e.stopPropagation(); let favs = getFavorites(); if(favs.includes(title)){ favs = favs.filter(x=>x!==title); } else { favs.push(title); } localStorage.setItem('bib_favs', JSON.stringify(favs)); renderList(books); showToast('Favoritos actualizados'); }
+function showFavorites(){ const favs = getFavorites(); if(favs.length===0){ alert('No tienes favoritos.'); return; } const items = books.filter(b=> favs.includes(b.title)); renderList(items); }
+
+// Lista de estudio en localStorage
+function addToStudy(title){ let list = JSON.parse(localStorage.getItem('bib_study')||'[]'); if(!list.includes(title)){ list.push(title); localStorage.setItem('bib_study', JSON.stringify(list)); showToast('Añadido a mi lista de estudio'); } else { showToast('Ya está en tu lista de estudio'); } }
+
+// Exportar CSV
+function exportCsv(){
+  const rows = [['Título','Sección','Autor','Referencia','Paráfrasis']];
+  books.forEach(b => rows.push([b.title,b.section,b.author,b.ref,b.para]));
+  const csv = rows.map(r=> r.map(c=> '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'estructura_biblia_export.csv'; a.click(); URL.revokeObjectURL(url);
+  showToast('CSV descargado');
+}
+
+// Copiar referencia
+function copyReference(ref){ navigator.clipboard.writeText(ref).then(()=> showToast('Referencia copiada')); }
+
+// Toast simple
+function showToast(msg){ const t = document.createElement('div'); t.textContent = msg; t.style.position='fixed'; t.style.right='16px'; t.style.bottom='16px'; t.style.background='#111'; t.style.color='#fff'; t.style.padding='8px 12px'; t.style.borderRadius='8px'; document.body.appendChild(t); setTimeout(()=> t.remove(),2000); }
+
+// Descargar PDF (archivo local)
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('downloadPdf').addEventListener('click', ()=>{
+    const link = document.createElement('a');
+    link.href = 'file:///mnt/data/estructura_biblia_estudio_completo.pdf';
+    link.download = 'estructura_biblia_estudio_completo.pdf';
+    link.click();
+  });
+});
+
+function copyToClipboard(text){ navigator.clipboard.writeText(text); }
+
+// Inicializar
+searchInput.addEventListener('input', applyFilters);
+renderList(books);
+</script>
+</body>
+</html>
