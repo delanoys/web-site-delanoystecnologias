@@ -380,6 +380,1122 @@
             </div>
         </div>
     </article>
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Diseño de Sitios Web: Ciclo de Vida y Mejores Prácticas</button>
+            <div class="toggle-content">
+                <h1>Diseño de Sitios Web: Ciclo de Vida y Mejores Prácticas</h1>
+                <p>Este documento educativo explora el ciclo de vida del diseño de sitios web, desde la idea inicial presentada por un cliente hasta su finalización y mantenimiento a largo plazo. Se detalla cada fase, sus requerimientos clave para crear un sitio web efectivo, y estrategias para posicionamiento (SEO) y sostenibilidad. El objetivo es proporcionar una guía completa para estudiantes, diseñadores y desarrolladores.</p>
+                <section id="introduccion">
+                    <h2>Introducción al Diseño de Sitios Web</h2>
+                    <p>El diseño de sitios web es un proceso multidisciplinario que combina creatividad, tecnología y estrategia de negocio. El ciclo de vida de un sitio web se basa en modelos como el waterfall o agile, adaptados a las necesidades del cliente. Un buen sitio web debe ser funcional, accesible, responsive (adaptable a dispositivos móviles), seguro y optimizado para motores de búsqueda (SEO). Para que funcione a largo plazo, se requiere planificación continua, actualizaciones y monitoreo.</p>
+                    <p>Requerimientos generales para un buen sitio web:</p>
+                    <ul>
+                        <li>Objetivos claros (e.g., ventas, información, interacción).</li>
+                        <li>Experiencia de usuario (UX) intuitiva y diseño visual (UI) atractivo.</li>
+                        <li>Optimización para velocidad y SEO.</li>
+                        <li>Seguridad (HTTPS, protección contra ataques).</li>
+                        <li>Escalabilidad para crecimiento futuro.</li>
+                    </ul>
+                </section>
+                <section id="fase1">
+                    <h2>Fase 1: Planificación e Identificación de Necesidades</h2>
+                    <p class="phase">Descripción:</p>
+                    <p>Esta fase comienza con la idea o necesidad del cliente. Se recopilan requisitos para entender el propósito del sitio. Incluye reuniones iniciales, análisis de mercado y definición de objetivos.</p>
+                    <p class="phase">Requerimientos clave:</p>
+                    <ul>
+                        <li>Entender el público objetivo (demografía, comportamientos).</li>
+                        <li>Definir funcionalidades (e.g., e-commerce, blog, formulario de contacto).</li>
+                        <li>Presupuesto y timeline.</li>
+                        <li>Análisis de competidores para posicionamiento inicial.</li>
+                    </ul>
+                    <p class="phase">Consejos para un buen sitio:</p>
+                    <p>Usa herramientas como wireframes básicos o encuestas al cliente. Para posicionamiento, integra palabras clave desde el inicio (investigación con herramientas como Google Keyword Planner). Para longevidad, planifica integración con CMS (e.g., WordPress) para actualizaciones fáciles.</p>
+                </section>
+                <section id="fase2">
+                    <h2>Fase 2: Diseño</h2>
+                    <p class="phase">Descripción:</p>
+                    <p>Aquí se crea la estructura visual y funcional. Se desarrollan wireframes, mockups y prototipos. El foco está en UX/UI, asegurando que el sitio sea intuitivo y estético.</p>
+                    <p class="phase">Requerimientos clave:</p>
+                    <ul>
+                        <li>Responsive design (usando frameworks como Bootstrap).</li>
+                        <li>Accesibilidad (WCAG standards: alt text en imágenes, navegación por teclado).</li>
+                        <li>Paleta de colores, tipografía y elementos visuales alineados con la marca del cliente.</li>
+                        <li>Prototipos interactivos (herramientas como Figma o Adobe XD).</li>
+                    </ul>
+                    <p class="phase">Consejos para un buen sitio:</p>
+                    <p>Incorpora SEO on-page desde el diseño (e.g., estructura de encabezados H1-H6, meta tags). Para longevidad, diseña modularmente para futuras expansiones, evitando elementos que se vuelvan obsoletos rápidamente (e.g., evitar Flash).</p>
+                </section>
+                <section id="fase3">
+                    <h2>Fase 3: Desarrollo</h2>
+                    <p class="phase">Descripción:</p>
+                    <p>Se construye el sitio usando código. Incluye front-end (HTML, CSS, JavaScript) y back-end (e.g., PHP, Node.js, bases de datos).</p>
+                    <p class="phase">Requerimientos clave:</p>
+                    <ul>
+                        <li>Tecnologías apropiadas (e.g., React para apps dinámicas, MySQL para datos).</li>
+                        <li>Integración de APIs (e.g., pagos, redes sociales).</li>
+                        <li>Seguridad (validación de inputs, SSL).</li>
+                        <li>Optimización de rendimiento (minificación de archivos, caching).</li>
+                    </ul>
+                    <p class="phase">Consejos para un buen sitio:</p>
+                    <p>Implementa SEO técnico (e.g., sitemap.xml, robots.txt). Para longevidad, usa código limpio y documentado, con version control (Git), y elige tecnologías estables con soporte comunitario.</p>
+                    <pre><code>&lt;!-- Ejemplo básico de HTML con SEO --&gt;
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="es"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Título Optimizado para SEO&lt;/title&gt;
+        &lt;meta name="description" content="Descripción clave para motores de búsqueda"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Encabezado Principal&lt;/h1&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    </code></pre>
+                </section>
+                <section id="fase4">
+                    <h2>Fase 4: Pruebas</h2>
+                    <p class="phase">Descripción:</p>
+                    <p>Se prueba el sitio para detectar errores. Incluye pruebas funcionales, de usabilidad, compatibilidad (navegadores/dispositivos) y de rendimiento.</p>
+                    <p class="phase">Requerimientos clave:</p>
+                    <ul>
+                        <li>Pruebas automatizadas (e.g., Selenium para UI).</li>
+                        <li>Pruebas de seguridad (vulnerabilidades como SQL injection).</li>
+                        <li>Feedback de usuarios beta.</li>
+                        <li>Optimización para velocidad (Google PageSpeed Insights).</li>
+                    </ul>
+                    <p class="phase">Consejos para un buen sitio:</p>
+                    <p>Verifica SEO con herramientas como Google Search Console. Para longevidad, prueba escalabilidad (e.g., carga con muchos usuarios) y asegúrate de que el sitio sea compatible con futuras actualizaciones de navegadores.</p>
+                </section>
+                <section id="fase5">
+                    <h2>Fase 5: Despliegue y Lanzamiento</h2>
+                    <p class="phase">Descripción:</p>
+                    <p>Se publica el sitio en un servidor. Incluye migración de datos, configuración de dominio y lanzamiento oficial.</p>
+                    <p class="phase">Requerimientos clave:</p>
+                    <ul>
+                        <li>Hosting confiable (e.g., AWS, Heroku, o shared hosting).</li>
+                        <li>Certificado SSL para HTTPS.</li>
+                        <li>Configuración de backups automáticos.</li>
+                        <li>Monitoreo inicial (e.g., Google Analytics).</li>
+                    </ul>
+                    <p class="phase">Consejos para un buen sitio:</p>
+                    <p>Implementa SEO off-page (backlinks, redes sociales). Para longevidad, elige un hosting escalable y configura CDN para velocidad global.</p>
+                </section>
+                <section id="fase6">
+                    <h2>Fase 6: Mantenimiento y Posicionamiento a Largo Plazo</h2>
+                    <p class="phase">Descripción:</p>
+                    <p>El ciclo no termina con el lanzamiento; se monitorea y actualiza el sitio continuamente para mantener su relevancia y funcionalidad.</p>
+                    <p class="phase">Requerimientos clave:</p>
+                    <ul>
+                        <li>Actualizaciones regulares (contenido, seguridad, software).</li>
+                        <li>Monitoreo de métricas (tráfico, bounce rate).</li>
+                        <li>Estrategias de SEO continuo (contenido fresco, optimización móvil).</li>
+                        <li>Soporte técnico y corrección de bugs.</li>
+                    </ul>
+                    <p class="phase">Consejos para un buen sitio:</p>
+                    <p>Para posicionamiento, enfócate en E-E-A-T (Experiencia, Expertise, Authoritativeness, Trustworthiness) de Google. Para longevidad, implementa un plan de mantenimiento anual, migra a nuevas tecnologías si es necesario, y realiza auditorías periódicas. Ejemplo: Usa herramientas como Ahrefs para SEO y UptimeRobot para monitoreo de disponibilidad.</p>
+                </section>
+                <footer>
+                    <p>Documento creado el 24 de septiembre de 2025. Para más información, consulta recursos como MDN Web Docs o Google SEO Guidelines.</p>
+                </footer>
+            </div>
+        </div>
+    </article>
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Guía Educativa para Trabajar en Ubuntu Server 18.04.6 LTS ( https://grok.com/)</button>
+            <div class="toggle-content">
+                <h1>Guía Educativa para Trabajar en Ubuntu Server 18.04.6 LTS</h1>
+                <p>Esta guía está diseñada para estudiantes y principiantes que han instalado Ubuntu Server 18.04.6 LTS (Bionic Beaver) con kernel GNU/Linux 4.15.0-213. Cubre una introducción a la distribución, comandos esenciales de Linux explicados con ejemplos, y consejos para trabajar en un entorno de servidor. Ubuntu 18.04 es una versión LTS (Long Term Support) con soporte estándar hasta abril de 2023, pero con ESM (Extended Security Maintenance) disponible hasta 2028 para actualizaciones de seguridad. El enfoque es en la línea de comandos (CLI), ya que Ubuntu Server no incluye interfaz gráfica por defecto.</p>
+                <p>Como estudiante, esta guía te ayudará a familiarizarte con la distro y a realizar tareas comunes de administración de servidores.</p>
+                <section id="introduccion">
+                    <h2>Introducción a Ubuntu Server 18.04.6 LTS</h2>
+                    <p>Ubuntu Server es una distribución de Linux basada en Debian, optimizada para servidores. La versión 18.04.6 es estable y se usa para hosting web, bases de datos, contenedores (Docker), y más. Su kernel 4.15.0-213 incluye parches de seguridad y estabilidad.</p>
+                    <h3>Características clave:</h3>
+                    <ul>
+                        <li><strong>Gestor de paquetes</strong>: APT (Advanced Packaging Tool) para instalar software.</li>
+                        <li><strong>Seguridad</strong>: Firewall UFW (Uncomplicated Firewall) y AppArmor.</li>
+                        <li><strong>Red</strong>: Soporte para Netplan para configuración de redes.</li>
+                        <li><strong>Actualizaciones</strong>: Usa <code>apt update</code> y <code>apt upgrade</code> para mantener el sistema al día.</li>
+                        <li><strong>Consejos iniciales</strong>: Después de la instalación, configura SSH para acceso remoto, actualiza el sistema y crea usuarios no root.</li>
+                    </ul>
+                    <p>Para explorar el sistema: Ejecuta <code>lsb_release -a</code> para detalles de la versión, o <code>uname -a</code> para info del kernel.</p>
+                    <pre><code># Ejemplo: Verificar versión
+    lsb_release -a
+    # Salida esperada:
+    No LSB modules are available.
+    Distributor ID: Ubuntu
+    Description:    Ubuntu 18.04.6 LTS
+    Release:        18.04
+    Codename:       bionic
+    </code></pre>
+                </section>
+                <section id="comandos-basicos">
+                    <h2>Comandos Básicos de Linux en Ubuntu Server</h2>
+                    <p>Los comandos se ejecutan en la terminal. Usa <code>man comando</code> para manuales (e.g., <code>man ls</code>). Todos los ejemplos asumen que estás logueado como usuario con privilegios (usa <code>sudo</code> para comandos root).</p>
+                    <h3>1. Navegación y Gestión de Archivos</h3>
+                    <p>Estos comandos ayudan a moverte por el sistema de archivos.</p>
+                    <ul>
+                        <li><span class="command">pwd</span>: Muestra el directorio actual.
+                            <pre><code>pwd  # Ejemplo: /home/usuario</code></pre>
+                        </li>
+                        <li><span class="command">ls</span>: Lista archivos y directorios. Opciones: <code>-l</code> (detallado), <code>-a</code> (ocultos).
+                            <pre><code>ls -la  # Muestra todo con detalles</code></pre>
+                        </li>
+                        <li><span class="command">cd</span>: Cambia de directorio. <code>cd ~</code> va al home, <code>cd ..</code> sube un nivel.
+                            <pre><code>cd /var/log  # Cambia a logs del sistema</code></pre>
+                        </li>
+                        <li><span class="command">mkdir</span>: Crea directorio.
+                            <pre><code>mkdir mi_carpeta  # Crea una carpeta nueva</code></pre>
+                        </li>
+                        <li><span class="command">rm</span>: Elimina archivos o directorios (<code>-r</code> para recursivo, <code>-f</code> forzado).
+                            <pre><code>rm -rf mi_carpeta  # Elimina carpeta y contenido (cuidado!)</code></pre>
+                        </li>
+                        <li><span class="command">cp</span>: Copia archivos. <code>-r</code> para directorios.
+                            <pre><code>cp archivo.txt copia.txt  # Copia un archivo</code></pre>
+                        </li>
+                        <li><span class="command">mv</span>: Mueve o renombra archivos.
+                            <pre><code>mv viejo.txt nuevo.txt  # Renombra</code></pre>
+                        </li>
+                    </ul>
+                    <h3>2. Gestión de Usuarios y Permisos</h3>
+                    <p>Esencial para seguridad en servidores.</p>
+                    <ul>
+                        <li><span class="command">whoami</span>: Muestra el usuario actual.
+                            <pre><code>whoami  # Ejemplo: ubuntu</code></pre>
+                        </li>
+                        <li><span class="command">sudo</span>: Ejecuta comandos como root.
+                            <pre><code>sudo apt update  # Actualiza repositorios con privilegios</code></pre>
+                        </li>
+                        <li><span class="command">useradd</span>: Crea usuario. <code>passwd</code> para contraseña.
+                            <pre><code>sudo useradd nuevo_usuario
+    sudo passwd nuevo_usuario  # Asigna contraseña</code></pre>
+                        </li>
+                        <li><span class="command">chmod</span>: Cambia permisos (e.g., 755 para ejecutable).
+                            <pre><code>chmod 644 archivo.txt  # Lectura para todos, escritura para owner</code></pre>
+                        </li>
+                        <li><span class="command">chown</span>: Cambia propietario.
+                            <pre><code>sudo chown usuario:grupo archivo.txt</code></pre>
+                        </li>
+                    </ul>
+                    <h3>3. Gestión de Paquetes (APT)</h3>
+                    <p>Ubuntu usa APT para instalar software.</p>
+                    <ul>
+                        <li><span class="command">apt update</span>: Actualiza lista de paquetes.
+                            <pre><code>sudo apt update</code></pre>
+                        </li>
+                        <li><span class="command">apt upgrade</span>: Actualiza paquetes instalados.
+                            <pre><code>sudo apt upgrade -y  # -y para confirmar automáticamente</code></pre>
+                        </li>
+                        <li><span class="command">apt install</span>: Instala paquete.
+                            <pre><code>sudo apt install vim  # Instala editor Vim</code></pre>
+                        </li>
+                        <li><span class="command">apt remove</span>: Elimina paquete.
+                            <pre><code>sudo apt remove vim</code></pre>
+                        </li>
+                        <li><span class="command">apt search</span>: Busca paquetes.
+                            <pre><code>apt search nginx  # Busca servidor web Nginx</code></pre>
+                        </li>
+                    </ul>
+                    <h3>4. Gestión de Red</h3>
+                    <p>Para servidores, configura redes con Netplan (en /etc/netplan/).</p>
+                    <ul>
+                        <li><span class="command">ip addr show</span>: Muestra IPs y interfaces.
+                            <pre><code>ip addr show  # Ver IPs asignadas</code></pre>
+                        </li>
+                        <li><span class="command">ping</span>: Prueba conectividad.
+                            <pre><code>ping google.com  # Envía paquetes a Google</code></pre>
+                        </li>
+                        <li><span class="command">ufw</span>: Firewall simple. <code>ufw allow 22</code> para SSH.
+                            <pre><code>sudo ufw enable
+    sudo ufw allow ssh  # Permite SSH</code></pre>
+                        </li>
+                        <li><span class="command">netplan apply</span>: Aplica cambios de red.
+                            <pre><code>sudo netplan apply  # Después de editar /etc/netplan/*.yaml</code></pre>
+                        </li>
+                    </ul>
+                    <h3>5. Monitoreo y Procesos</h3>
+                    <ul>
+                        <li><span class="command">top</span>: Monitorea procesos en tiempo real (presiona q para salir).
+                            <pre><code>top</code></pre>
+                        </li>
+                        <li><span class="command">ps</span>: Lista procesos. <code>aux</code> para detallado.
+                            <pre><code>ps aux | grep nginx  # Busca procesos de Nginx</code></pre>
+                        </li>
+                        <li><span class="command">kill</span>: Termina proceso por PID.
+                            <pre><code>kill 1234  # Termina PID 1234</code></pre>
+                        </li>
+                        <li><span class="command">df -h</span>: Muestra uso de disco.
+                            <pre><code>df -h  # Espacio en disco human-readable</code></pre>
+                        </li>
+                        <li><span class="command">free -h</span>: Muestra memoria RAM.
+                            <pre><code>free -h  # Memoria disponible</code></pre>
+                        </li>
+                    </ul>
+                    <h3>6. Edición de Archivos y Búsqueda</h3>
+                    <ul>
+                        <li><span class="command">nano</span> o <span class="command">vim</span>: Editores de texto.
+                            <pre><code>nano archivo.txt  # Edita con Nano (Ctrl+O guardar, Ctrl+X salir)</code></pre>
+                        </li>
+                        <li><span class="command">grep</span>: Busca texto en archivos.
+                            <pre><code>grep "error" /var/log/syslog  # Busca "error" en logs</code></pre>
+                        </li>
+                        <li><span class="command">find</span>: Busca archivos.
+                            <pre><code>find /home -name "*.txt"  # Busca archivos .txt en /home</code></pre>
+                        </li>
+                    </ul>
+                </section>
+                <section id="consejos-avanzados">
+                    <h2>Consejos Avanzados para Ubuntu Server</h2>
+                    <p>Para un servidor productivo:</p>
+                    <ul>
+                        <li>Instala SSH: <code>sudo apt install openssh-server</code>.</li>
+                        <li>Configura backups: Usa <code>rsync</code> o herramientas como Duplicity.</li>
+                        <li>Monitoreo: Instala <code>htop</code> (mejor que top) o Nagios para alertas.</li>
+                        <li>Actualizaciones automáticas: Edita <code>/etc/apt/apt.conf.d/50unattended-upgrades</code>.</li>
+                        <li>Seguridad: Usa <code>fail2ban</code> para bloquear ataques.</li>
+                        <li>Aprende scripting: Crea scripts Bash para automatizar tareas.</li>
+                    </ul>
+                    <p>Recursos: <a href="https://ubuntu.com/tutorials">Tutoriales oficiales de Ubuntu</a>, <a href="https://manpages.ubuntu.com/">Man pages</a>.</p>
+                </section>
+                <footer>
+                    <p>Guía creada el 24 de septiembre de 2025. Basada en Ubuntu 18.04.6 LTS. Para actualizaciones, considera migrar a versiones más nuevas como 22.04 LTS.</p>
+                </footer>
+            </div>
+        </div>
+    </article>
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Guía educativa de Linux Ubuntu Server 18.04.6 LTS (https://chatgpt.com/)</button>
+            <div class="toggle-content">
+                <h1>Guía educativa de Linux Ubuntu Server 18.04.6 LTS</h1>
+                <p>Este documento es una introducción práctica al uso de Linux en servidores. Incluye comandos básicos, explicaciones y ejemplos para que un estudiante pueda familiarizarse con Ubuntu Server.</p>
+
+                <div class="section">
+                    <h2>1. Conociendo el sistema</h2>
+                    <p>Para obtener información de tu sistema:</p>
+                    <pre><code>uname -a</code></pre>
+                    <p>Muestra información del kernel y la arquitectura.</p>
+                    <pre><code>lsb_release -a</code></pre>
+                    <p>Muestra la versión de la distribución de Ubuntu.</p>
+                </div>
+
+                <div class="section">
+                    <h2>2. Comandos de navegación</h2>
+                    <ul>
+                        <li><code>pwd</code> → Muestra la ruta del directorio actual.</li>
+                        <li><code>ls</code> → Lista archivos y directorios.
+                            <pre><code>ls -l    # Detallado
+    ls -a    # Incluye archivos ocultos</code></pre>
+                        </li>
+                        <li><code>cd [ruta]</code> → Cambia de directorio.
+                            <pre><code>cd /home/usuario</code></pre>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>3. Manejo de archivos y directorios</h2>
+                    <ul>
+                        <li><code>mkdir nombre</code> → Crea un directorio.</li>
+                        <li><code>touch archivo.txt</code> → Crea un archivo vacío.</li>
+                        <li><code>cp origen destino</code> → Copia archivos.
+                            <pre><code>cp archivo.txt /home/usuario/</code></pre>
+                        </li>
+                        <li><code>mv origen destino</code> → Mueve o renombra archivos.</li>
+                        <li><code>rm archivo.txt</code> → Elimina un archivo.</li>
+                        <li><code>rm -r carpeta/</code> → Elimina una carpeta y su contenido.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>4. Permisos</h2>
+                    <p>Cada archivo tiene permisos de lectura (r), escritura (w) y ejecución (x).</p>
+                    <pre><code>ls -l</code></pre>
+                    <p>Ejemplo de salida:</p>
+                    <pre><code>-rw-r--r-- 1 usuario usuario 0 Sep 24 12:00 archivo.txt</code></pre>
+                    <ul>
+                        <li><code>chmod</code> → Cambia permisos.
+                            <pre><code>chmod 755 script.sh</code></pre>
+                        </li>
+                        <li><code>chown</code> → Cambia propietario.
+                            <pre><code>sudo chown usuario:usuario archivo.txt</code></pre>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>5. Gestión de procesos</h2>
+                    <ul>
+                        <li><code>ps aux</code> → Lista procesos en ejecución.</li>
+                        <li><code>top</code> → Monitoriza procesos en tiempo real.</li>
+                        <li><code>kill PID</code> → Termina un proceso.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>6. Administración de usuarios</h2>
+                    <ul>
+                        <li><code>whoami</code> → Muestra el usuario actual.</li>
+                        <li><code>adduser nuevo</code> → Crea un usuario.</li>
+                        <li><code>passwd usuario</code> → Cambia la contraseña.</li>
+                        <li><code>deluser usuario</code> → Elimina un usuario.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>7. Red y conectividad</h2>
+                    <ul>
+                        <li><code>ifconfig</code> o <code>ip a</code> → Muestra interfaces de red.</li>
+                        <li><code>ping google.com</code> → Prueba la conexión a internet.</li>
+                        <li><code>ssh usuario@ip</code> → Conexión remota por SSH.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>8. Administración de paquetes (APT)</h2>
+                    <ul>
+                        <li><code>sudo apt update</code> → Actualiza la lista de paquetes.</li>
+                        <li><code>sudo apt upgrade</code> → Actualiza el sistema.</li>
+                        <li><code>sudo apt install paquete</code> → Instala un programa.
+                            <pre><code>sudo apt install nginx</code></pre>
+                        </li>
+                        <li><code>sudo apt remove paquete</code> → Elimina un programa.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>9. Visualización de logs</h2>
+                    <ul>
+                        <li><code>tail -f /var/log/syslog</code> → Ver logs en tiempo real.</li>
+                        <li><code>cat archivo.log</code> → Mostrar contenido completo.</li>
+                        <li><code>less archivo.log</code> → Navegar por el log.</li>
+                    </ul>
+                </div>
+
+                <footer>
+                    <p><strong>Consejo:</strong> Practica cada comando en tu servidor Ubuntu. La práctica constante te permitirá dominar Linux Server y entender cómo funciona.</p>
+                </footer>
+            </div>
+        </div>
+    </article>
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Guía Completa de Linux Server - Ubuntu 18.04 (https://claude.ai/)</button>
+            <div class="toggle-content">
+                <!-- Contenido adaptado de la guía proporcionada -->
+                <header>
+                    <h1>🐧 Guía Completa de Linux Server</h1>
+                    <p class="subtitle">Ubuntu 18.04.6 LTS - Comandos y Administración</p>
+                </header>
+
+                <input type="text" class="search-box" placeholder="🔍 Buscar comando o concepto..." id="searchBox">
+
+                <div class="nav-buttons">
+                    <button class="nav-btn active" onclick="showSection('info')">Info del Sistema</button>
+                    <button class="nav-btn" onclick="showSection('navigation')">Navegación</button>
+                    <button class="nav-btn" onclick="showSection('files')">Archivos</button>
+                    <button class="nav-btn" onclick="showSection('permissions')">Permisos</button>
+                    <button class="nav-btn" onclick="showSection('processes')">Procesos</button>
+                    <button class="nav-btn" onclick="showSection('network')">Red</button>
+                    <button class="nav-btn" onclick="showSection('services')">Servicios</button>
+                    <button class="nav-btn" onclick="showSection('users')">Usuarios</button>
+                    <button class="nav-btn" onclick="showSection('system')">Sistema</button>
+                </div>
+
+                <!-- Información del Sistema -->
+                <div class="section active" id="info">
+                    <h2>📊 Información del Sistema</h2>
+                    <h3>Comandos básicos de información</h3>
+                    <div class="command-block">
+    <code>uname -a</code>
+    # Muestra información completa del sistema
+    Linux ubuntu-server 4.15.0-213-generic #224-Ubuntu SMP Mon Jun 19 13:30:12 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+                    </div>
+                    <div class="example">
+                        <h4>Ejemplo práctico</h4>
+                        <div class="command-block">
+    <code>hostnamectl</code>
+    # Información detallada del sistema
+       Static hostname: ubuntu-server
+             Icon name: computer-vm
+               Chassis: vm
+            Machine ID: abc123def456...
+               Boot ID: xyz789abc123...
+        Virtualization: vmware
+      Operating System: Ubuntu 18.04.6 LTS
+                Kernel: Linux 4.15.0-213-generic
+          Architecture: x86-64
+                        </div>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Descripción</th>
+                            <th>Ejemplo de uso</th>
+                        </tr>
+                        <tr>
+                            <td><code>lsb_release -a</code></td>
+                            <td>Información de la distribución</td>
+                            <td>Ver versión de Ubuntu</td>
+                        </tr>
+                        <tr>
+                            <td><code>uptime</code></td>
+                            <td>Tiempo de actividad del sistema</td>
+                            <td>Ver cuánto tiempo lleva encendido</td>
+                        </tr>
+                        <tr>
+                            <td><code>whoami</code></td>
+                            <td>Usuario actual</td>
+                            <td>Verificar con qué usuario estás</td>
+                        </tr>
+                        <tr>
+                            <td><code>date</code></td>
+                            <td>Fecha y hora actuales</td>
+                            <td>Ver la hora del sistema</td>
+                        </tr>
+                        <tr>
+                            <td><code>df -h</code></td>
+                            <td>Espacio en disco (legible)</td>
+                            <td>Ver espacio disponible</td>
+                        </tr>
+                        <tr>
+                            <td><code>free -h</code></td>
+                            <td>Memoria RAM disponible</td>
+                            <td>Verificar uso de memoria</td>
+                        </tr>
+                        <tr>
+                            <td><code>lscpu</code></td>
+                            <td>Información del procesador</td>
+                            <td>Ver características del CPU</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Navegación -->
+                <div class="section" id="navigation">
+                    <h2>🧭 Navegación en el Sistema de Archivos</h2>
+                    <div class="info">
+                        <h4>📁 Estructura de directorios en Linux</h4>
+                        <p>Linux usa una estructura jerárquica que comienza desde la raíz (/)</p>
+                    </div>
+                    <h3>Comandos de navegación básicos</h3>
+                    <div class="command-block">
+    <code>pwd</code>
+    # Print Working Directory - muestra el directorio actual
+    /home/ubuntu
+
+    <code>ls</code>
+    # Lista contenido del directorio actual
+    Desktop  Documents  Downloads
+
+    <code>ls -la</code>
+    # Lista detallada incluyendo archivos ocultos
+    total 32
+    drwxr-xr-x 5 ubuntu ubuntu 4096 Sep 24 10:30 .
+    drwxr-xr-x 3 root   root   4096 Sep 24 09:15 ..
+    -rw-r--r-- 1 ubuntu ubuntu  220 Sep 24 09:15 .bash_logout
+    -rw-r--r-- 1 ubuntu ubuntu 3771 Sep 24 09:15 .bashrc
+    drwxr-xr-x 2 ubuntu ubuntu 4096 Sep 24 10:30 Desktop
+                    </div>
+                    <div class="example">
+                        <h4>Navegando por directorios</h4>
+                        <div class="command-block">
+    <code>cd /var/log</code>
+    # Cambiar a directorio absoluto
+
+    <code>cd ..</code>
+    # Subir un nivel (ir al directorio padre)
+
+    <code>cd ~</code>
+    # Ir al directorio home del usuario
+
+    <code>cd -</code>
+    # Volver al directorio anterior
+                        </div>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Directorio</th>
+                            <th>Contenido</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                        <tr>
+                            <td>/</td>
+                            <td>Directorio raíz</td>
+                            <td>Base de todo el sistema</td>
+                        </tr>
+                        <tr>
+                            <td>/home</td>
+                            <td>Directorios de usuarios</td>
+                            <td>/home/ubuntu</td>
+                        </tr>
+                        <tr>
+                            <td>/var</td>
+                            <td>Archivos variables</td>
+                            <td>Logs, cache, bases de datos</td>
+                        </tr>
+                        <tr>
+                            <td>/etc</td>
+                            <td>Archivos de configuración</td>
+                            <td>Configuración del sistema</td>
+                        </tr>
+                        <tr>
+                            <td>/usr</td>
+                            <td>Programas de usuario</td>
+                            <td>Aplicaciones instaladas</td>
+                        </tr>
+                        <tr>
+                            <td>/tmp</td>
+                            <td>Archivos temporales</td>
+                            <td>Se borran al reiniciar</td>
+                        </tr>
+                        <tr>
+                            <td>/opt</td>
+                            <td>Software opcional</td>
+                            <td>Aplicaciones de terceros</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Gestión de Archivos -->
+                <div class="section" id="files">
+                    <h2>📄 Gestión de Archivos y Directorios</h2>
+                    <h3>Crear archivos y directorios</h3>
+                    <div class="command-block">
+    <code>touch archivo.txt</code>
+    # Crear archivo vacío
+
+    <code>mkdir directorio</code>
+    # Crear directorio
+
+    <code>mkdir -p ruta/completa/nueva</code>
+    # Crear estructura de directorios completa
+
+    <code>echo "Hola Mundo" > saludo.txt</code>
+    # Crear archivo con contenido
+                    </div>
+                    <h3>Copiar, mover y eliminar</h3>
+                    <div class="example">
+                        <h4>Operaciones básicas con archivos</h4>
+                        <div class="command-block">
+    <code>cp archivo.txt copia.txt</code>
+    # Copiar archivo
+
+    <code>cp -r directorio/ copia_directorio/</code>
+    # Copiar directorio recursivamente
+
+    <code>mv archivo.txt nuevo_nombre.txt</code>
+    # Renombrar/mover archivo
+
+    <code>mv archivo.txt /ruta/destino/</code>
+    # Mover archivo a otro directorio
+
+    <code>rm archivo.txt</code>
+    # Eliminar archivo
+
+    <code>rm -rf directorio/</code>
+    # Eliminar directorio y contenido (¡CUIDADO!)
+                        </div>
+                    </div>
+                    <div class="warning">
+                        <h4>⚠️ Comandos Peligrosos</h4>
+                        <p><strong>rm -rf</strong> elimina archivos y directorios sin confirmación. ¡Úsalo con extremo cuidado!</p>
+                        <p><strong>rm -rf /</strong> ¡NUNCA ejecutes esto! Eliminaría todo tu sistema.</p>
+                    </div>
+                    <h3>Ver contenido de archivos</h3>
+                    <table>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Descripción</th>
+                            <th>Cuándo usarlo</th>
+                        </tr>
+                        <tr>
+                            <td><code>cat archivo.txt</code></td>
+                            <td>Muestra todo el contenido</td>
+                            <td>Archivos pequeños</td>
+                        </tr>
+                        <tr>
+                            <td><code>less archivo.txt</code></td>
+                            <td>Ver archivo página por página</td>
+                            <td>Archivos grandes</td>
+                        </tr>
+                        <tr>
+                            <td><code>head -10 archivo.txt</code></td>
+                            <td>Primeras 10 líneas</td>
+                            <td>Ver inicio de archivo</td>
+                        </tr>
+                        <tr>
+                            <td><code>tail -10 archivo.txt</code></td>
+                            <td>Últimas 10 líneas</td>
+                            <td>Ver final de archivo</td>
+                        </tr>
+                        <tr>
+                            <td><code>tail -f archivo.log</code></td>
+                            <td>Seguir archivo en tiempo real</td>
+                            <td>Monitorear logs</td>
+                        </tr>
+                        <tr>
+                            <td><code>grep "texto" archivo.txt</code></td>
+                            <td>Buscar texto en archivo</td>
+                            <td>Encontrar contenido específico</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Permisos -->
+                <div class="section" id="permissions">
+                    <h2>🔐 Sistema de Permisos</h2>
+                    <div class="info">
+                        <h4>🔍 Entendiendo los permisos</h4>
+                        <p>Linux usa un sistema de permisos basado en: <strong>Usuario (u)</strong>, <strong>Grupo (g)</strong> y <strong>Otros (o)</strong></p>
+                    </div>
+                    <div class="command-block">
+    <code>ls -la</code>
+    # Ver permisos detallados
+    -rw-r--r-- 1 ubuntu ubuntu 1234 Sep 24 10:30 archivo.txt
+    drwxr-xr-x 2 ubuntu ubuntu 4096 Sep 24 10:30 directorio
+
+    # Explicación:
+    # - : archivo normal (d = directorio, l = enlace)
+    # rw- : permisos del propietario (lectura, escritura, no ejecución)
+    # r-- : permisos del grupo (solo lectura)
+    # r-- : permisos de otros (solo lectura)
+                    </div>
+                    <h3>Cambiar permisos</h3>
+                    <div class="example">
+                        <h4>Métodos para cambiar permisos</h4>
+                        <div class="command-block">
+    <code># Método simbólico</code>
+    chmod u+x archivo.txt     # Dar ejecución al usuario
+    chmod g+w archivo.txt     # Dar escritura al grupo
+    chmod o-r archivo.txt     # Quitar lectura a otros
+    chmod a+r archivo.txt     # Dar lectura a todos
+
+    <code># Método octal (más común)</code>
+    chmod 755 script.sh       # rwxr-xr-x
+    chmod 644 archivo.txt     # rw-r--r--
+    chmod 600 privado.txt     # rw-------
+    chmod 777 publico.txt     # rwxrwxrwx (no recomendado)
+                        </div>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Valor Octal</th>
+                            <th>Binario</th>
+                            <th>Permisos</th>
+                            <th>Uso típico</th>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>111</td>
+                            <td>rwx</td>
+                            <td>Directorios, ejecutables</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>110</td>
+                            <td>rw-</td>
+                            <td>Archivos de datos</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>101</td>
+                            <td>r-x</td>
+                            <td>Directorios de solo lectura</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>100</td>
+                            <td>r--</td>
+                            <td>Archivos de solo lectura</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>000</td>
+                            <td>---</td>
+                            <td>Sin permisos</td>
+                        </tr>
+                    </table>
+                    <h3>Cambiar propietario</h3>
+                    <div class="command-block">
+    <code>chown usuario:grupo archivo.txt</code>
+    # Cambiar propietario y grupo
+
+    <code>chown ubuntu archivo.txt</code>
+    # Solo cambiar propietario
+
+    <code>chgrp www-data archivo.txt</code>
+    # Solo cambiar grupo
+
+    <code>chown -R ubuntu:ubuntu directorio/</code>
+    # Cambiar recursivamente todo el directorio
+                    </div>
+                </div>
+
+                <!-- Procesos -->
+                <div class="section" id="processes">
+                    <h2>⚙️ Gestión de Procesos</h2>
+                    <h3>Ver procesos activos</h3>
+                    <div class="command-block">
+    <code>ps aux</code>
+    # Ver todos los procesos del sistema
+    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+    root         1  0.0  0.1 225316  9088 ?        Ss   09:15   0:01 /sbin/init
+    ubuntu    1234  0.5  0.2  12345  2345 pts/0    S    10:30   0:00 bash
+
+    <code>ps -ef</code>
+    # Formato extendido de procesos
+
+    <code>pgrep -l apache</code>
+    # Buscar procesos por nombre
+                    </div>
+                    <h3>Monitoreo en tiempo real</h3>
+                    <div class="example">
+                        <h4>Herramientas de monitoreo</h4>
+                        <div class="command-block">
+    <code>top</code>
+    # Monitor interactivo de procesos (presiona 'q' para salir)
+
+    <code>htop</code>
+    # Versión mejorada de top (si está instalado)
+
+    <code>watch -n 1 "ps aux | head -20"</code>
+    # Ejecutar comando cada segundo
+                        </div>
+                    </div>
+                    <h3>Controlar procesos</h3>
+                    <table>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Señal</th>
+                            <th>Descripción</th>
+                        </tr>
+                        <tr>
+                            <td><code>kill PID</code></td>
+                            <td>TERM (15)</td>
+                            <td>Terminar proceso normalmente</td>
+                        </tr>
+                        <tr>
+                            <td><code>kill -9 PID</code></td>
+                            <td>KILL (9)</td>
+                            <td>Forzar terminación</td>
+                        </tr>
+                        <tr>
+                            <td><code>kill -HUP PID</code></td>
+                            <td>HUP (1)</td>
+                            <td>Reiniciar/recargar configuración</td>
+                        </tr>
+                        <tr>
+                            <td><code>killall nombre_proceso</code></td>
+                            <td>TERM</td>
+                            <td>Terminar todos los procesos con ese nombre</td>
+                        </tr>
+                        <tr>
+                            <td><code>pkill -f patron</code></td>
+                            <td>TERM</td>
+                            <td>Terminar procesos que coincidan con patrón</td>
+                        </tr>
+                    </table>
+                    <div class="warning">
+                        <h4>⚠️ Uso responsable de kill</h4>
+                        <p>Siempre intenta usar <code>kill PID</code> (TERM) antes que <code>kill -9 PID</code> (KILL)</p>
+                        <p>KILL no permite al proceso limpiar recursos, puede causar corrupción de datos</p>
+                    </div>
+                    <h3>Procesos en segundo plano</h3>
+                    <div class="command-block">
+    <code>comando &</code>
+    # Ejecutar en segundo plano
+
+    <code>nohup comando &</code>
+    # Ejecutar sin conexión a terminal
+
+    <code>jobs</code>
+    # Ver trabajos en segundo plano
+
+    <code>fg %1</code>
+    # Traer trabajo 1 al primer plano
+
+    <code>bg %1</code>
+    # Enviar trabajo 1 al segundo plano
+
+    <code>Ctrl+Z</code>
+    # Suspender proceso actual
+
+    <code>Ctrl+C</code>
+    # Interrumpir proceso actual
+                    </div>
+                </div>
+
+                <!-- Red -->
+                <div class="section" id="network">
+                    <h2>🌐 Configuración y Monitoreo de Red</h2>
+                    <h3>Información de red</h3>
+                    <div class="command-block">
+    <code>ip addr show</code>
+    # Ver interfaces de red y direcciones IP
+    1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536
+        inet 127.0.0.1/8 scope host lo
+    2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500
+        inet 192.168.1.100/24 brd 192.168.1.255 scope global ens33
+
+    <code>ip route show</code>
+    # Ver tabla de rutas
+    default via 192.168.1.1 dev ens33
+    192.168.1.0/24 dev ens33 proto kernel scope link
+
+    <code>hostname -I</code>
+    # IP del sistema de forma simple
+    192.168.1.100
+                    </div>
+                    <div class="example">
+                        <h4>Comandos de conectividad</h4>
+                        <div class="command-block">
+    <code>ping google.com</code>
+    # Probar conectividad a internet
+
+    <code>ping -c 4 192.168.1.1</code>
+    # Hacer 4 pings al router
+
+    <code>traceroute google.com</code>
+    # Ver ruta hacia destino
+
+    <code>curl -I http://google.com</code>
+    # Probar conectividad HTTP
+                        </div>
+                    </div>
+                    <h3>Puertos y conexiones</h3>
+                    <table>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Descripción</th>
+                            <th>Ejemplo de uso</th>
+                        </tr>
+                        <tr>
+                            <td><code>netstat -tuln</code></td>
+                            <td>Puertos en escucha</td>
+                            <td>Ver servicios activos</td>
+                        </tr>
+                        <tr>
+                            <td><code>ss -tuln</code></td>
+                            <td>Versión moderna de netstat</td>
+                            <td>Información de sockets</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Las secciones de Servicios, Usuarios y Sistema pueden ser completadas según necesidad -->
+            </div>
+        </div>
+        <script>
+        // Navegación de secciones
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(function(sec) {
+                sec.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            var idx = ['info','navigation','files','permissions','processes','network','services','users','system'].indexOf(id);
+            if (idx >= 0) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+        }
+        // Búsqueda destacada
+        document.getElementById('searchBox').addEventListener('input', function() {
+            var val = this.value.trim().toLowerCase();
+            document.querySelectorAll('.section').forEach(function(sec) {
+                if (!val) {
+                    sec.querySelectorAll('.highlight').forEach(function(el) {
+                        el.outerHTML = el.innerText;
+                    });
+                    return;
+                }
+                sec.innerHTML = sec.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+                if (val.length > 1) {
+                    var regex = new RegExp('('+val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+')', 'gi');
+                    sec.innerHTML = sec.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+                }
+            });
+        });
+        </script>
+        <style>
+        /* Estilos principales de la guía (adaptados para no interferir con el resto) */
+        .container header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #2980b9, #3498db);
+        }
+        .nav-btn.active {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        .section {
+            display: none;
+            margin-bottom: 40px;
+        }
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #3498db;
+            border-radius: 25px;
+            margin: 20px 0;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+        }
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+        }
+        .highlight {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .command-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            overflow-x: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #34495e;
+            font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+            font-size: 1em;
+        }
+        .command-block code {
+            color: #7ed6df;
+            font-weight: bold;
+        }
+        .example {
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #27ae60;
+        }
+        .example h4 {
+            color: #27ae60;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .warning {
+            background: #fdf2e7;
+            border: 1px solid #f39c12;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .warning h4 {
+            color: #d68910;
+            margin-bottom: 10px;
+        }
+        .info {
+            background: #e8f6ff;
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+        }
+        .info h4 {
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        th {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        tr:hover {
+            background: #f8f9fa;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .nav-buttons {
+                gap: 10px;
+            }
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 0.9em;
+            }
+            .command-block {
+                padding: 15px;
+            }
+        }
+        </style>
+    </article>
     <script>
     function toggleArticle(btn) {
         const content = btn.nextElementSibling;
