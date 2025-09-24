@@ -1384,6 +1384,951 @@
         }
         </style>
     </article>
+    <article>
+        <div class="container">
+            <header>
+                <h1>🐧 Guía Completa de Linux Server</h1>
+                <p class="subtitle">Ubuntu 18.04.6 LTS - Comandos y Administración</p>
+            </header>
+
+            <input type="text" class="search-box" placeholder="🔍 Buscar comando o concepto..." id="searchBox2">
+
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showSection2('info2', event)">Info del Sistema</button>
+                <button class="nav-btn" onclick="showSection2('navigation2', event)">Navegación</button>
+                <button class="nav-btn" onclick="showSection2('files2', event)">Archivos</button>
+                <button class="nav-btn" onclick="showSection2('permissions2', event)">Permisos</button>
+                <button class="nav-btn" onclick="showSection2('processes2', event)">Procesos</button>
+                <button class="nav-btn" onclick="showSection2('network2', event)">Red</button>
+                <button class="nav-btn" onclick="showSection2('services2', event)">Servicios</button>
+                <button class="nav-btn" onclick="showSection2('users2', event)">Usuarios</button>
+                <button class="nav-btn" onclick="showSection2('system2', event)">Sistema</button>
+            </div>
+
+            <!-- Información del Sistema -->
+            <div class="section active" id="info2">
+                <h2>📊 Información del Sistema</h2>
+                <h3>Comandos básicos de información</h3>
+                <div class="command-block">
+    <span class="command">uname -a</span>
+    # Muestra información completa del sistema
+    Linux ubuntu-server 4.15.0-213-generic #224-Ubuntu SMP Mon Jun 19 13:30:12 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+                </div>
+                <div class="example">
+                    <h4>Ejemplo práctico</h4>
+                    <div class="command-block">
+    <span class="command">hostnamectl</span>
+    # Información detallada del sistema
+       Static hostname: ubuntu-server
+             Icon name: computer-vm
+               Chassis: vm
+            Machine ID: abc123def456...
+               Boot ID: xyz789abc123...
+        Virtualization: vmware
+      Operating System: Ubuntu 18.04.6 LTS
+                Kernel: Linux 4.15.0-213-generic
+          Architecture: x86-64
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo de uso</th>
+                    </tr>
+                    <tr>
+                        <td><code>lsb_release -a</code></td>
+                        <td>Información de la distribución</td>
+                        <td>Ver versión de Ubuntu</td>
+                    </tr>
+                    <tr>
+                        <td><code>uptime</code></td>
+                        <td>Tiempo de actividad del sistema</td>
+                        <td>Ver cuánto tiempo lleva encendido</td>
+                    </tr>
+                    <tr>
+                        <td><code>whoami</code></td>
+                        <td>Usuario actual</td>
+                        <td>Verificar con qué usuario estás</td>
+                    </tr>
+                    <tr>
+                        <td><code>date</code></td>
+                        <td>Fecha y hora actuales</td>
+                        <td>Ver la hora del sistema</td>
+                    </tr>
+                    <tr>
+                        <td><code>df -h</code></td>
+                        <td>Espacio en disco (legible)</td>
+                        <td>Ver espacio disponible</td>
+                    </tr>
+                    <tr>
+                        <td><code>free -h</code></td>
+                        <td>Memoria RAM disponible</td>
+                        <td>Verificar uso de memoria</td>
+                    </tr>
+                    <tr>
+                        <td><code>lscpu</code></td>
+                        <td>Información del procesador</td>
+                        <td>Ver características del CPU</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Navegación -->
+            <div class="section" id="navigation2">
+                <h2>🧭 Navegación en el Sistema de Archivos</h2>
+                <div class="info">
+                    <h4>📁 Estructura de directorios en Linux</h4>
+                    <p>Linux usa una estructura jerárquica que comienza desde la raíz (/)</p>
+                </div>
+                <h3>Comandos de navegación básicos</h3>
+                <div class="command-block">
+    <span class="command">pwd</span>
+    # Print Working Directory - muestra el directorio actual
+    /home/ubuntu
+
+    <span class="command">ls</span>
+    # Lista contenido del directorio actual
+    Desktop  Documents  Downloads
+
+    <span class="command">ls -la</span>
+    # Lista detallada incluyendo archivos ocultos
+    total 32
+    drwxr-xr-x 5 ubuntu ubuntu 4096 Sep 24 10:30 .
+    drwxr-xr-x 3 root   root   4096 Sep 24 09:15 ..
+    -rw-r--r-- 1 ubuntu ubuntu  220 Sep 24 09:15 .bash_logout
+    -rw-r--r-- 1 ubuntu ubuntu 3771 Sep 24 09:15 .bashrc
+    drwxr-xr-x 2 ubuntu ubuntu 4096 Sep 24 10:30 Desktop
+                </div>
+                <div class="example">
+                    <h4>Navegando por directorios</h4>
+                    <div class="command-block">
+    <span class="command">cd /var/log</span>
+    # Cambiar a directorio absoluto
+
+    <span class="command">cd ..</span>
+    # Subir un nivel (ir al directorio padre)
+
+    <span class="command">cd ~</span>
+    # Ir al directorio home del usuario
+
+    <span class="command">cd -</span>
+    # Volver al directorio anterior
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>Directorio</th>
+                        <th>Contenido</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                    <tr>
+                        <td>/</td>
+                        <td>Directorio raíz</td>
+                        <td>Base de todo el sistema</td>
+                    </tr>
+                    <tr>
+                        <td>/home</td>
+                        <td>Directorios de usuarios</td>
+                        <td>/home/ubuntu</td>
+                    </tr>
+                    <tr>
+                        <td>/var</td>
+                        <td>Archivos variables</td>
+                        <td>Logs, cache, bases de datos</td>
+                    </tr>
+                    <tr>
+                        <td>/etc</td>
+                        <td>Archivos de configuración</td>
+                        <td>Configuración del sistema</td>
+                    </tr>
+                    <tr>
+                        <td>/usr</td>
+                        <td>Programas de usuario</td>
+                        <td>Aplicaciones instaladas</td>
+                    </tr>
+                    <tr>
+                        <td>/tmp</td>
+                        <td>Archivos temporales</td>
+                        <td>Se borran al reiniciar</td>
+                    </tr>
+                    <tr>
+                        <td>/opt</td>
+                        <td>Software opcional</td>
+                        <td>Aplicaciones de terceros</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Gestión de Archivos -->
+            <div class="section" id="files2">
+                <h2>📄 Gestión de Archivos y Directorios</h2>
+                <h3>Crear archivos y directorios</h3>
+                <div class="command-block">
+    <span class="command">touch archivo.txt</span>
+    # Crear archivo vacío
+
+    <span class="command">mkdir directorio</span>
+    # Crear directorio
+
+    <span class="command">mkdir -p ruta/completa/nueva</span>
+    # Crear estructura de directorios completa
+
+    <span class="command">echo "Hola Mundo" > saludo.txt</span>
+    # Crear archivo con contenido
+                </div>
+                <h3>Copiar, mover y eliminar</h3>
+                <div class="example">
+                    <h4>Operaciones básicas con archivos</h4>
+                    <div class="command-block">
+    <span class="command">cp archivo.txt copia.txt</span>
+    # Copiar archivo
+
+    <span class="command">cp -r directorio/ copia_directorio/</span>
+    # Copiar directorio recursivamente
+
+    <span class="command">mv archivo.txt nuevo_nombre.txt</span>
+    # Renombrar/mover archivo
+
+    <span class="command">mv archivo.txt /ruta/destino/</span>
+    # Mover archivo a otro directorio
+
+    <span class="command">rm archivo.txt</span>
+    # Eliminar archivo
+
+    <span class="command">rm -rf directorio/</span>
+    # Eliminar directorio y contenido (¡CUIDADO!)
+                    </div>
+                </div>
+                <div class="warning">
+                    <h4>⚠️ Comandos Peligrosos</h4>
+                    <p><strong>rm -rf</strong> elimina archivos y directorios sin confirmación. ¡Úsalo con extremo cuidado!</p>
+                    <p><strong>rm -rf /</strong> ¡NUNCA ejecutes esto! Eliminaría todo tu sistema.</p>
+                </div>
+                <h3>Ver contenido de archivos</h3>
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Descripción</th>
+                        <th>Cuándo usarlo</th>
+                    </tr>
+                    <tr>
+                        <td><code>cat archivo.txt</code></td>
+                        <td>Muestra todo el contenido</td>
+                        <td>Archivos pequeños</td>
+                    </tr>
+                    <tr>
+                        <td><code>less archivo.txt</code></td>
+                        <td>Ver archivo página por página</td>
+                        <td>Archivos grandes</td>
+                    </tr>
+                    <tr>
+                        <td><code>head -10 archivo.txt</code></td>
+                        <td>Primeras 10 líneas</td>
+                        <td>Ver inicio de archivo</td>
+                    </tr>
+                    <tr>
+                        <td><code>tail -10 archivo.txt</code></td>
+                        <td>Últimas 10 líneas</td>
+                        <td>Ver final de archivo</td>
+                    </tr>
+                    <tr>
+                        <td><code>tail -f archivo.log</code></td>
+                        <td>Seguir archivo en tiempo real</td>
+                        <td>Monitorear logs</td>
+                    </tr>
+                    <tr>
+                        <td><code>grep "texto" archivo.txt</code></td>
+                        <td>Buscar texto en archivo</td>
+                        <td>Encontrar contenido específico</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Permisos -->
+            <div class="section" id="permissions2">
+                <h2>🔐 Sistema de Permisos</h2>
+                <div class="info">
+                    <h4>🔍 Entendiendo los permisos</h4>
+                    <p>Linux usa un sistema de permisos basado en: <strong>Usuario (u)</strong>, <strong>Grupo (g)</strong> y <strong>Otros (o)</strong></p>
+                </div>
+                <div class="command-block">
+    <span class="command">ls -la</span>
+    # Ver permisos detallados
+    -rw-r--r-- 1 ubuntu ubuntu 1234 Sep 24 10:30 archivo.txt
+    drwxr-xr-x 2 ubuntu ubuntu 4096 Sep 24 10:30 directorio
+
+    # Explicación:
+    # - : archivo normal (d = directorio, l = enlace)
+    # rw- : permisos del propietario (lectura, escritura, no ejecución)
+    # r-- : permisos del grupo (solo lectura)
+    # r-- : permisos de otros (solo lectura)
+                </div>
+                <h3>Cambiar permisos</h3>
+                <div class="example">
+                    <h4>Métodos para cambiar permisos</h4>
+                    <div class="command-block">
+    <span class="command"># Método simbólico</span>
+    chmod u+x archivo.txt     # Dar ejecución al usuario
+    chmod g+w archivo.txt     # Dar escritura al grupo
+    chmod o-r archivo.txt     # Quitar lectura a otros
+    chmod a+r archivo.txt     # Dar lectura a todos
+
+    <span class="command"># Método octal (más común)</span>
+    chmod 755 script.sh       # rwxr-xr-x
+    chmod 644 archivo.txt     # rw-r--r--
+    chmod 600 privado.txt     # rw-------
+    chmod 777 publico.txt     # rwxrwxrwx (no recomendado)
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>Valor Octal</th>
+                        <th>Binario</th>
+                        <th>Permisos</th>
+                        <th>Uso típico</th>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>111</td>
+                        <td>rwx</td>
+                        <td>Directorios, ejecutables</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>110</td>
+                        <td>rw-</td>
+                        <td>Archivos de datos</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>101</td>
+                        <td>r-x</td>
+                        <td>Directorios de solo lectura</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>100</td>
+                        <td>r--</td>
+                        <td>Archivos de solo lectura</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>000</td>
+                        <td>---</td>
+                        <td>Sin permisos</td>
+                    </tr>
+                </table>
+                <h3>Cambiar propietario</h3>
+                <div class="command-block">
+    <span class="command">chown usuario:grupo archivo.txt</span>
+    # Cambiar propietario y grupo
+
+    <span class="command">chown ubuntu archivo.txt</span>
+    # Solo cambiar propietario
+
+    <span class="command">chgrp www-data archivo.txt</span>
+    # Solo cambiar grupo
+
+    <span class="command">chown -R ubuntu:ubuntu directorio/</span>
+    # Cambiar recursivamente todo el directorio
+                </div>
+            </div>
+
+            <!-- Procesos -->
+            <div class="section" id="processes2">
+                <h2>⚙️ Gestión de Procesos</h2>
+                <h3>Ver procesos activos</h3>
+                <div class="command-block">
+    <span class="command">ps aux</span>
+    # Ver todos los procesos del sistema
+    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+    root         1  0.0  0.1 225316  9088 ?        Ss   09:15   0:01 /sbin/init
+    ubuntu    1234  0.5  0.2  12345  2345 pts/0    S    10:30   0:00 bash
+
+    <span class="command">ps -ef</span>
+    # Formato extendido de procesos
+
+    <span class="command">pgrep -l apache</span>
+    # Buscar procesos por nombre
+                </div>
+                <h3>Monitoreo en tiempo real</h3>
+                <div class="example">
+                    <h4>Herramientas de monitoreo</h4>
+                    <div class="command-block">
+    <span class="command">top</span>
+    # Monitor interactivo de procesos (presiona 'q' para salir)
+
+    <span class="command">htop</span>
+    # Versión mejorada de top (si está instalado)
+
+    <span class="command">watch -n 1 "ps aux | head -20"</span>
+    # Ejecutar comando cada segundo
+                    </div>
+                </div>
+                <h3>Controlar procesos</h3>
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Señal</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td><code>kill PID</code></td>
+                        <td>TERM (15)</td>
+                        <td>Terminar proceso normalmente</td>
+                    </tr>
+                    <tr>
+                        <td><code>kill -9 PID</code></td>
+                        <td>KILL (9)</td>
+                        <td>Forzar terminación</td>
+                    </tr>
+                    <tr>
+                        <td><code>kill -HUP PID</code></td>
+                        <td>HUP (1)</td>
+                        <td>Reiniciar/recargar configuración</td>
+                    </tr>
+                    <tr>
+                        <td><code>killall nombre_proceso</code></td>
+                        <td>TERM</td>
+                        <td>Terminar todos los procesos con ese nombre</td>
+                    </tr>
+                    <tr>
+                        <td><code>pkill -f patron</code></td>
+                        <td>TERM</td>
+                        <td>Terminar procesos que coincidan con patrón</td>
+                    </tr>
+                </table>
+                <div class="warning">
+                    <h4>⚠️ Uso responsable de kill</h4>
+                    <p>Siempre intenta usar <code>kill PID</code> (TERM) antes que <code>kill -9 PID</code> (KILL)</p>
+                    <p>KILL no permite al proceso limpiar recursos, puede causar corrupción de datos</p>
+                </div>
+                <h3>Procesos en segundo plano</h3>
+                <div class="command-block">
+    <span class="command">comando &</span>
+    # Ejecutar en segundo plano
+
+    <span class="command">nohup comando &</span>
+    # Ejecutar sin conexión a terminal
+
+    <span class="command">jobs</span>
+    # Ver trabajos en segundo plano
+
+    <span class="command">fg %1</span>
+    # Traer trabajo 1 al primer plano
+
+    <span class="command">bg %1</span>
+    # Enviar trabajo 1 al segundo plano
+
+    <span class="command">Ctrl+Z</span>
+    # Suspender proceso actual
+
+    <span class="command">Ctrl+C</span>
+    # Interrumpir proceso actual
+                </div>
+            </div>
+
+            <!-- Red -->
+            <div class="section" id="network2">
+                <h2>🌐 Configuración y Monitoreo de Red</h2>
+                <h3>Información de red</h3>
+                <div class="command-block">
+    <span class="command">ip addr show</span>
+    # Ver interfaces de red y direcciones IP
+    1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536
+        inet 127.0.0.1/8 scope host lo
+    2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500
+        inet 192.168.1.100/24 brd 192.168.1.255 scope global ens33
+
+    <span class="command">ip route show</span>
+    # Ver tabla de rutas
+    default via 192.168.1.1 dev ens33
+    192.168.1.0/24 dev ens33 proto kernel scope link
+
+    <span class="command">hostname -I</span>
+    # IP del sistema de forma simple
+    192.168.1.100
+                </div>
+                <div class="example">
+                    <h4>Comandos de conectividad</h4>
+                    <div class="command-block">
+    <span class="command">ping google.com</span>
+    # Probar conectividad a internet
+
+    <span class="command">ping -c 4 192.168.1.1</span>
+    # Hacer 4 pings al router
+
+    <span class="command">traceroute google.com</span>
+    # Ver ruta hacia destino
+
+    <span class="command">curl -I http://google.com</span>
+    # Probar conectividad HTTP
+                    </div>
+                </div>
+                <h3>Puertos y conexiones</h3>
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo de uso</th>
+                    </tr>
+                    <tr>
+                        <td><code>netstat -tuln</code></td>
+                        <td>Puertos en escucha</td>
+                        <td>Ver servicios activos</td>
+                    </tr>
+                    <tr>
+                        <td><code>ss -tuln</code></td>
+                        <td>Versión moderna de netstat</td>
+                        <td>Información de sockets</td>
+                    </tr>
+                    <tr>
+                        <td><code>lsof -i :80</code></td>
+                        <td>Ver qué proceso usa puerto 80</td>
+                        <td>Diagnosticar conflictos</td>
+                    </tr>
+                    <tr>
+                        <td><code>nmap localhost</code></td>
+                        <td>Escanear puertos locales</td>
+                        <td>Auditoría de seguridad</td>
+                    </tr>
+                    <tr>
+                        <td><code>wget archivo.zip</code></td>
+                        <td>Descargar archivos</td>
+                        <td>Obtener recursos web</td>
+                    </tr>
+                    <tr>
+                        <td><code>scp archivo.txt user@servidor:/ruta/</code></td>
+                        <td>Copiar archivos remotamente</td>
+                        <td>Transferir archivos seguros</td>
+                    </tr>
+                </table>
+                <div class="info">
+                    <h4>🔧 Configuración de red en Ubuntu 18.04</h4>
+                    <p>Ubuntu 18.04 usa <strong>Netplan</strong> para configuración de red</p>
+                    <p>Archivos de configuración en: <code>/etc/netplan/</code></p>
+                </div>
+                <div class="command-block">
+    <span class="command">sudo netplan apply</span>
+    # Aplicar cambios de configuración de red
+
+    <span class="command">sudo systemctl restart networking</span>
+    # Reiniciar servicio de red (método tradicional)
+                </div>
+            </div>
+
+            <!-- Servicios -->
+            <div class="section" id="services2">
+                <h2>🔧 Gestión de Servicios (systemd)</h2>
+                <div class="info">
+                    <h4>📋 Sobre systemd</h4>
+                    <p>Ubuntu 18.04 usa <strong>systemd</strong> como sistema de init y gestor de servicios</p>
+                    <p>Los servicios se llaman "units" y tienen extensión .service</p>
+                </div>
+                <h3>Comandos básicos de servicios</h3>
+                <div class="command-block">
+    <span class="command">sudo systemctl status apache2</span>
+    # Ver estado de un servicio
+    ● apache2.service - The Apache HTTP Server
+       Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+       Active: active (running) since Wed 2023-09-24 10:30:45 UTC; 2h 15min ago
+         Docs: https://httpd.apache.org/docs/2.4/
+     Main PID: 1234 (apache2)
+        Tasks: 55 (limit: 4915)
+       CGroup: /system.slice/apache2.service
+
+    <span class="command">sudo systemctl start apache2</span>
+    # Iniciar servicio
+
+    <span class="command">sudo systemctl stop apache2</span>
+    # Detener servicio
+
+    <span class="command">sudo systemctl restart apache2</span>
+    # Reiniciar servicio
+
+    <span class="command">sudo systemctl reload apache2</span>
+    # Recargar configuración sin reiniciar
+                </div>
+                <h3>Habilitación automática</h3>
+                <div class="example">
+                    <h4>Configurar inicio automático</h4>
+                    <div class="command-block">
+    <span class="command">sudo systemctl enable apache2</span>
+    # Habilitar inicio automático al arranque
+
+    <span class="command">sudo systemctl disable apache2</span>
+    # Deshabilitar inicio automático
+
+    <span class="command">sudo systemctl is-enabled apache2</span>
+    # Verificar si está habilitado
+    enabled
+
+    <span class="command">sudo systemctl is-active apache2</span>
+    # Verificar si está activo
+    active
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                    <tr>
+                        <td><code>systemctl list-units --type=service</code></td>
+                        <td>Listar todos los servicios</td>
+                        <td>Ver estado de servicios</td>
+                    </tr>
+                    <tr>
+                        <td><code>systemctl list-units --failed</code></td>
+                        <td>Ver servicios fallidos</td>
+                        <td>Diagnosticar problemas</td>
+                    </tr>
+                    <tr>
+                        <td><code>journalctl -u apache2</code></td>
+                        <td>Ver logs del servicio</td>
+                        <td>Solucionar problemas</td>
+                    </tr>
+                    <tr>
+                        <td><code>journalctl -f</code></td>
+                        <td>Ver logs en tiempo real</td>
+                        <td>Monitorear sistema</td>
+                    </tr>
+                    <tr>
+                        <td><code>systemctl daemon-reload</code></td>
+                        <td>Recargar configuración systemd</td>
+                        <td>Después de cambios</td>
+                    </tr>
+                </table>
+                <h3>Servicios comunes en Ubuntu Server</h3>
+                <div class="command-block">
+    <span class="command"># Servicios web</span>
+    sudo systemctl status apache2    # Servidor web Apache
+    sudo systemctl status nginx     # Servidor web Nginx
+
+    <span class="command"># Bases de datos</span>
+    sudo systemctl status mysql     # MySQL/MariaDB
+    sudo systemctl status postgresql # PostgreSQL
+
+    <span class="command"># SSH</span>
+    sudo systemctl status ssh       # Servicio SSH
+
+    <span class="command"># Firewall</span>
+    sudo systemctl status ufw       # Uncomplicated Firewall
+                </div>
+            </div>
+
+            <!-- Usuarios -->
+            <div class="section" id="users2">
+                <h2>👥 Gestión de Usuarios y Grupos</h2>
+                <h3>Información de usuarios</h3>
+                <div class="command-block">
+    <span class="command">id</span>
+    # Información del usuario actual
+    uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm),24(cdrom),27(sudo)
+
+    <span class="command">who</span>
+    # Usuarios conectados
+    ubuntu   pts/0        2023-09-24 10:30 (192.168.1.50)
+
+    <span class="command">last</span>
+    # Historial de conexiones
+    ubuntu   pts/0        192.168.1.50     Wed Sep 24 10:30   still logged in
+
+    <span class="command">cat /etc/passwd | grep ubuntu</span>
+    # Ver información del usuario
+    ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+                </div>
+                <h3>Crear y gestionar usuarios</h3>
+                <div class="example">
+                    <h4>Administración de usuarios</h4>
+                    <div class="command-block">
+    <span class="command">sudo adduser nuevo_usuario</span>
+    # Crear nuevo usuario (interactivo)
+
+    <span class="command">sudo useradd -m -s /bin/bash nuevo_usuario</span>
+    # Crear usuario con directorio home
+
+    <span class="command">sudo passwd nuevo_usuario</span>
+    # Cambiar contraseña de usuario
+
+    <span class="command">sudo deluser --remove-home usuario</span>
+    # Eliminar usuario y su directorio home
+
+    <span class="command">sudo usermod -aG sudo nuevo_usuario</span>
+    # Agregar usuario al grupo sudo (permisos admin)
+                    </div>
+                </div>
+                <h3>Gestión de grupos</h3>
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                    <tr>
+                        <td><code>groups usuario</code></td>
+                        <td>Ver grupos del usuario</td>
+                        <td>Verificar permisos</td>
+                    </tr>
+                    <tr>
+                        <td><code>sudo groupadd grupo_nuevo</code></td>
+                        <td>Crear nuevo grupo</td>
+                        <td>Organizar usuarios</td>
+                    </tr>
+                    <tr>
+                        <td><code>sudo groupdel grupo</code></td>
+                        <td>Eliminar grupo</td>
+                        <td>Limpiar sistema</td>
+                    </tr>
+                    <tr>
+                        <td><code>sudo gpasswd -a usuario grupo</code></td>
+                        <td>Agregar usuario a grupo</td>
+                        <td>Dar permisos específicos</td>
+                    </tr>
+                    <tr>
+                        <td><code>sudo gpasswd -d usuario grupo</code></td>
+                        <td>Quitar usuario de grupo</td>
+                        <td>Remover permisos</td>
+                    </tr>
+                </table>
+                <h3>Cambio de usuario y sudo</h3>
+                <div class="command-block">
+    <span class="command">su - otro_usuario</span>
+    # Cambiar a otro usuario
+
+    <span class="command">sudo comando</span>
+    # Ejecutar comando como root
+
+    <span class="command">sudo -i</span>
+    # Abrir shell interactivo como root
+
+    <span class="command">sudo -u usuario comando</span>
+    # Ejecutar comando como otro usuario
+
+    <span class="command">sudo visudo</span>
+    # Editar archivo sudoers (configuración sudo)
+                </div>
+                <div class="warning">
+                    <h4>⚠️ Seguridad con sudo</h4>
+                    <p>Solo da permisos sudo a usuarios de confianza</p>
+                    <p>Usa <code>visudo</code> para editar /etc/sudoers, nunca lo edites directamente</p>
+                    <p>Revisa regularmente quién tiene permisos de administrador</p>
+                </div>
+            </div>
+
+            <!-- Sistema -->
+            <div class="section" id="system2">
+                <h2>🖥️ Administración del Sistema</h2>
+                <h3>Gestión de paquetes (APT)</h3>
+                <div class="command-block">
+    <span class="command">sudo apt update</span>
+    # Actualizar lista de paquetes disponibles
+
+    <span class="command">sudo apt upgrade</span>
+    # Actualizar paquetes instalados
+
+    <span class="command">sudo apt install paquete</span>
+    # Instalar nuevo paquete
+
+    <span class="command">sudo apt remove paquete</span>
+    # Desinstalar paquete
+
+    <span class="command">sudo apt autoremove</span>
+    # Limpiar dependencias no usadas
+
+    <span class="command">apt search nombre</span>
+    # Buscar paquetes
+
+    <span class="command">apt show paquete</span>
+    # Ver información de paquete
+                </div>
+                <div class="example">
+                    <h4>Mantenimiento del sistema</h4>
+                    <div class="command-block">
+    <span class="command">sudo apt full-upgrade</span>
+    # Actualización completa del sistema
+
+    <span class="command">sudo apt dist-upgrade</span>
+    # Actualizar a nueva versión de distribución
+
+    <span class="command">sudo apt autoclean</span>
+    # Limpiar cache de paquetes
+
+    <span class="command">dpkg -l | grep paquete</span>
+    # Ver si un paquete está instalado
+
+    <span class="command">sudo dpkg --configure -a</span>
+    # Reparar paquetes rotos
+                    </div>
+                </div>
+                <h3>Monitoreo del sistema</h3>
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Información</th>
+                        <th>Uso</th>
+                    </tr>
+                    <tr>
+                        <td><code>df -h</code></td>
+                        <td>Espacio en disco</td>
+                        <td>Ver almacenamiento disponible</td>
+                    </tr>
+                    <tr>
+                        <td><code>du -sh directorio</code></td>
+                        <td>Tamaño de directorio</td>
+                        <td>Encontrar qué ocupa espacio</td>
+                    </tr>
+                    <tr>
+                        <td><code>free -h</code></td>
+                        <td>Memoria RAM</td>
+                        <td>Ver uso de memoria</td>
+                    </tr>
+                    <tr>
+                        <td><code>iostat</code></td>
+                        <td>Estadísticas E/S</td>
+                        <td>Rendimiento de discos</td>
+                    </tr>
+                    <tr>
+                        <td><code>vmstat 1</code></td>
+                        <td>Estadísticas sistema</td>
+                        <td>Monitor general cada segundo</td>
+                    </tr>
+                    <tr>
+                        <td><code>dmesg | tail</code></td>
+                        <td>Mensajes del kernel</td>
+                        <td>Diagnosticar hardware</td>
+                    </tr>
+                </table>
+                <h3>Archivos de configuración importantes</h3>
+                <div class="info">
+                    <h4>📁 Ubicaciones clave en Ubuntu Server</h4>
+                </div>
+                <div class="command-block">
+    <span class="command"># Configuración de red</span>
+    /etc/netplan/                    # Configuración Netplan
+    /etc/hosts                       # Resolución de nombres local
+    /etc/resolv.conf                 # Servidores DNS
+
+    <span class="command"># Usuarios y grupos</span>
+    /etc/passwd                      # Información de usuarios
+    /etc/group                       # Información de grupos
+    /etc/shadow                      # Contraseñas cifradas
+    /etc/sudoers                     # Configuración sudo
+
+    <span class="command"># Servicios y arranque</span>
+    /etc/systemd/system/             # Servicios personalizados
+    /etc/init.d/                     # Scripts de inicio (legacy)
+    /etc/crontab                     # Tareas programadas
+
+    <span class="command"># Logs del sistema</span>
+    /var/log/syslog                  # Log general del sistema
+    /var/log/auth.log                # Log de autenticación
+    /var/log/kern.log                # Log del kernel
+    /var/log/apache2/                # Logs de Apache (si instalado)
+                </div>
+                <h3>Tareas programadas (Cron)</h3>
+                <div class="example">
+                    <h4>Configurar tareas automáticas</h4>
+                    <div class="command-block">
+    <span class="command">crontab -e</span>
+    # Editar crontab del usuario actual
+
+    <span class="command">sudo crontab -e</span>
+    # Editar crontab de root
+
+    <span class="command">crontab -l</span>
+    # Ver tareas programadas
+
+    <span class="command"># Formato: minuto hora día mes día_semana comando</span>
+    # Ejemplos:
+    0 2 * * * /usr/bin/backup.sh           # Diario a las 2:00 AM
+    */15 * * * * /usr/bin/check_status.sh  # Cada 15 minutos
+    0 0 * * 0 /usr/bin/weekly_update.sh    # Domingos a medianoche
+                    </div>
+                </div>
+                <h3>Control del sistema</h3>
+                <div class="warning">
+                    <h4>⚠️ Comandos de control del sistema</h4>
+                    <p>Estos comandos afectan todo el sistema. Úsalos con precaución.</p>
+                </div>
+                <div class="command-block">
+    <span class="command">sudo reboot</span>
+    # Reiniciar el sistema
+
+    <span class="command">sudo shutdown -h now</span>
+    # Apagar inmediatamente
+
+    <span class="command">sudo shutdown -h +10</span>
+    # Apagar en 10 minutos
+
+    <span class="command">sudo shutdown -r +5 "Reinicio de mantenimiento"</span>
+    # Reiniciar en 5 min con mensaje
+
+    <span class="command">sudo systemctl rescue</span>
+    # Modo de rescate (single user)
+
+    <span class="command">sudo systemctl emergency</span>
+    # Modo de emergencia
+                </div>
+                <div class="info">
+                    <h4>🎯 Consejos para administración</h4>
+                    <ul style="margin-top: 10px;">
+                        <li>Siempre haz respaldos antes de cambios importantes</li>
+                        <li>Documenta los cambios que realizas</li>
+                        <li>Usa <code>screen</code> o <code>tmux</code> para sesiones persistentes</li>
+                        <li>Monitorea regularmente logs y recursos del sistema</li>
+                        <li>Mantén el sistema actualizado con <code>apt update && apt upgrade</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+        function showSection2(id, evt) {
+            document.querySelectorAll('.section').forEach(function(sec) {
+                if (sec.id.endsWith('2')) sec.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            if (evt && evt.target) evt.target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        document.getElementById('searchBox2').addEventListener('input', function(e) {
+            var val = e.target.value.trim().toLowerCase();
+            document.querySelectorAll('.section').forEach(function(sec) {
+                if (!sec.id.endsWith('2')) return;
+                sec.innerHTML = sec.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+                if (val.length > 0) {
+                    var regex = new RegExp('('+val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+')', 'gi');
+                    sec.innerHTML = sec.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+                }
+            });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key >= '1' && e.key <= '9') {
+                e.preventDefault();
+                var idx = parseInt(e.key) - 1;
+                var btns = document.querySelectorAll('.nav-btn');
+                if (btns[idx]) btns[idx].click();
+            }
+        });
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('command')) {
+                var text = e.target.textContent;
+                navigator.clipboard.writeText(text);
+                e.target.style.background = '#27ae60';
+                setTimeout(() => { e.target.style.background = ''; }, 500);
+            }
+        });
+        document.querySelectorAll('.command').forEach(cmd => {
+            cmd.title = 'Clic para copiar al portapapeles';
+            cmd.style.cursor = 'pointer';
+        });
+        </script>
+    </article>
 
     <article>
             <div class="container" >
