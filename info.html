@@ -292,7 +292,94 @@
             </div>
         </div>
     </article>
-
+    <article>
+        <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Descarga y Verificación de Ubuntu 18.04.6 Server para DevOps</button>
+            <div class="toggle-content">
+                <h1>Documentación del Proceso: Descarga, Verificación e Instalación de Ubuntu 18.04.6 Server para Curso de DevOps</h1>
+                <p>Este documento web resume el proceso completo de descarga, verificación de integridad y preparación para instalación de la imagen ISO de Ubuntu 18.04.6 LTS (Bionic Beaver) en versión server, destinada a un curso de DevOps. Se detalla el contexto, los pasos seguidos, los errores encontrados (con explicaciones) y las soluciones aplicadas. El objetivo es facilitar el análisis y estudio para futuros usuarios que encuentren problemas similares en entornos Windows con Git Bash y VirtualBox.</p>
+                <h2>Contexto General</h2>
+                <p>El usuario estaba descargando la imagen ISO de Ubuntu 18.04.6 server desde <a href="https://releases.ubuntu.com/18.04/">https://releases.ubuntu.com/18.04/</a> para usarla en un curso de DevOps ("DevOps: Inicia tu carrera desde cero"). La instalación se planeaba manualmente en VirtualBox. El proceso involucró:</p>
+                <ul>
+                    <li>Explicación de archivos auxiliares (.zsync, .list, .manifest).</li>
+                    <li>Descarga del ISO y archivos de verificación (SHA256SUMS).</li>
+                    <li>Verificación de integridad usando comandos en CMD y Git Bash.</li>
+                    <li>Troubleshooting de errores en rutas y archivos corruptos.</li>
+                    <li>Preparación para instalación en VirtualBox.</li>
+                </ul>
+                <p>La fecha actual es 24 de septiembre de 2025, según el contexto proporcionado.</p>
+                <h2>Paso 1: Consulta Inicial sobre Archivos Auxiliares</h2>
+                <p>El usuario preguntó sobre las diferencias entre <code>ubuntu-18.04.6-live-server-amd64.iso.zsync</code>, <code>ubuntu-18.04.6-live-server-amd64.list</code> y <code>ubuntu-18.04.6-live-server-amd64.manifest</code>.</p>
+                <h3>Explicación</h3>
+                <ul>
+                    <li><strong>.zsync</strong>: Para descargas incrementales (actualizaciones delta).</li>
+                    <li><strong>.list</strong>: Lista de archivos dentro del ISO (índice de estructura).</li>
+                    <li><strong>.manifest</strong>: Lista de paquetes Debian en el filesystem live.</li>
+                </ul>
+                <p>No se encontraron errores aquí; fue una explicación educativa.</p>
+                <h2>Paso 2: Descarga del ISO y Archivos de Verificación</h2>
+                <p>El usuario descargó <code>ubuntu-18.04.6-live-server-amd64.iso</code> (969 MB) y archivos auxiliares en <code>E:\ISOS</code>. Proporcionó un listado de directorio:</p>
+                <pre>
+    E:\ISOS>dir
+     CentOS-Stream-9-latest-x86_64-dvd1.iso
+     ubuntu-18.04.6-live-server-amd64.iso
+     ubuntu-18.04.6-live-server-amd64.iso.zsync
+     ubuntu-24.04.3-desktop-amd64.iso
+                </pre>
+                <p>Se recomendó descargar <code>SHA256SUMS</code> para verificación, pero el usuario tenía un archivo llamado <code>sha256sum</code> (sin mayúsculas).</p>
+                <h2>Paso 3: Verificación de Integridad - Errores y Soluciones</h2>
+                <p>Esta fue la parte más problemática. El usuario intentó verificar el ISO usando <code>sha256sum</code> en CMD y Git Bash, pero enfrentó errores repetidos.</p>
+                <h3>Error 1: Comando sha256sum en CMD</h3>
+                <p>El usuario ejecutó en CMD:</p>
+                <pre>
+    sha256sum -c SHA256SUMS 2>&1 | grep ubuntu-18.04.6-live-server-amd64.iso
+                </pre>
+                <p><span style="color:red;font-weight:bold;">Error</span>: No salida. Causa: <code>sha256sum</code> no es nativo en CMD; el archivo <code>SHA256SUMS</code> no estaba presente o estaba mal nombrado.</p>
+                <p><span style="color:green;font-weight:bold;">Solución</span>: Recomendado usar PowerShell (<code>Get-FileHash</code>) o CMD (<code>certutil</code>) para verificación nativa en Windows. También, descargar <code>SHA256SUMS</code> correctamente.</p>
+                <h3>Error 2: Rutas en Git Bash</h3>
+                <p>El usuario ejecutó:</p>
+                <pre>
+    cat /e/ISOS/sha256sum
+                </pre>
+                <p>Pero en algunos intentos usó <code>E:ISOS</code> (con dos puntos), resultando en:</p>
+                <pre>
+    bash: E:ISOS: command not found
+                </pre>
+                <p><span style="color:red;font-weight:bold;">Error</span>: Sintaxis de ruta incorrecta. Git Bash usa rutas Unix-style como <code>/e/ISOS</code>, no <code>E:\ISOS</code> o <code>E:ISOS</code>.</p>
+                <p><span style="color:green;font-weight:bold;">Solución</span>: Corregir la ruta a <code>/e/ISOS</code>. Ejemplo: <code>cat /e/ISOS/sha256sum</code>.</p>
+                <h3>Error 3: Archivo sha256sum Corrupto</h3>
+                <p>Al verificar el tamaño:</p>
+                <pre>
+    ls -l /e/ISOS/sha256sum
+    -rw-r--r-- 1 hp 197121 32 sep. 24 13:42 /e/ISOS/sha256sum
+                </pre>
+                <p><span style="color:red;font-weight:bold;">Error</span>: Tamaño de solo 32 bytes (debería ser ~202 bytes). El archivo estaba corrupto o incompleto, lo que causaba que comandos como <code>sha256sum -c sha256sum</code> no produjeran salida.</p>
+                <p><span style="color:green;font-weight:bold;">Solución</span>: Eliminar el archivo corrupto y redescargar el oficial con <code>curl -O https://releases.ubuntu.com/18.04/SHA256SUMS</code>. Luego, verificar contenido:</p>
+                <pre>
+    cat /e/ISOS/SHA256SUMS
+    f730be589aa1ba923ebe6eca573fa66d09ba14c4c104da2c329df652d42aff11 *ubuntu-18.04.6-desktop-amd64.iso
+    6c647b1ab4318e8c560d5748f908e108be654bad1e165f7cf4f3c1fc43995934 *ubuntu-18.04.6-live-server-amd64.iso
+                </pre>
+                <h3>Error 4: Verificación Fallida o Sin Salida</h3>
+                <p>Comandos como <code>sha256sum -c SHA256SUMS 2>&1 | grep ubuntu-18.04.6-live-server-amd64.iso</code> no daban salida.</p>
+                <p><span style="color:red;font-weight:bold;">Error</span>: Archivo <code>SHA256SUMS</code> ausente, corrupto o mal nombrado; o el ISO no coincidía con el hash.</p>
+                <p><span style="color:green;font-weight:bold;">Solución</span>: Usar el archivo redescargado y calcular hash manualmente con <code>sha256sum ubuntu-18.04.6-live-server-amd64.iso</code> para comparar con el hash oficial (<code>6c647b1ab4318e8c560d5748f908e108be654bad1e165f7cf4f3c1fc43995934</code>). Si no coincide, redescargar el ISO.</p>
+                <h2>Paso 4: Instalación en VirtualBox</h2>
+                <p>Una vez verificado el ISO, los pasos recomendados para la instalación son:</p>
+                <ol>
+                    <li>Crear VM en VirtualBox: Nombre "Ubuntu 18.04 DevOps", 4 GB RAM, 50 GB disco VDI.</li>
+                    <li>Cargar ISO en Storage &gt; Controller IDE.</li>
+                    <li>Configurar red (NAT o Bridged).</li>
+                    <li>Iniciar VM y seguir instalador Subiquity: Habilitar SSH.</li>
+                    <li>Post-instalación: Actualizar sistema e instalar herramientas DevOps (Docker, etc.).</li>
+                </ol>
+                <p>No se reportaron errores aquí, pero se enfatizó habilitar virtualización en BIOS si falla el arranque.</p>
+                <h2>Conclusión y Lecciones Aprendidas</h2>
+                <p>El proceso resaltó la importancia de verificar integridad de descargas para evitar corrupciones. Errores comunes en Windows/Git Bash incluyen rutas incorrectas y archivos corruptos. Soluciones: Siempre redescargar archivos oficiales, usar sintaxis correcta (<code>/e/ISOS</code>) y herramientas nativas como PowerShell. Este documento sirve para estudiar troubleshooting en entornos mixtos (Windows/Linux).</p>
+                <p>Para más detalles, consulta la documentación oficial de Ubuntu: <a href="https://ubuntu.com/tutorials/create-a-usb-stick-on-windows">Guía de USB</a> o VirtualBox: <a href="https://www.virtualbox.org/manual/">Manual de VirtualBox</a>.</p>
+            </div>
+        </div>
+    </article>
     <script>
     function toggleArticle(btn) {
         const content = btn.nextElementSibling;
@@ -329,34 +416,105 @@
     }
     </style>
 </body>
-<!-- Pie de página -->
-    <footer class="ffooter" id="contacto">
-        <div class="container">
-            <div class="footer-content">
-                
-                <div class="footer-section">
-
-                    <h4><a href="index.html">Delanoys Tecnologías</a></h4>
-                    <p>Soluciones tecnológicas profesionales para tu negocio.</p>
-
-                    <a href="https://sites.google.com/view/delanoystecnologias/home" class="footer-link"
-                        target="_blank">Soporte tecnico </a>
-                        <a href=" https://phishingquiz.withgoogle.com/" class="footer-link"
-                        target="_blank">Test de phishing </a>
-                       
-
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p>info@delanoys.com</p>
-                    <p>+1 (555) 123-4567</p>
-                </div>
-
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Delanoys Tecnologías. Todos los derechos reservados.</p>
-                    
+<!-- Pie de página mejorado -->
+<footer class="ffooter" id="contacto">
+    <div class="container footer-container">
+        <div class="footer-content">
+            <div class="footer-section brand">
+                <h4><a href="index.html">Delanoys Tecnologías</a></h4>
+                <p>Soluciones tecnológicas profesionales para tu negocio.</p>
+                <div class="footer-links">
+                    <a href="https://sites.google.com/view/delanoystecnologias/home" class="footer-link" target="_blank">Soporte técnico</a>
+                    <a href="https://phishingquiz.withgoogle.com/" class="footer-link" target="_blank">Test de phishing</a>
                 </div>
             </div>
-    </footer>
+            <div class="footer-section contact">
+                <h4>Contacto</h4>
+                <p><a href="mailto:info@delanoys.com" class="footer-mail">info@delanoys.com</a></p>
+                <p><a href="tel:+15551234567" class="footer-tel">+1 (555) 123-4567</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Delanoys Tecnologías. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+<style>
+.ffooter {
+    background: #1a73e8;
+    color: #fff;
+    padding: 36px 0 16px 0;
+    font-size: 1em;
+    margin-top: 40px;
+}
+.footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: flex-start;
+}
+.footer-section {
+    flex: 1 1 220px;
+    min-width: 200px;
+    margin-bottom: 18px;
+}
+.footer-section.brand h4 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #fff;
+}
+.footer-links {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.footer-link {
+    color: #cbe6ff;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.98em;
+}
+.footer-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+.footer-mail, .footer-tel {
+    color: #cbe6ff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer-mail:hover, .footer-tel:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+.footer-bottom {
+    border-top: 1px solid #3b7edc;
+    margin-top: 18px;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 0.97em;
+    color: #e3e3e3;
+}
+@media (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .footer-section {
+        min-width: unset;
+    }
+}
+</style>
 </html>
