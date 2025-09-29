@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Vagrant desde Cero - Guía Interactiva y Educativa</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
+            color: #222;
+        }
+        header {
+            background: linear-gradient(90deg, #007cba 60%, #005a87 100%);
+            color: white;
+            padding: 40px 20px 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        nav {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav li {
+            margin: 0 10px;
+        }
+        nav a {
+            color: #007cba;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+            display: inline-block;
+        }
+        nav a:hover, nav a.active-link {
+            background: #007cba;
+            color: #fff;
+        }
+        main {
+            max-width: 1100px;
+            margin: 30px auto 80px auto;
+            padding: 30px 24px 40px 24px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+        }
+        section {
+            margin-bottom: 50px;
+            display: none;
+            animation: fadeIn 0.7s;
+        }
+        section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        h1, h2 {
+            color: #005a87;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 2em;
+        }
+        .accordion {
+            background-color: #e7f3ff;
+            color: #005a87;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-bottom: 7px;
+            transition: background 0.3s;
+        }
+        .active-accordion, .accordion:hover {
+            background-color: #b6e0fe;
+        }
+        .panel {
+            padding: 0 18px 12px 18px;
+            display: none;
+            background-color: #f9fbfd;
+            overflow: hidden;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 10px;
+        }
+        code {
+            background: #e0e7ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Mono', monospace;
+            font-size: 1em;
+        }
+        pre {
+            background: #e0e7ff;
+            padding: 14px;
+            border-left: 5px solid #007cba;
+            overflow-x: auto;
+            border-radius: 7px;
+            margin-bottom: 10px;
+        }
+        .copy-btn {
+            float: right;
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 0.95em;
+            margin-top: -8px;
+        }
+        .quiz {
+            background: #e7f3ff;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,124,186,0.07);
+        }
+        .quiz-question {
+            margin-bottom: 22px;
+        }
+        .quiz-option {
+            display: block;
+            margin: 6px 0;
+        }
+        button, .btn {
+            background: #007cba;
+            color: white;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 7px 0;
+            font-size: 1em;
+            font-family: inherit;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        button:hover, .btn:hover {
+            background: #005a87;
+        }
+        #quiz-result {
+            font-weight: bold;
+            margin-top: 14px;
+            font-size: 1.1em;
+        }
+        .tips, .extra-content {
+            background: #f9fbfd;
+            border-left: 4px solid #007cba;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            color: #333;
+        }
+        .timeline {
+            border-left: 3px solid #007cba;
+            margin: 18px 0 18px 10px;
+            padding-left: 18px;
+        }
+        .timeline-event {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .timeline-event:before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            background: #007cba;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #b6e0fe;
+        }
+        .resources-list {
+            list-style: none;
+            padding: 0;
+        }
+        .resources-list li {
+            margin-bottom: 10px;
+        }
+        .resources-list a {
+            color: #007cba;
+            text-decoration: underline;
+        }
+        .highlight {
+            background: #fffbe6;
+            border-left: 4px solid #ffd700;
+            padding: 10px 18px;
+            border-radius: 7px;
+            margin: 18px 0;
+        }
+        .author-box {
+            background: #e0e7ff;
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #007cba;
+            color: #fff;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            font-weight: bold;
+        }
+        footer {
+            background: linear-gradient(90deg, #007cba 60%, #005a87 100%);
+            color: white;
+            text-align: center;
+            padding: 18px 0 12px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            font-size: 1em;
+            letter-spacing: 0.5px;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.07);
+        }
+        @media (max-width: 700px) {
+            main { padding: 12px 4vw; }
+            nav ul { flex-direction: column; align-items: center; }
+            nav li { margin: 7px 0; }
+            header { padding: 28px 8px 18px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Aprende Vagrant desde Cero</h1>
+        <p>Guía educativa, interactiva y visual para dominar Vagrant: historia, importancia, funciones, tutoriales y recursos.</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('intro')" class="active-link">Introducción</a></li>
+            <li><a href="#" onclick="showSection('historia')">Historia</a></li>
+            <li><a href="#" onclick="showSection('importancia')">Importancia</a></li>
+            <li><a href="#" onclick="showSection('caracteristicas')">Características</a></li>
+            <li><a href="#" onclick="showSection('tutorial')">Tutorial</a></li>
+            <li><a href="#" onclick="showSection('recursos')">Recursos</a></li>
+            <li><a href="#" onclick="showSection('quiz')">Quiz</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="intro" class="active">
+            <h2>¿Qué es Vagrant?</h2>
+            <p>
+                <strong>Vagrant</strong> es una herramienta de código abierto creada por HashiCorp que permite crear y gestionar entornos de desarrollo virtualizados de forma sencilla y reproducible.
+            </p>
+            <ul>
+                <li>Empaqueta tu entorno en un <b>box</b> y compártelo con tu equipo.</li>
+                <li>Automatiza la instalación de dependencias y configuraciones.</li>
+                <li>Ideal para aprender, experimentar y trabajar en proyectos colaborativos.</li>
+            </ul>
+            <div class="highlight" style="margin-top:24px;">
+                <b>¿Por qué usar Vagrant?</b> Evita el clásico problema: <i>¡En mi máquina sí funciona!</i> Todos trabajan en el mismo entorno, sin sorpresas.
+            </div>
+            <div class="tips">
+                <strong>¿Sabías que...?</strong> Vagrant puede usarse tanto con máquinas virtuales (VirtualBox, VMware, Hyper-V) como con contenedores Docker.
+            </div>
+            <img src="/imagenes/vagrant-logo.png" alt="Logo Vagrant" style="width:120px;display:block;margin:24px auto 0 auto;">
+        </section>
+        
+        <section id="historia">
+            <h2>Historia de Vagrant</h2>
+            <button class="accordion">Línea de Tiempo</button>
+            <div class="panel">
+                <div class="timeline">
+                    <div class="timeline-event">
+                        <strong>2010:</strong> Mitchell Hashimoto crea Vagrant como proyecto personal.
+                    </div>
+                    <div class="timeline-event">
+                        <strong>2012:</strong> Nace HashiCorp para impulsar Vagrant y otros proyectos.
+                    </div>
+                    <div class="timeline-event">
+                        <strong>2013-2015:</strong> Soporte para más proveedores (VMware, AWS, Docker).
+                    </div>
+                    <div class="timeline-event">
+                        <strong>2021:</strong> Anuncio de Vagrant 3.0, con enfoque en rendimiento y modernización.
+                    </div>
+                    <div class="timeline-event">
+                        <strong>2025:</strong> Vagrant sigue siendo esencial en DevOps y educación.
+                    </div>
+                </div>
+            </div>
+            <button class="accordion">¿Quién es Mitchell Hashimoto?</button>
+            <div class="panel">
+                <div class="author-box">
+                    <div class="author-avatar">MH</div>
+                    <div>
+                        <strong>Mitchell Hashimoto</strong> es un ingeniero de software estadounidense, fundador de HashiCorp y creador de herramientas como Vagrant, Terraform y Consul. Su visión: simplificar la infraestructura y el desarrollo.
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="importancia">
+            <h2>¿Por qué es importante Vagrant?</h2>
+            <button class="accordion">Ventajas Educativas y Profesionales</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Reproducibilidad:</strong> Todos trabajan en el mismo entorno.</li>
+                    <li><strong>Colaboración:</strong> Facilita el onboarding y la colaboración remota.</li>
+                    <li><strong>Aislamiento:</strong> No ensucias tu sistema operativo principal.</li>
+                    <li><strong>Automatización:</strong> Configura todo con scripts y provisioners.</li>
+                    <li><strong>Escalabilidad:</strong> Útil en pruebas, CI/CD y simulaciones.</li>
+                </ul>
+                <div class="highlight">
+                    <b>En educación:</b> Vagrant permite a estudiantes practicar con entornos reales sin riesgos, y a docentes preparar laboratorios listos para usar.
+                </div>
+            </div>
+            <button class="accordion">Vagrant vs Docker</button>
+            <div class="panel">
+                <ul>
+                    <li><b>Vagrant</b> usa máquinas virtuales completas (ideal para simular sistemas operativos enteros).</li>
+                    <li><b>Docker</b> usa contenedores (más ligeros, pero menos aislados del host).</li>
+                    <li>¡Puedes usar ambos juntos para aprender sobre virtualización y contenerización!</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="caracteristicas">
+            <h2>Características y Funciones Principales</h2>
+            <button class="accordion">Proveedores y Boxes</button>
+            <div class="panel">
+                <p><strong>Proveedores:</strong> VirtualBox, VMware, Hyper-V, Docker, AWS, Google Cloud y más.</p>
+                <p><strong>Boxes:</strong> Imágenes preconfiguradas de sistemas operativos. Ejemplo: <code>ubuntu/jammy64</code>.</p>
+                <div class="tips">
+                    <b>Tip:</b> Explora <a href="https://app.vagrantup.com/boxes/search" target="_blank">Vagrant Cloud</a> para encontrar boxes listos para usar.
+                </div>
+            </div>
+            <button class="accordion">Vagrantfile y Configuración</button>
+            <div class="panel">
+                <p>El <strong>Vagrantfile</strong> define la configuración de tu entorno:</p>
+                <pre><code class="copy-btn" onclick="copyCode(this)">Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+end</code></pre>
+                <ul>
+                    <li>Define la box, redes, memoria, CPUs, carpetas compartidas y más.</li>
+                </ul>
+            </div>
+            <button class="accordion">Aprovisionamiento</button>
+            <div class="panel">
+                <p><strong>Aprovisionamiento:</strong> Automatiza la instalación de software y configuración.</p>
+                <pre><code class="copy-btn" onclick="copyCode(this)">config.vm.provision "shell", inline: <<-SHELL
+  apt-get update
+  apt-get install -y apache2
+SHELL</code></pre>
+                <ul>
+                    <li>Soporta Shell, Ansible, Chef, Puppet, Salt, etc.</li>
+                </ul>
+            </div>
+            <button class="accordion">Otras Funciones</button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Estados de VM:</strong> powered_off, saved, running, etc.</li>
+                    <li><strong>Snapshot:</strong> Guarda estados para rollback rápido.</li>
+                    <li><strong>Multi-VM:</strong> Soporta múltiples máquinas en un solo Vagrantfile.</li>
+                    <li><strong>Plugins:</strong> Extiende funcionalidades (ej. vagrant-vbguest para guest additions).</li>
+                </ul>
+            </div>
+            <button class="accordion">Casos de Uso Educativos</button>
+            <div class="panel">
+                <ul>
+                    <li>Laboratorios de redes y servidores.</li>
+                    <li>Simulación de entornos de producción.</li>
+                    <li>Pruebas de software en diferentes sistemas operativos.</li>
+                    <li>Aprendizaje de automatización y DevOps.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="tutorial">
+            <h2>Tutorial: Aprende Vagrant desde Cero</h2>
+            <div class="extra-content">
+                <b>¡Sigue estos pasos y tendrás tu entorno listo en minutos!</b>
+            </div>
+            <ol>
+                <li><strong>Instalación:</strong>
+                    <ul>
+                        <li>Descarga Vagrant desde <a href="https://www.vagrantup.com/downloads" target="_blank">vagrantup.com</a>.</li>
+                        <li>Instala VirtualBox desde <a href="https://www.virtualbox.org/" target="_blank">virtualbox.org</a>.</li>
+                        <li>Verifica: Abre terminal y ejecuta <code>vagrant --version</code>.</li>
+                    </ul>
+                </li>
+                <li><strong>Crear un Proyecto:</strong>
+                    <ul>
+                        <li>Crea una carpeta: <code>mkdir mi-proyecto && cd mi-proyecto</code></li>
+                        <li>Inicia: <code>vagrant init ubuntu/jammy64</code></li>
+                    </ul>
+                </li>
+                <li><strong>Iniciar VM:</strong>
+                    <ul>
+                        <li>Ejecuta <code>vagrant up</code></li>
+                    </ul>
+                </li>
+                <li><strong>Acceder:</strong>
+                    <ul>
+                        <li><code>vagrant ssh</code></li>
+                        <li>Ejecuta comandos: <code>ls /</code>, etc.</li>
+                    </ul>
+                </li>
+                <li><strong>Detener y Limpiar:</strong>
+                    <ul>
+                        <li><code>vagrant halt</code> (apaga).</li>
+                        <li><code>vagrant destroy</code> (elimina VM y box).</li>
+                    </ul>
+                </li>
+                <li><strong>Aprovisionamiento Básico:</strong>
+                    <ul>
+                        <li>Edita Vagrantfile agregando el ejemplo de shell anterior.</li>
+                        <li>Ejecuta <code>vagrant up --provision</code>.</li>
+                    </ul>
+                </li>
+            </ol>
+            <div class="highlight">
+                <b>Desafío:</b> Crea un Vagrantfile que instale Nginx automáticamente y comparte tu box con <code>vagrant package</code>.
+            </div>
+            <div class="tips">
+                <b>¿Problemas?</b> Consulta la <a href="https://www.vagrantup.com/docs" target="_blank">documentación oficial</a> o busca en foros como Stack Overflow.
+            </div>
+        </section>
+        
+        <section id="recursos">
+            <h2>Recursos y Enlaces Útiles</h2>
+            <ul class="resources-list">
+                <li><a href="https://www.vagrantup.com/docs" target="_blank">Documentación Oficial de Vagrant</a></li>
+                <li><a href="https://app.vagrantup.com/boxes/search" target="_blank">Vagrant Cloud: Buscar Boxes</a></li>
+                <li><a href="https://www.youtube.com/results?search_query=Vagrant+tutorial+español" target="_blank">Tutoriales en YouTube (Español)</a></li>
+                <li><a href="https://www.hashicorp.com/resources?product=vagrant" target="_blank">Webinars y Recursos HashiCorp</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/vagrant" target="_blank">Preguntas y Respuestas en Stack Overflow</a></li>
+                <li><a href="https://github.com/hashicorp/vagrant" target="_blank">Repositorio GitHub de Vagrant</a></li>
+            </ul>
+            <div class="tips">
+                <b>Libros recomendados:</b>
+                <ul>
+                    <li><i>Vagrant: Up and Running</i> (O'Reilly, inglés)</li>
+                    <li><i>DevOps para desarrolladores</i> (Ra-Ma, español, incluye capítulos sobre Vagrant)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz Interactivo: ¡Prueba tus Conocimientos!</h2>
+            <div class="quiz">
+                <div class="quiz-question">
+                    <p>1. ¿Qué es un "box" en Vagrant?</p>
+                    <label class="quiz-option"><input type="radio" name="q1" value="a"> Una máquina virtual completa</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="b"> Un archivo de configuración</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="c"> Un plugin</label>
+                </div>
+                <div class="quiz-question">
+                    <p>2. ¿Cuál es el comando para iniciar una VM?</p>
+                    <label class="quiz-option"><input type="radio" name="q2" value="a">vagrant init</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="b">vagrant up</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="c">vagrant ssh</label>
+                </div>
+                <div class="quiz-question">
+                    <p>3. ¿Quién creó Vagrant?</p>
+                    <label class="quiz-option"><input type="radio" name="q3" value="a">Mitchell Hashimoto</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="b">Linus Torvalds</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="c">Elon Musk</label>
+                </div>
+                <div class="quiz-question">
+                    <p>4. ¿Qué archivo define la configuración de Vagrant?</p>
+                    <label class="quiz-option"><input type="radio" name="q4" value="a">Dockerfile</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="b">Vagrantfile</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="c">Makefile</label>
+                </div>
+                <div class="quiz-question">
+                    <p>5. ¿Cuál es una ventaja de usar Vagrant en educación?</p>
+                    <label class="quiz-option"><input type="radio" name="q5" value="a">Permite compartir entornos listos para usar</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="b">Hace que el código sea más rápido</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="c">Elimina la necesidad de aprender Linux</label>
+                </div>
+                <button onclick="checkQuiz()">Ver Resultado</button>
+                <div id="quiz-result"></div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Guía Educativa de Vagrant. Creada con ❤️ para estudiantes y docentes.</p>
+    </footer>
+    
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(a => {
+                if (a.getAttribute('onclick').includes(id)) a.classList.add('active-link');
+            });
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        
+        // Accordion
+        const acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active-accordion");
+                const panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+        
+        // Copy code
+        function copyCode(btn) {
+            const code = btn.parentNode.textContent.trim();
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = '¡Copiado!';
+                setTimeout(() => btn.textContent = code, 2000);
+            });
+        }
+        
+        // Quiz
+        function checkQuiz() {
+            const answers = { q1: 'a', q2: 'b', q3: 'a', q4: 'b', q5: 'a' };
+            let score = 0;
+            for (let key in answers) {
+                const selected = document.querySelector(`input[name="${key}"]:checked`);
+                if (selected && selected.value === answers[key]) score++;
+            }
+            const result = document.getElementById('quiz-result');
+            let msg = '';
+            if (score === 5) msg = '¡Excelente! Eres un experto en Vagrant.';
+            else if (score >= 3) msg = '¡Muy bien! Sigue practicando para perfeccionarte.';
+            else msg = '¡Sigue estudiando y vuelve a intentarlo!';
+            result.innerHTML = `Puntuación: <b>${score}/5</b> <br>${msg}`;
+        }
+    </script>
+</body>
+</html>
