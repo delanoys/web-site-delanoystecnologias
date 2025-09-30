@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Desarrollo & DevOps — Waterfall vs Agile</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#60a5fa; --glass: rgba(255,255,255,0.03);
+      --success:#34d399; --danger:#fb7185; --maxw:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; background:linear-gradient(180deg,#071023 0%, #081022 60%); color:#e6eef8; -webkit-font-smoothing:antialiased;
+      line-height:1.6; padding:24px; display:flex; justify-content:center; font: size 15px;;
+    }
+    .container{max-width:var(--maxw); width:100%;}
+    header{display:flex; align-items:center; gap:16px; margin-bottom:18px}
+    .logo{width:68px; height:68px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#7c3aed); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+    .logo h1{margin:0; font-size:20px}
+    h1{font-size:26px; margin:0}
+    .lead{color:var(--muted); margin-top:6px}
+    main{display:grid; grid-template-columns: 1fr 360px; gap:20px; align-items:start}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:20px; box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    .content .section{margin-bottom:18px}
+    aside .card{position:sticky; top:24px}
+    h2{margin:8px 0 10px}
+    pre{background:var(--glass); padding:12px; border-radius:8px; overflow:auto; color:#e6eef8}
+    table{width:100%; border-collapse:collapse}
+    th,td{padding:10px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.04)}
+    th{color:var(--muted); font-weight:600}
+    .tag{display:inline-block; padding:6px 10px; border-radius:999px; font-size:13px; background:rgba(255,255,255,0.03); color:var(--muted)}
+    .btn{display:inline-block; background:var(--accent); color:#04202a; padding:8px 12px; border-radius:8px; font-weight:700; text-decoration:none}
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .pros{list-style: none; padding:0; margin:0}
+    .pros li{padding:8px 0}
+    footer{color:var(--muted); margin-top:18px; font-size:14px}
+    @media (max-width:980px){ main{grid-template-columns:1fr; } aside{order:2} }
+    .kpi{display:flex; gap:12px; align-items:center}
+    .kpi div{background:rgba(255,255,255,0.02); padding:10px;border-radius:10px}
+    .diagram{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); padding:12px; border-radius:8px}
+    .small{font-size:13px; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"><h1>DevOps</h1></div>
+      <div>
+        <h1>Desarrollo & DevOps — Waterfall vs Agile</h1>
+        <div class="lead">Página educativa: conceptos, comparativa, plantillas y buenas prácticas para entender y aplicar Waterfall y Agile.</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="content">
+        <article class="card">
+          <section class="section">
+            <h2>Introducción</h2>
+            <p>Esta página explica de forma práctica los modelos <strong>Waterfall (Cascada)</strong> y <strong>Agile (Ágil)</strong>, sus diferencias, ventajas, desventajas y cuándo usar cada uno. También incluye plantillas y ejemplos listos para usar.</p>
+          </section>
+
+          <section class="section">
+            <h2 id="waterfall">Waterfall (Cascada)</h2>
+            <p><strong>Definición:</strong> enfoque secuencial donde el proyecto avanza por fases claramente delimitadas: requisitos &rarr; diseño &rarr; desarrollo &rarr; pruebas &rarr; despliegue &rarr; mantenimiento.</p>
+            <div class="diagram">
+              <!-- Simple SVG diagrama lineal -->
+              <svg width="100%" height="80" viewBox="0 0 900 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <g font-family="sans-serif" font-size="12" fill="#e6eef8">
+                  <rect x="10" y="20" width="120" height="40" rx="6" fill="#0b1220" stroke="#1f2937"/>
+                  <text x="70" y="45" text-anchor="middle">Requisitos</text>
+
+                  <rect x="150" y="20" width="120" height="40" rx="6" fill="#0b1220" stroke="#1f2937"/>
+                  <text x="210" y="45" text-anchor="middle">Diseño</text>
+
+                  <rect x="290" y="20" width="120" height="40" rx="6" fill="#0b1220" stroke="#1f2937"/>
+                  <text x="350" y="45" text-anchor="middle">Desarrollo</text>
+
+                  <rect x="430" y="20" width="120" height="40" rx="6" fill="#0b1220" stroke="#1f2937"/>
+                  <text x="490" y="45" text-anchor="middle">Pruebas</text>
+
+                  <rect x="570" y="20" width="120" height="40" rx="6" fill="#0b1220" stroke="#1f2937"/>
+                  <text x="630" y="45" text-anchor="middle">Despliegue</text>
+
+                  <rect x="710" y="20" width="120" height="40" rx="6" fill="#0b1220" stroke="#1f2937"/>
+                  <text x="770" y="45" text-anchor="middle">Mantenimiento</text>
+
+                  <polyline points="130,40 150,40" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-linecap="round"/>
+                  <polyline points="270,40 290,40" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-linecap="round"/>
+                  <polyline points="410,40 430,40" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-linecap="round"/>
+                  <polyline points="550,40 570,40" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-linecap="round"/>
+                  <polyline points="690,40 710,40" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-linecap="round"/>
+                </g>
+              </svg>
+            </div>
+
+            <h3>Características clave</h3>
+            <ul>
+              <li>Fases consecutivas y definidas.</li>
+              <li>Alta documentación y especificaciones al inicio.</li>
+              <li>Menos interacción con el cliente durante la ejecución.</li>
+            </ul>
+
+            <h3>Cuando usar Waterfall</h3>
+            <ul>
+              <li>Requisitos estables y bien definidos.</li>
+              <li>Proyectos regulatorios, hardware o construcción donde los cambios son costosos.</li>
+              <li>Equipos con poca necesidad de entregas intermedias al cliente.</li>
+            </ul>
+
+            <h3>Plantilla rápida — Documento de Requisitos (ejemplo)</h3>
+            <pre>
+1. Resumen ejecutivo
+2. Alcance del sistema
+3. Requisitos funcionales
+   3.1. Caso de uso A
+   3.2. Caso de uso B
+4. Requisitos no funcionales
+5. Restricciones y supuestos
+6. Criterios de aceptación
+            </pre>
+
+          </section>
+
+          <section class="section">
+            <h2 id="agile">Agile (Ágil)</h2>
+            <p><strong>Definición:</strong> enfoque iterativo e incremental. Trabaja en ciclos cortos (sprints), entrega valor continuamente y adapta el producto según feedback.</p>
+
+            <div class="diagram">
+              <!-- Simple sprint cycles -->
+              <svg width="100%" height="120" viewBox="0 0 900 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <g font-family="sans-serif" font-size="12" fill="#e6eef8">
+                  <circle cx="130" cy="60" r="34" fill="#081022" stroke="#1f2937"/>
+                  <text x="130" y="64" text-anchor="middle">Sprint 1</text>
+
+                  <circle cx="320" cy="60" r="34" fill="#081022" stroke="#1f2937"/>
+                  <text x="320" y="64" text-anchor="middle">Sprint 2</text>
+
+                  <circle cx="510" cy="60" r="34" fill="#081022" stroke="#1f2937"/>
+                  <text x="510" y="64" text-anchor="middle">Sprint 3</text>
+
+                  <circle cx="700" cy="60" r="34" fill="#081022" stroke="#1f2937"/>
+                  <text x="700" y="64" text-anchor="middle">Sprint N</text>
+
+                  <path d="M 160 60 C 200 30, 280 30, 320 60" fill="none" stroke="#60a5fa" stroke-width="3"/>
+                  <path d="M 350 60 C 390 30, 470 30, 510 60" fill="none" stroke="#60a5fa" stroke-width="3"/>
+                  <path d="M 540 60 C 580 30, 660 30, 700 60" fill="none" stroke="#60a5fa" stroke-width="3"/>
+                </g>
+              </svg>
+            </div>
+
+            <h3>Características clave</h3>
+            <ul>
+              <li>Trabajo en iteraciones (sprints) con entregas funcionales.</li>
+              <li>Alta colaboración con stakeholders.</li>
+              <li>Prioriza valor y feedback continuo.</li>
+            </ul>
+
+            <h3>Cuando usar Agile</h3>
+            <ul>
+              <li>Requisitos cambiantes o inciertos.</li>
+              <li>Necesidad de entregar valor temprano y frecuentemente.</li>
+              <li>Equipos que trabajan close-knit y reciben feedback constante.</li>
+            </ul>
+
+            <h3>Plantilla rápida — Backlog de Producto (ejemplo)</h3>
+            <pre>
+ID | Título                  | Prioridad | Estimación (pts) | Criterios de aceptación
+1  | Registro de usuario     | Alta      | 5                | El usuario puede crear cuenta
+2  | Inicio de sesión        | Alta      | 3                | Usuario puede iniciar sesión
+3  | Perfil de usuario      | Media     | 8                | Editar foto y bio
+            </pre>
+
+          </section>
+
+          <section class="section">
+            <h2>Comparativa rápida</h2>
+            <div class="grid-2">
+              <div>
+                <table>
+                  <thead>
+                    <tr><th>Aspecto</th><th>Waterfall</th><th>Agile</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Enfoque</td><td>Secuencial</td><td>Iterativo</td></tr>
+                    <tr><td>Entregas</td><td>Al final</td><td>Continuas</td></tr>
+                    <tr><td>Cambio</td><td>Difícil</td><td>Fácil</td></tr>
+                    <tr><td>Documentación</td><td>Extensa</td><td>Esencial</td></tr>
+                    <tr><td>Riesgo</td><td>Detectado tarde</td><td>Detectado temprano</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <h3>Pros / Contras (resumen)</h3>
+                <div class="pros">
+                  <li><strong>Waterfall - Pros:</strong> claro, predecible, fácil de gestionar en contratos.</li>
+                  <li><strong>Waterfall - Contras:</strong> poco adaptable, riesgo de entregar algo que ya no se necesita.</li>
+                  <li><strong>Agile - Pros:</strong> flexible, mejora continua, mayor satisfacción del cliente.</li>
+                  <li><strong>Agile - Contras:</strong> requiere disciplina, posible falta de documentación si se abusa.</li>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Buenas prácticas y checklist</h2>
+            <h4>Para Waterfall</h4>
+            <ul>
+              <li>Define requisitos y criterios de aceptación completos antes de empezar.</li>
+              <li>Revisa la planificación con stakeholders clave.</li>
+              <li>Reserva tiempo para fases de pruebas suficientes.</li>
+            </ul>
+            <h4>Para Agile</h4>
+            <ul>
+              <li>Establece un backlog priorizado y definido.</li>
+              <li>Realiza retros al final de cada sprint.</li>
+              <li>Mide progreso con métricas: velocidad, lead time, cycle time.</li>
+            </ul>
+
+          </section>
+
+          <section class="section">
+            <h2>Ejemplo práctico: Elección del enfoque</h2>
+            <p>Imagina dos proyectos:</p>
+            <ol>
+              <li>Actualizar firmware de un dispositivo médico ya certificado &mdash; aquí <strong>Waterfall</strong> suele ser más adecuado por requisitos regulatorios.</li>
+              <li>Crear una app móvil para un mercado nuevo &mdash; mejor con <strong>Agile</strong> para iterar según feedback de usuarios.</li>
+            </ol>
+          </section>
+
+          <section class="section">
+            <h2>Recursos y lecturas recomendadas</h2>
+            <ul>
+              <li class="small">Guía de Scrum (si te interesa Agile): busca "Scrum Guide".</li>
+              <li class="small">PMBoK / PRINCE2 (para patrones tradicionales similares a Waterfall).</li>
+              <li class="small">Libros: "Agile Estimating and Planning"; "Continuous Delivery" (para integrar DevOps con Agile).</li>
+            </ul>
+          </section>
+
+          <footer>
+            <div class="small">Página generada para fines educativos. ¿Quieres que incluya plantillas descargables (Word/Excel), o un modo de impresión optimizado?</div>
+          </footer>
+        </article>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3>Guía rápida</h3>
+          <p class="small">Decide por: <strong>Waterfall</strong> si tu proyecto necesita documentación y especificaciones inmutables. Elige <strong>Agile</strong> si esperas cambios y necesitas entregar valor pronto.</p>
+
+          <h4 style="margin-top:12px">Checklist inicial</h4>
+          <ul class="small">
+            <li>¿Requisitos estables? -> Waterfall</li>
+            <li>¿Necesitas feedback rápido? -> Agile</li>
+            <li>¿Regulación fuerte? -> Waterfall</li>
+            <li>¿Equipo cross-functional y autónomo? -> Agile</li>
+          </ul>
+
+          <h4 style="margin-top:12px">Plantillas incluidas</h4>
+          <ul class="small">
+            <li>Documento de requisitos (ejemplo)</li>
+            <li>Backlog de producto (ejemplo)</li>
+          </ul>
+
+          <div style="margin-top:12px; display:flex; gap:8px">
+            <a class="btn" href="#waterfall">Ir a Waterfall</a>
+            <a class="btn" href="#agile">Ir a Agile</a>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>

@@ -461,6 +461,8 @@ body {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-normal);
+
+    
 }
 
 .education-item:hover {
