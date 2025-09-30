@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Anexo 5 - Evaluación Docente</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { text-align: center; }
+        form { max-width: 800px; margin: auto; }
+        label { display: block; margin-top: 10px; }
+        input[type="text"], input[type="date"], textarea { width: 100%; padding: 8px; margin-top: 5px; }
+        input[type="file"] { margin-top: 5px; }
+        button { display: block; margin: 20px auto; padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        #output { max-width: 800px; margin: 20px auto; border: 1px solid #ccc; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .signature { margin-top: 40px; display: flex; justify-content: space-between; }
+        .evidence-img { max-width: 200px; height: auto; display: block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Generador de Anexo 5 - Evaluación del Desempeño Docente</h1>
+    <p>Complete los campos para generar el Anexo 5. Este formulario está diseñado para docentes de aula según el Decreto 1278 de 2002. Ahora incluye la opción de subir evidencias fotográficas para cada sección.</p>
+    
+    <form id="anexoForm">
+        <h2>Datos Generales</h2>
+        <label for="nombre">Nombre del Docente:</label>
+        <input type="text" id="nombre" required>
+        
+        <label for="cedula">Número de Cédula:</label>
+        <input type="text" id="cedula" required>
+        
+        <label for="institucion">Institución Educativa:</label>
+        <input type="text" id="institucion" required>
+        
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" required>
+        
+        <label for="fecha">Fecha de Concertación:</label>
+        <input type="date" id="fecha" required>
+        
+        <h2>Competencias Funcionales (70%)</h2>
+        
+        <h3>Área Académica</h3>
+        <label for="dominio_contrib">Contribución - Dominio Curricular:</label>
+        <textarea id="dominio_contrib" rows="3"></textarea>
+        <label for="dominio_crit">Criterios - Dominio Curricular:</label>
+        <textarea id="dominio_crit" rows="3"></textarea>
+        <label for="dominio_evid">Evidencias - Dominio Curricular:</label>
+        <textarea id="dominio_evid" rows="3"></textarea>
+        <label for="dominio_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="dominio_img" accept="image/*">
+        
+        <label for="planeacion_contrib">Contribución - Planeación y Organización Académica:</label>
+        <textarea id="planeacion_contrib" rows="3"></textarea>
+        <label for="planeacion_crit">Criterios - Planeación y Organización Académica:</label>
+        <textarea id="planeacion_crit" rows="3"></textarea>
+        <label for="planeacion_evid">Evidencias - Planeación y Organización Académica:</label>
+        <textarea id="planeacion_evid" rows="3"></textarea>
+        <label for="planeacion_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="planeacion_img" accept="image/*">
+        
+        <label for="pedagogica_contrib">Contribución - Pedagógica y Didáctica:</label>
+        <textarea id="pedagogica_contrib" rows="3"></textarea>
+        <label for="pedagogica_crit">Criterios - Pedagógica y Didáctica:</label>
+        <textarea id="pedagogica_crit" rows="3"></textarea>
+        <label for="pedagogica_evid">Evidencias - Pedagógica y Didáctica:</label>
+        <textarea id="pedagogica_evid" rows="3"></textarea>
+        <label for="pedagogica_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="pedagogica_img" accept="image/*">
+        
+        <label for="evaluacion_contrib">Contribución - Evaluación del Aprendizaje:</label>
+        <textarea id="evaluacion_contrib" rows="3"></textarea>
+        <label for="evaluacion_crit">Criterios - Evaluación del Aprendizaje:</label>
+        <textarea id="evaluacion_crit" rows="3"></textarea>
+        <label for="evaluacion_evid">Evidencias - Evaluación del Aprendizaje:</label>
+        <textarea id="evaluacion_evid" rows="3"></textarea>
+        <label for="evaluacion_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="evaluacion_img" accept="image/*">
+        
+        <h3>Área Administrativa</h3>
+        <label for="uso_contrib">Contribución - Uso de Recursos:</label>
+        <textarea id="uso_contrib" rows="3"></textarea>
+        <label for="uso_crit">Criterios - Uso de Recursos:</label>
+        <textarea id="uso_crit" rows="3"></textarea>
+        <label for="uso_evid">Evidencias - Uso de Recursos:</label>
+        <textarea id="uso_evid" rows="3"></textarea>
+        <label for="uso_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="uso_img" accept="image/*">
+        
+        <label for="seguimiento_contrib">Contribución - Seguimiento de Procesos:</label>
+        <textarea id="seguimiento_contrib" rows="3"></textarea>
+        <label for="seguimiento_crit">Criterios - Seguimiento de Procesos:</label>
+        <textarea id="seguimiento_crit" rows="3"></textarea>
+        <label for="seguimiento_evid">Evidencias - Seguimiento de Procesos:</label>
+        <textarea id="seguimiento_evid" rows="3"></textarea>
+        <label for="seguimiento_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="seguimiento_img" accept="image/*">
+        
+        <h3>Área Comunitaria</h3>
+        <label for="comunicacion_contrib">Contribución - Comunicación Institucional:</label>
+        <textarea id="comunicacion_contrib" rows="3"></textarea>
+        <label for="comunicacion_crit">Criterios - Comunicación Institucional:</label>
+        <textarea id="comunicacion_crit" rows="3"></textarea>
+        <label for="comunicacion_evid">Evidencias - Comunicación Institucional:</label>
+        <textarea id="comunicacion_evid" rows="3"></textarea>
+        <label for="comunicacion_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="comunicacion_img" accept="image/*">
+        
+        <label for="interaccion_contrib">Contribución - Interacción con la Comunidad y el Entorno:</label>
+        <textarea id="interaccion_contrib" rows="3"></textarea>
+        <label for="interaccion_crit">Criterios - Interacción con la Comunidad y el Entorno:</label>
+        <textarea id="interaccion_crit" rows="3"></textarea>
+        <label for="interaccion_evid">Evidencias - Interacción con la Comunidad y el Entorno:</label>
+        <textarea id="interaccion_evid" rows="3"></textarea>
+        <label for="interaccion_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="interaccion_img" accept="image/*">
+        
+        <h2>Competencias Comportamentales (30%)</h2>
+        <p>Seleccione y complete 3 competencias comportamentales.</p>
+        
+        <label for="comp1">Competencia 1 (ej. Liderazgo):</label>
+        <input type="text" id="comp1">
+        <label for="comp1_contrib">Contribución:</label>
+        <textarea id="comp1_contrib" rows="3"></textarea>
+        <label for="comp1_crit">Criterios:</label>
+        <textarea id="comp1_crit" rows="3"></textarea>
+        <label for="comp1_evid">Evidencias:</label>
+        <textarea id="comp1_evid" rows="3"></textarea>
+        <label for="comp1_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="comp1_img" accept="image/*">
+        
+        <label for="comp2">Competencia 2 (ej. Trabajo en Equipo):</label>
+        <input type="text" id="comp2">
+        <label for="comp2_contrib">Contribución:</label>
+        <textarea id="comp2_contrib" rows="3"></textarea>
+        <label for="comp2_crit">Criterios:</label>
+        <textarea id="comp2_crit" rows="3"></textarea>
+        <label for="comp2_evid">Evidencias:</label>
+        <textarea id="comp2_evid" rows="3"></textarea>
+        <label for="comp2_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="comp2_img" accept="image/*">
+        
+        <label for="comp3">Competencia 3 (ej. Iniciativa):</label>
+        <input type="text" id="comp3">
+        <label for="comp3_contrib">Contribución:</label>
+        <textarea id="comp3_contrib" rows="3"></textarea>
+        <label for="comp3_crit">Criterios:</label>
+        <textarea id="comp3_crit" rows="3"></textarea>
+        <label for="comp3_evid">Evidencias:</label>
+        <textarea id="comp3_evid" rows="3"></textarea>
+        <label for="comp3_img">Subir Evidencia Fotográfica (opcional):</label>
+        <input type="file" id="comp3_img" accept="image/*">
+        
+        <button type="button" onclick="generarAnexo()">Generar Anexo 5</button>
+    </form>
+    
+    <div id="output" style="display:none;">
+        <h1>ANEXO 5</h1>
+        <h2>Resumen de Competencias, Contribuciones, Criterios y Evidencias</h2>
+        <p><strong>Docente de Aula</strong></p>
+        <p><strong>Nombre:</strong> <span id="out_nombre"></span></p>
+        <p><strong>Cédula:</strong> <span id="out_cedula"></span></p>
+        <p><strong>Institución:</strong> <span id="out_institucion"></span></p>
+        
+        <h3>Competencias Funcionales</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Área de Gestión</th>
+                    <th>Competencia</th>
+                    <th>Contribución Individual</th>
+                    <th>Criterios de Evaluación</th>
+                    <th>Evidencias</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Académica</td>
+                    <td>Dominio Curricular</td>
+                    <td id="out_dominio_contrib"></td>
+                    <td id="out_dominio_crit"></td>
+                    <td id="out_dominio_evid"></td>
+                </tr>
+                <tr>
+                    <td>Académica</td>
+                    <td>Planeación y Organización Académica</td>
+                    <td id="out_planeacion_contrib"></td>
+                    <td id="out_planeacion_crit"></td>
+                    <td id="out_planeacion_evid"></td>
+                </tr>
+                <tr>
+                    <td>Académica</td>
+                    <td>Pedagógica y Didáctica</td>
+                    <td id="out_pedagogica_contrib"></td>
+                    <td id="out_pedagogica_crit"></td>
+                    <td id="out_pedagogica_evid"></td>
+                </tr>
+                <tr>
+                    <td>Académica</td>
+                    <td>Evaluación del Aprendizaje</td>
+                    <td id="out_evaluacion_contrib"></td>
+                    <td id="out_evaluacion_crit"></td>
+                    <td id="out_evaluacion_evid"></td>
+                </tr>
+                <tr>
+                    <td>Administrativa</td>
+                    <td>Uso de Recursos</td>
+                    <td id="out_uso_contrib"></td>
+                    <td id="out_uso_crit"></td>
+                    <td id="out_uso_evid"></td>
+                </tr>
+                <tr>
+                    <td>Administrativa</td>
+                    <td>Seguimiento de Procesos</td>
+                    <td id="out_seguimiento_contrib"></td>
+                    <td id="out_seguimiento_crit"></td>
+                    <td id="out_seguimiento_evid"></td>
+                </tr>
+                <tr>
+                    <td>Comunitaria</td>
+                    <td>Comunicación Institucional</td>
+                    <td id="out_comunicacion_contrib"></td>
+                    <td id="out_comunicacion_crit"></td>
+                    <td id="out_comunicacion_evid"></td>
+                </tr>
+                <tr>
+                    <td>Comunitaria</td>
+                    <td>Interacción con la Comunidad y el Entorno</td>
+                    <td id="out_interaccion_contrib"></td>
+                    <td id="out_interaccion_crit"></td>
+                    <td id="out_interaccion_evid"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Competencias Comportamentales</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Competencia</th>
+                    <th>Contribución Individual</th>
+                    <th>Criterios de Evaluación</th>
+                    <th>Evidencias</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="out_comp1"></td>
+                    <td id="out_comp1_contrib"></td>
+                    <td id="out_comp1_crit"></td>
+                    <td id="out_comp1_evid"></td>
+                </tr>
+                <tr>
+                    <td id="out_comp2"></td>
+                    <td id="out_comp2_contrib"></td>
+                    <td id="out_comp2_crit"></td>
+                    <td id="out_comp2_evid"></td>
+                </tr>
+                <tr>
+                    <td id="out_comp3"></td>
+                    <td id="out_comp3_contrib"></td>
+                    <td id="out_comp3_crit"></td>
+                    <td id="out_comp3_evid"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="signature">
+            <div>
+                <p>Evaluado:</p>
+                <p>Nombre: <span id="out_nombre_sig"></span></p>
+                <p>Cédula: <span id="out_cedula_sig"></span></p>
+                <p>Firma: ________________________</p>
+            </div>
+            <div>
+                <p>Evaluador:</p>
+                <p>Nombre: ________________________</p>
+                <p>Cédula: ________________________</p>
+                <p>Firma: ________________________</p>
+            </div>
+        </div>
+        <p>Ciudad: <span id="out_ciudad"></span> Fecha: <span id="out_fecha"></span></p>
+        
+        <button onclick="window.print()">Imprimir Anexo 5</button>
+    </div>
+    
+    <script>
+        function generarAnexo() {
+            // Datos generales
+            document.getElementById('out_nombre').textContent = document.getElementById('nombre').value;
+            document.getElementById('out_cedula').textContent = document.getElementById('cedula').value;
+            document.getElementById('out_institucion').textContent = document.getElementById('institucion').value;
+            document.getElementById('out_ciudad').textContent = document.getElementById('ciudad').value;
+            document.getElementById('out_fecha').textContent = document.getElementById('fecha').value;
+            document.getElementById('out_nombre_sig').textContent = document.getElementById('nombre').value;
+            document.getElementById('out_cedula_sig').textContent = document.getElementById('cedula').value;
+            
+            // Competencias funcionales - texto
+            document.getElementById('out_dominio_contrib').textContent = document.getElementById('dominio_contrib').value;
+            document.getElementById('out_dominio_crit').textContent = document.getElementById('dominio_crit').value;
+            document.getElementById('out_dominio_evid').innerHTML = document.getElementById('dominio_evid').value + '<img id="out_dominio_img" class="evidence-img">';
+            
+            document.getElementById('out_planeacion_contrib').textContent = document.getElementById('planeacion_contrib').value;
+            document.getElementById('out_planeacion_crit').textContent = document.getElementById('planeacion_crit').value;
+            document.getElementById('out_planeacion_evid').innerHTML = document.getElementById('planeacion_evid').value + '<img id="out_planeacion_img" class="evidence-img">';
+            
+            document.getElementById('out_pedagogica_contrib').textContent = document.getElementById('pedagogica_contrib').value;
+            document.getElementById('out_pedagogica_crit').textContent = document.getElementById('pedagogica_crit').value;
+            document.getElementById('out_pedagogica_evid').innerHTML = document.getElementById('pedagogica_evid').value + '<img id="out_pedagogica_img" class="evidence-img">';
+            
+            document.getElementById('out_evaluacion_contrib').textContent = document.getElementById('evaluacion_contrib').value;
+            document.getElementById('out_evaluacion_crit').textContent = document.getElementById('evaluacion_crit').value;
+            document.getElementById('out_evaluacion_evid').innerHTML = document.getElementById('evaluacion_evid').value + '<img id="out_evaluacion_img" class="evidence-img">';
+            
+            document.getElementById('out_uso_contrib').textContent = document.getElementById('uso_contrib').value;
+            document.getElementById('out_uso_crit').textContent = document.getElementById('uso_crit').value;
+            document.getElementById('out_uso_evid').innerHTML = document.getElementById('uso_evid').value + '<img id="out_uso_img" class="evidence-img">';
+            
+            document.getElementById('out_seguimiento_contrib').textContent = document.getElementById('seguimiento_contrib').value;
+            document.getElementById('out_seguimiento_crit').textContent = document.getElementById('seguimiento_crit').value;
+            document.getElementById('out_seguimiento_evid').innerHTML = document.getElementById('seguimiento_evid').value + '<img id="out_seguimiento_img" class="evidence-img">';
+            
+            document.getElementById('out_comunicacion_contrib').textContent = document.getElementById('comunicacion_contrib').value;
+            document.getElementById('out_comunicacion_crit').textContent = document.getElementById('comunicacion_crit').value;
+            document.getElementById('out_comunicacion_evid').innerHTML = document.getElementById('comunicacion_evid').value + '<img id="out_comunicacion_img" class="evidence-img">';
+            
+            document.getElementById('out_interaccion_contrib').textContent = document.getElementById('interaccion_contrib').value;
+            document.getElementById('out_interaccion_crit').textContent = document.getElementById('interaccion_crit').value;
+            document.getElementById('out_interaccion_evid').innerHTML = document.getElementById('interaccion_evid').value + '<img id="out_interaccion_img" class="evidence-img">';
+            
+            // Competencias comportamentales - texto
+            document.getElementById('out_comp1').textContent = document.getElementById('comp1').value;
+            document.getElementById('out_comp1_contrib').textContent = document.getElementById('comp1_contrib').value;
+            document.getElementById('out_comp1_crit').textContent = document.getElementById('comp1_crit').value;
+            document.getElementById('out_comp1_evid').innerHTML = document.getElementById('comp1_evid').value + '<img id="out_comp1_img" class="evidence-img">';
+            
+            document.getElementById('out_comp2').textContent = document.getElementById('comp2').value;
+            document.getElementById('out_comp2_contrib').textContent = document.getElementById('comp2_contrib').value;
+            document.getElementById('out_comp2_crit').textContent = document.getElementById('comp2_crit').value;
+            document.getElementById('out_comp2_evid').innerHTML = document.getElementById('comp2_evid').value + '<img id="out_comp2_img" class="evidence-img">';
+            
+            document.getElementById('out_comp3').textContent = document.getElementById('comp3').value;
+            document.getElementById('out_comp3_contrib').textContent = document.getElementById('comp3_contrib').value;
+            document.getElementById('out_comp3_crit').textContent = document.getElementById('comp3_crit').value;
+            document.getElementById('out_comp3_evid').innerHTML = document.getElementById('comp3_evid').value + '<img id="out_comp3_img" class="evidence-img">';
+            
+            // Cargar imágenes
+            loadImage('dominio_img', 'out_dominio_img');
+            loadImage('planeacion_img', 'out_planeacion_img');
+            loadImage('pedagogica_img', 'out_pedagogica_img');
+            loadImage('evaluacion_img', 'out_evaluacion_img');
+            loadImage('uso_img', 'out_uso_img');
+            loadImage('seguimiento_img', 'out_seguimiento_img');
+            loadImage('comunicacion_img', 'out_comunicacion_img');
+            loadImage('interaccion_img', 'out_interaccion_img');
+            loadImage('comp1_img', 'out_comp1_img');
+            loadImage('comp2_img', 'out_comp2_img');
+            loadImage('comp3_img', 'out_comp3_img');
+            
+            document.getElementById('output').style.display = 'block';
+        }
+        
+        function loadImage(inputId, outputId) {
+            const fileInput = document.getElementById(inputId);
+            const imgOutput = document.getElementById(outputId);
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgOutput.src = e.target.result;
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                imgOutput.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
