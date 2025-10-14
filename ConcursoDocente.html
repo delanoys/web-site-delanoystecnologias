@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulador Concurso Docente — Ley General de la Educación (Colombia)</title>
+  <meta name="description" content="Plataforma local para aprender la Ley General de la Educación y practicar simulacros tipo concurso docente (Colombia)." />
+  <style>
+    /* Reset ligero */
+    :root{--bg:#f8fafc;--card:#fff;--muted:#64748b;--accent:#0f172a;--primary:#0f172a}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--accent);background:var(--bg)}
+    .container{max-width:1100px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    header h1{font-size:18px;margin:0}
+    nav button{margin-left:8px;padding:8px 12px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer}
+    nav button.active{background:var(--primary);color:#fff}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(12,18,28,0.06);}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    h2{margin:0 0 8px 0}
+    p{margin:0}
+
+    /* Flashcards */
+    .flash{min-height:140px;display:flex;align-items:center;justify-content:center;border-radius:10px;padding:18px}
+    .controls{margin-top:12px;display:flex;gap:8px}
+    button.btn{padding:8px 12px;border-radius:8px;border:1px solid #e6eef7;background:#f1f5f9;cursor:pointer}
+    button.btn.primary{background:var(--primary);color:white;border:none}
+
+    /* Bank editor */
+    .bank-list{max-height:360px;overflow:auto;margin-top:8px}
+    .bank-item{padding:10px;border-radius:8px;border:1px solid #eef2f7;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Simulator */
+    .choices{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .choice{padding:12px;border-radius:10px;border:1px solid #e6eef7;text-align:left;cursor:pointer}
+    .choice.selected{background:var(--primary);color:white;border:none}
+    .footer{margin-top:14px;display:flex;justify-content:space-between;align-items:center}
+
+    /* Responsive */
+    @media(min-width:900px){
+      .two-cols{display:grid;grid-template-columns:1fr 340px;gap:18px}
+    }
+
+    pre{background:#0b1220;color:#dbeafe;padding:10px;border-radius:8px;overflow:auto}
+    input,textarea,select{padding:8px;border-radius:8px;border:1px solid #e6eef7;width:100%}
+    label{display:block;margin-top:8px;font-weight:600}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Simulador Concurso Docente — Ley General de la Educación (Colombia)</h1>
+      <nav>
+        <button id="nav-home" class="active">Inicio</button>
+        <button id="nav-study">Estudio</button>
+        <button id="nav-flash">Fichas</button>
+        <button id="nav-bank">Banco</button>
+        <button id="nav-sim">Simulador</button>
+      </nav>
+    </header>
+
+    <main style="margin-top:18px">
+      <!-- HOME -->
+      <section id="home" class="card">
+        <h2>Bienvenido</h2>
+        <p class="muted">Plataforma offline para estudiar la Ley General de la Educación y practicar evaluaciones tipo concurso docente en Colombia. Puedes editar el banco de preguntas, exportarlo/importarlo y simular pruebas cronometradas.</p>
+        <div class="grid cols-3" style="margin-top:12px">
+          <div class="card">
+            <h3>Simulador</h3>
+            <p class="muted">Configura número de preguntas y tiempo para simular la prueba.</p>
+            <div style="margin-top:8px"><button id="home-start" class="btn primary">Iniciar simulador</button></div>
+          </div>
+          <div class="card">
+            <h3>Estudio</h3>
+            <p class="muted">Resumen y secciones clave de la ley.</p>
+            <div style="margin-top:8px"><button id="home-study" class="btn">Ir a estudio</button></div>
+          </div>
+          <div class="card">
+            <h3>Banco</h3>
+            <p class="muted">Editar preguntas y exportar/importar en formato JSON.</p>
+            <div style="margin-top:8px"><button id="home-bank" class="btn">Editar banco</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDY -->
+      <section id="study" class="card" style="display:none;margin-top:12px">
+        <h2>Resumen — Ley General de la Educación</h2>
+        <div class="two-cols" style="margin-top:12px">
+          <div>
+            <article style="margin-bottom:12px">
+              <h3>1. Objeto y principios</h3>
+              <p class="muted">La educación es un derecho y servicio público. Principios: equidad, calidad, libertad de enseñanza, autonomía y evaluación para la mejora.</p>
+            </article>
+            <article style="margin-bottom:12px">
+              <h3>2. Niveles y modalidades</h3>
+              <p class="muted">Preescolar, básica y media; modalidades formal y no formal; responsabilidades del Estado y comunidades educativas.</p>
+            </article>
+            <article style="margin-bottom:12px">
+              <h3>3. Docencia y concurso</h3>
+              <p class="muted">Los concursos públicos definen requisitos, criterios técnicos y pedagógicos para el ingreso a la planta docente.</p>
+            </article>
+            <article style="margin-bottom:12px">
+              <h3>4. Evaluación y calidad</h3>
+              <p class="muted">Evaluación institucional, pruebas estandarizadas y evaluación de desempeño docente orientadas a la mejora.</p>
+            </article>
+          </div>
+          <aside class="card">
+            <h4>Recursos</h4>
+            <p class="muted">Consulta siempre la normativa oficial publicada por el Ministerio de Educación Nacional y las secretarías de educación locales para la convocatoria específica.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- FLASHCARDS -->
+      <section id="flash" class="card" style="display:none;margin-top:12px">
+        <h2>Fichas</h2>
+        <div>
+          <div id="flashcard" class="flash card">Cargando...</div>
+          <div class="controls">
+            <button id="flash-prev" class="btn">Anterior</button>
+            <button id="flash-toggle" class="btn">Mostrar respuesta</button>
+            <button id="flash-next" class="btn">Siguiente</button>
+            <button id="flash-shuffle" class="btn">Barajar</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BANK -->
+      <section id="bank" class="card" style="display:none;margin-top:12px">
+        <h2>Banco de preguntas</h2>
+        <div class="two-cols">
+          <div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button id="bank-add" class="btn">Agregar</button>
+              <button id="bank-export" class="btn">Exportar</button>
+              <label class="btn" style="display:inline-block;cursor:pointer">Importar<input id="bank-file" type="file" accept="application/json" style="display:none" /></label>
+              <div class="muted" style="margin-left:auto">Total: <span id="bank-count">0</span></div>
+            </div>
+
+            <div class="bank-list" id="bank-list"></div>
+          </div>
+          <div>
+            <div class="card">
+              <h3 id="editor-title">Editor</h3>
+              <label>Pregunta</label>
+              <textarea id="editor-question" rows="3"></textarea>
+              <label>Tema</label>
+              <input id="editor-topic" />
+              <label>Opción A</label>
+              <input id="opt-0" />
+              <label>Opción B</label>
+              <input id="opt-1" />
+              <label>Opción C</label>
+              <input id="opt-2" />
+              <label>Opción D</label>
+              <input id="opt-3" />
+              <label>Índice respuesta correcta (0-3)</label>
+              <input id="editor-correct" type="number" min="0" max="3" />
+              <label>Explicación</label>
+              <textarea id="editor-expl" rows="3"></textarea>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button id="editor-save" class="btn primary">Guardar</button>
+                <button id="editor-cancel" class="btn">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIMULATOR -->
+      <section id="sim" class="card" style="display:none;margin-top:12px">
+        <h2>Simulador</h2>
+        <div class="two-cols">
+          <div>
+            <label>Número de preguntas</label>
+            <input id="sim-n" type="number" min="1" value="10" />
+            <label>Tiempo (minutos)</label>
+            <input id="sim-time" type="number" min="5" value="60" />
+            <label><input id="sim-random" type="checkbox" checked /> Aleatorizar preguntas</label>
+
+            <div style="margin-top:12px">
+              <button id="sim-start" class="btn primary">Iniciar simulador</button>
+            </div>
+
+            <div id="sim-report" style="margin-top:12px;display:none" class="card">
+              <h3>Resultado</h3>
+              <div id="report-score" class="muted"></div>
+              <div id="report-list" style="margin-top:8px"></div>
+              <div style="margin-top:8px"><button id="report-close" class="btn">Cerrar</button></div>
+            </div>
+          </div>
+
+          <div>
+            <div id="sim-area" style="display:none">
+              <div class="small" id="sim-timer">Tiempo restante: <strong id="time-left">00:00:00</strong></div>
+              <div style="margin-top:8px" class="card">
+                <div id="sim-question" class="muted">Pregunta...</div>
+                <div id="sim-choices" class="choices"></div>
+                <div class="footer">
+                  <div>
+                    <button id="sim-prev" class="btn">Anterior</button>
+                    <button id="sim-next" class="btn">Siguiente</button>
+                  </div>
+                  <div>
+                    <button id="sim-submit" class="btn primary">Enviar y terminar</button>
+                  </div>
+                </div>
+                <div class="small" style="margin-top:8px">Progreso: <span id="sim-progress">0</span> / <span id="sim-total">0</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer style="margin-top:18px;text-align:center;color:var(--muted);font-size:13px">Hecho para estudio. Consulte fuentes oficiales para convocatorias reales.</footer>
+  </div>
+
+  <script>
+    // --- Utilidades ---
+    const $ = (id) => document.getElementById(id);
+
+    // --- Navegación simple ---
+    const sections = ['home','study','flash','bank','sim'];
+    function show(name){
+      sections.forEach(s=> $(s).style.display = s===name ? 'block' : 'none');
+      document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+      document.querySelector('#nav-' + name).classList.add('active');
+    }
+    sections.forEach(s=>{document.querySelector('#nav-'+s).addEventListener('click',()=>show(s))});
+    $('home-start').addEventListener('click',()=>{show('sim'); $('sim-start').click();});
+    $('home-study').addEventListener('click',()=>show('study'));
+    $('home-bank').addEventListener('click',()=>show('bank'));
+
+    // --- Banco de preguntas (localStorage) ---
+    const STORAGE_KEY = 'sim_concurso_questions_v1';
+    function loadBank(){
+      try{const raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):defaultQuestions();}catch(e){return defaultQuestions();}
+    }
+    function saveBank(arr){localStorage.setItem(STORAGE_KEY,JSON.stringify(arr));renderBank();}
+
+    let bank = loadBank();
+
+    function defaultQuestions(){
+      return [
+        {id:1,question:'¿Cuál es uno de los principios básicos de la Ley General de la Educación?',choices:['Privacidad absoluta','Equidad y acceso','Comercialización educativa','Exclusión'],correct:1,explanation:'La ley promueve el acceso y la equidad.' ,topic:'Principios'},
+        {id:2,question:'Una de las modalidades de educación es:',choices:['Formal','Industrial','Militar','Comercial'],correct:0,explanation:'La educación formal es una modalidad.' ,topic:'Modalidades'},
+        {id:3,question:'El concurso docente tiene como objetivo principal:',choices:['Privilegiar amigos','Seleccionar por méritos','Reducir plazas','Excluir candidatos'],correct:1,explanation:'Seleccionar por mérito técnico-pedagógico.' ,topic:'Concurso'},
+        {id:4,question:'Qué aspecto NO hace parte de la evaluación institucional?',choices:['Mejora continua','Evaluación de resultados','Publicidad comercial','Seguimiento pedagógico'],correct:2,explanation:'Publicidad comercial no es parte de la evaluación institucional.' ,topic:'Evaluación'},
+        {id:5,question:'¿Qué documento publica la entidad territorial para convocar un concurso docente?',choices:['Las bases del concurso','Un meme','Una lista cerrada','Carta personal'],correct:0,explanation:'Las bases contienen requisitos y criterios.' ,topic:'Concurso'}
+      ];
+    }
+
+    // Render banco UI
+    function renderBank(){
+      bank = loadBank();
+      $('bank-count').textContent = bank.length;
+      const list = $('bank-list'); list.innerHTML='';
+      bank.forEach(q=>{
+        const it = document.createElement('div'); it.className='bank-item';
+        it.innerHTML = `<div><div style="font-weight:600">${escapeHtml(q.question)}</div><div class="small">Tema: ${escapeHtml(q.topic||'(sin tema)')}</div></div>`;
+        const actions = document.createElement('div');
+        const btnEdit = document.createElement('button'); btnEdit.className='btn'; btnEdit.textContent='Editar'; btnEdit.addEventListener('click',()=>openEditor(q.id));
+        const btnDel = document.createElement('button'); btnDel.className='btn'; btnDel.textContent='Eliminar'; btnDel.addEventListener('click',()=>{if(confirm('Eliminar pregunta?')){bank = bank.filter(x=>x.id!==q.id);saveBank(bank);}});
+        actions.appendChild(btnEdit); actions.appendChild(btnDel);
+        it.appendChild(actions);
+        list.appendChild(it);
+      });
+    }
+
+    function escapeHtml(s){return (s+'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]);}
+
+    // --- Editor ---
+    let editingId = null;
+    function openEditor(id=null){
+      editingId = id;
+      $('editor-title').textContent = id? 'Editar pregunta':'Nueva pregunta';
+      if(id){
+        const q = bank.find(x=>x.id===id);
+        $('editor-question').value = q.question; $('editor-topic').value=q.topic||''; $('opt-0').value=q.choices[0]||''; $('opt-1').value=q.choices[1]||''; $('opt-2').value=q.choices[2]||''; $('opt-3').value=q.choices[3]||''; $('editor-correct').value=q.correct; $('editor-expl').value=q.explanation||'';
+      }else{
+        $('editor-question').value='';$('editor-topic').value='';$('opt-0').value='';$('opt-1').value='';$('opt-2').value='';$('opt-3').value='';$('editor-correct').value=0;$('editor-expl').value='';
+      }
+      // bring focus
+      $('editor-question').focus();
+    }
+
+    $('bank-add').addEventListener('click',()=>openEditor(null));
+    $('editor-cancel').addEventListener('click',()=>{editingId=null; $('editor-title').textContent='Editor';});
+    $('editor-save').addEventListener('click',()=>{
+      const qText=$('editor-question').value.trim(); if(!qText){alert('Escribe la pregunta'); return}
+      const choices=[ $('opt-0').value, $('opt-1').value, $('opt-2').value, $('opt-3').value ];
+      const correct = parseInt($('editor-correct').value)||0; const expl=$('editor-expl').value; const topic=$('editor-topic').value;
+      if(editingId){
+        bank = bank.map(b=> b.id===editingId ? {...b, question:qText, choices, correct, explanation:expl, topic} : b );
+      }else{
+        const id = Date.now(); bank.unshift({id,question:qText,choices,correct,explanation:expl,topic});
+      }
+      saveBank(bank);
+      editingId=null; $('editor-title').textContent='Editor';
+    });
+
+    // Export / Import
+    $('bank-export').addEventListener('click',()=>{
+      const blob = new Blob([JSON.stringify(bank, null, 2)],{type:'application/json'});
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='banco_preguntas_concurso.json'; a.click(); URL.revokeObjectURL(url);
+    });
+    $('bank-file').addEventListener('change',(e)=>{
+      const f = e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>{
+        try{const arr=JSON.parse(ev.target.result); if(Array.isArray(arr)){bank=arr; saveBank(bank); alert('Banco importado');}else alert('Formato inválido');}catch(err){alert('Error leyendo archivo')}
+      }; r.readAsText(f);
+    });
+
+    // --- Flashcards ---
+    let flashIndex = 0; let flashShowAnswer=false;
+    function renderFlash(){
+      const cards = bankFlash(); if(cards.length===0){$('flashcard').textContent='No hay fichas';return}
+      const c = cards[flashIndex%cards.length]; $('flashcard').innerHTML = `<div style="text-align:center"><div style="font-weight:700">${escapeHtml(c.front)}</div>${flashShowAnswer?`<div style="margin-top:8px;color:var(--muted)">${escapeHtml(c.back)}</div>`:''}</div>`;
+    }
+    function bankFlash(){return [
+      {front:'Objeto de la Ley General de la Educación',back:'Garantizar el derecho a la educación, promover calidad, equidad y acceso.'},
+      {front:'Niveles básicos',back:'Preescolar, básica y media.'},
+      {front:'Concurso docente: propósito',back:'Seleccionar públicamente a los mejores candidatos por méritos.'},
+      {front:'Evaluación docente',back:'Incluye conocimientos disciplinares y competencias pedagógicas.'}
+    ]}
+    $('flash-prev').addEventListener('click',()=>{flashIndex=(flashIndex-1+bankFlash().length)%bankFlash().length; renderFlash();});
+    $('flash-next').addEventListener('click',()=>{flashIndex=(flashIndex+1)%bankFlash().length; renderFlash();});
+    $('flash-toggle').addEventListener('click',()=>{flashShowAnswer=!flashShowAnswer; $('flash-toggle').textContent = flashShowAnswer? 'Ocultar respuesta':'Mostrar respuesta'; renderFlash();});
+    $('flash-shuffle').addEventListener('click',()=>{shuffleFlash(); flashIndex=0; renderFlash();});
+    function shuffleFlash(){const f=bankFlash(); for(let i=f.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[f[i],f[j]]=[f[j],f[i]];} }
+
+    // --- Simulador ---
+    let simState = null; let simTimer = null;
+    $('sim-start').addEventListener('click', ()=>{
+      const n = Math.max(1, parseInt($('sim-n').value)||10); const minutes = Math.max(1, parseInt($('sim-time').value)||60); const random = $('sim-random').checked;
+      let pool = [...bank]; if(pool.length===0){alert('El banco de preguntas está vacío'); return}
+      if(random) pool.sort(()=>Math.random()-0.5);
+      const selected = pool.slice(0, Math.min(n, pool.length)).map(q=>({...q}));
+      simState = { questions:selected, answers: Array(selected.length).fill(null), index:0, endsAt: Date.now()+minutes*60*1000, startedAt: Date.now(), finished:false };
+      startSimulatorUI();
+    });
+
+    function startSimulatorUI(){
+      $('sim-area').style.display='block'; $('sim-report').style.display='none'; $('sim-total').textContent = simState.questions.length; updateSimUI();
+      if(simTimer) clearInterval(simTimer);
+      simTimer = setInterval(()=>{
+        const left = Math.max(0, Math.round((simState.endsAt - Date.now())/1000));
+        $('time-left').textContent = formatHMS(left);
+        if(left<=0){ clearInterval(simTimer); finishSim(); }
+      },500);
+    }
+
+    function updateSimUI(){
+      const q = simState.questions[simState.index]; $('sim-question').textContent = q.question; $('sim-choices').innerHTML='';
+      q.choices.forEach((c,i)=>{
+        const el = document.createElement('div'); el.className='choice'+(simState.answers[simState.index]===i?' selected':''); el.innerHTML = `<strong>${String.fromCharCode(65+i)}</strong>. ${escapeHtml(c)}`;
+        el.addEventListener('click',()=>{ simState.answers[simState.index]=i; updateSimUI(); $('sim-progress').textContent = simState.answers.filter(a=>a!=null).length; });
+        $('sim-choices').appendChild(el);
+      });
+      $('sim-progress').textContent = simState.answers.filter(a=>a!=null).length;
+      $('sim-total').textContent = simState.questions.length;
+    }
+
+    $('sim-next').addEventListener('click',()=>{ if(simState.index < simState.questions.length-1) simState.index++; updateSimUI(); });
+    $('sim-prev').addEventListener('click',()=>{ if(simState.index > 0) simState.index--; updateSimUI(); });
+    $('sim-submit').addEventListener('click',()=>{ if(confirm('Enviar simulacro y calcular puntaje?')) finishSim(); });
+
+    function finishSim(){
+      if(simTimer) clearInterval(simTimer);
+      const score = simState.questions.reduce((acc,q,i)=>acc + (simState.answers[i]===q.correct?1:0),0);
+      const pct = ((score/simState.questions.length)*100).toFixed(1);
+      $('report-score').textContent = `Puntaje: ${score} / ${simState.questions.length} (${pct}%)`;
+      const list = $('report-list'); list.innerHTML='';
+      simState.questions.forEach((q,i)=>{
+        const el = document.createElement('div'); el.className='card'; el.style.marginBottom='8px'; el.innerHTML = `<div style="font-weight:700">${escapeHtml(q.question)}</div><div class="small">Tu respuesta: ${simState.answers[i]==null? '—' : escapeHtml(q.choices[simState.answers[i]])}</div><div class="small">Correcta: ${escapeHtml(q.choices[q.correct])}</div><div class="muted small">Explicación: ${escapeHtml(q.explanation||'')}</div>`; list.appendChild(el);
+      });
+      $('sim-report').style.display='block'; $('sim-area').style.display='none';
+    }
+    $('report-close').addEventListener('click',()=>{ $('sim-report').style.display='none'; $('sim-area').style.display='block'; });
+
+    // Helpers
+    function formatHMS(sec){ const h=Math.floor(sec/3600); const m=Math.floor((sec%3600)/60); const s=sec%60; return [h,m,s].map(x=>String(x).padStart(2,'0')).join(':'); }
+
+    // Init
+    renderBank(); renderFlash();
+
+    // Small UX: allow nav buttons IDs
+    $('nav-home').addEventListener('click',()=>show('home'));
+    $('nav-study').addEventListener('click',()=>show('study'));
+    $('nav-flash').addEventListener('click',()=>{show('flash'); renderFlash();});
+    $('nav-bank').addEventListener('click',()=>{show('bank'); renderBank();});
+    $('nav-sim').addEventListener('click',()=>show('sim'));
+
+    // expose openEditor to global for bank list buttons
+    window.openEditor = openEditor;
+
+  </script>
+</body>
+</html>

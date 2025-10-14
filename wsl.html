@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSL - Windows Subsystem for Linux</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            animation: fadeIn 1s ease-in;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            margin: 0 10px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+        }
+
+        .nav-links a:hover {
+            background: white;
+            color: #11998e;
+            transform: translateY(-3px);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn:hover {
+            background: white;
+            color: #11998e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #11998e;
+            font-weight: bold;
+        }
+
+        .content-section {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #11998e;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .card h3 {
+            color: #38ef7d;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .terminal {
+            background: #000;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .terminal-header {
+            background: #2d2d2d;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 10px 10px 0 0;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-body {
+            background: #000;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .interactive-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .try-it {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+
+        .try-it:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .try-it.secondary {
+            background: #2196F3;
+        }
+
+        .try-it.secondary:hover {
+            background: #0b7dda;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+        }
+
+        .output {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #11998e;
+            min-height: 50px;
+        }
+
+        .lesson-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .lesson-item {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .lesson-item h4 {
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .tip {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .quiz-option {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: #e9ecef;
+            border-color: #11998e;
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .command-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #11998e;
+        }
+
+        .command-card h4 {
+            color: #11998e;
+            margin-bottom: 8px;
+        }
+
+        .command-card code {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🐧 WSL</h1>
+        <p>Windows Subsystem for Linux - Linux en Windows sin máquinas virtuales</p>
+    </header>
+
+    <div class="nav-links">
+        <a href="typescript.html">📘 Ir a TypeScript</a>
+    </div>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('intro')">🏠 Inicio</button>
+            <button class="tab-btn" onclick="switchTab('instalacion')">⚙️ Instalación</button>
+            <button class="tab-btn" onclick="switchTab('comandos')">💻 Comandos</button>
+            <button class="tab-btn" onclick="switchTab('practica')">💪 Práctica</button>
+        </div>
+
+        <!-- Sección Intro -->
+        <div id="intro" class="content-section active">
+            <div class="card">
+                <h2>¿Qué es WSL? 🐧</h2>
+                <p>Windows Subsystem for Linux (WSL) es una capa de compatibilidad desarrollada por Microsoft que permite ejecutar un entorno Linux completo directamente en Windows.</p>
+
+                <h3>¿Por qué usar WSL?</h3>
+                <div class="lesson-list">
+                    <div class="lesson-item">
+                        <h4>⚡ Rendimiento</h4>
+                        <p>Más rápido que una máquina virtual tradicional</p>
+                    </div>
+                    <div class="lesson-item">
+                        <h4>🔧 Herramientas Nativas</h4>
+                        <p>Acceso a todas las herramientas de Linux</p>
+                    </div>
+                    <div class="lesson-item">
+                        <h4>🔗 Integración</h4>
+                        <p>Trabaja con archivos de Windows fácilmente</p>
+                    </div>
+                    <div class="lesson-item">
+                        <h4>👨‍💻 Desarrollo</h4>
+                        <p>Ambiente ideal para desarrollo web y DevOps</p>
+                    </div>
+                </div>
+
+                <div class="interactive-box">
+                    <h3>🎮 Tu Progreso en WSL</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="mainProgress"></div>
+                    </div>
+                    <p>Completa las secciones para dominar WSL</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Instalación -->
+        <div id="instalacion" class="content-section">
+            <div class="card">
+                <h2>⚙️ Instalación de WSL</h2>
+
+                <h3>Instalación Rápida</h3>
+                <p>El método más fácil es usar un solo comando en PowerShell como Administrador:</p>
+
+                <div class="terminal-header">PowerShell (Administrador)</div>
+                <div class="terminal-body">wsl --install</div>
+
+                <div class="tip">
+                    <strong>💡 ¿Qué hace este comando?</strong>
+                    <ul>
+                        <li>Habilita las características necesarias de Windows</li>
+                        <li>Instala WSL 2</li>
+                        <li>Descarga e instala Ubuntu</li>
+                    </ul>
+                </div>
+
+                <h3>Comandos WSL desde Windows</h3>
+                <div class="command-grid">
+                    <div class="command-card">
+                        <h4>Ver distribuciones instaladas</h4>
+                        <code>wsl --list --verbose</code>
+                    </div>
+                    <div class="command-card">
+                        <h4>Iniciar WSL</h4>
+                        <code>wsl</code>
+                    </div>
+                    <div class="command-card">
+                        <h4>Apagar WSL</h4>
+                        <code>wsl --shutdown</code>
+                    </div>
+                    <div class="command-card">
+                        <h4>Actualizar WSL</h4>
+                        <code>wsl --update</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Comandos -->
+        <div id="comandos" class="content-section">
+            <div class="card">
+                <h2>💻 Comandos Básicos de Linux</h2>
+
+                <h3>1. Navegación de Directorios</h3>
+                <div class="code-block">
+# Ver directorio actual
+pwd
+
+# Listar archivos
+ls
+ls -la
+
+# Cambiar de directorio
+cd /home
+cd ~
+cd ..
+
+# Crear directorio
+mkdir mi_proyecto
+                </div>
+
+                <div class="interactive-box">
+                    <h3>🎮 Simulador de Terminal</h3>
+                    <p>Practica comandos:</p>
+                    <input type="text" id="terminalInput" placeholder="Escribe un comando: ls, pwd, cd...">
+                    <button class="try-it secondary" onclick="runCommand()">▶️ Ejecutar</button>
+                    <div class="terminal-body" id="terminalOutput">$ Esperando comando...</div>
+                </div>
+
+                <h3>2. Gestión de Archivos</h3>
+                <div class="code-block">
+# Crear archivo
+touch archivo.txt
+
+# Copiar archivos
+cp archivo.txt copia.txt
+
+# Mover o renombrar
+mv archivo.txt nuevo.txt
+
+# Eliminar archivos
+rm archivo.txt
+
+# Ver contenido
+cat archivo.txt
+less archivo.txt
+                </div>
+
+                <h3>3. Gestión de Paquetes (APT)</h3>
+                <div class="code-block">
+# Actualizar lista de paquetes
+sudo apt update
+
+# Instalar paquetes
+sudo apt install git
+sudo apt install nodejs npm
+
+# Actualizar sistema
+sudo apt upgrade
+                </div>
+
+                <div class="interactive-box">
+                    <h3>🧪 Quiz de Comandos</h3>
+                    <p><strong>¿Qué comando se usa para ver el contenido de un archivo?</strong></p>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">A) ls</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">B) cat</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">C) cd</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">D) mkdir</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Práctica -->
+        <div id="practica" class="content-section">
+            <div class="card">
+                <h2>💪 Ejercicios Prácticos</h2>
+
+                <h3>🎯 Script de Backup</h3>
+                <div class="code-block">
+#!/bin/bash
+# backup.sh
+
+SOURCE_DIR="$HOME/proyectos"
+BACKUP_DIR="$HOME/backups"
+
+mkdir -p "$BACKUP_DIR"
+
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+BACKUP_NAME="backup_$TIMESTAMP.tar.gz"
+
+tar -czf "$BACKUP_DIR/$BACKUP_NAME" "$SOURCE_DIR"
+
+echo "✅ Backup creado: $BACKUP_NAME"
+                </div>
+
+                <h3>📋 Checklist de Dominio WSL</h3>
+                <div id="checklist" style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <label style="display: block; margin: 10px 0; cursor: pointer;">
+                        <input type="checkbox" onchange="updateProgress()"> He instalado WSL correctamente
+                    </label>
+                    <label style="display: block; margin: 10px 0; cursor: pointer;">
+                        <input type="checkbox" onchange="updateProgress()"> Puedo navegar por el sistema de archivos
+                    </label>
+                    <label style="display: block; margin: 10px 0; cursor: pointer;">
+                        <input type="checkbox" onchange="updateProgress()"> Sé crear y eliminar archivos
+                    </label>
+                    <label style="display: block; margin: 10px 0; cursor: pointer;">
+                        <input type="checkbox" onchange="updateProgress()"> Puedo instalar paquetes con apt
+                    </label>
+                    <label style="display: block; margin: 10px 0; cursor: pointer;">
+                        <input type="checkbox" onchange="updateProgress()"> Completé ejercicios prácticos
+                    </label>
+                </div>
+
+                <div class="progress-bar" style="margin-top: 20px;">
+                    <div class="progress-fill" id="learningProgress"></div>
+                </div>
+                <p style="text-align: center; margin-top: 10px;"><strong>Tu progreso: <span id="progressText">0%</span></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            const sections = document.querySelectorAll('.content-section');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            sections.forEach(section => section.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function runCommand() {
+            const command = document.getElementById('terminalInput').value.trim();
+            const output = document.getElementById('terminalOutput');
+            
+            const responses = {
+                'pwd': '$ pwd\n/home/usuario',
+                'ls': '$ ls\nDocumentos  proyectos  archivo.txt',
+                'ls -la': '$ ls -la\ndrwxr-xr-x 5 usuario usuario 4096 oct 14 10:30 .',
+                'whoami': '$ whoami\nusuario',
+                'date': `$ date\n${new Date().toLocaleString('es-ES')}`,
+                'mkdir test': '$ mkdir test\n✅ Directorio creado',
+                'touch archivo.txt': '$ touch archivo.txt\n✅ Archivo creado'
+            };
+            
+            if (responses[command]) {
+                output.textContent = responses[command];
+                output.style.color = '#00ff00';
+            } else if (command === '') {
+                output.textContent = '$ Esperando comando...';
+            } else {
+                output.textContent = `$ ${command}\ncomando no encontrado`;
+                output.style.color = '#ff6b6b';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('terminalInput');
+            if (input) {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') runCommand();
+                });
+            }
+        });
+
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                element.innerHTML += ' ✅ ¡Correcto!';
+            } else {
+                element.classList.add('incorrect');
+                element.innerHTML += ' ❌ Incorrecto';
+            }
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+            const checked = document.querySelectorAll('#checklist input[type="checkbox"]:checked').length;
+            const total = checkboxes.length;
+            const percentage = Math.round((checked / total) * 100);
+            
+            document.getElementById('learningProgress').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = percentage + '%';
+            document.getElementById('mainProgress').style.width = percentage + '%';
+            
+            if (percentage === 100) {
+                setTimeout(() => alert('🎉 ¡Felicitaciones! Has completado WSL.'), 500);
+            }
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('mainProgress').style.width = '10%';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

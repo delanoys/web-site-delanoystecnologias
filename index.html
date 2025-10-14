@@ -159,120 +159,365 @@
         <!-- Sección educativa interactiva -->
         <section class="education-section" id="educacion">
             <div class="container">
-            <h2 class="section-title">Recursos Educativos Destacados</h2>
-            <div class="education-grid">
-                <div class="education-item highlight" tabindex="0">
-                <h3><i class="fa-solid fa-file-invoice-dollar"></i> Proyecto Web Facturación</h3>
-                <p>Ruta de Aprendizaje: Proyecto Web Completo</p>
-                <a href="/rutaproyectoweb.html" target="_blank" class="edu-link">Ver Ruta</a>
+                <h2 class="section-title">Recursos Educativos Destacados</h2>
+                <div class="education-layout">
+
+                    <!-- Aside: Guías rápidas y enlaces útiles -->
+                    <aside class="education-aside" aria-label="Guías rápidas y enlaces útiles">
+                        <h3><i class="fa-solid fa-link"></i> Accesos Directos</h3>
+                        <ul>
+                            <li><a href="/rutaproyectoweb.html" target="_blank">Proyecto Web Facturación</a></li>
+                            <li><a href="/basesdedatos.html" target="_blank">Curso SQL</a></li>
+                            <li><a href="/Reactdesdecero.html" target="_blank">Curso React</a></li>
+                            <li><a href="/typescript.html" target="_blank">Curso TypeScript</a></li>
+                            <li><a href="/DevOps.html" target="_blank">Roadmap DevOps</a></li>
+                            <li><a href="/ingles.html" target="_blank">Plan Inglés</a></li>
+                            <li><a href="/info.html" target="_parent">Artículos TIC</a></li>
+                        </ul>
+                        <h4><i class="fa-solid fa-book"></i> Documentos Oficiales</h4>
+                        <ul>
+                            <li><a href="/anexo5.html" target="_blank">Anexo 5 General</a></li>
+                            <li><a href="/anexo5 docente.html" target="_blank">Anexo 5 Docente</a></li>
+                        </ul>
+                    </aside>
+
+                    <!-- Main educational content -->
+                    <div class="education-main">
+
+                        <!-- Proyectos y Cursos Principales -->
+                        <section class="education-group" aria-label="Proyectos y Cursos Principales">
+                            <h3 class="group-title"><i class="fa-solid fa-laptop-code"></i> Proyectos y Cursos Principales</h3>
+                            <div class="education-items-row">
+                                <article class="education-item highlight" tabindex="0">
+                                    <h4><i class="fa-solid fa-file-invoice-dollar"></i> Proyecto Web Facturación</h4>
+                                    <p>Ruta de Aprendizaje: Proyecto Web Completo</p>
+                                    <a href="/rutaproyectoweb.html" target="_blank" class="edu-link">Ver Ruta</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-database"></i> Curso SQL</h4>
+                                    <p>Aprende SQL con SQLite y PostgreSQL en VS Code.</p>
+                                    <a href="basesdedatos.html" class="edu-link">Ir al curso</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-brands fa-react"></i> Aprende React desde Cero</h4>
+                                    <p>Curso práctico para dominar React, la biblioteca líder de interfaces modernas.</p>
+                                    <a href="/Reactdesdecero.html" target="_blank" class="edu-link">Ir al curso</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-code-branch"></i> Aprende TypeScript</h4>
+                                    <p>Mejora JavaScript con tipado estático y desarrollo robusto.</p>
+                                    <a href="/typescript.html" target="_blank" class="edu-link">Ir al curso</a>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- DevOps y Metodologías -->
+                        <section class="education-group" aria-label="DevOps y Metodologías">
+                            <h3 class="group-title"><i class="fa-brands fa-dev"></i> DevOps y Metodologías</h3>
+                            <div class="education-items-row">
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-brands fa-dev"></i> DevOps</h4>
+                                    <ul>
+                                        <li><a href="/DevOps.html" target="_blank">Roadmap interactivo</a></li>
+                                        <li><a href="/proDevOps.html" target="_blank">Automatización y despliegue</a></li>
+                                        <li><a href="/proyectoDevOps.html" target="_blank">DevOps TOTAL</a></li>
+                                    </ul>
+                                    <p>Aprende Docker, Kubernetes, Jenkins, AWS, Git y más.</p>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-diagram-project"></i> Waterfall vs Agile</h4>
+                                    <ul>
+                                        <li><strong>Waterfall:</strong> Secuencial, fases delimitadas.</li>
+                                        <li><strong>Agile:</strong> Iterativo, entrega continua y adaptación.</li>
+                                    </ul>
+                                    <a href="/desarrollodevops.html" target="_blank" class="edu-link">Ver más sobre DevOps</a>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- Soporte, Capacitación y Seguridad -->
+                        <section class="education-group" aria-label="Soporte, Capacitación y Seguridad">
+                            <h3 class="group-title"><i class="fa-solid fa-headset"></i> Soporte y Seguridad</h3>
+                            <div class="education-items-row">
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-headset"></i> Soporte Remoto</h4>
+                                    <p>Asistencia remota para resolver problemas técnicos.</p>
+                                    <a href="#contacto" class="edu-link">Solicitar soporte</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-chalkboard-user"></i> Capacitación Personalizada</h4>
+                                    <p>Cursos y talleres adaptados a tus necesidades.</p>
+                                    <a href="#contacto" class="edu-link">Solicitar capacitación</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-shield-halved"></i> Consultoría en Seguridad</h4>
+                                    <p>Protege tus datos y sistemas con auditorías y soluciones a medida.</p>
+                                    <a href="#contacto" class="edu-link">Solicitar consultoría</a>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- Idiomas y Planes de Aprendizaje -->
+                        <section class="education-group" aria-label="Idiomas y Planes de Aprendizaje">
+                            <h3 class="group-title"><i class="fa-solid fa-language"></i> Idiomas y Planes</h3>
+                            <div class="education-items-row">
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-language"></i> Plan de 4 Semanas para Aprender Inglés</h4>
+                                    <ul>
+                                        <li><a href="/ingles.html" target="_blank">Plan 1</a></li>
+                                        <li><a href="/cursoingles.html" target="_blank">Plan 2</a></li>
+                                    </ul>
+                                    <p>Mejora tu pronunciación, escritura, lectura y escucha.</p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- Artículos y Recursos TIC -->
+                        <section class="education-group" aria-label="Artículos y Recursos TIC">
+                            <h3 class="group-title"><i class="fa-solid fa-newspaper"></i> Artículos y Recursos TIC</h3>
+                            <div class="education-items-row">
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-newspaper"></i> Info TIC</h4>
+                                    <ul>
+                                        <li><strong>Google Hacking:</strong> Técnicas avanzadas de búsqueda.</li>
+                                        <li><strong>Shodan:</strong> Busca dispositivos conectados.</li>
+                                        <li><strong>Hyper-V:</strong> Cómo habilitarlo en Windows.</li>
+                                        <li><strong>Ubuntu Server:</strong> Guía de instalación.</li>
+                                        <li><strong>Diseño Web:</strong> Ciclo de vida y mejores prácticas.</li>
+                                        <li>
+                                            <strong>Guía Linux Server:</strong>
+                                            <ul>
+                                                <li>IA: <a href="#" target="_blank">grok.com</a></li>
+                                                <li>IA: <a href="#" target="_blank">chatgpt.com</a></li>
+                                                <li>IA: <a href="#" target="_blank">claude.ai</a> <a href="ubuntuserver.html" target="_blank">Ubuntu 18.04.6 LTS</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <a href="/info.html" target="_parent" class="edu-link">Ver más artículos</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-robot"></i> Superpotencias de la Inteligencia Artificial</h4>
+                                    <p><i>Resumen del libro de Kai-Fu Lee sobre la carrera global por la IA.</i></p>
+                                    <a href="/Superpotencias de la IA.html" target="_blank" class="edu-link">Leer resumen</a>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- Herramientas y Guías Técnicas -->
+                        <section class="education-group" aria-label="Herramientas y Guías Técnicas">
+                            <h3 class="group-title"><i class="fa-solid fa-toolbox"></i> Herramientas y Guías Técnicas</h3>
+                            <div class="education-items-row">
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-brands fa-windows"></i> ¿Qué es Chocolatey?</h4>
+                                    <p>Gestor de paquetes para Windows que automatiza la instalación y actualización de software.</p>
+                                    <a href="/Chocolatey.html" target="_blank" class="edu-link">Comandos básicos</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-box"></i> ¿Qué es Vagrant?</h4>
+                                    <p>Herramienta para crear y gestionar entornos de desarrollo virtualizados fácilmente.</p>
+                                    <a href="/vagrant.html" target="_blank" class="edu-link">Guía básica</a>
+                                </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-brands fa-linux"></i> ¿Qué es WSL?</h4>
+                                    <p>Permite ejecutar distribuciones Linux directamente en Windows, facilitando el desarrollo multiplataforma.</p>
+                                    <a href="/wsl.html" target="_blank" class="edu-link">Guía de WSL</a>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- Documentos Oficiales -->
+                        <section class="education-group" aria-label="Documentos Oficiales">
+                            <h3 class="group-title"><i class="fa-solid fa-file-signature"></i> Documentos Oficiales</h3>
+                            <div class="education-items-row">
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-file-signature"></i> ¿Qué es el Anexo 5?</h4>
+                                    <p>
+                                        Formato oficial para evaluación anual de desempeño docente en Colombia. Resume competencias funcionales y comportamentales, criterios de evaluación y evidencias.
+                                    </p>
+                                    <ul>
+                                        <li><a href="/anexo5.html" target="_blank">Ver Anexo 5 (formato general)</a></li>
+                                        <li><a href="/anexo5 docente.html" target="_blank">Ver Anexo 5 Docente</a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                        </section>
+
+                    </div>
                 </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-database"></i> Curso SQL</h3>
-                <p>Aprende SQL con SQLite y PostgreSQL en VS Code.</p>
-                <a href="basesdedatos.html" class="edu-link">Ir al curso</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-brands fa-dev"></i> DevOps</h3>
-                <ul>
-                    <li><a href="/DevOps.html" target="_blank">Roadmap interactivo</a></li>
-                    <li><a href="/proDevOps.html" target="_blank">DevOps: Automatización y despliegue</a></li>
-                    <li><a href="/proyectoDevOps.html" target="_blank">DevOps TOTAL</a></li>
-                </ul>
-                <p>Aprende Docker, Kubernetes, Jenkins, AWS, Git y más.</p>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-headset"></i> Soporte Remoto</h3>
-                <p>Asistencia remota para resolver problemas técnicos de manera rápida y eficiente.</p>
-                <a href="#contacto" class="edu-link">Solicitar soporte</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-chalkboard-user"></i> Capacitación Personalizada</h3>
-                <p>Cursos y talleres adaptados a tus necesidades.</p>
-                <a href="#contacto" class="edu-link">Solicitar capacitación</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-shield-halved"></i> Consultoría en Seguridad</h3>
-                <p>Protege tus datos y sistemas con auditorías y soluciones a medida.</p>
-                <a href="#contacto" class="edu-link">Solicitar consultoría</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-language"></i> Plan de 4 Semanas para Aprender Inglés</h3>
-                <ul>
-                    <li><a href="/ingles.html" target="_blank">Plan 1</a></li>
-                    <li><a href="/cursoingles.html" target="_blank">Plan 2</a></li>
-                </ul>
-                <p>Mejora tu pronunciación, escritura, lectura y escucha.</p>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-newspaper"></i> Artículos Info TIC</h3>
-                <ul>
-                    <li><strong>Google Hacking:</strong> Técnicas avanzadas de búsqueda.</li>
-                    <li><strong>Shodan:</strong> Busca dispositivos conectados.</li>
-                    <li><strong>Hyper-V:</strong> Cómo habilitarlo en Windows.</li>
-                    <li><strong>Ubuntu Server:</strong> Guía de instalación.</li>
-                    <li><strong>Diseño Web:</strong> Ciclo de vida y mejores prácticas.</li>
-                    <li>
-                    <strong>Guía Linux Server:</strong>
-                    <ul>
-                        <li>IA: <a href="#" target="_blank">grok.com</a></li>
-                        <li>IA: <a href="#" target="_blank">chatgpt.com</a></li>
-                        <li>IA: <a href="#" target="_blank">claude.ai</a> <a href="ubuntuserver.html" target="_blank">Ubuntu 18.04.6 LTS</a></li>
-                    </ul>
-                    </li>
-                </ul>
-                <a href="/info.html" target="_parent" class="edu-link">Ver más artículos</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-robot"></i> Superpotencias de la Inteligencia Artificial</h3>
-                <p><i>Resumen del libro de Kai-Fu Lee sobre la carrera global por la IA.</i></p>
-                <a href="/Superpotencias de la IA.html" target="_blank" class="edu-link">Leer resumen</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-brands fa-windows"></i> ¿Qué es Chocolatey?</h3>
-                <p>
-                    Gestor de paquetes para Windows que automatiza la instalación y actualización de software.
-                </p>
-                <a href="/Chocolatey.html" target="_blank" class="edu-link">Comandos básicos</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                <h3><i class="fa-solid fa-box"></i> ¿Qué es Vagrant?</h3>
-                <p>
-                    Herramienta para crear y gestionar entornos de desarrollo virtualizados fácilmente.
-                </p>
-                <a href="/vagrant.html" target="_blank" class="edu-link">Guía básica</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                    <h3><i class="fa-solid fa-file-signature"></i> ¿Qué es el Anexo 5?</h3>
-                    <p>
-                        El Anexo 5 es un formato oficial utilizado en el sistema de evaluación anual de desempeño laboral para docentes y directivos docentes en Colombia, regulado por el Decreto 1278 de 2002 del Ministerio de Educación Nacional. Este documento sirve como resumen de las competencias funcionales (70% del peso, divididas en áreas académica, administrativa y comunitaria) y comportamentales (30% del peso, como liderazgo o trabajo en equipo), donde el docente detalla sus contribuciones individuales, criterios de evaluación y evidencias (documentales, testimoniales o fotográficas) para demostrar su desempeño. Se genera en una etapa de concertación entre el evaluado y el evaluador, y debe conservarse una copia firmada por ambas partes para el proceso de calificación.
-                    </p>
-                    <ul>
-                        <li><a href="/anexo5.html" target="_blank">Ver Anexo 5 (formato general)</a></li>
-                        <li><a href="/anexo5 docente.html" target="_blank">Ver Anexo 5 Docente</a></li>
-                    </ul>
-                </div>
-                <div class="education-item" tabindex="0">
-                    <h3><i class="fa-solid fa-diagram-project"></i> DevOps — Waterfall vs Agile</h3>
-                    <ul>
-                        <li>
-                            <strong>Waterfall (Cascada):</strong>
-                            <span>Enfoque secuencial donde el proyecto avanza por fases claramente delimitadas: requisitos → diseño → desarrollo → pruebas → despliegue → mantenimiento.</span>
-                        </li>
-                        <li>
-                            <strong>Agile (Ágil):</strong>
-                            <span>Enfoque iterativo e incremental. Trabaja en ciclos cortos (sprints), entrega valor continuamente y adapta el producto según feedback.</span>
-                        </li>
-                    </ul>
-                    <a href="/desarrollodevops.html" target="_blank" class="edu-link">Ver más sobre DevOps</a>
-                </div>
-                <div class="education-item" tabindex="0">
-                    <h3><i class="fa-brands fa-react"></i> Aprende React desde Cero</h3>
-                    <p>Curso introductorio y práctico para dominar React, la biblioteca líder de interfaces modernas.</p>
-                    <a href="/Reactdesdecero.html" target="_blank" class="edu-link">Ir al curso</a>
-                </div>
-            </div>
             </div>
         </section>
+
+        <style>
+        .education-layout {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+        .education-aside {
+            flex: 0 0 240px;
+            background: #f8fafc;
+            border-radius: 10px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+            padding: 1.2rem 1rem;
+            font-size: 0.98em;
+            min-width: 200px;
+            max-width: 260px;
+        }
+        .education-aside h3, .education-aside h4 {
+            font-size: 1.08em;
+            margin-bottom: 0.5em;
+            color: #0654a3;
+        }
+        .education-aside ul {
+            margin: 0 0 1em 1.2em;
+            padding: 0;
+            list-style: disc;
+        }
+        .education-main {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+        .education-group {
+            margin-bottom: 0.5rem;
+        }
+        .group-title {
+            font-size: 1.15rem;
+            margin-bottom: 0.7rem;
+            color: #003366;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .education-items-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+        .education-item {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 1.2rem 1rem;
+            min-width: 240px;
+            flex: 1 1 240px;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .education-item.highlight {
+            border: 2px solid #0654a3;
+            background: #f0f6ff;
+        }
+        .edu-link {
+            margin-top: 0.5rem;
+            color: #0654a3;
+            font-weight: 500;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .edu-link:hover, .edu-link:focus {
+            color: #003366;
+        }
+        .education-item h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .education-item ul {
+            margin: 0.3em 0 0.3em 1.2em;
+            padding: 0;
+            font-size: 0.98em;
+        }
+        @media (max-width: 1100px) {
+            .education-layout {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .education-aside {
+                max-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            .education-items-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 700px) {
+            .education-item, .education-aside {
+                max-width: 100%;
+                min-width: 0;
+            }
+            .education-main {
+                gap: 1.2rem;
+            }
+        }
+        </style>
+
+        <style>
+        .education-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        .education-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: flex-start;
+        }
+        .education-item {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 1.5rem 1.2rem;
+            min-width: 260px;
+            flex: 1 1 260px;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .education-item.highlight {
+            border: 2px solid #0654a3;
+            background: #f0f6ff;
+        }
+        .edu-link {
+            margin-top: 0.5rem;
+            color: #0654a3;
+            font-weight: 500;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .edu-link:hover, .edu-link:focus {
+            color: #003366;
+        }
+        .education-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .education-item ul {
+            margin: 0.3em 0 0.3em 1.2em;
+            padding: 0;
+            font-size: 0.98em;
+        }
+        @media (max-width: 900px) {
+            .education-group {
+                flex-direction: column;
+                max-width: 100%;
+            }
+            .education-item {
+                max-width: 100%;
+            }
+        }
+        </style>
         <!-- Sugerencia: Agrega animaciones CSS y hover para tarjetas, y usa grid/flexbox para responsividad -->
 
         <style>

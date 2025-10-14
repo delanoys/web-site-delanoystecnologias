@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aprende sobre la Ley General de la Educación y Concurso Docente</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f5f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #0056a6;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: #e4e9f1;
+      border-bottom: 2px solid #c7d3e3;
+    }
+    nav button {
+      background: none;
+      border: none;
+      padding: 14px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #333;
+      transition: background 0.3s;
+    }
+    nav button:hover,
+    nav button.active {
+      background-color: #0056a6;
+      color: #fff;
+    }
+    section {
+      display: none;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      color: #0056a6;
+    }
+    a {
+      color: #0056a6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .activity, .evaluation {
+      background-color: #f8faff;
+      border-left: 4px solid #0056a6;
+      padding: 10px 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    .glosario-item {
+      background-color: #f8faff;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+      border-left: 4px solid #0056a6;
+    }
+    .glosario-item:hover { background-color: #e9f1fb; }
+    .glosario-definicion {
+      display: none;
+      margin-top: 5px;
+      color: #444;
+      font-size: 0.95rem;
+      padding-left: 10px;
+      border-left: 2px dashed #0056a6;
+    }
+    .pregunta { background: #f8faff; padding: 15px; border-left: 4px solid #0056a6; border-radius: 8px; margin-bottom: 15px; }
+    .opciones label { display: block; margin: 5px 0; }
+    button.enviar {
+      background-color: #0056a6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+    button.enviar:hover { background-color: #00427f; }
+    .resultado { background: #e9f9ec; border-left: 4px solid #28a745; padding: 10px; border-radius: 6px; margin-top: 15px; }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Aprende sobre la Ley General de la Educación y Concurso Docente</h1>
+  <p>Material educativo interactivo y simulación de evaluación docente (Colombia)</p>
+</header>
+
+<nav>
+  <button class="tab active" data-target="mod1">Módulo 1</button>
+  <button class="tab" data-target="mod2">Módulo 2</button>
+  <button class="tab" data-target="mod3">Módulo 3</button>
+  <button class="tab" data-target="mod4">Módulo 4</button>
+  <button class="tab" data-target="mod5">Módulo 5</button>
+  <button class="tab" data-target="glosario">Glosario</button>
+  <button class="tab" data-target="mod7">Simulador</button>
+</nav>
+
+<section id="mod1" class="active">
+  <h2>Módulo 1 — Ley General de la Educación (Ley 115 de 1994)</h2>
+  <p>Regula el servicio público educativo y garantiza el derecho a la educación. Se fundamenta en los principios de calidad, equidad, participación, autonomía y libertad de enseñanza.</p>
+  <div class="activity">
+    <strong>Enlace recomendado:</strong>
+    <a href="https://www.mineducacion.gov.co/1621/articles-85906_archivo_pdf.pdf" target="_blank">Texto completo de la Ley 115 de 1994 (PDF)</a>
+  </div>
+</section>
+
+<section id="mod2">
+  <h2>Módulo 2 — Sistema Educativo Colombiano</h2>
+  <p>La estructura incluye los niveles de educación preescolar, básica, media, y superior, junto con la educación para el trabajo y el desarrollo humano.</p>
+  <ul>
+    <li><strong>Educación Preescolar:</strong> tres grados (prejardín, jardín, transición).</li>
+    <li><strong>Básica:</strong> primaria (5 grados) y secundaria (4 grados).</li>
+    <li><strong>Media:</strong> grados 10° y 11°.</li>
+  </ul>
+  <div class="activity">
+    <a href="https://www.icfes.gov.co/" target="_blank">Visita el sitio oficial del ICFES</a>
+  </div>
+</section>
+
+<section id="mod3">
+  <h2>Módulo 3 — Concurso Docente</h2>
+  <p>El ingreso al servicio educativo estatal se realiza mediante concurso público de méritos, organizado por la <strong>Comisión Nacional del Servicio Civil (CNSC)</strong>.</p>
+  <p>Principios: igualdad, mérito, transparencia, formación continua.</p>
+  <div class="activity">
+    <a href="https://www.cnsc.gov.co/" target="_blank">Convocatorias CNSC</a>
+  </div>
+</section>
+
+<section id="mod4">
+  <h2>Módulo 4 — Evaluación Educativa</h2>
+  <p>Evalúa procesos, aprendizajes y desempeño docente. Incluye evaluación institucional, de estudiantes y de desempeño.</p>
+  <div class="activity">
+    <a href="https://www.icfes.gov.co/educacion-evaluaciones" target="_blank">Evaluaciones nacionales</a>
+  </div>
+</section>
+
+<section id="mod5">
+  <h2>Módulo 5 — Ética y Desarrollo Profesional</h2>
+  <p>El docente debe promover la ética, el respeto, la inclusión y la reflexión permanente.</p>
+  <div class="activity">
+    <a href="https://www.mineducacion.gov.co/" target="_blank">Portal del Ministerio de Educación Nacional</a>
+  </div>
+</section>
+
+<section id="glosario">
+  <h2>Glosario Interactivo</h2>
+  <div class="glosario-item"><strong>MEN</strong>
+    <div class="glosario-definicion">Ministerio de Educación Nacional.</div>
+  </div>
+  <div class="glosario-item"><strong>CNSC</strong>
+    <div class="glosario-definicion">Comisión Nacional del Servicio Civil.</div>
+  </div>
+  <div class="glosario-item"><strong>ICFES</strong>
+    <div class="glosario-definicion">Instituto Colombiano para la Evaluación de la Educación.</div>
+  </div>
+</section>
+
+<section id="mod7">
+  <h2>Módulo 7 — Simulador tipo ICFES</h2>
+  <p>Responde las preguntas y revisa tu puntaje.</p>
+
+  <form id="simuladorForm">
+    <div class="pregunta">
+      <p><strong>1.</strong> Según la Ley 115, la educación en Colombia es:</p>
+      <label><input type="radio" name="p1" value="a"> Un privilegio</label>
+      <label><input type="radio" name="p1" value="b"> Un derecho y servicio público</label>
+      <label><input type="radio" name="p1" value="c"> Solo obligación familiar</label>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2.</strong> La CNSC organiza:</p>
+      <label><input type="radio" name="p2" value="a"> Programas de becas</label>
+      <label><input type="radio" name="p2" value="b"> Concursos de mérito</label>
+      <label><input type="radio" name="p2" value="c"> Clases virtuales</label>
+    </div>
+
+    <button type="button" class="enviar" onclick="calcularResultado()">Enviar</button>
+  </form>
+  <div id="resultado" class="resultado" style="display:none;"></div>
+</section>
+
+<footer>
+  © 2025 — Plataforma Educativa Concurso Docente (Colombia)
+</footer>
+
+<script>
+const tabs = document.querySelectorAll(".tab");
+const sections = document.querySelectorAll("section");
+tabs.forEach((tab)=>{ tab.addEventListener("click",()=>{ 
+  tabs.forEach(t=>t.classList.remove("active"));
+  sections.forEach(s=>s.classList.remove("active"));
+  tab.classList.add("active");
+  document.getElementById(tab.dataset.target).classList.add("active");
+});});
+document.querySelectorAll(".glosario-item").forEach((i)=>{i.addEventListener("click",()=>{let d=i.querySelector(".glosario-definicion");d.style.display=d.style.display==="block"?"none":"block";});});
+function calcularResultado(){
+  const respuestas={p1:"b",p2:"b"};
+  let score=0;for(let k in respuestas){const s=document.querySelector(`input[name="${k}"]:checked`);if(s&&s.value===respuestas[k])score++;}
+  const r=document.getElementById("resultado");r.style.display="block";
+  r.innerHTML=`Puntaje: ${score}/2<br>${score===2?"🎉 ¡Excelente!":"Sigue practicando."}`;
+}
+</script>
+</body>
+</html>
