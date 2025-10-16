@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso Profesional Tech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fa; margin: 0; padding: 0; }
+        .login-container {
+            max-width: 340px; margin: 60px auto 30px auto; background: #fff; border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 32px 28px 24px 28px;
+        }
+        .login-container h2 { margin-top: 0; color: #2d3a4a; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; color: #4a5a6a; }
+        input[type="password"] {
+            width: 100%; padding: 10px; border: 1px solid #bfc9d1; border-radius: 5px;
+            font-size: 1rem; box-sizing: border-box;
+        }
+        button {
+            width: 100%; padding: 11px; background: #2563eb; color: #fff; border: none;
+            border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: 600;
+            transition: background 0.2s;
+        }
+        button:hover { background: #1741a6; }
+        .error { color: #d32f2f; margin-bottom: 10px; text-align: center; }
+        .main-content { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 36px 32px; }
+        .barra-logros { margin: 30px 0 40px 0; }
+        .barra-label { margin-bottom: 7px; color: #2d3a4a; font-weight: 500; }
+        .progress-bar-bg {
+            background: #e5eaf1; border-radius: 8px; height: 28px; width: 100%; overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+        .progress-bar-fill {
+            height: 100%; background: linear-gradient(90deg, #2563eb 60%, #22d3ee 100%);
+            width: 0; border-radius: 8px 0 0 8px; color: #fff; font-weight: 600; font-size: 1rem;
+            display: flex; align-items: center; justify-content: flex-end; padding-right: 14px;
+            transition: width 1s cubic-bezier(.4,2,.6,1);
+            box-sizing: border-box;
+        }
+        .logros-list { margin: 30px 0 0 0; }
+        .logros-list h3 { margin-top: 0; color: #2563eb; }
+        .logros-list ul { padding-left: 20px; }
+        .logros-list li { margin-bottom: 7px; }
+        @media (max-width: 700px) {
+            .main-content { padding: 18px 6vw; }
+        }
+        @media (max-width: 400px) {
+            .login-container, .main-content { padding: 10px 2vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginBox">
+        <h2>Acceso Privado</h2>
+        <form id="loginForm" autocomplete="off">
+            <div class="input-group">
+                <label for="codigo">Código de apertura</label>
+                <input type="password" id="codigo" name="codigo" required autofocus maxlength="12" pattern="\d*">
+            </div>
+            <div class="error" id="errorMsg" style="display:none;"></div>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
+    <div class="main-content" id="mainContent" style="display:none;">
+        <h1>Plan Profesional de Transición Tech</h1>
+        <h2>De Telecomunicaciones/Soporte → Full Stack Developer con especialización DevOps/Cloud</h2>
+        <p><strong>Perfil:</strong> 46 años | Experiencia Telecoms | Sitio en producción | Compromiso total</p>
+
+        <div class="barra-logros">
+            <div class="barra-label">Progreso Fase 1 (Certificados IBM, CI/CD, ML, Terraform): <span id="progresoPorc">80%</span></div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="barraProgreso">80%</div>
+            </div>
+        </div>
+
+        <div class="logros-list">
+            <h3>Certificados Obtenidos</h3>
+            <ul>
+                <li>✅ Azure DevOps de cero a experto</li>
+                <li>✅ Curso completo de Python</li>
+                <li>✅ Machine Learning y Data Science</li>
+                <li>🔄 Terraform al 70%</li>
+                <li>🔄 Git al 90%</li>
+                <li>🔄 Hacking Ético (bases)</li>
+            </ul>
+            <h3>Proyectos Clave</h3>
+            <ul>
+                <li>Pipeline CI/CD para delanoystecnologias.site</li>
+                <li>Modelo ML con datos de telecomunicaciones</li>
+                <li>Infraestructura Terraform documentada</li>
+                <li>GitHub activo con commits regulares</li>
+            </ul>
+        </div>
+        <hr>
+        <p style="color:#2563eb;font-weight:600;">¡Sigue avanzando! Tu experiencia + nuevas skills = Imparable 🚀</p>
+    </div>
+
+    <script>
+        // Código de acceso
+        const CODIGO_CORRECTO = "13234152";
+        const loginForm = document.getElementById('loginForm');
+        const codigoInput = document.getElementById('codigo');
+        const errorMsg = document.getElementById('errorMsg');
+        const loginBox = document.getElementById('loginBox');
+        const mainContent = document.getElementById('mainContent');
+
+        // Barra de progreso animada
+        function animarBarra(porc) {
+            const barra = document.getElementById('barraProgreso');
+            barra.style.width = '0';
+            setTimeout(() => {
+                barra.style.width = porc + '%';
+                barra.textContent = porc + '%';
+            }, 200);
+        }
+
+        // Mostrar progreso (puedes ajustar el porcentaje aquí)
+        const progresoActual = 80; // 80% de Fase 1 completada
+        document.getElementById('progresoPorc').textContent = progresoActual + '%';
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (codigoInput.value.trim() === CODIGO_CORRECTO) {
+                loginBox.style.display = 'none';
+                mainContent.style.display = 'block';
+                animarBarra(progresoActual);
+            } else {
+                errorMsg.textContent = "Código incorrecto. Intenta de nuevo.";
+                errorMsg.style.display = 'block';
+                codigoInput.value = '';
+                codigoInput.focus();
+            }
+        });
+
+        // Permitir Enter para ingresar
+        codigoInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') loginForm.dispatchEvent(new Event('submit'));
+        });
+    </script>
+</body>
+</html>

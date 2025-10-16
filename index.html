@@ -37,7 +37,95 @@
                    <a href="/leyesinformaticas.html" class="nav-link">Leyes informáticas</a>
                  <a href="https://developersinprocess.blog/" class="nav-link">desarrollador web desde cero</a>
                  <a href="/newagenda.html" class="nav-link">Agenda de Aprendizaje</a>
+                 <div class="nav-dropdown">
+                     <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="enlacesDropdown">
+                         Enlaces <i class="fa fa-caret-down"></i>
+                     </button>
+                     <div class="dropdown-menu" aria-labelledby="enlacesDropdown">
+                         <a href="/personalproyec.html" target="_blank" class="dropdown-item">Estudios 2025</a>
+                         <a href="agenda.html" target="_blank" class="dropdown-item">Agenda</a>
+                         <a href="plandeaprendizaje2.html" target="_blank" class="dropdown-item">Plan de Aprendizaje</a>
+                         <a href="#servicios" class="dropdown-item">Servicios</a>
+                         <a href="#educacion" class="dropdown-item">Educación</a>
+                         <a href="/sopa.html" class="dropdown-item">Sopa de letras - Valores</a>
+                         <a href="https://developersinprocess.blog/" target="_blank" class="dropdown-item">desarrolla tu webSite desde cero</a>
+                         <a href="/planmaestro.html" target="_blank" class="dropdown-item">Plan Maestro de Transformación Tech</a>
+                     </div>
+                 </div>
                 <a href="#contacto" class="nav-link">Contacto</a>
+               
+                <style>
+                .nav-dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+                .dropdown-toggle {
+                    background: none;
+                    border: none;
+                    color: inherit;
+                    font: inherit;
+                    cursor: pointer;
+                    padding: 0.5em 1em;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.3em;
+                }
+                .dropdown-menu {
+                    display: none;
+                    position: absolute;
+                    top: 110%;
+                    left: 0;
+                    background: #fff;
+                    min-width: 220px;
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+                    border-radius: 8px;
+                    z-index: 100;
+                    flex-direction: column;
+                    padding: 0.5em 0;
+                }
+                .dropdown-item {
+                    display: block;
+                    padding: 0.6em 1.2em;
+                    color: #003366;
+                    text-decoration: none;
+                    font-size: 1em;
+                    transition: background 0.2s, color 0.2s;
+                }
+                .dropdown-item:hover, .dropdown-item:focus {
+                    background: #f0f6ff;
+                    color: #0654a3;
+                }
+                .nav-dropdown.open .dropdown-menu {
+                    display: flex;
+                }
+                </style>
+                <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const dropdown = document.querySelector('.nav-dropdown');
+                    const toggle = dropdown.querySelector('.dropdown-toggle');
+                    toggle.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('open');
+                        toggle.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+                    });
+                    document.addEventListener('click', function (e) {
+                        if (!dropdown.contains(e.target)) {
+                            dropdown.classList.remove('open');
+                            toggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    // Keyboard accessibility
+                    toggle.addEventListener('keydown', function(e) {
+                        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            dropdown.classList.add('open');
+                            toggle.setAttribute('aria-expanded', 'true');
+                            const firstItem = dropdown.querySelector('.dropdown-item');
+                            if (firstItem) firstItem.focus();
+                        }
+                    });
+                });
+                </script>
             </div>
         </div>
     </nav>
@@ -565,16 +653,17 @@
     <footer class="footer" id="contacto">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <!-- <div class="footer-section">
                     <h4>Enlaces</h4>
-                    <a href="/personalproyec.html" target="_blank">Estudios 2025</a>
+                    <a href="/personalproyec.html" target="_blank" class="footer-link">Estudios 2025</a>
                     <a href="agenda.html" target="_blank" class="footer-link">Agenda</a>
                     <a href="plandeaprendizaje2.html" target="_blank" class="footer-link">Plan de Aprendizaje</a>
                     <a href="#servicios" class="footer-link">Servicios</a>
                     <a href="#educacion" class="footer-link">Educación</a>
                      <a href="/sopa.html" class="footer-link">Sopa de letras - Valores</a>
                      <a href="https://developersinprocess.blog/" class="footer-link">desarrolla tu webSite desde cero</a>
-                </div>
+                     <a href="/planmaestro.html" class="footer-link">Plan Maestro de Transformación Tech</a>
+                </div> -->
                 <div class="footer-section">
 
                     <h4>Delanoys Tecnologías</h4>
