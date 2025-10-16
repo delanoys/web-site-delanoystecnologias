@@ -445,7 +445,38 @@
             <h1>🎯 Plan Maestro de Transformación Tech</h1>
             <p>De Telecomunicaciones/Soporte → Full Stack Developer + DevOps/Cloud</p>
             <p><strong>46 años | 20+ años experiencia técnica | En producción: delanoystecnologias.site</strong></p>
+        <!--
+            Enlace fijo al index.html:
+            - Este enlace permanece siempre visible en la esquina inferior derecha de la pantalla gracias a la propiedad CSS 'position: fixed'.
+            - El botón utiliza un gradiente de color de fondo, esquinas redondeadas y una sombra para destacar visualmente.
+            - Incluye un icono de casa (🏠) y el texto "Ir al Inicio" para indicar su función.
+            - Al pasar el mouse por encima, el botón aumenta ligeramente de tamaño y la sombra se intensifica, proporcionando una retroalimentación visual interactiva.
+            - El enlace dirige al usuario a la página principal (index.html) del sitio web.
+        -->
         </header>
+
+        <!-- Enlace fijo al index -->
+        <a href="index.html" id="indexLink" style="
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 16px rgba(102,126,234,0.2);
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        " onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 8px 24px rgba(102,126,234,0.3)';"
+          onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(102,126,234,0.2)';">
+            <span style="font-size: 22px;">🏠</span> Ir al Inicio
+        </a>
 
         <!-- Progress Dashboard -->
         <div class="dashboard">
