@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa de tsconfig.json - TypeScript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3178c6 0%, #235a97 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            background: #f0f7ff;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #3178c6;
+            margin-bottom: 30px;
+        }
+
+        .intro h2 {
+            color: #3178c6;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #3178c6;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3178c6;
+        }
+
+        .section h3 {
+            color: #235a97;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+
+        .option-card {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .option-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .option-name {
+            font-weight: bold;
+            color: #3178c6;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .option-value {
+            background: #e8f4f8;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .option-desc {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .option-use {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            display: block;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        .example-box {
+            background: #fff9e6;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+
+        .example-box h4 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            margin: 20px 0;
+        }
+
+        .tip-box h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .warning-box {
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f44336;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        .tab.active {
+            background: #3178c6;
+            color: white;
+        }
+
+        .tab:hover {
+            background: #235a97;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .section h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📘 Guía Completa de tsconfig.json</h1>
+            <p>Todo lo que necesitas saber sobre la configuración de TypeScript</p>
+
+             <!-- Enlace fijo al index -->
+        <a href="index.html" id="indexLink" style="
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 16px rgba(102,126,234,0.2);
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        " onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 8px 24px rgba(102,126,234,0.3)';"
+          onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(102,126,234,0.2)';">
+            <span style="font-size: 22px;">🏠</span> Ir al Inicio
+        </a>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <h2>¿Qué es tsconfig.json?</h2>
+                <p>El archivo <strong>tsconfig.json</strong> es el archivo de configuración principal de TypeScript. Define cómo el compilador debe procesar tus archivos .ts y qué reglas de verificación debe aplicar.</p>
+                <p style="margin-top: 10px;"><strong>Crearlo:</strong> Ejecuta <code style="display: inline; padding: 3px 8px; background: #3178c6; color: white; border-radius: 4px;">tsc --init</code> en tu terminal</p>
+            </div>
+
+            <div class="section">
+                <h2>🏗️ Estructura Básica</h2>
+                <code>{
+  "compilerOptions": {
+    /* Opciones del compilador */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}</code>
+
+                <div class="option-card">
+                    <div class="option-name">include</div>
+                    <div class="option-desc">Especifica qué archivos deben ser incluidos en la compilación</div>
+                    <div class="option-use">Ejemplo: ["src/**/*"] incluye todos los archivos en src/</div>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-name">exclude</div>
+                    <div class="option-desc">Especifica qué archivos deben ser excluidos de la compilación</div>
+                    <div class="option-use">Ejemplo: ["node_modules", "dist"] excluye estas carpetas</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>⚙️ Opciones del Compilador (compilerOptions)</h2>
+
+                <div class="tabs">
+                    <button class="tab active" onclick="showTab('basicas')">Básicas</button>
+                    <button class="tab" onclick="showTab('strict')">Strict Mode</button>
+                    <button class="tab" onclick="showTab('rutas')">Rutas y Módulos</button>
+                    <button class="tab" onclick="showTab('avanzadas')">Avanzadas</button>
+                </div>
+
+                <div id="basicas" class="tab-content active">
+                    <h3>Opciones Básicas</h3>
+                    
+                    <div class="option-card">
+                        <div class="option-name">target</div>
+                        <div class="option-value">"ES2020" | "ES2015" | "ES5" | "ESNext"</div>
+                        <div class="option-desc">Especifica la versión de JavaScript a la que se compilará el código TypeScript</div>
+                        <div class="option-use">💡 Usa ES2020 o superior para proyectos modernos, ES5 para navegadores antiguos</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">module</div>
+                        <div class="option-value">"commonjs" | "ES2015" | "ESNext"</div>
+                        <div class="option-desc">Define el sistema de módulos a utilizar</div>
+                        <div class="option-use">💡 commonjs para Node.js, ES2015/ESNext para módulos modernos</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">lib</div>
+                        <div class="option-value">["ES2020", "DOM"]</div>
+                        <div class="option-desc">Especifica las librerías de tipos que estarán disponibles</div>
+                        <div class="option-use">💡 Incluye "DOM" para proyectos de navegador, omítelo para Node.js</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">outDir</div>
+                        <div class="option-value">"./dist" | "./build"</div>
+                        <div class="option-desc">Carpeta donde se guardarán los archivos JavaScript compilados</div>
+                        <div class="option-use">💡 Mantén el código compilado separado del código fuente</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">rootDir</div>
+                        <div class="option-value">"./src"</div>
+                        <div class="option-desc">Carpeta raíz de tus archivos TypeScript fuente</div>
+                        <div class="option-use">💡 Define la estructura de carpetas para la salida</div>
+                    </div>
+                </div>
+
+                <div id="strict" class="tab-content">
+                    <h3>Modo Estricto (Strict Mode)</h3>
+                    
+                    <div class="tip-box">
+                        <h4>💪 Recomendación</h4>
+                        <p>Activa <strong>"strict": true</strong> para habilitar todas las verificaciones estrictas. Esto te ayudará a escribir código más seguro y confiable.</p>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">strict</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Activa todas las opciones de verificación estricta</div>
+                        <div class="option-use">💡 Recomendado: true para proyectos nuevos</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">noImplicitAny</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Genera error cuando una variable tiene tipo 'any' implícito</div>
+                        <div class="option-use">💡 Fuerza a declarar tipos explícitos, mejora la seguridad del código</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">strictNullChecks</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">null y undefined deben ser manejados explícitamente</div>
+                        <div class="option-use">💡 Previene errores comunes de "Cannot read property of null"</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">strictFunctionTypes</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Verificación estricta de tipos en funciones</div>
+                        <div class="option-use">💡 Asegura que los parámetros de función sean correctos</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">noUnusedLocals</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Error si hay variables locales no utilizadas</div>
+                        <div class="option-use">💡 Mantiene el código limpio y sin código muerto</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">noUnusedParameters</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Error si hay parámetros de función no utilizados</div>
+                        <div class="option-use">💡 Identifica parámetros innecesarios</div>
+                    </div>
+                </div>
+
+                <div id="rutas" class="tab-content">
+                    <h3>Rutas y Módulos</h3>
+
+                    <div class="option-card">
+                        <div class="option-name">baseUrl</div>
+                        <div class="option-value">"./" | "./src"</div>
+                        <div class="option-desc">Directorio base para resolver rutas de módulos no relativos</div>
+                        <div class="option-use">💡 Permite importar desde rutas absolutas</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">paths</div>
+                        <div class="option-value">{ "@/*": ["src/*"] }</div>
+                        <div class="option-desc">Mapeo de alias de rutas personalizadas</div>
+                        <div class="option-use">💡 Ejemplo: import { Usuario } from '@/models/Usuario'</div>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Ejemplo de configuración de rutas</h4>
+                        <code>{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@models/*": ["src/models/*"]
+    }
+  }
+}</code>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">moduleResolution</div>
+                        <div class="option-value">"node" | "classic"</div>
+                        <div class="option-desc">Estrategia para resolver módulos</div>
+                        <div class="option-use">💡 Usa "node" para proyectos modernos</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">esModuleInterop</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Facilita la importación de módulos CommonJS</div>
+                        <div class="option-use">💡 Permite: import express from 'express' en lugar de import * as express</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">allowSyntheticDefaultImports</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Permite importaciones default sintéticas</div>
+                        <div class="option-use">💡 Mejora compatibilidad con librerías que no tienen export default</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">resolveJsonModule</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Permite importar archivos .json</div>
+                        <div class="option-use">💡 Ejemplo: import config from './config.json'</div>
+                    </div>
+                </div>
+
+                <div id="avanzadas" class="tab-content">
+                    <h3>Opciones Avanzadas</h3>
+
+                    <div class="option-card">
+                        <div class="option-name">declaration</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Genera archivos .d.ts con definiciones de tipos</div>
+                        <div class="option-use">💡 Importante para crear librerías que otros usarán</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">sourceMap</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Genera archivos .map para debugging</div>
+                        <div class="option-use">💡 Permite depurar código TypeScript en el navegador</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">removeComments</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Elimina comentarios del código compilado</div>
+                        <div class="option-use">💡 Reduce el tamaño de los archivos finales</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">skipLibCheck</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">No verifica tipos en archivos de definición (.d.ts) de node_modules</div>
+                        <div class="option-use">💡 Acelera significativamente la compilación</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">forceConsistentCasingInFileNames</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Asegura consistencia en mayúsculas/minúsculas en nombres de archivo</div>
+                        <div class="option-use">💡 Previene problemas entre sistemas operativos (Windows vs Linux/Mac)</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">allowJs</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Permite incluir archivos JavaScript en el proyecto</div>
+                        <div class="option-use">💡 Útil para migración gradual de JavaScript a TypeScript</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">checkJs</div>
+                        <div class="option-value">true | false</div>
+                        <div class="option-desc">Verifica errores de tipo en archivos .js</div>
+                        <div class="option-use">💡 Añade verificación de tipos a código JavaScript existente</div>
+                    </div>
+
+                    <div class="option-card">
+                        <div class="option-name">jsx</div>
+                        <div class="option-value">"react" | "react-jsx" | "preserve"</div>
+                        <div class="option-desc">Modo de compilación para JSX (React)</div>
+                        <div class="option-use">💡 "react-jsx" para React 17+, "react" para versiones anteriores</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📦 Ejemplos de Configuración Completa</h2>
+
+                <h3>Proyecto Node.js / Backend</h3>
+                <code>{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}</code>
+
+                <h3>Proyecto React / Frontend</h3>
+                <code>{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}</code>
+
+                <h3>Librería / Package NPM</h3>
+                <code>{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "lib": ["ES2015"],
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}</code>
+            </div>
+
+            <div class="section">
+                <h2>💡 Mejores Prácticas</h2>
+
+                <div class="tip-box">
+                    <h4>✅ Siempre activa strict mode</h4>
+                    <p>Configura <strong>"strict": true</strong> desde el inicio. Te ahorrará dolores de cabeza futuros.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h4>✅ Organiza tus archivos</h4>
+                    <p>Usa <strong>rootDir</strong> y <strong>outDir</strong> para mantener código fuente y compilado separados.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h4>✅ Usa paths para imports limpios</h4>
+                    <p>Configura alias de rutas para evitar imports como: <code style="display: inline; padding: 2px 6px; background: #e0e0e0;">../../../components/Button</code></p>
+                </div>
+
+                <div class="tip-box">
+                    <h4>✅ Habilita skipLibCheck</h4>
+                    <p>Acelera la compilación sin sacrificar seguridad en tu propio código.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Cuidado con allowJs sin checkJs</h4>
+                    <p>Si permites archivos JS, considera activar checkJs para mantener consistencia en verificación de tipos.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ No uses "any" por defecto</h4>
+                    <p>Con noImplicitAny activo, TypeScript te forzará a ser explícito con tus tipos.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🚀 Comandos Útiles</h2>
+
+                <div class="option-card">
+                    <div class="option-name">tsc --init</div>
+                    <div class="option-desc">Crea un nuevo archivo tsconfig.json con opciones comentadas</div>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-name">tsc</div>
+                    <div class="option-desc">Compila el proyecto usando la configuración de tsconfig.json</div>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-name">tsc --watch</div>
+                    <div class="option-desc">Compila y observa cambios en tiempo real</div>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-name">tsc --noEmit</div>
+                    <div class="option-desc">Solo verifica errores sin generar archivos JavaScript</div>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-name">tsc --showConfig</div>
+                    <div class="option-desc">Muestra la configuración efectiva que está usando TypeScript</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📚 Guía educativa de tsconfig.json - TypeScript</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Para más información visita: <a href="https://www.typescriptlang.org/tsconfig" style="color: #64b5f6;">typescriptlang.org/tsconfig</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>
