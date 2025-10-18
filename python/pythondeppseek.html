@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Python - Desde Cero hasta Avanzado</title>
+    <style>
+        :root {
+            --primary-color: #306998;
+            --secondary-color: #FFD43B;
+            --accent-color: #4B8BBE;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .python-logo {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-item:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-comment {
+            color: #75715e;
+        }
+        
+        .code-keyword {
+            color: #f92672;
+        }
+        
+        .code-function {
+            color: #66d9ef;
+        }
+        
+        .code-string {
+            color: #e6db74;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .interactive-section {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            border: none;
+            border-radius: 5px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+        }
+        
+        .run-btn {
+            background-color: var(--success-color);
+            margin-top: 1rem;
+        }
+        
+        .output {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+            min-height: 100px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="python-logo">🐍</div>
+            <h1>Aprende Python</h1>
+        </div>
+        <p>Desde conceptos básicos hasta técnicas avanzadas</p>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#intro" class="nav-item">Introducción</a>
+            <a href="#historia" class="nav-item">Historia</a>
+            <a href="#basico" class="nav-item">Básico</a>
+            <a href="#avanzado" class="nav-item">Avanzado</a>
+            <a href="#aplicaciones" class="nav-item">Aplicaciones</a>
+            <a href="#practica" class="nav-item">Práctica</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section id="intro" class="section">
+            <h2>¿Qué es Python?</h2>
+            <p>Python es un lenguaje de programación interpretado, de alto nivel y con una sintaxis clara y legible. Es multiparadigma, lo que significa que soporta programación orientada a objetos, imperativa y funcional.</p>
+            
+            <div class="interactive-section">
+                <h3>Tu primer programa en Python</h3>
+                <p>Escribe y ejecuta tu primer código Python:</p>
+                <textarea class="code-editor" id="intro-code"># Escribe tu código aquí
+print("¡Hola, mundo!")</textarea>
+                <button class="btn run-btn" onclick="runCode('intro-code', 'intro-output')">Ejecutar código</button>
+                <div class="output" id="intro-output">La salida aparecerá aquí...</div>
+            </div>
+        </section>
+        
+        <section id="historia" class="section">
+            <h2>Historia y Evolución de Python</h2>
+            <p>Python fue creado a finales de los años 80 por Guido van Rossum en los Países Bajos. Su diseño prioriza la legibilidad del código y permite a los programadores expresar conceptos en menos líneas de código que en lenguajes como C++ o Java.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>1989</h3>
+                        <p>Guido van Rossum comienza a trabajar en Python como un proyecto de hobby durante las vacaciones de Navidad.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>1991</h3>
+                        <p>Se publica la primera versión de Python (0.9.0) que ya incluía clases con herencia, manejo de excepciones, funciones y los tipos de datos fundamentales.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2000</h3>
+                        <p>Se lanza Python 2.0 con nuevas características como list comprehensions y un sistema de recolección de basura.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2008</h3>
+                        <p>Python 3.0 (también llamado "Python 3000") se lanza como una revisión importante del lenguaje que no es totalmente compatible con versiones anteriores.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2020</h3>
+                        <p>Python 2.7 llega al final de su vida útil, marcando la transición completa a Python 3.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="basico" class="section">
+            <h2>Conceptos Básicos de Python</h2>
+            
+            <h3>Variables y Tipos de Datos</h3>
+            <p>En Python, no es necesario declarar el tipo de variable. El intérprete infiere el tipo automáticamente.</p>
+            <div class="code-block">
+<span class="code-comment"># Ejemplos de variables</span><br>
+nombre = <span class="code-string">"Ana"</span>  <span class="code-comment"># String</span><br>
+edad = 25           <span class="code-comment"># Integer</span><br>
+altura = 1.75       <span class="code-comment"># Float</span><br>
+es_estudiante = <span class="code-keyword">True</span> <span class="code-comment"># Boolean</span>
+            </div>
+            
+            <h3>Estructuras de Control</h3>
+            <p>Python utiliza indentación para definir bloques de código, lo que mejora la legibilidad.</p>
+            <div class="code-block">
+<span class="code-comment"># Condicional if</span><br>
+<span class="code-keyword">if</span> edad >= 18:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"Eres mayor de edad"</span>)<br>
+<span class="code-keyword">else</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"Eres menor de edad"</span>)<br>
+<br>
+<span class="code-comment"># Bucle for</span><br>
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(5):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(i)<br>
+<br>
+<span class="code-comment"># Bucle while</span><br>
+contador = 0<br>
+<span class="code-keyword">while</span> contador < 5:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(contador)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;contador += 1
+            </div>
+            
+            <div class="interactive-section">
+                <h3>Practica con Variables y Condicionales</h3>
+                <p>Modifica el código para cambiar el resultado:</p>
+                <textarea class="code-editor" id="basic-code"># Cambia los valores y observa el resultado
+nombre = "Carlos"
+edad = 17
+puntaje = 85
+
+if edad >= 18:
+    print(f"{nombre} es mayor de edad")
+else:
+    print(f"{nombre} es menor de edad")
+
+if puntaje >= 90:
+    print("Excelente trabajo")
+elif puntaje >= 70:
+    print("Buen trabajo")
+else:
+    print("Necesitas mejorar")</textarea>
+                <button class="btn run-btn" onclick="runCode('basic-code', 'basic-output')">Ejecutar código</button>
+                <div class="output" id="basic-output">La salida aparecerá aquí...</div>
+            </div>
+        </section>
+        
+        <section id="avanzado" class="section">
+            <h2>Conceptos Avanzados de Python</h2>
+            
+            <h3>Programación Orientada a Objetos</h3>
+            <p>Python soporta completamente la programación orientada a objetos, incluyendo herencia múltiple.</p>
+            <div class="code-block">
+<span class="code-comment"># Definición de una clase</span><br>
+<span class="code-keyword">class</span> <span class="code-function">Persona</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, nombre, edad):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.nombre = nombre<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">self</span>.edad = edad<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">presentarse</span>(<span class="code-keyword">self</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">f"Hola, me llamo {self.nombre} y tengo {self.edad} años"</span><br>
+<br>
+<span class="code-comment"># Creación de un objeto</span><br>
+persona1 = Persona(<span class="code-string">"María"</span>, 30)<br>
+print(persona1.presentarse())
+            </div>
+            
+            <h3>Manejo de Excepciones</h3>
+            <p>Python proporciona un mecanismo robusto para manejar errores y excepciones.</p>
+            <div class="code-block">
+<span class="code-keyword">try</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;numero = int(<span class="code-string">"abc"</span>)  <span class="code-comment"># Esto generará un ValueError</span><br>
+<span class="code-keyword">except</span> ValueError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"No se puede convertir 'abc' a número"</span>)<br>
+<span class="code-keyword">finally</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="code-string">"Este bloque siempre se ejecuta"</span>)
+            </div>
+            
+            <div class="interactive-section">
+                <h3>Practica con Clases y Objetos</h3>
+                <p>Crea y modifica objetos:</p>
+                <textarea class="code-editor" id="advanced-code"># Define una clase Vehículo
+class Vehiculo:
+    def __init__(self, marca, modelo, año):
+        self.marca = marca
+        self.modelo = modelo
+        self.año = año
+    
+    def descripcion(self):
+        return f"{self.marca} {self.modelo} ({self.año})"
+
+# Crea objetos de la clase Vehiculo
+auto1 = Vehiculo("Toyota", "Corolla", 2020)
+auto2 = Vehiculo("Honda", "Civic", 2022)
+
+print(auto1.descripcion())
+print(auto2.descripcion())
+
+# Intenta crear tu propio vehículo
+# auto3 = Vehiculo("TuMarca", "TuModelo", 2023)
+# print(auto3.descripcion())</textarea>
+                <button class="btn run-btn" onclick="runCode('advanced-code', 'advanced-output')">Ejecutar código</button>
+                <div class="output" id="advanced-output">La salida aparecerá aquí...</div>
+            </div>
+        </section>
+        
+        <section id="aplicaciones" class="section">
+            <h2>Aplicaciones de Python en la Actualidad</h2>
+            <p>Python es uno de los lenguajes más versátiles y se utiliza en una amplia gama de aplicaciones:</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Desarrollo Web</h3>
+                    <p>Frameworks como Django y Flask permiten crear aplicaciones web robustas y escalables.</p>
+                </div>
+                <div class="card">
+                    <h3>Ciencia de Datos</h3>
+                    <p>Librerías como Pandas, NumPy y Scikit-learn hacen de Python el lenguaje preferido para análisis de datos y machine learning.</p>
+                </div>
+                <div class="card">
+                    <h3>Automatización</h3>
+                    <p>Python es ideal para scripts de automatización de tareas, desde simples hasta complejas.</p>
+                </div>
+                <div class="card">
+                    <h3>Inteligencia Artificial</h3>
+                    <p>TensorFlow, PyTorch y Keras son algunas de las librerías de IA más populares construidas en Python.</p>
+                </div>
+                <div class="card">
+                    <h3>Desarrollo de Juegos</h3>
+                    <p>Aunque no es el lenguaje principal, Python se utiliza con librerías como Pygame para desarrollar juegos.</p>
+                </div>
+                <div class="card">
+                    <h3>Internet de las Cosas (IoT)</h3>
+                    <p>Python es popular en proyectos de IoT debido a su simplicidad y la disponibilidad de librerías para hardware.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="practica" class="section">
+            <h2>Zona de Práctica</h2>
+            <p>Aquí puedes experimentar con código Python libremente. Escribe, modifica y ejecuta tu código para practicar.</p>
+            
+            <div class="interactive-section">
+                <h3>Editor de Código Python</h3>
+                <textarea class="code-editor" id="practice-code"># Escribe tu código Python aquí
+
+# Ejemplo: Calculadora simple
+def suma(a, b):
+    return a + b
+
+def resta(a, b):
+    return a - b
+
+# Prueba las funciones
+print("5 + 3 =", suma(5, 3))
+print("10 - 4 =", resta(10, 4))
+
+# ¡Ahora escribe tu propio código!</textarea>
+                <button class="btn run-btn" onclick="runCode('practice-code', 'practice-output')">Ejecutar código</button>
+                <div class="output" id="practice-output">La salida aparecerá aquí...</div>
+            </div>
+            
+            <h3>Ejercicios para Practicar</h3>
+            <ul>
+                <li>Crea una función que calcule el factorial de un número</li>
+                <li>Escribe un programa que verifique si una palabra es un palíndromo</li>
+                <li>Crea una clase "CuentaBancaria" con métodos para depositar, retirar y consultar saldo</li>
+                <li>Implementa un juego de "Adivina el número" donde la computadora elige un número aleatorio</li>
+            </ul>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2023 Aprende Python - Recursos educativos para todos los niveles</p>
+        <p>Este sitio es para fines educativos. Python es una marca registrada de Python Software Foundation.</p>
+    </footer>
+
+    <script>
+        // Función para ejecutar código Python (simulada)
+        function runCode(editorId, outputId) {
+            const code = document.getElementById(editorId).value;
+            const outputElement = document.getElementById(outputId);
+            
+            // En un entorno real, aquí se enviaría el código a un servidor para ejecutarlo
+            // Por ahora, simulamos la ejecución con casos específicos
+            
+            outputElement.innerHTML = "<strong>Ejecutando código...</strong><br>";
+            
+            // Simulamos un retardo de ejecución
+            setTimeout(() => {
+                try {
+                    // Esta es una simulación muy básica
+                    // En una implementación real, necesitarías un backend para ejecutar Python
+                    
+                    // Capturamos los print
+                    let output = "";
+                    const mockConsole = {
+                        log: function(...args) {
+                            output += args.join(' ') + '<br>';
+                        }
+                    };
+                    
+                    // Evaluamos el código de forma segura (muy simplificada)
+                    // NOTA: En producción, NUNCA uses eval con entrada del usuario
+                    // Esto es solo para demostración
+                    if (code.includes('alert') || code.includes('document.cookie') || 
+                        code.includes('window.') || code.includes('location.')) {
+                        output = "<span style='color: red;'>Error: Código no permitido por razones de seguridad</span>";
+                    } else {
+                        // Reemplazamos print por console.log para nuestra simulación
+                        const safeCode = code.replace(/print\(/g, 'mockConsole.log(');
+                        
+                        // Ejecutamos con un try-catch para capturar errores de sintaxis
+                        try {
+                            eval(safeCode);
+                        } catch (e) {
+                            output = `<span style='color: red;'>Error: ${e.message}</span>`;
+                        }
+                    }
+                    
+                    outputElement.innerHTML = output || "<em>El código se ejecutó, pero no produjo salida.</em>";
+                } catch (error) {
+                    outputElement.innerHTML = `<span style='color: red;'>Error al ejecutar: ${error.message}</span>`;
+                }
+            }, 500);
+        }
+        
+        // Smooth scrolling para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

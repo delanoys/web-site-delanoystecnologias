@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aprende Python — Página Educativa Completa</title>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet" />
+    <style>
+        :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--text:#e6eef6}
+        body{font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; background:linear-gradient(180deg,#071024 0%, #081427 100%); color:var(--text); scroll-behavior: smooth;}
+        header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        header h1{margin:0;font-size:18px}
+        nav a{color:var(--text);margin-left:12px;text-decoration:none;opacity:.85}
+        nav a:hover{opacity:1}
+        main{max-width:1100px;margin:24px auto;padding:18px}
+        .grid{display:grid;grid-template-columns:320px 1fr;gap:18px}
+        .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+        aside .toc a{display:block;padding:8px 6px;color:var(--text);text-decoration:none;border-radius:6px}
+        aside .toc a:hover{background:rgba(255,255,255,0.02)}
+        h2{margin-top:6px}
+        .example{background:#010913;padding:12px;border-radius:8px;margin:10px 0}
+        .editor{display:flex;gap:12px}
+        textarea{width:100%;height:220px;background:#011627;color: #d6e5ff;border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:8px;font-family:Menlo,monospace;font-size:14px;resize:vertical}
+        button.run{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;color:#002;cursor:pointer;font-weight:700;transition:all 0.2s}
+        button.run:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(6,182,212,0.4)}
+        .output{background:#00121a;color:#bfe8ff;padding:12px;border-radius:8px;min-height:80px;white-space:pre-wrap;font-family:monospace;font-size:13px}
+        footer{padding:18px;text-align:center;color:rgba(255,255,255,0.6)}
+        .chip{display:inline-block;padding:6px 10px;background:rgba(255,255,255,0.03);border-radius:999px;margin-right:8px}
+        .quiz{margin-top:12px}
+        .btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:6px;color:var(--text);margin-left:8px;cursor:pointer;transition:all 0.2s}
+        .btn-secondary:hover{background:rgba(255,255,255,0.05)}
+        .scoreboard{margin-top:10px;padding:10px;background:#010913;border-radius:8px;font-weight:700}
+        .explanation{margin-top:10px;background:#0b192e;padding:10px;border-radius:8px;line-height:1.6}
+        .history{margin-top:10px;background:#0c1f38;padding:10px;border-radius:8px;font-size:14px;line-height:1.8}
+        input[type="text"]{width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:#071227;color:var(--text);font-size:14px}
+        code{background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;font-family:monospace}
+        @media(max-width:880px){
+            .grid{grid-template-columns:1fr}
+            aside{order:2}
+            .editor{flex-direction:column}
+            .editor > div{width:100%!important}
+            header{flex-direction:column;gap:12px}
+            nav{display:flex;flex-wrap:wrap;gap:8px}
+            nav a{margin-left:0}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🐍 Aprende Python — Práctico y Teórico</h1>
+        <nav>
+            <a href="#introduccion">Introducción</a>
+            <a href="#basico">Básico</a>
+            <a href="#avanzado">Avanzado</a>
+            <a href="#ejercicios">Ejercicios</a>
+            <a href="#evaluacion">Evaluación</a>
+            <a href="#soluciones">Soluciones</a>
+            <a href="#github">GitHub</a>
+        </nav>
+    </header>
+    <main>
+        <div class="grid">
+            <aside class="card">
+                <section class="toc">
+                    <h3>📚 Contenido</h3>
+                    <a href="#introduccion">Introducción e historia</a>
+                    <a href="#por-que-python">¿Por qué Python?</a>
+                    <a href="#basico">Conceptos básicos</a>
+                    <a href="#interactivo">Editor interactivo</a>
+                    <a href="#avanzado">Temas avanzados</a>
+                    <a href="#ejercicios">Ejercicios</a>
+                    <a href="#evaluacion">Evaluación automática</a>
+                    <a href="#soluciones">Soluciones</a>
+                    <a href="#github">Integración GitHub</a>
+                </section>
+            </aside>
+
+            <section class="card">
+                <h2 id="introduccion">📖 Introducción e historia</h2>
+                <p>Python es un lenguaje de programación de alto nivel creado por Guido van Rossum en 1991. Su diseño enfatiza la legibilidad del código y la simplicidad, siendo ideal tanto para principiantes como para desarrolladores avanzados. Ha evolucionado significativamente desde sus primeras versiones, y hoy en día es ampliamente utilizado en desarrollo web, análisis de datos, inteligencia artificial, automatización y más.</p>
+
+                <h3 id="por-que-python">💡 ¿Por qué Python?</h3>
+                <ul>
+                    <li>Legible y fácil de aprender.</li>
+                    <li>Gran comunidad y amplio ecosistema de librerías.</li>
+                    <li>Versatilidad en múltiples áreas: ciencia de datos, web, automatización, IA, etc.</li>
+                </ul>
+
+                <h2 id="basico">🎯 Conceptos básicos</h2>
+                <p>Python permite trabajar con variables, tipos de datos, estructuras de control y funciones de manera simple:</p>
+                <div class="example">
+<pre><code class="language-python"># Declaración de variables y tipos
+nombre = "Juan"
+edad = 25
+pi = 3.14
+
+# Función básica
+def saludar(nombre):
+    return f"Hola, {nombre}!"
+
+print(saludar(nombre))</code></pre>
+                </div>
+
+                <h3 id="interactivo">⚡ Editor interactivo</h3>
+                <p>Prueba tu código Python directamente en el navegador:</p>
+                <div class="editor">
+                    <div style="flex:1">
+                        <textarea id="code"># Escribe tu código aquí
+print('Hola desde Python!')
+
+# Prueba diferentes operaciones
+resultado = 2 + 2
+print(f'2 + 2 = {resultado}')</textarea>
+                        <div style="margin-top:8px">
+                            <button class="run" onclick="runCode()">▶️ Ejecutar</button>
+                            <button class="btn-secondary" onclick="clearCode()">🗑️ Limpiar</button>
+                        </div>
+                    </div>
+                    <div style="width:360px">
+                        <div style="font-weight:700;margin-bottom:6px">📤 Salida</div>
+                        <div id="output" class="output">(Aquí verás la salida de tu código)</div>
+                    </div>
+                </div>
+
+                <h2 id="avanzado">🚀 Temas avanzados</h2>
+                <p>Python ofrece características avanzadas como clases y objetos, manejo de excepciones, decoradores, generadores y comprensión de listas.</p>
+                <div class="example">
+<pre><code class="language-python"># Clase y método en Python
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def saludar(self):
+        return f"Hola, soy {self.nombre} y tengo {self.edad} años"
+
+juan = Persona('Juan', 30)
+print(juan.saludar())
+
+# Comprensión de listas
+cuadrados = [x**2 for x in range(5)]
+print(cuadrados)</code></pre>
+                </div>
+
+                <h2 id="ejercicios">✏️ Ejercicios</h2>
+                <ol>
+                    <li>Escribe un programa que cuente vocales en una palabra.</li>
+                    <li>Crea una función que determine si un número es primo.</li>
+                    <li>Simula una calculadora básica que sume y reste números.</li>
+                </ol>
+
+                <h2 id="evaluacion">📝 Evaluación automática</h2>
+                <p>Pon a prueba tus conocimientos con este cuestionario aleatorio:</p>
+                <div id="quiz-container"></div>
+                <div style="margin-top:8px">
+                    <button class="run" onclick="evaluateQuiz()">✅ Evaluar</button>
+                    <button class="btn-secondary" onclick="newQuiz()">🔄 Nuevo cuestionario</button>
+                    <button class="btn-secondary" onclick="clearHistory()">🗑️ Limpiar historial</button>
+                </div>
+                <div id="score" class="scoreboard">Tu puntuación: 0/3</div>
+                <div id="explanations" class="explanation"></div>
+                <div id="history" class="history">📊 Historial de intentos: (ninguno)</div>
+
+                <h3 id="soluciones">💡 Soluciones</h3>
+                <p>Las soluciones a los ejercicios se encuentran en la sección interactiva y en los ejemplos de código. Puedes probar tus propias soluciones en el editor interactivo.</p>
+
+                <h2 id="github">🌐 Integración con GitHub Pages</h2>
+                <p>Para publicar esta página en GitHub Pages:</p>
+                <ol>
+                    <li>Crea un nuevo repositorio en GitHub</li>
+                    <li>Sube este archivo como <code>index.html</code></li>
+                    <li>Ve a Settings → Pages en tu repositorio</li>
+                    <li>Selecciona la rama main y la carpeta root</li>
+                    <li>Guarda y espera unos minutos</li>
+                    <li>Accede a tu sitio en <code>https://tuusuario.github.io/repositorio</code></li>
+                </ol>
+
+            </section>
+        </div>
+
+        <footer class="card" style="margin-top:18px">
+            <p>🐍 Aprende Python de manera práctica y teórica — versión completa con evaluación aleatoria, explicaciones y registro de intentos.</p>
+            <p style="font-size:12px;opacity:0.7">Powered by Skulpt • Python en tu navegador</p>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script>
+        // Skulpt (ejecución de Python en el navegador)
+        function outf(text){
+            document.getElementById('output').textContent += text;
+        }
+        
+        function builtinRead(x){
+            if(!Sk.builtinFiles || !Sk.builtinFiles['files'][x])
+                throw "Archivo no encontrado: " + x;
+            return Sk.builtinFiles['files'][x];
+        }
+        
+        function runCode(){
+            const code = document.getElementById('code').value;
+            const outputEl = document.getElementById('output');
+            outputEl.textContent = '';
+            
+            Sk.configure({output: outf, read: builtinRead});
+            Sk.misceval.asyncToPromise(() => 
+                Sk.importMainWithBody('<stdin>', false, code, true)
+            ).catch(e => { 
+                outputEl.textContent += '\n❌ Error: ' + e; 
+            });
+        }
+
+        function clearCode(){
+            document.getElementById('code').value = '# Escribe tu código aquí\n';
+            document.getElementById('output').textContent = '(Aquí verás la salida de tu código)';
+        }
+
+        // Banco de preguntas
+        const questionBank = [
+            {q:'¿Qué devuelve len("Python")?', a:'6', exp:'La función len() cuenta los caracteres. "Python" tiene 6 letras.'},
+            {q:'¿Qué tipo de dato es [1,2,3]?', a:'list', exp:'Los corchetes [] definen una lista en Python.'},
+            {q:'Resultado de 2**3:', a:'8', exp:'El operador ** es potenciación: 2³ = 8.'},
+            {q:'¿Cómo se define una función?', a:'def', exp:'Se utiliza la palabra clave "def" seguida del nombre de la función.'},
+            {q:'Palabra clave para crear una clase?', a:'class', exp:'Se utiliza "class NombreClase:" para definir clases.'},
+            {q:'¿Qué devuelve type(3.14)?', a:'float', exp:'3.14 es un número decimal, tipo float.'},
+            {q:'Operador para resto de división:', a:'%', exp:'El operador % devuelve el resto de una división (módulo).'},
+            {q:'¿Cómo se inicia un bucle?', a:'for', exp:'Se puede usar "for" o "while" para crear bucles, "for" es el más común.'},
+        ];
+
+        function getRandomQuestions(n){ 
+            let shuffled = [...questionBank].sort(() => 0.5 - Math.random()); 
+            return shuffled.slice(0, n); 
+        }
+        
+        let currentQuestions = getRandomQuestions(3);
+        const quizContainer = document.getElementById('quiz-container');
+
+        function renderQuiz(){
+            quizContainer.innerHTML = '';
+            currentQuestions.forEach((item, index) => {
+                let div = document.createElement('div');
+                div.style.marginBottom = '12px';
+                div.innerHTML = `
+                    <label style="font-weight:700">${index+1}. ${item.q}</label><br>
+                    <input id='q${index}' type='text' placeholder='Tu respuesta'>
+                `;
+                quizContainer.appendChild(div);
+            });
+            document.getElementById('score').textContent = 'Tu puntuación: 0/' + currentQuestions.length;
+            document.getElementById('explanations').innerHTML = '';
+        }
+
+        function evaluateQuiz(){
+            let score = 0, feedback = '';
+            currentQuestions.forEach((item, index) => {
+                let userAns = (document.getElementById('q' + index).value || '').trim().toLowerCase();
+                let expected = String(item.a).trim().toLowerCase();
+                if(userAns === expected){ 
+                    score++; 
+                    feedback += `<div style="color:#4ade80;margin:8px 0">✔️ Pregunta ${index+1} correcta: ${item.exp}</div>`; 
+                } else { 
+                    feedback += `<div style="color:#f87171;margin:8px 0">❌ Pregunta ${index+1} incorrecta. Respuesta correcta: <strong>${item.a}</strong>. ${item.exp}</div>`; 
+                }
+            });
+            document.getElementById('score').textContent = 'Tu puntuación: ' + score + '/' + currentQuestions.length;
+            document.getElementById('explanations').innerHTML = feedback;
+
+            // Guardar historial (en memoria, no localStorage)
+            if(!window.quizHistory) window.quizHistory = [];
+            window.quizHistory.push({
+                score: score, 
+                total: currentQuestions.length, 
+                time: new Date().toLocaleString()
+            });
+            renderHistory();
+        }
+
+        function renderHistory(){
+            const history = window.quizHistory || [];
+            const historyEl = document.getElementById('history');
+            if(!history || history.length === 0){
+                historyEl.innerHTML = '📊 Historial de intentos: (ninguno)';
+                return;
+            }
+            historyEl.innerHTML = '<strong>📊 Historial de intentos:</strong><br>' + 
+                history.map((h, i) => `Intento ${i+1}: <strong>${h.score}/${h.total}</strong> — ${h.time}`).join('<br>');
+        }
+
+        function newQuiz(){
+            currentQuestions = getRandomQuestions(3);
+            renderQuiz();
+        }
+
+        function clearHistory(){
+            if(confirm('¿Borrar todo el historial de intentos?')) {
+                window.quizHistory = [];
+                renderHistory();
+            }
+        }
+
+        // Inicialización al cargar la página
+        window.addEventListener('load', () => {
+            renderQuiz();
+            renderHistory();
+            
+            // Resaltar código con Prism
+            if(typeof Prism !== 'undefined'){
+                Prism.highlightAll();
+            }
+        });
+
+        // Atajos de teclado
+        document.getElementById('code').addEventListener('keydown', (e) => {
+            if(e.ctrlKey && e.key === 'Enter'){
+                e.preventDefault();
+                runCode();
+            }
+        });
+    </script>
+</body>
+</html>

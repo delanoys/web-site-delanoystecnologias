@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Educativo - Aprende Python desde Cero hasta Avanzado</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: #34495e;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0;
+        }
+        nav li {
+            margin: 0 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        nav a:hover {
+            background-color: #2c3e50;
+            transform: translateY(-2px);
+        }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        section {
+            margin-bottom: 50px;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fafafa;
+            transition: box-shadow 0.3s;
+        }
+        section:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border: none;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            margin: 15px 0;
+        }
+        .run-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 15px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .run-btn:hover {
+            background: #229954;
+        }
+        .run-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        pre code {
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        details {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #2c3e50;
+            outline: none;
+        }
+        .interactive {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d1f2eb 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #27ae60;
+        }
+        #brython-output {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            min-height: 60px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+        }
+        .quiz {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #f39c12;
+        }
+        .quiz-question {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .quiz-option {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        .quiz-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        .quiz-feedback {
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #3498db;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 5px 0;
+            }
+            main {
+                margin: 10px;
+                padding: 10px;
+            }
+            .code-block {
+                font-size: 12px;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.0/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.0/brython_stdlib.js"></script>
+</head>
+<body onload="brython()">
+    <header>
+        <h1>🐍 Python Educativo Interactivo</h1>
+        <p>Tu guía completa para dominar Python: Desde cero hasta temas avanzados como broadcasting en GPU y Dask. ¡Aprende, practica y juega con código en vivo!</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#basico">Básico</a></li>
+            <li><a href="#avanzado">Avanzado</a></li>
+            <li><a href="#pandas">Pandas</a></li>
+            <li><a href="#bibliotecas">Bibliotecas</a></li>
+            <li><a href="#ejemplos">Ejemplos Código</a></li>
+            <li><a href="#numpy">Tutorial NumPy</a></li>
+            <li><a href="#broadcasting">Broadcasting NumPy</a></li>
+            <li><a href="#adv-broadcasting">Broadcasting Avanzado</a></li>
+            <li><a href="#dask">Broadcasting Dask</a></li>
+            <li><a href="#gpu-pytorch">GPU PyTorch</a></li>
+            <li><a href="#cupy">CuPy Broadcasting</a></li>
+            <li><a href="#dask-cupy">Dask-CuPy</a></li>
+            <li><a href="#aplicaciones">Aplicaciones</a></li>
+            <li><a href="#interactivo">Interactivo</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="inicio">
+            <h2>Bienvenido a Python Educativo</h2>
+            <p>Esta plataforma interactiva cubre todo lo necesario para aprender Python: desde fundamentos hasta temas avanzados como NumPy, Pandas, broadcasting en entornos distribuidos y GPU. Incluye quizzes, ejecución de código en vivo con Brython (para basics) y ejemplos prácticos. Progreso: <div class="progress-bar"><div class="progress-fill" id="progress"></div></div></p>
+            <script>document.getElementById('progress').style.width = '10%';</script>
+            <p>Instala Python en <a href="https://www.python.org/downloads/" target="_blank">python.org</a> o usa editores online como <a href="https://replit.com/languages/python3" target="_blank">Replit</a>.</p>
+        </section>
+        
+        <section id="historia">
+            <h2>Historia y Evolución de Python</h2>
+            <p>Python fue creado por Guido van Rossum en los Países Bajos a finales de los 80s. Lanzado en 1991, su nombre viene de "Monty Python's Flying Circus".</p>
+            <details>
+                <summary>Evolución Clave</summary>
+                <ul>
+                    <li><strong>1991:</strong> Python 0.9.0 con módulos básicos.</li>
+                    <li><strong>2000:</strong> Python 2.0 con list comprehensions.</li>
+                    <li><strong>2008:</strong> Python 3.0 rompe compatibilidad.</li>
+                    <li><strong>2020:</strong> Fin de soporte para Python 2.</li>
+                    <li><strong>2025:</strong> Python 3.12+ con +50% velocidad y patrones de coincidencia.</li>
+                </ul>
+            </details>
+            <p>Comunidad activa via PSF. <a href="https://www.python.org/about/" target="_blank">Más info</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: ¿Quién creó Python?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-historia" value="a"> Guido van Rossum</div>
+                    <div class="quiz-option"><input type="radio" name="q-historia" value="b"> Linus Torvalds</div>
+                    <div class="quiz-option"><input type="radio" name="q-historia" value="c"> Bill Gates</div>
+                    <button onclick="checkQuiz('q-historia', 'a', '¡Correcto! Guido van Rossum lo creó en 1989.')">Verificar</button>
+                    <div id="feedback-q-historia" class="quiz-feedback"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="basico">
+            <h2>Contenido Básico</h2>
+            <p>Fundamentos para principiantes: variables, control de flujo, funciones.</p>
+            <h3>Hola Mundo</h3>
+            <div class="code-block">
+                <button class="run-btn" onclick="runBrython(this)">Ejecutar</button>
+                <script type="text/python" id="hola-mundo">
+print("¡Hola, Mundo!")
+                </script>
+                <div id="output-hola"></div>
+            </div>
+            <h3>Variables y Tipos</h3>
+            <div class="code-block">
+                <button class="run-btn" onclick="runBrython(this)">Ejecutar</button>
+                <script type="text/python" id="variables">
+nombre = "Juan"
+edad = 25
+print(f"{nombre} tiene {edad} años.")
+                </script>
+                <div id="output-variables"></div>
+            </div>
+            <h3>Control de Flujo</h3>
+            <div class="code-block">
+                <button class="run-btn" onclick="runBrython(this)">Ejecutar</button>
+                <script type="text/python" id="flujo">
+for i in range(5):
+    print(i)
+                </script>
+                <div id="output-flujo"></div>
+            </div>
+            <div class="quiz">
+                <h3>Quiz: Output de range(3)</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-basico" value="a"> 0 1 2</div>
+                    <div class="quiz-option"><input type="radio" name="q-basico" value="b"> 1 2 3</div>
+                    <button onclick="checkQuiz('q-basico', 'a', '¡Bien! range(3) va de 0 a 2.')">Verificar</button>
+                    <div id="feedback-q-basico" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '20%';</script>
+        </section>
+        
+        <section id="avanzado">
+            <h2>Contenido Avanzado</h2>
+            <p>POO, decoradores, generadores, manejo de excepciones.</p>
+            <h3>POO</h3>
+            <div class="code-block">
+                <button class="run-btn" onclick="runBrython(this)">Ejecutar</button>
+                <script type="text/python" id="poo">
+class Perro:
+    def __init__(self, nombre):
+        self.nombre = nombre
+    def ladrar(self):
+        print(f"{self.nombre} dice: ¡Guau!")
+
+mi_perro = Perro("Firulais")
+mi_perro.ladrar()
+                </script>
+                <div id="output-poo"></div>
+            </div>
+            <h3>Decoradores</h3>
+            <div class="code-block">
+                <button class="run-btn" onclick="runBrython(this)">Ejecutar</button>
+                <script type="text/python" id="decorador">
+def decorador(func):
+    def wrapper():
+        print("Antes...")
+        func()
+        print("Después...")
+    return wrapper
+
+@decorador
+def hola():
+    print("¡Hola!")
+
+hola()
+                </script>
+                <div id="output-decorador"></div>
+            </div>
+            <div class="quiz">
+                <h3>Quiz: ¿Qué es un decorador?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-avanzado" value="a"> Función que modifica otra</div>
+                    <div class="quiz-option"><input type="radio" name="q-avanzado" value="b"> Variable global</div>
+                    <button onclick="checkQuiz('q-avanzado', 'a', '¡Correcto! Modifica comportamiento de funciones.')">Verificar</button>
+                    <div id="feedback-q-avanzado" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '30%';</script>
+        </section>
+        
+        <section id="pandas">
+            <h2>Tutorial Pandas</h2>
+            <p>Pandas es esencial para datos tabulares. Instala con <code>pip install pandas</code>. Basado en docs 2.3.3 (2025).</p>
+            <h3>Crear DataFrame</h3>
+            <div class="code-block">
+                <pre><code>import pandas as pd
+data = {'Nombre': ['Ana', 'Bob'], 'Edad': [25, 30]}
+df = pd.DataFrame(data)
+print(df)</code></pre>
+            </div>
+            <h3>Filtrar Datos</h3>
+            <div class="code-block">
+                <pre><code>mayores = df[df['Edad'] > 25]
+print(mayores)</code></pre>
+            </div>
+            <h3>Estadísticas</h3>
+            <div class="code-block">
+                <pre><code>print(df.describe())</code></pre>
+            </div>
+            <p>Explicación: DataFrames como Excel en Python. Más en <a href="https://pandas.pydata.org/docs/getting_started/index.html" target="_blank">Getting Started</a> y <a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_blank">User Guide</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: ¿Qué hace df.describe()?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-pandas" value="a"> Estadísticas descriptivas</div>
+                    <div class="quiz-option"><input type="radio" name="q-pandas" value="b"> Filtra datos</div>
+                    <button onclick="checkQuiz('q-pandas', 'a', '¡Sí! Muestra media, std, etc.')">Verificar</button>
+                    <div id="feedback-q-pandas" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '40%';</script>
+        </section>
+        
+        <section id="bibliotecas">
+            <h2>Bibliotecas Clave de Python en 2025</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Biblioteca</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Manipulación de Datos</td><td>NumPy</td><td>Arrays y matemáticas eficientes.</td></tr>
+                    <tr><td>Manipulación de Datos</td><td>Pandas</td><td>Análisis de datos tabulares.</td></tr>
+                    <tr><td>Visualización</td><td>Matplotlib</td><td>Gráficos estáticos.</td></tr>
+                    <tr><td>ML</td><td>PyTorch</td><td>Deep learning dinámico.</td></tr>
+                    <tr><td>ML</td><td>TensorFlow</td><td>Deep learning con GPU.</td></tr>
+                    <tr><td>Web</td><td>Django</td><td>Framework full-stack.</td></tr>
+                    <tr><td>Web</td><td>FastAPI</td><td>APIs asincrónicas.</td></tr>
+                    <tr><td>NLP</td><td>SpaCy</td><td>Procesamiento de lenguaje.</td></tr>
+                    <tr><td>Scraping</td><td>Requests</td><td>Solicitudes HTTP.</td></tr>
+                </tbody>
+            </table>
+            <script>document.getElementById('progress').style.width = '50%';</script>
+        </section>
+        
+        <section id="ejemplos">
+            <h2>Ejemplos de Código</h2>
+            <h3>NumPy Media</h3>
+            <div class="code-block">
+                <pre><code>import numpy as np
+arr = np.array([1,2,3,4,5])
+print(np.mean(arr))</code></pre>
+            </div>
+            <h3>Pandas Filtrar</h3>
+            <div class="code-block">
+                <pre><code>import pandas as pd
+data = {'Edad': [25,30]}
+df = pd.DataFrame(data)
+print(df[df['Edad'] > 25])</code></pre>
+            </div>
+            <script>document.getElementById('progress').style.width = '55%';</script>
+        </section>
+        
+        <section id="numpy">
+            <h2>Tutorial Paso a Paso de NumPy</h2>
+            <p>NumPy para arrays numéricos. Instala: <code>pip install numpy</code>.</p>
+            <h3>Crear Arrays</h3>
+            <div class="code-block">
+                <pre><code>import numpy as np
+arr1 = np.array([1, 2, 3])
+print(arr1)</code></pre>
+            </div>
+            <h3>Operaciones</h3>
+            <div class="code-block">
+                <pre><code>suma = arr1 + 10
+print(suma)</code></pre>
+            </div>
+            <h3>Estadísticas</h3>
+            <div class="code-block">
+                <pre><code>media = np.mean(arr1)
+print(media)</code></pre>
+            </div>
+            <h3>Explicación</h3>
+            <p>Arrays multidimensionales, vectorización para eficiencia. Ejemplo práctico: Análisis de temperaturas.</p>
+            <details>
+                <summary>Ejemplo Completo</summary>
+                <pre><code>temps = np.array([22.5, 24.0, 23.1])
+print(np.mean(temps))</code></pre>
+            </details>
+            <p>Más en <a href="https://numpy.org/doc/stable/" target="_blank">Docs NumPy</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: ¿Qué hace np.mean?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-numpy" value="a"> Calcula media</div>
+                    <div class="quiz-option"><input type="radio" name="q-numpy" value="b"> Suma elementos</div>
+                    <button onclick="checkQuiz('q-numpy', 'a', '¡Correcto! Media aritmética.')">Verificar</button>
+                    <div id="feedback-q-numpy" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '60%';</script>
+        </section>
+        
+        <section id="broadcasting">
+            <h2>Broadcasting en NumPy</h2>
+            <p>Broadcasting opera arrays de shapes diferentes expandiendo dims de 1.</p>
+            <h3>Reglas</h3>
+            <ul>
+                <li>Compara dims desde la derecha.</li>
+                <li>Dims iguales o 1 se expanden.</li>
+            </ul>
+            <div class="code-block">
+                <pre><code>import numpy as np
+a = np.array([1,2,3])
+b = 2
+print(a * b)  # [2 4 6]</code></pre>
+            </div>
+            <h3>Ejemplo 2D</h3>
+            <div class="code-block">
+                <pre><code>c = np.ones((3,2))
+d = np.array([5,10])
+print(c * d)</code></pre>
+            </div>
+            <p>Explicación: d se expande a (1,2) y luego a (3,2). Más en <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html" target="_blank">Docs</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: Shapes compatibles (3,2) y (2,)?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-broadcast" value="a"> Sí, resultado (3,2)</div>
+                    <div class="quiz-option"><input type="radio" name="q-broadcast" value="b"> No</div>
+                    <button onclick="checkQuiz('q-broadcast', 'a', '¡Sí! Segunda dim coincide.')">Verificar</button>
+                    <div id="feedback-q-broadcast" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '65%';</script>
+        </section>
+        
+        <section id="adv-broadcasting">
+            <h2>Broadcasting Avanzado en NumPy</h2>
+            <p>Aplicaciones complejas: dims superiores, np.newaxis, máscaras.</p>
+            <h3>3D Broadcasting</h3>
+            <div class="code-block">
+                <pre><code>import numpy as np
+a = np.ones((3,2,1))
+b = np.array([10,20])
+print(a * b)</code></pre>
+            </div>
+            <h3>Con np.newaxis</h3>
+            <div class="code-block">
+                <pre><code>c = np.array([1,2,3])
+d = c[:, np.newaxis] + c
+print(d)</code></pre>
+            </div>
+            <h3>Máscaras</h3>
+            <div class="code-block">
+                <pre><code>e = np.array([[1,2,3],[4,5,6]])
+mask = e > 3
+f = np.where(mask, e*2, e/2)
+print(f)</code></pre>
+            </div>
+            <p>Explicación: np.newaxis agrega dims para expansión. Útil en ML para outer products. Pitfalls: Formas incompatibles lanzan ValueError.</p>
+            <details>
+                <summary>Ejercicio</summary>
+                <p>Calcula distancias euclidianas con broadcasting.</p>
+            </details>
+            <div class="quiz">
+                <h3>Quiz: ¿Qué hace np.newaxis?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-adv-b" value="a"> Agrega dim de 1</div>
+                    <div class="quiz-option"><input type="radio" name="q-adv-b" value="b"> Elimina dim</div>
+                    <button onclick="checkQuiz('q-adv-b', 'a', '¡Correcto! Para broadcasting.')">Verificar</button>
+                    <div id="feedback-q-adv-b" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '70%';</script>
+        </section>
+        
+        <section id="dask">
+            <h2>Broadcasting con Dask Arrays</h2>
+            <p>Dask extiende NumPy para big data, con broadcasting lazy en chunks.</p>
+            <h3>Setup</h3>
+            <div class="code-block">
+                <pre><code>import dask.array as da
+import numpy as np
+a = da.from_array(np.arange(6).reshape(2,3), chunks=(1,3))
+b = da.from_array(np.ones(3), chunks=3)
+result = a + b
+print(result.compute())</code></pre>
+            </div>
+            <h3>da.broadcast_to</h3>
+            <div class="code-block">
+                <pre><code>x = da.from_array(np.array([1,2,3]), chunks=3)
+y = da.broadcast_to(x, shape=(4,3), chunks=(1,3))
+print(y.compute())</code></pre>
+            </div>
+            <p>Explicación: Lazy evaluation, chunks para paralelismo. No copia datos. Más en <a href="https://docs.dask.org/en/stable/array.html" target="_blank">Dask Docs</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: ¿Qué es lazy en Dask?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-dask" value="a"> Computación diferida</div>
+                    <div class="quiz-option"><input type="radio" name="q-dask" value="b"> Caché inmediato</div>
+                    <button onclick="checkQuiz('q-dask', 'a', '¡Sí! .compute() ejecuta.')">Verificar</button>
+                    <div id="feedback-q-dask" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '75%';</script>
+        </section>
+        
+        <section id="gpu-pytorch">
+            <h2>Broadcasting en GPU con PyTorch</h2>
+            <p>PyTorch acelera broadcasting en GPU para ML.</p>
+            <h3>Setup</h3>
+            <div class="code-block">
+                <pre><code>import torch
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+c = torch.ones((3,2)).to(device)
+d = torch.tensor([5.,10.]).to(device)
+result = c * d
+print(result)</code></pre>
+            </div>
+            <h3>3D</h3>
+            <div class="code-block">
+                <pre><code>e = torch.ones((2,3,4)).to(device)
+f = torch.tensor([100.,200.,300.]).to(device)
+result2 = e * f.unsqueeze(0)
+print(result2.shape)</code></pre>
+            </div>
+            <p>Explicación: Similar a NumPy, pero GPU acelera. Útil en batches. Más en <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank">PyTorch Docs</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: Device en PyTorch</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-pytorch" value="a"> 'cuda' para GPU</div>
+                    <div class="quiz-option"><input type="radio" name="q-pytorch" value="b"> 'cpu' solo</div>
+                    <button onclick="checkQuiz('q-pytorch', 'a', '¡Correcto! Acelera con GPU.')">Verificar</button>
+                    <div id="feedback-q-pytorch" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '80%';</script>
+        </section>
+        
+        <section id="cupy">
+            <h2>Broadcasting con CuPy</h2>
+            <p>CuPy: NumPy en GPU.</p>
+            <h3>Simple</h3>
+            <div class="code-block">
+                <pre><code>import cupy as cp
+c = cp.ones((3,2))
+d = cp.array([5.,10.])
+result = c * d
+print(result.get())</code></pre>
+            </div>
+            <h3>Multidimensional</h3>
+            <div class="code-block">
+                <pre><code>e = cp.ones((2,3,4))
+f = cp.array([100.,200.,300.])
+result2 = e * f[:, cp.newaxis]
+print(result2[0].get())</code></pre>
+            </div>
+            <p>Explicación: broadcast_to como NumPy. Más en <a href="https://docs.cupy.dev/en/stable/reference/generated/cupy.broadcast_to.html" target="_blank">CuPy Docs</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: .get() en CuPy</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-cupy" value="a"> Transfiere a CPU</div>
+                    <div class="quiz-option"><input type="radio" name="q-cupy" value="b"> Computa en GPU</div>
+                    <button onclick="checkQuiz('q-cupy', 'a', '¡Sí! Para print.')">Verificar</button>
+                    <div id="feedback-q-cupy" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '85%';</script>
+        </section>
+        
+        <section id="dask-cupy">
+            <h2>Integración Dask-CuPy</h2>
+            <p>Dask con CuPy para distributed GPU.</p>
+            <h3>Crear Array</h3>
+            <div class="code-block">
+                <pre><code>import dask.array as da
+import cupy as cp
+cupy_arr = cp.arange(100000).reshape(100,1000)
+dask_arr = da.from_array(cupy_arr, chunks=(10,100), asarray=False)
+print(dask_arr.shape)</code></pre>
+            </div>
+            <h3>Operación</h3>
+            <div class="code-block">
+                <pre><code>result = (dask_arr + 1).sum().compute()
+print(result)</code></pre>
+            </div>
+            <p>Explicación: Chunks en GPU, lazy. Para multi-GPU, usa LocalCUDACluster. Más en <a href="https://docs.dask.org/en/stable/gpu.html" target="_blank">Dask GPU Docs</a>.</p>
+            <div class="quiz">
+                <h3>Quiz: asarray=False en Dask-CuPy</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-dask-cupy" value="a"> Preserva backend GPU</div>
+                    <div class="quiz-option"><input type="radio" name="q-dask-cupy" value="b"> Convierte a NumPy</div>
+                    <button onclick="checkQuiz('q-dask-cupy', 'a', '¡Correcto! Mantiene en GPU.')">Verificar</button>
+                    <div id="feedback-q-dask-cupy" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '90%';</script>
+        </section>
+        
+        <section id="aplicaciones">
+            <h2>Importancia y Aplicaciones</h2>
+            <p>Python domina en 2025: IA, data science.</p>
+            <ul>
+                <li>Web: Django/Flask para Instagram.</li>
+                <li>ML: PyTorch en Netflix.</li>
+                <li>Automatización: Scripts DevOps.</li>
+                <li>IA: xAI con Python.</li>
+            </ul>
+            <script>document.getElementById('progress').style.width = '95%';</script>
+        </section>
+        
+        <section id="interactivo">
+            <h2>Sección Interactiva</h2>
+            <div class="interactive">
+                <h3>Editor Brython</h3>
+                <textarea id="brython-editor" rows="10" cols="80">print("¡Prueba código aquí!")</textarea>
+                <br>
+                <button onclick="runBrythonEditor()">Ejecutar</button>
+                <div id="brython-output"></div>
+            </div>
+            <h3>Ejemplo Avanzado: Turtle</h3>
+            <div id="turtle-div"></div>
+            <div class="code-block">
+                <button class="run-btn" onclick="runTurtle()">Ejecutar Turtle</button>
+                <script type="text/python" id="turtle-code">
+from browser import document
+import turtle
+turtle.set_defaults(canvwidth=600, canvheight=400, turtle_canvas_wrapper=document['turtle-div'])
+t = turtle.Turtle()
+t.color('red')
+t.forward(100)
+t.left(90)
+t.forward(100)
+turtle.done()
+                </script>
+            </div>
+            <div class="quiz">
+                <h3>Quiz Final: ¿Broadcasting?</h3>
+                <div class="quiz-question">
+                    <div class="quiz-option"><input type="radio" name="q-final" value="a"> Expansión de arrays</div>
+                    <div class="quiz-option"><input type="radio" name="q-final" value="b"> Copia de datos</div>
+                    <button onclick="checkQuiz('q-final', 'a', '¡Excelente! Virtual, sin copias.')">Verificar</button>
+                    <div id="feedback-q-final" class="quiz-feedback"></div>
+                </div>
+            </div>
+            <script>document.getElementById('progress').style.width = '100%';</script>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Python Educativo - Diseñado para inspirar. | <a href="#inicio" style="color: #ecf0f1;">Inicio</a></p>
+    </footer>
+    
+    <script type="text/javascript">
+        function runBrython(btn) {
+            const scriptId = btn.parentElement.querySelector('script').id;
+            const outputId = btn.parentElement.querySelector('div').id;
+            brython({debug: 1});
+            __BRYTHON__.run_script(document.getElementById(scriptId).textContent);
+            document.getElementById(outputId).innerHTML = 'Ejecutado en Brython. Ver consola para output.';
+        }
+        
+        function runBrythonEditor() {
+            const code = document.getElementById('brython-editor').value;
+            const output = document.getElementById('brython-output');
+            output.innerHTML = '';
+            brython({debug: 1});
+            __BRYTHON__.run_script(code);
+            output.innerHTML = 'Código ejecutado. Output en consola del navegador.';
+        }
+        
+        function runTurtle() {
+            brython({debug: 1});
+            __BRYTHON__.run_script(document.getElementById('turtle-code').textContent);
+        }
+        
+        function checkQuiz(name, correct, msg) {
+            const selected = document.querySelector(`input[name="${name}"]:checked`);
+            const fb = document.getElementById(`feedback-${name}`);
+            if (selected && selected.value === correct) {
+                fb.innerHTML = msg + ' ✅';
+                fb.style.color = 'green';
+            } else {
+                fb.innerHTML = 'Inténtalo de nuevo. ❌';
+                fb.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

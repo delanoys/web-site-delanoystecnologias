@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python.py - El Sitio Educativo de Python</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #306998; /* Color representativo de Python */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #ffd43b; /* Color representativo de Python */
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            width: 85%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #306998;
+            border-bottom: 2px solid #ffd43b;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #4a4a4a;
+        }
+        .accordion-button {
+            background-color: #ffd43b;
+            color: #333;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1em;
+            transition: 0.4s;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        .accordion-button:hover, .active {
+            background-color: #ffc300;
+        }
+        .accordion-content {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .code-snippet {
+            background-color: #eee;
+            padding: 15px;
+            border-left: 5px solid #306998;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        /* Estilos para las pestañas de Nivel */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            background-color: #eee;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+            margin: 0 5px;
+            border-radius: 4px 4px 0 0;
+        }
+        .tab-button.active-tab {
+            background-color: #306998;
+            color: white;
+        }
+        .tab-content {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 0 0 4px 4px;
+        }
+        .hidden {
+            display: none;
+        }
+        .resource-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🐍 Python.py: El Centro de Aprendizaje 💡</h1>
+        <p>Tu guía completa para dominar el lenguaje de programación más versátil del mundo.</p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>Historia y Fundamentos 📜</h2>
+            <p>
+                Python fue creado por **Guido van Rossum** en 1991, buscando un lenguaje que priorizara la **legibilidad** y la **simplicidad**. Hoy, su filosofía de "código Pythonic" (claro, simple, eficiente) guía a millones de desarrolladores. La versión actual y estándar es **Python 3.x**.
+            </p>
+            <h3>Importancia Global y Aplicaciones Clave 🚀</h3>
+            <p>
+                Es un lenguaje de propósito general con una inmensa comunidad. Su popularidad reside en su versatilidad en áreas como:
+            </p>
+            <ul>
+                <li>**Ciencia de Datos / IA:** Modelos de Machine Learning y Deep Learning con bibliotecas líderes.</li>
+                <li>**Desarrollo Web:** Backends robustos con frameworks como **Django** y **Flask**.</li>
+                <li>**Automatización (Scripting):** Tareas repetitivas, administración de sistemas y **DevOps**.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Contenido Teórico y Práctico (¡Aprende y Haz!) 👨‍💻</h2>
+
+            <div class="tab-menu">
+                <button class="tab-button active-tab" onclick="openTab(event, 'Principiante')">Nivel Principiante (0 a 100) 🔰</button>
+                <button class="tab-button" onclick="openTab(event, 'Avanzado')">Nivel Avanzado (100+) 🌟</button>
+            </div>
+
+            <div id="Principiante" class="tab-content">
+                <h3>Módulo 1: Los Cimientos del Código</h3>
+                <p>Aquí aprenderás la sintaxis fundamental y la lógica de programación esencial.</p>
+                
+                <button class="accordion-button">1. Configuración Inicial: Entornos Virtuales (`venv`) ⚙️</button>
+                <div class="accordion-content">
+                    <p>Antes de empezar, debes crear un **Entorno Virtual** (`venv`). Esto aísla las dependencias de tu proyecto del sistema global, evitando conflictos. Es una práctica *esencial*.</p>
+                    <div class="code-snippet">
+                        # 1. Crear el entorno (solo la primera vez)
+                        python -m venv mi_proyecto_env
+                        
+                        # 2. Activar el entorno (antes de instalar librerías)
+                        # En Windows:
+                        mi_proyecto_env\Scripts\activate
+                        # En Linux/macOS:
+                        source mi_proyecto_env/bin/activate
+                    </div>
+                    <a href="https://docs.python.org/es/3/tutorial/venv.html" target="_blank" class="resource-link">Documentación Oficial venv</a>
+                </div>
+                
+                <button class="accordion-button">2. Variables, Tipos de Datos y Operadores</button>
+                <div class="accordion-content">
+                    <p>Python es de tipado dinámico. Se centra en la legibilidad. Usa **f-strings** para formatear cadenas de manera moderna.</p>
+                    <div class="code-snippet">
+                        # Variables y Tipos (int, float, str, bool)
+                        entero = 100
+                        decimal = 3.1415
+                        cadena = "Hola Python"
+                        
+                        # F-string (Formato de cadena)
+                        print(f"La variable es {cadena} y su tipo es {type(cadena)}")
+                    </div>
+                </div>
+
+                <button class="accordion-button">3. Colecciones Fundamentales: Listas, Tuplas y Diccionarios</button>
+                <div class="accordion-content">
+                    <p>Conoce las estructuras de datos que usarás a diario:</p>
+                    <ul>
+                        <li>**Lista (`[]`):** Ordenada, mutable (se puede cambiar).</li>
+                        <li>**Tupla (`()`):** Ordenada, inmutable (no se puede cambiar).</li>
+                        <li>**Diccionario (`{}`):** Sin orden, almacena pares `clave: valor`.</li>
+                    </ul>
+                    <div class="code-snippet">
+                        mi_lista = [1, "dos", True]
+                        mi_diccionario = {"nombre": "Guido", "edad": 67}
+                        
+                        # Acceso y modificación
+                        mi_lista.append(3)
+                        print(mi_diccionario["nombre"]) # Salida: Guido
+                    </div>
+                </div>
+                
+                <button class="accordion-button">4. Control de Flujo (if/else) y Bucles (`for`, `while`)</button>
+                <div class="accordion-content">
+                    <p>La **indentación** (espacios) define los bloques de código, ¡es vital!</p>
+                    <div class="code-snippet">
+                        # Bucle for con enumerate (forma "Pythonic")
+                        colores = ["rojo", "verde", "azul"]
+                        for indice, color in enumerate(colores):
+                            print(f"{indice}: {color}")
+                            
+                        # Condicional
+                        x = 10
+                        if x > 5:
+                            print("X es mayor que 5")
+                        else:
+                            print("X es menor o igual a 5")
+                    </div>
+                </div>
+            </div>
+
+            <div id="Avanzado" class="tab-content hidden">
+                <h3>Módulo 2: Dominando las Herramientas</h3>
+                <p>Aquí se exploran bibliotecas, paradigmas de diseño y técnicas de alto rendimiento.</p>
+                
+                <button class="accordion-button">1. NumPy: La Base de la Ciencia de Datos 📊</button>
+                <div class="accordion-content">
+                    <p>La biblioteca **NumPy** (`Numerical Python`) es fundamental para el cálculo científico. Proporciona el objeto **`ndarray`** (N-dimensional array), que es mucho más rápido y eficiente en memoria que las listas estándar para operaciones matemáticas.</p>
+                    <div class="code-snippet">
+                        import numpy as np
+                        
+                        # Crear un array de NumPy (más rápido que una lista)
+                        array_a = np.array([1, 2, 3])
+                        array_b = np.array([10, 20, 30])
+                        
+                        # Operación vectorizada (se aplica a cada elemento)
+                        resultado = array_a + array_b 
+                        print(resultado) # Salida: [11 22 33]
+                    </div>
+                    <a href="https://numpy.org/doc/stable/user/absolute_beginners.html" target="_blank" class="resource-link">Tutorial NumPy para Principiantes</a>
+                </div>
+                
+                <button class="accordion-button">2. Programación Orientada a Objetos (POO) 🏛️</button>
+                <div class="accordion-content">
+                    <p>Profundiza en la creación de **Clases** y **Objetos** utilizando métodos especiales (Dunder Methods como `__init__`), **Herencia**, y los principios de **Encapsulamiento**.</p>
+                    <div class="code-snippet">
+                        class Rectangulo:
+                            def __init__(self, ancho, alto):
+                                self.ancho = ancho
+                                self.alto = alto
+                                
+                            def area(self):
+                                return self.ancho * self.alto
+                                
+                        r = Rectangulo(5, 4)
+                        print(f"Área: {r.area()}") # Salida: Área: 20
+                    </div>
+                </div>
+
+                <button class="accordion-button">3. Decoradores, Context Managers (`with`) y Manejo de Excepciones</button>
+                <div class="accordion-content">
+                    <p>Los **Decoradores** (`@`) son atajos para envolver funciones. Los **Context Managers** garantizan que los recursos (como archivos) se limpien correctamente. El manejo de errores con `try/except/finally` es vital para software robusto.</p>
+                    <div class="code-snippet">
+                        # Context Manager para asegurar el cierre de archivo
+                        with open('datos.txt', 'w') as f:
+                            f.write("Guardando datos...")
+                        # El archivo 'f' se cierra automáticamente aquí.
+                    </div>
+                </div>
+                
+                <button class="accordion-button">4. Programación Asíncrona (`asyncio`) y Tareas Paralelas</button>
+                <div class="accordion-content">
+                    <p>Para aplicaciones de alto rendimiento (web scraping, servidores web), es necesario entender cómo manejar múltiples tareas sin bloquear el programa. Usa `async/await` con la biblioteca **`asyncio`**.</p>
+                    <div class="code-snippet">
+                        # Estructura básica de una función asíncrona
+                        # import asyncio
+                        # async def tarea_lenta(tiempo):
+                        #     await asyncio.sleep(tiempo) # Pausa el proceso SIN bloquear
+                        #     print(f"Terminé después de {tiempo}s")
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <hr>
+        
+        <section>
+            <h2>Recursos Adicionales y Herramientas 🔗</h2>
+            <ul>
+                <li>📘 **Documentación Oficial de Python:** <a href="https://docs.python.org/es/3/" target="_blank">Imprescindible para la consulta de sintaxis y módulos.</a></li>
+                <li>📦 **PyPI (The Python Package Index):** <a href="https://pypi.org/" target="_blank">El repositorio oficial de librerías. Aquí descargas NumPy, Django, Flask, etc.</a></li>
+                <li>🌐 **Tutorial de Django:** <a href="https://docs.djangoproject.com/es/5.0/intro/tutorial01/" target="_blank">Aprende a construir aplicaciones web profesionales.</a></li>
+                <li>🖼️ **Matplotlib/Seaborn:** <a href="https://matplotlib.org/" target="_blank">Librerías clave para la creación de gráficos y visualización de datos (el "Canvas" de Python).</a></li>
+            </ul>
+        </section>
+
+
+        <footer>
+            <p style="text-align: center; font-size: 0.9em; color: #666; padding-top: 20px;">
+                © 2025 Python.py Educación. ¡Sigue codificando!
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Función para el Acordeón (mostrar/ocultar contenido)
+        var acc = document.getElementsByClassName("accordion-button");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            });
+        }
+        
+        // Función para las Pestañas (Nivel Principiante/Avanzado)
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Oculta todo el contenido
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.add("hidden");
+            }
+            
+            // Remueve la clase activa de todos los botones
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active-tab");
+            }
+            
+            // Muestra el contenido de la pestaña actual y establece el botón como activo
+            document.getElementById(tabName).classList.remove("hidden");
+            evt.currentTarget.classList.add("active-tab");
+        }
+        
+        // Inicializar la pestaña 'Principiante' al cargar
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Asegura que la pestaña de principiante esté visible y activa al inicio
+            document.getElementById('Principiante').classList.remove("hidden");
+            document.querySelector('.tab-button').classList.add("active-tab");
+        });
+    </script>
+
+</body>
+</html>
