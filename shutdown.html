@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shutdown & PowerShell — Generador interactivo</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#0ea5ff;--muted:#94a3b8;--glass:rgba(255,255,255,0.03)}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; background:linear-gradient(180deg,#071025 0%, #081226 100%); color:#e6eef8}
+    .wrap{max-width:980px;margin:28px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:4px 0 18px;color:var(--muted)}
+    nav{display:flex;gap:8px;margin-top:12px}
+    .tab{background:var(--glass);padding:8px 12px;border-radius:10px;cursor:pointer;color:var(--muted)}
+    .tab.active{background:linear-gradient(90deg,#062033, #083246);color:var(--accent);box-shadow:0 6px 18px rgba(4,20,32,0.6)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    label{display:block;margin-top:12px;font-size:13px;color:var(--muted)}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-top:6px}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    button{background:var(--accent);border:none;padding:10px 12px;border-radius:8px;color:#042026;cursor:pointer;margin-top:12px}
+    pre{background:#02111a;padding:12px;border-radius:8px;overflow:auto;font-size:13px}
+    .muted{color:var(--muted);font-size:13px}
+    .small{font-size:12px;color:var(--muted)}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .chip{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);cursor:pointer}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    .download{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--accent)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>shutdown.html — Generador interactivo de comandos</h1>
+        <p class="lead">Genera y copia comandos <strong>shutdown</strong> (cmd) y scripts de PowerShell para reiniciar/apagar con opciones. Incluye inicio seguro (bcdedit).</p>
+        
+      </div>
+    </header>
+
+    <nav>
+      <div class="tab active" data-tab="shutdown">shutdown (CMD)</div>
+      <div class="tab" data-tab="powershell">PowerShell</div>
+      <div class="tab" data-tab="safeboot">Inicio Seguro</div>
+    </nav>
+
+    <section id="shutdown" class="card">
+      <h2>Comando <code>shutdown</code> (CMD)</h2>
+      <p>Comandos básicos para diagnóstico y administración rápida en Windows. Útil cuando PowerShell no está disponible.</p>
+                                    <details>
+                                        <summary>Ejemplos rápidos</summary>
+                                        <pre><code>
+                                :: Mostrar configuración IP
+                                ipconfig /all
+
+                                :: Probar conectividad
+                                ping google.com
+
+                                :: Listar rutas de red
+                                route print
+
+                                :: Apagar el equipo (requiere permisos)
+                                shutdown /s /t 30  &amp;&amp; echo "Apagado programado en 30s"
+                                        </code></pre>
+                                    </details>
+      <label>Acción</label>
+      <div class="row">
+        <div class="col">
+          <select id="sd-action">
+            <option value="/r">Reiniciar (/r)</option>
+            <option value="/s">Apagar (/s)</option>
+            <option value="/l">Cerrar sesión (/l)</option>
+            <option value="/h">Hibernar (/h)</option>
+          </select>
+        </div>
+        <div class="col">
+          <select id="sd-force">
+            <option value="">No forzar</option>
+            <option value="/f">Forzar cierre de aplicaciones (/f)</option>
+          </select>
+        </div>
+      </div>
+      <label>Tiempo (segundos)</label>
+      <input id="sd-time" type="number" value="0" min="0" />
+      <label>Mensaje</label>
+      <input id="sd-msg" type="text" placeholder="Mensaje opcional" />
+      <div class="actions">
+        <button id="sd-generate">Generar comando</button>
+        <button id="sd-copy" class="download">Copiar</button>
+        <button id="sd-download" class="download">Descargar .bat</button>
+      </div>
+      <pre id="sd-result">shutdown /r /t 0</pre>
+    </section>
+
+    <section id="powershell" class="card" style="display:none;">
+      <h2>Comandos PowerShell</h2>
+      <p>PowerShell ofrece mayor potencia y scripting para automatizar tareas. Ejecutar como administrador para acciones de sistema.</p>
+                                    <details>
+                                        <summary>Snippets útiles</summary>
+                                        <pre><code>
+                                # Listar procesos y filtrarlos
+                                Get-Process | Sort-Object CPU -Descending | Select-Object -First 10
+
+                                # Listar servicios
+                                Get-Service | Where-Object {$_.Status -eq 'Running'}
+
+                                # Reiniciar equipo local
+                                Restart-Computer -Force
+
+                                # Apagar equipo local
+                                Stop-Computer -Force
+
+                                # Ejemplo: apagar después de 1 minuto
+                                Start-Sleep -Seconds 60; Stop-Computer -Force
+                                        </code></pre>
+                                    </details>
+                                    <p class="note">Guarda scripts en .ps1 y establece la política de ejecución solo si confías en el contenido: <code>Set-ExecutionPolicy RemoteSigned</code>.</p>
+      <select id="ps-action">
+        <option value="Restart-Computer">Restart-Computer</option>
+        <option value="Stop-Computer">Stop-Computer</option>
+        <option value="Scan">Start-MpScan (FullScan)</option>
+      </select>
+      <div class="actions">
+        <button id="ps-generate">Generar script</button>
+        <button id="ps-copy" class="download">Copiar</button>
+        <button id="ps-download" class="download">Descargar .ps1</button>
+      </div>
+      <pre id="ps-result"># Script PowerShell generado</pre>
+    </section>
+
+    <section id="safeboot" class="card" style="display:none;">
+      <h2>Inicio Seguro (Modo seguro con bcdedit)</h2>
+      <p class="muted">Comandos para iniciar Windows en modo seguro y restaurar el inicio normal.</p>
+      <pre id="safe-result">bcdedit /set {default} safeboot minimal
+shutdown /r /t 0
+# Después de reparar el sistema, vuelve al modo normal:
+bcdedit /deletevalue {default} safeboot</pre>
+      <div class="actions">
+        <button id="safe-copy" class="download">Copiar</button>
+        <button id="safe-download" class="download">Descargar .bat</button>
+      </div>
+    </section>
+
+    <footer>Creado por asistente — revisa siempre los comandos antes de ejecutarlos.</footer>
+  </div>
+
+  <script>
+    // Tabs
+    document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      const tab=t.getAttribute('data-tab');
+      ['shutdown','powershell','safeboot'].forEach(id=>{
+        document.getElementById(id).style.display=(id===tab)?'block':'none';
+      });
+    }));
+
+    function buildShutdown(){
+      const a=document.getElementById('sd-action').value;
+      const f=document.getElementById('sd-force').value;
+      const t=document.getElementById('sd-time').value||0;
+      const m=document.getElementById('sd-msg').value.trim();
+      let cmd=`shutdown ${a}`;
+      if(f)cmd+=` ${f}`;
+      cmd+=` /t ${t}`;
+      if(m)cmd+=` /c "${m}"`;
+      document.getElementById('sd-result').textContent=cmd;
+      return cmd;
+    }
+
+    document.getElementById('sd-generate').onclick=()=>buildShutdown();
+    document.getElementById('sd-copy').onclick=async()=>{await navigator.clipboard.writeText(buildShutdown());alert('Copiado!');};
+    document.getElementById('sd-download').onclick=()=>{const txt=buildShutdown();const blob=new Blob(['@echo off\r\n'+txt+'\r\n'],{type:'application/x-msdownload'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shutdown_command.bat';a.click();URL.revokeObjectURL(url);};
+
+    function buildPS(){
+      const act=document.getElementById('ps-action').value;
+      let s='Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force\n';
+      if(act==='Restart-Computer')s+='Restart-Computer';
+      if(act==='Stop-Computer')s+='Stop-Computer';
+      if(act==='Scan')s+='Start-MpScan -ScanType FullScan';
+      document.getElementById('ps-result').textContent=s;
+      return s;
+    }
+
+    document.getElementById('ps-generate').onclick=()=>buildPS();
+    document.getElementById('ps-copy').onclick=async()=>{await navigator.clipboard.writeText(buildPS());alert('Script copiado!');};
+    document.getElementById('ps-download').onclick=()=>{const txt=buildPS();const blob=new Blob([txt],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='script_powershell.ps1';a.click();URL.revokeObjectURL(url);};
+
+    document.getElementById('safe-copy').onclick=async()=>{const txt=document.getElementById('safe-result').textContent;await navigator.clipboard.writeText(txt);alert('Comandos copiados');};
+    document.getElementById('safe-download').onclick=()=>{const txt=document.getElementById('safe-result').textContent;const blob=new Blob(['@echo off\r\n'+txt+'\r\n'],{type:'application/x-msdownload'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='modo_seguro.bat';a.click();URL.revokeObjectURL(url);};
+
+    buildShutdown();buildPS();
+  </script>
+</body>
+</html>
