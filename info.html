@@ -228,6 +228,176 @@
     </article>
     <article>
         <div class="container">
+            <button class="toggle-btn" onclick="toggleArticle(this)">Ubuntu Server credenciales</button>
+            <div class="toggle-content">
+                <h1>credenciales ubuntuserver</h1>
+                <p> UServer 
+
+
+
+
+
+
+</p>
+                <h2>Nombre Dtecnologias</h2>
+                 <h2>Servidor dtecnology</h2>
+                    <h3>usuario ubuntuserver</h3>
+                    <h3>SE132341</h3>
+
+                <!-- <div class="command-block">
+                    <ul>
+                        <li>
+                            <span class="command-title">define:</span>
+                            <span class="desc">Muestra definiciones de diversas páginas web para el término buscado.
+                                <span class="example">Ejemplo: <code>define:osint</code></span>
+                                <span class="explain">Devuelve definiciones de “OSINT”, ayudando a comprender su significado.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">filetype: (o ext:)</span>
+                            <span class="desc">Restringe la búsqueda a documentos con la extensión especificada.
+                                <span class="example">Ejemplo: <code>filetype:xls "password"</code></span>
+                                <span class="explain">Muestra hojas de cálculo en formato XLS que contengan la palabra “password”, pudiendo revelar credenciales.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">site:</span>
+                            <span class="desc">Filtra los resultados a un dominio concreto.
+                                <span class="example">Ejemplo: <code>site:pastebin.com "email list"</code></span>
+                                <span class="explain">Busca dentro de Pastebin contenido que incluya la frase “email list”, posible indicio de fuga de datos.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">link:</span>
+                            <span class="desc">Muestra qué páginas enlazan a la URL indicada.
+                                <span class="example">Ejemplo: <code>link:https://example.com</code></span>
+                                <span class="explain">Permite averiguar quién enlaza a example.com, útil para investigación OSINT y reputacional.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">cache:</span>
+                            <span class="desc">Muestra la versión que Google tiene guardada en caché de la página indicada.
+                                <span class="example">Ejemplo: <code>cache:https://example.com</code></span>
+                                <span class="explain">Permite ver la última copia de example.com, incluso si el contenido original ha cambiado o sido eliminado.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">info:</span>
+                            <span class="desc">Ofrece información que Google tiene sobre la página o dominio especificado.
+                                <span class="example">Ejemplo: <code>info:https://example.com</code></span>
+                                <span class="explain">Muestra datos relacionados con example.com, por ejemplo la versión en caché o páginas similares.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">related:</span>
+                            <span class="desc">Devuelve páginas que Google considera similares al sitio indicado.
+                                <span class="example">Ejemplo: <code>related:https://example.com</code></span>
+                                <span class="explain">Muestra sitios “relacionados” con example.com, útil para descubrir competencia o dominios similares.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">allinanchor:</span>
+                            <span class="desc">Restringe resultados a páginas que reciben enlaces cuyo texto contenga todos los términos indicados.
+                                <span class="example">Ejemplo: <code>allinanchor:"database leaked"</code></span>
+                                <span class="explain">Muestra páginas enlazadas con la frase “database leaked” en su anchor text, revelando brechas de datos.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">inanchor:</span>
+                            <span class="desc">Similar a allinanchor, pero se puede combinar con otros términos.
+                                <span class="example">Ejemplo: <code>inanchor:breach "credit cards"</code></span>
+                                <span class="explain">Encuentra páginas cuyo anchor text incluya “breach” y que mencionen “credit cards” en el contenido.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">allintext:</span>
+                            <span class="desc">Muestra solo páginas que contengan todos los términos en el texto.
+                                <span class="example">Ejemplo: <code>allintext:"internal use only confidential"</code></span>
+                                <span class="explain">Filtra resultados a aquellos que incluyan la frase exacta “internal use only confidential” en el cuerpo del texto.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">intext:</span>
+                            <span class="desc">Busca páginas que incluyan un término en su texto.
+                                <span class="example">Ejemplo: <code>intext:exposed "api key"</code></span>
+                                <span class="explain">Retorna páginas donde aparezca “exposed” en el texto y que incluyan la frase “api key”, útil para detectar posibles credenciales filtradas.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">allinurl:</span>
+                            <span class="desc">Muestra solo resultados que tengan todos los términos en la URL.
+                                <span class="example">Ejemplo: <code>allinurl:"admin portal"</code></span>
+                                <span class="explain">Localiza URLs que incluyan “admin” y “portal”, útil para encontrar paneles de administración expuestos.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">inurl:</span>
+                            <span class="desc">Similar a allinurl, pero se puede combinar con otras palabras de búsqueda.
+                                <span class="example">Ejemplo: <code>inurl:wp-admin "vulnerabilities"</code></span>
+                                <span class="explain">Filtra páginas donde la URL contenga “wp-admin” y mencione “vulnerabilities” en el texto, para detectar fallos en WordPress.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">allintitle:</span>
+                            <span class="desc">Limita los resultados a páginas cuyo título contenga todos los términos indicados.
+                                <span class="example">Ejemplo: <code>allintitle:"database dump"</code></span>
+                                <span class="explain">Muestra resultados con “database dump” en el título, posible indicio de bases de datos expuestas.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">intitle:</span>
+                            <span class="desc">Similar a allintitle, pero se puede combinar con otros términos.
+                                <span class="example">Ejemplo: <code>intitle:"sql injection" "bypass authentication"</code></span>
+                                <span class="explain">Retorna resultados que en el título incluyan “sql injection” y mencionen “bypass authentication” en el contenido.</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <h2>Operadores Booleanos Google Hacking</h2>
+                <div class="command-block">
+                    <ul>
+                        <li>
+                            <span class="command-title">" "</span>
+                            <span class="desc">Busca la frase exacta, sin variaciones.
+                                <span class="example">Ejemplo: <code>"employee private data"</code></span>
+                                <span class="explain">Devuelve resultados que incluyan exactamente “employee private data”, revelando posible exposición de datos.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">-</span>
+                            <span class="desc">Excluye una palabra de la búsqueda.
+                                <span class="example">Ejemplo: <code>"database dump" -site:github.com</code></span>
+                                <span class="explain">Muestra resultados de “database dump” excluyendo GitHub, centrando la búsqueda en otros dominios.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">OR (ó |)</span>
+                            <span class="desc">Funciona como un “o lógico”. Devuelve resultados que contengan uno u otro término.
+                                <span class="example">Ejemplo: <code>"mysql dump" OR "database leak"</code></span>
+                                <span class="explain">Amplía la búsqueda para incluir fugas de bases de datos bajo cualquiera de esos términos.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">+</span>
+                            <span class="desc">Fuerza la inclusión de palabras que Google suele ignorar o caracteres especiales.
+                                <span class="example">Ejemplo: <code>+la "exposed password"</code></span>
+                                <span class="explain">Impide que Google omita “la” y fuerza la frase “exposed password”.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="command-title">*</span>
+                            <span class="desc">El asterisco se usa como comodín para uno o varios términos desconocidos.
+                                <span class="example">Ejemplo: <code>"confidential * report"</code></span>
+                                <span class="explain">Encuentra frases con “confidential”, luego cualquier palabra, y termina con “report”.</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </article>
+    <article>
+        <div class="container">
             <button class="toggle-btn" onclick="toggleArticle(this)">Shodan: Comandos principales</button>
             <div class="toggle-content">
                 <h1>Shodan: Comandos principales</h1>
