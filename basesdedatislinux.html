@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bases de Datos - MySQL y PostgreSQL en Linux</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab.mysql {
+            color: #00758f;
+            border-bottom: 4px solid #00758f;
+        }
+
+        .tab.postgres {
+            color: #336791;
+            border-bottom: 4px solid #336791;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #667eea;
+            margin: 25px 0 15px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin: 20px 0 10px;
+            font-size: 1.4em;
+        }
+
+        .command-box {
+            background: #2d3748;
+            color: #68d391;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .command-box::before {
+            content: '$ ';
+            color: #4299e1;
+        }
+
+        .info-box {
+            background: #edf2f7;
+            border-left: 5px solid #4299e1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff5f5;
+            border-left: 5px solid #fc8181;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .exercise {
+            background: #f7fafc;
+            border: 2px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .exercise h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #e6fffa;
+            border-radius: 5px;
+        }
+
+        .show-solution {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .show-solution:hover {
+            background: #764ba2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-card {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mysql-card {
+            background: linear-gradient(135deg, #00758f 0%, #0095b8 100%);
+            color: white;
+        }
+
+        .postgres-card {
+            background: linear-gradient(135deg, #336791 0%, #4a7eb0 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗄️ Bases de Datos en Linux</h1>
+            <p class="subtitle">Aprende MySQL y PostgreSQL desde cero</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('intro')">Introducción</button>
+            <button class="tab mysql" onclick="showSection('mysql')">MySQL</button>
+            <button class="tab postgres" onclick="showSection('postgres')">PostgreSQL</button>
+            <button class="tab" onclick="showSection('comparison')">Comparación</button>
+            <button class="tab" onclick="showSection('exercises')">Ejercicios</button>
+        </div>
+
+        <!-- SECCIÓN: INTRODUCCIÓN -->
+        <div id="intro" class="content-section active">
+            <h2>Introducción a las Bases de Datos</h2>
+            
+            <p>Las bases de datos relacionales son sistemas que permiten almacenar, organizar y recuperar información de manera estructurada. MySQL y PostgreSQL son dos de los sistemas de gestión de bases de datos (SGBD) más populares del mundo.</p>
+
+            <h3>¿Qué aprenderás?</h3>
+            <ul style="margin-left: 30px; margin-top: 10px;">
+                <li>Instalación y configuración en Linux</li>
+                <li>Comandos básicos y avanzados</li>
+                <li>Creación y gestión de bases de datos</li>
+                <li>Consultas SQL (SELECT, INSERT, UPDATE, DELETE)</li>
+                <li>Joins, índices y optimización</li>
+                <li>Usuarios y permisos</li>
+            </ul>
+
+            <div class="comparison">
+                <div class="comparison-card mysql-card">
+                    <h3>🐬 MySQL</h3>
+                    <p>Sistema de gestión de bases de datos relacional de código abierto. Es rápido, confiable y fácil de usar. Ideal para aplicaciones web.</p>
+                </div>
+                <div class="comparison-card postgres-card">
+                    <h3>🐘 PostgreSQL</h3>
+                    <p>Sistema de base de datos objeto-relacional avanzado. Conocido por su robustez, cumplimiento de estándares SQL y características avanzadas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: MYSQL -->
+        <div id="mysql" class="content-section">
+            <h2>MySQL en Linux</h2>
+
+            <h3>1. Instalación en Linux</h3>
+            
+            <div class="info-box">
+                <strong>Ubuntu/Debian:</strong>
+            </div>
+            <div class="command-box">sudo apt update<br>sudo apt install mysql-server</div>
+
+            <div class="info-box">
+                <strong>CentOS/RHEL:</strong>
+            </div>
+            <div class="command-box">sudo yum install mysql-server<br>sudo systemctl start mysqld</div>
+
+            <h3>2. Configuración Inicial</h3>
+            <div class="command-box">sudo mysql_secure_installation</div>
+            <p>Este comando te guiará para configurar la contraseña root y mejorar la seguridad.</p>
+
+            <h3>3. Acceder a MySQL</h3>
+            <div class="command-box">sudo mysql -u root -p</div>
+
+            <h3>4. Comandos Básicos de MySQL</h3>
+
+            <h4>Gestión de Bases de Datos</h4>
+            <div class="command-box">
+-- Mostrar todas las bases de datos<br>
+SHOW DATABASES;<br><br>
+-- Crear una base de datos<br>
+CREATE DATABASE mi_tienda;<br><br>
+-- Usar una base de datos<br>
+USE mi_tienda;<br><br>
+-- Eliminar una base de datos<br>
+DROP DATABASE mi_tienda;
+            </div>
+
+            <h4>Gestión de Tablas</h4>
+            <div class="command-box">
+-- Crear una tabla<br>
+CREATE TABLE productos (<br>
+&nbsp;&nbsp;id INT AUTO_INCREMENT PRIMARY KEY,<br>
+&nbsp;&nbsp;nombre VARCHAR(100) NOT NULL,<br>
+&nbsp;&nbsp;precio DECIMAL(10,2),<br>
+&nbsp;&nbsp;stock INT DEFAULT 0,<br>
+&nbsp;&nbsp;fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP<br>
+);<br><br>
+-- Mostrar todas las tablas<br>
+SHOW TABLES;<br><br>
+-- Ver estructura de una tabla<br>
+DESCRIBE productos;<br><br>
+-- Eliminar una tabla<br>
+DROP TABLE productos;
+            </div>
+
+            <h4>Operaciones CRUD</h4>
+            <div class="command-box">
+-- INSERT: Insertar datos<br>
+INSERT INTO productos (nombre, precio, stock)<br>
+VALUES ('Laptop', 899.99, 15);<br><br>
+-- SELECT: Consultar datos<br>
+SELECT * FROM productos;<br>
+SELECT nombre, precio FROM productos WHERE precio > 500;<br><br>
+-- UPDATE: Actualizar datos<br>
+UPDATE productos SET precio = 799.99 WHERE id = 1;<br><br>
+-- DELETE: Eliminar datos<br>
+DELETE FROM productos WHERE id = 1;
+            </div>
+
+            <h3>5. Comandos Útiles del Sistema</h3>
+            <div class="command-box">
+-- Ver estado del servidor<br>
+sudo systemctl status mysql<br><br>
+-- Reiniciar MySQL<br>
+sudo systemctl restart mysql<br><br>
+-- Detener MySQL<br>
+sudo systemctl stop mysql<br><br>
+-- Ver logs de errores<br>
+sudo tail -f /var/log/mysql/error.log
+            </div>
+
+            <h3>6. Gestión de Usuarios</h3>
+            <div class="command-box">
+-- Crear usuario<br>
+CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'contraseña';<br><br>
+-- Dar permisos<br>
+GRANT ALL PRIVILEGES ON mi_tienda.* TO 'usuario'@'localhost';<br><br>
+-- Aplicar cambios<br>
+FLUSH PRIVILEGES;<br><br>
+-- Ver usuarios<br>
+SELECT user, host FROM mysql.user;
+            </div>
+        </div>
+
+        <!-- SECCIÓN: POSTGRESQL -->
+        <div id="postgres" class="content-section">
+            <h2>PostgreSQL en Linux</h2>
+
+            <h3>1. Instalación en Linux</h3>
+            
+            <div class="info-box">
+                <strong>Ubuntu/Debian:</strong>
+            </div>
+            <div class="command-box">sudo apt update<br>sudo apt install postgresql postgresql-contrib</div>
+
+            <div class="info-box">
+                <strong>CentOS/RHEL:</strong>
+            </div>
+            <div class="command-box">sudo yum install postgresql-server postgresql-contrib<br>sudo postgresql-setup initdb<br>sudo systemctl start postgresql</div>
+
+            <h3>2. Acceder a PostgreSQL</h3>
+            <div class="command-box">sudo -u postgres psql</div>
+            <p>O cambiar al usuario postgres:</p>
+            <div class="command-box">sudo -i -u postgres<br>psql</div>
+
+            <h3>3. Comandos Básicos de PostgreSQL</h3>
+
+            <h4>Comandos Meta de psql</h4>
+            <div class="command-box">
+\l                  -- Listar bases de datos<br>
+\c nombre_db        -- Conectar a una base de datos<br>
+\dt                 -- Listar tablas<br>
+\d nombre_tabla     -- Describir tabla<br>
+\du                 -- Listar usuarios<br>
+\q                  -- Salir de psql<br>
+\h                  -- Ayuda de comandos SQL<br>
+\?                  -- Ayuda de comandos psql
+            </div>
+
+            <h4>Gestión de Bases de Datos</h4>
+            <div class="command-box">
+-- Crear base de datos<br>
+CREATE DATABASE mi_tienda;<br><br>
+-- Conectar a una base de datos<br>
+\c mi_tienda<br><br>
+-- Eliminar base de datos<br>
+DROP DATABASE mi_tienda;
+            </div>
+
+            <h4>Gestión de Tablas</h4>
+            <div class="command-box">
+-- Crear tabla<br>
+CREATE TABLE productos (<br>
+&nbsp;&nbsp;id SERIAL PRIMARY KEY,<br>
+&nbsp;&nbsp;nombre VARCHAR(100) NOT NULL,<br>
+&nbsp;&nbsp;precio NUMERIC(10,2),<br>
+&nbsp;&nbsp;stock INTEGER DEFAULT 0,<br>
+&nbsp;&nbsp;fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP<br>
+);<br><br>
+-- Ver estructura<br>
+\d productos<br><br>
+-- Eliminar tabla<br>
+DROP TABLE productos;
+            </div>
+
+            <h4>Operaciones CRUD</h4>
+            <div class="command-box">
+-- INSERT<br>
+INSERT INTO productos (nombre, precio, stock)<br>
+VALUES ('Laptop', 899.99, 15);<br><br>
+-- SELECT<br>
+SELECT * FROM productos;<br>
+SELECT nombre, precio FROM productos WHERE precio > 500;<br><br>
+-- UPDATE<br>
+UPDATE productos SET precio = 799.99 WHERE id = 1;<br><br>
+-- DELETE<br>
+DELETE FROM productos WHERE id = 1;
+            </div>
+
+            <h3>4. Comandos del Sistema</h3>
+            <div class="command-box">
+-- Ver estado del servicio<br>
+sudo systemctl status postgresql<br><br>
+-- Reiniciar PostgreSQL<br>
+sudo systemctl restart postgresql<br><br>
+-- Ver logs<br>
+sudo tail -f /var/log/postgresql/postgresql-*.log
+            </div>
+
+            <h3>5. Gestión de Usuarios y Roles</h3>
+            <div class="command-box">
+-- Crear usuario<br>
+CREATE USER usuario WITH PASSWORD 'contraseña';<br><br>
+-- Crear usuario con permisos<br>
+CREATE USER admin WITH SUPERUSER PASSWORD 'contraseña';<br><br>
+-- Dar permisos sobre base de datos<br>
+GRANT ALL PRIVILEGES ON DATABASE mi_tienda TO usuario;<br><br>
+-- Ver usuarios<br>
+\du
+            </div>
+
+            <h3>6. Backup y Restauración</h3>
+            <div class="command-box">
+-- Hacer backup<br>
+pg_dump mi_tienda > backup.sql<br><br>
+-- Restaurar backup<br>
+psql mi_tienda < backup.sql<br><br>
+-- Backup en formato comprimido<br>
+pg_dump -Fc mi_tienda > backup.dump<br><br>
+-- Restaurar formato comprimido<br>
+pg_restore -d mi_tienda backup.dump
+            </div>
+        </div>
+
+        <!-- SECCIÓN: COMPARACIÓN -->
+        <div id="comparison" class="content-section">
+            <h2>Comparación MySQL vs PostgreSQL</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>MySQL</th>
+                        <th>PostgreSQL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tipo de Licencia</td>
+                        <td>GPL (Dual)</td>
+                        <td>PostgreSQL License (similar a BSD)</td>
+                    </tr>
+                    <tr>
+                        <td>Cumplimiento SQL</td>
+                        <td>Bueno</td>
+                        <td>Excelente (más estricto)</td>
+                    </tr>
+                    <tr>
+                        <td>Rendimiento</td>
+                        <td>Excelente para lectura</td>
+                        <td>Excelente para operaciones complejas</td>
+                    </tr>
+                    <tr>
+                        <td>Tipos de Datos</td>
+                        <td>Básicos</td>
+                        <td>Avanzados (JSON, Arrays, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td>Índices</td>
+                        <td>B-Tree, Hash</td>
+                        <td>B-Tree, Hash, GiST, GIN, BRIN</td>
+                    </tr>
+                    <tr>
+                        <td>Replicación</td>
+                        <td>Master-Slave</td>
+                        <td>Streaming, Logical</td>
+                    </tr>
+                    <tr>
+                        <td>Procedimientos Almacenados</td>
+                        <td>Sí</td>
+                        <td>Sí (múltiples lenguajes)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Diferencias en Sintaxis Común</h3>
+
+            <div class="comparison">
+                <div class="comparison-card mysql-card">
+                    <h4>MySQL</h4>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 5px; margin-top: 10px; font-family: monospace;">
+-- Auto-incremento<br>
+INT AUTO_INCREMENT<br><br>
+-- Límite de resultados<br>
+LIMIT 10<br><br>
+-- Concatenar<br>
+CONCAT(col1, col2)<br><br>
+-- Fecha actual<br>
+NOW()
+                    </div>
+                </div>
+                <div class="comparison-card postgres-card">
+                    <h4>PostgreSQL</h4>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 5px; margin-top: 10px; font-family: monospace;">
+-- Auto-incremento<br>
+SERIAL<br><br>
+-- Límite de resultados<br>
+LIMIT 10<br><br>
+-- Concatenar<br>
+col1 || col2<br><br>
+-- Fecha actual<br>
+NOW() o CURRENT_TIMESTAMP
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: EJERCICIOS -->
+        <div id="exercises" class="content-section">
+            <h2>Ejercicios Prácticos</h2>
+
+            <div class="exercise">
+                <h4>Ejercicio 1: Crear Base de Datos de Biblioteca</h4>
+                <p>Crea una base de datos llamada "biblioteca" con las siguientes tablas:</p>
+                <ul style="margin-left: 20px;">
+                    <li>libros (id, titulo, autor, año_publicacion, isbn)</li>
+                    <li>usuarios (id, nombre, email, fecha_registro)</li>
+                    <li>prestamos (id, libro_id, usuario_id, fecha_prestamo, fecha_devolucion)</li>
+                </ul>
+                <button class="show-solution" onclick="toggleSolution(this)">Ver Solución</button>
+                <div class="solution">
+                    <div class="command-box">
+-- Crear base de datos<br>
+CREATE DATABASE biblioteca;<br>
+USE biblioteca; -- MySQL<br>
+-- \c biblioteca para PostgreSQL<br><br>
+-- Crear tabla libros<br>
+CREATE TABLE libros (<br>
+&nbsp;&nbsp;id INT AUTO_INCREMENT PRIMARY KEY, -- SERIAL para PostgreSQL<br>
+&nbsp;&nbsp;titulo VARCHAR(200) NOT NULL,<br>
+&nbsp;&nbsp;autor VARCHAR(100),<br>
+&nbsp;&nbsp;año_publicacion INT,<br>
+&nbsp;&nbsp;isbn VARCHAR(20) UNIQUE<br>
+);<br><br>
+-- Crear tabla usuarios<br>
+CREATE TABLE usuarios (<br>
+&nbsp;&nbsp;id INT AUTO_INCREMENT PRIMARY KEY,<br>
+&nbsp;&nbsp;nombre VARCHAR(100) NOT NULL,<br>
+&nbsp;&nbsp;email VARCHAR(100) UNIQUE,<br>
+&nbsp;&nbsp;fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP<br>
+);<br><br>
+-- Crear tabla prestamos<br>
+CREATE TABLE prestamos (<br>
+&nbsp;&nbsp;id INT AUTO_INCREMENT PRIMARY KEY,<br>
+&nbsp;&nbsp;libro_id INT,<br>
+&nbsp;&nbsp;usuario_id INT,<br>
+&nbsp;&nbsp;fecha_prestamo DATE,<br>
+&nbsp;&nbsp;fecha_devolucion DATE,<br>
+&nbsp;&nbsp;FOREIGN KEY (libro_id) REFERENCES libros(id),<br>
+&nbsp;&nbsp;FOREIGN KEY (usuario_id) REFERENCES usuarios(id)<br>
+);
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Ejercicio 2: Insertar y Consultar Datos</h4>
+                <p>Inserta al menos 3 libros, 2 usuarios y 2 préstamos. Luego realiza una consulta que muestre todos los préstamos con el nombre del libro y del usuario.</p>
+                <button class="show-solution" onclick="toggleSolution(this)">Ver Solución</button>
+                <div class="solution">
+                    <div class="command-box">
+-- Insertar libros<br>
+INSERT INTO libros (titulo, autor, año_publicacion, isbn) VALUES<br>
+('Cien Años de Soledad', 'Gabriel García Márquez', 1967, '978-0307474728'),<br>
+('El Quijote', 'Miguel de Cervantes', 1605, '978-8424116903'),<br>
+('1984', 'George Orwell', 1949, '978-0451524935');<br><br>
+-- Insertar usuarios<br>
+INSERT INTO usuarios (nombre, email) VALUES<br>
+('Juan Pérez', 'juan@email.com'),<br>
+('María García', 'maria@email.com');<br><br>
+-- Insertar préstamos<br>
+INSERT INTO prestamos (libro_id, usuario_id, fecha_prestamo, fecha_devolucion) VALUES<br>
+(1, 1, '2024-01-15', '2024-02-15'),<br>
+(2, 2, '2024-01-20', NULL);<br><br>
+-- Consulta con JOIN<br>
+SELECT <br>
+&nbsp;&nbsp;u.nombre AS usuario,<br>
+&nbsp;&nbsp;l.titulo AS libro,<br>
+&nbsp;&nbsp;p.fecha_prestamo,<br>
+&nbsp;&nbsp;p.fecha_devolucion<br>
+FROM prestamos p<br>
+JOIN libros l ON p.libro_id = l.id<br>
+JOIN usuarios u ON p.usuario_id = u.id;
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Ejercicio 3: Consultas Avanzadas</h4>
+                <p>Encuentra todos los libros que aún no han sido devueltos y el tiempo que llevan prestados.</p>
+                <button class="show-solution" onclick="toggleSolution(this)">Ver Solución</button>
+                <div class="solution">
+                    <div class="command-box">
+-- MySQL<br>
+SELECT <br>
+&nbsp;&nbsp;l.titulo,<br>
+&nbsp;&nbsp;u.nombre AS usuario,<br>
+&nbsp;&nbsp;p.fecha_prestamo,<br>
+&nbsp;&nbsp;DATEDIFF(CURDATE(), p.fecha_prestamo) AS dias_prestado<br>
+FROM prestamos p<br>
+JOIN libros l ON p.libro_id = l.id<br>
+JOIN usuarios u ON p.usuario_id = u.id<br>
+WHERE p.fecha_devolucion IS NULL;<br><br>
+-- PostgreSQL<br>
+SELECT <br>
+&nbsp;&nbsp;l.titulo,<br>
+&nbsp;&nbsp;u.nombre AS usuario,<br>
+&nbsp;&nbsp;p.fecha_prestamo,<br>
+&nbsp;&nbsp;CURRENT_DATE - p.fecha_prestamo AS dias_prestado<br>
+FROM prestamos p<br>
+JOIN libros l ON p.libro_id = l.id<br>
+JOIN usuarios u ON p.usuario_id = u.id<br>
+WHERE p.fecha_devolucion IS NULL;
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Ejercicio 4: Crear un Usuario y Asignar Permisos</h4>
+                <p>Crea un usuario llamado "bibliotecario" que solo tenga permisos de lectura en la base de datos.</p>
+                <button class="show-solution" onclick="toggleSolution(this)">Ver Solución</button>
+                <div class="solution">
+                    <div class="command-box">
+-- MySQL<br>
+CREATE USER 'bibliotecario'@'localhost' IDENTIFIED BY 'password123';<br>
+GRANT SELECT ON biblioteca.* TO 'bibliotecario'@'localhost';<br>
+FLUSH PRIVILEGES;<br><br>
+-- PostgreSQL<br>
+CREATE USER bibliotecario WITH PASSWORD 'password123';<br>
+GRANT CONNECT ON DATABASE biblioteca TO bibliotecario;<br>
+\c biblioteca<br>
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO bibliotecario;
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>💡 Consejo:</strong> Practica estos ejercicios en tu entorno local. La mejor forma de aprender bases de datos es experimentando y cometiendo errores.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            const tabs = document.querySelectorAll('.tab');
+            
+            sections.forEach(section => section.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function toggleSolution(button) {
+            const solution = button.nextElementSibling;
+            if (solution.style.display === 'block') {
+                solution.style.display = 'none';
+                button.textContent = 'Ver Solución';
+            } else {
+                solution.style.display = 'block';
+                button.textContent = 'Ocultar Solución';
+            }
+        }
+    </script>
+</body>
+</html>
