@@ -254,6 +254,7 @@
             <button class="tab postgres" onclick="showSection('postgres')">PostgreSQL</button>
             <button class="tab" onclick="showSection('comparison')">Comparación</button>
             <button class="tab" onclick="showSection('exercises')">Ejercicios</button>
+            <button class="tab" onclick="showSection('docker')">Docker Lab</button>
         </div>
 
         <!-- SECCIÓN: INTRODUCCIÓN -->
@@ -575,6 +576,7 @@ NOW() o CURRENT_TIMESTAMP
         <div id="exercises" class="content-section">
             <h2>Ejercicios Prácticos</h2>
 
+            <!-- Ejercicio 1 -->
             <div class="exercise">
                 <h4>Ejercicio 1: Crear Base de Datos de Biblioteca</h4>
                 <p>Crea una base de datos llamada "biblioteca" con las siguientes tablas:</p>
@@ -619,6 +621,7 @@ CREATE TABLE prestamos (<br>
                 </div>
             </div>
 
+            <!-- Ejercicio 2 -->
             <div class="exercise">
                 <h4>Ejercicio 2: Insertar y Consultar Datos</h4>
                 <p>Inserta al menos 3 libros, 2 usuarios y 2 préstamos. Luego realiza una consulta que muestre todos los préstamos con el nombre del libro y del usuario.</p>
@@ -651,6 +654,7 @@ JOIN usuarios u ON p.usuario_id = u.id;
                 </div>
             </div>
 
+            <!-- Ejercicio 3 -->
             <div class="exercise">
                 <h4>Ejercicio 3: Consultas Avanzadas</h4>
                 <p>Encuentra todos los libros que aún no han sido devueltos y el tiempo que llevan prestados.</p>
@@ -681,6 +685,7 @@ WHERE p.fecha_devolucion IS NULL;
                 </div>
             </div>
 
+            <!-- Ejercicio 4 -->
             <div class="exercise">
                 <h4>Ejercicio 4: Crear un Usuario y Asignar Permisos</h4>
                 <p>Crea un usuario llamado "bibliotecario" que solo tenga permisos de lectura en la base de datos.</p>
@@ -700,9 +705,124 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO bibliotecario;
                 </div>
             </div>
 
+            <!-- Ejercicio 5 -->
+            <div class="exercise">
+                <h4>Ejercicio 5: Actualizar Datos de Usuarios</h4>
+                <p>Actualiza el correo electrónico de un usuario específico y verifica los cambios.</p>
+                <button class="show-solution" onclick="toggleSolution(this)">Ver Solución</button>
+                <div class="solution">
+                    <div class="command-box">
+-- MySQL<br>
+UPDATE usuarios SET email = 'nuevo@email.com' WHERE id = 1;<br>
+SELECT * FROM usuarios WHERE id = 1;<br><br>
+-- PostgreSQL<br>
+UPDATE usuarios SET email = 'nuevo@email.com' WHERE id = 1;<br>
+SELECT * FROM usuarios WHERE id = 1;
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 6 -->
+            <div class="exercise">
+                <h4>Ejercicio 6: Eliminar un Préstamo</h4>
+                <p>Elimina un préstamo que ya ha sido devuelto y verifica la tabla de préstamos.</p>
+                <button class="show-solution" onclick="toggleSolution(this)">Ver Solución</button>
+                <div class="solution">
+                    <div class="command-box">
+-- MySQL<br>
+DELETE FROM prestamos WHERE id = 1;<br>
+SELECT * FROM prestamos;<br><br>
+-- PostgreSQL<br>
+DELETE FROM prestamos WHERE id = 1;<br>
+SELECT * FROM prestamos;
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 7 -->
+            <div class="exercise">
+                <h4>Ejercicio 7: Consultas con JOIN Avanzadas</h4>
+                <p>Muestra todos los libros junto con la información del usuario que los tiene en préstamo, incluyendo los que no han sido prestados.</p>
+                <button class="show-solution" onclick="toggleSolution(this)">Ver Solución</button>
+                <div class="solution">
+                    <div class="command-box">
+-- MySQL<br>
+SELECT l.titulo, u.nombre AS usuario<br>
+FROM libros l<br>
+LEFT JOIN prestamos p ON l.id = p.libro_id<br>
+LEFT JOIN usuarios u ON p.usuario_id = u.id;<br><br>
+-- PostgreSQL<br>
+SELECT l.titulo, u.nombre AS usuario<br>
+FROM libros l<br>
+LEFT JOIN prestamos p ON l.id = p.libro_id<br>
+LEFT JOIN usuarios u ON p.usuario_id = u.id;
+                    </div>
+                </div>
+            </div>
+
             <div class="warning-box">
                 <strong>💡 Consejo:</strong> Practica estos ejercicios en tu entorno local. La mejor forma de aprender bases de datos es experimentando y cometiendo errores.
             </div>
+        </div>
+
+        <!-- SECCIÓN: DOCKER LAB -->
+        <div id="docker" class="content-section">
+            <h2>Laboratorio Docker con Bases de Datos</h2>
+
+            <p>Este laboratorio permite practicar MySQL y PostgreSQL usando contenedores Docker sin necesidad de instalar las bases directamente en tu sistema.</p>
+
+            <h3>1. Instalación de Docker y Docker Compose</h3>
+            <div class="command-box">
+-- Instalar Docker en Ubuntu<br>
+sudo apt update<br>
+sudo apt install docker.io docker-compose<br>
+sudo systemctl enable docker --now<br>
+docker --version<br>
+docker-compose --version
+            </div>
+
+            <h3>2. Crear archivo docker-compose.yml</h3>
+            <div class="command-box">
+version: '3.8'<br>
+services:<br>
+&nbsp;&nbsp;mysql:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;image: mysql:8.0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;container_name: mysql_lab<br>
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYSQL_ROOT_PASSWORD: rootpass<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MYSQL_DATABASE: mi_tienda<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ports:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "3306:3306"<br><br>
+&nbsp;&nbsp;postgres:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;image: postgres:15<br>
+&nbsp;&nbsp;&nbsp;&nbsp;container_name: postgres_lab<br>
+&nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POSTGRES_PASSWORD: rootpass<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POSTGRES_DB: mi_tienda<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ports:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "5432:5432"
+            </div>
+
+            <h3>3. Levantar los contenedores</h3>
+            <div class="command-box">
+docker-compose up -d
+            </div>
+
+            <h3>4. Conectar a las Bases de Datos</h3>
+            <div class="command-box">
+-- Conectar a MySQL<br>
+mysql -h 127.0.0.1 -P 3306 -u root -p<br><br>
+-- Conectar a PostgreSQL<br>
+psql -h 127.0.0.1 -p 5432 -U postgres -d mi_tienda
+            </div>
+
+            <h3>5. Buenas Prácticas</h3>
+            <ul style="margin-left: 20px;">
+                <li>Usa volúmenes para persistir los datos.</li>
+                <li>No uses contraseñas simples en producción.</li>
+                <li>Levanta contenedores solo cuando los necesites.</li>
+                <li>Revisa los logs con <code>docker logs <nombre_contenedor></code>.</li>
+            </ul>
         </div>
     </div>
 
@@ -731,3 +851,5 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO bibliotecario;
     </script>
 </body>
 </html>
+
+

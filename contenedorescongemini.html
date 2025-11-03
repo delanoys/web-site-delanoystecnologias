@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenedores con Gemini: De Cero a Experto en Docker y Kubernetes</title>
+    <style>
+        /* Variables y Reset Básico */
+        :root {
+            --color-principal: #007bff; /* Azul de Docker */
+            --color-secundario: #f8f9fa; /* Gris claro de fondo */
+            --color-texto: #333;
+            --color-resaltado: #28a745; /* Verde para énfasis */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-secundario);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        /* Cabecera y Navegación */
+        header {
+            background-color: var(--color-principal);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background-color: #343a40;
+            padding: 10px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            color: white;
+            margin: 0 12px;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: var(--color-principal);
+            color: white;
+        }
+
+        /* Contenedor Principal de Secciones */
+        .seccion-contenedor {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--color-principal);
+            border-bottom: 3px solid var(--color-principal);
+            padding-bottom: 10px;
+            margin-bottom: 35px;
+            font-size: 2em;
+        }
+
+        h3 {
+            color: var(--color-resaltado);
+            margin-top: 30px;
+            border-left: 5px solid var(--color-resaltado);
+            padding-left: 10px;
+        }
+
+        /* Estilos de las Tarjetas (Cards) y Grid */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: #f1f9ff;
+            border: 1px solid #cce5ff;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 calc(33% - 50px);
+            min-width: 250px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Botón CTA (Call To Action) */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-principal);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Bloque de Recursos (Videos y Tablas) */
+        .recurso-video {
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .recurso-video iframe {
+            width: 100%;
+            height: 450px; /* Tamaño adaptado para escritorio */
+            border: none;
+        }
+
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e9ecef;
+            color: var(--color-texto);
+        }
+        
+        /* Código y Bloques de Consola */
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: #343a40;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        
+        /* Media Queries para Responsive */
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 100%; /* Una tarjeta por fila en móvil */
+            }
+            .recurso-video iframe {
+                height: 250px;
+            }
+            nav a {
+                margin: 0 8px;
+                padding: 5px;
+                font-size: 0.9em;
+            }
+            header {
+                padding: 30px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¡Contenedores con Gemini! 🚀</h1>
+        <p>Tu ruta de **cero a experto** en el mundo de los contenedores y Docker. Aprendizaje interactivo y práctico.</p>
+        <p>[Imagen: Contenedor con logo de Docker sobre fondo de nube]</p>
+    </header>
+
+    <nav>
+        <a href="#fundamentos">💡 Fundamentos</a>
+        <a href="#construccion">🏗️ Construcción</a>
+        <a href="#redes">🔗 Redes y Almacenamiento</a>
+        <a href="#avanzado">🌟 Avanzado</a>
+    </nav>
+
+    <section id="fundamentos" class="seccion-contenedor">
+        <h2>💡 Fundamentos y Conceptos Básicos</h2>
+        <p>El punto de partida: Entender qué problema resuelven los contenedores y cómo **Docker** se convirtió en el estándar.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Máquinas Virtuales vs. Contenedores</h3>
+                <p>Las **VMs** virtualizan el hardware; los **Contenedores** virtualizan el S.O., haciéndolos más ligeros y rápidos. ¡Menos peso, más velocidad!</p>
+                <p>[Diagrama comparativo de capas de abstracción]</p>
+            </div>
+
+            <div class="card">
+                <h3>Docker: El Motor</h3>
+                <p>Conoce sus componentes principales: el **Docker Engine** (Daemon), el **CLI** (cliente de comandos) y el **Docker Hub** (registro de imágenes).</p>
+                <a href="https://docs.docker.com/get-started/" target="_blank" class="cta-button">Instalar Docker Desktop</a>
+            </div>
+
+            <div class="card">
+                <h3>Imágenes y Contenedores</h3>
+                <p>La **Imagen** es la plantilla estática (la receta); el **Contenedor** es la instancia en ejecución (el pastel). Empieza con el primer comando:</p>
+                <pre><code>docker run hello-world</code></pre>
+                <a href="https://training.play-with-docker.com/getting-started/" target="_blank" class="cta-button">Práctica 1: Play with Docker</a>
+            </div>
+        </div>
+        
+        <hr style="margin: 40px 0;">
+
+        <h3>📺 Tutorial Completo de Cero a Experto</h3>
+        <p>Este video te dará una visión sólida de los conceptos de la contenerización:</p>
+        <div class="recurso-video">
+            <iframe src="https://www.youtube.com/embed/MIl-LJodYUU" title="DOCKER desde CERO a EXPERTO [CURSO COMPLETO en 2 horas]" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="construccion" class="seccion-contenedor">
+        <h2>🏗️ Construcción y Gestión de Imágenes</h2>
+        <p>Aprende a crear tus propias imágenes personalizadas usando el archivo **Dockerfile**.</p>
+
+        <h3>📘 Anatomía del Dockerfile (Instrucciones Clave)</h3>
+        <table>
+            <thead>
+                <tr><th>Instrucción</th><th>Propósito</th><th>Ejemplo</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>FROM</code></td><td>Define la imagen base (S.O.).</td><td><code>FROM node:18-alpine</code></td></tr>
+                <tr><td><code>RUN</code></td><td>Ejecuta comandos durante la construcción.</td><td><code>RUN npm install</code></td></tr>
+                <tr><td><code>COPY</code></td><td>Copia archivos locales a la imagen.</td><td><code>COPY . /app</code></td></tr>
+                <tr><td><code>CMD</code></td><td>Comando a ejecutar al iniciar el contenedor.</td><td><code>CMD ["npm", "start"]</code></td></tr>
+            </tbody>
+        </table>
+
+        <h3>🧱 El Proceso de Construcción</h3>
+        <p>Para crear una imagen, se utiliza el comando <code>docker build</code>:</p>
+        <pre><code>docker build -t mi-app-web:v1 . </code></pre>
+        <p>💡 **Mejor Práctica:** Usa Multi-Stage Builds para reducir el tamaño de tus imágenes finales y evitar incluir herramientas de desarrollo innecesarias.</p>
+        
+        <a href="https://www.youtube.com/watch?v=J_jQ9WJ5g-w" target="_blank" class="cta-button">🎥 Video: Multi-Stage Builds</a>
+        
+        <h3>🛠️ Ejercicio Interactivo 2: Construye tu Web</h3>
+        <p>Crea un Dockerfile que empaquete una página web estática sobre una imagen base de Nginx.</p>
+        <a href="https://training.play-with-docker.com/building-images/" target="_blank" class="cta-button" style="background-color: #f36f21;">Práctica 2: Laboratorio de Construcción</a>
+    </section>
+
+    <section id="redes" class="seccion-contenedor">
+        <h2>🔗 Redes y Almacenamiento</h2>
+        <p>Haz que tus contenedores se comuniquen y guarden datos de forma persistente. Esto es clave para cualquier aplicación real.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Volúmenes para Persistencia</h3>
+                <p>La forma recomendada para datos permanentes (ej. bases de datos). Los datos persisten incluso si el contenedor es eliminado.</p>
+                <p><strong>Comando:</strong> <code>docker volume create nombre_volumen</code></p>
+            </div>
+            <div class="card">
+                <h3>Redes y Puertos</h3>
+                <p>Los contenedores en la misma red <code>bridge</code> se comunican por nombre. Usa la opción <code>-p</code> para exponer un puerto al host.</p>
+                <p><strong>Ejemplo:</strong> <code>-p 8080:3000</code></p>
+            </div>
+            <div class="card">
+                <h3>Docker Compose</h3>
+                <p>Define toda tu aplicación (web + base de datos + servicios) en un solo archivo <code>docker-compose.yml</code> y arráncala con un comando.</p>
+                <a href="https://docs.docker.com/compose/" target="_blank" class="cta-button">Documentación de Compose</a>
+            </div>
+        </div>
+
+        <hr style="margin: 40px 0;">
+
+        <h3>🛠️ Ejercicio Interactivo 3: Aplicación Multi-Contenedor (Web + PostgreSQL)</h3>
+        <p>Para este ejercicio, necesitarás una estructura de archivos básica y el archivo <code>docker-compose.yml</code>:</p>
+
+        <h4>📁 Estructura del Proyecto</h4>
+        <pre><code>mi-proyecto-compose/
+├── .env          <-- Contiene las claves (contraseñas, usuarios) de forma segura.
+├── Dockerfile    <-- Para construir la imagen de tu aplicación web (servicio 'web').
+├── app.js        <-- Archivo de tu aplicación (ejemplo en Node.js).
+└── docker-compose.yml  <-- El archivo de orquestación de servicios.
+        </code></pre>
+
+        <h4>📜 Contenido Clave: <code>docker-compose.yml</code></h4>
+        <p>Define dos servicios (`web` y `db`) y un volumen persistente (`db-data`):</p>
+        <pre><code>version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "8080:3000"
+    environment:
+      DATABASE_HOST: db # Comunicación entre contenedores
+    volumes:
+      - .:/usr/src/app
+  db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Clave leída desde el .env
+    volumes:
+      - db-data:/var/lib/postgresql/data # Persistencia de datos
+volumes:
+  db-data:</code></pre>
+
+        <h4>🚀 Comandos del Laboratorio</h4>
+        <ol>
+            <li>**Preparación:** Crea el archivo **`.env`** con las variables <code>POSTGRES_DB</code>, <code>POSTGRES_USER</code>, y <code>POSTGRES_PASSWORD</code>.</li>
+            <li>**Inicio:** Levanta y ejecuta todo el entorno en segundo plano:
+                <pre><code>docker compose up -d</code></pre>
+            </li>
+            <li>**Verificación:** Asegúrate de que ambos contenedores (`web` y `db`) están corriendo:
+                <pre><code>docker ps</code></pre>
+            </li>
+            <li>**Limpieza:** Para detener y eliminar solo los contenedores y la red, manteniendo el volumen de datos (para no perder la BD):
+                <pre><code>docker compose down</code></pre>
+            </li>
+            <li>**Limpieza Completa:** Para eliminar *todo*, incluyendo el volumen de datos (usar con cuidado):
+                <pre><code>docker compose down -v</code></pre>
+            </li>
+        </ol>
+        
+        <a href="https://training.play-with-docker.com/compose-workshop/" target="_blank" class="cta-button" style="background-color: #f36f21;">Práctica 3: Laboratorio de Compose</a>
+    </section>
+
+    <section id="avanzado" class="seccion-contenedor">
+        <h2>🌟 Temas Avanzados y Siguientes Pasos</h2>
+        <p>Lleva tus conocimientos a producción con Orquestación y Seguridad.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Seguridad Esencial</h3>
+                <p>Asegura tus imágenes: evita el usuario `root` y usa imágenes base mínimas (Alpine). Nunca almacenes secretos en el Dockerfile.</p>
+                <a href="https://docs.docker.com/engine/security/container-security/" target="_blank" class="cta-button">Guía de Seguridad</a>
+            </div>
+            <div class="card">
+                <h3>Introducción a Kubernetes (K8s)</h3>
+                <p>El estándar de la industria para la orquestación a gran escala. Conoce los conceptos: **Pods**, **Nodos** y **Deployments**.</p>
+                <a href="https://www.youtube.com/watch?v=X48Vu7G0B8Q" target="_blank" class="cta-button">🎥 Video: Fundamentos de K8s</a>
+            </div>
+            <div class="card">
+                <h3>Plataformas de Práctica K8s</h3>
+                <p>El camino más rápido para aprender K8s es practicando en entornos reales en línea.</p>
+                <a href="https://killercoda.com/" target="_blank" class="cta-button" style="background-color: #ff5722;">Laboratorio: Killercoda</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
