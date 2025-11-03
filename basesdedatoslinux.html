@@ -230,6 +230,43 @@
             color: white;
         }
 
+        /* FOOTER y enlace al index con icono */
+        footer.footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 14px 18px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            margin: 20px 0 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.2s ease, transform 0.15s ease;
+        }
+
+        .home-link svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+            fill: currentColor;
+        }
+
+        .home-link:hover {
+            background: rgba(102, 126, 234, 0.08);
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             .comparison {
                 grid-template-columns: 1fr;
@@ -296,7 +333,7 @@
             </div>
             <div class="command-box">sudo apt update<br>sudo apt install mysql-server</div>
 
-            <div class="info-box">
+            <div class="info-box"></div>
                 <strong>CentOS/RHEL:</strong>
             </div>
             <div class="command-box">sudo yum install mysql-server<br>sudo systemctl start mysqld</div>
@@ -804,7 +841,7 @@ services:<br>
             </div>
 
             <h3>3. Levantar los contenedores</h3>
-            <div class="command-box">
+            <div class="command-box"></div>
 docker-compose up -d
             </div>
 
@@ -824,6 +861,16 @@ psql -h 127.0.0.1 -p 5432 -U postgres -d mi_tienda
                 <li>Revisa los logs con <code>docker logs <nombre_contenedor></code>.</li>
             </ul>
         </div>
+
+        <!-- FOOTER: enlace al index con icono -->
+        <footer class="footer" role="contentinfo">
+            <a href="index.html" class="home-link" title="Ir al inicio" aria-label="Ir al inicio">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                </svg>
+                <span>Inicio</span>
+            </a>
+        </footer>
     </div>
 
     <script>
@@ -850,6 +897,6 @@ psql -h 127.0.0.1 -p 5432 -U postgres -d mi_tienda
         }
     </script>
 </body>
-</html>
+</html></svg></a>
 
 

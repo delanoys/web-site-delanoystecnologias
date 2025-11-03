@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos Web: Marcado vs. Serialización de Datos</title>
+    
+    <link rel="stylesheet" href="/estilos/estiloeducativo.css">
+    
+    <style>
+        :root {
+            --color-primario: #0077b6; /* Azul de enfoque */
+            --color-secundario: #00b4d8; 
+            --color-accion: #00e090; /* Verde para interactividad */
+            --color-resaltado-ejercicio: #e74c3c; /* Rojo para destacar ejercicios */
+        }
+        /* Ajuste de color del botón de toggle para este módulo */
+        .cta-toggle {
+            background-color: var(--color-resaltado-ejercicio, #e74c3c);
+        }
+        .cta-toggle:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Conceptos Web: Marcado vs. Serialización de Datos ⚖️</h1>
+        <p>Una exploración completa de **HTML/XML** (Formato) y **YAML/JSON** (Datos), sus usos y su rol en la arquitectura moderna.</p>
+        
+    </header>
+
+    <nav>
+        <a href="#intro">⚖️ Introducción</a>
+        <a href="#marcado">🏷️ Marcado (HTML/XML)</a>
+        <a href="#datos">💾 Datos (YAML/JSON)</a>
+        <a href="#interactiva">Práctica Interactiva</a>
+    </nav>
+
+   <section id="intro" class="seccion-principal">
+        <h2>⚖️ Introducción: La Dualidad de la Web</h2>
+        <p>Los lenguajes se dividen según su propósito: **presentación visual** (para el humano) o **transmisión estructurada de información** (para la máquina).</p>
+
+        <div class="modulo-grid">
+            <div class="modulo-card" style="border-top: 4px solid #2ecc71;">
+                <h3>Grupo A: Marcado (HTML/XML)</h3>
+                <p>Se centran en el **Contenido y Formato**. Definen *cómo* se ve la información. Usan **etiquetas** y son cruciales para el **Frontend** y la documentación. Piensa en ellos como la **estructura de un edificio**.</p>
+            </div>
+            <div class="modulo-card" style="border-top: 4px solid #f39c12;">
+                <h3>Grupo B: Serialización (YAML/JSON)</h3>
+                <p>Se centran en la **Data y Configuración**. Definen *qué* es la información y su estructura jerárquica. Esencial para **APIs**, **Backend** y **DevOps**. Piensa en ellos como el **plano arquitectónico y la lista de materiales**.</p>
+            </div>
+        </div>
+
+        <hr>
+        
+        <div class="desafio-bloque" style="background-color: #f0f8ff;">
+            <h3>Analogía: Idiomas para Humanos vs. Idiomas para Máquinas</h3>
+            <p>La web necesita dos "idiomas" distintos para funcionar:</p>
+            <ul>
+                <li>**Lenguajes de Marcado (HTML):** Hablan al **navegador**. Le dicen: "Muestra este texto como un título, coloca esta imagen aquí, y haz de este texto un enlace". Está optimizado para la **lectura y presentación humana**.</li>
+                <li>**Lenguajes de Datos (JSON):** Hablan al **servidor y los programas**. Le dicen: "El usuario 123 tiene un saldo de 50.00". Está optimizado para la **eficiencia y el procesamiento de datos por máquinas**.</li>
+            </ul>
+            <p>**Clave:** Un programa (como tu API en ASP.NET Core) consume **JSON** y produce **HTML** (o más JSON para un framework moderno) para que el humano pueda verlo.</p>
+        </div>
+        <hr>
+
+        <div class="desafio-bloque">
+            </div>
+    </section>
+
+    <hr>
+
+    <section id="marcado" class="seccion-principal">
+        <h2>🏷️ HTML y XML: Estructura de Etiquetas</h2>
+        <p>Entendiendo la jerarquía de etiquetas y sus diferencias.</p>
+        
+        <div class="modulo-grid">
+            <div class="modulo-card">
+                <h3>HTML: Presentación Fija</h3>
+                <p>Utiliza etiquetas **predefinidas** por el navegador. Su propósito es renderizar visualmente el hipertexto (texto, imágenes, enlaces).</p>
+                <pre><code>&lt;h1&gt;Título de la Página&lt;/h1&gt;</code></pre>
+            </div>
+            <div class="modulo-card">
+                <h3>XML: Datos Extensibles</h3>
+                <p>Permite crear **etiquetas personalizadas** (`eXtensible`). Su objetivo es describir la data de forma estructurada para el intercambio entre sistemas, no para la visualización directa.</p>
+                <pre><code>&lt;persona&gt;&lt;nombre&gt;Ana&lt;/nombre&gt;&lt;/persona&gt;</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="datos" class="seccion-principal">
+        <h2>💾 YAML y JSON: Serialización de Datos</h2>
+        <p>El estándar de facto para la comunicación entre sistemas y la configuración de infraestructuras.</p>
+
+        <div class="modulo-grid">
+            <div class="modulo-card">
+                <h3>JSON: APIs y Objetos</h3>
+                <p>Sintaxis basada en objetos de JavaScript. Usa **llaves `{}`** para objetos y **corchetes `[]`** para listas. Es el más común para APIs REST.</p>
+                <pre><code>"id": 1, "status": "activo"</code></pre>
+            </div>
+            <div class="modulo-card">
+                <h3>YAML: Configuración y Legibilidad</h3>
+                <p>Diseñado para ser altamente legible por humanos. Utiliza **indentación** y el guion `-` para listas. Dominante en configuraciones de Docker y Kubernetes.</p>
+                <pre><code>- nombre: api-1\n  puerto: 80</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="interactiva" class="seccion-principal">
+        <h2>Práctica Interactiva y Desafío de Conversión 💪</h2>
+        <p>El reto consiste en convertir un formato de marcado a un formato de datos para comprender la diferencia en estructura y propósito.</p>
+
+        <div class="desafio-bloque">
+            <h3>📝 Desafío de Conversión de XML a JSON [CONV_1]</h3>
+            <p>Convierte la estructura de datos representada en XML al formato JSON, manteniendo la estructura jerárquica:</p>
+            <pre><code>
+&lt;inventario&gt;
+    &lt;producto id="P001"&gt;
+        &lt;nombre&gt;Teclado Mecánico&lt;/nombre&gt;
+        &lt;stock&gt;50&lt;/stock&gt;
+    &lt;/producto&gt;
+&lt;/inventario&gt;
+            </code></pre>
+
+            <button onclick="toggleSolution('CONV_1')" class="cta-toggle">
+                Mostrar Solución JSON y Explicación
+            </button>
+            
+            <div id="solucion-CONV_1" class="solucion-oculta">
+                <h4>✅ Solución en JSON</h4>
+                <pre><code>
+{
+  "inventario": {
+    "producto": {
+      "id": "P001",
+      "nombre": "Teclado Mecánico",
+      "stock": 50
+    }
+  }
+}
+                </code></pre>
+                <p>**Explicación:** El elemento raíz (`<inventario>`) y el elemento hijo (`<producto>`) se convierten en objetos JSON (llaves `{}`). El atributo `id` se convierte en un par clave-valor, al igual que los elementos de datos internos (`<nombre>`, `<stock>`).</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="index.html" class="footer-link">🏠 Regresar al Índice Principal</a>
+        <p>Plataforma Educativa | &copy; 2025</p>
+    </footer>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionBlock = document.getElementById('solucion-' + id);
+            const button = document.querySelector(`button[onclick="toggleSolution('${id}')"]`);
+
+            if (solutionBlock.style.display === 'none' || solutionBlock.style.display === '') {
+                solutionBlock.style.display = 'block';
+                button.textContent = 'Ocultar Solución 👆';
+            } else {
+                solutionBlock.style.display = 'none';
+                button.textContent = 'Mostrar Solución y Explicación';
+            }
+        }
+    </script>
+</body>
+</html>

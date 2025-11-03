@@ -1,0 +1,699 @@
+/* ========================================= */
+/* ESTILOS PRINCIPALES DEL INDEX             */
+/* Archivo: estilosindex.css                 */
+/* ========================================= */
+
+/* 1. Variables Globales y Reset Básico */
+:root {
+    --color-primario: #003366; /* Azul Oscuro Delanoys */
+    --color-secundario: #0654a3; /* Azul Medio/Botón */
+    --color-acento: #ffc107; /* Amarillo/Naranja (Resaltado/Acento) */
+    --color-texto-oscuro: #333333;
+    --color-texto-claro: #f8f9fa;
+    --color-fondo-claro: #ffffff;
+    --color-fondo-seccion: #f4f7f9;
+    --sombra-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --sombra-hover: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --fuente-principal: 'Inter', sans-serif;
+    --transicion-suave: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    color: var(--color-texto-oscuro);
+    background-color: var(--color-fondo-seccion);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    transition: var(--transicion-suave);
+}
+
+a:hover {
+    color: var(--color-primario);
+}
+
+.section-title {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--color-primario);
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+.section-title i {
+    margin-right: 10px;
+    color: var(--color-acento);
+}
+
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* 2. Navegación (Navbar) */
+.navbar {
+    background-color: var(--color-primario);
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.brand-logo {
+    height: 50px; /* Ajusta según el tamaño de tu logo */
+    border-radius: 5px;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--color-texto-claro);
+    padding: 10px 15px;
+    margin: 0 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: var(--transicion-suave);
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-acento);
+}
+
+.nav-cta {
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.nav-cta:hover {
+    background-color: #f7b000;
+    color: var(--color-primario);
+}
+
+/* Dropdown Styles (Movidos del HTML) */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    /* Ajusta para que luzca como un nav-link */
+    color: var(--color-texto-claro);
+    text-transform: uppercase;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-acento);
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: var(--color-fondo-claro);
+    min-width: 250px;
+    box-shadow: var(--sombra-card);
+    border-radius: 8px;
+    z-index: 100;
+    flex-direction: column;
+    padding: 0.5em 0;
+    border: 1px solid #ddd;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.8em 1.5em;
+    color: var(--color-texto-oscuro);
+    text-decoration: none;
+    font-size: 1em;
+    transition: background var(--transicion-suave), color var(--transicion-suave);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background: var(--color-fondo-seccion);
+    color: var(--color-secundario);
+}
+
+.nav-dropdown.open .dropdown-menu {
+    display: flex;
+}
+
+/* Mobile Menu Icon (Hamburguesa) */
+.menu-icon {
+    display: none; /* Oculto por defecto en desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 1010;
+}
+
+.hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: white;
+    transition: var(--transicion-suave);
+}
+
+/* 3. Hero/Banner Section */
+.hero-section {
+    position: relative;
+    height: 60vh; /* Altura del banner */
+    min-height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-slider, .banner-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-video {
+    /* object-fit: cover ya está en el HTML, pero es buena práctica tenerlo en CSS */
+    filter: brightness(0.4); /* Oscurece el video para que el texto resalte */
+}
+
+.hero-text {
+    position: relative;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para mejor lectura */
+    border-radius: 10px;
+}
+
+.hero-title {
+    font-size: 3em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.hero-text .section-title {
+    color: var(--color-acento);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    padding-top: 0;
+}
+.hero-text .section-description {
+    color: var(--color-texto-claro);
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+/* 4. Misión y Visión Section */
+.mv-section {
+    padding: 50px 0;
+    background-color: var(--color-fondo-claro);
+    border-bottom: 3px solid var(--color-acento);
+}
+
+.mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.mv-card {
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: var(--sombra-card);
+}
+
+.mv-card .section-title {
+    text-align: left;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--color-secundario);
+}
+
+.mv-card .section-description {
+    text-align: left;
+    margin: 0;
+    font-size: 1em;
+    color: #666;
+}
+
+/* 5. Servicios Section */
+.services-section {
+    padding: 60px 0;
+    background-color: var(--color-fondo-seccion);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--color-fondo-claro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-card);
+    text-align: center;
+    transition: var(--transicion-suave);
+    border-top: 5px solid var(--color-primario);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+    border-top-color: var(--color-acento);
+}
+
+.service-icon {
+    font-size: 2.5em;
+    color: var(--color-secundario);
+    margin-bottom: 15px;
+}
+
+.service-title {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: var(--color-primario);
+}
+
+.service-description {
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.service-link {
+    display: inline-block;
+    background-color: var(--color-secundario);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.service-link:hover {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+/* 6. Educación Section */
+.education-section {
+    padding: 60px 0;
+    background-color: var(--color-fondo-claro);
+}
+
+.education-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Columna Aside y Main */
+    gap: 40px;
+}
+
+/* Aside de Enlaces Rápidos */
+.education-aside {
+    background-color: var(--color-fondo-seccion);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--sombra-card);
+    height: fit-content;
+}
+
+.education-aside h3, .education-aside h4 {
+    color: var(--color-primario);
+    border-bottom: 2px solid var(--color-acento);
+    padding-bottom: 5px;
+    margin: 15px 0 10px 0;
+    font-size: 1.2em;
+}
+
+.education-aside h3 i, .education-aside h4 i {
+    color: var(--color-secundario);
+    margin-right: 8px;
+}
+
+.education-aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+.education-aside li {
+    margin-bottom: 8px;
+}
+
+.education-aside a {
+    display: block;
+    padding: 5px 0;
+    color: var(--color-texto-oscuro);
+    font-size: 0.95em;
+}
+
+.education-aside a:hover {
+    color: var(--color-acento);
+    padding-left: 5px;
+}
+
+/* Contenido Principal de Educación */
+.education-group {
+    margin-bottom: 40px;
+    border-left: 4px solid var(--color-secundario);
+    padding-left: 15px;
+}
+
+.group-title {
+    font-size: 1.6em;
+    color: var(--color-secundario);
+    margin-bottom: 20px;
+}
+
+.group-title i {
+    color: var(--color-acento);
+    margin-right: 10px;
+}
+
+.education-items-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.education-item {
+    background-color: var(--color-fondo-seccion);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 4px solid var(--color-primario);
+}
+
+.education-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-card);
+}
+
+.education-item.highlight {
+    border-left-color: var(--color-acento);
+    background-color: #fffaf0; /* Fondo ligeramente amarillo para destacar */
+}
+
+.education-item h4 {
+    font-size: 1.2em;
+    color: var(--color-primario);
+    margin-bottom: 10px;
+}
+
+.education-item h4 i {
+    color: var(--color-acento);
+    margin-right: 8px;
+}
+
+.education-item p {
+    font-size: 0.95em;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.education-item ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.edu-link {
+    display: block;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-top: 5px;
+    color: var(--color-secundario);
+}
+
+.edu-link:hover {
+    text-decoration: underline;
+    color: var(--color-primario);
+}
+
+/* 7. Contacto Section */
+.contact-section {
+    padding: 60px 0;
+    background-color: var(--color-primario);
+    color: white;
+    text-align: center;
+}
+
+.contact-section .section-title {
+    color: var(--color-acento);
+    margin-bottom: 15px;
+}
+
+.contact-details p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.contact-details i {
+    margin-right: 10px;
+    color: var(--color-acento);
+}
+
+.contact-link {
+    color: var(--color-acento);
+}
+
+.contact-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+    font-weight: 700;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+}
+
+.cta-button:hover {
+    background-color: #f7b000;
+}
+
+/* 8. Footer */
+.main-footer {
+    background-color: #2c3e50; /* Un gris/azul oscuro */
+    color: var(--color-texto-claro);
+    padding: 40px 0 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-col {
+    width: 30%;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-col h4 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--color-acento);
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col a {
+    color: var(--color-texto-claro);
+    display: block;
+    padding: 5px 0;
+    font-size: 0.9em;
+}
+
+.footer-col a:hover {
+    color: var(--color-acento);
+}
+
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-secundario);
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.social-links a:hover {
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.85em;
+    color: #aaa;
+}
+
+
+/* 9. Media Queries (Responsividad) */
+
+@media (max-width: 1024px) {
+    .education-layout {
+        grid-template-columns: 1fr; /* Una sola columna para la sección de educación */
+        gap: 30px;
+    }
+    .education-aside {
+        order: 1; /* El aside va arriba en móvil */
+    }
+    .education-main {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5em;
+    }
+    .hero-text .section-title {
+        font-size: 1.5em;
+    }
+
+    .nav-buttons {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Altura de la barra de navegación */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primario);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    .nav-buttons.active {
+        display: flex;
+    }
+
+    .nav-link, .nav-dropdown, .nav-cta {
+        width: 100%;
+        text-align: left;
+        margin: 0;
+        border-radius: 0;
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-cta {
+        margin-top: 10px;
+    }
+
+    .menu-icon {
+        display: block; /* Muestra el icono en móvil */
+    }
+
+    /* Dropdown en móvil: Ocupa el ancho completo */
+    .nav-dropdown {
+        position: static;
+        display: block;
+    }
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        background-color: var(--color-secundario); /* Cambio de fondo en móvil para anidación */
+        min-width: auto;
+    }
+    .dropdown-item {
+        color: var(--color-texto-claro);
+        padding: 10px 30px; /* Indentación para mostrar anidación */
+    }
+    .dropdown-item:hover {
+        background-color: #044383;
+    }
+    .dropdown-toggle {
+        width: 100%;
+    }
+
+    .mv-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-col {
+        width: 90%;
+        text-align: center;
+    }
+}

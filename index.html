@@ -6,21 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delanoys Tecnologías - Soporte Técnico y Educación Web</title>
     <meta name="description"
-        content="Servicios de soporte técnico, desarrollo web y capacitación tecnológica profesional">
-    <link rel="stylesheet" href="estilos/estilos.css">
+        content="Servicios de soporte técnico, desarrollo web y capacitación tecnológica profesional. Misión, Visión y Recursos Educativos de Delanoys Tecnologías.">
+    
+    <link rel="stylesheet" href="estilos/estilosindex.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="fonts/fontawesome-free-6.7.2-web/css/all.css">
 </head>
 
 <body>
-    <!-- Navegación principal -->
+    
     <nav class="navbar" role="navigation" aria-label="Navegación principal">
         <div class="nav-container">
             <div class="nav-brand">
                 <img src="/imagenes/Logo/Dtecnologias NIT ver 7.jpg" alt="Logo Delanoys Tecnologías" class="brand-logo">
-                <!-- <span class="brand-text">Soporte Tecnico y Soliciones informaticas</span> -->
             </div>
 
             <button class="menu-icon" aria-label="Abrir menú de navegación" aria-expanded="false"
@@ -34,230 +36,129 @@
                 <a href="#inicio" class="nav-link">Inicio</a>
                 <a href="#servicios" class="nav-link">Servicios</a>
                 <a href="#educacion" class="nav-link">Educación</a>
-                   <a href="/leyesinformaticas.html" class="nav-link">Leyes informáticas</a>
-                 <a href="https://developersinprocess.blog/" class="nav-link">desarrollador web desde cero</a>
-                 <a href="/newagenda.html" class="nav-link">Agenda de Aprendizaje</a>
-                 <div class="nav-dropdown">
-                     <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="enlacesDropdown">
-                         Enlaces <i class="fa fa-caret-down"></i>
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="enlacesDropdown">
-                         <a href="/personalproyec.html" target="_blank" class="dropdown-item">Estudios 2025</a>
-                         <a href="agenda.html" target="_blank" class="dropdown-item">Agenda</a>
-                         <a href="plandeaprendizaje2.html" target="_blank" class="dropdown-item">Plan de Aprendizaje</a>
-                         <a href="#servicios" class="dropdown-item">Servicios</a>
-                         <a href="#educacion" class="dropdown-item">Educación</a>
-                           <a href="/tsconfigjon.html" class="dropdown-item">configuración tsconfig.json</a>
-                         <a href="/sopa.html" class="dropdown-item">Sopa de letras - Valores</a>
-                         <a href="https://developersinprocess.blog/" target="_blank" class="dropdown-item">desarrolla tu webSite desde cero</a>
-                         <a href="/planmaestro.html" target="_blank" class="dropdown-item">Plan Maestro de Transformación Tech</a>
-                     </div>
-                 </div>
-                <a href="#contacto" class="nav-link">Contacto</a>
-               
-                <style>
-                .nav-dropdown {
-                    position: relative;
-                    display: inline-block;
-                }
-                .dropdown-toggle {
-                    background: none;
-                    border: none;
-                    color: inherit;
-                    font: inherit;
-                    cursor: pointer;
-                    padding: 0.5em 1em;
-                    display: flex;
-                    align-items: center;
-                    gap: 0.3em;
-                }
-                .dropdown-menu {
-                    display: none;
-                    position: absolute;
-                    top: 110%;
-                    left: 0;
-                    background: #fff;
-                    min-width: 220px;
-                    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-                    border-radius: 8px;
-                    z-index: 100;
-                    flex-direction: column;
-                    padding: 0.5em 0;
-                }
-                .dropdown-item {
-                    display: block;
-                    padding: 0.6em 1.2em;
-                    color: #003366;
-                    text-decoration: none;
-                    font-size: 1em;
-                    transition: background 0.2s, color 0.2s;
-                }
-                .dropdown-item:hover, .dropdown-item:focus {
-                    background: #f0f6ff;
-                    color: #0654a3;
-                }
-                .nav-dropdown.open .dropdown-menu {
-                    display: flex;
-                }
-                </style>
-                <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const dropdown = document.querySelector('.nav-dropdown');
-                    const toggle = dropdown.querySelector('.dropdown-toggle');
-                    toggle.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        dropdown.classList.toggle('open');
-                        toggle.setAttribute('aria-expanded', dropdown.classList.contains('open'));
-                    });
-                    document.addEventListener('click', function (e) {
-                        if (!dropdown.contains(e.target)) {
-                            dropdown.classList.remove('open');
-                            toggle.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                    // Keyboard accessibility
-                    toggle.addEventListener('keydown', function(e) {
-                        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            dropdown.classList.add('open');
-                            toggle.setAttribute('aria-expanded', 'true');
-                            const firstItem = dropdown.querySelector('.dropdown-item');
-                            if (firstItem) firstItem.focus();
-                        }
-                    });
-                });
-                </script>
+                <a href="/leyesinformaticas.html" class="nav-link">Leyes informáticas</a>
+                <a href="https://developersinprocess.blog/" class="nav-link" target="_blank">Desarrollo Web</a>
+                <a href="/newagenda.html" class="nav-link">Agenda de Aprendizaje</a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="enlacesDropdown">
+                        Enlaces <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="enlacesDropdown">
+                        <a href="/personalproyec.html" target="_blank" class="dropdown-item">Estudios 2025</a>
+                        <a href="agenda.html" target="_blank" class="dropdown-item">Agenda</a>
+                        <a href="plandeaprendizaje2.html" target="_blank" class="dropdown-item">Plan de Aprendizaje</a>
+                        <a href="#servicios" class="dropdown-item">Servicios</a>
+                        <a href="#educacion" class="dropdown-item">Educación</a>
+                        <a href="/tsconfigjon.html" class="dropdown-item">Configuración tsconfig.json</a>
+                        <a href="/sopa.html" class="dropdown-item">Sopa de letras - Valores</a>
+                        <a href="https://developersinprocess.blog/" target="_blank" class="dropdown-item">Desarrolla tu webSite desde cero</a>
+                        <a href="/planmaestro.html" target="_blank" class="dropdown-item">Plan Maestro de Transformación Tech</a>
+                    </div>
+                </div>
+                <a href="#contacto" class="nav-link nav-cta">Contacto</a>
             </div>
         </div>
     </nav>
-<main class="main-content" role="main">
-    <!-- Banner promocional -->
-    <section  id="inicio">
-        <div class="banner-content">
-            <div class="banner-slider">
-                <video class="banner-video"
-                    src="/video/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).mp4" autoplay loop
-                    muted playsinline style="width:100%;height:auto;object-fit:cover;" playbackRate="0.5"></video>
 
-            </div>
-                    <script>
-                        // Ajusta la velocidad de reproducción del video a 0.5x (lento)
-                        document.addEventListener('DOMContentLoaded', function () {
-                            var video = document.querySelector('.banner-video');
-                            if (video) video.playbackRate = 0.5;
-                        });
-                        </script>
-            <div class="hero-text">
-                <h1 class="hero-title"><i class="fa-solid fa-keyboard"></i> Soluciones Tecnológicas Avanzadas</h1>
-                <!-- <p class="hero-subtitle">Transformamos tu negocio con tecnología de vanguardia</p>
-                <button class="cta-button">Comenzar Ahora</button> -->
-                <h2 class="section-title" ><i class="fa-regular fa-circle-user"></i> Bienvenidos a Nuestra Plataforma
-                </h2>
-                <p class="section-description">
-                    Ofrecemos soluciones integrales en tecnología, desde soporte técnico especializado
-                    hasta educación web de calidad profesional.
-                </p> 
-                <!-- Sección de introducción -->
-                <h2 class="section-title"><i class="fa-solid fa-users"></i> Quienes Somos ?</h2>
-                <p class="section-description">
-                    Somos un equipo de especialistas en soporte técnico de computadoras, comprometidos con la
-                    excelencia
-                    y la innovación. Nuestro personal altamente capacitado ofrece soluciones integrales que
-                    abarcan
-                    desde la reparación de hardware hasta la optimización de software, asegurando que tu
-                    infraestructura
-                    tecnológica funcione de manera eficiente y confiable. Transformamos la tecnología en una
-                    herramienta
-                    estratégica para potenciar el crecimiento y productividad de tu negocio.
-                </p>
-            </div>
-           
-            <div class="container">
-                <h2 class="section-title"><i class="fa-solid fa-bullseye"></i> Mision</h2>
-                <p class="section-description">
-                    Brindamos Soluciones basadas en nuevas tecnologías, Soporte técnico , redes informáticas,
-                    mantenimiento de equipos de Computo (Pc, portátil, Tablet, celulares, impresoras), CCTV
-                    (circuito
-                    cerrado de televisión y vigilancia), diseño de sitios web, cloud computing y
-                    telecomunicaciones.
+    <main class="main-content" role="main">
         
-                    Nuestras asesorías son Gratuitas
-                </p>
-        
-        
-            </div>
-            <div class="container">
-                <h2 class="section-title"><i class="fa-solid fa-eye"></i> Vision</h2>
-                <p class="section-description">
-                    Para el año 2030 convertirnos con la sabiduría y la dirección de Dios en la mas grande
-                    empresa de
-                    soporte asistencial para Hogares y Empresas, Brindando soluciones tecnológicas, soporte
-                    técnico
-                    especializado y capacitaciones en el uso de nuevas tecnologías para el desarrollo de
-                    educativo,
-                    social y laboral de nuestra patria Colombia
-                </p>
-        
-        
-            </div>
-        </div>
-    </section>
-            
-
-        <!-- Sección de servicios interactivos -->
-        <section class="services-section" id="servicios">
-            <div class="container">
-            <h2 class="section-title">Nuestros Servicios</h2>
-            <div class="services-grid">
-                <article class="service-card" tabindex="0">
-                <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
-                <h3 class="service-title">Optimización de Redes</h3>
-                <p class="service-description">
-                    Soporte técnico para optimizar redes empresariales, garantizando conectividad estable y segura.
-                </p>
-                <a href="#contacto" class="service-link">Solicitar info</a>
-                </article>
-                <article class="service-card" tabindex="0">
-                <div class="service-icon"><i class="fa-solid fa-database"></i></div>
-                <h3 class="service-title">Curso SQL Básico y Avanzado</h3>
-                <p class="service-description">
-                    Aprende SQL desde cero hasta avanzado con ejercicios prácticos en SQLite y PostgreSQL.
-                </p>
-                <a href="basesdedatos.html" class="service-link">Ver curso</a>
-                </article>
-                <article class="service-card" tabindex="0">
-                <div class="service-icon"><i class="fa-solid fa-code"></i></div>
-                <h3 class="service-title">Desarrollo Web</h3>
-                <p class="service-description">
-                    Aprende HTML, CSS, JavaScript y más. Contenido interactivo para todos los niveles.
-                </p>
-                <a href="desarrolloweb.html" class="service-link">Explorar</a>
-                </article>
-                <article class="service-card" tabindex="0">
-                <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h3 class="service-title">DOM y JavaScript</h3>
-                <p class="service-description">
-                    Domina la manipulación del DOM y crea interfaces dinámicas e interactivas.
-                </p>
-                <a href="#educacion" class="service-link">Aprender más</a>
-                </article>
-            </div>
+        <section class="hero-section" id="inicio">
+            <div class="banner-content">
+                <div class="banner-slider">
+                    <video class="banner-video"
+                        src="/video/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).mp4" autoplay loop
+                        muted playsinline></video>
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title"><i class="fa-solid fa-keyboard"></i> Soluciones Tecnológicas Avanzadas</h1>
+                    <h2 class="section-title"><i class="fa-regular fa-circle-user"></i> Bienvenidos a Nuestra Plataforma</h2>
+                    <p class="section-description intro-paragraph">
+                        Ofrecemos soluciones integrales en tecnología, desde **soporte técnico especializado**
+                        hasta **educación web de calidad profesional**.
+                    </p>
+                    <p class="section-description intro-paragraph">
+                        Somos un equipo de especialistas, comprometidos con la excelencia y la innovación, asegurando que tu infraestructura tecnológica funcione de
+                        manera eficiente y confiable.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Sección educativa interactiva -->
+        <section class="mv-section">
+            <div class="container mv-grid">
+                <div class="mv-card">
+                    <h2 class="section-title"><i class="fa-solid fa-bullseye"></i> Misión</h2>
+                    <p class="section-description">
+                        Brindamos Soluciones basadas en nuevas tecnologías: Soporte técnico, redes informáticas,
+                        mantenimiento de equipos de Cómputo (Pc, portátil, Tablet, celulares, impresoras), CCTV
+                        (circuito cerrado de televisión y vigilancia), diseño de sitios web, cloud computing y
+                        telecomunicaciones. **Nuestras asesorías son Gratuitas**.
+                    </p>
+                </div>
+                <div class="mv-card">
+                    <h2 class="section-title"><i class="fa-solid fa-eye"></i> Visión</h2>
+                    <p class="section-description">
+                        Para el año 2030 convertirnos con la sabiduría y la dirección de Dios en la más grande
+                        empresa de soporte asistencial para Hogares y Empresas, Brindando soluciones tecnológicas, soporte
+                        técnico especializado y capacitaciones en el uso de nuevas tecnologías para el desarrollo
+                        educativo, social y laboral de nuestra patria Colombia.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="services-section" id="servicios">
+            <div class="container">
+                <h2 class="section-title"><i class="fa-solid fa-gears"></i> Nuestros Servicios</h2>
+                <div class="services-grid">
+                    <article class="service-card" tabindex="0">
+                        <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
+                        <h3 class="service-title">Optimización de Redes</h3>
+                        <p class="service-description">
+                            Soporte técnico para optimizar redes empresariales, garantizando conectividad estable y segura.
+                        </p>
+                        <a href="#contacto" class="service-link">Solicitar info</a>
+                    </article>
+                    <article class="service-card" tabindex="0">
+                        <div class="service-icon"><i class="fa-solid fa-database"></i></div>
+                        <h3 class="service-title">Curso SQL Básico y Avanzado</h3>
+                        <p class="service-description">
+                            Aprende SQL desde cero hasta avanzado con ejercicios prácticos en SQLite y PostgreSQL.
+                        </p>
+                        <a href="basesdedatos.html" class="service-link">Ver curso</a>
+                    </article>
+                    <article class="service-card" tabindex="0">
+                        <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+                        <h3 class="service-title">Desarrollo Web</h3>
+                        <p class="service-description">
+                            Aprende HTML, CSS, JavaScript y más. Contenido interactivo para todos los niveles.
+                        </p>
+                        <a href="desarrolloweb.html" class="service-link">Explorar</a>
+                    </article>
+                    <article class="service-card" tabindex="0">
+                        <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 class="service-title">DOM y JavaScript</h3>
+                        <p class="service-description">
+                            Domina la manipulación del DOM y crea interfaces dinámicas e interactivas.
+                        </p>
+                        <a href="#educacion" class="service-link">Aprender más</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section class="education-section" id="educacion">
             <div class="container">
-                <h2 class="section-title">Recursos Educativos Destacados</h2>
+                <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Recursos Educativos Destacados</h2>
                 <div class="education-layout">
 
-                    <!-- Aside: Guías rápidas y enlaces útiles -->
                     <aside class="education-aside" aria-label="Guías rápidas y enlaces útiles">
                         <h3><i class="fa-solid fa-link"></i> Accesos Directos</h3>
                         <ul>
                             <li><a href="/rutaproyectoweb.html" target="_blank">Proyecto Web Facturación</a></li>
                             <li><a href="/basesdedatos.html" target="_blank">Curso SQL</a></li>
-                            <li><a href="basesdedatislinux.html">Bases de Datos en Linux</a></li>
+                            <li><a href="basesdedatislinux.html" target="_blank">Bases de Datos en Linux</a></li>
                             <li><a href="/Reactdesdecero.html" target="_blank">Curso React</a></li>
                             <li><a href="/typescript.html" target="_blank">Curso TypeScript</a></li>
                             <li><a href="/DevOps.html" target="_blank">Roadmap DevOps</a></li>
@@ -271,55 +172,67 @@
                         </ul>
                     </aside>
 
-                    <!-- Main educational content -->
                     <div class="education-main">
 
-                        <!-- Introducción y enlaces nuevos -->
-                        <section class="education-group" aria-label="Introducción a Bases de Datos y Contenedores">
-                            <h3 class="group-title"><i class="fa-solid fa-info-circle"></i> Introducción Rápida</h3>
+                        <section class="education-group" aria-label="Integración Tech Avanzada">
+                            <h3 class="group-title"><i class="fa-solid fa-info-circle"></i> Integración Tech Avanzada</h3>
                             <div class="education-items-row">
                                 <article class="education-item highlight" tabindex="0">
                                     <h4><i class="fa-solid fa-database"></i> Bases de Datos en Linux y Contenedores</h4>
-                                    <p>
-                                        En esta sección encontrarás guías y cursos para instalar y administrar bases de datos
-                                        en entornos Linux, ejemplos con herramientas y búsquedas avanzadas, además de
-                                        prácticas sobre contenedores y ejemplos usando modelos de IA para asistencia.
-                                    </p>
+                                    <p>Guías para instalar y administrar bases de datos en entornos Linux, con ejemplos y prácticas sobre contenedores (Docker) y ejemplos de asistencia con modelos de IA.</p>
                                     <ul>
                                         <li><a href="/basesdedatoslinux.html" target="_blank" class="edu-link">Bases de Datos en Linux</a></li>
                                         <li><a href="/basesdedatoslinuxGrock.html" target="_blank" class="edu-link">Bases de Datos en Linux (Grock)</a></li>
-                                       
                                     </ul>
                                 </article>
-                                 <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-cube"></i> Contenedores y Gemini</h4>
-                                    <p>Ejemplos y prácticas sobre contenedores (Docker) integrados con modelos de IA como Gemini para tareas automatizadas y despliegue.</p>
-                                    <p class="intro"></p>
-                                        Breve introducción: aquí encontrarás prácticas y ejemplos para crear, desplegar y
-                                        orquestar contenedores (Docker) integrados con modelos de IA como Gemini. Se
-                                        cubren imágenes, volúmenes, redes y patrones de despliegue para automatizar tareas
-                                        y pipelines de inferencia.
-                                    </p>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-cube"></i> Contenedores con Gemini</h4>
+                                    <p>Prácticas para crear, desplegar y orquestar contenedores (Docker) integrados con IA como Gemini para automatizar tareas y pipelines de inferencia.</p>
                                     <a href="/contenedorescongemini.html" target="_blank" class="edu-link">Contenedores con Gemini — Guía práctica</a>
                                     <a href="/contenedorescongemini-ejemplos.html" target="_blank" class="edu-link">Ejemplos: Docker, Compose y Kubernetes</a>
                                 </article>
-
                                 <article class="education-item" tabindex="0">
                                     <h4><i class="fa-brands fa-microsoft"></i> ASP.NET con Gemini</h4>
-                                    <p class="intro">
-                                        Introducción: aprende a integrar Gemini en aplicaciones ASP.NET para añadir
-                                        capacidades de IA (chatbots, generación de contenido, análisis) y desplegarlas de
-                                        forma segura y escalable en contenedores o en la nube.
-                                    </p>
+                                    <p>Tutoriales para integrar Gemini en aplicaciones ASP.NET (chatbots, generación de contenido) y desplegarlas de forma segura y escalable en la nube.</p>
                                     <a href="/aspnetcongemini.html" target="_blank" class="edu-link">ASP.NET con Gemini — Tutorial</a>
                                     <a href="/aspnetcongemini-ejemplos.html" target="_blank" class="edu-link">Proyectos de ejemplo y plantillas</a>
                                 </article>
                             </div>
                         </section>
 
-                        <!-- Proyectos y Cursos Principales -->
+                        <section class="education-group" aria-label="Ruta Full-Stack .NET y DevOps">
+                            <h3 class="group-title"><i class="fa-solid fa-layer-group"></i> Ruta Full-Stack: .NET Core y DevOps</h3>
+                            <p class="section-description" style="text-align: left;">Recorrido estructurado por la arquitectura moderna de desarrollo, desde el backend hasta la orquestación en la nube.</p>
+                            <div class="education-items-row">
+
+                                <article class="education-item highlight" tabindex="0">
+                                    <h4><i class="fa-brands fa-microsoft"></i> 1. Backend: ASP.NET Core MVC</h4>
+                                    <p>Guía esencial sobre el patrón MVC, APIs RESTful y el flujo de trabajo en C# y .NET.</p>
+                                    <a href="/mvccongemini.html" target="_blank" class="edu-link">Ver Módulo</a>
+                                </article>
+
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-database"></i> 2. Persistencia: Entity Framework Core</h4>
+                                    <p>Aprende a mapear objetos C# a tu base de datos con el ORM de .NET, usando Code-First y Migrations.</p>
+                                    <a href="/efcorecongemini.html" target="_blank" class="edu-link">Ver Módulo</a>
+                                </article>
+
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-lock"></i> 3. Seguridad: Autenticación con JWT</h4>
+                                    <p>Implementa seguridad de nivel profesional: Autenticación, Autorización y manejo de Tokens JWT en tus APIs.</p>
+                                    <a href="/seguridadcongemini.html" target="_blank" class="edu-link">Ver Módulo</a>
+                                </article>
+
+                                <article class="education-item highlight" tabindex="0">
+                                    <h4><i class="fa-solid fa-cubes"></i> 4. DevOps: Kubernetes y Escalabilidad</h4>
+                                    <p>Domina la orquestación de contenedores (Docker) para desplegar y escalar tu aplicación a nivel de producción (K8s).</p>
+                                    <a href="/kubernetescongemini.html" target="_blank" class="edu-link">Ver Módulo</a>
+                                </article>
+                            </div>
+                        </section>
+
                         <section class="education-group" aria-label="Proyectos y Cursos Principales">
-                            <h3 class="group-title"><i class="fa-solid fa-laptop-code"></i> Proyectos y Cursos Principales</h3>
+                            <h3 class="group-title"><i class="fa-solid fa-laptop-code"></i> Cursos Específicos</h3>
                             <div class="education-items-row">
                                 <article class="education-item highlight" tabindex="0">
                                     <h4><i class="fa-solid fa-file-invoice-dollar"></i> Proyecto Web Facturación</h4>
@@ -327,14 +240,10 @@
                                     <a href="/rutaproyectoweb.html" target="_blank" class="edu-link">Ver Ruta</a>
                                 </article>
                                 <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-database"></i> Curso SQL</h4>
-                                    <p>Aprende SQL con SQLite y PostgreSQL en VS Code.</p>
+                                    <h4><i class="fa-solid fa-database"></i> Curso SQL Completo</h4>
+                                    <p>Aprende SQL con SQLite, PostgreSQL y guías para Linux.</p>
                                     <a href="basesdedatos.html" class="edu-link">Ir al curso</a>
-                                    <h4>Bases de Datos en Linux</h4>
-                                    <p>Guías para instalar y gestionar MySQL/PostgreSQL en servidores Linux.</p>
-                                    <a href="/basesdedatoslinux.html" target="_blank" class="edu-link">Bases dedatos Linux</a>
-                                    <p>Recursos adicionales y ejemplos con Grok:</p>
-                                    <a href="/basesdedatoslinuxGrock.html" target="_blank" class="edu-link">Bases dedatos Linux - Grok</a>
+                                    <a href="/basesdedatoslinux.html" target="_blank" class="edu-link">Instalación BD en Linux</a>
                                 </article>
                                 <article class="education-item" tabindex="0">
                                     <h4><i class="fa-brands fa-react"></i> Aprende React desde Cero</h4>
@@ -348,34 +257,24 @@
                                 </article>
                                 <article class="education-item" tabindex="0">
                                     <h4><i class="fa-brands fa-python"></i> Recursos y Ejemplos en Python</h4>
-                                    <p>Seis páginas creadas por distintas IA con tutoriales, ejemplos y pequeños proyectos en Python. Útiles para practicar desde conceptos básicos hasta técnicas avanzadas.</p>
-                                    <ul>
-                                        <li><a href="/python/pythonclaude.html" target="_blank" class="edu-link">Python - Claude</a></li>
-                                        <li><a href="/python/pythondeppseek.html" target="_blank" class="edu-link">Python - Deppseek</a></li>
-                                        <li><a href="/python/pythongenimi.html" target="_blank" class="edu-link">Python - Gemini</a></li>
-                                        <li><a href="/python/pythongpt.html" target="_blank" class="edu-link">Python - GPT</a></li>
-                                        <li><a href="/python/pythongrok.html" target="_blank" class="edu-link">Python - Grok</a></li>
-                                        <li><a href="/python/pythonleo.html" target="_blank" class="edu-link">Python - Leo</a></li>
-                                    </ul>
+                                    <p>Tutoriales y pequeños proyectos generados por distintas IAs para practicar.</p>
+                                    <a href="/python/pythongenimi.html" target="_blank" class="edu-link">Ejemplo: Python con Gemini</a>
+                                    <a href="/python/pythongrok.html" target="_blank" class="edu-link">Ejemplo: Python con Grok</a>
                                     <a href="/python/" target="_blank" class="edu-link">Abrir carpeta /python/</a>
                                 </article>
                                 <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-terminal"></i> CMD (Símbolo del sistema)</h4>
-                                    
-                                    <p class="note">Ejecutar CMD como administrador para operaciones de apagado o cambios en red.</p>
-                                        <h4><i class="fa-brands fa-powershell"></i> PowerShell (Scripts básicos)</h4> 
-                                    <p class="note">Ejecutar PowerShell como administrador para scripts que modifiquen el sistema.</p>
+                                    <h4><i class="fa-solid fa-terminal"></i> CMD y PowerShell</h4>
+                                    <p>Guías para ejecutar comandos y scripts básicos de administración de sistema y red en entornos Windows.</p>
                                     <a href="shutdown.html" class="edu-link">Guía: shutdown.html</a>
                                 </article>
                             </div>
                         </section>
 
-                        <!-- DevOps y Metodologías -->
                         <section class="education-group" aria-label="DevOps y Metodologías">
                             <h3 class="group-title"><i class="fa-brands fa-dev"></i> DevOps y Metodologías</h3>
                             <div class="education-items-row">
                                 <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-brands fa-dev"></i> DevOps</h4>
+                                    <h4><i class="fa-brands fa-dev"></i> DevOps Roadmaps</h4>
                                     <ul>
                                         <li><a href="/DevOps.html" target="_blank">Roadmap interactivo</a></li>
                                         <li><a href="/proDevOps.html" target="_blank">Automatización y despliegue</a></li>
@@ -393,8 +292,7 @@
                                 </article>
                             </div>
                         </section>
-
-                        <!-- Soporte, Capacitación y Seguridad -->
+                        
                         <section class="education-group" aria-label="Soporte, Capacitación y Seguridad">
                             <h3 class="group-title"><i class="fa-solid fa-headset"></i> Soporte y Seguridad</h3>
                             <div class="education-items-row">
@@ -416,385 +314,71 @@
                             </div>
                         </section>
 
-                        <!-- Idiomas y Planes de Aprendizaje -->
-                        <section class="education-group" aria-label="Idiomas y Planes de Aprendizaje">
-                            <h3 class="group-title"><i class="fa-solid fa-language"></i> Idiomas y Planes</h3>
-                            <div class="education-items-row">
-                                <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-language"></i> Plan de 4 Semanas para Aprender Inglés</h4>
-                                    <ul>
-                                        <li><a href="/ingles.html" target="_blank">Plan 1</a></li>
-                                        <li><a href="/cursoingles.html" target="_blank">Plan 2</a></li>
-                                    </ul>
-                                    <p>Mejora tu pronunciación, escritura, lectura y escucha.</p>
-                                </article>
-                            </div>
-                        </section>
-
-                        <!-- Artículos y Recursos TIC -->
                         <section class="education-group" aria-label="Artículos y Recursos TIC">
                             <h3 class="group-title"><i class="fa-solid fa-newspaper"></i> Artículos y Recursos TIC</h3>
                             <div class="education-items-row">
                                 <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-newspaper"></i> Info TIC</h4>
+                                    <h4><i class="fa-solid fa-newspaper"></i> Info TIC Destacada</h4>
                                     <ul>
                                         <li><strong>Google Hacking:</strong> Técnicas avanzadas de búsqueda.</li>
                                         <li><strong>Shodan:</strong> Busca dispositivos conectados.</li>
                                         <li><strong>Hyper-V:</strong> Cómo habilitarlo en Windows.</li>
-                                        <li><strong>Ubuntu Server:</strong> Guía de instalación.</li>
-                                        <li><strong>Diseño Web:</strong> Ciclo de vida y mejores prácticas.</li>
-                                        <li>
-                                            <strong>Guía Linux Server:</strong>
-                                            <ul>
-                                                <li>IA: <a href="#" target="_blank">grok.com</a></li>
-                                                <li>IA: <a href="#" target="_blank">chatgpt.com</a></li>
-                                                <li>IA: <a href="#" target="_blank">claude.ai</a> <a href="ubuntuserver.html" target="_blank">Ubuntu 18.04.6 LTS</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/basesdedatoslinux.html" target="_blank" class="edu-link">Instalación de BD en Linux</a></li>
-                                        <li><a href="/basesdedatoslinuxGrock.html" target="_blank" class="edu-link">Ejemplos y resolución con Grok</a></li>
-                                    </ul>
-                                    <a href="/info.html" target="_parent" class="edu-link">Ver más artículos</a>
-                                </article>
-                                <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-robot"></i> Superpotencias de la Inteligencia Artificial</h4>
-                                    <p><i>Resumen del libro de Kai-Fu Lee sobre la carrera global por la IA.</i></p>
-                                    <a href="/Superpotencias de la IA.html" target="_blank" class="edu-link">Leer resumen</a>
-                                </article>
-                            </div>
-                        </section>
-
-                        <!-- Herramientas y Guías Técnicas -->
-                        <section class="education-group" aria-label="Herramientas y Guías Técnicas">
-                            <h3 class="group-title"><i class="fa-solid fa-toolbox"></i> Herramientas y Guías Técnicas</h3>
-                            <div class="education-items-row">
-                                <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-brands fa-windows"></i> ¿Qué es Chocolatey?</h4>
-                                    <p>Gestor de paquetes para Windows que automatiza la instalación y actualización de software.</p>
-                                    <a href="/Chocolatey.html" target="_blank" class="edu-link">Comandos básicos</a>
-                                </article>
-                                <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-box"></i> ¿Qué es Vagrant?</h4>
-                                    <p>Herramienta para crear y gestionar entornos de desarrollo virtualizados fácilmente.</p>
-                                    <a href="/vagrant.html" target="_blank" class="edu-link">Guía básica</a>
-                                </article>
-                                <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-brands fa-linux"></i> ¿Qué es WSL?</h4>
-                                    <p>Permite ejecutar distribuciones Linux directamente en Windows, facilitando el desarrollo multiplataforma.</p>
-                                    <a href="/wsl.html" target="_blank" class="edu-link">Guía de WSL</a>
-                                </article>
-                               
-                            </div>
-                        </section>
-
-                        <!-- Documentos Oficiales -->
-                        <section class="education-group" aria-label="Documentos Oficiales">
-                            <h3 class="group-title"><i class="fa-solid fa-file-signature"></i> Documentos Oficiales</h3>
-                            <div class="education-items-row">
-                                <article class="education-item" tabindex="0">
-                                    <h4><i class="fa-solid fa-file-signature"></i> ¿Qué es el Anexo 5?</h4>
-                                    <p>
-                                        Formato oficial para evaluación anual de desempeño docente en Colombia. Resume competencias funcionales y comportamentales, criterios de evaluación y evidencias.
-                                    </p>
-                                    <ul>
-                                        <li><a href="/anexo5.html" target="_blank">Ver Anexo 5 (formato general)</a></li>
-                                        <li><a href="/anexo5 docente.html" target="_blank">Ver Anexo 5 Docente</a></li>
+                                        <li><a href="/info.html" target="_parent">Ver más Artículos</a></li>
                                     </ul>
                                 </article>
                             </div>
                         </section>
 
                     </div>
-
-                    <script>
-                        // Agrega los nuevos enlaces al aside de "Accesos Directos" si no existen
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const aside = document.querySelector('.education-aside');
-                            if (!aside) return;
-
-                            // Buscar primer UL dentro del aside (Accesos Directos)
-                            const ul = aside.querySelector('ul');
-                            if (!ul) return;
-
-                            function addLink(href, text) {
-                                const exists = Array.from(ul.querySelectorAll('a')).some(a => a.getAttribute('href') === href);
-                                if (exists) return;
-                                const li = document.createElement('li');
-                                const a = document.createElement('a');
-                                a.href = href;
-                                a.target = '_blank';
-                                a.className = 'edu-link';
-                                a.textContent = text;
-                                li.appendChild(a);
-                                ul.appendChild(li);
-                            }
-
-                            addLink('/basesdedatoslinux.html', 'Bases de Datos en Linux');
-                            addLink('/basesdedatoslinuxGrock.html', 'Bases de Datos Linux (Grock)');
-                            addLink('/contenedorescongemini.html', 'Contenedores con Gemini');
-                            addLink('/aspnetcongemini.html', 'ASP.NET con Gemini');
-                        });
-                    </script>
                 </div>
             </div>
         </section>
 
-        <style>
-        .education-layout {
-            display: flex;
-            gap: 2.5rem;
-            align-items: flex-start;
-        }
-        .education-aside {
-            flex: 0 0 240px;
-            background: #f8fafc;
-            border-radius: 10px;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-            padding: 1.2rem 1rem;
-            font-size: 0.98em;
-            min-width: 200px;
-            max-width: 260px;
-        }
-        .education-aside h3, .education-aside h4 {
-            font-size: 1.08em;
-            margin-bottom: 0.5em;
-            color: #0654a3;
-        }
-        .education-aside ul {
-            margin: 0 0 1em 1.2em;
-            padding: 0;
-            list-style: disc;
-        }
-        .education-main {
-            flex: 1 1 0;
-            display: flex;
-            flex-direction: column;
-            gap: 2.2rem;
-        }
-        .education-group {
-            margin-bottom: 0.5rem;
-        }
-        .group-title {
-            font-size: 1.15rem;
-            margin-bottom: 0.7rem;
-            color: #003366;
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-        .education-items-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-        }
-        .education-item {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            padding: 1.2rem 1rem;
-            min-width: 240px;
-            flex: 1 1 240px;
-            max-width: 340px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-        .education-item.highlight {
-            border: 2px solid #0654a3;
-            background: #f0f6ff;
-        }
-        .edu-link {
-            margin-top: 0.5rem;
-            color: #0654a3;
-            font-weight: 500;
-            text-decoration: underline;
-            transition: color 0.2s;
-        }
-        .edu-link:hover, .edu-link:focus {
-            color: #003366;
-        }
-        .education-item h4 {
-            font-size: 1.05rem;
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-        .education-item ul {
-            margin: 0.3em 0 0.3em 1.2em;
-            padding: 0;
-            font-size: 0.98em;
-        }
-        @media (max-width: 1100px) {
-            .education-layout {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .education-aside {
-                max-width: 100%;
-                margin-bottom: 1.5rem;
-            }
-            .education-items-row {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-        @media (max-width: 700px) {
-            .education-item, .education-aside {
-                max-width: 100%;
-                min-width: 0;
-            }
-            .education-main {
-                gap: 1.2rem;
-            }
-        }
-        </style>
-
-        <style>
-        .education-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-        .education-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: flex-start;
-        }
-        .education-item {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            padding: 1.5rem 1.2rem;
-            min-width: 260px;
-            flex: 1 1 260px;
-            max-width: 350px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-        }
-        .education-item.highlight {
-            border: 2px solid #0654a3;
-            background: #f0f6ff;
-        }
-        .edu-link {
-            margin-top: 0.5rem;
-            color: #0654a3;
-            font-weight: 500;
-            text-decoration: underline;
-            transition: color 0.2s;
-        }
-        .edu-link:hover, .edu-link:focus {
-            color: #003366;
-        }
-        .education-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-        .education-item ul {
-            margin: 0.3em 0 0.3em 1.2em;
-            padding: 0;
-            font-size: 0.98em;
-        }
-        @media (max-width: 900px) {
-            .education-group {
-                flex-direction: column;
-                max-width: 100%;
-            }
-            .education-item {
-                max-width: 100%;
-            }
-        }
-        </style>
-        <!-- Sugerencia: Agrega animaciones CSS y hover para tarjetas, y usa grid/flexbox para responsividad -->
-
-        <style>
-        /* Efecto para cards de servicios y educación al seleccionar o enfocar */
-        .service-card,
-        .education-item {
-            transition: 
-            box-shadow 0.3s, 
-            transform 0.3s, 
-            background 0.3s;
-            outline: none;
-
-            
-        }
-        .service-card:hover,
-        .service-card:focus,
-        .service-card:active,
-        .service-card:focus-visible,
-        .education-item:hover,
-        .education-item:focus,
-        .education-item:active,
-        .education-item:focus-visible {
-            background: #f0f6ff;
-            box-shadow: 0 8px 32px rgba(0, 80, 200, 0.15), 0 1.5px 8px rgba(0,0,0,0.07);
-            transform: scale(1.04);
-            z-index: 2;
-        }
-        /* Opcional: resalta el borde al enfocar con teclado */
-        .service-card:focus-visible,
-        .education-item:focus-visible {
-            border: 2px solid #0654a3;
-        }
-        </style>
-  
-</main>
-    <!-- Botón volver al inicio -->
-    <button id="scrollToTopBtn" class="scroll-to-top hidden" aria-label="Volver al inicio">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-        </svg>
-    </button>
-
-    <!-- Pie de página -->
-    <footer class="footer" id="contacto">
-        <div class="container">
-            <div class="footer-content">
-                <!-- <div class="footer-section">
-                    <h4>Enlaces</h4>
-                    <a href="/personalproyec.html" target="_blank" class="footer-link">Estudios 2025</a>
-                    <a href="agenda.html" target="_blank" class="footer-link">Agenda</a>
-                    <a href="plandeaprendizaje2.html" target="_blank" class="footer-link">Plan de Aprendizaje</a>
-                    <a href="#servicios" class="footer-link">Servicios</a>
-                    <a href="#educacion" class="footer-link">Educación</a>
-                     <a href="/sopa.html" class="footer-link">Sopa de letras - Valores</a>
-                     <a href="https://developersinprocess.blog/" class="footer-link">desarrolla tu webSite desde cero</a>
-                     <a href="/planmaestro.html" class="footer-link">Plan Maestro de Transformación Tech</a>
-                </div> -->
-                <div class="footer-section">
-
-                    <h4>Delanoys Tecnologías</h4>
-                    <p>Soluciones tecnológicas profesionales para tu negocio.</p>
-
-                    <a href="https://sites.google.com/view/delanoystecnologias/home" class="footer-link"
-                        target="_blank">Soporte tecnico </a>
-                        <a href=" https://phishingquiz.withgoogle.com/" class="footer-link"
-                        target="_blank">Test de phishing </a>
-                       
-
+        <section class="contact-section" id="contacto">
+            <div class="container">
+                <h2 class="section-title"><i class="fa-solid fa-headset"></i> Contacto y Asesoría Gratuita</h2>
+                <p class="section-description">¿Tienes preguntas o necesitas una cotización? Contáctanos hoy.</p>
+                <div class="contact-details">
+                    <p><i class="fa-solid fa-phone"></i> **Teléfono/WhatsApp:** +57 3144131584</p>
+                    <p><i class="fa-solid fa-envelope"></i> **Email:** <a href="mailto:david@dtecnologias.com.co" class="contact-link">david@dtecnologias.com.co</a></p>
+                    <p><i class="fa-solid fa-location-dot"></i> **Ubicación:** Bogotá, Colombia</p>
                 </div>
+                <a href="https://wa.me/573144131584" target="_blank" class="cta-button primary-cta"><i class="fa-brands fa-whatsapp"></i> Chatea con Nosotros</a>
+            </div>
+        </section>
 
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p>info@delanoys.com</p>
-                    <p>+1 (555) 123-4567</p>
-                </div>
+    </main>
 
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Delanoys Tecnologías. Todos los derechos reservados.</p>
-                    <a href="carta.html">Agradecimientos</a>
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4><i class="fa-solid fa-copyright"></i> Delanoys Tecnologías</h4>
+                <p>Soporte Técnico y Soluciones Informáticas</p>
+                <p>NIT: 901594833-8</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#educacion">Educación</a></li>
+                    <li><a href="https://developersinprocess.blog/" target="_blank">Blog/Tutoriales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Delanoys Tecnologías. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
-    <script src="JavaScrpt/script.js"></script>
+    <script src="js/scriptindex.js"></script> 
 </body>
 
 </html>
