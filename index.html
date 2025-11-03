@@ -274,6 +274,26 @@
                     <!-- Main educational content -->
                     <div class="education-main">
 
+                        <!-- Introducción y enlaces nuevos -->
+                        <section class="education-group" aria-label="Introducción a Bases de Datos y Contenedores">
+                            <h3 class="group-title"><i class="fa-solid fa-info-circle"></i> Introducción Rápida</h3>
+                            <div class="education-items-row">
+                                <article class="education-item highlight" tabindex="0">
+                                    <h4><i class="fa-solid fa-database"></i> Bases de Datos en Linux y Contenedores</h4>
+                                    <p>
+                                        En esta sección encontrarás guías y cursos para instalar y administrar bases de datos
+                                        en entornos Linux, ejemplos con herramientas y búsquedas avanzadas, además de
+                                        prácticas sobre contenedores y ejemplos usando modelos de IA para asistencia.
+                                    </p>
+                                    <ul>
+                                        <li><a href="/basesdedatoslinux.html" target="_blank" class="edu-link">Bases de Datos en Linux</a></li>
+                                        <li><a href="/basesdedatoslinuxGrock.html" target="_blank" class="edu-link">Bases de Datos en Linux (Grock)</a></li>
+                                        <li><a href="/contenedorescongemini.html" target="_blank" class="edu-link">Contenedores con Gemini</a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                        </section>
+
                         <!-- Proyectos y Cursos Principales -->
                         <section class="education-group" aria-label="Proyectos y Cursos Principales">
                             <h3 class="group-title"><i class="fa-solid fa-laptop-code"></i> Proyectos y Cursos Principales</h3>
@@ -288,8 +308,10 @@
                                     <p>Aprende SQL con SQLite y PostgreSQL en VS Code.</p>
                                     <a href="basesdedatos.html" class="edu-link">Ir al curso</a>
                                     <h4>Bases de Datos en Linux</h4>
-                                    <p>Aprende MySQL y PostgreSQL desde cero</p>
-                                    <a href="basesdedatislinux.html">Ir al curso</a>
+                                    <p>Guías para instalar y gestionar MySQL/PostgreSQL en servidores Linux.</p>
+                                    <a href="/basesdedatoslinux.html" target="_blank" class="edu-link">Bases dedatos Linux</a>
+                                    <p>Recursos adicionales y ejemplos con Grok:</p>
+                                    <a href="/basesdedatoslinuxGrock.html" target="_blank" class="edu-link">Bases dedatos Linux - Grok</a>
                                 </article>
                                 <article class="education-item" tabindex="0">
                                     <h4><i class="fa-brands fa-react"></i> Aprende React desde Cero</h4>
@@ -322,8 +344,6 @@
                                     <p class="note">Ejecutar PowerShell como administrador para scripts que modifiquen el sistema.</p>
                                     <a href="shutdown.html" class="edu-link">Guía: shutdown.html</a>
                                 </article>
-
-                               
                             </div>
                         </section>
 
@@ -408,6 +428,8 @@
                                                 <li>IA: <a href="#" target="_blank">claude.ai</a> <a href="ubuntuserver.html" target="_blank">Ubuntu 18.04.6 LTS</a></li>
                                             </ul>
                                         </li>
+                                        <li><a href="/basesdedatoslinux.html" target="_blank" class="edu-link">Instalación de BD en Linux</a></li>
+                                        <li><a href="/basesdedatoslinuxGrock.html" target="_blank" class="edu-link">Ejemplos y resolución con Grok</a></li>
                                     </ul>
                                     <a href="/info.html" target="_parent" class="edu-link">Ver más artículos</a>
                                 </article>
@@ -438,6 +460,11 @@
                                     <p>Permite ejecutar distribuciones Linux directamente en Windows, facilitando el desarrollo multiplataforma.</p>
                                     <a href="/wsl.html" target="_blank" class="edu-link">Guía de WSL</a>
                                 </article>
+                                <article class="education-item" tabindex="0">
+                                    <h4><i class="fa-solid fa-cube"></i> Contenedores y Gemini</h4>
+                                    <p>Ejemplos y prácticas sobre contenedores (Docker) integrados con modelos de IA como Gemini para tareas automatizadas y despliegue.</p>
+                                    <a href="/contenedorescongemini.html" target="_blank" class="edu-link">Contenedores con Gemini</a>
+                                </article>
                             </div>
                         </section>
 
@@ -459,6 +486,35 @@
                         </section>
 
                     </div>
+
+                    <script>
+                        // Agrega los nuevos enlaces al aside de "Accesos Directos" si no existen
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const aside = document.querySelector('.education-aside');
+                            if (!aside) return;
+
+                            // Buscar primer UL dentro del aside (Accesos Directos)
+                            const ul = aside.querySelector('ul');
+                            if (!ul) return;
+
+                            function addLink(href, text) {
+                                const exists = Array.from(ul.querySelectorAll('a')).some(a => a.getAttribute('href') === href);
+                                if (exists) return;
+                                const li = document.createElement('li');
+                                const a = document.createElement('a');
+                                a.href = href;
+                                a.target = '_blank';
+                                a.className = 'edu-link';
+                                a.textContent = text;
+                                li.appendChild(a);
+                                ul.appendChild(li);
+                            }
+
+                            addLink('/basesdedatoslinux.html', 'Bases de Datos en Linux');
+                            addLink('/basesdedatoslinuxGrock.html', 'Bases de Datos Linux (Grock)');
+                            addLink('/contenedorescongemini.html', 'Contenedores con Gemini');
+                        });
+                    </script>
                 </div>
             </div>
         </section>
