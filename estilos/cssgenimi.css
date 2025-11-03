@@ -1,0 +1,195 @@
+
+    /* Variables y Reset Básico */
+    :root {
+        --color-principal: #007bff; /* Azul de Docker */
+        --color-secundario: #f8f9fa; /* Gris claro de fondo */
+        --color-texto: #333;
+        --color-resaltado: #28a745; /* Verde para énfasis */
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--color-secundario);
+        color: var(--color-texto);
+        line-height: 1.6;
+    }
+
+    /* Cabecera y Navegación */
+    header {
+        background-color: var(--color-principal);
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin-bottom: 5px;
+        font-size: 2.5em;
+    }
+
+    nav {
+        background-color: #343a40;
+        padding: 10px 0;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    nav a {
+        color: white;
+        margin: 0 12px;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s, color 0.3s;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    nav a:hover {
+        background-color: var(--color-principal);
+        color: white;
+    }
+
+    /* Contenedor Principal de Secciones */
+    .seccion-contenedor {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: var(--color-principal);
+        border-bottom: 3px solid var(--color-principal);
+        padding-bottom: 10px;
+        margin-bottom: 35px;
+        font-size: 2em;
+    }
+
+    h3 {
+        color: var(--color-resaltado);
+        margin-top: 30px;
+        border-left: 5px solid var(--color-resaltado);
+        padding-left: 10px;
+    }
+
+    /* Estilos de las Tarjetas (Cards) y Grid */
+    .card-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        background-color: #f1f9ff;
+        border: 1px solid #cce5ff;
+        border-radius: 8px;
+        padding: 20px;
+        flex: 1 1 calc(33% - 50px);
+        min-width: 250px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Botón CTA (Call To Action) */
+    .cta-button {
+        display: inline-block;
+        background-color: var(--color-principal);
+        color: white;
+        padding: 10px 18px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin-top: 15px;
+    }
+
+    .cta-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Bloque de Recursos (Videos y Tablas) */
+    .recurso-video {
+        margin: 20px auto;
+        max-width: 800px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .recurso-video iframe {
+        width: 100%;
+        height: 450px; /* Tamaño adaptado para escritorio */
+        border: none;
+    }
+
+    /* Tablas */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #e9ecef;
+        color: var(--color-texto);
+    }
+    
+    /* Código y Bloques de Consola */
+    code {
+        background-color: #eee;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+
+    pre {
+        background-color: #f1f1f1; /* Gris muy claro, diferenciado del fondo blanco de la sección */
+        color: #0f1113; /* Negro para el código */
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        border: 1px solid #ddd;
+    }
+    
+    /* Regla AÑADIDA para el diseño de comentarios */
+    .comentario-claro {
+        color: #6a6a6a; /* Gris medio para legibilidad en fondo claro */
+        font-style: italic;
+    }
+
+    /* Media Queries para Responsive */
+    @media (max-width: 768px) {
+        .card {
+            flex: 1 1 100%; /* Una tarjeta por fila en móvil */
+        }
+        .recurso-video iframe {
+            height: 250px;
+        }
+        nav a {
+            margin: 0 8px;
+            padding: 5px;
+            font-size: 0.9em;
+        }
+        header {
+            padding: 30px 10px;
+        }
+    }

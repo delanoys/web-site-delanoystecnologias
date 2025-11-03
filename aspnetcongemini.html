@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASP.NET Core con Gemini - De Cero a Experto</title>
+    
+    <link rel="stylesheet" href="/estilos/cssgenimi.css">
+    
+    <style>
+        :root {
+            --color-principal: #68217A; /* Púrpura de .NET */
+            --color-resaltado: #108510; /* Verde de énfasis */
+            --color-texto: #333;
+        }
+        /* Fondo de tarjetas específico para el tema .NET */
+        .card { 
+            background-color: #f5f0ff; 
+            border: 1px solid #d4c0e8; 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¡Bienvenido a ASP.NET Core con Gemini! 🚀</h1>
+        <p>Tu camino definitivo para crear **aplicaciones web modernas** y **APIs de alto rendimiento**.</p>
+        <p></p> 
+    </header>
+
+    <nav>
+        <a href="#fundamentos">💡 Fundamentos</a>
+        <a href="#apis">🏗️ APIs Web y MVC</a>
+        <a href="#data">🔗 Bases de Datos</a>
+        <a href="#avanzado">🌟 Avanzado</a>
+    </nav>
+
+    <section id="fundamentos" class="seccion-contenedor">
+        <h2>💡 Fundamentos y El Entorno Core</h2>
+        <p>Entiende por qué ASP.NET Core es el futuro del desarrollo web y cómo montar tu estación de trabajo.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>¿Qué es ASP.NET Core?</h3>
+                <p>Es un framework **multiplataforma, de código abierto y modular** para construir aplicaciones web. Permite a C# correr en Linux y Mac.</p>
+                <p>💡 **Dato clave:** Su diseño modular lo hace perfecto para **microservicios**.</p>
+            </div>
+
+            <div class="card">
+                <h3>El Motor de Ejecución</h3>
+                <p>Conoce los componentes esenciales:</p>
+                <ul>
+                    <li>**CLR:** El corazón que ejecuta el código C#.</li>
+                    <li>**Kestrel:** El servidor web ligero y de alto rendimiento integrado.</li>
+                    <li>**NuGet:** El gestor de librerías y paquetes.</li>
+                </ul>
+                
+            </div>
+
+            <div class="card">
+                <h3>Preparando el Entorno</h3>
+                <p>Necesitas el **.NET SDK** para compilar y el IDE (VS Code o Visual Studio) para codificar. ¡Instala la última versión!</p>
+                <a href="https://dotnet.microsoft.com/download" target="_blank" class="cta-button">Descargar .NET SDK</a>
+            </div>
+        </div>
+        
+        <hr style="margin: 40px 0;">
+
+        <h3>🛠️ Ejercicio Interactivo 1: Tu Primera Aplicación de Consola</h3>
+        <p>Usa la CLI (Command Line Interface) para crear y ejecutar tu primer programa C# sin necesidad de un IDE:</p>
+
+        <button onclick="toggleSolution('fundamentos-1')" class="cta-button" style="background-color: var(--color-resaltado); margin-bottom: 10px;">
+            Mostrar Comandos 👇
+        </button>
+        
+        <div id="solution-fundamentos-1" style="display: none; border: 1px solid #d4c0e8; padding: 15px; border-radius: 5px; background-color: #fff;">
+            <p>Ejecuta estos comandos en tu terminal:</p>
+            <ol>
+                <li>Crear la plantilla de aplicación de consola:
+                    <pre><code>dotnet new console -n MiPrimeraApp</code></pre>
+                </li>
+                <li>Moverse al directorio del proyecto:
+                    <pre><code>cd MiPrimeraApp</code></pre>
+                </li>
+                <li>Compilar y ejecutar el código:
+                    <pre><code>dotnet run</code></pre>
+                </li>
+            </ol>
+        </div>
+
+        <p style="margin-top: 20px;">🎥 <strong>Recurso Visual:</strong> Si prefieres un video, aquí tienes una introducción completa:</p>
+        <div class="recurso-video">
+            <iframe width="100%" height="450" 
+            src="https://www.youtube.com/embed/fuTDzzarQGg" 
+            title="ASP.NET Core - Video" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <section id="apis" class="seccion-contenedor">
+        <h2>🏗️ APIs Web y MVC: Construyendo el Backend</h2>
+        <p>Aprende a estructurar aplicaciones web completas utilizando el patrón MVC y a crear servicios RESTful.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Patrón MVC (Modelo-Vista-Controlador)</h3>
+                <p>El pilar de las aplicaciones web. **Controladores** manejan la lógica, **Modelos** gestionan los datos, y las **Vistas** presentan la interfaz (UI).</p>
+                
+
+[Image of the Model-View-Controller (MVC) architectural pattern flow]
+
+            </div>
+
+            <div class="card">
+                <h3>Creación de APIs RESTful</h3>
+                <p>Usa **Controladores API** y atributos HTTP (`[HttpGet]`, `[HttpPost]`) para exponer recursos. Ideal para aplicaciones de una sola página (SPA).</p>
+                <p>Comando clave: <code>dotnet new webapi</code></p>
+            </div>
+
+            <div class="card">
+                <h3>Inyección de Dependencias (DI)</h3>
+                <p>Un concepto central: Permite a los servicios ser **desacoplados** y reutilizables. Se configura en el archivo `Program.cs` o `Startup.cs`.</p>
+                <pre><code>builder.Services.AddScoped&lt;IMiServicio, MiServicio&gt;();</code></pre>
+            </div>
+        </div>
+        
+        <hr style="margin: 40px 0;">
+
+        <h3>🛠️ Ejercicio Interactivo 2: Diseñando una API de Tareas</h3>
+        <p>Vamos a crear un controlador básico. ¿Qué método HTTP usarías para eliminar un recurso?</p>
+
+        <button onclick="toggleSolution('apis-2')" class="cta-button" style="background-color: var(--color-resaltado); margin-bottom: 10px;">
+            Mostrar Solución y Comandos 👇
+        </button>
+        
+        <div id="solution-apis-2" style="display: none; border: 1px solid #d4c0e8; padding: 15px; border-radius: 5px; background-color: #fff;">
+            <p><strong>Pasos para la creación de un controlador API:</strong></p>
+            <ol>
+                <li>Crea un proyecto Web API:
+                    <pre><code>dotnet new webapi -n MiApiTareas</code></pre>
+                </li>
+                <li>Ejemplo de función de eliminación (Método **DELETE**):
+                    <pre><code>// Dentro de MiControlador.cs
+[HttpDelete("{id}")]
+public IActionResult Delete(int id) {
+    // Lógica para eliminar la tarea con el ID
+    return NoContent(); // Respuesta exitosa sin contenido
+}</code></pre>
+                </li>
+            </ol>
+            <p style="font-weight: bold;">✅ Respuesta al Desafío: El método para actualizar un recurso existente es **PUT**.</p>
+        </div>
+        
+        <a href="https://learn.microsoft.com/es-es/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0" target="_blank" class="cta-button" style="background-color: #343a40;">Guía Oficial de APIs Web</a>
+        
+    </section>
+
+    <section id="data" class="seccion-contenedor">
+        <h2>🔗 Bases de Datos y Configuración</h2>
+        <p>Aprende a integrar la persistencia de datos y a gestionar las variables del entorno de manera segura y profesional.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Entity Framework Core (EF Core)</h3>
+                <p>Es el **ORM (Mapeador Objeto-Relacional)** de Microsoft. Permite que uses clases y objetos de C# (los **Modelos**) para interactuar con la base de datos.</p>
+                <p>Conceptos Clave: **DbContext** y **DbSet**.</p>
+                
+            </div>
+
+            <div class="card">
+                <h3>Migraciones de Base de Datos</h3>
+                <p>Las migraciones permiten aplicar cambios a la estructura de tu base de datos de forma controlada. Es la práctica estándar para gestionar la evolución del esquema.</p>
+                <p>Se utiliza para añadir tablas, modificar columnas o relaciones de forma segura.</p>
+            </div>
+
+            <div class="card">
+                <h3>Manejo de la Configuración</h3>
+                <p>La información sensible (cadenas de conexión, claves API) **nunca** debe estar en el código. ASP.NET Core lo gestiona con:</p>
+                <ul>
+                    <li>**appsettings.json:** Archivo principal de configuración.</li>
+                    <li>**appsettings.Development.json:** Sobrescribe la configuración.</li>
+                    <li>**Secrets Manager:** Para claves sensibles en el entorno local.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <hr style="margin: 40px 0;">
+
+        <h3>🛠️ Ejercicio Interactivo 3: Aplicando tu Primera Migración</h3>
+        <p>Este laboratorio simula el proceso de añadir una nueva propiedad a tu modelo de datos y actualizar la base de datos con EF Core.</p>
+        
+        <button onclick="toggleSolution('data-3')" class="cta-button" style="background-color: var(--color-resaltado); margin-bottom: 10px;">
+            Mostrar Comandos Esenciales de Migración 👇
+        </button>
+        
+        <div id="solution-data-3" style="display: none; border: 1px solid #d4c0e8; padding: 15px; border-radius: 5px; background-color: #fff;">
+            <p><strong>Comandos esenciales para gestionar la base de datos:</strong></p>
+            <ol>
+                <li>**Paso 1: Añadir la Migración** (Se crea un archivo C# con los cambios de esquema):
+                    <pre><code>dotnet ef migrations add AgregarColumnaFechaCreacion</code></pre>
+                </li>
+                <li>**Paso 2: Actualizar la Base de Datos** (Se aplica el cambio a la base de datos real):
+                    <pre><code>dotnet ef database update</code></pre>
+                </li>
+                <li>**Paso 3 (Opcional): Eliminar la Base de Datos** (Solo si necesitas empezar de cero):
+                    <pre><code>dotnet ef database drop</code></pre>
+                </li>
+            </ol>
+        </div>
+        
+        <a href="https://learn.microsoft.com/es-es/ef/core/get-started/overview/first-app?tabs=visual-studio" target="_blank" class="cta-button" style="background-color: #343a40;">Tutorial Oficial de EF Core</a>
+        
+    </section>
+
+    <section id="avanzado" class="seccion-contenedor">
+        <h2>🌟 Temas Avanzados y Siguientes Pasos</h2>
+        <p>Lleva tus conocimientos al siguiente nivel, asegurando tus aplicaciones y explorando el desarrollo Full-Stack.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Autenticación y Seguridad (JWT)</h3>
+                <p>Asegurar tu API es crucial. **Autenticación** verifica la identidad del usuario y **Autorización** define lo que puede hacer.</p>
+                <p>Las APIs usan a menudo tokens **JWT** (JSON Web Tokens) para validar al usuario en cada solicitud.</p>
+            </div>
+
+            <div class="card">
+                <h3>Comunicación en Tiempo Real (SignalR)</h3>
+                <p>Necesitas actualizar datos en el navegador inmediatamente (ej. chats). **SignalR** simplifica la adición de funcionalidad web en tiempo real usando **WebSockets**.</p>
+                <p>Es una solución sencilla y robusta integrada directamente en ASP.NET Core.</p>
+            </div>
+
+            <div class="card">
+                <h3>Blazor: C# en el Frontend</h3>
+                <p>Olvídate del JavaScript si quieres. **Blazor** te permite construir interfaces de usuario web interactivas (Frontend) usando C# y el estándar **WebAssembly**.</p>
+                <p>Esto permite el desarrollo **Full-Stack** en un solo lenguaje: C#.</p>
+            </div>
+        </div>
+        
+        <hr style="margin: 40px 0;">
+
+        <h3>📚 Recursos y Comunidad</h3>
+        <p>Continúa tu aprendizaje con estas guías y laboratorios esenciales:</p>
+
+        <div class="card-grid">
+            <div class="card" style="background-color: #f7f7f7;">
+                <h4>Documentación Oficial</h4>
+                <p>La guía más completa y actualizada sobre todas las versiones de .NET y ASP.NET Core.</p>
+                <a href="https://learn.microsoft.com/en-us/dotnet/core/" target="_blank" class="cta-button" style="background-color: #343a40;">Docs de Microsoft</a>
+            </div>
+            <div class="card" style="background-color: #f7f7f7;">
+                <h4>Laboratorio de Blazor</h4>
+                <p>Prueba a construir tu primer componente de interfaz de usuario con C#.</p>
+                <a href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" target="_blank" class="cta-button" style="background-color: #343a40;">Empezar con Blazor</a>
+            </div>
+        </div>
+        
+    </section>
+
+
+    <script>
+        function toggleSolution(exerciseId) {
+            const solutionBlock = document.getElementById('solution-' + exerciseId);
+            const button = document.querySelector('button[onclick*="' + exerciseId + '"]');
+
+            if (solutionBlock.style.display === 'none' || solutionBlock.style.display === '') {
+                solutionBlock.style.display = 'block';
+                button.textContent = 'Ocultar Solución y Comandos 👆';
+            } else {
+                solutionBlock.style.display = 'none';
+                button.textContent = 'Mostrar Solución y Comandos 👇';
+            }
+        }
+    </script>
+</body>
+</html>
