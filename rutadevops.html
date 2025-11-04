@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Ruta de Aprendizaje DevOps: De Cero a Experto</title>
+    <style>
+        /* --- Estilos Generales --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid #007bff;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            color: #007bff;
+            margin-bottom: 5px;
+            font-size: 2.5em;
+        }
+        header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* --- Barra de Progreso General --- */
+        .general-progress {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f0f0f5;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .general-progress h3 {
+            margin-top: 0;
+            color: #34495e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .general-progress .progress-bar {
+            height: 25px;
+            background-color: #e0e0e0;
+            border-radius: 12px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .general-progress .progress-bar-fill {
+            height: 100%;
+            background-color: #007bff;
+            border-radius: 12px 0 0 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: white;
+            font-weight: bold;
+            padding-right: 10px;
+            transition: width 0.6s ease-in-out;
+            min-width: 25px; 
+        }
+
+        /* --- Estilos de Fases y Acordeón (Sin cambios importantes) --- */
+        .phase-header {
+            background-color: #34495e;
+            color: white;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .phase-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s ease-in-out; 
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .phase-content.active {
+            max-height: 2500px; 
+            padding: 20px;
+        }
+        .phase-details {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background-color: #f9f9ff;
+        }
+        
+        /* --- Controles y Tarjetas --- */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .step-card {
+            /* ... (Estilos de Tarjeta) ... */
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .in-progress {
+            border: 2px solid #ff9800;
+            background-color: #fff9e6;
+        }
+        .complementary {
+            background-color: #e0ffe0; 
+            border-color: #4CAF50;
+        }
+        
+        /* Controles de Avance */
+        .progress-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+        .control-buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.2s;
+        }
+        .control-buttons button:hover {
+            background-color: #0056b3;
+        }
+        .control-buttons button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .hours-completed {
+            font-weight: bold;
+            color: #34495e;
+        }
+        .step-status {
+            /* Muestra el porcentaje */
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 3px 8px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .progress-bar-fill-step {
+            /* Muestra la barra */
+            height: 100%;
+            background-color: #ff9800;
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+        .progress-bar-step {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        /* --- Advertencia de Tiempo --- */
+        .warning-box {
+            background-color: #ffdddd;
+            color: #d8000c;
+            padding: 15px;
+            border: 1px solid #d8000c;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🚀 Ruta de Aprendizaje DevOps: De Cero a Experto</h1>
+        <p>Control de avance manual con unidades por hora y guardado local (localStorage).</p>
+    </header>
+
+    <div class="warning-box">
+        🚨 **¡ATENCIÓN! RESTRICCIÓN DE TIEMPO:** Tienes acceso a los cursos **SOLO DURANTE NOVIEMBRE**. ¡Prioriza completar los Pasos 3, 4, 5 y 6!
+    </div>
+
+    <div class="general-progress">
+        <h3>Progreso General de la Ruta (Fases 1 a 4) <span id="general-percentage">0%</span></h3>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="general-progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="phase-header" data-phase="phase1">
+        <h2><span role="img" aria-label="Fase 1">💡 FASE 1: Fundamentos y Conceptos (La Teoría)</span></h2>
+        <span class="icon">▼</span>
+    </div>
+    <div class="phase-content" id="phase1-content">
+        <div class="phase-details">
+            <strong>Objetivo:</strong> Sentar las bases conceptuales y culturales de DevOps y la arquitectura moderna.
+            <br><strong>Logro:</strong> Dominar el control de versiones y entender la arquitectura de microservicios.
+        </div>
+        <div class="steps-grid">
+            <div class="step-card" data-step-id="p1" data-total-hours="1">
+                <h3>Paso 1: Cultura y CI/CD</h3>
+                <span class="step-status" data-status-id="p1">0%</span>
+                <strong>Curso:</strong> DevOps, CI/CD (Continuous Integration/Delivery) for Beginners
+                <ul><li>**Duración:** 1 hora</li></ul>
+                <div class="description">**Descripción:** Introducción al *mindset* DevOps. Conceptos de Integración Continua (CI), Entrega Continua (CD) y Despliegue Continuo (CD).</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p1" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p1">0.0h / 1h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p1', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p1', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card" data-step-id="p2" data-total-hours="5">
+                <h3>Paso 2: Conceptos Clave</h3>
+                <span class="step-status" data-status-id="p2">0%</span>
+                <strong>Curso:</strong> Fundamentos en DevOps, APIs y Arquitectura de Microservicios
+                <ul><li>**Duración:** 5 horas</li></ul>
+                <div class="description">**Descripción:** Entender por qué se usan Microservicios y la necesidad de APIs. Contexto arquitectónico que justifica el uso de contenedores.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p2" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p2">0.0h / 5h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p2', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p2', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card in-progress" data-step-id="p3" data-total-hours="12">
+                <h3>Paso 3: Control de Versiones</h3>
+                <span class="step-status" data-status-id="p3">0%</span>
+                <strong>Curso:</strong> GIT+GitHub: Todo un sistema de control de versiones de cero
+                <ul><li>**Duración:** 12 horas</li></ul>
+                <div class="description">**Descripción:** Dominar Git (comandos, ramas, merges) y GitHub (repositorios, Pull Requests). **CRÍTICO** para los pasos siguientes.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p3" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p3">0.0h / 12h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p3', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p3', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="phase-header" data-phase="phase2">
+        <h2><span role="img" aria-label="Fase 2">🛠️ FASE 2: Herramientas Fundamentales (Contenedores)</span></h2>
+        <span class="icon">▼</span>
+    </div>
+    <div class="phase-content" id="phase2-content">
+        <div class="phase-details">
+            <strong>Objetivo:</strong> Dominar la unidad de despliegue moderna (contenedores) y su orquestación.
+            <br><strong>Logro:</strong> Poder contenerizar una aplicación, gestionar imágenes y desplegar clusters.
+        </div>
+        <div class="steps-grid">
+            <div class="step-card intro-step" data-step-id="p4" data-total-hours="2">
+                <h3>Paso 4: Docker Introducción</h3>
+                <span class="step-status" data-status-id="p4">0%</span>
+                <strong>Curso:</strong> **Introducción a Docker para principiantes - 2025**
+                <ul><li>**Duración:** 2 horas</li></ul>
+                <div class="description">**Descripción:** Fundamentos rápidos. Diferencia entre VM y contenedor. Uso de comandos básicos (`pull`, `run`).</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p4" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p4">0.0h / 2h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p4', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p4', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card intro-step" data-step-id="p5" data-total-hours="8.5">
+                <h3>Paso 5: Docker Profundo</h3>
+                <span class="step-status" data-status-id="p5">0%</span>
+                <strong>Curso:</strong> **Docker, de principiante a experto**
+                <ul><li>**Duración:** 8.5 horas</li></ul>
+                <div class="description">**Descripción:** Creación de imágenes (`Dockerfile`), orquestación local (`Docker Compose`), y gestión avanzada (Volúmenes, Redes).</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p5" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p5">0.0h / 8.5h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p5', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p5', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card" data-step-id="p6" data-total-hours="16.5">
+                <h3>Paso 6: Orquestación (Kubernetes)</h3>
+                <span class="step-status" data-status-id="p6">0%</span>
+                <strong>Curso:</strong> Kubernetes, de principiante a experto
+                <ul><li>**Duración:** 16.5 horas</li></ul>
+                <div class="description">**Descripción:** Despliegue y administración de contenedores a escala. Dominio de Pods, Deployments, Services y gestión de clusters.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p6" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p6">0.0h / 16.5h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p6', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p6', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="phase-header" data-phase="phase3">
+        <h2><span role="img" aria-label="Fase 3">⚙️ FASE 3: Automatización y Cloud General (El Pipeline)</span></h2>
+        <span class="icon">▼</span>
+    </div>
+    <div class="phase-content" id="phase3-content">
+        <div class="phase-details">
+            <strong>Objetivo:</strong> Automatizar el flujo de trabajo (CI/CD) y entender la infraestructura Cloud.
+            <br><strong>Logro:</strong> Crear pipelines funcionales y tener un entendimiento de los servicios Azure/AWS.
+        </div>
+        <div class="steps-grid">
+            <div class="step-card" data-step-id="p7" data-total-hours="18">
+                <h3>Paso 7: Servidor CI/CD (Jenkins)</h3>
+                <span class="step-status" data-status-id="p7">0%</span>
+                <strong>Curso:</strong> **Jenkins al completo**
+                <ul><li>**Duración:** 18 horas</li></ul>
+                <div class="description">**Descripción:** Instalación y configuración de Jenkins. Creación de Pipelines para integrar Git y desplegar Docker/Kubernetes.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p7" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p7">0.0h / 18h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p7', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p7', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card" data-step-id="p8" data-total-hours="9.5">
+                <h3>Paso 8: Fundamentos Cloud (Azure)</h3>
+                <span class="step-status" data-status-id="p8">0%</span>
+                <strong>Curso:</strong> Curso de Microsoft Azure Fundamentals AZ-900
+                <ul><li>**Duración:** 9.5 horas</li></ul>
+                <div class="description">**Descripción:** Terminología de Azure (VMs, redes, servicios). Fundamento para entender dónde se despliegan las aplicaciones.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p8" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p8">0.0h / 9.5h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p8', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p8', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card complementary" data-step-id="p8b" data-total-hours="4">
+                <h3>Paso 8b: Práctica Cloud (AWS)</h3>
+                <span class="step-status" data-status-id="p8b">0%</span>
+                <strong>Curso:</strong> **AWS Curso Básico para desarrolladores web**
+                <ul><li>**Duración:** 4 horas (Est.)</li></ul>
+                <div class="description">**Descripción:** Práctica de conceptos básicos en el entorno de AWS. Ideal para adquirir una visión multi-cloud.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p8b" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p8b">0.0h / 4h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p8b', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p8b', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="phase-header" data-phase="phase4">
+        <h2><span role="img" aria-label="Fase 4">🚀 FASE 4: Avanzado, IaC y Consolidación</span></h2>
+        <span class="icon">▼</span>
+    </div>
+    <div class="phase-content" id="phase4-content">
+        <div class="phase-details">
+            <strong>Objetivo:</strong> Optimizar la infraestructura como código, integrar todo el conocimiento y adquirir habilidades de nicho.
+            <br><strong>Logro:</strong> Capacidad para aprovisionar infraestructura automáticamente y demostrar competencia integral.
+        </div>
+        <div class="steps-grid">
+            <div class="step-card in-progress" data-step-id="p9" data-total-hours="9">
+                <h3>Paso 9: Infraestructura como Código (IaC)</h3>
+                <span class="step-status" data-status-id="p9">0%</span>
+                <strong>Curso:</strong> Terraform: De principiante a certificado 2025
+                <ul><li>**Duración:** 9 horas</li></ul>
+                 <div class="description">**Descripción:** Automatización de la creación de recursos en la nube. Habilidad avanzada para la gestión de infraestructura.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p9" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p9">0.0h / 9h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p9', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p9', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card in-progress" data-step-id="p10" data-total-hours="16.5">
+                <h3>Paso 10 & 11: Integración Total</h3>
+                <span class="step-status" data-status-id="p10">0%</span>
+                <strong>Curso:</strong> **DevOps Integral Docker, Kubernetes, Jenkins, GitFlow CI CD**
+                <ul><li>**Duración:** 16.5 horas</li></ul>
+                <div class="description">**Descripción:** Curso de consolidación final. Aplica todas las herramientas juntas en un proyecto integral (Role Play).</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="p10" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="p10">0.0h / 16.5h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('p10', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('p10', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-card in-progress complementary" data-step-id="pc1" data-total-hours="10">
+                <h3>Paso C-1: Habilidad de Nicho (Salesforce)</h3>
+                <span class="step-status" data-status-id="pc1">0%</span>
+                <strong>Curso:</strong> **Administrador Salesforce: De Cero a Experto**
+                <ul><li>**Duración:** 10 horas (Est.)</li></ul>
+                <div class="description">**Descripción:** Habilidad valiosa para integración. Ideal para tomar en paralelo, sin detener la progresión de la ruta principal.</div>
+                <div class="progress-bar-step"><div class="progress-bar-fill-step" data-fill-id="pc1" style="width: 0%;"></div></div>
+                <div class="progress-controls">
+                    <span class="hours-completed" data-hours-id="pc1">0.0h / 10h</span>
+                    <div class="control-buttons">
+                        <button onclick="updateProgress('pc1', -0.5)"> -0.5h </button>
+                        <button onclick="updateProgress('pc1', 0.5)"> +0.5h </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- DATOS INICIALES (PARA EL PRIMER USO O RESET) ---
+    // Usaremos un mapeo sencillo de ID -> Horas Totales
+    const stepHoursMap = {
+        'p1': 1, 'p2': 5, 'p3': 12, 'p4': 2, 'p5': 8.5, 'p6': 16.5,
+        'p7': 18, 'p8': 9.5, 'p8b': 4, 'p9': 9, 'p10': 16.5, 'pc1': 10
+    };
+    
+    // Total de horas de la ruta para el cálculo general
+    const totalRouteHours = Object.values(stepHoursMap).reduce((sum, hours) => sum + hours, 0); // ~112 horas
+
+    // Avance reportado inicialmente por el usuario (ANTES de adoptar el sistema de horas)
+    // Esto se convertirá a horas completadas la primera vez
+    const initialReportedProgress = {
+        'p3': 16,  // Git: 16%
+        'p9': 10,  // Terraform: 10%
+        'p10': 10, // DevOps Integral: 10%
+        'pc1': 2   // Salesforce: 2%
+    };
+
+    // --- LÓGICA DE ALMACENAMIENTO Y ACTUALIZACIÓN ---
+    const STORAGE_KEY = 'devopsRouteProgress';
+    let progressData = {}; // Almacena {stepId: hoursCompleted}
+
+    // 1. Cargar el progreso guardado
+    function loadProgress() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+            progressData = JSON.parse(stored);
+        } else {
+            // Si no hay nada guardado, inicializar con el progreso reportado
+            progressData = {};
+            for (const [id, percentage] of Object.entries(initialReportedProgress)) {
+                progressData[id] = stepHoursMap[id] * (percentage / 100);
+            }
+        }
+    }
+
+    // 2. Guardar el progreso
+    function saveProgress() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progressData));
+    }
+
+    // 3. Función principal para actualizar el progreso (llamada por los botones)
+    function updateProgress(stepId, changeInHours) {
+        const totalHours = stepHoursMap[stepId];
+        let currentHours = progressData[stepId] || 0;
+
+        let newHours = currentHours + changeInHours;
+        
+        // Limitar para que no sea menor a 0 ni mayor a las horas totales
+        newHours = Math.min(Math.max(0, newHours), totalHours);
+        
+        // Redondear a un decimal para evitar errores de coma flotante
+        progressData[stepId] = Math.round(newHours * 10) / 10;
+
+        saveProgress();
+        renderAllProgress(); // Vuelve a dibujar todo
+    }
+
+    // 4. Dibujar el progreso de un solo paso
+    function renderStepProgress(stepId) {
+        const totalHours = stepHoursMap[stepId];
+        const completedHours = progressData[stepId] || 0;
+        const percentage = totalHours > 0 ? Math.round((completedHours / totalHours) * 100) : 0;
+        
+        // Actualizar la tarjeta de paso
+        const statusEl = document.querySelector(`[data-status-id="${stepId}"]`);
+        const fillEl = document.querySelector(`[data-fill-id="${stepId}"]`);
+        const hoursEl = document.querySelector(`[data-hours-id="${stepId}"]`);
+        const stepCard = document.querySelector(`[data-step-id="${stepId}"]`);
+        
+        if (statusEl) statusEl.textContent = `${percentage}%`;
+        if (fillEl) fillEl.style.width = `${percentage}%`;
+        if (hoursEl) hoursEl.textContent = `${completedHours.toFixed(1)}h / ${totalHours}h`;
+        
+        // Actualizar clase 'in-progress'
+        if (stepCard) {
+            if (completedHours > 0 && completedHours < totalHours) {
+                // Si el curso es complementario, no cambiar a in-progress (ya tiene un color)
+                if (!stepCard.classList.contains('complementary')) {
+                     stepCard.classList.add('in-progress');
+                }
+            } else if (completedHours === totalHours) {
+                 stepCard.classList.remove('in-progress'); // Opcional: quitar la clase si está completo
+                 // Marcar como completado visualmente (podrías añadir una clase 'completed')
+                 if (hoursEl) hoursEl.textContent = `¡COMPLETADO! ${totalHours}h`;
+            } else {
+                stepCard.classList.remove('in-progress');
+            }
+        }
+    }
+
+    // 5. Dibujar el progreso general de toda la ruta
+    function renderGeneralProgress() {
+        let totalCompletedHours = 0;
+        for (const [id, hours] of Object.entries(progressData)) {
+            totalCompletedHours += hours;
+        }
+
+        const generalPercentage = Math.round((totalCompletedHours / totalRouteHours) * 100);
+
+        const fillElement = document.getElementById('general-progress-fill');
+        const percentageElement = document.getElementById('general-percentage');
+
+        fillElement.style.width = `${generalPercentage}%`;
+        fillElement.textContent = generalPercentage > 5 ? `${generalPercentage}%` : '';
+        percentageElement.textContent = `${generalPercentage}%`;
+    }
+
+    // 6. Dibujar todo
+    function renderAllProgress() {
+        for (const stepId in stepHoursMap) {
+            renderStepProgress(stepId);
+        }
+        renderGeneralProgress();
+    }
+
+    // --- Inicialización ---
+    document.addEventListener('DOMContentLoaded', () => {
+        loadProgress();
+        renderAllProgress();
+
+        // Lógica del Acordeón (Para que se vea el contenido)
+        document.querySelectorAll('.phase-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                if (content.classList.contains('active')) {
+                    content.classList.remove('active');
+                } else {
+                    document.querySelectorAll('.phase-content.active').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    content.classList.add('active');
+                }
+            });
+        });
+        
+        // Abrir la primera fase por defecto
+        document.getElementById('phase1-content').classList.add('active');
+    });
+</script>
+
+</body>
+</html>
