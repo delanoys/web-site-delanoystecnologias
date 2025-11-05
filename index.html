@@ -15,6 +15,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="fonts/fontawesome-free-6.7.2-web/css/all.css">
+    
+    <style>
+        .devops-cta-section {
+            background-color: #e6f7ff; /* Un azul claro para destacar */
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .devops-cta-section .section-title {
+            color: #004d99; /* Azul oscuro */
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .devops-cta-section .section-description {
+            max-width: 800px;
+            margin: 0 auto 25px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .devops-cta-section .cta-button {
+            display: inline-block;
+            background-color: #007bff; /* Azul primario */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .devops-cta-section .cta-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,6 +73,7 @@
             <div class="nav-buttons" id="nav-menu">
                 <a href="#inicio" class="nav-link">Inicio</a>
                 <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#devops-destacada" class="nav-link">Ruta DevOps</a>
                 <a href="#educacion" class="nav-link">Educación</a>
                 <a href="/leyesinformaticas.html" class="nav-link">Leyes informáticas</a>
                 <a href="https://developersinprocess.blog/" class="nav-link" target="_blank">Desarrollo Web</a>
@@ -148,6 +187,131 @@
             </div>
         </section>
 
+        <section class="devops-cta-section" id="devops-destacada" role="region" aria-labelledby="devops-title">
+            <style>
+                /* DevOps CTA: estilos mejorados, responsive y accesibles */
+                .devops-cta-section {
+                    background: linear-gradient(180deg, #eaf6ff 0%, #ffffff 100%);
+                    padding: 30px 18px;
+                    border-radius: 14px;
+                    margin: 36px 0;
+                    box-shadow: 0 10px 30px rgba(2, 40, 80, 0.06);
+                    -webkit-font-smoothing:antialiased;
+                }
+
+                .devops-cta-container {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 18px;
+                    align-items: center;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                /* Layout para pantallas grandes: texto a la izquierda, imagen a la derecha */
+                @media (min-width: 900px) {
+                    .devops-cta-container {
+                        grid-template-columns: 1fr 420px;
+                        gap: 28px;
+                    }
+                }
+
+                .devops-cta-content {
+                    padding: 6px 4px;
+                }
+
+                .devops-cta-section .section-title {
+                    color: #063b66;
+                    font-size: 1.6rem;
+                    margin: 0 0 8px;
+                }
+
+                .devops-cta-section .section-description {
+                    color: #243447;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    margin: 0 0 14px;
+                    max-width: 60ch;
+                }
+
+                .devops-cta-actions {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    align-items: center;
+                }
+
+                .cta-button {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    background-color: #007bff;
+                    color: #fff;
+                    padding: 10px 16px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.12);
+                    transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+                }
+
+                .cta-button:hover,
+                .cta-button:focus {
+                    transform: translateY(-2px);
+                    background-color: #0062d6;
+                    box-shadow: 0 10px 26px rgba(0, 98, 214, 0.14);
+                    outline: none;
+                }
+
+                .cta-button:focus-visible {
+                    outline: 3px solid rgba(0,123,255,0.18);
+                    outline-offset: 3px;
+                }
+
+                /* Imagen: responsive, con borde redondeado y sombra sutil */
+                .devops-figure {
+                    margin: 0;
+                    display: block;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    background: #f6fbff;
+                    box-shadow: 0 8px 24px rgba(6, 59, 102, 0.06);
+                }
+
+                .devops-image {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    object-fit: cover;
+                    transition: transform .25s ease, filter .25s ease;
+                }
+
+                .devops-figure:hover .devops-image,
+                .devops-figure:focus-within .devops-image {
+                    transform: scale(1.02);
+                    filter: brightness(1.03);
+                }
+
+                /* Soporte accesible para ocultar texto visualmente cuando sea necesario */
+                .visually-hidden {
+                    position: absolute !important;
+                    height: 1px; width: 1px;
+                    overflow: hidden;
+                    clip: rect(1px, 1px, 1px, 1px);
+                    white-space: nowrap;
+                    border: 0; padding: 0; margin: -1px;
+                }
+            </style>
+
+            <div class="devops-cta-container container">
+   
+
+   
+        
+       
+    
+</div>
+        </section></div>
         <section class="education-section" id="educacion">
             <div class="container">
                 <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Recursos Educativos Destacados</h2>
@@ -202,60 +366,7 @@
 
                         <section class="education-group" aria-label="Ruta Full-Stack .NET y DevOps">
                             <h3 class="group-title"><i class="fa-solid fa-layer-group"></i> Ruta Full-Stack: .NET Core y DevOps</h3>
-                            <style>
-                            .education-figure.fullstack-figure {
-                                margin: 0 0 1rem;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                background: linear-gradient(180deg, rgba(255,255,255,0.95), #fbfbfb);
-                                padding: 12px;
-                                border-radius: 10px;
-                                box-shadow: 0 8px 20px rgba(22, 28, 37, 0.06);
-                                max-width: 100%;
-                                overflow: hidden;
-                                transition: box-shadow .2s ease;
-                            }
-                            .education-figure.fullstack-figure:hover {
-                                box-shadow: 0 14px 32px rgba(22, 28, 37, 0.10);
-                            }
-                            .education-figure.fullstack-figure .edu-image {
-                                width: 100%;
-                                height: auto;
-                                max-width: 800px;
-                                border-radius: 8px;
-                                display: block;
-                                transition: transform .25s ease, filter .25s ease;
-                            }
-                            .education-figure.fullstack-figure:hover .edu-image {
-                                transform: scale(1.02);
-                                filter: brightness(1.02);
-                            }
-                            .education-figure.fullstack-figure figcaption {
-                                font-size: 0.92rem;
-                                color: #666;
-                                margin-top: 8px;
-                                text-align: center;
-                                line-height: 1.3;
-                            }
-
-                            /* Layout for larger screens: image left, caption/right content on the right */
-                            @media (min-width: 900px) {
-                                .education-figure.fullstack-figure {
-                                    flex-direction: row;
-                                    gap: 18px;
-                                    align-items: center;
-                                    padding: 14px;
-                                }
-                                .education-figure.fullstack-figure .edu-image {
-                                    max-width: 420px;
-                                    flex: 0 0 420px;
-                                }
-                                .education-figure.fullstack-figure figcaption {
-                                    text-align: left;
-                                }
-                            }
-                            </style>
+                            
 
                             <figure class="education-figure fullstack-figure" aria-label="Imagen: Desarrollador Full‑Stack">
                                 <img
@@ -266,9 +377,40 @@
                                     width="800"
                                     height="450"
                                 />
-                                <!-- <figcaption>Imagen: Desarrollador Full‑Stack — arquitectura, frontend, backend y DevOps.</figcaption> -->
-                            </figure>
+                                </figure>
                             <p class="section-description" style="text-align: left;">Recorrido estructurado por la arquitectura moderna de desarrollo, desde el backend hasta la orquestación en la nube.</p>
+                             <div class="devops-cta-content">
+        <h2 id="devops-title" class="section-title">
+            <i class="fa-brands fa-dev" aria-hidden="true"></i> 
+            Ruta **DevOps Especializada**: De Código a la Nube
+        </h2>
+        
+        <p class="section-description">
+            Domina el ciclo completo de desarrollo y operación — **CI/CD**, contenedores y nube. Sigue nuestro **Roadmap interactivo** para aprender Docker,
+            Kubernetes, Jenkins y las prácticas modernas de automatización.
+        </p>
+ <figure class="education-figure fullstack-figure" aria-label="Imagen: Desarrollador Full‑Stack">
+                                <img
+                                    src="/imagenes/DevOps_learning__0.jpg"
+                                    alt="Desarrollador Full‑Stack (diagrama conceptual)"
+                                    class="edu-image"
+                                    loading="lazy"
+                                    width="800"
+                                    height="450"
+                                />
+                                </figure>
+        <div class="devops-cta-actions">
+            <a class="cta-button" href="/rutadevops.html" target="_blank" rel="noopener noreferrer" aria-label="Ver Roadmap DevOps completo, se abre en nueva ventana">
+                <i class="fa-solid fa-route" aria-hidden="true"></i>
+                Ver **Roadmap DevOps** Completo
+            </a>
+
+            <a class="cta-button secondary-cta" href="/proDevOps.html" target="_blank" rel="noopener noreferrer" aria-label="Ver recursos avanzados DevOps, se abre en nueva ventana">
+                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                Recursos Avanzados
+            </a>
+        </div>
+    </div>
                             <div class="education-items-row">
 
                                 <article class="education-item highlight" tabindex="0">
@@ -343,6 +485,7 @@
                                     <h4><i class="fa-brands fa-dev"></i> DevOps Roadmaps</h4>
                                     <ul>
                                         <li><a href="/rutadevops.html" target="_blank">Roadmap DevOps Interactivo</a></li>
+                                        <li><a href="/rutadevops.html" target="_blank" style="font-weight: bold; color: #007bff;">Ruta DevOps Especializada (Nueva)</a></li>
                                         <li><a href="/proDevOps.html" target="_blank">Automatización y despliegue</a></li>
                                         <li><a href="/proyectoDevOps.html" target="_blank">DevOps TOTAL</a></li>
                                     </ul>
@@ -452,6 +595,7 @@
                 <h4>Enlaces Rápidos</h4>
                 <ul>
                     <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#devops-destacada">Ruta DevOps</a></li>
                     <li><a href="#educacion">Educación</a></li>
                     <li><a href="https://developersinprocess.blog/" target="_blank">Blog/Tutoriales</a></li>
                 </ul>
