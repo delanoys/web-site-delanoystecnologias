@@ -202,6 +202,72 @@
 
                         <section class="education-group" aria-label="Ruta Full-Stack .NET y DevOps">
                             <h3 class="group-title"><i class="fa-solid fa-layer-group"></i> Ruta Full-Stack: .NET Core y DevOps</h3>
+                            <style>
+                            .education-figure.fullstack-figure {
+                                margin: 0 0 1rem;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                background: linear-gradient(180deg, rgba(255,255,255,0.95), #fbfbfb);
+                                padding: 12px;
+                                border-radius: 10px;
+                                box-shadow: 0 8px 20px rgba(22, 28, 37, 0.06);
+                                max-width: 100%;
+                                overflow: hidden;
+                                transition: box-shadow .2s ease;
+                            }
+                            .education-figure.fullstack-figure:hover {
+                                box-shadow: 0 14px 32px rgba(22, 28, 37, 0.10);
+                            }
+                            .education-figure.fullstack-figure .edu-image {
+                                width: 100%;
+                                height: auto;
+                                max-width: 800px;
+                                border-radius: 8px;
+                                display: block;
+                                transition: transform .25s ease, filter .25s ease;
+                            }
+                            .education-figure.fullstack-figure:hover .edu-image {
+                                transform: scale(1.02);
+                                filter: brightness(1.02);
+                            }
+                            .education-figure.fullstack-figure figcaption {
+                                font-size: 0.92rem;
+                                color: #666;
+                                margin-top: 8px;
+                                text-align: center;
+                                line-height: 1.3;
+                            }
+
+                            /* Layout for larger screens: image left, caption/right content on the right */
+                            @media (min-width: 900px) {
+                                .education-figure.fullstack-figure {
+                                    flex-direction: row;
+                                    gap: 18px;
+                                    align-items: center;
+                                    padding: 14px;
+                                }
+                                .education-figure.fullstack-figure .edu-image {
+                                    max-width: 420px;
+                                    flex: 0 0 420px;
+                                }
+                                .education-figure.fullstack-figure figcaption {
+                                    text-align: left;
+                                }
+                            }
+                            </style>
+
+                            <figure class="education-figure fullstack-figure" aria-label="Imagen: Desarrollador Full‑Stack">
+                                <img
+                                    src="/imagenes/full-stack developer.jpg"
+                                    alt="Desarrollador Full‑Stack (diagrama conceptual)"
+                                    class="edu-image"
+                                    loading="lazy"
+                                    width="800"
+                                    height="450"
+                                />
+                                <!-- <figcaption>Imagen: Desarrollador Full‑Stack — arquitectura, frontend, backend y DevOps.</figcaption> -->
+                            </figure>
                             <p class="section-description" style="text-align: left;">Recorrido estructurado por la arquitectura moderna de desarrollo, desde el backend hasta la orquestación en la nube.</p>
                             <div class="education-items-row">
 
