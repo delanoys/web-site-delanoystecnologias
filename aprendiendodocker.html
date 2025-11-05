@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aprendiendo Docker en AWS EC2</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.8; filter: brightness(1); }
+      50% { opacity: 1; filter: brightness(1.2); }
+    }
+    .fade-in-up { animation: fadeInUp 1s ease forwards; }
+    .pulse { animation: pulseGlow 2s infinite ease-in-out; }
+    .copy-btn {
+      position: absolute; top: 8px; right: 8px;
+      background-color: #2563eb; color: white; border: none;
+      padding: 4px 10px; border-radius: 6px; cursor: pointer;
+      font-size: 0.75rem; transition: background-color 0.2s;
+    }
+    .copy-btn:hover { background-color: #1d4ed8; }
+    /* Terminal simulador */
+    .terminal {
+      background-color: #0f172a;
+      color: #38bdf8;
+      font-family: monospace;
+      border-radius: 10px;
+      padding: 1rem;
+      overflow-y: auto;
+      height: 300px;
+    }
+    .terminal-output {
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+    .terminal-input {
+      background: transparent;
+      border: none;
+      color: #22d3ee;
+      width: 100%;
+      outline: none;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-6 shadow-md">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-3xl font-bold">Aprendiendo Docker en AWS EC2 Free Tier</h1>
+      <p class="mt-2 text-blue-100">Crea tu entorno Ubuntu y domina Docker en la nube</p>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="max-w-4xl mx-auto p-6 space-y-10">
+
+    <!-- Introducción -->
+    <section class="fade-in-up">
+      <h2 class="text-2xl font-semibold text-blue-700 mb-2">¿Qué es AWS EC2 Free Tier?</h2>
+      <p class="text-lg leading-relaxed">
+        <strong>AWS EC2 Free Tier</strong> te permite crear y usar una <strong>máquina virtual Ubuntu real en la nube</strong> 
+        sin costo durante 12 meses. Con esta opción puedes instalar y manejar <strong>Docker</strong> directamente 
+        desde tu navegador o usando SSH.
+      </p>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="bg-white p-6 rounded-2xl shadow-md fade-in-up">
+      <h3 class="text-xl font-semibold text-blue-700 mb-3">Ventajas del Free Tier</h3>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Gratis por 12 meses:</strong> tipos <code>t2.micro</code> o <code>t3.micro</code>.</li>
+        <li><strong>Control total:</strong> administra Ubuntu y Docker sin limitaciones.</li>
+        <li><strong>Accesible:</strong> usa la terminal desde tu navegador o conecta por SSH.</li>
+      </ul>
+    </section>
+
+    <!-- Pasos -->
+    <section class="fade-in-up">
+      <h3 class="text-2xl font-semibold text-blue-700 mb-4">🚀 Cómo empezar</h3>
+      <ol class="list-decimal pl-6 space-y-3 text-lg">
+        <li>Entra a <a href="https://aws.amazon.com" class="text-blue-600 hover:underline">AWS</a> y accede al servicio <strong>EC2</strong>.</li>
+        <li>Crea una nueva instancia y elige la imagen <strong>Ubuntu Server 22.04</strong>.</li>
+        <li>Conéctate a la instancia mediante <strong>SSH</strong> o el terminal web de AWS.</li>
+        <li>Instala Docker con el siguiente comando:
+          <pre class="bg-gray-900 text-green-400 p-3 rounded-lg mt-2 text-sm overflow-x-auto relative">
+<button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<code>sudo apt update && sudo apt install docker.io -y</code>
+          </pre>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Diagrama Educativo -->
+    <section class="bg-white p-6 rounded-2xl shadow-md fade-in-up">
+      <h3 class="text-2xl font-semibold text-blue-700 mb-4">🧩 Diagrama de Arquitectura</h3>
+      <p class="mb-4 text-lg">Visualiza cómo se conectan los componentes: AWS EC2, Ubuntu y Docker.</p>
+
+      <div class="flex justify-center">
+        <svg viewBox="0 0 600 350" class="w-full max-w-2xl fade-in-up">
+          <rect x="20" y="40" width="560" height="260" rx="20" fill="#E3F2FD" stroke="#2196F3" stroke-width="2" class="pulse"/>
+          <text x="300" y="70" text-anchor="middle" font-size="18" font-family="sans-serif" fill="#1565C0">☁️ AWS Cloud</text>
+          <rect x="120" y="100" width="360" height="180" rx="15" fill="#BBDEFB" stroke="#1976D2" stroke-width="2"/>
+          <text x="300" y="125" text-anchor="middle" font-size="16" fill="#0D47A1">EC2 - Ubuntu Server 22.04</text>
+          <rect x="220" y="160" width="160" height="80" rx="10" fill="#90CAF9" stroke="#1565C0" stroke-width="2" class="pulse"/>
+          <text x="300" y="190" text-anchor="middle" font-size="14" fill="#0D47A1">🐳 Docker Engine</text>
+          <rect x="240" y="210" width="40" height="30" rx="5" fill="#64B5F6"/>
+          <rect x="290" y="210" width="40" height="30" rx="5" fill="#64B5F6"/>
+          <rect x="340" y="210" width="40" height="30" rx="5" fill="#64B5F6"/>
+          <text x="300" y="255" text-anchor="middle" font-size="12" fill="#0D47A1">Contenedores</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Comandos Docker -->
+    <section class="bg-white p-8 rounded-2xl shadow-md mt-10">
+      <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">💻 Comandos Docker por Nivel</h2>
+
+      <div class="mb-10 relative">
+        <h3 class="text-2xl font-semibold text-green-700 mb-3">🧩 Nivel Básico</h3>
+        <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm relative">
+<button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<code># Ver versión de Docker
+docker --version
+# Descargar una imagen
+docker pull ubuntu
+# Listar imágenes
+docker images
+# Ejecutar un contenedor
+docker run -it ubuntu bash
+# Ver contenedores
+docker ps
+# Salir
+exit</code></pre>
+      </div>
+
+      <div class="mb-10 relative">
+        <h3 class="text-2xl font-semibold text-yellow-700 mb-3">⚙️ Nivel Intermedio</h3>
+        <pre class="bg-gray-900 text-yellow-400 p-4 rounded-lg text-sm relative">
+<button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<code># Contenedor en segundo plano
+docker run -d nginx
+# Ver logs
+docker logs nginx
+# Volúmenes
+docker volume create datos
+# Red personalizada
+docker network create redlocal</code></pre>
+      </div>
+
+      <div class="relative">
+        <h3 class="text-2xl font-semibold text-red-700 mb-3">🚀 Nivel Avanzado</h3>
+        <pre class="bg-gray-900 text-red-400 p-4 rounded-lg text-sm relative">
+<button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<code># Construir imagen
+docker build -t mi_imagen .
+# Optimizar
+docker system prune -a
+# Exportar imagen
+docker save -o mi_imagen.tar mi_imagen
+# Escalar servicios
+docker-compose up -d --scale web=3</code></pre>
+      </div>
+    </section>
+
+    <!-- Simulador de comandos -->
+    <section class="bg-white p-6 rounded-2xl shadow-md fade-in-up">
+      <h2 class="text-3xl font-bold text-blue-700 mb-4 text-center">🧠 Simulador de Comandos Docker</h2>
+      <p class="text-gray-700 mb-4 text-center">
+        Practica comandos básicos de Docker sin instalar nada. Este simulador educativo te ayuda a reforzar lo aprendido.
+      </p>
+
+      <div class="terminal" id="terminal">
+        <div class="terminal-output" id="terminalOutput">Bienvenido al simulador Docker 🐳  
+Escribe <span class="text-yellow-400">help</span> para ver los comandos disponibles.</div>
+        <div class="flex">
+          <span class="text-green-400 mr-1">user@docker:~$</span>
+          <input id="terminalInput" class="terminal-input" autofocus />
+        </div>
+      </div>
+    </section>
+
+    <!-- Consejo final -->
+    <section class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
+      <p class="text-lg">
+        💡 <strong>Consejo:</strong> Experimenta, aprende y practica. Docker es la base del desarrollo moderno.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white py-4 text-center mt-10">
+    <p>© 2025 Aprendiendo Docker — Creado con ❤️ para la educación libre.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Copiar comandos
+    function copyCode(btn) {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code);
+      btn.textContent = "Copiado!";
+      setTimeout(() => btn.textContent = "Copiar", 1500);
+    }
+
+    // Simulador de terminal Docker
+    const terminalInput = document.getElementById("terminalInput");
+    const terminalOutput = document.getElementById("terminalOutput");
+    const responses = {
+      help: "Comandos disponibles:\nhelp, docker ps, docker images, docker run, clear, exit",
+      "docker ps": "CONTAINER ID   IMAGE   STATUS   NAMES\n(bueno, aquí no hay contenedores activos 🐳)",
+      "docker images": "REPOSITORY   TAG   IMAGE ID   SIZE\nubuntu   latest   a2b3c4d5e6f7   77MB",
+      "docker run": "Ejecutando contenedor simulado de Ubuntu... \nBienvenido al contenedor (simulado).",
+      clear: "clear",
+      exit: "Saliendo del simulador... 👋"
+    };
+
+    terminalInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const cmd = terminalInput.value.trim();
+        const response = responses[cmd] || `Comando no reconocido: ${cmd}`;
+        terminalOutput.innerHTML += `\nuser@docker:~$ ${cmd}\n${response}`;
+        terminalInput.value = "";
+        if (cmd === "clear") terminalOutput.innerHTML = "";
+        if (cmd === "exit") terminalOutput.innerHTML += "\nCierra la pestaña o recarga la página.";
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
+    });
+  </script>
+</body>
+</html>
