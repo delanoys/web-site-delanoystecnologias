@@ -560,61 +560,139 @@
                                         <li><a target="_blank" href="aprendiendodocker.html">Aprendiendo sobre Docker</a></li>
                                     </ul>
                                 </article>
+                                
                                 </div>
-                        </section>
+                                <article class="education-item jscamp-item" tabindex="0" aria-labelledby="jscamp-title">
+                                    <style>
+                                        .jscamp-item {
+                                            background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
+                                            border: 1px solid #e6f2fb;
+                                            padding: 18px;
+                                            border-radius: 10px;
+                                            box-shadow: 0 6px 18px rgba(6,59,102,0.05);
+                                            margin: 8px 0;
+                                            color: #123;
+                                            line-height: 1.45;
+                                            font-size: 0.97rem;
+                                        }
 
-                    </div>
-                </div>
-            </div>
-        </section>
-        
+                                        .jscamp-header {
+                                            display: flex;
+                                            gap: 12px;
+                                            align-items: flex-start;
+                                            justify-content: space-between;
+                                            margin-bottom: 10px;
+                                        }
 
-        <section class="contact-section" id="contacto">
-            <div class="container">
-                <h2 class="section-title"><i class="fa-solid fa-headset"></i> Contacto y Asesoría Gratuita</h2>
-                <p class="section-description">¿Tienes preguntas o necesitas una cotización? Contáctanos hoy.</p>
-                <div class="contact-details">
-                    <p><i class="fa-solid fa-phone"></i> **Teléfono/WhatsApp:** +57 3144131584</p>
-                    <p><i class="fa-solid fa-envelope"></i> **Email:** <a href="mailto:info@dtecnologias.site" class="contact-link">info@dtecnologias.site</a></p>
-                    <p><i class="fa-solid fa-location-dot"></i> **Ubicación:** Bogotá, Colombia</p>
-                </div>
-                <a href="https://wa.me/573242449994" target="_blank" class="cta-button primary-cta"><i class="fa-brands fa-whatsapp"></i> Chatea con Nosotros</a>
-            </div>
-        </section>
+                                        .jscamp-header h4 {
+                                            margin: 0;
+                                            font-size: 1.05rem;
+                                            color: #063b66;
+                                            display: flex;
+                                            gap: 8px;
+                                            align-items: center;
+                                        }
 
-    </main>
+                                        .jscamp-lead {
+                                            margin: 6px 0 12px 0;
+                                            color: #234;
+                                        }
 
-    <footer class="main-footer">
-        <div class="container footer-content">
-            <div class="footer-col">
-                <h4><i class="fa-solid fa-copyright"></i> Delanoys Tecnologías</h4>
-                <p>Soporte Técnico y Soluciones Informáticas</p>
-                <p>NIT: 901594833-8</p>
-            </div>
-            <div class="footer-col">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#devops-destacada">Ruta DevOps</a></li>
-                    <li><a href="#educacion">Educación</a></li>
-                    <li><a href="https://developersinprocess.blog/" target="_blank">Blog/Tutoriales</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Síguenos</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
+                                        .jscamp-actions {
+                                            display: flex;
+                                            gap: 8px;
+                                            margin-top: 8px;
+                                        }
+
+                                        .jscamp-btn {
+                                            display: inline-block;
+                                            background: #007bff;
+                                            color: #fff;
+                                            padding: 8px 12px;
+                                            border-radius: 8px;
+                                            text-decoration: none;
+                                            font-weight: 600;
+                                            box-shadow: 0 6px 14px rgba(0,123,255,0.09);
+                                        }
+
+                                        .jscamp-btn.secondary {
+                                            background: #eaf5ff;
+                                            color: #063b66;
+                                            box-shadow: none;
+                                            border: 1px solid #cfeeff;
+                                        }
+
+                                        .jscamp-modules {
+                                            margin: 12px 0 0 18px;
+                                            padding: 0;
+                                            color: #243447;
+                                        }
+
+                                        .jscamp-modules li {
+                                            margin: 8px 0;
+                                        }
+
+                                        .jscamp-modules strong {
+                                            color: #064a86;
+                                        }
+
+                                        @media (max-width: 700px) {
+                                            .jscamp-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+                                        }
+                                    </style>
+
+<style>
+.jscamp-image {
+    display: block;
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    opacity: 0.85;
+    transition: transform .25s ease, opacity .25s ease, box-shadow .25s ease;
+    box-shadow: 0 8px 20px rgba(2, 40, 80, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08));
+    backdrop-filter: blur(6px);
+    object-fit: cover;
+}
+.jscamp-image:hover,
+.jscamp-image:focus {
+    transform: translateY(-4px) scale(1.03);
+    opacity: 1;
+    box-shadow: 0 14px 34px rgba(2, 40, 80, 0.14);
+    outline: none;
+}
+@media (min-width: 900px) {
+    .jscamp-image { max-width: 60%; }
+}
+</style>
+
+<img src="/imagenes/jscomp infoJob.png" alt="jscomp infoJob logo" class="jscamp-image" loading="lazy" width="260" height="260" />
+<div class="jscamp-header">
+        <h4 id="jscamp-title"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> JSCamp Dev Tracker</h4>
+        <div class="jscamp-actions" aria-hidden="false">
+                <a class="jscamp-btn" href="proyecto-jscamp-dev-html.html" title="Abrir JSCamp Dev Tracker">Abrir ruta local</a>
+                <a class="jscamp-btn secondary" href="https://www.jscamp.dev/" target="_blank" rel="noopener noreferrer" title="Abrir jscamp.dev en nueva pestaña">Sitio oficial</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Delanoys Tecnologías. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+</div>
 
-    <script src="js/scriptindex.js"></script> 
-</body>
+<p class="jscamp-lead">Guía y seguimiento estructurado para el desarrollo web moderno. Recorrido modular desde fundamentos hasta DevOps y CI/CD.</p>
+
+<ol class="jscamp-modules" aria-label="Módulos JSCamp Dev Tracker">
+        <li><strong>Módulo 01: Introducción al Bootcamp</strong> — Bases del curso, arquitectura FullStack y configuración del entorno.</li>
+        <li><strong>Módulo 02: HTML y CSS</strong> — Estructura, formularios y diseño responsivo.</li>
+        <li><strong>Módulo 03: JavaScript</strong> — Tipos, funciones, DOM, eventos y consumo de APIs (Fetch/JSON).</li>
+        <li><strong>Módulo 04: React</strong> — JSX, componentes, estado, hooks y migración de proyectos.</li>
+        <li><strong>Módulo 05: Estado Global y React Router</strong> — Redux (o alternativas) y navegación multi‑página.</li>
+        <li><strong>Módulo 06: Comunicación con el Servidor</strong> — REST, Fetch, Axios, manejo de errores y respuestas.</li>
+        <li><strong>Módulo 07: Node.js y Express</strong> — Servidores, rutas, middleware y conexión con bases de datos (MongoDB/Mongoose).</li>
+        <li><strong>Módulo 08: Testing</strong> — Pruebas unitarias con Jest y pruebas de componentes con React Testing Library.</li>
+        <li><strong>Módulo 09: Inteligencia Artificial</strong> — Integración de APIs de IA (OpenAI u otras) y buenas prácticas éticas.</li>
+        <li><strong>Módulo 10: TypeScript</strong> — Tipado estático para mejorar calidad y mantenibilidad.</li>
+        <li><strong>Módulo 11: SQL</strong> — Consultas, manipulación de datos y uso de ORMs (ej.: Sequelize).</li>
+        <li><strong>Módulo 12: CI/CD</strong> — Integración y despliegue con GitHub Actions y automatización del ciclo de vida.</li>
+        <li><strong>Módulo 13: DevOps y Docker</strong> — Contenedores con Docker, Docker Compose y prácticas DevOps básicas.</li>
+</ol>
 
 </html>
