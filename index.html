@@ -694,5 +694,256 @@
         <li><strong>Módulo 12: CI/CD</strong> — Integración y despliegue con GitHub Actions y automatización del ciclo de vida.</li>
         <li><strong>Módulo 13: DevOps y Docker</strong> — Contenedores con Docker, Docker Compose y prácticas DevOps básicas.</li>
 </ol>
+<footer id="site-footer" class="site-footer" role="contentinfo" aria-label="Información del pie de página">
+    <style>
+        .site-footer {
+            background: linear-gradient(180deg,#042a3f 0%, #063b66 100%);
+            color: #e6f7ff;
+            padding: 28px 18px;
+            margin-top: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(2,40,80,0.06);
+            font-size: 0.95rem;
+        }
+        .footer-container { max-width:1200px; margin:0 auto; display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; }
+        .footer-col { flex:1 1 220px; min-width:180px; }
+        .footer-col h4 { margin:0 0 8px; font-size:1.05rem; color:#eaf6ff; }
+        .footer-col a { color:#dff3ff; text-decoration:none; display:block; margin:6px 0; }
+        .footer-bottom { margin-top:18px; text-align:center; color:#bfe9ff; font-size:0.9rem; }
+        .social-icons a { margin-right:10px; color:#dff3ff; text-decoration:none; font-size:1.15rem; }
 
+        /* Asistente IA: botón flotante y panel */
+        #ai-assistant-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width:56px;
+            height:56px;
+            border-radius:50%;
+            background:#007bff;
+            color:#fff;
+            border:none;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 10px 30px rgba(0,123,255,0.18);
+            cursor:pointer;
+            z-index:1200;
+        }
+        #ai-panel {
+            position: fixed;
+            right: 20px;
+            bottom: 92px;
+            width: 340px;
+            max-width: calc(100% - 40px);
+            background:#ffffff;
+            border-radius:12px;
+            box-shadow:0 18px 60px rgba(2,40,80,0.12);
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            z-index:1200;
+            font-family: inherit;
+        }
+        #ai-panel header {
+            background: linear-gradient(90deg,#063b66,#0a6fbf);
+            color:#fff;
+            padding:12px 14px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:8px;
+        }
+        #ai-messages {
+            padding:12px;
+            height: 260px;
+            overflow:auto;
+            background:linear-gradient(180deg,#f8fbff,#fff);
+        }
+        .ai-msg { margin:10px 0; max-width:85%; padding:8px 10px; border-radius:10px; line-height:1.35; }
+        .ai-msg.user { margin-left:auto; background:#007bff; color:#fff; }
+        .ai-msg.bot  { margin-right:auto; background:#eef8ff; color:#063b66; }
+        #ai-form { display:flex; gap:8px; padding:10px; border-top:1px solid #eee; background:#fff; }
+        #ai-input { flex:1; padding:8px 10px; border:1px solid #e6eef9; border-radius:8px; font-size:0.95rem; }
+        #ai-send { background:#0a6fbf; color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+
+        @media (max-width:480px){
+            #ai-panel { right: 12px; left:12px; bottom: 88px; width:auto; }
+        }
+    </style>
+
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4>Delanoys Tecnologías</h4>
+            <p>Soporte técnico, desarrollo web y formación profesional. Atención personalizada para hogares y empresas.</p>
+            <div class="social-icons" aria-hidden="false">
+                <a href="https://developersinprocess.blog/" target="_blank" rel="noopener noreferrer" aria-label="Visitar blog"><i class="fa fa-blog"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Enlaces rápidos</h4>
+            <a href="#servicios">Servicios</a>
+            <a href="#educacion">Recursos</a>
+            <a href="/rutadevops.html" target="_blank">Ruta DevOps</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="mailto:contacto@delanoys.com">contacto@delanoys.com</a>
+            <a href="tel:+573001234567">+57 300 1234567</a>
+            <p style="margin-top:8px;color:#dff3ff;font-size:0.9rem;">Horario: Lun-Vie 8:00 - 18:00</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom" role="note">
+        © <span id="anio-actual"></span> Delanoys Tecnologías — Todos los derechos reservados.
+    </div>
+
+    <!-- Asistente virtual IA (interfaz cliente). Para respuestas reales, conecte a un endpoint en servidor que llame a la API de OpenAI/GPT -->
+    <button id="ai-assistant-toggle" aria-label="Abrir asistente de ayuda" title="Asistente"> 
+        <i class="fa-solid fa-robot" aria-hidden="true"></i>
+    </button>
+
+    <div id="ai-panel" role="dialog" aria-label="Asistente virtual" aria-hidden="true" hidden>
+        <header>
+            <div style="display:flex;gap:10px;align-items:center;">
+                <i class="fa-solid fa-robot" aria-hidden="true"></i>
+                <strong>Asistente Delanoys</strong>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+                <button id="ai-clear" aria-label="Limpiar conversación" title="Limpiar" style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+                <button id="ai-close" aria-label="Cerrar asistente" title="Cerrar" style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="ai-messages" aria-live="polite"></div>
+
+        <form id="ai-form" onsubmit="return false;" aria-label="Enviar mensaje al asistente">
+            <input id="ai-input" type="text" placeholder="Pregunta sobre servicios, cursos o rutas (ej: Docker, React, cursos)" aria-label="Escribe tu pregunta" />
+            <button id="ai-send" aria-label="Enviar">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        // Footer año
+        document.getElementById('anio-actual').textContent = new Date().getFullYear();
+
+        // Asistente UI básica
+        const toggleBtn = document.getElementById('ai-assistant-toggle');
+        const panel = document.getElementById('ai-panel');
+        const closeBtn = document.getElementById('ai-close');
+        const clearBtn = document.getElementById('ai-clear');
+        const messages = document.getElementById('ai-messages');
+        const input = document.getElementById('ai-input');
+        const sendBtn = document.getElementById('ai-send');
+
+        function openPanel() {
+            panel.hidden = false;
+            panel.setAttribute('aria-hidden','false');
+            toggleBtn.setAttribute('aria-expanded','true');
+            input.focus();
+        }
+        function closePanel() {
+            panel.hidden = true;
+            panel.setAttribute('aria-hidden','true');
+            toggleBtn.setAttribute('aria-expanded','false');
+            toggleBtn.focus();
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            panel.hidden ? openPanel() : closePanel();
+        });
+        closeBtn.addEventListener('click', closePanel);
+        clearBtn.addEventListener('click', () => { messages.innerHTML = ''; input.focus(); });
+
+        function appendMessage(text, who='bot') {
+            const el = document.createElement('div');
+            el.className = 'ai-msg ' + (who==='user' ? 'user' : 'bot');
+            el.textContent = text;
+            messages.appendChild(el);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // Simple fallback responder local (canned responses)
+        function localReply(prompt) {
+            const p = prompt.toLowerCase();
+            if (p.includes('devops') || p.includes('docker') || p.includes('kubernetes')) {
+                return 'Puedes seguir la Ruta DevOps: comienza con Docker, luego Docker Compose, CI/CD (GitHub Actions) y Kubernetes. ¿Quieres que te sugiera un enlace al roadmap?';
+            }
+            if (p.includes('sql') || p.includes('bases')) {
+                return 'Tenemos un curso de SQL que cubre SQLite y PostgreSQL. Revisa "Curso SQL" en la sección de recursos o pregunta por un módulo específico.';
+            }
+            if (p.includes('react') || p.includes('javascript')) {
+                return 'El curso de React incluye JSX, componentes, hooks y ejemplos prácticos. ¿Deseas ver la ruta completa o un ejemplo de componente?';
+            }
+            if (p.includes('contacto') || p.includes('soporte')) {
+                return 'Puedes contactarnos en contacto@delanoys.com o solicitar soporte desde la sección "Contacto". ¿Prefieres que abra el formulario de contacto?';
+            }
+            return 'Puedo ayudar con rutas de aprendizaje, servicios y recursos. Pregunta por ejemplo: "Ruta DevOps", "Curso SQL" o "Soporte remoto".';
+        }
+
+        // Envío: intenta llamar a un endpoint; si falla, usa localReply
+        async function askAssistant(prompt) {
+            appendMessage(prompt, 'user');
+            appendMessage('Escribiendo respuesta...', 'bot');
+            try {
+                // Intentar llamar a tu endpoint de servidor (debes implementar /api/assistant)
+                // Ejemplo:
+                // const res = await fetch('/api/assistant', {
+                //   method: 'POST',
+                //   headers:{'Content-Type':'application/json'},
+                //   body: JSON.stringify({ prompt })
+                // });
+                // if (res.ok) { const data = await res.json(); replaceLastBotMessage(data.reply); return; }
+                // Si no hay endpoint, simulamos retraso y respondemos localmente:
+                await new Promise(r => setTimeout(r, 800));
+                replaceLastBotMessage(localReply(prompt));
+            } catch (err) {
+                replaceLastBotMessage(localReply(prompt));
+            }
+        }
+
+        function replaceLastBotMessage(text) {
+            const botMsgs = messages.querySelectorAll('.ai-msg.bot');
+            if (botMsgs.length) {
+                botMsgs[botMsgs.length - 1].textContent = text;
+            } else {
+                appendMessage(text, 'bot');
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        sendBtn.addEventListener('click', () => {
+            const v = input.value && input.value.trim();
+            if (!v) return;
+            input.value = '';
+            askAssistant(v);
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendBtn.click();
+            }
+        });
+
+        // Accesibilidad: cerrar con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !panel.hidden) closePanel();
+        });
+
+        // Mensaje inicial
+        (function welcome(){
+            appendMessage('Hola 👋 — Soy el asistente de Delanoys. Puedo orientarte sobre servicios, cursos y rutas. Prueba con: "Ruta DevOps" o "Curso SQL".', 'bot');
+        })();
+    </script>
+</footer>
 </html>
