@@ -101,5 +101,5 @@ if (slideshow) {
     });
 }
 
-// Inicializar al cargar la página
+// Inicializar  al cargar la página
 document.addEventListener('DOMContentLoaded', buildSlideshow);
