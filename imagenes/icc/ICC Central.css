@@ -9,8 +9,8 @@
 /* ======================================= */
 
 :root {
-    --primary: #2c3e50; /* Azul oscuro (Encabezados/Fondo Header) */
-    --secondary: #3498db; /* Azul brillante (Acentos) */
+    --primary: #2c3e50;    /* Azul Oscuro (Base) */
+    --secondary: #e74c3c;  /* ROJO VIBRANTE DEPORTIVO (Acentos) - MODIFICADO */
     --light-bg: #f4f4f4; /* Fondo de la página */
     --card-bg: #ffffff;
     --accent-light: #ecf0f1; /* Gris claro (Motto/Fondo de tarjetas especiales) */
@@ -39,24 +39,37 @@ body {
     line-height: 1;
 }
 
-/* --- Encabezado --- */
+/* --- Encabezado DEPORTIVO (MODIFICADO) --- */
 header {
-    background-color: var(--primary);
+    /* Degradado de azul oscuro a un azul más claro, simulando luz */
+    background: linear-gradient(135deg, var(--primary) 0%, #1f4068 100%);
     color: #ffffff;
     text-align: center;
-    padding: 2rem 1rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 2.5rem 1rem; /* Más altura */
+    /* Borde inferior grueso y rojo para un toque de energía */
+    border-bottom: 8px solid var(--secondary); 
+    /* Sombra sutil que le da profundidad */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
+    /* Fuente más grande y con más impacto */
     margin: 0;
-    font-size: 2.5rem;
-    letter-spacing: 1px;
+    font-size: clamp(3rem, 7vw, 4.5rem); 
+    letter-spacing: 2px;
+    font-weight: 900; /* Extra bold */
+    /* Sutil efecto de relieve con la sombra */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
 }
+
 header p {
+    /* Subtítulo más contrastante */
     margin: 0.5rem 0 0 0;
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 600;
+    /* Color secundario vibrante (rojo) */
+    color: var(--secondary); 
+    letter-spacing: 1px;
 }
 
 /* --- Contenido Principal --- */
@@ -117,7 +130,7 @@ h2 {
     height: 100%;
     display: block;
     border-radius: 8px;
-    /* CLAVE: Asegura que la imagen cubra el contenedor sin deformarse, cortando los bordes extra */
+    /* Mantenemos 'contain' para mostrar la imagen completa, aparecerán barras si la proporción no coincide */
     object-fit: contain; 
     margin: 0;
     border: none;
@@ -162,6 +175,7 @@ h2 {
 }
 
 .active-dot {
+    /* Usa el color secundario rojo */
     background-color: var(--secondary) !important;
 }
 
@@ -196,6 +210,7 @@ h2 {
 .plan-de-juego .subtitulo {
     font-size: 1.25rem;
     font-weight: 500;
+    /* Usa el color secundario rojo */
     color: var(--secondary);
     margin-bottom: 2rem;
 }
@@ -225,6 +240,7 @@ h2 {
     margin-bottom: 1rem;
     font-size: 1.3rem;
     color: var(--primary);
+    /* Usa el color secundario rojo */
     border-bottom: 2px solid var(--secondary);
     padding-bottom: 0.5rem;
 }
@@ -240,7 +256,7 @@ h2 {
     font-size: 1rem;
     display: flex;
     align-items: center;
-    gap: 8px; /* Espacio para iconos/emojis */
+    gap: 8px; 
 }
 
 .plan-card .verse {
@@ -263,6 +279,7 @@ h2 {
 }
 .hierro-table h4 {
     margin: 0 0 0.5rem 0;
+    /* Usa el color secundario rojo */
     color: var(--secondary);
     font-size: 1.1rem;
     font-weight: 600;
@@ -310,7 +327,7 @@ footer {
 
 @media (max-width: 768px) {
     header h1 {
-        font-size: 2rem;
+        font-size: clamp(2rem, 8vw, 3rem);
     }
     header p {
         font-size: 1rem;
