@@ -1,7 +1,8 @@
 /*
- * Archivo: icc.css
+ * Archivo: ICC Central.css
  * Descripción: Estilos generales, carrusel de imágenes y plan de juego para ICC Central Microfútbol.
- * Autor: Asistente Gemini
+ * Autor: Asistente Grok (basado en Gemini, con optimizaciones para responsividad y UX)
+ * Versión: 1.1 - Fusionado con mejoras: transiciones suaves, accesibilidad, tema deportivo/espiritual.
  */
 
 /* ======================================= */
@@ -10,25 +11,27 @@
 
 :root {
     --primary: #2c3e50;    /* Azul Oscuro (Base) */
-    --secondary: #e74c3c;  /* ROJO VIBRANTE DEPORTIVO (Acentos) - MODIFICADO */
-    --light-bg: #f4f4f4; /* Fondo de la página */
+    --secondary: #e74c3c;  /* Rojo Vibrante Deportivo (Acentos) */
+    --light-bg: #f4f4f4;   /* Fondo de la página */
     --card-bg: #ffffff;
     --accent-light: #ecf0f1; /* Gris claro (Motto/Fondo de tarjetas especiales) */
     --text-color: #333;
     --border-color: #e0e0e0;
+    --shadow-light: 0 2px 5px rgba(0,0,0,0.05);
+    --shadow-medium: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-heavy: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 /* --- Estilos Generales --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: var(--light-bg);
     color: var(--text-color);
     line-height: 1.6;
 }
 
-/* --- Iconos Lucide (Simulación) --- */
+/* --- Iconos Lucide --- */
 .icon {
     font-family: 'Lucide';
     font-style: normal;
@@ -39,37 +42,35 @@ body {
     line-height: 1;
 }
 
-/* --- Encabezado DEPORTIVO (MODIFICADO) --- */
+/* --- Encabezado DEPORTIVO --- */
 header {
-    /* Degradado de azul oscuro a un azul más claro, simulando luz */
     background: linear-gradient(135deg, var(--primary) 0%, #1f4068 100%);
+    /* background-image: url('/imagenes/banners/icc-central-banner-deportivo.jpg'); /* Descomenta si tienes la imagen */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     color: #ffffff;
     text-align: center;
-    padding: 2.5rem 1rem; /* Más altura */
-    /* Borde inferior grueso y rojo para un toque de energía */
-    border-bottom: 8px solid var(--secondary); 
-    /* Sombra sutil que le da profundidad */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 2.5rem 1rem;
+    border-bottom: 8px solid var(--secondary);
+    box-shadow: var(--shadow-medium);
 }
 
 header h1 {
-    /* Fuente más grande y con más impacto */
     margin: 0;
-    font-size: clamp(3rem, 7vw, 4.5rem); 
+    font-size: clamp(3rem, 7vw, 4.5rem);
     letter-spacing: 2px;
-    font-weight: 900; /* Extra bold */
-    /* Sutil efecto de relieve con la sombra */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+    font-weight: 900;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 header p {
-    /* Subtítulo más contrastante */
     margin: 0.5rem 0 0 0;
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     font-weight: 600;
-    /* Color secundario vibrante (rojo) */
-    color: var(--secondary); 
+    color: var(--secondary);
     letter-spacing: 1px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 /* --- Contenido Principal --- */
@@ -79,7 +80,7 @@ main {
     padding: 1rem;
     background-color: var(--card-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-light);
 }
 
 /* --- Títulos Genéricos --- */
@@ -87,10 +88,8 @@ h2 {
     color: var(--primary);
     font-size: 1.8rem;
     text-align: center;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin: 1.5rem 0 1rem 0;
 }
-
 
 /* ======================================= */
 /* 2. Galería de Fotos (Carrusel) */
@@ -98,23 +97,21 @@ h2 {
 
 .slideshow-container {
     max-width: 900px;
-    height: 400px; /* ALTURA FIJA PARA ESCRITORIO */
-    
+    height: 400px; /* Altura fija para escritorio */
     position: relative;
-    margin: 20px auto 30px auto; 
-    overflow: hidden; 
+    margin: 20px auto 30px auto;
+    overflow: hidden;
     padding: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    /* Flex es clave para centrar botones */
-    display: flex; 
-    align-items: center; 
+    box-shadow: var(--shadow-medium);
     border-radius: 8px;
-}
-.slideshow-container h2 {
-    display: none; /* Ocultar título interno del carrusel */
+    display: flex;
+    align-items: center;
 }
 
-/* El elemento de slide */
+.slideshow-container h2 {
+    display: none; /* Ocultar título interno si se usa en header */
+}
+
 .mySlides {
     display: none;
     width: 100%;
@@ -124,16 +121,26 @@ h2 {
     left: 0;
 }
 
-/* Imagen dentro del slide: CLAVE para el tamaño y ajuste */
 .mySlides img {
     width: 100%;
     height: 100%;
     display: block;
     border-radius: 8px;
-    /* Mantenemos 'contain' para mostrar la imagen completa, aparecerán barras si la proporción no coincide */
-    object-fit: contain; 
+    object-fit: contain; /* Muestra imagen completa; cambia a cover si prefieres recorte */
     margin: 0;
     border: none;
+}
+
+/* Caption opcional para slides */
+.caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1em;
 }
 
 /* Botones Anterior y Siguiente */
@@ -141,8 +148,8 @@ h2 {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    margin-top: -30px; 
-    z-index: 2; 
+    margin-top: -30px;
+    z-index: 2;
     width: auto;
     padding: 16px;
     color: white;
@@ -154,15 +161,20 @@ h2 {
     border-radius: 3px;
 }
 
-.next {
-    right: 0;
-}
+.next { right: 0; }
 
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
 }
 
 /* Indicadores (puntos) */
+.dots-container {
+    text-align: center;
+    padding: 12px 0;
+    background: rgba(0,0,0,0.1);
+}
+
 .dot {
     cursor: pointer;
     height: 12px;
@@ -171,12 +183,12 @@ h2 {
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
-    transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease, transform 0.3s ease;
 }
 
-.active-dot {
-    /* Usa el color secundario rojo */
+.dot:hover, .active-dot {
     background-color: var(--secondary) !important;
+    transform: scale(1.3);
 }
 
 /* Animación de Transición (Fade) */
@@ -186,10 +198,9 @@ h2 {
 }
 
 @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from { opacity: .4; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
 }
-
 
 /* ======================================= */
 /* 3. Sección Plan de Juego */
@@ -210,7 +221,6 @@ h2 {
 .plan-de-juego .subtitulo {
     font-size: 1.25rem;
     font-weight: 500;
-    /* Usa el color secundario rojo */
     color: var(--secondary);
     margin-bottom: 2rem;
 }
@@ -227,12 +237,13 @@ h2 {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-    transition: transform 0.3s;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .plan-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-medium);
 }
 
 .plan-card h3 {
@@ -240,7 +251,6 @@ h2 {
     margin-bottom: 1rem;
     font-size: 1.3rem;
     color: var(--primary);
-    /* Usa el color secundario rojo */
     border-bottom: 2px solid var(--secondary);
     padding-bottom: 0.5rem;
 }
@@ -256,7 +266,7 @@ h2 {
     font-size: 1rem;
     display: flex;
     align-items: center;
-    gap: 8px; 
+    gap: 8px;
 }
 
 .plan-card .verse {
@@ -273,16 +283,30 @@ h2 {
 .hierro-table {
     display: flex;
     justify-content: space-between;
+    margin: 15px 0;
+    background: var(--accent-light);
+    padding: 15px;
+    border-radius: 8px;
 }
+
 .hierro-table div {
     flex-basis: 48%;
+    text-align: center;
 }
+
 .hierro-table h4 {
     margin: 0 0 0.5rem 0;
-    /* Usa el color secundario rojo */
     color: var(--secondary);
     font-size: 1.1rem;
     font-weight: 600;
+}
+
+.hierro-table ul {
+    list-style: none;
+}
+
+.hierro-table li {
+    margin: 5px 0;
 }
 
 /* Estilos para "Si uno cae" */
@@ -290,13 +314,15 @@ h2 {
     text-align: center;
     background-color: var(--accent-light);
 }
+
 .plan-card.cae h3 {
     border: none;
 }
+
 .plan-card.cae h4 {
     font-size: 1.2rem;
     color: var(--primary);
-    margin: 0;
+    margin: 0 0 10px 0;
 }
 
 /* --- Lema Final --- */
@@ -309,7 +335,9 @@ h2 {
     padding: 1rem;
     background-color: var(--accent-light);
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-light);
+    font-style: italic;
+    letter-spacing: 1px;
 }
 
 /* --- Pie de Página --- */
@@ -319,6 +347,8 @@ footer {
     padding: 1rem;
     font-size: 0.9rem;
     color: #777;
+    background: var(--primary);
+    color: white;
 }
 
 /* ======================================= */
@@ -326,12 +356,8 @@ footer {
 /* ======================================= */
 
 @media (max-width: 768px) {
-    header h1 {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
-    header p {
-        font-size: 1rem;
-    }
+    header h1 { font-size: clamp(2rem, 8vw, 3rem); }
+    header p { font-size: 1rem; }
     
     main {
         margin: 1rem auto;
@@ -339,7 +365,7 @@ footer {
     }
     
     .slideshow-container {
-        height: 250px; /* ALTURA REDUCIDA EN MÓVILES */
+        height: 250px; /* Altura reducida en móviles */
         margin: 10px auto 20px auto;
     }
 
@@ -347,7 +373,23 @@ footer {
         grid-template-columns: 1fr; /* Columna única en móviles */
     }
 
+    .hierro-table {
+        flex-direction: column;
+        gap: 10px;
+    }
+
     .motto {
         font-size: 1.2rem;
+    }
+
+    .prev, .next {
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 0 3px;
     }
 }

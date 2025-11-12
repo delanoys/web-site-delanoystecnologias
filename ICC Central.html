@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ICC Central: Equipo de Microfútbol unido en Cristo. Galería, plan espiritual y momentos clave.">
     <title>ICC Central | Equipo de Microfútbol</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css">
-<link rel="stylesheet" href="/imagenes/icc/ICC Central.css">  
+    <link rel="stylesheet" href="/imagenes/icc/ICC Central.css">
 </head>
 <body>
-
     <header>
         <h1>ICC CENTRAL</h1>
         <p>Equipo de Microfútbol</p>
@@ -16,23 +16,17 @@
 
     <main>
         <section id="hero-gallery" class="slideshow-container">
-            <h2>Nuestra Galería de Momentos Clave</h2> 
+            <h2>Nuestra Galería de Momentos Clave</h2>
             
-            <div class="mySlides fade">
-                <img src="/imagenes/icc/Imagen de WhatsApp 2025-06-06 a las 09.23.13_1e5ed37a.jpg" alt="Foto del equipo ICC Central">
-            </div>
+            <!-- Contenedor para slides dinámicos -->
+            <div id="dynamic-slides"></div>
 
-            <div class="mySlides fade">
-                <img src="/imagenes/icc/Logo ICCC-Israel4.png" alt="Logo ICCC Israel">
-            </div>
-            
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <a class="prev" onclick="plusSlides(-1)" aria-label="Slide anterior">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)" aria-label="Slide siguiente">&#10095;</a>
 
-            <div style="text-align:center; padding: 10px 0;">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                </div>
+            <div class="dots-container" id="dots-container">
+                <!-- Dots generados dinámicamente -->
+            </div>
         </section>
 
         <section class="plan-de-juego">
@@ -40,7 +34,6 @@
             <p class="subtitulo">🎯 Plan de juego espiritual</p>
 
             <div class="plan-grid">
-                
                 <div class="plan-card">
                     <h3>🤍 EL UNIFORME PRINCIPAL</h3>
                     <ul>
@@ -103,81 +96,16 @@
                     <h4>💪 ¡EL OTRO LO LEVANTA!</h4>
                     <p class="verse">Eclesiastés 4:9-10</p>
                 </div>
-
             </div>
         </section>
-        <section class="motto">
-            "Con Dios todo es posible"
-        </section>
 
+        <section class="motto">"Con Dios todo es posible"</section>
     </main>
 
     <footer>
         <p>© 2025 ICC Central. ⚽ ✝️ ¡Que nuestro juego hable de ÉL!</p>
     </footer>
 
-    <script>
-        let slideIndex = 1; // Índice del slide actual (para navegación manual)
-        let autoPlayTimer; // Variable para el temporizador de autoplay
-
-        // Función principal para mostrar los slides
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            
-            if (slides.length === 0) return; // Salir si no hay slides
-
-            // Reiniciar el temporizador de autoplay cada vez que un slide se muestra manualmente
-            clearTimeout(autoPlayTimer); 
-
-            // Manejar el índice (volver al inicio/final)
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            
-            // Ocultar todos los slides y remover la clase activa de los puntos
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active-dot", "");
-            }
-            
-            // Mostrar el slide actual y marcar el punto correspondiente
-            slides[slideIndex - 1].style.display = "block";
-            if (dots.length > 0) {
-                dots[slideIndex - 1].className += " active-dot";
-            }
-            
-            // Reiniciar el autoplay después de un breve retraso
-            autoPlayTimer = setTimeout(autoShowSlides, 5000); // 5 segundos de espera para el siguiente slide automático
-        }
-
-        // Función para avanzar/retroceder manualmente
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        // Función para ir a un slide específico (desde los puntos)
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        // Función para el autoplay
-        function autoShowSlides() {
-            let slides = document.getElementsByClassName("mySlides");
-            if (slides.length === 0) return;
-
-            slideIndex++; // Avanzar al siguiente slide
-            if (slideIndex > slides.length) { slideIndex = 1; } // Volver al inicio si llega al final
-
-            showSlides(slideIndex); // Mostrar el slide y reiniciar el temporizador
-        }
-
-        // Inicializar el carrusel y el autoplay al cargar la página
-        document.addEventListener('DOMContentLoaded', function() {
-            showSlides(slideIndex); // Mostrar el primer slide
-        });
-    </script>
+    <script src="/imagenes/icc/slideshow.js"></script>
 </body>
 </html>
