@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Guía Laboral Completa en Colombia — CST, Reformas y Derechos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css">
+<style>
+/* --- Importación de Fuente Profesional --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* --- Paleta de Colores y Variables --- */
+:root {
+  --bg: #f4f7f9; /* Fondo general un poco más suave */
+  --card: #ffffff;
+  --accent: #0b63a5;
+  --accent-dark: #085188; /* Para hovers */
+  --text: #0b2330;
+  --muted: #55606a;
+  --border: #eef4f8; /* Un borde sutil */
+  --nav-height: 50px; /* Altura aproximada del menú fijo */
+}
+
+/* --- Estilos Generales del Body --- */
+body {
+  font-family: 'Poppins', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Contenedor Principal y Compensación del Menú --- */
+.container {
+  max-width: 980px;
+  /* El margen superior se ajusta con el padding de .content-offset */
+  margin: 24px auto; 
+  padding: 0 18px;
+}
+
+.content-offset {
+  /* Empuja el contenido principal hacia abajo para que el menú fijo no lo tape */
+  padding-top: var(--nav-height); 
+}
+
+/* --- Encabezado --- */
+header {
+  background: linear-gradient(90deg, #0b63a5, #1b9bd7);
+  color: white;
+  /* El padding-top debe compensar el NAV fijo */
+  padding: calc(var(--nav-height) + 30px) 20px 28px 20px; 
+  text-align: center;
+  border-bottom: 4px solid var(--accent-dark);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 36px); 
+  font-weight: 700;
+}
+
+.lead {
+  font-size: 16px;
+  opacity: .95;
+  max-width: 650px;
+  margin: 8px auto 0;
+}
+
+/* --- Navegación Fija (NAV) --- */
+nav {
+  position: fixed; /* ¡Menú siempre visible! */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height); 
+  z-index: 999; 
+  
+  background-color: var(--accent-dark); /* Fondo oscuro para el menú fijo */
+  padding: 0 18px; 
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; /* Centrado vertical en el nav fijo */
+  gap: 8px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); 
+  margin-top: 0;
+}
+
+nav a {
+  color: rgba(255, 255, 255, .98); 
+  padding: 6px 14px; 
+  border-radius: 99px; 
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.25); 
+  color: #ffffff;
+}
+
+/* --- Tarjetas (Cards) --- */
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 20px 0;
+  box-shadow: 0 8px 24px rgba(8, 20, 30, .07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(8, 20, 30, .1);
+}
+
+/* --- Tipografía y Títulos de Sección --- */
+h2 {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  font-weight: 700;
+  font-size: clamp(22px, 4vw, 26px);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: var(--accent-dark);
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+.muted { color: var(--muted); }
+
+/* Estilos para links dentro del contenido */
+.card a:not(.btn) {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.card a:not(.btn):hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+/* --- Tablas Mejoradas --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+}
+
+td,
+th {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--bg);
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fcfcfc; /* Filas alternadas (stripe) */
+}
+
+/* --- Íconos y Footer --- */
+.icon {
+  font-family: 'Lucide';
+  font-style: normal;
+  font-size: 24px;
+}
+
+footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: .9;
+  padding: 24px 18px;
+}
+
+/* --- Desplegables (Details/Summary) --- */
+details {
+  margin-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 12px;
+}
+
+details:last-child {
+  border-bottom: none;
+}
+
+details summary {
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+  color: var(--accent);
+  margin-bottom: 8px;
+  transition: color 0.2s;
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+details summary::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  transition: transform 0.2s;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+details summary:hover {
+  color: var(--accent-dark);
+}
+
+details p {
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+/* --- Botones y Formularios --- */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+input,
+textarea,
+select {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto :focus para Usabilidad */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(11, 99, 165, 0.2); 
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Bloque de código preformateado */
+pre {
+  background: var(--bg);
+  padding: 16px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+/* --- Estilos para KPIs Históricos --- */
+.kpi-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.kpi-box {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.kpi-box .kpi-number {
+  font-size: 2.5em; /* 40px */
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.kpi-box .kpi-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.kpi-box .kpi-desc {
+  font-size: 13px;
+  color: var(--text);
+  margin-top: 8px;
+}
+
+/* --- Estilos del Asistente de Chat --- */
+#chat-launcher {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background-color 0.2s;
+  z-index: 1000;
+}
+
+#chat-launcher:hover {
+  background: var(--accent-dark);
+  transform: scale(1.1);
+}
+
+#chat-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 350px;
+  max-width: 90vw;
+  height: 500px;
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(8, 20, 30, .2);
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease-out, opacity 0.3s;
+}
+
+#chat-widget.hidden {
+  transform: scale(0.9) translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #0b63a5, #1b9bd7);
+  color: white;
+}
+
+.chat-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+}
+.chat-header button:hover {
+  opacity: 1;
+}
+.chat-header button .icon {
+  font-size: 24px;
+}
+
+#chat-messages {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--bg);
+}
+
+.chat-message {
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 80%;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.chat-message.bot {
+  background: #e9ecef;
+  color: var(--text);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-message.user {
+  background: var(--accent);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+/* Estilos para links dentro del chat */
+.chat-message a {
+  color: var(--accent-dark);
+  font-weight: bold;
+  text-decoration: underline;
+}
+.chat-message.user a {
+  color: #f0f0f0;
+}
+
+#chat-form {
+  display: flex;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+
+#chat-input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 15px;
+  margin: 0;
+}
+#chat-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(11, 99, 165, 0.2);
+  outline: none;
+}
+
+#chat-form button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 0 14px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.2s;
+}
+#chat-form button:hover {
+  background: var(--accent-dark);
+}
+</style>
+</head>
+<body>
+  <header>
+    <h1><i class="icon lucide-briefcase"></i> Vinculación Laboral en Colombia</h1>
+    <p class="lead">Guía sobre derechos, tipos de contrato, reformas y el panorama actual del trabajo en el país.</p>
+    
+    <nav>
+        <a href="#panorama">Panorama Actual</a>
+        <a href="#historia">Historia (50 Años)</a>
+        <a href="#tipos">Tipos de Contrato</a>
+        <a href="#realidad">Contrato Realidad</a>
+        <a href="#comparacion">Comparación</a>
+        <a href="#tercerizacion">Tercerización</a>
+        <a href="#reformas">Reformas (Uribe vs. Petro)</a>
+        <a href="#formulario">Quejas</a>
+        <a href="#leyes">Leyes</a>
+    </nav>
+</header>
+
+<main class="container content-offset">
+
+    <section id="intro" class="card">
+        <h2><i class="icon lucide-info"></i> Propósito de esta Guía</h2>
+        <p>Este sitio busca aclarar las dudas más comunes sobre la vinculación laboral en Colombia. El contexto actual es de intenso debate sobre reformas que buscan cambiar reglas establecidas hace más de 20 años, afectando directamente a trabajadores y empleadores.</p>
+    </section>
+
+    <section id="reformas" class="card">
+        <h2><i class="icon lucide-gavel"></i> Contexto: Reformas Laborales Clave</h2>
+        <p>El debate laboral en Colombia se entiende como un péndulo entre dos grandes reformas: la que buscó "flexibilizar" el mercado (**Ley 789 de 2002**) y la que busca "dignificar" y recuperar derechos (**Propuesta de 2023-2024**).</p>
+        
+        <h3>La Flexibilización: Ley 789 de 2002 (Gobierno Uribe)</h3>
+        <p>Bajo el argumento de querer incentivar la contratación y reducir el desempleo, esta ley introdujo cambios significativos que redujeron costos para los empleadores:</p>
+        <ul>
+            <li>**Jornada Nocturna:** El recargo nocturno (35%) se movió. Antes empezaba a las 6:00 p.m. y con la ley pasó a empezar a las **10:00 p.m.** (Actualmente inicia a las 9:00 p.m. por la Ley 1846 de 2017).</li>
+            <li>**Dominicales y Festivos:** El recargo por trabajar un domingo o festivo se redujo. Pasó de ser un 100% adicional al día (pago triple) a ser solo del **75%** adicional (pago doble y cuarto).</li>
+            <li>**Indemnización por despido:** Se redujo el costo de la indemnización por despido sin justa causa para contratos indefinidos.</li>
+        </ul>
+        <p class="muted"><strong>Impacto:</strong> Sus defensores argumentan que ayudó a formalizar empleo, mientras que sus críticos sostienen que precarizó las condiciones laborales sin un impacto real en el desempleo de fondo.</p>
+
+        <h3>La Dignificación: Propuesta de Reforma (Gobierno Petro)</h3>
+        <p>La reforma laboral presentada por el gobierno actual busca revertir muchos de los cambios de la Ley 789 y añadir nuevas protecciones:</p>
+        <ul>
+            <li>**Jornada Nocturna:** Busca que el recargo nocturno vuelva a pagarse desde las **6:00 p.m.**</li>
+            <li>**Dominicales y Festivos:** Propone que el recargo por trabajar estos días vuelva a ser del **100%** (adicional al pago del día).</li>
+            <li>**Contrato Indefinido:** Busca que el contrato a término indefinido sea la regla general, limitando fuertemente el uso de contratos a término fijo y por obra o labor.</li>
+        </ul>
+        <p class="muted"><strong>Impacto:</strong> Los gremios empresariales advierten que aumentará los costos, mientras que los sindicatos la ven como una deuda histórica para dignificar el trabajo.</p>
+    </section>
+
+    <section id="panorama" class="card">
+        <h2><i class="icon lucide-pie-chart"></i> Panorama Laboral Actual en Colombia</h2>
+        <p>Para entender cualquier contrato, hay que entender el contexto del mercado laboral colombiano, marcado por un desafío principal: **la informalidad**.</p>
+        
+        <ul>
+            <li>**Alta Informalidad:** Es el problema estructural. Más de la mitad de los trabajadores en Colombia (cifras del DANE rondan el 55%-60%) son informales.  Esto significa que trabajan "por cuenta propia" o en pequeños negocios sin contrato, **sin acceso a seguridad social** (salud y pensión contributiva), ni a prestaciones.</li>
+            <li>**Desempleo:** Aunque la tasa de desempleo es una cifra importante, la alta informalidad es más grave, pues implica que millones de personas *sí* trabajan, pero en condiciones precarias.</li>
+            <li>**El Abuso del "Contrato de Servicios":** Muchas empresas usan el Contrato de Prestación de Servicios (CPS) de forma indebida para evitar pagar prestaciones y seguridad social, exigiendo subordinación. Este es el origen de la mayoría de demandas por "Contrato Realidad".</li>
+        </ul>
+    </section>
+
+    <section id="historia" class="card">
+        <h2><i class="icon lucide-trending-up"></i> Derechos Laborales: 50 Años de Evolución</h2>
+        <p>El panorama laboral de Colombia no se puede entender sin mirar las últimas cinco décadas, un período marcado por un péndulo entre la **protección** y la **flexibilización**.</p>
+
+        <h3>Cifras Clave (Aprox. 1975-2025)</h3>
+        <p class="muted">Estas son las cifras estructurales que definen el mercado laboral colombiano más allá de las leyes.</p>
+        
+        <div class="kpi-container">
+            <div class="kpi-box">
+                <div class="kpi-number">~58%</div>
+                <div class="kpi-label">Tasa de Informalidad</div>
+                <div class="kpi-desc">El problema N.º 1. Históricamente, más de la mitad de los trabajadores no cotiza a pensión ni ARL.</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-number">9% - 20%</div>
+                <div class="kpi-label">Tasa de Desempleo</div>
+                <div class="kpi-desc">Ha sido volátil, con picos históricos en crisis (fin de los 90s, COVID-19) y valles en bonanzas económicas.</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-number">+Real</div>
+                <div class="kpi-label">Salario Mínimo (SMLMV)</div>
+                <div class="kpi-desc">En los últimos 50 años, el SMLMV casi siempre ha subido por encima de la inflación, ganando poder adquisitivo real.</div>
+            </div>
+        </div>
+
+        <h3>Balance: ¿Beneficioso o Vulneración de Derechos?</h3>
+        <p>Esta es la pregunta central del debate político y no tiene una respuesta única. Depende de la perspectiva:</p>
+        
+        <h4 style="color: var(--accent);">Argumento Pro-Flexibilización (Beneficioso)</h4>
+        <p>Los gremios y defensores de las reformas de los 90s/2000s sostienen que el CST original era "demasiado rígido" y desincentivaba la contratación formal. Argumentan que al reducir costos, las empresas se animarían a crear más empleos formales. <strong>El objetivo era la generación de empleo.</strong></p>
+
+        <h4 style="color: var(--accent);">Argumento Pro-Derechos (Vulneración)</h4>
+        <p>Los sindicatos sostienen que la flexibilización fue una clara **precarización**. Argumentan que los derechos (como el pago justo por trabajo nocturno) son irrenunciables y que reducirlos no creó más empleo formal, sino que simplemente **abarató el costo del trabajador**. <strong>El objetivo es la dignidad del trabajo.</strong></p>
+    </section>
+
+    <section id="tipos" class="card">
+        <h2><i class="icon lucide-layers"></i> Principales Tipos de Vinculación</h2>
+        <details open>
+            <summary>Contrato a Término Indefinido (Laboral)</summary>
+            <p>Es la regla general. No tiene fecha de terminación definida. Ofrece la mayor estabilidad, pues un despido sin justa causa genera el pago de una **indemnización**. Incluye todas las prestaciones sociales (primas, cesantías, intereses de cesantías, vacaciones) y seguridad social a cargo del empleador.</p>
+        </details>
+        <details>
+            <summary>Contrato a Término Fijo (Laboral)</summary>
+            <p>Tiene una fecha de finalización clara. **Siempre debe constar por escrito.** Si el plazo es inferior a 1 año, solo se puede prorrogar 3 veces por períodos iguales o inferiores; luego, las renovaciones deben ser de al menos 1 año. Para no renovarlo, el empleador debe dar un **preaviso** de al menos 30 días.</p>
+        </details>
+        <details>
+            <summary>Contrato por Obra o Labor (Laboral)</summary>
+            <p>Es un contrato temporal ligado a la duración de una obra específica. Finaliza cuando la obra termina. Otorga todas las prestaciones sociales. **Importante:** Si el empleador lo termina sin justa causa *antes* de que finalice la obra, debe indemnizar.</p>
+        </details>
+        <details>
+            <summary>Contrato por Prestación de Servicios (Civil/Comercial)</summary>
+            <p>**Este no es un contrato laboral.** Es un vínculo comercial o civil para ejecutar una labor con **autonomía e independencia**. No hay subordinación. Por esto, **no genera prestaciones sociales**. El contratista debe pagar la totalidad de su seguridad social como independiente.</p>
+        </details>
+    </section>
+
+    <section id="realidad" class="card">
+        <h2><i class="icon lucide-check-check"></i> El "Contrato Realidad" (Art. 23 CST)</h2>
+        <p>En Colombia, aplica el **Principio de la Realidad sobre las Formas** . No importa cómo se llame el contrato (ej. "Prestación de Servicios"); si en la práctica se cumplen los 3 elementos de un contrato laboral, la ley lo considera como tal.</p>
+        <p>Un juez declarará un "contrato realidad" si usted prueba estos **3 elementos simultáneos**:</p>
+        <ul>
+            <li>**Prestación personal del servicio:** Usted debe hacer el trabajo personalmente.</li>
+            <li>**Continuada Subordinación:** Usted recibe órdenes, debe cumplir un horario estricto, o le imponen cómo hacer su labor. **Esta es la clave.**</li>
+            <li>**Salario o Remuneración:** Recibe un pago a cambio de su servicio.</li>
+        </ul>
+        <p>Si se configuran, usted tiene derecho al pago retroactivo de todas las prestaciones sociales, incluso si firmó un contrato de prestación de servicios.</p>
+    </section>
+
+    <section id="comparacion" class="card">
+        <h2><i class="icon lucide-balance"></i> Comparación de Contratos Laborales</h2>
+        <table>
+            <thead><tr><th>Aspecto</th><th>Término Indefinido</th><th>Término Fijo</th><th>Obra o Labor</th></tr></thead>
+            <tbody>
+                <tr><td>Estabilidad</td><td>Alta. Solo termina por justa causa o pago de indemnización.</td><td>Media. Depende de la renovación y preaviso de 30 días.</td><td>Baja. Finaliza al terminar la obra.</td></tr>
+                <tr><td>Prestaciones Sociales</td><td>Sí (Todas)</td><td>Sí (Todas)</td><td>Sí (Todas)</td></tr>
+                <tr><td>Pago Seguridad Social</td><td>Mayoría el empleador</td><td>Mayoría el empleador</td><td>Mayoría el empleador</td></tr>
+                <tr><td>Indemnización</td><td>Sí (Según antigüedad)</td><td>Sí (Valor de salarios faltantes)</td><td>Sí (Valor de salarios faltantes)</td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: var(--accent); margin-top: 20px;">Diferencia Clave: Laboral vs. Prestación de Servicios</h3>
+        <table>
+            <thead><tr><th>Aspecto</th><th>Contrato Laboral</th><th>Contrato de Servicios</th></tr></thead>
+            <tbody>
+                <tr><td>**Vínculo**</td><td>Subordinado (Jefe-Empleado)</td><td>Autónomo (Contratista)</td></tr>
+                <tr><td>**Ley que lo rige**</td><td>Código Sustantivo del Trabajo</td><td>Código Civil / Comercial</td></tr>
+                <tr><td>**Prestaciones Sociales**</td><td>**Sí**</td><td>**No**</td></tr>
+                <tr><td>**Pago Seguridad Social**</td><td>Compartido (Mayoría el empleador)</td><td>**100% a cargo del contratista**</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="tercerizacion" class="card">
+        <h2><i class="icon lucide-users"></i> Tercerización e Intermediación</h2>
+        <p>Es legal que una empresa (beneficiaria) contrate a otra (contratista o temporal) para que le provea personal. Si usted es tercerizado, sus derechos laborales deben ser garantizados por su empleador directo (la empresa contratista o temporal).</p>
+        <p>Si la tercerización se usa para ocultar al verdadero empleador y desmejorar sus condiciones (lo cual es ilegal), usted puede alegar un **contrato realidad** con la empresa beneficiaria.</p>
+        <a class="btn" href="https://www.mintrabajo.gov.co/web/guest/inspeccion-vigilancia-y-control" target="_blank">Guía de Tercerización</a>
+    </section>
+
+    <section id="formulario" class="card">
+        <h2><i class="icon lucide-edit"></i> Genera tu queja o derecho de petición</h2>
+        <p class="muted">Use esta herramienta para estructurar una queja básica ante el Ministerio de Trabajo o un derecho de petición para su empleador/contratante.</p>
+        <form id="quejaForm">
+            <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+            <input type="text" id="cedula" placeholder="Número de cédula" required>
+            <input type="text" id="nombre_empresa" placeholder="Nombre de la empresa o empleador" required>
+            <input type="email" id="email" placeholder="Tu email o dirección para notificaciones" required>
+            <textarea id="descripcion" placeholder="Describe tu situación: ¿Qué pasó? ¿Cuándo? ¿Dónde? Sé lo más claro posible." required></textarea>
+            <button type="button" class="btn">Generar texto de Queja</button>
+        </form>
+        <pre id="resultado"></pre>
+        <a class="btn" href="https://www.mintrabajo.gov.co/web/guest/servicio-al-ciudadano/pqrsd" target="_blank" style="margin-top: 15px;">Enviar queja oficial a MinTrabajo</a>
+    </section>
+
+    <section id="leyes" class="card">
+        <h2><i class="icon lucide-book-open"></i> Leyes y Sentencias Relevantes</h2>
+        <ul>
+            <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=334" target="_blank">Código Sustantivo del Trabajo (CST)</a> - La norma principal.</li>
+            <li><a href="https://www.suin-juriscol.gov.co/viewDocument.asp?id=20018828" target="_blank">Constitución Política (Art. 25, 53)</a> - Derecho al trabajo y principios mínimos.</li>
+            <li><a href="https://www.gerencie.com/articulo-23-del-codigo-sustantivo-del-trabajo.html" target="_blank">Art. 23 del CST</a> - Elementos esenciales del contrato (Contrato Realidad).</li>
+            <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4904" target="_blank">Ley 789 de 2002</a> - Reforma de flexibilización laboral.</li>
+            <li><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=18843" target="_blank">Ley 1010 de 2006</a> - Medidas contra el Acoso Laboral.</li>
+        </ul>
+    </section>
+    
+    <div id="chat-launcher">
+        <i class="icon lucide-message-circle"></i>
+    </div>
+
+    <div id="chat-widget" class="hidden">
+        <div class="chat-header">
+            <h3><i class="icon lucide-bot"></i> Asistente Laboral</h3>
+            <button id="chat-close"><i class="icon lucide-x"></i></button>
+        </div>
+        <div id="chat-messages">
+        </div>
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Escribe tu duda (ej. 'reforma')..." autocomplete="off">
+            <button type="submit"><i class="icon lucide-send"></i></button>
+        </form>
+    </div>
+
+</main>
+
+  <footer>
+    <p>© 2025 Guía Vinculación Laboral — Esta información es una guía educativa y no reemplaza la asesoría de un abogado laboralista. Las leyes pueden cambiar.</p>
+  </footer>
+</body>
+<script>
+  // ==========================================================
+  // LÓGICA DEL FORMULARIO DE QUEJA (generarQueja)
+  // ==========================================================
+  function generarQueja(){
+    const nombre = document.getElementById('nombre').value;
+    const cedula = document.getElementById('cedula').value;
+    const empresa = document.getElementById('nombre_empresa').value;
+    const email = document.getElementById('email').value;
+    const descripcion = document.getElementById('descripcion').value;
+    const resultadoPre = document.getElementById('resultado');
+
+    if (!nombre || !cedula || !empresa || !email || !descripcion) {
+      resultadoPre.textContent = "Por favor, complete todos los campos para generar la queja.";
+      return;
+    }
+
+    const texto = `Ciudad y fecha: [Insertar ciudad y fecha]
+
+Señores
+MINISTERIO DE TRABAJO / [O el nombre de la empresa a la que va dirigida]
+Asunto: Derecho de Petición - Queja por presunta vulneración de derechos laborales
+
+Yo, ${nombre}, identificado(a) con cédula de ciudadanía N.º ${cedula}, actuando en nombre propio, me dirijo a ustedes con el fin de presentar la siguiente queja/petición, basada en los siguientes:
+
+HECHOS:
+
+1. Ingresé a laborar para la empresa ${empresa} el día [Insertar fecha de inicio].
+2. Mi labor consiste en [Describir brevemente el cargo o función].
+3. La situación que motiva esta queja es la siguiente:
+${descripcion}
+
+PETICIÓN:
+
+Con base en los hechos descritos, solicito respetuosamente:
+
+1. Que se investigue la conducta de la empresa ${empresa} respecto a mi situación laboral.
+2. [Añadir petición específica, ej: Que se me reconozca y pague las horas extras adeudadas / Que se aclare mi tipo de vinculación / Que se tomen medidas por acoso laboral].
+3. Que se ordene a la empresa el cumplimiento de mis derechos laborales conforme al Código Sustantivo del Trabajo.
+
+FUNDAMENTOS DE DERECHO:
+Invoco el Artículo 23 de la Constitución Política (Derecho de Petición), el Artículo 53 de la Constitución (Principios laborales) y los artículos pertinentes del Código Sustantivo del Trabajo.
+
+NOTIFICACIONES:
+Agradezco enviar cualquier respuesta o notificación a la siguiente dirección/email: ${email}
+
+Atentamente,
+
+_________________________
+${nombre}
+C.C. ${cedula}
+`;
+    resultadoPre.textContent = texto;
+  }
+  
+
+  // ==========================================================
+  // LÓGICA DEL ASISTENTE DE CHAT (Chatbot)
+  // ==========================================================
+
+  // Obtener los elementos del DOM
+  const launcher = document.getElementById('chat-launcher');
+  const widget = document.getElementById('chat-widget');
+  const closeButton = document.getElementById('chat-close');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatMessages = document.getElementById('chat-messages');
+
+  // Función para alternar la visibilidad del widget
+  function toggleChat() {
+    widget.classList.toggle('hidden');
+    // Si se abre y no hay mensajes, manda el mensaje de bienvenida.
+    if (!widget.classList.contains('hidden') && chatMessages.children.length === 0) {
+        addBotMessage("¡Hola! Soy tu asistente virtual. 🤖<br>Puedo ayudarte con dudas sobre el Código Sustantivo del Trabajo. <strong>No soy abogado</strong>, pero puedo guiarte al contenido relevante.<br><br>Intenta preguntarme por palabras clave como: <ul><li>Contrato fijo</li><li>Prestación de servicios</li><li>Reforma laboral</li><li>Denuncia</li></ul>");
+    }
+  }
+
+  // Event Listeners para abrir y cerrar
+  launcher.addEventListener('click', toggleChat);
+  closeButton.addEventListener('click', toggleChat);
+
+  // Manejar el envío del formulario del chat
+  chatForm.addEventListener('submit', function(e) {
+    e.preventDefault(); 
+    const userInput = chatInput.value.trim();
+    if (userInput === "") return;
+
+    // Añadir el mensaje del usuario al chat
+    addUserMessage(userInput);
+    chatInput.value = "";
+
+    // Generar una respuesta del bot
+    setTimeout(() => {
+      generateBotResponse(userInput);
+    }, 600); 
+  });
+
+  // Función para añadir mensaje del BOT
+  function addBotMessage(message) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-message bot';
+    msgDiv.innerHTML = message; 
+    chatMessages.appendChild(msgDiv);
+    scrollToBottom();
+  }
+
+  // Función para añadir mensaje del USUARIO
+  function addUserMessage(message) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-message user';
+    msgDiv.textContent = message;
+    chatMessages.appendChild(msgDiv);
+    scrollToBottom();
+  }
+
+  // Función para mover el scroll al final
+  function scrollToBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // --- "CEREBRO" DEL BOT ---
+  function generateBotResponse(userInput) {
+    const input = userInput.toLowerCase();
+
+    // Palabras clave y respuestas
+    if (input.includes('hola') || input.includes('saludos') || input.includes('buenos dias')) {
+      addBotMessage("¡Hola! ¿En qué puedo ayudarte hoy? Recuerda usar palabras clave.");
+    
+    } else if (input.includes('prestacion') || input.includes('servicios') || input.includes('ops')) {
+      addBotMessage("Esa es la duda más común. Un contrato de prestación de servicios <strong>no es laboral</strong>, se rige por el Código Civil y no da derecho a prestaciones.<br><br>Pero si tienes <strong>subordinación</strong> (jefe, horario), podrías estar bajo un 'Contrato Realidad'.<br><br>Puedes leer más en la sección <a href='#realidad'>Contrato Realidad</a> y en la <a href='#comparacion'>comparativa de contratos</a>.");
+    
+    } else if (input.includes('indefinido')) {
+      addBotMessage("El contrato a término indefinido es el más estable. No tiene fecha de fin y da derecho a todas las prestaciones. Puedes ver los detalles en la sección <a href='#tipos'>Tipos de Contrato</a>.");
+    
+    } else if (input.includes('termino fijo') || input.includes('fijo')) {
+      addBotMessage("El contrato a término fijo debe ser por escrito y tiene una duración pactada. ¡Recuerda que deben darte un preaviso de 30 días si no te van a renovar!<br><br>Más detalles en <a href='#tipos'>Tipos de Contrato</a>.");
+    
+    } else if (input.includes('obra o labor') || input.includes('labor')) {
+      addBotMessage("El contrato de obra o labor dura lo que dure el proyecto para el que te contrataron. También da derecho a todas las prestaciones. Mira la <a href='#comparacion'>tabla comparativa</a>.");
+    
+    } else if (input.includes('reforma') || input.includes('petro') || input.includes('uribe')) {
+      addBotMessage("El debate de las reformas es clave. La Ley 789 de 2002 (Uribe) flexibilizó la jornada nocturna y dominicales. La reforma actual (Petro) busca revertir eso y fortalecer el contrato indefinido.<br><br>Toda la información está en la sección <a href='#reformas'>Contexto: Reformas Laborales</a>.");
+    
+    } else if (input.includes('informal') || input.includes('informalidad')) {
+      addBotMessage("La informalidad es el mayor problema de Colombia (más del 50%). Significa trabajar sin contrato ni seguridad social. Puedes leer sobre esto en <a href='#panorama'>Panorama Laboral Actual</a>.");
+    
+    } else if (input.includes('horario') || input.includes('jefe') || input.includes('ordenes')) {
+      addBotMessage("Si tienes un 'contrato de servicios' pero te exigen cumplir horario, recibes órdenes constantes y usas herramientas de la empresa, es muy probable que tengas un <strong>Contrato Realidad</strong>.<br><br>Revisa urgentemente la sección <a href='#realidad'>El 'Contrato Realidad' (Art. 23 CST)</a>.");
+    
+    } else if (input.includes('queja') || input.includes('denuncia') || input.includes('demandar')) {
+      addBotMessage("Si sientes que tus derechos son vulnerados, puedes poner una queja ante el Ministerio de Trabajo.<br><br>Tenemos una herramienta que te ayuda a generar el texto base. La encuentras en <a href='#formulario'>Genera tu queja o derecho de petición</a>.");
+    
+    } else if (input.includes('gracias') || input.includes('adios') || input.includes('chao')) {
+      addBotMessage("¡Un gusto ayudarte! No olvides consultar a un abogado si tienes un caso complejo. ¡Que tengas un buen día!");
+    
+    } else {
+      // Respuesta por defecto
+      addBotMessage("No entendí muy bien tu consulta. 😟<br>Intenta usar palabras más simples como 'reforma', 'contrato fijo', 'prestación de servicios', 'horario' o 'queja'.");
+    }
+  }
+
+  // Asegura que el botón del formulario use la función al cargar la página.
+  document.addEventListener('DOMContentLoaded', function() {
+    const quejaButton = document.querySelector('#quejaForm button');
+    if(quejaButton) {
+        // Asocia la función generarQueja al evento click del botón del formulario.
+        quejaButton.addEventListener('click', generarQueja);
+    }
+  });
+</script>
+</html>

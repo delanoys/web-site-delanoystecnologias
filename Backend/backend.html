@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backend desde Cero a Experto</title>
+  <link rel="stylesheet" href="backend.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <button id="menuBtn" class="icon-btn" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false">☰</button>
+      <h1>Backend Mastery</h1>
+    </div>
+    <div class="actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Cambiar tema">🌓</button>
+      <button id="resetProgress" class="btn subtle" title="Reiniciar progreso">Reiniciar</button>
+    </div>
+  </header>
+
+  <aside id="sidebar" class="sidebar" aria-label="Navegación principal">
+    <nav>
+      <ul id="navList">
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#ruta">Ruta de Aprendizaje</a></li>
+        <li><a href="#modulos">Módulos</a></li>
+        <li><a href="#practicas">Prácticas</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#glosario">Glosario</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main id="content" class="content">
+    <!-- INICIO -->
+    <section id="inicio" class="view visible">
+      <div class="hero">
+        <h2>Aprende Desarrollo Backend</h2>
+        <p>De cero a experto con una ruta guiada, prácticas reales y evaluaciones interactivas. Tu progreso se guarda automáticamente.</p>
+        <div class="cta-wrap">
+          <a class="btn primary" href="#ruta">Comenzar</a>
+          <a class="btn" href="#modulos">Ver módulos</a>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="card highlight">
+          <h3>¿Qué es el Backend?</h3>
+          <p>El backend es la lógica del servidor: recibe peticiones, procesa datos, accede a bases de datos y devuelve respuestas seguras y eficientes.</p>
+          <ul class="pill-list">
+            <li>HTTP/REST</li><li>Bases de datos</li><li>Autenticación</li><li>Escalabilidad</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Progreso general</h3>
+          <div aria-label="Progreso del curso" class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div id="globalProgress" class="bar" style="width:0%"></div>
+          </div>
+          <p id="progressText">0% completado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RUTA -->
+    <section id="ruta" class="view">
+      <h2>Ruta de Aprendizaje</h2>
+      <p class="muted">Sigue este orden recomendado. Marca cada hito cuando lo domines.</p>
+      <ol class="roadmap" id="roadmapList"></ol>
+    </section>
+
+    <!-- MODULOS -->
+    <section id="modulos" class="view">
+      <div class="toolbar">
+        <h2>Módulos del Curso</h2>
+        <input id="searchInput" type="search" placeholder="Buscar módulo o tema…" aria-label="Buscar" />
+      </div>
+      <div id="modulesContainer" class="accordion"></div>
+    </section>
+
+    <!-- PRACTICAS -->
+    <section id="practicas" class="view">
+      <h2>Prácticas guiadas</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>API REST de Tareas</h3>
+          <p>Construye una API CRUD con autenticación por tokens, validación y pruebas.</p>
+          <button class="btn small complete-btn" data-id="practice_api">Marcar como completada</button>
+          <details class="spoiler">
+            <summary>Requisitos</summary>
+            <ul>
+              <li>Endpoints: <code>/auth</code>, <code>/tasks</code></li>
+              <li>DB: tablas <code>users</code>, <code>tasks</code></li>
+              <li>Pruebas: integración y unitarias</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="card">
+          <h3>Servicio de Mensajería</h3>
+          <p>Implementa colas (ej. RabbitMQ) para procesar trabajos en segundo plano.</p>
+          <button class="btn small complete-btn" data-id="practice_queue">Marcar como completada</button>
+          <details class="spoiler">
+            <summary>Requisitos</summary>
+            <ul>
+              <li>Productor/Consumidor</li>
+              <li>Idempotencia</li>
+              <li>Reintentos y DLQ</li>
+            </ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="view">
+      <div class="quiz-header">
+        <h2>Quiz Rápido</h2>
+        <button id="startQuiz" class="btn primary">Comenzar</button>
+        <span id="timer" class="badge">00:00</span>
+      </div>
+      <div id="quizContainer" class="quiz hidden" role="group" aria-label="Preguntas de evaluación"></div>
+      <div id="quizResult" class="result"></div>
+    </section>
+
+    <!-- RECURSOS -->
+    <section id="recursos" class="view">
+      <h2>Recursos recomendados</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Buenas prácticas</h3>
+          <ul class="checklist">
+            <li><input type="checkbox" data-check="env"> Variables de entorno seguras</li>
+            <li><input type="checkbox" data-check="logs"> Logs estructurados</li>
+            <li><input type="checkbox" data-check="errors"> Manejo de errores centralizado</li>
+            <li><input type="checkbox" data-check="testing"> Cobertura de pruebas saludable</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Plantillas de diseño</h3>
+          <p>Revisa patrones como Repository, Unit of Work, Circuit Breaker y Saga para distribuir transacciones.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GLOSARIO -->
+    <section id="glosario" class="view">
+      <h2>Glosario</h2>
+      <dl class="glossary">
+        <dt>API</dt>
+        <dd>Interfaz para que dos sistemas se comuniquen, generalmente sobre HTTP.</dd>
+        <dt>REST</dt>
+        <dd>Estilo arquitectónico que usa recursos, verbos HTTP y representaciones.</dd>
+        <dt>Idempotencia</dt>
+        <dd>Propiedad por la cual ejecutar la misma operación múltiples veces produce el mismo resultado.</dd>
+        <dt>Observabilidad</dt>
+        <dd>Capacidad de entender el estado interno del sistema con métricas, logs y trazas.</dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> Backend Mastery · Hecho con ❤️ para aprender.</small>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite" class="toast"></div>
+
+  <script src="backend.js"></script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+/*
+ * Archivo: icc.css
+ * Descripción: Estilos generales, carrusel de imágenes y plan de juego para ICC Central Microfútbol.
+ * Autor: Asistente Gemini
+ */
+
+/* ======================================= */
+/* 1. Definición de Variables y Estilos Base */
+/* ======================================= */
+
+:root {
+    --primary: #2c3e50; /* Azul oscuro (Encabezados/Fondo Header) */
+    --secondary: #3498db; /* Azul brillante (Acentos) */
+    --light-bg: #f4f4f4; /* Fondo de la página */
+    --card-bg: #ffffff;
+    --accent-light: #ecf0f1; /* Gris claro (Motto/Fondo de tarjetas especiales) */
+    --text-color: #333;
+    --border-color: #e0e0e0;
+}
+
+/* --- Estilos Generales --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Iconos Lucide (Simulación) --- */
+.icon {
+    font-family: 'Lucide';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+/* --- Encabezado --- */
+header {
+    background-color: var(--primary);
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+header p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* --- Contenido Principal --- */
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* --- Títulos Genéricos --- */
+h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
+/* ======================================= */
+/* 2. Galería de Fotos (Carrusel) */
+/* ======================================= */
+
+.slideshow-container {
+    max-width: 900px;
+    height: 400px; /* ALTURA FIJA PARA ESCRITORIO */
+    
+    position: relative;
+    margin: 20px auto 30px auto; 
+    overflow: hidden; 
+    padding: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* Flex es clave para centrar botones */
+    display: flex; 
+    align-items: center; 
+    border-radius: 8px;
+}
+.slideshow-container h2 {
+    display: none; /* Ocultar título interno del carrusel */
+}
+
+/* El elemento de slide */
+.mySlides {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Imagen dentro del slide: CLAVE para el tamaño y ajuste */
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 8px;
+    /* CLAVE: Asegura que la imagen cubra el contenedor sin deformarse, cortando los bordes extra */
+    object-fit: contain; 
+    margin: 0;
+    border: none;
+}
+
+/* Botones Anterior y Siguiente */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -30px; 
+    z-index: 2; 
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Indicadores (puntos) */
+.dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active-dot {
+    background-color: var(--secondary) !important;
+}
+
+/* Animación de Transición (Fade) */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+
+/* ======================================= */
+/* 3. Sección Plan de Juego */
+/* ======================================= */
+
+.plan-de-juego {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--accent-light);
+    margin-top: 2rem;
+}
+
+.plan-de-juego h2 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.plan-de-juego .subtitulo {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+}
+
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.plan-card {
+    background-color: #f9f9f9;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    transition: transform 0.3s;
+}
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.plan-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: var(--primary);
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 0.5rem;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-card li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio para iconos/emojis */
+}
+
+.plan-card .verse {
+    font-style: italic;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Estilos para "Hierro con Hierro" */
+.hierro-table {
+    display: flex;
+    justify-content: space-between;
+}
+.hierro-table div {
+    flex-basis: 48%;
+}
+.hierro-table h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--secondary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Estilos para "Si uno cae" */
+.plan-card.cae {
+    text-align: center;
+    background-color: var(--accent-light);
+}
+.plan-card.cae h3 {
+    border: none;
+}
+.plan-card.cae h4 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* --- Lema Final --- */
+.motto {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    padding: 1rem;
+    background-color: var(--accent-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* --- Pie de Página --- */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* ======================================= */
+/* 4. Responsive Design (Móviles) */
+/* ======================================= */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    
+    main {
+        margin: 1rem auto;
+        padding: 0.5rem;
+    }
+    
+    .slideshow-container {
+        height: 250px; /* ALTURA REDUCIDA EN MÓVILES */
+        margin: 10px auto 20px auto;
+    }
+
+    .plan-grid {
+        grid-template-columns: 1fr; /* Columna única en móviles */
+    }
+
+    .motto {
+        font-size: 1.2rem;
+    }
+}

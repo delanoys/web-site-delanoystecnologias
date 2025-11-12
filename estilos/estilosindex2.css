@@ -793,4 +793,115 @@ a:hover {
                                     }
                                 }
                             }
-                            }
+                            /* estilos footer */
+                             .site-footer {
+            background: linear-gradient(180deg,#042a3f 0%, #063b66 100%);
+            color: #e6f7ff;
+            padding: 28px 18px;
+            margin-top: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(144, 168, 194, 0.06);
+            font-size: 0.95rem;
+        }
+        .footer-container { max-width:1200px; margin:0 auto; display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; }
+        .footer-col { flex:1 1 220px; min-width:180px; }
+        .footer-col h4 { margin:0 0 8px; font-size:1.05rem; color:#eaf6ff; }
+        .footer-col a { color:#dff3ff; text-decoration:none; display:block; margin:6px 0; }
+        .footer-bottom { margin-top:18px; text-align:center; color:#bfe9ff; font-size:0.9rem; }
+        .social-icons a { margin-right:10px; color:#dff3ff; text-decoration:none; font-size:1.15rem; }
+
+        /* Asistente IA: botón flotante y panel */
+        #ai-assistant-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width:56px;
+            height:56px;
+            border-radius:50%;
+            background:#007bff;
+            color:#fff;
+            border:none;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 10px 30px rgba(0,123,255,0.18);
+            cursor:pointer;
+            z-index:1200;
+        }
+        #ai-panel {
+            position: fixed;
+            right: 20px;
+            bottom: 92px;
+            width: 340px;
+            max-width: calc(100% - 40px);
+            background:#ffffff;
+            border-radius:12px;
+            box-shadow:0 18px 60px rgba(2,40,80,0.12);
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            z-index:1200;
+            font-family: inherit;
+        }
+        #ai-panel header {
+            background: linear-gradient(90deg,#063b66,#0a6fbf);
+            color:#fff;
+            padding:12px 14px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:8px;
+        }
+        #ai-messages {
+            padding:12px;
+            height: 260px;
+            overflow:auto;
+            background:linear-gradient(180deg,#f8fbff,#fff);
+        }
+        .ai-msg { margin:10px 0; max-width:85%; padding:8px 10px; border-radius:10px; line-height:1.35; }
+        .ai-msg.user { margin-left:auto; background:#007bff; color:#fff; }
+        .ai-msg.bot  { margin-right:auto; background:#eef8ff; color:#063b66; }
+        #ai-form { display:flex; gap:8px; padding:10px; border-top:1px solid #eee; background:#fff; }
+        #ai-input { flex:1; padding:8px 10px; border:1px solid #e6eef9; border-radius:8px; font-size:0.95rem; }
+        #ai-send { background:#0a6fbf; color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+
+        @media (max-width:480px){
+            #ai-panel { right: 12px; left:12px; bottom: 88px; width:auto; }
+        }
+
+        /* otros estilos */
+          .devops-cta-section {
+            background-color: #e6f7ff; /* Un azul claro para destacar */
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .devops-cta-section .section-title {
+            color: #004d99; /* Azul oscuro */
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .devops-cta-section .section-description {
+            max-width: 800px;
+            margin: 0 auto 25px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .devops-cta-section .cta-button {
+            display: inline-block;
+            background-color: #007bff; /* Azul primario */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .devops-cta-section .cta-button:hover {
+            background-color: #0056b3;
+        }
