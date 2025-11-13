@@ -8,16 +8,13 @@
     <meta name="description"
         content="Servicios de soporte técnico, desarrollo web y capacitación tecnológica profesional. Misión, Visión y Recursos Educativos de Delanoys Tecnologías.">
     
-      
-    <link rel="stylesheet" href="/estilos/estilosindex2.css">
+    <link rel="stylesheet" href="/estilos/estilosindex.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="fonts/fontawesome-free-6.7.2-web/css/all.css">
-    
-   
 </head>
 
 <body>
@@ -67,27 +64,36 @@
 
     <main class="main-content" role="main">
         
-        <section class="hero-section" id="inicio">
-            <div class="banner-content">
-                <div class="banner-slider">
-                    <video class="banner-video"
-                        src="video/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).mp4" autoplay loop
-                        muted playsinline></video>
-                </div>
-                <div class="hero-text">
-                    <h1 class="hero-title"><i class="fa-solid fa-keyboard"></i> Soluciones Tecnológicas Avanzadas</h1>
-                    <h2 class="section-title"><i class="fa-regular fa-circle-user"></i> Bienvenidos a Nuestra Plataforma</h2>
-                    <p class="section-description intro-paragraph">
-                        Ofrecemos soluciones integrales en tecnología, desde **soporte técnico especializado**
-                        hasta **educación web de calidad profesional**.
-                    </p>
-                    <p class="section-description intro-paragraph">
-                        Somos un equipo de especialistas, comprometidos con la excelencia y la innovación, asegurando que tu infraestructura tecnológica funcione de
-                        manera eficiente y confiable.
-                    </p>
-                </div>
+       <section class="hero-section" id="inicio">
+    <div class="banner-content">
+        <div class="banner-slider">
+            <video class="banner-video"
+                src="video/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).mp4" autoplay loop
+                muted playsinline></video>
+        </div>
+        
+        <div class="hero-text hero-text-nuevo">
+            <h1 class="hero-title">
+                <i class="fa-solid fa-rocket"></i> 
+                Impulsando la Transformación 
+                <span class="text-acento">Tecnológica</span>
+            </h1>
+            
+            <h2 class="section-subtitle">
+                Soporte de Élite, Desarrollo Web Moderno y Formación Continua.
+            </h2>
+            
+            <p class="section-description intro-paragraph">
+                Somos su socio estratégico en la adopción de **soluciones integrales** y la **capacitación profesional** que garantiza la eficiencia y el crecimiento de su negocio.
+            </p>
+            
+            <div class="hero-actions">
+                 <a href="#servicios" class="cta-button primary-cta-hero">Ver Servicios</a>
+                 <a href="#contacto" class="cta-button secondary-cta-hero">Contáctenos Ahora</a>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <section class="mv-section">
             <div class="container mv-grid">
@@ -154,129 +160,12 @@
 
         <section class="devops-cta-section" id="devops-destacada" role="region" aria-labelledby="devops-title">
             <style>
-                /* DevOps CTA: estilos mejorados, responsive y accesibles */
-                .devops-cta-section {
-                    background: linear-gradient(180deg, #eaf6ff 0%, #ffffff 100%);
-                    padding: 30px 18px;
-                    border-radius: 14px;
-                    margin: 36px 0;
-                    box-shadow: 0 10px 30px rgba(2, 40, 80, 0.06);
-                    -webkit-font-smoothing:antialiased;
-                }
-
-                .devops-cta-container {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 18px;
-                    align-items: center;
-                    max-width: 1200px;
-                    margin: 0 auto;
-                }
-
-                /* Layout para pantallas grandes: texto a la izquierda, imagen a la derecha */
-                @media (min-width: 900px) {
-                    .devops-cta-container {
-                        grid-template-columns: 1fr 420px;
-                        gap: 28px;
-                    }
-                }
-
-                .devops-cta-content {
-                    padding: 6px 4px;
-                }
-
-                .devops-cta-section .section-title {
-                    color: #063b66;
-                    font-size: 1.6rem;
-                    margin: 0 0 8px;
-                }
-
-                .devops-cta-section .section-description {
-                    color: #243447;
-                    font-size: 1rem;
-                    line-height: 1.5;
-                    margin: 0 0 14px;
-                    max-width: 60ch;
-                }
-
-                .devops-cta-actions {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 10px;
-                    align-items: center;
-                }
-
-                .cta-button {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 10px;
-                    background-color: #007bff;
-                    color: #fff;
-                    padding: 10px 16px;
-                    border-radius: 8px;
-                    text-decoration: none;
-                    font-weight: 600;
-                    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.12);
-                    transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
-                }
-
-                .cta-button:hover,
-                .cta-button:focus {
-                    transform: translateY(-2px);
-                    background-color: #0062d6;
-                    box-shadow: 0 10px 26px rgba(0, 98, 214, 0.14);
-                    outline: none;
-                }
-
-                .cta-button:focus-visible {
-                    outline: 3px solid rgba(0,123,255,0.18);
-                    outline-offset: 3px;
-                }
-
-                /* Imagen: responsive, con borde redondeado y sombra sutil */
-                .devops-figure {
-                    margin: 0;
-                    display: block;
-                    border-radius: 10px;
-                    overflow: hidden;
-                    background: #f6fbff;
-                    box-shadow: 0 8px 24px rgba(6, 59, 102, 0.06);
-                }
-
-                .devops-image {
-                    width: 100%;
-                    height: auto;
-                    display: block;
-                    object-fit: cover;
-                    transition: transform .25s ease, filter .25s ease;
-                }
-
-                .devops-figure:hover .devops-image,
-                .devops-figure:focus-within .devops-image {
-                    transform: scale(1.02);
-                    filter: brightness(1.03);
-                }
-
-                /* Soporte accesible para ocultar texto visualmente cuando sea necesario */
-                .visually-hidden {
-                    position: absolute !important;
-                    height: 1px; width: 1px;
-                    overflow: hidden;
-                    clip: rect(1px, 1px, 1px, 1px);
-                    white-space: nowrap;
-                    border: 0; padding: 0; margin: -1px;
-                }
+               
             </style>
 
-            <div class="devops-cta-container container">
-   
-
-   
+            <div class="devops-cta-container container"></div> 
+        </section>
         
-       
-    
-</div>
-        </section></div>
         <section class="education-section" id="educacion">
             <div class="container">
                 <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Recursos Educativos Destacados</h2>
@@ -357,7 +246,7 @@
  <figure class="education-figure fullstack-figure" aria-label="Imagen: Desarrollador Full‑Stack">
                                 <img
                                     src="/imagenes/DevOps_learning__0.jpg"
-                                    alt="Desarrollador Full‑Stack (diagrama conceptual)"
+                                    alt="Roadmap conceptual de aprendizaje DevOps"
                                     class="edu-image"
                                     loading="lazy"
                                     width="800"
@@ -529,108 +418,11 @@
                                 </div>
                                 <article class="education-item jscamp-item" tabindex="0" aria-labelledby="jscamp-title">
                                     <style>
-                                        .jscamp-item {
-                                            background: linear-gradient(180deg, #ffffff 0%, #f5fbff 100%);
-                                            border: 1px solid #e6f2fb;
-                                            padding: 18px;
-                                            border-radius: 10px;
-                                            box-shadow: 0 6px 18px rgba(6,59,102,0.05);
-                                            margin: 8px 0;
-                                            color: #123;
-                                            line-height: 1.45;
-                                            font-size: 0.97rem;
-                                        }
-
-                                        .jscamp-header {
-                                            display: flex;
-                                            gap: 12px;
-                                            align-items: flex-start;
-                                            justify-content: space-between;
-                                            margin-bottom: 10px;
-                                        }
-
-                                        .jscamp-header h4 {
-                                            margin: 0;
-                                            font-size: 1.05rem;
-                                            color: #063b66;
-                                            display: flex;
-                                            gap: 8px;
-                                            align-items: center;
-                                        }
-
-                                        .jscamp-lead {
-                                            margin: 6px 0 12px 0;
-                                            color: #234;
-                                        }
-
-                                        .jscamp-actions {
-                                            display: flex;
-                                            gap: 8px;
-                                            margin-top: 8px;
-                                        }
-
-                                        .jscamp-btn {
-                                            display: inline-block;
-                                            background: #007bff;
-                                            color: #fff;
-                                            padding: 8px 12px;
-                                            border-radius: 8px;
-                                            text-decoration: none;
-                                            font-weight: 600;
-                                            box-shadow: 0 6px 14px rgba(0,123,255,0.09);
-                                        }
-
-                                        .jscamp-btn.secondary {
-                                            background: #eaf5ff;
-                                            color: #063b66;
-                                            box-shadow: none;
-                                            border: 1px solid #cfeeff;
-                                        }
-
-                                        .jscamp-modules {
-                                            margin: 12px 0 0 18px;
-                                            padding: 0;
-                                            color: #243447;
-                                        }
-
-                                        .jscamp-modules li {
-                                            margin: 8px 0;
-                                        }
-
-                                        .jscamp-modules strong {
-                                            color: #064a86;
-                                        }
-
-                                        @media (max-width: 700px) {
-                                            .jscamp-header { flex-direction: column; align-items: flex-start; gap: 6px; }
-                                        }
+                                       
                                     </style>
 
 <style>
-.jscamp-image {
-    display: block;
-    max-width: 260px;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    opacity: 0.85;
-    transition: transform .25s ease, opacity .25s ease, box-shadow .25s ease;
-    box-shadow: 0 8px 20px rgba(2, 40, 80, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08));
-    backdrop-filter: blur(6px);
-    object-fit: cover;
-}
-.jscamp-image:hover,
-.jscamp-image:focus {
-    transform: translateY(-4px) scale(1.03);
-    opacity: 1;
-    box-shadow: 0 14px 34px rgba(2, 40, 80, 0.14);
-    outline: none;
-}
-@media (min-width: 900px) {
-    .jscamp-image { max-width: 60%; }
-}
+
 </style>
 
 <img src="/imagenes/jscomp infoJob.png" alt="jscomp infoJob logo" class="jscamp-image" loading="lazy" width="260" height="260" />
@@ -693,8 +485,7 @@
         © <span id="anio-actual"></span> Delanoys Tecnologías — Todos los derechos reservados.
     </div>
 
-    <!-- Asistente virtual IA (interfaz cliente). Para respuestas reales, conecte a un endpoint en servidor que llame a la API de OpenAI/GPT -->
-    <button id="ai-assistant-toggle" aria-label="Abrir asistente de ayuda" title="Asistente"> 
+    <button id="ai-btn-open" aria-label="Abrir asistente de ayuda" title="Asistente"> 
         <i class="fa-solid fa-robot" aria-hidden="true"></i>
     </button>
 
@@ -708,7 +499,7 @@
                 <button id="ai-clear" aria-label="Limpiar conversación" title="Limpiar" style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
-                <button id="ai-close" aria-label="Cerrar asistente" title="Cerrar" style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;">
+                <button id="ai-btn-close" aria-label="Cerrar asistente" title="Cerrar" style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -716,124 +507,17 @@
 
         <div id="ai-messages" aria-live="polite"></div>
 
-        <form id="ai-form" onsubmit="return false;" aria-label="Enviar mensaje al asistente">
+        <form id="ai-input-form" onsubmit="return false;" aria-label="Enviar mensaje al asistente">
             <input id="ai-input" type="text" placeholder="Pregunta sobre servicios, cursos o rutas (ej: Docker, React, cursos)" aria-label="Escribe tu pregunta" />
-            <button id="ai-send" aria-label="Enviar">Enviar</button>
+            <button id="ai-send" aria-label="Enviar"><i class="fa-solid fa-paper-plane"></i></button>
         </form>
     </div>
 
     <script>
         // Footer año
         document.getElementById('anio-actual').textContent = new Date().getFullYear();
-
-        // Asistente UI básica
-        const toggleBtn = document.getElementById('ai-assistant-toggle');
-        const panel = document.getElementById('ai-panel');
-        const closeBtn = document.getElementById('ai-close');
-        const clearBtn = document.getElementById('ai-clear');
-        const messages = document.getElementById('ai-messages');
-        const input = document.getElementById('ai-input');
-        const sendBtn = document.getElementById('ai-send');
-
-        function openPanel() {
-            panel.hidden = false;
-            panel.setAttribute('aria-hidden','false');
-            toggleBtn.setAttribute('aria-expanded','true');
-            input.focus();
-        }
-        function closePanel() {
-            panel.hidden = true;
-            panel.setAttribute('aria-hidden','true');
-            toggleBtn.setAttribute('aria-expanded','false');
-            toggleBtn.focus();
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            panel.hidden ? openPanel() : closePanel();
-        });
-        closeBtn.addEventListener('click', closePanel);
-        clearBtn.addEventListener('click', () => { messages.innerHTML = ''; input.focus(); });
-
-        function appendMessage(text, who='bot') {
-            const el = document.createElement('div');
-            el.className = 'ai-msg ' + (who==='user' ? 'user' : 'bot');
-            el.textContent = text;
-            messages.appendChild(el);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        // Simple fallback responder local (canned responses)
-        function localReply(prompt) {
-            const p = prompt.toLowerCase();
-            if (p.includes('devops') || p.includes('docker') || p.includes('kubernetes')) {
-                return 'Puedes seguir la Ruta DevOps: comienza con Docker, luego Docker Compose, CI/CD (GitHub Actions) y Kubernetes. ¿Quieres que te sugiera un enlace al roadmap?';
-            }
-            if (p.includes('sql') || p.includes('bases')) {
-                return 'Tenemos un curso de SQL que cubre SQLite y PostgreSQL. Revisa "Curso SQL" en la sección de recursos o pregunta por un módulo específico.';
-            }
-            if (p.includes('react') || p.includes('javascript')) {
-                return 'El curso de React incluye JSX, componentes, hooks y ejemplos prácticos. ¿Deseas ver la ruta completa o un ejemplo de componente?';
-            }
-            if (p.includes('contacto') || p.includes('soporte')) {
-                return 'Puedes contactarnos en contacto@delanoys.com o solicitar soporte desde la sección "Contacto". ¿Prefieres que abra el formulario de contacto?';
-            }
-            return 'Puedo ayudar con rutas de aprendizaje, servicios y recursos. Pregunta por ejemplo: "Ruta DevOps", "Curso SQL" o "Soporte remoto".';
-        }
-
-        // Envío: intenta llamar a un endpoint; si falla, usa localReply
-        async function askAssistant(prompt) {
-            appendMessage(prompt, 'user');
-            appendMessage('Escribiendo respuesta...', 'bot');
-            try {
-                // Intentar llamar a tu endpoint de servidor (debes implementar /api/assistant)
-                // Ejemplo:
-                // const res = await fetch('/api/assistant', {
-                //   method: 'POST',
-                //   headers:{'Content-Type':'application/json'},
-                //   body: JSON.stringify({ prompt })
-                // });
-                // if (res.ok) { const data = await res.json(); replaceLastBotMessage(data.reply); return; }
-                // Si no hay endpoint, simulamos retraso y respondemos localmente:
-                await new Promise(r => setTimeout(r, 800));
-                replaceLastBotMessage(localReply(prompt));
-            } catch (err) {
-                replaceLastBotMessage(localReply(prompt));
-            }
-        }
-
-        function replaceLastBotMessage(text) {
-            const botMsgs = messages.querySelectorAll('.ai-msg.bot');
-            if (botMsgs.length) {
-                botMsgs[botMsgs.length - 1].textContent = text;
-            } else {
-                appendMessage(text, 'bot');
-            }
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        sendBtn.addEventListener('click', () => {
-            const v = input.value && input.value.trim();
-            if (!v) return;
-            input.value = '';
-            askAssistant(v);
-        });
-
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendBtn.click();
-            }
-        });
-
-        // Accesibilidad: cerrar con Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !panel.hidden) closePanel();
-        });
-
-        // Mensaje inicial
-        (function welcome(){
-            appendMessage('Hola 👋 — Soy el asistente de Delanoys. Puedo orientarte sobre servicios, cursos y rutas. Prueba con: "Ruta DevOps" o "Curso SQL".', 'bot');
-        })();
     </script>
+    <script src="AsistenteIA.js"></script>
 </footer>
+</body>
 </html>

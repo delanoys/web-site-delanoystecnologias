@@ -3,13 +3,15 @@
  *
  * Módulo para gestionar toda la lógica del asistente de chat (chatbot).
  * Incluye manejo de la UI, interacciones de apertura/cierre, y la simulación de respuestas.
+ * Nota: Los IDs de los elementos han sido estandarizados y la función de limpieza ha sido añadida.
  */
 
 class AsistenteIA {
     constructor() {
-        // Elementos del DOM
+        // Elementos del DOM (IDs estandarizados)
         this.openBtn = document.getElementById('ai-btn-open');
         this.closeBtn = document.getElementById('ai-btn-close');
+        this.clearBtn = document.getElementById('ai-clear');
         this.panel = document.getElementById('ai-panel');
         this.messages = document.getElementById('ai-messages');
         this.input = document.getElementById('ai-input');
@@ -24,7 +26,7 @@ class AsistenteIA {
      */
     init() {
         if (!this.openBtn || !this.panel) {
-            console.error("No se encontraron los elementos del Asistente IA en el DOM.");
+            console.error("No se encontraron los elementos del Asistente IA en el DOM. Verifique los IDs: ai-btn-open, ai-panel.");
             return;
         }
 
@@ -39,6 +41,9 @@ class AsistenteIA {
         // Eventos para abrir y cerrar el panel
         this.openBtn.addEventListener('click', this.openPanel.bind(this));
         this.closeBtn.addEventListener('click', this.closePanel.bind(this));
+        
+        // Evento para limpiar el historial (nueva funcionalidad)
+        this.clearBtn.addEventListener('click', this.clearMessages.bind(this));
 
         // Eventos para enviar el mensaje
         this.sendBtn.addEventListener('click', (e) => this.handleSendMessage(e));
@@ -57,7 +62,7 @@ class AsistenteIA {
      * @param {Event} e - El evento de click o submit.
      */
     handleSendMessage(e) {
-        e.preventDefault(); // Previene el submit del formulario
+        e.preventDefault(); 
         const v = this.input.value && this.input.value.trim();
         if (!v) return;
 
@@ -81,6 +86,15 @@ class AsistenteIA {
         this.panel.hidden = true;
         this.openBtn.hidden = false;
     }
+    
+    /**
+     * Limpia el historial de mensajes del chat y muestra el mensaje de bienvenida.
+     */
+    clearMessages() {
+        this.messages.innerHTML = '';
+        this.welcome(); 
+        this.input.focus(); 
+    }
 
     /**
      * Agrega un mensaje al contenedor de mensajes.
@@ -89,15 +103,15 @@ class AsistenteIA {
      */
     appendMessage(text, sender) {
         const msgEl = document.createElement('div');
-        // Las clases de estilo deben estar definidas en estilosindex.css
-        msgEl.className = `ai-msg ${sender} p-2 rounded-lg max-w-[80%] my-1 shadow-sm`;
+        // Se usan las clases definidas en estilosindex2.css
+        msgEl.className = `ai-msg ${sender}`;
         msgEl.textContent = text;
         this.messages.appendChild(msgEl);
         this.messages.scrollTop = this.messages.scrollHeight;
     }
 
     /**
-     * Lógica simple de respuesta local para el asistente.
+     * Lógica simple de respuesta local para el asistente (Canned responses).
      * @param {string} prompt - El mensaje del usuario.
      * @returns {string} - La respuesta predefinida del asistente.
      */
@@ -127,18 +141,17 @@ class AsistenteIA {
         this.appendMessage('Escribiendo...', 'bot'); // Mensaje de "pensando"
 
         try {
-            // Simulación de retardo de red para una experiencia más realista
+            // Simulación de retardo
             await new Promise(r => setTimeout(r, 800));
             this.replaceLastBotMessage(this.localReply(prompt));
         } catch (err) {
-            // En caso de error, muestra la respuesta local de igual forma
             this.replaceLastBotMessage(this.localReply(prompt));
             console.error('Error simulado en la llamada al API:', err);
         }
     }
 
     /**
-     * Reemplaza el último mensaje del bot (usado para cambiar 'Escribiendo...' por la respuesta final).
+     * Reemplaza el último mensaje del bot.
      * @param {string} text - El texto de la respuesta.
      */
     replaceLastBotMessage(text) {
