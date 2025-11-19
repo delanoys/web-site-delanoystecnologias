@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Desde Cero | El Sistema Operativo Libre</title>
+    <!-- Carga de estilos proporcionados por el usuario -->
+    <link rel="stylesheet" href="/estilos/estilosindex.css">
+    <link rel="stylesheet" href="/estilos/linux.css">
+    <!-- Iconos Phosphor Icons -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <style>
+     /* linux.css */
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR - Usando la estructura de estilosindex.css -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <i class="ph-bold ph-linux-logo brand-logo" style="font-size: 3rem; color: var(--primary);"></i>
+                <h1 class="text-gradient" style="font-size: 1.5rem; font-weight: 700;">Linux.Tech</h1>
+            </a>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-link">Delanoys tecnologías</a>
+                <a href="#concepto" class="nav-link">Concepto</a>
+                <a href="#historia" class="nav-link">Historia</a>
+                <a href="#instalacion" class="nav-link">Instalación</a>
+                <a href="#terminal" class="nav-link">Terminal</a> <!-- Enlace actualizado -->
+                <a href="#" class="nav-link nav-cta">¡Empieza Ahora! <i class="ph-bold ph-arrow-right"></i></a>
+            </div>
+            <button class="menu-icon">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+        <!-- HERO SECTION - Introducción (Concepto) -->
+        <section class="hero-section" id="concepto">
+            <div class="banner-content">
+                <div class="hero-text-nuevo">
+                    <h2 class="hero-title">
+                        Linux <i class="ph-bold ph-rocket-launch"></i> <span class="text-acento">Desde Cero</span>: Tu Viaje al Sistema Operativo Libre
+                    </h2>
+                    <p class="section-subtitle">
+                        Descubre el poder, la estabilidad y la libertad del corazón del código abierto.
+                    </p>
+                    <p class="intro-paragraph">
+                        Linux es mucho más que un sistema operativo; es una filosofía y una comunidad global. Aprenderás desde sus cimientos como núcleo (Kernel) hasta dominar su interfaz y estructura interna, preparándote para un mundo de posibilidades en desarrollo, servidores y ciberseguridad. 
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#historia" class="cta-button primary-cta-hero">
+                            Ver Historia <i class="ph-bold ph-book-open"></i>
+                        </a>
+                        <a href="#terminal" class="cta-button secondary-cta-hero">
+                            Ir a Terminal <i class="ph-bold ph-terminal"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="banner-slider">
+                    <!-- Placeholder de imagen representativa de Linux/Código -->
+                    <img src="https://placehold.co/600x400/0a0e27/00d4ff?text=Code+is+Freedom" alt="Interfaz de Terminal Linux con código de programación" class="banner-video">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE HISTORIA Y LÍNEA DE TIEMPO -->
+        <section class="education-section" id="historia">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="ph-bold ph-timeline"></i> 1. Historia y Evolución de Linux
+                </h2>
+                <p class="section-description">
+                    Para entender Linux, debemos conocer sus raíces. Todo comenzó con UNIX, el sistema operativo que sentó las bases de la informática moderna, y un estudiante finlandés con una visión de libertad.
+                </p>
+
+                <!-- LÍNEA DE TIEMPO PERSONALIZADA -->
+                <div class="timeline">
+                    <!-- Evento 1: Fundación del Kernel -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1991</p>
+                            <h4 class="timeline-title">Nacimiento del Kernel Linux</h4>
+                            <p class="timeline-description">
+                                Linus Torvalds, un estudiante de la Universidad de Helsinki, lanza la versión 0.02 del kernel que él mismo había desarrollado, basándose en MINIX. Este fue el inicio del sistema operativo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 2: Combinación con GNU -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1992</p>
+                            <h4 class="timeline-title">Licencia Pública General (GPL)</h4>
+                            <p class="timeline-description">
+                                El kernel Linux adopta la GPL, permitiendo su uso, modificación y distribución libre. Se combina con las utilidades del proyecto GNU, formando el sistema operativo GNU/Linux. 
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 3: Distribuciones Iniciales -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1993 - 1994</p>
+                            <h4 class="timeline-title">Slackware y Debian</h4>
+                            <p class="timeline-description">
+                                Surgen las primeras distribuciones robustas. Slackware se convierte en la más antigua aún en mantenimiento y Debian sienta las bases para miles de distribuciones futuras con su enfoque en la comunidad.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 4: Popularización y Empresas -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1998 - 2000</p>
+                            <h4 class="timeline-title">Crecimiento Empresarial (Red Hat y SUSE)</h4>
+                            <p class="timeline-description">
+                                Grandes empresas comienzan a adoptar Linux para sus servidores. Se forman Red Hat y SUSE, ofreciendo soporte comercial y validando a Linux como una alternativa seria.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 5: El Escritorio al Gran Público -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">2004</p>
+                            <h4 class="timeline-title">Nacimiento de Ubuntu</h4>
+                            <p class="timeline-description">
+                                Mark Shuttleworth lanza Ubuntu, enfocado en hacer que Linux sea fácil de usar para el usuario promedio de escritorio. Esto impulsa su popularidad masiva.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Evento 6: Linux en Todas Partes -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">Hoy</p>
+                            <h4 class="timeline-title">El Dominio Silencioso</h4>
+                            <p class="timeline-description">
+                                Linux impulsa el 90% de los servidores en la nube, todos los superordenadores, la vasta mayoría de dispositivos IoT, routers, y el sistema Android, confirmando su ubicuidad global.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN DE LÍNEA DE TIEMPO -->
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE INSTALACIÓN Y SISTEMA DE ARCHIVOS -->
+        <section class="education-section" id="instalacion">
+            <div class="container">
+
+                <h2 class="section-title">
+                    <i class="ph-bold ph-monitor-arrows"></i> 2. Instalación y Sistema de Archivos
+                </h2>
+                <p class="section-description">
+                    Esta sección te guiará en los pasos esenciales para comenzar a usar Linux, desde la elección de tu "sabor" hasta la comprensión de su corazón: el sistema de archivos.
+                </p>
+
+                <div class="education-layout">
+                    <!-- Menú de Navegación Lateral (Índice) -->
+                    <aside class="education-aside glass-effect">
+                        <h4><i class="ph-bold ph-list-numbers"></i> Contenido del Módulo</h4>
+                        <ul>
+                            <li><a href="#distribuciones">Elegir Distribución</a></li>
+                            <li><a href="#preparacion">Preparación USB Booteable</a></li>
+                            <li><a href="#archivos">Sistema de Archivos (FHS)</a></li>
+                            <li><a href="#directorios">Directorios Clave</a></li>
+                        </ul>
+                    </aside>
+
+                    <!-- Contenido Principal -->
+                    <div class="education-main">
+
+                        <!-- Grupo 1: Instalación -->
+                        <div class="education-group glass-effect fade-in-up" id="distribuciones">
+                            <h3 class="group-title"><i class="ph-bold ph-package"></i> 2.1 Elige tu Distribución (Distro)</h3>
+                            <p class="intro-paragraph">
+                                La principal diferencia con otros sistemas es que existen cientos de "sabores" o distribuciones. Tu elección depende de tu objetivo y nivel de experiencia.
+                            </p>
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4><i class="ph-bold ph-leaf"></i> Ubuntu/Linux Mint</h4>
+                                    <p><strong>Ideal para:</strong> Principiantes y usuarios de escritorio.</p>
+                                    <p>Son fáciles de instalar, tienen interfaces intuitivas y una gran comunidad de soporte.</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4><i class="ph-bold ph-shield-check"></i> Fedora/CentOS</h4>
+                                    <p><strong>Ideal para:</strong> Desarrolladores y entornos empresariales.</p>
+                                    <p>Utilizan paquetes RPM y son conocidos por su innovación y estabilidad a largo plazo.</p>
+                                </div>
+                                <div class="education-item highlight">
+                                    <h4><i class="ph-bold ph-code"></i> Arch Linux/Gentoo</h4>
+                                    <p><strong>Ideal para:</strong> Usuarios avanzados y entusiastas.</p>
+                                    <p>Ofrecen una máxima personalización y control, pero requieren un conocimiento más profundo del sistema.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grupo 2: Proceso de Instalación -->
+                        <div class="education-group glass-effect fade-in-up" id="preparacion">
+                            <h3 class="group-title"><i class="ph-bold ph-usb"></i> 2.2 Preparando el Terreno</h3>
+                            <p class="intro-paragraph">
+                                El proceso más común es crear un medio de instalación booteable con un archivo ISO.
+                            </p>
+                            <ul>
+                                <li>Descarga la imagen ISO de tu distribución favorita (ej. Ubuntu).</li>
+                                <li>Utiliza una herramienta (como Rufus o Balena Etcher) para "grabar" la ISO en una unidad USB.</li>
+                                <li>Configura el BIOS/UEFI de tu equipo para arrancar desde la unidad USB.</li>
+                            </ul>
+
+                            <div class="education-figure">
+                                <img src="https://placehold.co/800x300/1e3c72/4cc9f0?text=Diagrama+del+proceso+de+instalación" alt="Diagrama que muestra la descarga de ISO, creación de USB y arranque desde BIOS" class="edu-image">
+                            </div>
+                        </div>
+
+                        <!-- Grupo 3: Sistema de Archivos (FHS) -->
+                        <div class="education-group glass-effect fade-in-up" id="archivos">
+                            <h3 class="group-title"><i class="ph-bold ph-folder-open"></i> 2.3 El Sistema de Archivos de Linux</h3>
+                            <p class="intro-paragraph">
+                                A diferencia de Windows (donde todo comienza con C:\), Linux tiene un único árbol de directorios que comienza en la raíz, representado por la barra inclinada (/). Esto se conoce como el **Estándar de Jerarquía del Sistema de Archivos (FHS)**. 
+                            </p>
+                            <p class="jscamp-lead">
+                                **Todo es un archivo:** En Linux, dispositivos, particiones, sockets y datos se manejan como archivos. Esta uniformidad es clave para su flexibilidad y potencia.
+                            </p>
+
+                            <h4 id="directorios" style="margin-top: 2rem;">Directorios Raíz Clave</h4>
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4>/bin y /sbin</h4>
+                                    <p><strong>Binarios Esenciales:</strong> Contienen programas ejecutables fundamentales para que el sistema funcione (ej. `ls`, `cp`, `mount`).</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>/home</h4>
+                                    <p><strong>Directorio Personal:</strong> Contiene las carpetas personales de cada usuario. Tus documentos y configuraciones se guardan aquí.</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>/etc</h4>
+                                    <p><strong>Archivos de Configuración:</strong> Contiene todos los archivos de configuración del sistema y de los servicios instalados.</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>/var</h4>
+                                    <p><strong>Datos Variables:</strong> Contiene datos que cambian constantemente, como logs del sistema, correos y bases de datos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: LA TERMINAL Y COMANDOS ESENCIALES -->
+        <section class="education-section" id="terminal">
+            <div class="container">
+
+                <h2 class="section-title">
+                    <i class="ph-bold ph-terminal-window"></i> 3. La Terminal y el Comando Linux
+                </h2>
+                <p class="section-description">
+                    La terminal, o línea de comandos (CLI), es la herramienta más poderosa de Linux. Aquí aprenderás los comandos esenciales para navegar, manipular archivos y administrar el sistema.
+                </p>
+
+                <div class="education-layout">
+                    <!-- Menú de Navegación Lateral (Índice) -->
+                    <aside class="education-aside glass-effect">
+                        <h4><i class="ph-bold ph-list-numbers"></i> Contenido del Módulo</h4>
+                        <ul>
+                            <li><a href="#navegacion">Navegación y Archivos</a></li>
+                            <li><a href="#administracion">Administración del Sistema</a></li>
+                            <li><a href="#paquetes">Gestión de Paquetes (APT)</a></li>
+                            <li><a href="#sudo">El Poder de 'sudo'</a></li>
+                        </ul>
+                    </aside>
+
+                    <!-- Contenido Principal -->
+                    <div class="education-main">
+
+                        <!-- Grupo 1: Navegación y Archivos -->
+                        <div class="education-group glass-effect fade-in-up" id="navegacion">
+                            <h3 class="group-title"><i class="ph-bold ph-map-pin"></i> 3.1 Navegación y Manipulación de Archivos</h3>
+                            <p class="intro-paragraph">
+                                Estos comandos te permiten moverte por el sistema de archivos y gestionar tus documentos.
+                            </p>
+                            
+                            <div class="terminal-block">
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">pwd</span> <span class="terminal-output">
+/home/user</span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">ls -l</span> <span class="terminal-output">
+total 8
+drwxr-xr-x 2 user user 4096 Nov 18 17:00 Documentos
+-rw-r--r-- 1 user user  128 Nov 18 16:55 notas.txt</span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">cd Documentos</span>
+                                <span class="terminal-prompt">user@linux:~/Documentos$</span> <span class="terminal-command">mkdir proyectos</span>
+                                <span class="terminal-prompt">user@linux:~/Documentos$</span> <span class="terminal-command">cp notas.txt proyectos/</span>
+                            </div>
+                            
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4>`pwd` y `ls`</h4>
+                                    <p>Muestra la **ruta de trabajo actual** (`pwd`) y **lista** el contenido de un directorio (`ls`).</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>`cd` y `mkdir`</h4>
+                                    <p>**Cambia de directorio** (`cd`) y **crea nuevos directorios** (`mkdir`).</p>
+                                </div>
+                                <div class="education-item highlight">
+                                    <h4>`cp`, `mv`, `rm`</h4>
+                                    <p>**Copia** (`cp`), **mueve/renombra** (`mv`) y **elimina** (`rm`) archivos y directorios.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grupo 2: Administración y Paquetes -->
+                        <div class="education-group glass-effect fade-in-up" id="administracion">
+                            <h3 class="group-title"><i class="ph-bold ph-cpu"></i> 3.2 Administración del Sistema</h3>
+                            <p class="intro-paragraph">
+                                Comandos para obtener información del sistema y gestionar procesos en segundo plano.
+                            </p>
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4>`man`</h4>
+                                    <p>Abre el **manual** de cualquier comando. Escribe `man ls` para ver la documentación completa. </p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>`top` o `htop`</h4>
+                                    <p>Muestra el **uso de recursos** (CPU, Memoria) en tiempo real y gestiona procesos activos.</p>
+                                </div>
+                                <div class="education-item highlight">
+                                    <h4>`cat`, `grep`</h4>
+                                    <p>**Concatena/muestra** contenido de archivos (`cat`) y **filtra** texto dentro de ellos (`grep`). Esencial para la gestión de logs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Grupo 3: Gestión de Paquetes -->
+                        <div class="education-group glass-effect fade-in-up" id="paquetes">
+                            <h3 class="group-title"><i class="ph-bold ph-rocket-launch-fill"></i> 3.3 Gestión de Paquetes (APT)</h3>
+                            <p class="intro-paragraph">
+                                Los gestores de paquetes son la forma centralizada de instalar, actualizar y eliminar software en Linux. En distribuciones basadas en Debian (como Ubuntu), se usa **APT (Advanced Packaging Tool)**.
+                            </p>
+
+                            <div class="terminal-block" id="sudo">
+                                <p class="jscamp-lead" style="color: #ffffff;">El Comando **sudo**</p>
+                                <p style="color: #00ff00;">`sudo` (SuperUser DO) es indispensable. Te permite ejecutar comandos con privilegios de administrador, necesarios para instalar software o modificar archivos críticos del sistema.</p>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">sudo apt update</span> <span class="terminal-output">
+[sudo] password for user: ********
+... Paquetes actualizados ...</span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">sudo apt install <span style="color: #4cc9f0;">nginx</span></span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">sudo apt remove <span style="color: #4cc9f0;">nginx</span></span>
+                            </div>
+
+                            <p class="intro-paragraph">
+                                **Comandos APT Clave:**
+                            </p>
+                            <ul>
+                                <li>**`apt update`**: Descarga las listas de paquetes más recientes de los repositorios.</li>
+                                <li>**`apt upgrade`**: Instala las nuevas versiones de todos los paquetes instalados.</li>
+                                <li>**`apt install [paquete]`**: Instala un paquete de software.</li>
+                                <li>**`apt remove [paquete]`**: Desinstala un paquete de software.</li>
+                            </ul>
+                            
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DEVOPS CTA SECTION - Llamada a la Acción de Cierre -->
+        <section class="devops-cta-section">
+            <div class="container devops-cta-content">
+                <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
+                    ¡Es Hora de Practicar!
+                </h2>
+                <p class="section-description" style="color: var(--text-primary); max-width: 900px;">
+                    El conocimiento de Linux solo se consolida con la práctica. Descarga una distribución y comienza a explorar la terminal.
+                </p>
+                <div class="devops-cta-actions">
+                    <a href="https://www.ubuntu.com/download" target="_blank" class="cta-button primary-cta-hero">
+                        Descargar Ubuntu <i class="ph-bold ph-download-simple"></i>
+                    </a>
+                    <a href="https://www.linuxmint.com/" target="_blank" class="cta-button secondary-cta-hero secondary-cta">
+                        Descargar Linux Mint <i class="ph-bold ph-download-simple"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER - Usando la estructura de estilosindex.css -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4><i class="ph-bold ph-linux-logo"></i> Linux.Tech</h4>
+                <p>
+                    Plataforma educativa dedicada a la difusión del conocimiento de Linux y el código abierto.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><i class="ph-bold ph-github-logo"></i></a>
+                    <a href="#"><i class="ph-bold ph-twitter-logo"></i></a>
+                    <a href="#"><i class="ph-bold ph-linkedin-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4><i class="ph-bold ph-link-simple"></i> Enlaces Rápidos</h4>
+                <a href="#concepto">Concepto de Linux</a>
+                <a href="#historia">Línea de Tiempo</a>
+                <a href="#instalacion">Instalación y Archivos</a>
+                <a href="#terminal">Comandos de Terminal</a>
+            </div>
+            <div class="footer-col">
+                <h4><i class="ph-bold ph-envelope"></i> Contacto</h4>
+                <p>Email: info@linux.tech</p>
+                <p>Soporte: ayuda@linux.tech</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Linux.Tech | Todos los derechos reservados. | Diseñado con la comunidad Open Source.
+        </div>
+    </footer>
+    
+    <!-- Script para el menú móvil -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.querySelector('.menu-icon');
+            const navButtons = document.querySelector('.nav-buttons');
+
+            menuIcon.addEventListener('click', () => {
+                navButtons.classList.toggle('active');
+            });
+            
+            // Cerrar menú al hacer clic en un enlace (en móvil)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navButtons.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

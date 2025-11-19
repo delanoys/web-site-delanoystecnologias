@@ -370,7 +370,16 @@ body::before {
 .text-acento {
   position: relative;
   display: inline-block;
+  
 }
+/* FIX: Asegurar que el texto dentro de .text-acento sea visible */
+        .hero-title .text-acento {
+            /* Anula la propiedad de transparencia heredada de .hero-title */
+            -webkit-text-fill-color: var(--text-primary); 
+            color: var(--text-primary);
+        }
+
+/* Ahora el texto **"Desde Cero"** debería visualizarse correctamente en color blanco (o el `var(--text-primary)`) y seguir destacándose gracias a su subrayado dinámico. */
 
 .text-acento::after {
   content: '';
