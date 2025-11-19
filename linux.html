@@ -308,18 +308,94 @@ drwxr-xr-x 2 user user 4096 Nov 18 17:00 Documentos
                                 <span class="terminal-prompt">user@linux:~/Documentos$</span> <span class="terminal-command">cp notas.txt proyectos/</span>
                             </div>
                             
+                            <div class="terminal-block"">
+                                <div class="education-item">
+                                    <h4>10 Comandos básicos</h4>
+                                    <ul>
+                                        <li><strong><code>pwd</code></strong> — Muestra el directorio actual. <code>pwd</code></li>
+                                        <li><strong><code>ls</code></strong> — Lista archivos y carpetas. <code>ls -la</code></li>
+                                        <li><strong><code>cd</code></strong> — Cambia de directorio. <code>cd /ruta</code></li>
+                                        <li><strong><code>mkdir</code></strong> — Crea directorios. <code>mkdir proyecto</code></li>
+                                        <li><strong><code>cp</code></strong> — Copia archivos/directorios. <code>cp origen destino</code></li>
+                                        <li><strong><code>mv</code></strong> — Mueve o renombra. <code>mv archivo nuevo_nombre</code></li>
+                                        <li><strong><code>rm</code></strong> — Elimina archivos/directorios. <code>rm archivo</code></li>
+                                        <li><strong><code>cat</code></strong> — Muestra contenido de archivos. <code>cat notas.txt</code></li>
+                                        <li><strong><code>less</code></strong> — Navega el contenido de forma paginada. <code>less archivo.log</code></li>
+                                        <li><strong><code>man</code></strong> — Manual de comandos. <code>man ls</code></li>
+                                    </ul>
+                                </div>
+
+                                <div class="education-item">
+                                    <h4>Utilidades comunes</h4>
+                                    <ul>
+                                        <li><strong><code>grep</code></strong> — Busca texto en archivos. <code>grep -R "error" /var/log</code></li>
+                                        <li><strong><code>find</code></strong> — Busca archivos por criterios. <code>find . -name "*.sh"</code></li>
+                                        <li><strong><code>tar</code></strong> — Comprime/descomprime paquetes. <code>tar -czvf backup.tar.gz /ruta</code></li>
+                                        <li><strong><code>wget</code></strong> — Descarga archivos desde la web. <code>wget https://ejemplo/file.zip</code></li>
+                                        <li><strong><code>curl</code></strong> — Transfiere datos desde/para servidores. <code>curl -I https://ejemplo</code></li>
+                                        <li><strong><code>df</code></strong> — Muestra uso de disco. <code>df -h</code></li>
+                                        <li><strong><code>du</code></strong> — Tamaño de directorios. <code>du -sh carpeta/</code></li>
+                                        <li><strong><code>top</code></strong> — Monitor de procesos en tiempo real. <code>top</code></li>
+                                        <li><strong><code>htop</code></strong> — Versión mejorada de top (si está instalada). <code>htop</code></li>
+                                        <li><strong><code>ssh</code></strong> — Acceso remoto seguro. <code>ssh usuario@host</code></li>
+                                    </ul>
+                                </div>
+
+                                <div class="education-item highlight">
+                                    <h4>Comandos avanzados</h4>
+                                    <ul>
+                                        <li><strong><code>awk</code></strong> — Procesamiento y extracción de texto. <code>awk '{print $1}' file</code></li>
+                                        <li><strong><code>sed</code></strong> — Edición de flujo de texto. <code>sed -n '1,10p' file</code></li>
+                                        <li><strong><code>systemctl</code></strong> — Control de servicios systemd. <code>sudo systemctl status nginx</code></li>
+                                        <li><strong><code>journalctl</code></strong> — Logs del systemd journal. <code>journalctl -u nginx -f</code></li>
+                                        <li><strong><code>tcpdump</code></strong> — Captura de paquetes de red. <code>sudo tcpdump -i eth0</code></li>
+                                        <li><strong><code>strace</code></strong> — Traza llamadas al sistema de un proceso. <code>strace -p PID</code></li>
+                                        <li><strong><code>lsof</code></strong> — Archivos abiertos y puertos en uso. <code>lsof -i :80</code></li>
+                                        <li><strong><code>ip</code></strong> — Configura interfaces de red. <code>ip addr show</code></li>
+                                        <li><strong><code>nslookup/dig</code></strong> — Consultas DNS. <code>dig ejemplo.com</code></li>
+                                        <li><strong><code>chroot</code></strong> — Ejecutar en un entorno raíz distinto. <code>sudo chroot /mnt/entorno</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                             <div class="education-items-row">
                                 <div class="education-item">
-                                    <h4>`pwd` y `ls`</h4>
-                                    <p>Muestra la **ruta de trabajo actual** (`pwd`) y **lista** el contenido de un directorio (`ls`).</p>
+                                    <h4>Otros comandos útiles</h4>
+                                    <ul>
+                                        <li><strong><code>rsync</code></strong> — Sincronización eficiente de archivos. <code>rsync -av origen/ destino/</code></li>
+                                        <li><strong><code>crontab</code></strong> — Tareas programadas. <code>crontab -e</code></li>
+                                        <li><strong><code>screen</code></strong> / <strong><code>tmux</code></strong> — Sesiones persistentes en terminal. <code>tmux new -s sesion</code></li>
+                                        <li><strong><code>passwd</code></strong> — Cambiar contraseña de usuario. <code>passwd usuario</code></li>
+                                        <li><strong><code>useradd/usermod</code></strong> — Gestión de cuentas de usuario. <code>sudo useradd -m nuevo</code></li>
+                                        <li><strong><code>chmod/chown</code></strong> — Permisos y propietario. <code>sudo chown user:group archivo && chmod 644 archivo</code></li>
+                                        <li><strong><code>mount/umount</code></strong> — Montar y desmontar sistemas de archivos. <code>sudo mount /dev/sdb1 /mnt</code></li>
+                                        <li><strong><code>apt</code></strong> / <strong><code>dnf</code></strong> — Gestión de paquetes según la distro. <code>sudo apt update && sudo apt install paquete</code></li>
+                                        <li><strong><code>sudo</code></strong> — Ejecutar comandos como superusuario. <code>sudo comando</code></li>
+                                        <li><strong><code>alias</code></strong> — Atajos personalizados. <code>alias ll="ls -la"</code></li>
+                                    </ul>
                                 </div>
+
                                 <div class="education-item">
-                                    <h4>`cd` y `mkdir`</h4>
-                                    <p>**Cambia de directorio** (`cd`) y **crea nuevos directorios** (`mkdir`).</p>
+                                    <h4>Consejos rápidos</h4>
+                                    <ul>
+                                        <li>Usa <strong><code>man</code></strong> y <strong><code>--help</code></strong> para aprender opciones: <code>comando --help</code>.</li>
+                                        <li>Combina comandos con pipes: <code>grep "error" /var/log/syslog | less</code>.</li>
+                                        <li>Prueba en un entorno seguro (máquina virtual/contener) antes de operaciones destructivas.</li>
+                                        <li>Configura <strong>SSH keys</strong> para acceso remoto sin contraseña: <code>ssh-keygen && ssh-copy-id user@host</code>.</li>
+                                        <li>Documenta alias y funciones en tu <code>~/.bashrc</code> o <code>~/.zshrc</code>.</li>
+                                    </ul>
                                 </div>
+
                                 <div class="education-item highlight">
-                                    <h4>`cp`, `mv`, `rm`</h4>
-                                    <p>**Copia** (`cp`), **mueve/renombra** (`mv`) y **elimina** (`rm`) archivos y directorios.</p>
+                                    <h4>Ejemplo práctico</h4>
+                                    <p>Backup rápido con <code>tar</code> y <code>rsync</code>:</p>
+                                    <pre class="glass-effect" style="padding: .75rem; border-radius: 8px; white-space: pre-wrap;">
+# Crear un tar comprimido
+tar -czvf casa_backup_$(date +%F).tar.gz /home/usuario
+
+# Sincronizar a servidor remoto
+rsync -av --progress /home/usuario backup@servidor:/backups/usuario/
+                                    </pre>
                                 </div>
                             </div>
                         </div>
@@ -382,6 +458,268 @@ drwxr-xr-x 2 user user 4096 Nov 18 17:00 Documentos
             </div>
         </section>
 
+        <!-- Cómo acceder a una partición BitLocker desde Linux (Elementary OS 8) -->
+      <section id="bitlocker-linux" class="education-group fade-in-up">
+    <h2 class="section-title">
+        <i class="fas fa-lock"></i>
+        Cómo acceder a una partición BitLocker desde Linux (Elementary OS 8)
+    </h2>
+
+    <p class="section-description">
+        Si estás utilizando Linux (por ejemplo Elementary OS 8) y no puedes acceder 
+        a una partición porque aparece como <strong>cifrada con BitLocker</strong>, 
+        esta guía te explica por qué ocurre y cómo solucionarlo correctamente.
+    </p>
+
+    <div class="education-items-row">
+
+        <!-- EXPLICACIÓN -->
+        <div class="education-item highlight">
+            <h4><i class="fas fa-info-circle"></i> ¿Por qué Linux no puede montarla?</h4>
+            <p>
+                Aunque Windows indique que la partición BitLocker tiene la 
+                <strong>protección desactivada</strong>, el disco sigue teniendo:
+            </p>
+            <ul>
+                <li>Cabecera de BitLocker</li>
+                <li>Cifrado XTS-AES 128</li>
+                <li>Estructura de volumen BitLockerV2</li>
+            </ul>
+            <p>
+                Linux detecta esto y asume que la unidad está cifrada, por lo que 
+                <strong>no puede montarla sin clave</strong>.
+            </p>
+        </div>
+
+        <!-- SOLUCIÓN WINDOWS -->
+        <div class="education-item">
+            <h4><i class="fas fa-windows"></i> Solución recomendada: Descifrar la partición desde Windows</h4>
+            <p>
+                La forma más segura y funcional de acceder a la partición desde Linux 
+                es <strong>desactivar por completo el cifrado BitLocker</strong> desde Windows.
+            </p>
+            <p>
+                Abre <strong>PowerShell como Administrador</strong> y ejecuta:
+            </p>
+
+            <pre class="glass-effect" style="padding: 1rem; border-radius: 12px;">
+manage-bde -off E:
+            </pre>
+
+            <p>Revisa el progreso con el comando:</p>
+
+            <pre class="glass-effect" style="padding: 1rem; border-radius: 12px;">
+manage-bde -status E:
+            </pre>
+
+            <p>
+                Cuando diga <strong>“Descifrado completo”</strong>, Linux podrá montarla 
+                sin problemas como una partición NTFS normal.
+            </p>
+        </div>
+
+        <!-- LINUX -->
+        <div class="education-item" style="overflow-wrap:anywhere; word-break:break-word;"> <h4><i class="fas fa-linux"></i> ¿Y si quiero acceder desde Linux sin descifrar?</h4>
+            <p>
+                En Linux se puede intentar acceder con <strong>dislocker</strong>, pero 
+                <strong>solo funciona si existe una clave, PIN o contraseña BitLocker</strong>. 
+                En tu caso, la partición no tiene protectores configurados, por lo que 
+                NO es posible desbloquearla desde Linux.
+            </p>
+
+            <p>Comandos de ejemplo (solo si tuvieras clave):</p>
+
+            <pre class="glass-effect" style="padding: 1rem; border-radius: 12px; white-space: pre-wrap; overflow-x: auto; max-width: 100%; box-sizing: border-box;">
+        sudo apt install dislocker
+        sudo mkdir /media/bitlocker /media/mnt
+        sudo dislocker -V /dev/nvme0n1pX -uCLAVE -- /media/bitlocker
+        sudo mount -o loop /media/bitlocker/dislocker-file /media/mnt
+            </pre>
+
+            <p class="text-secondary">
+                ⚠ Como tu partición no tiene clave de recuperación ni contraseña, 
+                este método no aplicará en tu caso.
+            </p></div>
+           
+        </div>
+
+        <!-- ESTADO FINAL -->
+        <div class="education-item">
+            <h4><i class="fas fa-check-circle"></i> Estado final recomendado</h4>
+            <ul>
+                <li>La partición E: debe mostrar “Descifrado completo” en Windows.</li>
+                <li>El método de cifrado debe aparecer como “Ninguno”.</li>
+                <li>Linux la reconocerá como NTFS y podrá montarla sin errores.</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!--
+  Sección: Cifrado y particiones (BitLocker <-> Linux)
+  Lista para insertar en https://delanoystecnologias.site/linux
+  Usa el CSS: /mnt/data/19c9ab58-76e3-4668-997b-4ddaebd613b4.css
+-->
+<!-- <link rel="stylesheet" href="/mnt/data/19c9ab58-76e3-4668-997b-4ddaebd613b4.css"> -->
+
+<section id="cifrado-bitlocker" class="education-group fade-in-up container" aria-labelledby="cifrado-title" style="margin-top:2rem;">
+  <header style="margin-bottom:1.5rem;">
+    <h2 id="cifrado-title" class="section-title">
+      <i class="fas fa-shield-alt"></i>
+      Guía: Cifrado BitLocker y acceso desde Linux
+    </h2>
+    <p class="section-description">
+      Explicación práctica, comandos y recomendaciones sobre BitLocker en Windows y cómo interactuar (o compartir) particiones con Linux (Elementary OS 8).
+    </p>
+  </header>
+
+  <div class="education-items-row">
+
+    <!-- Qué es BitLocker -->
+    <article class="education-item glass-effect">
+      <h3 class="group-title"><i class="fas fa-info-circle"></i> ¿Qué es BitLocker?</h3>
+      <p class="service-description">
+        BitLocker es la solución de cifrado de disco de Microsoft que protege datos en reposo mediante algoritmos como XTS-AES. Cuando una unidad está cifrada con BitLocker, sin la clave adecuada no es posible leer su contenido desde otro sistema.
+      </p>
+    </article>
+
+    <!-- Por qué Linux no monta la partición -->
+    <article class="education-item highlight">
+      <h3 class="group-title"><i class="fas fa-question-circle"></i> ¿Por qué Linux detecta la partición como "cifrada"?</h3>
+      <ul>
+        <li>Windows puede arrancar y desbloquear la unidad automáticamente (TPM) aunque no haya un PIN visible.</li>
+        <li>La cabecera y metadatos de BitLocker permanecen en la partición; Linux los detecta y exige una clave.</li>
+        <li>Si no existe protector (PIN/contraseña/clave de recuperación) no hay datos que Linux pueda usar para desbloquearla.</li>
+      </ul>
+    </article>
+
+    <!-- Comandos Windows: verificar y descifrar -->
+    <article class="education-item">
+      <h3 class="group-title"><i class="fas fa-windows"></i> Comandos Windows (manage-bde)</h3>
+      <p class="service-description">
+        Ejemplos para verificar estado y descifrar la unidad. Ejecuta PowerShell o CMD <strong>como administrador</strong>.
+      </p>
+
+      <div style="margin-top:0.5rem;">
+        <label class="section-subtitle">Ver estado de la unidad E:</label>
+        <pre class="glass-effect" style="padding:0.9rem;border-radius:8px;overflow:auto;">
+manage-bde -status E:
+        </pre>
+
+        <label class="section-subtitle">Iniciar descifrado (OFF):</label>
+        <pre class="glass-effect" style="padding:0.9rem;border-radius:8px;overflow:auto;">
+manage-bde -off E:
+        </pre>
+
+        <label class="section-subtitle">Comprobar progreso:</label>
+        <pre class="glass-effect" style="padding:0.9rem;border-radius:8px;overflow:auto;">
+manage-bde -status E:
+        </pre>
+
+        <p class="text-secondary" style="margin-top:0.6rem;">
+          Resultado esperado al finalizar:
+          <code>Estado de conversión: Descifrado completo</code> y <code>Porcentaje cifrado: 0,0%</code>.
+        </p>
+      </div>
+    </article>
+
+    <!-- Comandos Linux: dislocker (solo si tienes clave) -->
+    <article class="education-item">
+      <h3 class="group-title"><i class="fas fa-linux"></i> Comandos Linux (dislocker) - solo si tienes clave</h3>
+      <p class="service-description">
+        Si la partición tuviera protector (PIN/clave de recuperación), puedes usar <code>dislocker</code>. En tu caso no aplica porque la partición no tenía protectores.
+      </p>
+
+      <pre class="glass-effect" style="padding:0.9rem;border-radius:8px;overflow:auto;">
+# Instalar dislocker (Debian/Ubuntu/elementary)
+sudo apt update && sudo apt install dislocker
+
+# Crear directorios de trabajo
+sudo mkdir -p /media/bitlocker /media/mnt
+
+# Desbloquear usando la clave de recuperación (ejemplo: 000000-000000-... o -p para password)
+# Reemplaza /dev/sdXN por la partición real (ej: /dev/nvme0n1p3)
+sudo dislocker -r -V /dev/sdXN -pRECOVERY_KEY -- /media/bitlocker
+
+# Montar el archivo resultante
+sudo mount -o loop /media/bitlocker/dislocker-file /media/mnt
+      </pre>
+
+      <p class="text-secondary" style="margin-top:0.6rem;">
+        ⚠ Si no tienes clave de recuperación o protector, dislocker no podrá desbloquear la unidad.
+      </p>
+    </article>
+
+    <!-- Ventajas y desventajas -->
+    <article class="education-item glass-effect">
+      <h3 class="group-title"><i class="fas fa-balance-scale"></i> Ventajas y desventajas de haber descifrado la partición</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div>
+          <h4 class="text-gradient">Ventajas</h4>
+          <ul>
+            <li>Compatibilidad total con Linux y otras OS.</li>
+            <li>Mejor rendimiento en I/O (ligera mejora al quitar cifrado).</li>
+            <li>Facilidad para recuperación de datos y herramientas forenses benignas.</li>
+            <li>No requiere usar dislocker ni claves para compartir datos entre sistemas.</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-gradient">Desventajas</h4>
+          <ul>
+            <li>Pérdida de protección ante robo o acceso físico.</li>
+            <li>Exposición de datos sensibles si alguien accede al disco.</li>
+            <li>Si más adelante quieres cifrar de nuevo, hay que configurar BitLocker / LUKS manualmente.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Recomendaciones -->
+    <article class="education-item highlight">
+      <h3 class="group-title"><i class="fas fa-check-circle"></i> Recomendaciones prácticas</h3>
+      <ol>
+        <li>
+          Si trabajas con datos sensibles, <strong>no</strong> dejes la partición sin cifrar en equipos portátiles que puedan perderse o ser robados.
+        </li>
+        <li>
+          Para entornos dual-boot considera estas opciones:
+          <ul>
+            <li>Partición compartida <em>no sensible</em> (sin cifrar) para documentos y multimedia.</li>
+            <li>Particiones separadas: <strong>BitLocker para Windows</strong> y <strong>LUKS</strong> para Linux en particiones separadas.</li>
+            <li>Si necesitas cifrado multiplataforma, valora <strong>VeraCrypt</strong> (más manual, pero multiplataforma).</li>
+          </ul>
+        </li>
+        <li>Si vuelves a cifrar con BitLocker: guarda la clave de recuperación en varios lugares (OneDrive, USB seguro, copia física).</li>
+        <li>Mantén backups regulares antes de operaciones de cifrado/descifrado.</li>
+      </ol>
+    </article>
+
+    <!-- FAQ rapido -->
+    <article class="education-item glass-effect">
+      <h3 class="group-title"><i class="fas fa-question"></i> FAQ Rápida</h3>
+
+      <p><strong>P:</strong> ¿Puedo volver a cifrar la partición E: más tarde?<br>
+      <strong>R:</strong> Sí. En Windows: <code>manage-bde -on E:</code> y sigue el asistente para configurar protectores.</p>
+
+      <p><strong>P:</strong> ¿Cómo identifico la partición E: en Linux?<br>
+      <strong>R:</strong> Arranca Linux y ejecuta <code>lsblk -f</code> o <code>sudo fdisk -l</code> y busca el tamaño/etiqueta que coincida.</p>
+
+      <p><strong>P:</strong> ¿Qué pasa si apago el PC durante un descifrado?<br>
+      <strong>R:</strong> Generalmente el proceso es resiliente y continuará en el siguiente arranque, pero no es recomendable interrumpirlo. Siempre haz backup antes de operaciones críticas.</p>
+    </article>
+
+  </div> <!-- /education-items-row -->
+
+  <footer style="margin-top:1.5rem;">
+    <p class="section-description">
+      Si quieres, puedo generar una <strong>página HTML completa</strong> (con navbar y footer) o un bloque específico para WordPress/Elementor. 
+      También puedo preparar un PDF descargable con estos comandos y recomendaciones.
+    </p>
+  </footer>
+</section>
+
+
         <!-- DEVOPS CTA SECTION - Llamada a la Acción de Cierre -->
         <section class="devops-cta-section">
             <div class="container devops-cta-content">
@@ -401,6 +739,8 @@ drwxr-xr-x 2 user user 4096 Nov 18 17:00 Documentos
                 </div>
             </div>
         </section>
+  
+
 
     </main>
 
