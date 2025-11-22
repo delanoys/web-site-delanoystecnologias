@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Elite - Delanoys Tecnologías</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+        }
+        
+        .page {
+            padding: 45px 55px;
+            min-height: 297mm;
+            position: relative;
+            page-break-after: always;
+        }
+        
+        /* Portada Premium */
+        .cover {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3b82f6 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -300px;
+            right: -300px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .cover::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+        }
+        
+        .elite-badge {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #0f172a;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+        }
+        
+        .logo-elite {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            font-weight: 900;
+            color: #1e40af;
+            margin-bottom: 30px;
+            z-index: 1;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+        
+        .cover h1 {
+            font-size: 62px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            z-index: 1;
+            letter-spacing: -2px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .cover .tagline {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 35px;
+            z-index: 1;
+            opacity: 0.95;
+            letter-spacing: 1px;
+        }
+        
+        .cover .services-highlight {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            z-index: 1;
+        }
+        
+        .service-pill {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Estilos generales mejorados */
+        .section-title {
+            font-size: 42px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 5px solid #3b82f6;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100px;
+            height: 5px;
+            background: #fbbf24;
+        }
+        
+        .section-subtitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e40af;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-subtitle::before {
+            content: '';
+            width: 8px;
+            height: 35px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 10px;
+        }
+        
+        p {
+            line-height: 1.9;
+            color: #475569;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+        
+        /* Cards Elite */
+        .elite-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 35px;
+        }
+        
+        .elite-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .elite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        }
+        
+        .elite-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+        
+        .elite-card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .elite-card h3 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .elite-card p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .elite-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .elite-card li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: #475569;
+            font-size: 13px;
+        }
+        
+        .elite-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Premium Feature Box */
+        .premium-box {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 25px;
+            margin: 30px 0;
+            box-shadow: 0 20px 50px rgba(30, 64, 175, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-box::before {
+            content: '★';
+            position: absolute;
+            font-size: 200px;
+            color: rgba(255,255,255,0.05);
+            top: -50px;
+            right: -30px;
+            transform: rotate(-15deg);
+        }
+        
+        .premium-box h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .premium-box p {
+            color: rgba(255,255,255,0.95);
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        
+        /* Coverage Area */
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .coverage-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .coverage-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+        }
+        
+        .coverage-item .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        
+        .coverage-item h4 {
+            color: #1e40af;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-box .number {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .stat-box .label {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+        
+        /* Technologies Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .tech-category {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #3b82f6;
+        }
+        
+        .tech-category h4 {
+            color: #0f172a;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .tech-category ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tech-category li {
+            padding: 8px 0;
+            color: #475569;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tech-category li::before {
+            content: '▸';
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Process Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #3b82f6;
+        }
+        
+        .timeline-item h4 {
+            color: #1e40af;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-item p {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        /* Contact Section Premium */
+        .contact-premium {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            margin-top: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-premium::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+        }
+        
+        .contact-premium h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .contact-item-premium {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item-premium .icon {
+            font-size: 28px;
+        }
+        
+        .contact-item-premium .text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
+        }
+        
+        .social-link .icon {
+            font-size: 24px;
+        }
+        
+        .social-link .text {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* Footer Premium */
+        .page-footer {
+            position: absolute;
+            bottom: 35px;
+            left: 55px;
+            right: 55px;
+            padding-top: 20px;
+            border-top: 3px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .print-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(59, 130, 246, 0.5);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .print-btn {
+                display: none;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .page {
+                page-break-after: always;
+            }
+        }
+        
+        .vision-mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .vision-box, .mission-box {
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vision-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 5px solid #3b82f6;
+        }
+        
+        .mission-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 5px solid #fbbf24;
+        }
+        
+        .vision-box h4, .mission-box h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .vision-box h4 { color: #1e40af; }
+        .mission-box h4 { color: #92400e; }
+        
+        .vision-box p, .mission-box p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        .vision-box p { color: #1e3a8a; }
+        .mission-box p { color: #78350f; }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">
+        <span>📥</span>
+        <span>Descargar PDF</span>
+    </button>
+    
+    <div class="container">
+        <!-- PORTADA ELITE -->
+        <div class="page cover">
+            <div class="elite-badge">★ ELITE SERVICES ★</div>
+            <div class="logo-elite">DT</div>
+            <h1>DELANOYS TECNOLOGÍAS</h1>
+            <div class="tagline">Soporte de Élite & Soluciones Digitales</div>
+            <div class="services-highlight">
+                <div class="service-pill">🛡️ Soporte Premium</div>
+                <div class="service-pill">💻 Desarrollo Web</div>
+                <div class="service-pill">📚 Formación Pro</div>
+            </div>
+        </div>
+        
+        <!-- PÁGINA 2: VISIÓN Y SERVICIOS ELITE -->
+        <div class="page">
+            <h2 class="section-title">Servicios de Élite para Tu Negocio</h2>
+            
+            <p>
+                En <strong>Delanoys Tecnologías</strong> ofrecemos servicios de soporte técnico de élite, desarrollo web moderno y formación continua para empresas y hogares. Con presencia en Cartagena, Turbaco, Arjona y Cali, somos tu aliado tecnológico de confianza.
+            </p>
+            
+            <div class="vision-mission">
+                <div class="vision-box">
+                    <h4>🎯 Nuestra Visión 2030</h4>
+                    <p>
+                        Convertirnos con la sabiduría y dirección de Dios en la más grande empresa de soporte asistencial para hogares y empresas, brindando soluciones tecnológicas, soporte técnico especializado y capacitaciones para el desarrollo educativo, social y laboral de Colombia.
+                    </p>
+                </div>
+                
+                <div class="mission-box">
+                    <h4>💡 Nuestra Misión</h4>
+                    <p>
+                        Transformar la infraestructura tecnológica de nuestros clientes en una herramienta estratégica mediante soporte especializado, soluciones innovadoras y capacitación continua en nuevas tecnologías.
+                    </p>
+                </div>
+            </div>
+            
+            <h3 class="section-subtitle">Por Qué Somos Diferentes</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="number">24-36h</div>
+                    <div class="label">Tiempo de Entrega</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">100%</div>
+                    <div class="label">Asesoría Gratuita</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">4</div>
+                    <div class="label">Ciudades</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">24/7</div>
+                    <div class="label">Asistencia Remota</div>
+                </div>
+            </div>
+            
+            <div class="premium-box">
+                <h3>✨ Servicio Sin Salir de Casa</h3>
+                <p>📍 Recogemos tu equipo en casa u oficina</p>
+                <p>⚙️ Diagnóstico y reparación especializada</p>
+                <p>🚚 Entrega en 24-36 horas hábiles</p>
+                <p>🔒 Sistemas de asistencia remota 100% seguros</p>
+                <p><strong>¡No botes tu computadora vieja... Nosotros te la actualizamos!</strong></p>
+            </div>
+            
+            <div class="premium-box" style="margin-top: 40px;">
+                <h3>✝️ Nuestro Fundamento</h3>
+                <p style="font-size: 18px; font-style: italic; text-align: center; margin-top: 20px;">
+                    "Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres"
+                </p>
+                <p style="text-align: center; margin-top: 10px; font-size: 14px; opacity: 0.9;">
+                    - Colosenses 3:23
+                </p>
+            </div>
+            
+            <div class="page-footer">
+                <div>Delanoys Tecnologías © 2024 - Colosenses 3:23</div>
+                <div>Página 2</div>
+            </div>
+        </div>
+        
+        <!-- PÁGINA 3: SERVICIOS DE SOPORTE ELITE -->
+        <div class="page">
+            <h2 class="section-title">🛡️ Soporte Técnico de Élite</h2>
+            
+            <p>
+                Somos especialistas en brindar servicio técnico de PC con personal altamente capacitado. Atendemos todas tus necesidades tecnológicas con profesionalismo y rapidez.
+            </p>
+            
+            <div class="elite-cards-grid">
+                <div class="elite-card">
+                    <div class="icon">🖥️</div>
+                    <h3>Mantenimiento & Reparación</h3>
+                    <p>Servicio completo para todo tipo de equipos</p>
+                    <ul>
+                        <li>Computadoras de escritorio</li>
+                        <li>Laptops y notebooks</li>
+                        <li>Tablets y dispositivos móviles</li>
+                        <li>Impresoras multifuncionales</li>
+                        <li>Diagnóstico completo gratuito</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">🔄</div>
+                    <h3>Actualización de Software</h3>
+                    <p>Optimiza tu equipo con lo último</p>
+                    <ul>
+                        <li>Windows 10 y Windows 11</li>
+                        <li>Sistemas operativos Linux</li>
+                        <li>Software empresarial</li>
+                        <li>Antivirus y seguridad</li>
+                        <li>Migración de datos segura</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">🌐</div>
+                    <h3>Redes & Conectividad</h3>
+                    <p>Infraestructura de red profesional</p>
+                    <ul>
+                        <li>Redes domésticas y empresariales</li>
+                        <li>Configuración de routers</li>
+                        <li>Puntos de acceso WiFi</li>
+                        <li>Cableado estructurado</li>
+                        <li>Seguridad de red</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">📹</div>
+                    <h3>CCTV & Vigilancia</h3>
+                    <p>Circuito cerrado de televisión</p>
+                    <ul>
+                        <li>Cámaras de seguridad IP</li>
+                        <li>Sistemas DVR y NVR</li>
+                        <li>Monitoreo remoto</li>
+                        <li>Instalación profesional</li>
+                        <li>Mantenimiento preventivo</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">🖱️</div>
+                    <h3>Asistencia Remota</h3>
+                    <p>Soporte desde donde estés</p>
+                    <ul>
+                        <li>Conexión segura y cifrada</li>
+                        <li>Soporte en tiempo real</li>
+                        <li>Configuración de software</li>
+                        <li>Solución de problemas</li>
+                        <li>Sin necesidad de desplazamiento</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">💬</div>
+                    <h3>Asesoría Tecnológica</h3>
+                    <p>Consultoria gratuita y especializada</p>
+                    <ul>
+                        <li>Asesoría en compra de equipos</li>
+                        <li>Planeación de infraestructura</li>
+                        <li>Optimización de procesos</li>
+                        <li>Presupuestos sin compromiso</li>
+                        <li>Recomendaciones personalizadas</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="page-footer">
+                <div>www.delanoystecnologias.site</div>
+                <div>Página 3</div>
+            </div>
+        </div>
+        
+        <!-- PÁGINA 4: DESARROLLO WEB Y TECNOLOGÍAS -->
+        <div class="page">
+            <h2 class="section-title">💻 Desarrollo Web Moderno</h2>
+            
+            <p>
+                Creamos sitios web modernos, responsivos y optimizados para SEO. Utilizamos las últimas tecnologías para garantizar que tu presencia digital destaque en el mercado.
+            </p>
+            
+            <div class="elite-cards-grid">
+                <div class="elite-card">
+                    <div class="icon">🌐</div>
+                    <h3>Diseño Web Profesional</h3>
+                    <p>Sitios web que convierten visitantes en clientes</p>
+                    <ul>
+                        <li>Diseño responsive (móvil-first)</li>
+                        <li>UX/UI optimizado</li>
+                        <li>Carga ultra-rápida</li>
+                        <li>SEO integrado</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">🛒</div>
+                    <h3>E-Commerce Completo</h3>
+                    <p>Tiendas online profesionales</p>
+                    <ul>
+                        <li>Catálogo de productos</li>
+                        <li>Pasarelas de pago</li>
+                        <li>Gestión de inventario</li>
+                        <li>Panel administrativo</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">📱</div>
+                    <h3>Aplicaciones Web</h3>
+                    <p>Soluciones web personalizadas</p>
+                    <ul>
+                        <li>Sistemas de gestión</li>
+                        <li>CRM personalizado</li>
+                        <li>Portales corporativos</li>
+                        <li>Dashboards analíticos</li>
+                    </ul>
+                </div>
+                
+                <div class="elite-card">
+                    <div class="icon">☁️</div>
+                    <h3>Cloud Computing</h3>
+                    <p>Infraestructura en la nube</p>
+                    <ul>
+                        <li>Hosting optimizado</li>
+                        <li>Backups automáticos</li>
+                        <li>Escalabilidad garantizada</li>
