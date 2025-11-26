@@ -21,7 +21,8 @@
   font-variant: normal;
   line-height: 1;
   text-rendering: auto; }
-
+.fa-solid 
+.fa-laptop-code
 .fas::before,
 .far::before,
 .fab::before,

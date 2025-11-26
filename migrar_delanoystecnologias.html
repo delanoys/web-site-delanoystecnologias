@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap de Migración: Delanoys Tecnologías</title>
+    <style>
+        :root {
+            --primary: #3b82f6; /* Azul Tech */
+            --bg: #0f172a;      /* Fondo Oscuro tipo IDE */
+            --card: #1e293b;    /* Cartas oscuras */
+            --text: #e2e8f0;    /* Texto claro */
+            --success: #10b981; /* Verde éxito */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+        }
+
+        h1 { color: var(--primary); margin: 0; }
+        .subtitle { font-style: italic; opacity: 0.8; }
+
+        /* Barra de Progreso */
+        .progress-container {
+            background-color: var(--card);
+            border-radius: 10px;
+            height: 25px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+
+        .progress-bar {
+            background-color: var(--success);
+            height: 100%;
+            width: 0%; /* Se modifica con JS */
+            transition: width 0.5s ease;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 25px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Fases */
+        .phase {
+            background-color: var(--card);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .phase h2 { margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+
+        /* Tareas */
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background: #253146;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .task:hover { background: #2f3e57; }
+
+        .task-info { display: flex; align-items: center; gap: 10px; }
+        
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            cursor: pointer;
+            accent-color: var(--success);
+        }
+
+        /* Botón Asistente IA */
+        .ai-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        .ai-btn:hover { background-color: #2563eb; }
+
+        /* Modal Simulado (Prompt) */
+        #ai-console {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: #000;
+            border: 1px solid var(--success);
+            color: var(--success);
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+            z-index: 1000;
+        }
+
+        .close-console { float: right; cursor: pointer; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🚀 Plan Maestro de Migración</h1>
+        <p class="subtitle">De HTML Estático a Full Stack DevOps | Delanoys Tecnologías</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="barra-global">0% Completado</div>
+        </div>
+    </header>
+
+    <div class="phase">
+        <h2>Fase 1: Dominando el DOM (JavaScript Puro)</h2>
+        <p>Objetivo: Dejar de escribir HTML repetitivo y generarlo con lógica.</p>
+        
+        <div class="task">
+            <div class="task-info">
+                <input type="checkbox" id="task-1-1" onchange="updateProgress()">
+                <label for="task-1-1">1.1 Crear Array de datos de 'Servicios' en JS</label>
+            </div>
+            <button class="ai-btn" onclick="showPrompt('1.1')">🤖 Validar con Gemini</button>
+        </div>
+
+        <div class="task">
+            <div class="task-info">
+                <input type="checkbox" id="task-1-2" onchange="updateProgress()">
+                <label for="task-1-2">1.2 Usar document.getElementById para seleccionar contenedor</label>
+            </div>
+            <button class="ai-btn" onclick="showPrompt('1.2')">🤖 Ayuda de Sintaxis</button>
+        </div>
+
+        <div class="task">
+            <div class="task-info">
+                <input type="checkbox" id="task-1-3" onchange="updateProgress()">
+                <label for="task-1-3">1.3 Generar lista con .map() e innerHTML</label>
+            </div>
+            <button class="ai-btn" onclick="showPrompt('1.3')">🤖 Revisar Código</button>
+        </div>
+    </div>
+
+    <div class="phase" style="border-left-color: #a855f7;">
+        <h2>Fase 2: Componentización (React + Vite)</h2>
+        <p>Objetivo: Modularizar el sitio y gestión de estado.</p>
+        
+        <div class="task">
+            <div class="task-info">
+                <input type="checkbox" id="task-2-1" onchange="updateProgress()">
+                <label for="task-2-1">2.1 Instalar Node.js y crear proyecto Vite</label>
+            </div>
+        </div>
+        <div class="task">
+            <div class="task-info">
+                <input type="checkbox" id="task-2-2" onchange="updateProgress()">
+                <label for="task-2-2">2.2 Migrar Header y Footer a Componentes JSX</label>
+            </div>
+            <button class="ai-btn" onclick="showPrompt('2.2')">🤖 Validar Componente</button>
+        </div>
+    </div>
+
+    <div class="phase" style="border-left-color: #f59e0b;">
+        <h2>Fase 3: Backend & API (Node/Python)</h2>
+        <p>Objetivo: Separar datos de vista. Conexión a BD.</p>
+        
+        <div class="task">
+            <div class="task-info">
+                <input type="checkbox" id="task-3-1" onchange="updateProgress()">
+                <label for="task-3-1">3.1 Crear servidor básico (Express o FastAPI)</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ai-console">
+    <span class="close-console" onclick="closePrompt()">[x]</span>
+    <strong>Gemini Prompt Generator:</strong>
+    <hr style="border-color: #333;">
+    <p id="prompt-text" style="font-size: 0.9em; margin-bottom: 10px;">...</p>
+    <button onclick="copyToClipboard()" style="background: #333; color: white; border: none; padding: 5px; width: 100%; cursor: pointer;">📋 Copiar para Chat</button>
+</div>
+
+<script>
+    // 1. Lógica de Persistencia (LocalStorage)
+    // Esto guarda tus avances aunque cierres la página
+    function loadProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(chk => {
+            const savedState = localStorage.getItem(chk.id);
+            if (savedState === 'true') {
+                chk.checked = true;
+            }
+        });
+        updateProgress();
+    }
+
+    // 2. Cálculo de la Barra de Progreso
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const total = checkboxes.length;
+        let checked = 0;
+
+        checkboxes.forEach(chk => {
+            if (chk.checked) {
+                checked++;
+                localStorage.setItem(chk.id, 'true'); // Guardar
+            } else {
+                localStorage.setItem(chk.id, 'false'); // Borrar
+            }
+        });
+
+        const percent = Math.round((checked / total) * 100);
+        const bar = document.getElementById('barra-global');
+        bar.style.width = percent + '%';
+        bar.innerText = percent + '% Completado';
+    }
+
+    // 3. Sistema de Prompts para el Asistente
+    const prompts = {
+        '1.1': "Gemini, he creado este array de servicios en JS para mi sitio. ¿Está bien estructurada la sintaxis JSON? [PEGA TU CÓDIGO AQUÍ]",
+        '1.2': "Necesito seleccionar el div con id='lista-servicios'. ¿Cuál es la diferencia entre usar getElementById y querySelector?",
+        '1.3': "Tengo este array y quiero usar .map() para generar tarjetas HTML. Aquí está mi intento: [PEGA TU CÓDIGO]. ¿Por qué no se renderiza?",
+        '2.2': "Estoy migrando este HTML de mi Header a un componente de React. ¿Cómo manejo las clases 'class' y las rutas de imágenes en JSX?"
+    };
+
+    function showPrompt(taskId) {
+        const consoleDiv = document.getElementById('ai-console');
+        const textP = document.getElementById('prompt-text');
+        
+        textP.innerText = prompts[taskId] || "Gemini, revisa mi avance en esta tarea.";
+        consoleDiv.style.display = 'block';
+    }
+
+    function closePrompt() {
+        document.getElementById('ai-console').style.display = 'none';
+    }
+
+    function copyToClipboard() {
+        const text = document.getElementById('prompt-text').innerText;
+        navigator.clipboard.writeText(text);
+        alert("Prompt copiado. ¡Pégalo en el chat con Gemini!");
+    }
+
+    // Cargar al inicio
+    window.onload = loadProgress;
+</script>
+
+</body>
+</html>
