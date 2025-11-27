@@ -30,96 +30,52 @@ const dataServicios = [
         icono: "fas fa-desktop",
         descripcion: "Diagnóstico y reparación de PC de escritorio y portátiles con garantía."
     },
+    
     {
         id: 6,
-        titulo: "Actualización de Hardware",
-        icono: "fas fa-microchip",
-        descripcion: "Mejora el rendimiento de tu equipo con actualizaciones de RAM, SSD y más."
-    },
-    {
-        id: 7,
-        titulo: "Actualización de Software",
-        icono: "fas fa-sync-alt",
-        descripcion: "Instalación y actualización de sistemas operativos y programas especializados."
-    },
-    {
-        id: 8,
         titulo: "Asistencia Remota",
         icono: "fas fa-headset",
         descripcion: "Soporte técnico a distancia a través de sistemas seguros y confiables."
     },
+  
     {
-        id: 9,
-        titulo: "Servicio a Domicilio",
-        icono: "fas fa-home",
-        descripcion: "Atención técnica sin salir de casa. Recogemos y entregamos en 24-36 horas."
-    },
-    {
-        id: 10,
+        id: 7,
         titulo: "Asesoría Tecnológica",
         icono: "fas fa-comments",
         descripcion: "Consultoría gratuita en compra de equipos y soluciones tecnológicas."
     },
     {
-        id: 11,
-        titulo: "Redes Domésticas",
-        icono: "fas fa-wifi",
-        descripcion: "Configuración y optimización de redes WiFi para hogares y pequeñas oficinas."
-    },
-    {
-        id: 12,
-        titulo: "Cloud Computing",
-        icono: "fas fa-cloud",
-        descripcion: "Soluciones de almacenamiento y servicios en la nube para tu empresa."
-    },
-    {
-        id: 13,
+        id: 8,
         titulo: "Telecomunicaciones",
         icono: "fas fa-phone-alt",
         descripcion: "Instalación y configuración de sistemas de comunicación empresarial."
     },
+  
     {
-        id: 14,
-        titulo: "Reparación de Tablets",
-        icono: "fas fa-tablet-alt",
-        descripcion: "Servicio técnico especializado para tablets de todas las marcas."
-    },
-    {
-        id: 15,
-        titulo: "Reparación de Celulares",
-        icono: "fas fa-mobile-alt",
-        descripcion: "Diagnóstico y reparación de smartphones con repuestos originales."
-    },
-    {
-        id: 16,
+        id: 9,
         titulo: "Mantenimiento de Impresoras",
         icono: "fas fa-print",
         descripcion: "Servicio técnico y mantenimiento para impresoras láser y de tinta."
     },
     {
-        id: 17,
+        id: 10,
         titulo: "Capacitaciones Tecnológicas",
         icono: "fas fa-chalkboard-teacher",
         descripcion: "Formación en el uso de nuevas tecnologías para empresas y personas."
     },
     {
-        id: 18,
+        id: 11,
         titulo: "Automatización con IA",
         icono: "fas fa-robot",
         descripcion: "Implementación de herramientas de IA para automatizar procesos empresariales."
     },
     {
-        id: 19,
+        id: 12,
         titulo: "Recuperación de Datos",
         icono: "fas fa-hdd",
         descripcion: "Rescate de información perdida en discos duros y dispositivos de almacenamiento."
     },
-    {
-        id: 20,
-        titulo: "Instalación de Sistemas Operativos",
-        icono: "fas fa-windows",
-        descripcion: "Instalación y configuración de Windows, Linux y otros sistemas operativos."
-    }
+    
 ];
 // ... (Arriba debe estar tu array 'dataServicios' con los 20 ítems) ...
 
