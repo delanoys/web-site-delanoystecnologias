@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="fonts/fontawesome-free-6.7.2-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -122,45 +123,16 @@
             </div>
         </section>
         
-        <section class="services-section" id="servicios">
-            <div class="container">
-                <h2 class="section-title"><i class="fa-solid fa-gears"></i> Nuestros Servicios</h2>
-                <div class="services-grid">
-                    <article class="service-card" tabindex="0">
-                        <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
-                        <h3 class="service-title">Optimización de Redes</h3>
-                        <p class="service-description">
-                            Soporte técnico para optimizar redes empresariales, garantizando conectividad estable y segura.
-                        </p>
-                        <a href="#contacto" class="service-link">Solicitar info</a>
-                    </article>
-                    <article class="service-card" tabindex="0">
-                        <div class="service-icon"><i class="fa-solid fa-database"></i></div>
-                        <h3 class="service-title">Curso SQL Básico y Avanzado</h3>
-                        <p class="service-description">
-                            Aprende SQL desde cero hasta avanzado con ejercicios prácticos en SQLite y PostgreSQL.
-                        </p>
-                        <a href="basesdedatos.html" class="service-link">Ver curso</a>
-                    </article>
-                    <article class="service-card" tabindex="0">
-                        <div class="service-icon"><i class="fa-solid fa-code"></i></div>
-                        <h3 class="service-title">Desarrollo Web</h3>
-                        <p class="service-description">
-                            Aprende HTML, CSS, JavaScript y más. Contenido interactivo para todos los niveles.
-                        </p>
-                        <a href="desarrolloweb.html" class="service-link">Explorar</a>
-                    </article>
-                    <article class="service-card" tabindex="0">
-                        <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <h3 class="service-title">DOM y JavaScript</h3>
-                        <p class="service-description">
-                            Domina la manipulación del DOM y crea interfaces dinámicas e interactivas.
-                        </p>
-                        <a href="#educacion" class="service-link">Aprender más</a>
-                    </article>
-                </div>
+      <section class="services-section" id="servicios">
+    <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-gears"></i> Nuestros Servicios</h2>
+        
+        <div class="services-grid" id="contenedor-servicios">
             </div>
-        </section>
+        
+    </div>
+</section>
+
 
         <section class="devops-cta-section" id="devops-destacada" role="region" aria-labelledby="devops-title">
             <style>
@@ -557,12 +529,12 @@
         </form>
     </div>
 
+    <script src="./js/servicios.js"></script>
     <script>
         // Footer año
         document.getElementById('anio-actual').textContent = new Date().getFullYear();
     </script>
     <script src="./JavaScrpt/AsistenteIA.js"></script>
 </footer>
-<script src="./js/servicios.js"></script>
 </body>
 </html>
