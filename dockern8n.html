@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Docker + n8n</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .system-info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin: 20px 0 10px;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: #4caf50;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist li:hover {
+            background: #e0e0e0;
+        }
+
+        .checklist li.checked {
+            background: #c8e6c9;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .checklist li::before {
+            content: '☐';
+            font-size: 1.5em;
+            color: #667eea;
+        }
+
+        .checklist li.checked::before {
+            content: '☑';
+            color: #4caf50;
+        }
+
+        .accordion {
+            margin: 15px 0;
+        }
+
+        .accordion-header {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #764ba2;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f9f9f9;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 15px;
+        }
+
+        .tab-container {
+            margin: 20px 0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 0 5px 5px 5px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .command-list {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .command-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .command-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            nav ul { flex-direction: column; }
+            .tabs { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Guía Completa de n8n con Docker</h1>
+            <div class="system-info">
+                <strong>Sistema:</strong> elementary OS 8 x86_64 | <strong>Kernel:</strong> 6.14.0-36-generic | 
+                <strong>Docker:</strong> 28.2.2 | <strong>Usuario:</strong> dtecno
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#conceptos">Conceptos</a></li>
+                <li><a href="#instalacion">Instalación</a></li>
+                <li><a href="#comandos">Comandos</a></li>
+                <li><a href="#puertos">Puertos</a></li>
+                <li><a href="#datos">Datos</a></li>
+                <li><a href="#avanzado">Avanzado</a></li>
+                <li><a href="#problemas">Problemas</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+
+        <section id="conceptos">
+            <h2>🐳 Conceptos Básicos</h2>
+            
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab(event, 'docker-tab')">Docker</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'n8n-tab')">n8n</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'diff-tab')">Diferencia</button>
+                </div>
+                
+                <div id="docker-tab" class="tab-content active">
+                    <h3>¿Qué es Docker?</h3>
+                    <p>Docker es el <strong>motor/plataforma</strong> que ejecuta contenedores. Es como el motor de un auto que siempre está corriendo en segundo plano.</p>
+                    <div class="info-box">
+                        <strong>Características:</strong>
+                        <ul>
+                            <li>Servicio del sistema (siempre corriendo)</li>
+                            <li>Permite ejecutar aplicaciones en contenedores</li>
+                            <li>Aisla aplicaciones del sistema host</li>
+                            <li>Facilita la portabilidad de aplicaciones</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div id="n8n-tab" class="tab-content">
+                    <h3>¿Qué es n8n?</h3>
+                    <p>n8n es una <strong>aplicación de automatización</strong> de flujos de trabajo que corre dentro de un contenedor Docker.</p>
+                    <div class="success-box">
+                        <strong>Ventajas de n8n:</strong>
+                        <ul>
+                            <li>Automatización visual sin código</li>
+                            <li>Más de 400 integraciones</li>
+                            <li>Versión gratuita completa (Community Edition)</li>
+                            <li>Auto-hospedado - tus datos bajo tu control</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div id="diff-tab" class="tab-content">
+                    <h3>Diferencia Clave</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                        <tr style="background: #667eea; color: white;">
+                            <th style="padding: 12px; text-align: left;">Aspecto</th>
+                            <th style="padding: 12px; text-align: left;">Docker</th>
+                            <th style="padding: 12px; text-align: left;">n8n</th>
+                        </tr>
+                        <tr style="background: #f5f5f5;">
+                            <td style="padding: 10px;"><strong>Tipo</strong></td>
+                            <td style="padding: 10px;">Plataforma/Motor</td>
+                            <td style="padding: 10px;">Aplicación/Contenedor</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>Estado</strong></td>
+                            <td style="padding: 10px;">Siempre corriendo</td>
+                            <td style="padding: 10px;">Se inicia/detiene</td>
+                        </tr>
+                        <tr style="background: #f5f5f5;">
+                            <td style="padding: 10px;"><strong>Función</strong></td>
+                            <td style="padding: 10px;">Ejecuta contenedores</td>
+                            <td style="padding: 10px;">Automatiza workflows</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="instalacion">
+            <h2>📦 Instalación</h2>
+            
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    1. Verificar Docker
+                </div>
+                <div class="accordion-content">
+                    <p>Primero verifica si Docker ya está instalado:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker --version</pre>
+                    </div>
+                    <div class="success-box">
+                        <strong>Salida esperada:</strong><br>
+                        Docker version 28.2.2, build 28.2.2-0ubuntu1~24.04.1
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    2. Instalar Docker (si no está instalado)
+                </div>
+                <div class="accordion-content">
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre># Actualizar el sistema
+sudo apt update
+
+# Instalar Docker
+sudo apt install docker.io -y
+
+# Iniciar y habilitar Docker
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Verificar estado
+sudo systemctl status docker</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    3. Agregar usuario al grupo Docker
+                </div>
+                <div class="accordion-content">
+                    <p>Esto permite usar Docker sin <code>sudo</code>:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre># Agregar usuario al grupo
+sudo usermod -aG docker $USER
+
+# Aplicar cambios
+newgrp docker
+
+# Verificar grupos
+groups</pre>
+                    </div>
+                    <div class="info-box">
+                        Debes ver en la salida: <code>dtecno adm cdrom sudo dip plugdev users lpadmin docker</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    4. Crear carpeta para n8n
+                </div>
+                <div class="accordion-content">
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>mkdir -p ~/.n8n</pre>
+                    </div>
+                    <p><strong>Explicación:</strong></p>
+                    <ul>
+                        <li><code>mkdir</code> = crear carpeta</li>
+                        <li><code>-p</code> = crea carpetas intermedias si faltan</li>
+                        <li><code>~</code> = tu home (<code>/home/dtecno</code>)</li>
+                        <li><code>.n8n</code> = carpeta oculta</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    5. Ejecutar n8n
+                </div>
+                <div class="accordion-content">
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker run -it --rm \
+  --name n8n \
+  -p 5678:5678 \
+  -v ~/.n8n:/home/node/.n8n \
+  n8nio/n8n</pre>
+                    </div>
+                    <div class="warning-box">
+                        <strong>Primera vez:</strong> Descargará la imagen (~500-700 MB). Tardará 2-5 minutos.
+                    </div>
+                    <div class="success-box">
+                        <strong>Acceder:</strong> Abre tu navegador en <a href="http://localhost:5678" target="_blank">http://localhost:5678</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comandos">
+            <h2>🎮 Comandos Esenciales</h2>
+            
+            <h3>Gestión de Docker</h3>
+            <div class="command-list">
+                <div class="command-item">
+                    <strong>Ver estado de Docker</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>sudo systemctl status docker</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Iniciar Docker</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>sudo systemctl start docker</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Detener Docker</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>sudo systemctl stop docker</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Gestión de n8n</h3>
+            <div class="command-list">
+                <div class="command-item">
+                    <strong>Iniciar n8n</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker run -it --rm \
+  --name n8n \
+  -p 5678:5678 \
+  -v ~/.n8n:/home/node/.n8n \
+  n8nio/n8n</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Detener n8n</strong>
+                    <p>Opción 1: En la terminal presiona <code>Ctrl + C</code></p>
+                    <p>Opción 2:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker stop n8n</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Ver contenedores activos</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker ps</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Ver todos los contenedores</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker ps -a</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Ver imágenes descargadas</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker images</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="puertos">
+            <h2>📊 Mapeo de Puertos</h2>
+            <p>El parámetro <code>-p</code> crea un "túnel" entre tu computadora y el contenedor.</p>
+            
+            <div class="info-box">
+                <strong>Sintaxis:</strong> <code>-p PUERTO_HOST:PUERTO_CONTENEDOR</code>
+            </div>
+
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h4 style="text-align: center; margin-bottom: 15px;">Flujo de Datos</h4>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        🌐 Navegador
+                    </div>
+                    <span style="font-size: 1.5em;">→</span>
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        localhost:5678
+                    </div>
+                    <span style="font-size: 1.5em;">→</span>
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        🐳 Docker
+                    </div>
+                    <span style="font-size: 1.5em;">→</span>
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        n8n:5678
+                    </div>
+                </div>
+            </div>
+
+            <h3>Ejemplos de mapeo alternativo</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <pre># Acceder en puerto 8080
+-p 8080:5678
+
+# Acceder en puerto 3000
+-p 3000:5678</pre>
+            </div>
+        </section>
+
+        <section id="datos">
+            <h2>💾 Datos Persistentes</h2>
+            <p>Todos tus workflows y configuraciones se guardan en:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <pre>~/.n8n</pre>
+            </div>
+
+            <div class="info-box">
+                <strong>Ubicación completa:</strong> /home/dtecno/.n8n
+            </div>
+
+            <h3>Contenido de la carpeta:</h3>
+            <ul>
+                <li>📁 Workflows (flujos de trabajo)</li>
+                <li>🔐 Credenciales (encriptadas)</li>
+                <li>⚙️ Configuraciones</li>
+                <li>🗄️ Base de datos SQLite</li>
+            </ul>
+
+            <h3>Crear Backup</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <pre>tar -czf n8n-backup-$(date +%Y%m%d).tar.gz ~/.n8n</pre>
+            </div>
+
+            <h3>Restaurar Backup</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <pre>tar -xzf n8n-backup-20241210.tar.gz -C ~/</pre>
+            </div>
+        </section>
+
+        <section id="avanzado">
+            <h2>🔧 Configuración Avanzada</h2>
+            <p>Para producción, es mejor usar Docker Compose:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                <pre>version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=tupassword
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+    volumes:
+      - ~/.n8n:/home/node/.n8n</pre>
+            </div>
+
+            <h3>Comandos Docker Compose</h3>
+            <div class="command-list">
+                <div class="command-item">
+                    <strong>Iniciar</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker-compose up -d</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Ver logs</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker-compose logs -f</pre>
+                    </div>
+                </div>
+                <div class="command-item">
+                    <strong>Detener</strong>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker-compose down</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="problemas">
+            <h2>🐛 Solución de Problemas</h2>
+            
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    n8n no arranca
+                </div>
+                <div class="accordion-content">
+                    <p><strong>1. Verificar que Docker esté corriendo:</strong></p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>sudo systemctl status docker</pre>
+                    </div>
+                    
+                    <p><strong>2. Ver logs del contenedor:</strong></p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>docker logs n8n</pre>
+                    </div>
+                    
+                    <p><strong>3. Verificar puertos en uso:</strong></p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                        <pre>sudo lsof -i :5678</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Puerto 5678 ocupado
+                </div>
+                <div class="accordion-content
