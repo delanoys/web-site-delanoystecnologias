@@ -217,3 +217,80 @@ footer { background: var(--dark); color: white; text-align: center; padding: 20p
 .active, .dot:hover {
     background-color: var(--primary);
 }
+
+
+/* --- DISEÑO RESPONSIVO (MÓVILES Y TABLETS) --- */
+
+/* Para tablets y celulares (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    
+    /* 1. Menú de navegación */
+    nav {
+        flex-direction: column; /* Pone el logo arriba y los links abajo */
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 1.1rem; /* Reduce el tamaño del texto largo del logo */
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+        padding: 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 0 10px; /* Reduce espacio entre botones del menú */
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+
+    /* 2. Slider (Ajuste de altura para celulares) */
+    .slider-container {
+        height: 40vh; /* Más bajito en celular para que no tape todo */
+    }
+
+    .prev, .next {
+        padding: 10px;
+        font-size: 18px; /* Flechas más pequeñas */
+    }
+
+    /* 3. Hero y Títulos */
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    /* 4. Tabla de Precios (Scroll lateral para que no se rompa) */
+    .table-container {
+        padding: 10px;
+        overflow-x: auto; /* Permite deslizar la tabla con el dedo */
+    }
+
+    table {
+        min-width: 500px; /* Asegura que la info no se amontone */
+        font-size: 0.85rem;
+    }
+}
+
+/* Para celulares muy pequeños (Pantallas menores a 480px) */
+@media (max-width: 480px) {
+    .services-grid {
+        grid-template-columns: 1fr; /* Una sola columna de servicios */
+        padding: 20px;
+    }
+
+    .btn-cta {
+        width: 90%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
