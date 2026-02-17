@@ -53,8 +53,7 @@
 </div>
 
 <script>
-    // PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxMY_OOndaVP-8HAEO7vbVfqL-rbNMSN4pF3pmia21NHn_eVXbwJzp7zNnQr2tuiZTf/exec'; 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxMY_OOndaVP-8HAEO7vbVfqL-rbNMSN4pF3pmia21NHn_eVXbwJzp7zNnQr2tuiZTf/exec';
     const form = document.getElementById('registroForm');
     const btn = document.getElementById('btnEnviar');
     const msg = document.getElementById('mensaje');
@@ -63,25 +62,30 @@
         e.preventDefault();
         btn.disabled = true;
         btn.innerText = "Enviando datos...";
-        
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                msg.style.display = "block";
-                msg.style.backgroundColor = "#d4edda";
-                msg.style.color = "#155724";
-                msg.innerText = "✅ ¡Recibido! Nos comunicaremos en breve.";
-                form.reset();
-                btn.disabled = false;
-                btn.innerText = "ENVIAR SOLICITUD";
-            })
-            .catch(error => {
-                msg.style.display = "block";
-                msg.style.backgroundColor = "#f8d7da";
-                msg.style.color = "#721c24";
-                msg.innerText = "❌ Error al enviar. Por favor intenta de nuevo.";
-                btn.disabled = false;
-                btn.innerText = "ENVIAR SOLICITUD";
-            });
+
+        fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', // <--- ESTO EVITA EL ERROR ROJO
+            body: new FormData(form)
+        })
+        .then(response => {
+            // Con no-cors no podemos leer la respuesta, pero si llega aquí es que se envió
+            msg.style.display = "block";
+            msg.style.backgroundColor = "#d4edda";
+            msg.style.color = "#155724";
+            msg.innerText = "✅ ¡Recibido! Nos comunicaremos en breve.";
+            form.reset();
+            btn.disabled = false;
+            btn.innerText = "ENVIAR SOLICITUD";
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            msg.style.display = "block";
+            msg.style.backgroundColor = "#f8d7da";
+            msg.innerText = "❌ Error al enviar. Intenta de nuevo.";
+            btn.disabled = false;
+            btn.innerText = "ENVIAR SOLICITUD";
+        });
     });
 </script>
 
