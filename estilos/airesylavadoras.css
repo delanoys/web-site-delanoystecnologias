@@ -1,0 +1,56 @@
+:root {
+    --primary: #007bff;
+    --dark: #333;
+    --light: #f4f4f4;
+}
+
+body { font-family: 'Segoe UI', sans-serif; margin: 0; color: var(--dark); scroll-behavior: smooth; }
+
+nav { display: flex; justify-content: space-between; padding: 20px 5%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+nav ul { display: flex; list-style: none; }
+nav ul li { margin-left: 20px; }
+nav ul li a { text-decoration: none; color: var(--dark); font-weight: 500; }
+
+.hero { height: 70vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero-bg.jpg') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+.btn-cta { background: #28a745; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px; display: inline-block; }
+
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 50px 5%; }
+.card { background: var(--light); padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s; }
+.card:hover { transform: translateY(-10px); background: var(--primary); color: white; }
+
+.table-container { padding: 50px 5%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+th { background-color: var(--primary); color: white; }
+.disclaimer { font-size: 0.8rem; color: #777; margin-top: 10px; }
+
+.hero {
+    /* Verifica que la extensión sea .jpg o .png según tu archivo real */
+    background-image: url('/imagenes/aires/reudelosaires.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 70vh; /* Asegúrate de darle una altura para que se vea */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}

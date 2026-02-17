@@ -132,3 +132,29 @@
             color: #00ff00;
             white-space: pre;
         }
+
+        /* Estilos para CSS mínimo para acordeones */
+
+                .accordion-header{
+        width:100%;
+        background:transparent;
+        border:none;
+        color:var(--text-primary);
+        font-size:1.1rem;
+        font-weight:600;
+        text-align:left;
+        padding:1rem;
+        cursor:pointer;
+        transition:.3s;
+        }
+
+        .accordion-header:hover{
+        color:var(--primary);
+        }
+
+        .accordion-content{
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .35s ease;
+        padding:0 1rem;
+        }

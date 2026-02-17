@@ -15,6 +15,10 @@
 
     <nav class="navbar">
         <div class="nav-container">
+            <button class="menu-toggle">
+                <i class="ph-bold ph-list"></i>
+                <img src="" alt="">
+            </button>
             <a href="#" class="nav-brand">
                 <i class="ph-bold ph-linux-logo brand-logo" style="font-size: 3rem; color: var(--primary);"></i>
                 <h1 class="text-gradient" style="font-size: 1.5rem; font-weight: 700;">Linux.Tech</h1>
@@ -25,6 +29,8 @@
                 <a href="#historia" class="nav-link">Historia</a>
                 <a href="#instalacion" class="nav-link">Instalación</a>
                 <a href="#terminal" class="nav-link">Terminal</a>
+                <a href="#bash-comportamiento">Bash Avanzado</a>
+
                 <a href="#usuario-root-linux" class="nav-link">Root / Sudo</a> 
                 <a href="#" class="nav-link nav-cta">¡Empieza Ahora! <i class="ph-bold ph-arrow-right"></i></a>
             </div>
@@ -535,7 +541,141 @@ rsync -av --progress /home/usuario backup@servidor:/backups/usuario/
         <section id="cifrado-bitlocker" class="education-group fade-in-up container" aria-labelledby="cifrado-title" style="margin-top:2rem;">
              </section>
 
+        <section class="education-section" id="bash-comportamiento">
+        <div class="container">
 
+            <h2 class="section-title">
+            <i class="ph-bold ph-terminal"></i> 5. Comportamiento del Bash y Gestión de Funciones
+            </h2>
+
+            <p class="section-description">
+            Comprender cómo Bash carga funciones, alias y variables es clave para evitar errores de sintaxis,
+            conflictos en memoria y comportamientos inesperados al modificar el archivo <code>~/.bashrc</code>.
+            </p>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                📘 ¿Qué es Bash y cómo carga configuraciones?
+            </button>
+            <div class="accordion-content">
+                <p>
+                Bash es el intérprete de comandos que ejecuta instrucciones escritas en terminal.
+                Cuando se inicia una sesión, carga configuraciones desde archivos como:
+                </p>
+                <ul>
+                <li><code>~/.bashrc</code> → configuración interactiva</li>
+                <li><code>~/.profile</code> → variables de entorno</li>
+                <li><code>/etc/bash.bashrc</code> → configuración global</li>
+                </ul>
+                <p>
+                Cada vez que ejecutas:
+                </p>
+                <div class="terminal-block">
+        source ~/.bashrc
+                </div>
+                <p>Recarga funciones, alias y variables sin cerrar la terminal.</p>
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                ⚠️ Conflictos comunes en Bash
+            </button>
+            <div class="accordion-content">
+                <ul>
+                <li>Funciones con nombres previamente cargados</li>
+                <li>Alias con el mismo nombre que funciones</li>
+                <li>Funciones antiguas aún en memoria</li>
+                <li>Errores de sintaxis previos no recargados</li>
+                </ul>
+
+                <p>Ejemplo de conflicto:</p>
+
+                <div class="terminal-block">
+        type datos
+                </div>
+
+                <p>Puede mostrar una función antigua aunque ya no exista en el archivo.</p>
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                🧠 Funciones cargadas en memoria
+            </button>
+            <div class="accordion-content">
+                <p>
+                Cuando defines una función en Bash, queda almacenada en memoria durante la sesión.
+                Aunque edites el archivo, la función sigue activa hasta reiniciar o recargar correctamente.
+                </p>
+
+                <div class="terminal-block">
+        unset -f nombre_funcion
+                </div>
+
+                <p>Elimina una función específica de la sesión actual.</p>
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                🔄 Comandos para reiniciar o limpiar Bash
+            </button>
+            <div class="accordion-content">
+
+                <p><strong>Recargar configuración:</strong></p>
+                <div class="terminal-block">
+        source ~/.bashrc
+                </div>
+
+                <p><strong>Reiniciar sesión de Bash:</strong></p>
+                <div class="terminal-block">
+        exec bash
+                </div>
+
+                <p><strong>Eliminar alias:</strong></p>
+                <div class="terminal-block">
+        unalias nombre
+                </div>
+
+                <p><strong>Ver alias activos:</strong></p>
+                <div class="terminal-block">
+        alias
+                </div>
+
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                💡 Buenas prácticas para funciones en ~/.bashrc
+            </button>
+            <div class="accordion-content">
+
+                <ul>
+                <li>Usar prefijos en funciones personalizadas (<code>_</code> o <code>dev_</code>)</li>
+                <li>No reutilizar nombres de comandos existentes</li>
+                <li>Probar funciones antes de guardarlas definitivamente</li>
+                <li>Documentar cada función con comentarios</li>
+                </ul>
+
+                <div class="terminal-block">
+        # Ir a carpeta de proyectos
+        _proyectos() {
+        cd ~/Proyectos
+        }
+                </div>
+
+            </div>
+            </div>
+
+        </div>
+                </section>
         <section class="devops-cta-section">
             <div class="container devops-cta-content">
                 <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
@@ -554,6 +694,9 @@ rsync -av --progress /home/usuario backup@servidor:/backups/usuario/
                 </div>
             </div>
         </section>
+       
+
+
   
 
 
@@ -610,6 +753,19 @@ rsync -av --progress /home/usuario backup@servidor:/backups/usuario/
             });
         });
     </script>
+
+    <script>
+        document.querySelectorAll(".accordion-header").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+            const content = btn.nextElementSibling
+            btn.classList.toggle("active")
+            content.style.maxHeight
+            ? content.style.maxHeight=null
+            : content.style.maxHeight=content.scrollHeight+"px"
+        })
+        })
+    </script>
+
 
 </body>
 </html>
