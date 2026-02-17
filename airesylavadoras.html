@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>👑 Rey de los Aires y Lavadoras - Aires Acondicionados ❄️ y Lavadoras 🌊</title>
+    <title>Rey de los Aires y Lavadoras ❄️🌊</title>
     <link rel="stylesheet" href="/estilos/airesylavadoras.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">👑 Rey de los Aires y Lavadoras - Aires Acondicionados ❄️ y Lavadoras 🌊</div>
-            <ul>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-snowflake"></i> 👑 Rey de los Aires Acondicionados ❄️ y Lavadoras 🌊
+            </div>
+            <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#productos">Venta de Aires</a></li>
@@ -20,25 +22,25 @@
         </nav>
     </header>
 
-   <section id="inicio" class="hero">
-    <div class="hero-content">
-        <h1>Expertos en Confort y Climatización</h1>
-        <p>Venta, instalación y mantenimiento de aires acondicionados y lavadoras.</p>
-        <a href="https://wa.me/tu-numero" class="btn-cta">Agendar Servicio</a>
-    </div>
-</section>
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Expertos en Confort y Climatización</h1>
+            <p>Venta, instalación y mantenimiento de aires acondicionados y lavadoras.</p>
+            <a href="https://wa.me/tu-numero" class="btn-cta"><i class="fab fa-whatsapp"></i> Agendar Servicio</a>
+        </div>
+    </section>
 
     <section id="servicios">
-        <h2>Nuestros Servicios</h2>
+        <h2 class="section-title">Nuestros Servicios</h2>
         <div class="services-grid">
-            <div class="card"><h3>Venta e Instalación</h3><p>Equipos Mirage, Hisense y más.</p></div>
-            <div class="card"><h3>Mantenimiento</h3><p>Limpieza profunda y recarga de gas.</p></div>
-            <div class="card"><h3>Reparación</h3><p>Técnicos certificados en lavadoras y aires.</p></div>
+            <div class="card"><i class="fas fa-tools"></i> <h3>Venta e Instalación</h3><p>Equipos Mirage, Hisense y más.</p></div>
+            <div class="card"><i class="fas fa-hand-sparkles"></i> <h3>Mantenimiento</h3><p>Limpieza profunda y recarga de gas.</p></div>
+            <div class="card"><i class="fas fa-faucet-drip"></i> <h3>Reparación</h3><p>Técnicos certificados en lavadoras y aires.</p></div>
         </div>
     </section>
 
     <section id="productos">
-        <h2>Catálogo Destacado (Precios Dic 2025)</h2>
+        <h2 class="section-title">Catálogo Destacado (Dic 2025)</h2>
         <div class="table-container">
             <table>
                 <thead>
@@ -48,7 +50,7 @@
                         <th>Precio Público</th>
                     </tr>
                 </thead>
-                <tbody id="product-table">
+                <tbody>
                     <tr>
                         <td>CLF090Q</td>
                         <td>Mirage Xlife 9,000 BTU 110V R410A [cite: 5]</td>
