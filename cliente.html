@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Clientes - Rey de los Aires y Lavadoras</title>
+    <style>
+        :root { --primary: #0056b3; --secondary: #28a745; --dark: #333; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f7f9; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 10px; }
+        p { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--dark); }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        textarea { resize: none; height: 80px; }
+        button { width: 100%; padding: 15px; background-color: var(--secondary); border: none; border-radius: 6px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        button:hover { background-color: #218838; }
+        #mensaje { margin-top: 15px; text-align: center; padding: 10px; border-radius: 6px; display: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>❄️ ¡Solicita tu Servicio!</h2>
+    <p>Completa tus datos para agendar la visita del técnico hoy mismo.</p>
+    
+    <form id="registroForm">
+        <div class="form-group">
+            <label>Nombre Completo</label>
+            <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required>
+        </div>
+        <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" name="telefono" placeholder="Ej: 300 123 4567" required>
+        </div>
+        <div class="form-group">
+            <label>¿Qué servicio necesitas?</label>
+            <select name="servicio">
+                <option value="Aire Nuevo">Aire Nuevo ($990k)</option>
+                <option value="Aire Usado">Aire Usado ($600k)</option>
+                <option value="Instalacion">Instalación Básica ($100k)</option>
+                <option value="Reparacion/Mantenimiento">Mantenimiento o Reparación</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Dirección o Barrio</label>
+            <input type="text" name="direccion" placeholder="Ej: Calle 10 #20-30, Barrio El Prado" required>
+        </div>
+        <button type="submit" id="btnEnviar">ENVIAR SOLICITUD</button>
+    </form>
+    <div id="mensaje"></div>
+</div>
+
+<script>
+    // PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
+    const scriptURL = 'TU_URL_AQUI'; 
+    const form = document.getElementById('registroForm');
+    const btn = document.getElementById('btnEnviar');
+    const msg = document.getElementById('mensaje');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.innerText = "Enviando datos...";
+        
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.style.display = "block";
+                msg.style.backgroundColor = "#d4edda";
+                msg.style.color = "#155724";
+                msg.innerText = "✅ ¡Recibido! Nos comunicaremos en breve.";
+                form.reset();
+                btn.disabled = false;
+                btn.innerText = "ENVIAR SOLICITUD";
+            })
+            .catch(error => {
+                msg.style.display = "block";
+                msg.style.backgroundColor = "#f8d7da";
+                msg.style.color = "#721c24";
+                msg.innerText = "❌ Error al enviar. Por favor intenta de nuevo.";
+                btn.disabled = false;
+                btn.innerText = "ENVIAR SOLICITUD";
+            });
+    });
+</script>
+
+</body>
+</html>
