@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python | Delanoys Tecnologías</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --py-blue: #3776ab;
+            --py-yellow: #ffd43b;
+            --tech-dark: #1a1a1a;
+        }
+        .hero-python {
+            background: linear-gradient(135deg, var(--py-blue) 0%, #2b5b84 100%);
+            color: white;
+            padding: 80px 0;
+        }
+        .bg-black { background-color: #000000 !important; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        .card { border-radius: 12px; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--py-yellow) !important; }
+        #guia-entorno pre { border-left: 4px solid var(--py-blue); }
+    </style>
+</head>
+<body>
+
+<header class="hero-python text-center shadow">
+    <div class="container">
+        <i class="fab fa-python fa-4x mb-3" style="color: var(--py-yellow);"></i>
+        <h1 class="display-4 fw-bold">Python en Delanoys Tecnologías</h1>
+        <p class="lead">Fundamentos de Programación y Ciencia de Datos - AvanzaTEC 2026</p>
+    </div>
+</header>
+
+<section class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <h2 class="mb-4 border-bottom pb-2">El Poder de la Simplicidad</h2>
+            <p>Python es el lenguaje predilecto para la automatización y el análisis de datos debido a su sintaxis intuitiva. En esta sección, documento mi proceso de aprendizaje y las herramientas técnicas utilizadas en mi estación de trabajo <strong>elementary OS</strong>.</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="alert alert-primary">
+                <strong>Perfil Técnico:</strong><br>
+                Hardware: AMD Ryzen 7 | 16GB RAM<br>
+                OS: elementary OS 8 (Linux)
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="guia-entorno" class="py-5 bg-dark text-white">
+    <div class="container">
+        <h2 class="text-center mb-4"><span class="text-primary">Laboratorio</span> Python: Configuración Profesional</h2>
+        <p class="text-center mb-5">Guía técnica para la configuración de entornos de desarrollo en Linux (elementary OS) para proyectos de Ciencia de Datos y Automatización.</p>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 bg-secondary border-primary shadow text-white">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning"><i class="fas fa-terminal"></i> 1. Creación del Entorno Conda</h5>
+                        <p class="card-text">Aislamiento de dependencias para el curso AvanzaTEC 2026.</p>
+                        <code class="d-block p-3 bg-black text-success rounded">
+                            # Crear entorno con librerías base<br>
+                            conda create -n dev_pro_CISCO python=3.10 pandas numpy matplotlib scikit-learn<br><br>
+                            # Activar el entorno<br>
+                            conda activate dev_pro_CISCO
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 bg-secondary border-primary shadow text-white">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning"><i class="fas fa-bug"></i> 2. Fix Interfaz Gráfica (Linux)</h5>
+                        <p class="card-text">Solución para el error visual de Anaconda Navigator en Wayland.</p>
+                        <code class="d-block p-3 bg-black text-info rounded">
+                            # Agregar al final de ~/.bashrc<br>
+                            export QT_QPA_PLATFORM=xcb<br><br>
+                            # Recargar configuración<br>
+                            source ~/.bashrc
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card bg-secondary border-primary shadow text-white">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning"><i class="fas fa-folder-open"></i> 3. Arquitectura del Proyecto</h5>
+                        <p class="card-text">Estructura organizada según el temario de Fundamentos de Python 2.</p>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <code class="d-block p-3 bg-black text-light rounded">
+                                    mkdir -p unidades/{u1_modulos,u2_paquetes,u3_errores,u4_diccionarios}<br>
+                                    mkdir -p proyecto_integrador/{modulos,data,config,logs}<br>
+                                    touch unidades/u2_paquetes/__init__.py<br>
+                                    code .
+                                </code>
+                            </div>
+                            <div class="col-md-5 mt-3 mt-md-0">
+                                <ul class="list-unstyled">
+                                    <li><i class="text-primary fas fa-check"></i> <strong>unidades/:</strong> Ejercicios de clase.</li>
+                                    <li><i class="text-primary fas fa-check"></i> <strong>proyecto_integrador/:</strong> App final.</li>
+                                    <li><i class="text-primary fas fa-check"></i> <strong>__init__.py:</strong> Definición de paquetes.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-black text-white text-center py-4">
+    <div class="container">
+        <p class="mb-0">Hever Torres | Tecnólogo en Sistemas | Delanoys Tecnologías &copy; 2026</p>
+        <small><a href="https://delanoystecnologias.site/#inicio" class="text-primary text-decoration-none">Volver al Inicio</a></small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
