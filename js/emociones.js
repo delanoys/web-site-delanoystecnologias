@@ -1,95 +1,62 @@
-// Base de datos de Inteligencia Emocional - Proverbios 31/31
+// Base de datos de Inteligencia Emocional - Proverbios 31/31 con Emojis
 const dataEmociones = {
-    "Ira": { v: "Prov. 15:1", t: "La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.", a: "IE: No reacciones al calor del momento. Una respuesta calmada desarma conflictos antes de que escalen." },
-    "Impaciencia": { v: "Prov. 19:2", t: "El alma sin ciencia no es buena, y el que se apresura con los pies, peca.", a: "IE: Correr sin dirección no es progreso. La paciencia te permite evaluar los riesgos antes de actuar impulsivamente." },
-    "Venganza": { v: "Prov. 20:22", t: "No digas: Yo me vengaré; espera a Jehová, y él te salvará.", a: "IE: El rencor drena tu energía. Soltar la ofensa es una decisión estratégica para mantener tu enfoque y paz mental." },
-    "Orgullo": { v: "Prov. 11:2", t: "Cuando viene la soberbia, viene también la deshonra; mas con los humildes está la sabiduría.", a: "IE: La arrogancia cierra puertas. La humildad profesional te permite aprender de otros y crecer constantemente." },
-    "Necedad": { v: "Prov. 12:15", t: "El camino del necio es derecho en su opinión; mas el que obedece al consejo es sabio.", a: "IE: No te encierres en tu propia verdad. Escuchar perspectivas diferentes es la base de una toma de decisiones brillante." },
-    "Ansiedad": { v: "Prov. 12:25", t: "La congoja en el corazón del hombre lo abate; mas la buena palabra lo alegra.", a: "IE: El estrés crónico bloquea la creatividad. Busca un mentor; una conversación honesta puede cambiar tu día." },
-    "Tristeza": { v: "Prov. 17:22", t: "El corazón alegre constituye buen remedio; mas el espíritu triste seca los huesos.", a: "IE: Tu estado de ánimo afecta tu salud física. Cultiva la gratitud como un antídoto contra el desánimo profundo." },
-    "Miedo": { v: "Prov. 29:25", t: "El temor del hombre pondrá lazo; mas el que confía en Jehová será levantado.", a: "IE: El miedo al 'qué dirán' es una trampa. Tu seguridad debe nacer de tu identidad, no de la aprobación externa." },
-    "Agotamiento": { v: "Prov. 3:24", t: "Cuando te acuestes, no tendrás temor... y tu sueño será grato.", a: "IE: El descanso no es ocio, es mantenimiento. Un líder cansado toma malas decisiones." },
-    "Frustración": { v: "Prov. 19:11", t: "La cordura del hombre detiene su furor, y su honra es pasar por alto la ofensa.", a: "IE: No dejes que los obstáculos arruinen tu carácter. La madurez se demuestra al ignorar ofensas menores." },
-    "Envidia": { v: "Prov. 14:30", t: "El corazón apacible es vida de la carne; mas la envidia es carcoma de los huesos.", a: "IE: El éxito ajeno no es tu fracaso. Aprende a colaborar en lugar de competir de forma tóxica." },
-    "Soledad": { v: "Prov. 18:24", t: "El hombre que tiene amigos ha de mostrarse amigo; y amigo hay más unido que un hermano.", a: "IE: El aislamiento debilita. Invierte tiempo en construir relaciones genuinas; da antes de recibir." },
-    "Chisme": { v: "Prov. 16:28", t: "El hombre perverso levanta contienda, y el chismoso aparta a los mejores amigos.", a: "IE: La integridad es tu mayor activo. Mantener la confidencialidad te hace respetado." },
-    "Rechazo": { v: "Prov. 27:6", t: "Fieles son las heridas del que ama; pero importunos los besos del que aborrece.", a: "IE: A veces la crítica es el mejor espejo. Aprende a distinguir el feedback constructivo." },
-    "Deslealtad": { v: "Prov. 25:19", t: "Como diente roto y pie descoyuntado es la confianza en el prevaricador en tiempo de angustia.", a: "IE: Cumplir tu palabra es vital. La coherencia construye una marca personal sólida." },
-    "Pereza": { v: "Prov. 6:6", t: "Ve a la hormiga, oh perezoso, mira sus caminos, y sé sabio.", a: "IE: Empieza con pequeñas acciones; la motivación suele llegar después de haber iniciado el trabajo." },
-    "Codicia": { v: "Prov. 15:16", t: "Mejor es lo poco con el temor de Jehová, que el gran tesoro donde hay turbación.", a: "IE: No sacrifiques tu paz por dinero. La verdadera prosperidad incluye bienestar emocional." },
-    "Indecisión": { v: "Prov. 3:5", t: "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.", a: "IE: Cuando la lógica no baste, confía en tus valores fundamentales. La fe da valor para el primer paso." },
-    "Confusión": { v: "Prov. 4:26", t: "Examina la senda de tus pies, y todos tus caminos sean rectos.", a: "IE: Detente y analiza. La claridad mental viene de evaluar tus metas con tus principios éticos." },
-    "Distracción": { v: "Prov. 4:25", t: "Tus ojos miren lo recto, y diríjanse tus párpados a lo que tienes delante.", a: "IE: El enfoque es un superpoder moderno. Protege tu atención de lo trivial." },
-    "Culpa": { v: "Prov. 28:13", t: "El que encubre sus pecados no prosperará; mas el que los confiesa y se aparta alcanzará misericordia.", a: "IE: Errar es humano, ocultarlo es necio. La responsabilidad sana tu mente y reputación." },
-    "Inseguridad": { v: "Prov. 3:26", t: "Porque Jehová será tu confianza, y él preservará tu pie de quedar preso.", a: "IE: Tu valor no depende de tus logros. Camina con la seguridad de que tienes un propósito mayor." },
-    "Presunción": { v: "Prov. 27:2", t: "Alábete el extraño, y no tu propia boca; el ajeno, y no los labios tuyos.", a: "IE: Deja que tus resultados hablen por ti. La marca personal más fuerte es la que otros validan." },
-    "Injusticia": { v: "Prov. 21:3", t: "Hacer justicia y juicio es a Jehová más agradable que sacrificio.", a: "IE: La integridad profesional no es negociable. Actuar correctamente define tu éxito a largo plazo." },
-    "Desánimo": { v: "Prov. 24:10", t: "Si fueres flojo en el día de trabajo, tu fuerza será reducida.", a: "IE: La resiliencia se entrena en la crisis. No te rindas cuando el camino se ponga difícil." },
-    "Gratitud": { v: "Prov. 15:15", t: "El de corazón alegre tiene un banquete continuo.", a: "IE: La gratitud cambia tu percepción de la realidad y atrae más oportunidades." },
-    "Curiosidad": { v: "Prov. 18:15", t: "El corazón del prudente adquiere sabiduría; y el oído de los sabios busca la ciencia.", a: "IE: Mantén una mentalidad de aprendiz permanente. Quien busca saber más, lidera mejor." },
-    "Generosidad": { v: "Prov. 11:25", t: "El alma generosa será prosperada; y el que saciare, él también será saciado.", a: "IE: Ayudar a otros a crecer es la mejor forma de crecer tú mismo." },
-    "Optimismo": { v: "Prov. 13:12", t: "Árbol de vida es el deseo cumplido.", a: "IE: Mantén la visión clara. La esperanza activa te da la energía necesaria para persistir." },
-    "Integridad": { v: "Prov. 10:9", t: "El que camina en integridad camina confiado.", a: "IE: Nada da más paz que no tener nada que esconder. Es el fundamento de una carrera sólida." },
+    // --- VIRTUDES Y ESTADOS POSITIVOS ---
+    "Paz": { v: "Prov. 3:17", t: "Sus caminos son deleitosos, y todas sus veredas paz.", a: "La paz interior es el indicador de que tus decisiones están alineadas con tus valores. Protégela.", e: "🕊️" },
+    "Valentía": { v: "Prov. 28:1", t: "El justo está confiado como un león.", a: "La seguridad nace de la integridad. No temas tomar riesgos calculados cuando tu ética es sólida.", e: "🦁" },
+    "Entusiasmo": { v: "Prov. 15:30", t: "La luz de los ojos alegra el corazón.", a: "Tu energía es contagiosa. Una actitud positiva eleva el rendimiento de todo tu equipo.", e: "⚡" },
+    "Humildad": { v: "Prov. 22:4", t: "Riquezas, honra y vida son la remuneración de la humildad.", a: "Ser humilde es tener la capacidad de reconocer que siempre puedes aprender algo de los demás.", e: "🍃" },
+    "Diligencia": { v: "Prov. 22:29", t: "¿Has visto hombre solicitado en su trabajo? Delante de los reyes estará.", a: "La excelencia en los detalles te abre puertas que el talento solo no puede abrir.", e: "🏆" },
+    "Sabiduría": { v: "Prov. 8:11", t: "Porque mejor es la sabiduría que las piedras preciosas.", a: "La verdadera inteligencia es saber aplicar el conocimiento en el momento justo.", e: "💎" },
+    "Compasión": { v: "Prov. 14:21", t: "El que tiene misericordia de los pobres es bienaventurado.", a: "La empatía es la base de las relaciones. Ayudar a otros te convierte en un líder real.", e: "❤️" },
+    "Honestidad": { v: "Prov. 12:22", t: "Los que hacen verdad son su deleite.", a: "La transparencia genera confianza. Ser alguien de palabra te hace destacar profesionalmente.", e: "🤝" },
+    "Prudencia": { v: "Prov. 14:15", t: "El avisado mira bien sus pasos.", a: "Pensar antes de actuar te ahorra arrepentimientos. Analiza, escucha y luego decide.", e: "🧭" },
+    "Disciplina": { v: "Prov. 12:1", t: "El que ama la instrucción ama la sabiduría.", a: "El éxito es la suma de pequeños hábitos diarios. Amar la disciplina es amar tu crecimiento.", e: "💪" },
 
-        "Ira": { v: "Prov. 15:1", t: "La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.", a: "No reacciones al calor del momento. Una respuesta calmada desarma conflictos antes de que escalen." },
-        "Ansiedad": { v: "Prov. 12:25", t: "La congoja en el corazón del hombre lo abate; mas la buena palabra lo alegra.", a: "El estrés bloquea la creatividad. Busca un mentor o amigo; una conversación honesta puede cambiar tu día." },
-        "Orgullo": { v: "Prov. 11:2", t: "Cuando viene la soberbia, viene también la deshonra; mas con los humildes está la sabiduría.", a: "La arrogancia cierra puertas. La humildad profesional te permite aprender de otros y crecer constantemente." },
-        "Impaciencia": { v: "Prov. 19:2", t: "El alma sin ciencia no es buena, y el que se apresura con los pies, peca.", a: "Correr sin dirección no es progreso. Evalúa los riesgos antes de actuar impulsivamente." },
-        "Miedo": { v: "Prov. 29:25", t: "El temor del hombre pondrá lazo; mas el que confía en Jehová será levantado.", a: "El miedo al 'qué dirán' es una trampa. Tu seguridad debe nacer de tu identidad, no de la aprobación externa." },
-        "Tristeza": { v: "Prov. 17:22", t: "El corazón alegre constituye buen remedio; mas el espíritu triste seca los huesos.", a: "Tu estado de ánimo afecta tu salud física. Cultiva la gratitud como un antídoto contra el desánimo." },
-        "Pereza": { v: "Prov. 6:6", t: "Ve a la hormiga, oh perezoso, mira sus caminos, y sé sabio.", a: "La autogestión es clave. Empieza con pequeñas acciones hoy mismo." },
-        "Frustración": { v: "Prov. 19:11", t: "La cordura del hombre detiene su furor, y su honra es pasar por alto la ofensa.", a: "No dejes que los obstáculos arruinen tu carácter. La madurez ignora ofensas menores." },
-        "Envidia": { v: "Prov. 14:30", t: "La envidia es carcoma de los huesos.", a: "El éxito ajeno no es tu fracaso. Colaborar en lugar de competir potenciará tu carrera." },
-        "Soledad": { v: "Prov. 18:24", t: "El hombre que tiene amigos ha de mostrarse amigo.", a: "El aislamiento debilita. Invierte tiempo en construir relaciones genuinas dando antes de recibir." },
-        "Confusión": { v: "Prov. 4:26", t: "Examina la senda de tus pies, y todos tus caminos sean rectos.", a: "Detente y analiza. La claridad mental viene de evaluar tus metas con tus principios éticos." },
-        "Inseguridad": { v: "Prov. 3:26", t: "Porque Jehová será tu confianza.", a: "Tu valor real no depende de tus logros. Camina con la seguridad de tu propósito." },
-        "Venganza": { v: "Prov. 20:22", t: "No digas: Yo me vengaré; espera a Jehová.", a: "El rencor drena tu energía. Soltar la ofensa es una decisión estratégica para tu paz." },
-        "Chisme": { v: "Prov. 16:28", t: "El chismoso aparta a los mejores amigos.", a: "La integridad es tu mayor activo. Mantener la confidencialidad te hace respetado." },
-        "Codicia": { v: "Prov. 15:16", t: "Mejor es lo poco con temor de Jehová, que gran tesoro con turbación.", a: "No sacrifiques tu paz por dinero. La verdadera prosperidad incluye bienestar emocional." },
-        "Indecisión": { v: "Prov. 3:5", t: "Fíate de Jehová... no te apoyes en tu propia prudencia.", a: "Cuando la lógica no baste, confía en tus valores fundamentales para dar el primer paso." },
-        "Agotamiento": { v: "Prov. 3:24", t: "Cuando te acuestes... tu sueño será grato.", a: "El descanso es mantenimiento. Un líder cansado toma malas decisiones. ¡Duerme tranquilo!" },
-        "Necedad": { v: "Prov. 12:15", t: "El que obedece al consejo es sabio.", a: "No te encierres en tu opinión. Escuchar a otros es la base de decisiones brillantes." },
-        "Distracción": { v: "Prov. 4:25", t: "Tus ojos miren lo recto.", a: "El enfoque es un superpoder. Protege tu atención de lo trivial para lo importante." },
-        "Culpa": { v: "Prov. 28:13", t: "El que confiesa y se aparta alcanzará misericordia.", a: "Errar es humano. La responsabilidad (accountability) sana tu mente y reputación." },
-        "Rechazo": { v: "Prov. 27:6", t: "Fieles son las heridas del que ama.", a: "Aprende a distinguir entre un ataque personal y un feedback que te hará mejorar." },
-        "Presunción": { v: "Prov. 27:2", t: "Alábete el extraño, y no tu propia boca.", a: "Deja que tus resultados hablen por ti. La marca personal más fuerte la validan otros." },
-        "Injusticia": { v: "Prov. 21:3", t: "Hacer justicia y juicio es agradable a Jehová.", a: "La integridad no es negociable. Actuar bien aunque nadie mire define tu éxito." },
-        "Desánimo": { v: "Prov. 24:10", t: "Si fueres flojo en el día de trabajo, tu fuerza será reducida.", a: "La resiliencia se entrena en la crisis. No te rindas cuando el camino se ponga difícil." },
-        "Gratitud": { v: "Prov. 15:15", t: "El de corazón alegre tiene un banquete continuo.", a: "La gratitud cambia tu percepción de la realidad. Enfocarte en lo que tienes atrae más." },
-        "Curiosidad": { v: "Prov. 18:15", t: "El oído de los sabios busca la ciencia.", a: "Mantén mentalidad de aprendiz permanente. Quien busca saber más, lidera mejor." },
-        "Generosidad": { v: "Prov. 11:25", t: "El alma generosa será prosperada.", a: "Ayudar a otros a crecer es la mejor forma de crecer tú mismo. Crea redes de apoyo." },
-        "Optimismo": { v: "Prov. 13:12", t: "Árbol de vida es el deseo cumplido.", a: "Mantén la visión clara. La esperanza activa te da la energía para persistir." },
-        "Integridad": { v: "Prov. 10:9", t: "El que camina en integridad camina confiado.", a: "Nada da más paz que no tener nada que esconder. Es el fundamento de tu carrera." },
-        "Deslealtad": { v: "Prov. 25:19", t: "Como diente roto es la confianza en el prevaricador.", a: "Cumplir tu palabra es vital para construir una reputación sólida a largo plazo." }
-
+    // --- GESTIÓN DE EMOCIONES DESAFIANTES ---
+    "Ira": { v: "Prov. 15:1", t: "La blanda respuesta quita la ira.", a: "Controla tu reacción. Una palabra suave apaga incendios antes de que quemen tus relaciones.", e: "🔥" },
+    "Ansiedad": { v: "Prov. 12:25", t: "La congoja en el corazón del hombre lo abate.", a: "El estrés bloquea tu visión. Habla con un mentor y recupera el enfoque hoy.", e: "😰" },
+    "Orgullo": { v: "Prov. 16:18", t: "Antes del quebrantamiento es la soberbia.", a: "La arrogancia es el principio del fin. Escucha consejos para evitar caídas innecesarias.", e: "👑" },
+    "Impaciencia": { v: "Prov. 19:2", t: "El que se apresura con los pies, peca.", a: "No fuerces resultados. El tiempo es un aliado cuando actúas con estrategia.", e: "⏳" },
+    "Miedo": { v: "Prov. 29:25", t: "El temor del hombre pondrá lazo.", a: "No dejes que la opinión de otros te encarcele. Confía en tu propósito.", e: "🛡️" },
+    "Tristeza": { v: "Prov. 17:22", t: "El corazón alegre constituye buen remedio.", a: "La alegría es una decisión diaria que sana tu cuerpo y tu mente.", e: "🌧️" },
+    "Pereza": { v: "Prov. 6:6", t: "Ve a la hormiga, oh perezoso.", a: "La procrastinación es el ladrón del destino. Empieza con algo pequeño ahora.", e: "💤" },
+    "Envidia": { v: "Prov. 14:30", t: "La envidia es carcoma de los huesos.", a: "Celebrar el éxito ajeno libera tu propia creatividad.", e: "🐍" },
+    "Soledad": { v: "Prov. 18:24", t: "El hombre que tiene amigos ha de mostrarse amigo.", a: "Para romper el aislamiento, toma la iniciativa de servir a alguien más.", e: "👤" },
+    "Confusión": { v: "Prov. 4:26", t: "Examina la senda de tus pies.", a: "Cuando no sepas qué hacer, vuelve a tus principios básicos y rectifica el rumbo.", e: "🌀" },
+    "Venganza": { v: "Prov. 20:22", t: "No digas: Yo me vengaré.", a: "Soltar la ofensa es recuperar tu poder personal. No le des tu paz a otro.", e: "🗡️" },
+    "Chisme": { v: "Prov. 16:28", t: "El chismoso aparta a los mejores amigos.", a: "Tu reputación se basa en tu silencio sobre los errores ajenos.", e: "🤫" },
+    "Codicia": { v: "Prov. 15:16", t: "Mejor es lo poco con paz.", a: "El éxito material sin paz interior es una quiebra espiritual.", e: "💰" },
+    "Indecisión": { v: "Prov. 3:5", t: "Fíate de Jehová de todo tu corazón.", a: "Cuando la lógica se agote, deja que tus valores guíen el siguiente paso.", e: "⚖️" },
+    "Agotamiento": { v: "Prov. 3:24", t: "Tu sueño será grato.", a: "El descanso estratégico es productividad. No es una pérdida de tiempo.", e: "🔋" },
+    "Culpa": { v: "Prov. 28:13", t: "El que confiesa y se aparta alcanzará misericordia.", a: "No cargues con el pasado. Aprende la lección, pide perdón y sigue adelante.", e: "⚓" },
+    "Inseguridad": { v: "Prov. 3:26", t: "Jehová será tu confianza.", a: "Tu valor es intrínseco, no depende de tus seguidores ni de tu dinero.", e: "🔍" },
+    "Injusticia": { v: "Prov. 21:3", t: "Hacer justicia es mejor que sacrificio.", a: "Haz lo correcto siempre, especialmente cuando nadie te está mirando.", e: "⚖️" },
+    "Desánimo": { v: "Prov. 24:10", t: "Si fueres flojo en el día de trabajo, tu fuerza será reducida.", a: "La persistencia es el músculo que se entrena cuando todo parece ir mal.", e: "🧗" },
+    "Integridad": { v: "Prov. 10:9", t: "El que camina en integridad camina confiado.", a: "La coherencia entre lo que piensas, dices y haces es la base de la libertad.", e: "💎" }
 };
-    // Función principal para generar los botones
-    function inicializarEmociones() {
-        const grid = document.getElementById('gridEmociones');
-        if (!grid) return;
 
-        grid.innerHTML = ""; // Limpiar por si acaso
+function inicializarEmociones() {
+    const grid = document.getElementById('gridEmociones');
+    if (!grid) return;
+    grid.innerHTML = "";
 
-        for (let em in dataEmociones) {
-            const btn = document.createElement('button');
-            btn.className = 'emotion-btn';
-            btn.innerHTML = `<i class="fas fa-heart" style="font-size:0.7em; color:var(--accent);"></i> ${em}`;
-            
-            btn.onclick = function() {
-                const display = document.getElementById('result-display');
-                const item = dataEmociones[em];
-
-                document.getElementById('view-emotion').innerText = em.toUpperCase();
-                document.getElementById('view-verse').innerText = `${item.v}: "${item.t}"`;
-                document.getElementById('view-advice').innerText = item.a;
-
-                display.style.display = 'block';
-                display.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            };
-            
-            grid.appendChild(btn);
-        }
+    for (let em in dataEmociones) {
+        const btn = document.createElement('button');
+        btn.className = 'emotion-btn';
+        const item = dataEmociones[em];
+        // Insertamos el emoji antes del nombre de la emoción
+        btn.innerHTML = `<span>${item.e}</span> ${em}`;
+        
+        btn.onclick = function() {
+            const display = document.getElementById('result-display');
+            document.getElementById('view-emotion').innerText = `${item.e} ${em.toUpperCase()}`;
+            document.getElementById('view-verse').innerText = `${item.v}: "${item.t}"`;
+            document.getElementById('view-advice').innerText = item.a;
+            display.style.display = 'block';
+            display.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+        grid.appendChild(btn);
     }
+}
 
-    // Ejecutar al cargar la ventana
-    window.addEventListener('load', inicializarEmociones);
+window.addEventListener('load', inicializarEmociones);
