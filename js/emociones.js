@@ -29,11 +29,8 @@ const dataEmociones = {
     "Curiosidad": { v: "Prov. 18:15", t: "El corazón del prudente adquiere sabiduría; y el oído de los sabios busca la ciencia.", a: "IE: Mantén una mentalidad de aprendiz permanente. Quien busca saber más, lidera mejor." },
     "Generosidad": { v: "Prov. 11:25", t: "El alma generosa será prosperada; y el que saciare, él también será saciado.", a: "IE: Ayudar a otros a crecer es la mejor forma de crecer tú mismo." },
     "Optimismo": { v: "Prov. 13:12", t: "Árbol de vida es el deseo cumplido.", a: "IE: Mantén la visión clara. La esperanza activa te da la energía necesaria para persistir." },
-    "Integridad": { v: "Prov. 10:9", t: "El que camina en integridad camina confiado.", a: "IE: Nada da más paz que no tener nada que esconder. Es el fundamento de una carrera sólida." }
-};
+    "Integridad": { v: "Prov. 10:9", t: "El que camina en integridad camina confiado.", a: "IE: Nada da más paz que no tener nada que esconder. Es el fundamento de una carrera sólida." },
 
- // Datos integrados (30 emociones)
-    const dataEmociones = {
         "Ira": { v: "Prov. 15:1", t: "La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.", a: "No reacciones al calor del momento. Una respuesta calmada desarma conflictos antes de que escalen." },
         "Ansiedad": { v: "Prov. 12:25", t: "La congoja en el corazón del hombre lo abate; mas la buena palabra lo alegra.", a: "El estrés bloquea la creatividad. Busca un mentor o amigo; una conversación honesta puede cambiar tu día." },
         "Orgullo": { v: "Prov. 11:2", t: "Cuando viene la soberbia, viene también la deshonra; mas con los humildes está la sabiduría.", a: "La arrogancia cierra puertas. La humildad profesional te permite aprender de otros y crecer constantemente." },
@@ -64,4 +61,35 @@ const dataEmociones = {
         "Optimismo": { v: "Prov. 13:12", t: "Árbol de vida es el deseo cumplido.", a: "Mantén la visión clara. La esperanza activa te da la energía para persistir." },
         "Integridad": { v: "Prov. 10:9", t: "El que camina en integridad camina confiado.", a: "Nada da más paz que no tener nada que esconder. Es el fundamento de tu carrera." },
         "Deslealtad": { v: "Prov. 25:19", t: "Como diente roto es la confianza en el prevaricador.", a: "Cumplir tu palabra es vital para construir una reputación sólida a largo plazo." }
-    };
+
+};
+    // Función principal para generar los botones
+    function inicializarEmociones() {
+        const grid = document.getElementById('gridEmociones');
+        if (!grid) return;
+
+        grid.innerHTML = ""; // Limpiar por si acaso
+
+        for (let em in dataEmociones) {
+            const btn = document.createElement('button');
+            btn.className = 'emotion-btn';
+            btn.innerHTML = `<i class="fas fa-heart" style="font-size:0.7em; color:var(--accent);"></i> ${em}`;
+            
+            btn.onclick = function() {
+                const display = document.getElementById('result-display');
+                const item = dataEmociones[em];
+
+                document.getElementById('view-emotion').innerText = em.toUpperCase();
+                document.getElementById('view-verse').innerText = `${item.v}: "${item.t}"`;
+                document.getElementById('view-advice').innerText = item.a;
+
+                display.style.display = 'block';
+                display.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            };
+            
+            grid.appendChild(btn);
+        }
+    }
+
+    // Ejecutar al cargar la ventana
+    window.addEventListener('load', inicializarEmociones);

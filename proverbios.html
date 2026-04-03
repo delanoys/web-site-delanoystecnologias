@@ -96,39 +96,6 @@
     &copy; 2026 Delanoys Tecnologías | Innovación con Propósito
 </footer>
 
-<script>
-   
-
-    // Función principal para generar los botones
-    function inicializarEmociones() {
-        const grid = document.getElementById('gridEmociones');
-        if (!grid) return;
-
-        grid.innerHTML = ""; // Limpiar por si acaso
-
-        for (let em in dataEmociones) {
-            const btn = document.createElement('button');
-            btn.className = 'emotion-btn';
-            btn.innerHTML = `<i class="fas fa-heart" style="font-size:0.7em; color:var(--accent);"></i> ${em}`;
-            
-            btn.onclick = function() {
-                const display = document.getElementById('result-display');
-                const item = dataEmociones[em];
-
-                document.getElementById('view-emotion').innerText = em.toUpperCase();
-                document.getElementById('view-verse').innerText = `${item.v}: "${item.t}"`;
-                document.getElementById('view-advice').innerText = item.a;
-
-                display.style.display = 'block';
-                display.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            };
-            
-            grid.appendChild(btn);
-        }
-    }
-
-    // Ejecutar al cargar la ventana
-    window.addEventListener('load', inicializarEmociones);
-</script>
+ <script src="./js/emociones.js"></script>
 </body>
 </html>
