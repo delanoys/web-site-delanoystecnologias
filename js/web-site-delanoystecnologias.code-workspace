@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../dev_pro_CISCO"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "web-site-delanoystecnologias"
+	}
+}
