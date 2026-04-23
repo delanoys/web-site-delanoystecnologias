@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lectura Cronológica Completa de la Biblia</title>
+<style>
+body{font-family:Arial, sans-serif;margin:0;background:#eef2f5;color:#333}
+header{background:#1e3a5f;color:white;padding:20px;text-align:center}
+.container{max-width:1100px;margin:auto;padding:20px}
+.day{background:white;padding:15px;margin:10px 0;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+h2{margin:0;color:#1e3a5f}
+.tags span{display:inline-block;margin:5px 5px 0 0;padding:5px 10px;border-radius:5px;font-size:12px;color:white}
+.historia{background:#3498db}
+.devocional{background:#2ecc71}
+.profeta{background:#e67e22}
+.cristo{background:#9b59b6}
+textarea{width:100%;margin-top:10px;padding:10px;border-radius:5px;border:1px solid #ccc}
+.check{margin-top:10px;display:block}
+button{margin-top:10px;padding:10px;border:none;background:#1e3a5f;color:white;border-radius:5px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+<h1>Lectura Cronológica Completa de la Biblia</h1>
+<p>Desde la creación hasta Apocalipsis – Entendiendo el propósito de Dios</p>
+</header>
+
+<div class="container" id="plan"></div>
+
+<script>
+const plan = [
+// CREACIÓN Y PATRIARCAS
+{d:1,h:"Génesis 1-2",s:"Salmo 8",n:"Juan 1"},
+{d:2,h:"Génesis 3-4",s:"Salmo 51",n:"Romanos 5"},
+{d:3,h:"Génesis 5-6",s:"Salmo 23",n:"Hebreos 11"},
+{d:4,h:"Génesis 7-9",s:"Salmo 46",n:"Mateo 24"},
+{d:5,h:"Génesis 10-11",s:"Salmo 2",n:"Hechos 2"},
+
+// ABRAHAM – JOSÉ
+{d:6,h:"Génesis 12-14",s:"Salmo 105",n:"Gálatas 3"},
+{d:7,h:"Génesis 15-17",s:"Salmo 15",n:"Romanos 4"},
+{d:8,h:"Génesis 18-19",s:"Salmo 27",n:"Lucas 17"},
+{d:9,h:"Génesis 20-22",s:"Salmo 20",n:"Hebreos 11"},
+{d:10,h:"Génesis 23-24",s:"Salmo 45",n:"Efesios 5"},
+{d:11,h:"Génesis 25-26",s:"Salmo 1",n:"Mateo 7"},
+{d:12,h:"Génesis 27-28",s:"Salmo 121",n:"Juan 10"},
+{d:13,h:"Génesis 29-30",s:"Salmo 127",n:"Filipenses 4"},
+{d:14,h:"Génesis 31-32",s:"Salmo 34",n:"Efesios 6"},
+{d:15,h:"Génesis 33-35",s:"Salmo 133",n:"Juan 17"},
+{d:16,h:"Génesis 37",s:"Salmo 37",n:"Romanos 8"},
+{d:17,h:"Génesis 39-40",s:"Salmo 91",n:"1 Pedro 5"},
+{d:18,h:"Génesis 41",s:"Salmo 75",n:"Santiago 1"},
+{d:19,h:"Génesis 42-45",s:"Salmo 103",n:"Lucas 15"},
+{d:20,h:"Génesis 46-50",s:"Salmo 126",n:"Apocalipsis 21"},
+
+// ÉXODO Y LEY
+{d:21,h:"Éxodo 1-3",s:"Salmo 77",n:"Hechos 7"},
+{d:22,h:"Éxodo 4-6",s:"Salmo 105",n:"Juan 8"},
+{d:23,h:"Éxodo 7-10",s:"Salmo 78",n:"Romanos 9"},
+{d:24,h:"Éxodo 11-13",s:"Salmo 114",n:"1 Corintios 5"},
+{d:25,h:"Éxodo 14-15",s:"Salmo 136",n:"Hebreos 3"},
+{d:26,h:"Éxodo 16-18",s:"Salmo 95",n:"Juan 6"},
+{d:27,h:"Éxodo 19-20",s:"Salmo 19",n:"Mateo 5"},
+{d:28,h:"Levítico 1-4",s:"Salmo 51",n:"Hebreos 10"},
+{d:29,h:"Levítico 16",s:"Salmo 32",n:"Hebreos 9"},
+{d:30,h:"Números 13-14",s:"Salmo 106",n:"Hebreos 4"},
+
+// CONQUISTA Y REYES
+{d:31,h:"Josué 1-3",s:"Salmo 1",n:"Mateo 28"},
+{d:32,h:"Jueces 2-4",s:"Salmo 106",n:"Romanos 7"},
+{d:33,h:"Rut",s:"Salmo 37",n:"Mateo 1"},
+{d:34,h:"1 Samuel 16-17",s:"Salmo 23",n:"Juan 10"},
+{d:35,h:"2 Samuel 7",s:"Salmo 89",n:"Lucas 1"},
+
+// SALMOS DE DAVID
+{d:36,h:"Salmo 3, 18, 51",s:"Salmo 51",n:"Romanos 3"},
+
+// PROFETAS
+{d:37,h:"Isaías 53",s:"Salmo 22",n:"Juan 19"},
+{d:38,h:"Jeremías 31",s:"Salmo 40",n:"Hebreos 8"},
+
+// JESÚS
+{d:39,h:"Mateo 1-4",s:"Salmo 2",n:"Juan 1"},
+{d:40,h:"Mateo 5-7",s:"Salmo 15",n:"Santiago 1"},
+{d:41,h:"Mateo 26-28",s:"Salmo 22",n:"Juan 19"},
+
+// IGLESIA
+{d:42,h:"Hechos 1-2",s:"Salmo 133",n:"Juan 14"},
+{d:43,h:"Hechos 9",s:"Salmo 27",n:"Filipenses 3"},
+{d:44,h:"Romanos",s:"Salmo 32",n:"Romanos"},
+
+// FINAL
+{d:45,h:"Apocalipsis 1-5",s:"Salmo 24",n:"Juan 1"},
+{d:46,h:"Apocalipsis 21-22",s:"Salmo 150",n:"Juan 17"}
+];
+
+const container = document.getElementById('plan');
+
+plan.forEach(d=>{
+const div=document.createElement('div');
+div.className='day';
+div.innerHTML=`
+<h2>Día ${d.d}</h2>
+<div class="tags">
+<span class="historia">📖 ${d.h}</span>
+<span class="devocional">🙏 ${d.s}</span>
+<span class="cristo">✝️ ${d.n}</span>
+</div>
+<label class="check"><input type="checkbox" onchange="guardar(${d.d},this.checked)"> Marcar como leído</label>
+<textarea placeholder="Observación: ¿Qué dice el texto?"></textarea>
+<textarea placeholder="Interpretación: ¿Qué significa?"></textarea>
+<textarea placeholder="Aplicación: ¿Cómo lo vivo?"></textarea>
+`;
+container.appendChild(div);
+});
+
+function guardar(dia,estado){localStorage.setItem('dia_'+dia,estado)}
+
+window.onload=()=>{
+plan.forEach(d=>{
+const estado=localStorage.getItem('dia_'+d.d)==='true';
+const checks=document.querySelectorAll('input[type="checkbox"]');
+if(checks[d.d-1])checks[d.d-1].checked=estado;
+});
+};
+</script>
+
+</body>
+</html>
