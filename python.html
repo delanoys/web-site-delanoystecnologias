@@ -23,6 +23,29 @@
         .card:hover { transform: translateY(-5px); border-color: var(--py-yellow) !important; }
         #guia-entorno pre { border-left: 4px solid var(--py-blue); }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+
+<style>
+    .lab-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .editor-box { background: #1e1e1e; padding: 15px; border-radius: 10px; color: white; }
+    .editor-box h3 { margin-top: 0; font-size: 1rem; color: #60a5fa; }
+    textarea.code-input { 
+        width: 100%; height: 150px; background: #2d2d2d; color: #d4d4d4; 
+        border: 1px solid #444; padding: 10px; font-family: 'Courier New', monospace;
+        resize: vertical; border-radius: 5px; margin-bottom: 10px;
+    }
+    .btn-run { 
+        background: #22c55e; color: white; border: none; padding: 8px 20px; 
+        border-radius: 5px; cursor: pointer; font-weight: bold; 
+    }
+    .btn-run:hover { background: #16a34a; }
+    .console-output { 
+        background: #000; color: #0f0; padding: 10px; border-radius: 5px; 
+        height: 80px; overflow-y: auto; font-family: monospace; font-size: 0.85rem; margin-top: 10px;
+    }
+    @media (max-width: 768px) { .lab-container { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
 
@@ -126,14 +149,81 @@
 
     </div>
 </section>
+<section class="card">
+    <h2><i class="fas fa-flask"></i> Laboratorio Interactivo: Prueba tu Lógica</h2>
+    <p>Usa el editor de la izquierda para bocetar tu idea en <strong>Pseudocódigo</strong> y el de la derecha para ver cómo se convierte en <strong>Python</strong> real.</p>
 
+    <div class="lab-container">
+        <div class="editor-box">
+            <h3><i class="fas fa-pencil-alt"></i> Editor de Pseudocódigo</h3>
+            <textarea id="pseudocode" class="code-input" placeholder="ALGORITMO Saludador
+  LEER nombre
+  ESCRIBIR 'Hola ' + nombre
+FIN ALGORITMO"></textarea>
+            <button class="btn-run" onclick="runPseudo()">Simular</button>
+            <div id="pseudo-output" class="console-output">Esperando lógica...</div>
+        </div>
+
+        <div class="editor-box">
+            <h3><i class="fab fa-python"></i> Editor de Python 3</h3>
+            <textarea id="pythoncode" class="code-input"># Intenta calcular una suma
+a = 10
+b = 5
+print("La suma es:", a + b)
+            </textarea>
+            <button class="btn-run" onclick="runPython()">Ejecutar Python</button>
+            <pre id="python-output" class="console-output">Resultado de consola...</pre>
+        </div>
+    </div>
+</section>
 <footer class="bg-black text-white text-center py-4">
     <div class="container">
         <p class="mb-0">Hever Torres | Tecnólogo en Sistemas | Delanoys Tecnologías &copy; 2026</p>
         <small><a href="https://delanoystecnologias.site/#inicio" class="text-primary text-decoration-none">Volver al Inicio</a></small>
     </div>
+
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Lógica para simular Pseudocódigo (Simulación visual simple)
+    function runPseudo() {
+        const input = document.getElementById("pseudocode").value;
+        const output = document.getElementById("pseudo-output");
+        if(input.trim() === "") {
+            output.innerText = "Error: El editor está vacío.";
+            return;
+        }
+        output.innerHTML = "Analizando lógica...<br>> " + input.split('\n')[0] + " iniciado con éxito.";
+    }
+
+    // Lógica para ejecutar Python real usando Skulpt
+    function outf(text) { 
+        var mypre = document.getElementById("python-output"); 
+        mypre.innerHTML = mypre.innerHTML + text; 
+    } 
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    function runPython() { 
+       var prog = document.getElementById("pythoncode").value; 
+       var mypre = document.getElementById("python-output"); 
+       mypre.innerHTML = ''; 
+       Sk.pre = "python-output";
+       Sk.configure({output:outf, read:builtinRead}); 
+       
+       var myPromise = Sk.misval.chain(Sk.importMainWithBody("<stdin>", false, prog), function(mod) {
+           console.log('success');
+       });
+       myPromise.then(function(mod) {
+           console.log('success');
+       }, function(err) {
+           mypre.innerHTML = "<span style='color: #ef4444'>" + err.toString() + "</span>";
+       });
+    } 
+</script>
 </body>
 </html>

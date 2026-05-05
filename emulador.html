@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox Python | Delanoys Tecnologías</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0d1117; --surface: #161b22; --accent: #a78bfa; 
+            --success: #34d399; --error: #f85149; --text: #c9d1d9;
+        }
+        body { 
+            background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+        }
+        header { 
+            background: var(--surface); padding: 15px 25px; border-bottom: 1px solid #30363d;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .status-pill { 
+            font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; 
+            background: #21262d; border: 1px solid #30363d; display: flex; align-items: center; gap: 8px;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: grey; }
+        .dot-ready { background: var(--success); box-shadow: 0 0 5px var(--success); }
+
+        main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #30363d; }
+        .panel { background: var(--bg); display: flex; flex-direction: column; padding: 15px; }
+        .panel-label { color: var(--accent); font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
+        
+        textarea { 
+            flex: 1; background: #010409; color: #79c0ff; border: 1px solid #30363d;
+            padding: 20px; font-family: 'Consolas', 'Monaco', monospace; font-size: 1rem; border-radius: 8px; outline: none;
+        }
+        #output { 
+            flex: 1; background: #000; color: #d1d5db; padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace; border-radius: 8px; overflow-y: auto; white-space: pre-wrap;
+        }
+
+        .controls { 
+            background: var(--surface); padding: 15px 25px; border-top: 1px solid #30363d;
+            display: flex; align-items: center; gap: 20px;
+        }
+        .btn-run { 
+            background: var(--success); color: #0d1117; border: none; padding: 10px 25px;
+            border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px;
+        }
+        .btn-run:hover { opacity: 0.9; transform: scale(1.02); }
+        .btn-clear { background: none; border: 1px solid #30363d; color: var(--text); padding: 8px 15px; border-radius: 6px; cursor: pointer; }
+
+        @media (max-width: 768px) { main { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight: bold; letter-spacing: 1px;">DELANOYS <span style="color:var(--accent)">LAB</span></div>
+    <div class="status-pill">
+        <div id="status-dot" class="dot"></div>
+        <span id="status-text">Cargando motor...</span>
+    </div>
+</header>
+
+<main>
+    <div class="panel">
+        <div class="panel-label"><i class="fab fa-python"></i> Editor de Python</div>
+        <textarea id="editor" spellcheck="false"># Prueba este código básico
+print("Iniciando sistema...")
+nombre = input("¿Cuál es tu nombre?")
+print("Hola " + nombre + ", el emulador está ONLINE.")
+</textarea>
+    </div>
+    <div class="panel">
+        <div class="panel-label"><i class="fas fa-terminal"></i> Consola de Salida</div>
+        <div id="output">>>> El sistema espera órdenes...</div>
+    </div>
+</main>
+
+<div class="controls">
+    <button class="btn-run" onclick="runit()">
+        <i class="fas fa-play"></i> EJECUTAR
+    </button>
+    <button class="btn-clear" onclick="document.getElementById('output').innerText = '>>> Consola limpia.'">
+        Limpiar
+    </button>
+    <small style="color: #8b949e; margin-left: auto;">Motor: Skulpt v1.2 (Python 3.7)</small>
+</div>
+
+<script>
+    // VERIFICACIÓN DE CARGA (Diagnóstico)
+    window.onload = function() {
+        if (typeof Sk !== 'undefined') {
+            document.getElementById('status-dot').className = 'dot dot-ready';
+            document.getElementById('status-text').innerText = 'MOTOR LISTO';
+        } else {
+            document.getElementById('status-text').innerText = 'ERROR: Sin conexión';
+            document.getElementById('output').innerHTML = '<span style="color:var(--error)">[!] No se pudieron cargar las librerías desde el CDN. Revisa tu conexión a internet o el bloqueo de scripts de tu navegador.</span>';
+        }
+    };
+
+    // FUNCIONES DEL MOTOR
+    function outf(text) { 
+        var mypre = document.getElementById("output"); 
+        mypre.innerText = mypre.innerText + text; 
+    } 
+    
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "Archivo no encontrado: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    function runit() { 
+        var prog = document.getElementById("editor").value; 
+        var mypre = document.getElementById("output"); 
+        mypre.innerText = ''; // Limpiar antes de correr
+        
+        Sk.pre = "output";
+        Sk.configure({
+            output: outf,
+            read: builtinRead,
+            inputfun: function (prompt) {
+                return window.prompt(prompt);
+            },
+            inputfunTakesPrompt: true
+        }); 
+
+        var myPromise = Sk.misval.chain(Sk.importMainWithBody("<stdin>", false, prog), function(mod) {
+            console.log('Success');
+        });
+
+        myPromise.then(function(mod) {
+            // Éxito
+        }, function(err) {
+            mypre.innerHTML = '<span style="color:var(--error)">' + err.toString() + '</span>';
+        });
+    } 
+</script>
+
+</body>
+</html>

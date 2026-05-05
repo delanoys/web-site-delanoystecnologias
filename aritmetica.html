@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Mejoramiento - Aritmética Sharit</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; color: #1c1e21; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background: #007bff; color: white; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .instructions { background: #fff; padding: 15px; border-radius: 8px; border-left: 5px solid #28a745; margin-bottom: 20px; }
+        .question-card { background: white; padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #e1e4e8; }
+        .options { display: grid; gap: 10px; margin-top: 15px; }
+        button { padding: 12px; border: 1px solid #ccd0d5; background: #f8f9fa; border-radius: 6px; cursor: pointer; text-align: left; font-size: 16px; transition: 0.2s; }
+        button:hover { background: #e4e6eb; border-color: #007bff; }
+        .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; font-size: 15px; }
+        .correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .btn-check { background: #007bff; color: white; border: none; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Refuerzo de Aritmética - Grado 7</h1>
+    <p>Estudiante: Sharit | Docente: Eduardo Roa</p>
+</header>
+
+<div class="instructions">
+    <p><strong>Instrucciones para Sharit:</strong> Lee cada pregunta y selecciona la respuesta que creas correcta. El asistente te explicará el proceso. Una vez que lo entiendas, <strong>resuelve el punto en tu hoja de block</strong> con el procedimiento completo.</p>
+</div>
+
+<div id="quiz"></div>
+
+<script>
+const preguntas = [
+    { q: "1. Un buzo se encuentra a 15 metros bajo el nivel del mar. ¿Qué número entero representa su posición?", ops: ["A. +15 m", "B. 0 m", "C. -15 m"], ans: 2, exp: "Todo lo que está 'bajo' el nivel del mar se cuenta como negativo. Por eso es -15 m." },
+    { q: "2. Si la temperatura en Canadá es de -12°C y baja 15°C por la noche, la nueva temperatura es:", ops: ["A. 3°C", "B. -3°C", "C. 27°C", "D. -27°C"], ans: 3, exp: "Si ya hace frío (-12) y baja más (-15), sumas las deudas: -12 - 15 = -27°C." },
+    { q: "3. Una deuda de $50.000 se representa matemáticamente como:", ops: ["A. $50.000", "B. $0", "C. -$50.000"], ans: 2, exp: "Las deudas siempre son valores negativos en contabilidad." },
+    { q: "4. Si un termómetro marca -5°C y sube 5°C, la temperatura final es:", ops: ["A. 10°C", "B. -10°C", "C. 5°C", "D. 0°C"], ans: 3, exp: "Si debes 5 y pagas 5, quedas en 0. -5 + 5 = 0." },
+    { q: "5. ¿Cuál es el número entero anterior a -10?", ops: ["A. -9", "B. 11", "C. -11", "D. 9"], ans: 2, exp: "En la recta numérica, el anterior está a la izquierda. El que sigue de -10 hacia la izquierda es -11." },
+    { q: "6. ¿Cuál es el número entero siguiente a -1?", ops: ["A. -2", "B. 1", "C. 2", "D. 0"], ans: 3, exp: "El siguiente está a la derecha. Después del -1 viene el 0." },
+    { q: "7. Un helicóptero vuela a 200 m de altura. Este valor se representa como:", ops: ["A. +200 m", "B. -200 m", "C. 0 m"], ans: 0, exp: "Las alturas sobre el nivel del mar son positivas." },
+    { q: "8. El valor absoluto de un número representa:", ops: ["A. Su signo.", "B. Su distancia al cero.", "C. Su opuesto.", "D. El doble del número."], ans: 1, exp: "Es la distancia pura al cero, por eso siempre es un resultado positivo." },
+    { q: "9. ¿Cuál es el valor de |-25|?", ops: ["A. -25", "B. 0", "C. 25"], ans: 2, exp: "El valor absoluto quita el signo menos: |-25| = 25." },
+    { q: "10. El resultado de |-8|+|3| es:", ops: ["A. 11", "B. -11", "C. -5", "D. 5"], ans: 0, exp: "8 + 3 = 11. Recuerda que los valores absolutos se vuelven positivos antes de sumar." },
+    { q: "11. El resultado de |-12|-|-4| es:", ops: ["A. 16", "B. 8", "C. -16", "D. -8"], ans: 1, exp: "Esto es 12 - 4 = 8." },
+    { q: "12. ¿Cuál expresión es verdadera?", ops: ["A. |-5|<0", "B. |3|<|-2|", "C. |-5|=-5", "D. -|-5|<0"], ans: 3, exp: "Analiza la D: |-5| es 5, entonces -5 < 0 es verdad." },
+    { q: "13. ¿Cuál es el resultado de |-100|÷|-2|?", ops: ["A. -50", "B. 50", "C. -200"], ans: 1, exp: "100 ÷ 2 = 50." },
+    { q: "14. ¿Cuál es el valor de |-5|×|-4|?", ops: ["A. -20", "B. 20", "C. 1", "D. 9"], ans: 1, exp: "5 × 4 = 20." },
+    { q: "15. ¿Cuál de las siguientes relaciones es CORRECTA?", ops: ["A. -10 > -5", "B. -8 < -12", "C. -3 > -7", "D. 0 < -1"], ans: 2, exp: "En los negativos, el número más grande es el que está más cerca del cero. -3 es mayor que -7." },
+    { q: "16. Ordenar de MENOR a MAYOR: -5, 2, -8, 0:", ops: ["A. -8, -5, 0, 2", "B. -8, 2, -5, 0", "C. -5, -8, 0, 2", "D. -5, -8, 2, 0"], ans: 0, exp: "El menor es el que más debe (-8), luego -5, el neutro 0 y el mayor 2." },
+    { q: "17. Temperaturas: -12°C, -25°C, -8°C y -15°C. ¿Cuál es la más cálida?", ops: ["A. -12°C", "B. -25°C", "C. -8°C", "D. -15°C"], ans: 2, exp: "La más cálida es la temperatura más alta (la que está más a la derecha en la recta), que es -8°C." },
+    { q: "18. Ana (-300 pts) vs Beto (-250 pts). ¿Quién gana?", ops: ["A. Ana", "B. Beto", "C. Ninguno"], ans: 1, exp: "Beto tiene un número mayor (-250 es mayor que -300), así que va ganando." },
+    { q: "19. Ascensor piso 5, baja 8, sube 3:", ops: ["D. 1", "E. -3", "F. 0"], ans: 2, exp: "5 - 8 = -3. Luego -3 + 3 = 0. Quedó en el piso 0." },
+    { q: "20. Buzo a -15m, baja 10m más, sube 6m:", ops: ["E. +31 m", "F. -5 m", "G. +1 m", "H. -19 m"], ans: 3, exp: "-15 - 10 = -25. Luego -25 + 6 = -19m." },
+    { q: "21. Al resolver -8 + 12 - 4:", ops: ["A. 24", "B. -8", "C. 0", "D. -12"], ans: 2, exp: "-8 - 4 = -12. Entonces -12 + 12 = 0." },
+    { q: "22. Cuenta con 50.000, retiro de 70.000, abono de 30.000:", ops: ["A. +150.000", "B. -10.000", "C. +10.000", "D. -40.000"], ans: 2, exp: "50 - 70 = -20. Luego -20 + 30 = 10. Quedan 10.000." },
+    { q: "23. Consigna 100, retira 200, paga 300:", ops: ["D. 500", "E. 0", "F. -400"], ans: 2, exp: "100 - 200 = -100. Luego -100 - 300 = -400." },
+    { q: "24. Termómetro -5°C, sube 5°C, baja 8°C:", ops: ["E. 0°C", "F. -5°C", "G. 3°C", "H. -8°C"], ans: 3, exp: "-5 + 5 = 0. Luego 0 - 8 = -8°C." },
+    { q: "25. Alpinista sube 300m, baja 150m, baja 200m:", ops: ["E. -350 m", "F. 50 m", "G. -50 m", "H. 650 m"], ans: 2, exp: "300 - 150 = 150. Luego 150 - 200 = -50m." },
+    { q: "26. Deuda 100, abona 300, compra por 500:", ops: ["E. 200", "F. -200", "G. 300", "H. -300"], ans: 3, exp: "-100 + 300 = 200. Luego 200 - 500 = -300." },
+    { q: "27. Resolver 20 - 30 + 10 - 5:", ops: ["D. -5", "E. 5", "F. -15"], ans: 0, exp: "20+10=30. -30-5=-35. Resultado: 30 - 35 = -5." },
+    { q: "28. Confucio nació 551 a.C. y vivió 72 años. ¿Cuándo murió?", ops: ["E. 479 d.C.", "F. 479 a.C.", "G. 623 a.C.", "H. 623 d.C."], ans: 1, exp: "Los años a.C. funcionan como negativos: -551 + 72 = -479 (es decir, 479 a.C.)." },
+    { q: "29. Platón murió en 347 a.C. y vivió 80 años. ¿Cuándo nació?", ops: ["D. 267 a.C.", "E. 427 d.C.", "F. 427 a.C."], ans: 2, exp: "Murió en -347. Para saber el nacimiento restamos la vida: -347 - 80 = -427 (427 a.C.)." },
+    { q: "30. Aristóteles nació en 384 a.C. y murió en 322 a.C. ¿Cuánto vivió?", ops: ["E. 62 años", "F. 706 años", "G. 84 años", "H. 22 años"], ans: 0, exp: "Restamos los años: 384 - 322 = 62 años." },
+    { q: "31. Alejandro Magno murió en 323 a.C. con 33 años. ¿Cuándo nació?", ops: ["E. 356 d.C.", "F. 356 a.C.", "G. 290 a.C.", "H. 290 d.C."], ans: 1, exp: "Murió en -323. Restamos su edad para ir atrás en el tiempo: -323 - 33 = -356 (356 a.C.)." },
+    { q: "32. Movimientos de Lucho: pagó 30, recibió 60, envió 20, abonaron 25, prestó 50, le prestaron 5:", ops: ["D. 10.000", "E. -10.000", "F. -20.000"], ans: 1, exp: "Efectivo: 60+25+5 = 90. Salidas: 30+20+50 = 100. Saldo: 90 - 100 = -10.000." },
+    { q: "33. Calcule -23 - 25 + 32 + 35 - 41 - 45:", ops: ["E. 67", "F. -67", "G. 42"], ans: 1, exp: "Negativos: -134. Positivos: 67. Resultado: -134 + 67 = -67." },
+    { q: "34. Calcule 5 - (-3) + (-7) - [4]:", ops: ["E. -10", "F. -8", "G. -3"], ans: 2, exp: "Menos por menos da más: 5 + 3 - 7 - 4 = 8 - 11 = -3." },
+    { q: "35. Calcule -(-3) + [-2] - {-5} - (4):", ops: ["E. 2", "F. -8", "G. -5"], ans: 0, exp: "3 - 2 + 5 - 4 = 1 + 5 - 4 = 2." },
+    { q: "36. Calcule -(2) - (-3) + [-4] - (6) - (8):", ops: ["E. -12", "F. -25", "G. -17"], ans: 2, exp: "-2 + 3 - 4 - 6 - 8 = -17." },
+    { q: "37. Calcule -200 + 350 - 500 + 800:", ops: ["D. -450", "E. 450", "C. 25"], ans: 1, exp: "Positivos: 350+800=1150. Negativos: 200+500=700. Resta: 1150 - 700 = 450." }
+];
+
+const quizDiv = document.getElementById('quiz');
+preguntas.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.innerHTML = `<h3>${p.q}</h3><div class="options" id="opt-${i}"></div><div class="feedback" id="feed-${i}"></div>`;
+    quizDiv.appendChild(card);
+
+    const optDiv = document.getElementById(`opt-${i}`);
+    p.ops.forEach((o, j) => {
+        const btn = document.createElement('button');
+        btn.innerText = o;
+        btn.onclick = () => check(i, j);
+        optDiv.appendChild(btn);
+    });
+});
+
+function check(qIdx, oIdx) {
+    const feed = document.getElementById(`feed-${qIdx}`);
+    feed.style.display = 'block';
+    if(oIdx === preguntas[qIdx].ans) {
+        feed.className = 'feedback correct';
+        feed.innerHTML = `<strong>✅ ¡Excelente Sharit!</strong><br>${preguntas[qIdx].exp}`;
+    } else {
+        feed.className = 'feedback incorrect';
+        feed.innerHTML = `<strong>❌ Sigue intentando...</strong><br><em>Pista:</em> ${preguntas[qIdx].exp}`;
+    }
+}
+</script>
+
+</body>
+</html>
