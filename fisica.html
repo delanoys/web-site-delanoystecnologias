@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Física: Las Ondas - Sharit | Delanoys Tic</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #2d3748; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background: #4c51bf; color: white; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .instructions { background: #fff; padding: 15px; border-radius: 8px; border-left: 5px solid #ed8936; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .section-title { color: #4c51bf; border-bottom: 2px solid #ed8936; padding-bottom: 5px; margin-top: 30px; }
+        .question-card { background: white; padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+        .options { display: grid; gap: 10px; margin-top: 15px; }
+        button { padding: 12px; border: 1px solid #cbd5e0; background: #f7fafc; border-radius: 6px; cursor: pointer; text-align: left; font-size: 16px; transition: all 0.2s; }
+        button:hover { background: #edf2f7; border-color: #4c51bf; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; font-size: 15px; }
+        .correct { background-color: #c6f6d5; color: #22543d; border-left: 5px solid #48bb78; }
+        .incorrect { background-color: #fed7d7; color: #742a2a; border-left: 5px solid #f56565; }
+        .img-container { text-align: center; margin: 15px 0; }
+        .img-container img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; }
+        .footer { text-align: center; margin-top: 40px; padding: 20px; color: #718096; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Refuerzo de Física: Las Ondas</h1>
+    <p>Estudiante: Sharit | Delanoys Tic Educación</p>
+</header>
+
+<div class="instructions">
+    <p><strong>¡Hola Sharit!</strong> Soy tu asistente. He incluido las imágenes de tu guía para que sea más fácil identificar las partes de la onda y sus tipos. Analiza cada imagen y responde.</p>
+</div>
+
+<h2 class="section-title">A. Actividad Diagnóstica</h2>
+<div id="quiz-diagnostico"></div>
+
+<h2 class="section-title">B. Partes de la Onda</h2>
+<div class="question-card">
+    <p>Mira la siguiente imagen que muestra los elementos de una onda:</p>
+    <div class="img-container">
+        <img src="/imagenes/anatomia de onda.jpeg" alt="Partes de la onda">
+    </div>
+    <p>Identifica en la imagen: <strong>Cresta</strong> (punto alto), <strong>Valle</strong> (punto bajo) y <strong>Longitud de onda</strong> (distancia entre crestas).</p>
+</div>
+<div id="quiz-partes"></div>
+
+<h2 class="section-title">C. Tipos de Ondas (Transversales vs Longitudinales)</h2>
+<div class="question-card">
+    <p>Analiza cómo se mueven las partículas en estos dos tipos de ondas:</p>
+    <div class="img-container">
+        <img src="/imagenes/ondatranversal.jpeg" alt="Tipos de ondas">
+    </div>
+</div>
+<div id="quiz-tipos"></div>
+
+<script>
+const diagnostico = [
+    { 
+        q: "1. Si lanzas una piedra a un estanque, ¿el agua viaja hacia la orilla?", 
+        ops: ["A. Sí, el agua se traslada hasta la orilla.", "B. No, el agua solo sube y baja (vibración)."], 
+        ans: 1, 
+        exp: "El agua (materia) no viaja, lo que viaja es la energía. La materia solo vibra en su lugar." 
+    },
+    { 
+        q: "2. ¿Cómo viaja la música desde un bafle hasta tus oídos?", 
+        ops: ["A. Por vibraciones en cadena de las moléculas de aire.", "B. Por rayos láser invisibles."], 
+        ans: 0, 
+        exp: "El bafle golpea el aire y esas vibraciones viajan como ondas hasta tu oído." 
+    }
+];
+
+const partes = [
+    { 
+        q: "3. Según la imagen de arriba, si la distancia entre dos crestas es de 2 metros, ¿qué nombre recibe?", 
+        ops: ["A. Amplitud", "B. Valle", "C. Longitud de onda (λ)"], 
+        ans: 2, 
+        exp: "La longitud de onda es precisamente la distancia entre dos puntos idénticos seguidos." 
+    },
+    { 
+        q: "4. Si la onda se vuelve más alta (más energía), ¿qué parte está creciendo?", 
+        ops: ["A. La Amplitud", "B. La frecuencia", "C. El nodo"], 
+        ans: 0, 
+        exp: "La amplitud mide el desplazamiento máximo desde la línea de equilibrio (la altura)." 
+    }
+];
+
+const tipos = [
+    { 
+        q: "5. En la imagen comparativa, ¿cuál onda muestra zonas de 'Compresión' (donde el resorte se aprieta)?", 
+        ops: ["A. La Onda Transversal", "B. La Onda Longitudinal"], 
+        ans: 1, 
+        exp: "Las ondas longitudinales (como el sonido) tienen zonas de compresión y rarefacción." 
+    },
+    { 
+        q: "6. 'La ola' de un estadio, donde la gente sube y baja pero la energía avanza hacia el lado, es una onda:", 
+        ops: ["A. Transversal", "B. Longitudinal"], 
+        ans: 0, 
+        exp: "Es transversal porque el movimiento de las personas es perpendicular a la dirección de la ola." 
+    }
+];
+
+function renderQuiz(questionsArray, containerId) {
+    const container = document.getElementById(containerId);
+    questionsArray.forEach((p, i) => {
+        const uniqueId = `${containerId}-${i}`;
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `<h3>${p.q}</h3><div class="options" id="opt-${uniqueId}"></div><div class="feedback" id="feed-${uniqueId}"></div>`;
+        container.appendChild(card);
+
+        const optDiv = document.getElementById(`opt-${uniqueId}`);
+        p.ops.forEach((o, j) => {
+            const btn = document.createElement('button');
+            btn.innerHTML = o;
+            btn.onclick = () => {
+                const feed = document.getElementById(`feed-${uniqueId}`);
+                feed.style.display = 'block';
+                if(j === p.ans) {
+                    feed.className = 'feedback correct';
+                    feed.innerHTML = `<strong>✅ ¡Correcto Sharit!</strong><br>${p.exp}`;
+                } else {
+                    feed.className = 'feedback incorrect';
+                    feed.innerHTML = `<strong>❌ Inténtalo de nuevo...</strong><br><em>Pista:</em> ${p.exp}`;
+                }
+            };
+            optDiv.appendChild(btn);
+        });
+    });
+}
+
+renderQuiz(diagnostico, 'quiz-diagnostico');
+renderQuiz(partes, 'quiz-partes');
+renderQuiz(tipos, 'quiz-tipos');
+</script>
+
+<div class="footer">
+    Delanoys Tic | Nivelación de Ciencias Naturales
+</div>
+
+</body>
+</html>

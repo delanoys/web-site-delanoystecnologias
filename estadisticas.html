@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadística - Plan de Mejoramiento Sharit | Delanoys Tic</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background: #28a745; color: white; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .instructions { background: #fff; padding: 15px; border-radius: 8px; border-left: 5px solid #007bff; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .section-title { color: #2c3e50; border-bottom: 2px solid #28a745; padding-bottom: 5px; margin-top: 30px; }
+        .question-card { background: white; padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid #e1e4e8; }
+        .options { display: grid; gap: 10px; margin-top: 15px; }
+        button { padding: 12px; border: 1px solid #ccd0d5; background: #f8f9fa; border-radius: 6px; cursor: pointer; text-align: left; font-size: 16px; transition: all 0.2s; }
+        button:hover { background: #e9ecef; border-color: #28a745; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; font-size: 15px; }
+        .correct { background-color: #d4edda; color: #155724; border-left: 5px solid #28a745; }
+        .incorrect { background-color: #f8d7da; color: #721c24; border-left: 5px solid #dc3545; }
+        .data-table { border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 15px; background: #fff; }
+        .data-table th, .data-table td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        .data-table th { background-color: #f2f2f2; color: #333; }
+        .footer { text-align: center; margin-top: 40px; padding: 20px; color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Refuerzo de Estadística - Grado 7</h1>
+    <p>Estudiante: Sharit | Docente: Eduardo Roa | Plataforma: Delanoys Tic</p>
+</header>
+
+<div class="instructions">
+    <p><strong>¡Hola Sharit!</strong> Soy tu asistente virtual de <strong>Delanoys Tic</strong>. La primera parte de esta guía es un calentamiento basado en los ejemplos resueltos para recordar conceptos. La segunda parte son los ejercicios a resolver. Analiza bien, elige tu respuesta y luego pásala a tu hoja de block.</p>
+</div>
+
+<h2 class="section-title">Parte 1: Calentamiento (Conceptos Iniciales)</h2>
+<div id="quiz-calentamiento"></div>
+
+<h2 class="section-title">Parte 2: Actividades para Aprender</h2>
+<div id="quiz-actividades"></div>
+
+<script>
+// --- PARTE 1: Preguntas basadas en los "Ejemplos Resueltos" ---
+const calentamiento = [
+    { 
+        q: "1. En el estudio sobre el rendimiento en matemáticas de grado séptimo, se analiza la 'calificación obtenida' (ej: 3.5, 4.2). ¿Qué tipo de variable es?", 
+        ops: ["A. Cualitativa nominal", "B. Cuantitativa discreta", "C. Cuantitativa continua"], 
+        ans: 2, 
+        exp: "Es 'Cuantitativa' porque se expresa con números y permite operaciones matemáticas. Es 'Continua' porque puede tomar valores decimales (como 3.8 o 4.5)." 
+    },
+    { 
+        q: "2. Un centro de salud estudia la 'edad' de 50 pacientes diagnosticados con dengue (ej: 12 años, 34 años). ¿Qué tipo de variable es la edad?", 
+        ops: ["A. Cuantitativa discreta", "B. Cuantitativa continua", "C. Cualitativa nominal"], 
+        ans: 0, 
+        exp: "La edad, cuando se cuenta en años cumplidos exactos (sin fracciones), se considera 'Cuantitativa discreta'." 
+    },
+    { 
+        q: "3. Un supermercado encuesta a 100 clientes sobre su 'medio de pago' (efectivo, tarjeta, transferencia). ¿Cuál es la población y el tipo de variable?", 
+        ops: ["A. Población: Los 100 clientes. Variable: Cuantitativa.", "B. Población: Todos los clientes del supermercado. Variable: Cualitativa nominal.", "C. Población: Los cajeros. Variable: Cualitativa ordinal."], 
+        ans: 1, 
+        exp: "La población son 'Todos' los clientes (los 100 son solo la muestra). El medio de pago se describe con palabras (efectivo, tarjeta), por lo que es 'Cualitativa', y como no tiene un orden jerárquico estricto, es 'Nominal'." 
+    }
+];
+
+// --- PARTE 2: Preguntas de las "Actividades para Aprender" ---
+const actividades = [
+    { 
+        q: "4. (Actividad 1) El administrador del conjunto residencial quiere saber sobre el uso de bicicleteros preguntando a 30 familias cuántas bicicletas tienen. ¿Cuáles son los elementos del estudio?", 
+        ops: [
+            "A. Población: 30 familias. Muestra: Todo el conjunto. Variable: Bicicletas (Cualitativa).", 
+            "B. Población: Todas las familias del conjunto. Muestra: 30 familias. Variable: Cantidad de bicicletas (Cuantitativa discreta).", 
+            "C. Población: Las bicicletas. Muestra: 30 familias. Variable: Uso (Cuantitativa continua)."
+        ], 
+        ans: 1, 
+        exp: "La 'Población' abarca a todos. La 'Muestra' es la porción encuestada (30 familias). Contar bicicletas implica números enteros (0, 1, 2, 3...), lo que la hace 'Cuantitativa discreta'." 
+    },
+    { 
+        q: "5. (Actividad 2) El dueño de una papelería preguntó a 57 clientes si usarían fotocopiadora. ¿Cuál es la muestra de este estudio?", 
+        ops: [
+            "A. Todos los clientes de la papelería.", 
+            "B. Los 57 clientes encuestados.", 
+            "C. Los habitantes del barrio."
+        ], 
+        ans: 1, 
+        exp: "La 'Muestra' es el subgrupo de la población al que realmente se le hizo la pregunta, en este caso, los 57 clientes." 
+    },
+    { 
+        q: "6. (Actividades 4 y 5) ¿Cuál es la diferencia entre un censo y una encuesta, y por qué es útil la inferencia estadística?", 
+        ops: [
+            "A. El censo se hace a toda la población y la encuesta a una muestra. La estadística nos permite sacar conclusiones de todos (población) estudiando solo a la muestra.", 
+            "B. La encuesta se le hace a todos y el censo a unos pocos. La estadística solo sirve para números.", 
+            "C. Son exactamente lo mismo y no hay diferencia."
+        ], 
+        ans: 0, 
+        exp: "¡Excelente! Hacer un censo a miles de personas es costoso y demorado. La estadística nos ayuda a encuestar solo a una pequeña 'muestra' y usar esos datos para entender a toda la 'población' (eso es inferencia)." 
+    },
+    { 
+        q: "7. (Actividad 9) Determina la variable que NO corresponda a una variable cuantitativa:", 
+        ops: [
+            "A. Masa de las ballenas azules.", 
+            "B. Tiempo que gastan los atletas en una competencia.", 
+            "C. Número telefónico de tu compañero de equipo.",
+            "D. Cantidad de visitas a un estadio en el año."
+        ], 
+        ans: 2, 
+        exp: "Aunque el número telefónico se escribe con números, no representa una 'cantidad' (no puedes sumar ni restar números de teléfono para sacar un promedio). Sirve como etiqueta, por lo tanto es una variable CUALITATIVA." 
+    },
+    { 
+        q: `8. (Tablas - Actividad 1) Analiza la tabla incompleta de 120 estudiantes:<br>
+            <table class="data-table">
+                <tr><th></th><th>Menos de 2h</th><th>Entre 2h y 5h</th><th>Más de 5h</th><th>Total</th></tr>
+                <tr><td>Aprobó</td><td>5</td><td>?</td><td>23</td><td>47</td></tr>
+                <tr><td>No aprobó</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+                <tr><td>Total</td><td>50</td><td>36</td><td>?</td><td>120</td></tr>
+            </table><br>
+            Sabiendo que el total general es 120, y 47 estudiantes aprobaron en total, ¿Cuántos estudiantes NO aprobaron en total (casilla inferior derecha)?`, 
+        ops: ["A. 120", "B. 73", "C. 50"], 
+        ans: 1, 
+        exp: "Si de 120 estudiantes, 47 aprobaron, solo debes restar para saber cuántos perdieron el examen: 120 - 47 = 73 estudiantes no aprobaron." 
+    },
+    { 
+        q: `9. (Tablas - Actividad 1) Usando la misma tabla: Si sumamos los totales de las columnas, "Menos de 2h" (50) + "Entre 2h y 5h" (36) da 86 estudiantes. Como son 120 en total, sabemos que en la columna "Más de 5h" hay 34 estudiantes en total (120 - 86 = 34). <br><br>Si de esos 34 estudiantes de "Más de 5h", sabemos que 23 aprobaron, ¿Cuántos NO aprobaron estudiando "Más de 5h"?`, 
+        ops: ["A. 11", "B. 23", "C. 34"], 
+        ans: 0, 
+        exp: "Restamos el total de esa columna menos los que aprobaron: 34 en total - 23 que aprobaron = 11 estudiantes que no aprobaron a pesar de estudiar más de 5 horas." 
+    },
+    { 
+        q: `10. (Tablas - Actividad 5) La tabla de contingencia de porcentajes sobre uso de correo y plan de datos dice que el 63% SÍ usan correo y SÍ tienen plan de datos. Si el estudio se hizo a una muestra de 300 personas, ¿Cuántas personas exactas son ese 63%?`, 
+        ops: ["A. 63 personas", "B. 189 personas", "C. 75 personas"], 
+        ans: 1, 
+        exp: "Para convertir un porcentaje en número de personas, multiplica el total por el porcentaje en decimales: 300 × 0.63 = 189 personas." 
+    },
+    { 
+        q: `11. (Tablas - Actividad 6) En una clínica se encuestó a 80 pacientes en total. De ellos, 35 SÍ padecen diabetes y SÍ tienen síntomas. ¿Qué porcentaje representan estos 35 pacientes respecto al total de 80?`, 
+        ops: ["A. 35%", "B. 80%", "C. 43.75%"], 
+        ans: 2, 
+        exp: "Para calcular el porcentaje, divides la cantidad entre el total y multiplicas por 100. Es decir: (35 ÷ 80) × 100 = 43.75%." 
+    },
+    { 
+        q: `12. (Tablas - Actividad 8) Tres empresas consultoras encuestaron sobre la tendencia de voto. El resultado real del Candidato C fue 38%. Las encuestas decían:<br>Empresa 1: 50%<br>Empresa 2: 30%<br>Empresa 3: 37%<br>¿Cuál empresa tuvo la muestra más representativa?`, 
+        ops: ["A. Empresa 1", "B. Empresa 2", "C. Empresa 3"], 
+        ans: 2, 
+        exp: "La Empresa 3 es la más representativa porque su porcentaje (37%) fue el que más se acercó a la realidad (38%)." 
+    }
+];
+
+function renderQuiz(questionsArray, containerId) {
+    const container = document.getElementById(containerId);
+    questionsArray.forEach((p, i) => {
+        // Creamos un ID único para cada pregunta basado en el contenedor y el índice
+        const uniqueId = `${containerId}-q-${i}`; 
+        
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `<h3>${p.q}</h3><div class="options" id="opt-${uniqueId}"></div><div class="feedback" id="feed-${uniqueId}"></div>`;
+        container.appendChild(card);
+
+        const optDiv = document.getElementById(`opt-${uniqueId}`);
+        p.ops.forEach((o, j) => {
+            const btn = document.createElement('button');
+            btn.innerHTML = o;
+            btn.onclick = () => {
+                const feed = document.getElementById(`feed-${uniqueId}`);
+                feed.style.display = 'block';
+                if(j === p.ans) {
+                    feed.className = 'feedback correct';
+                    feed.innerHTML = `<strong>✅ ¡Excelente!</strong><br>${p.exp}`;
+                } else {
+                    feed.className = 'feedback incorrect';
+                    feed.innerHTML = `<strong>❌ Piénsalo un poco más...</strong><br><em>Pista del asistente:</em> ${p.exp}`;
+                }
+            };
+            optDiv.appendChild(btn);
+        });
+    });
+}
+
+// Renderizar ambos bloques de preguntas
+renderQuiz(calentamiento, 'quiz-calentamiento');
+renderQuiz(actividades, 'quiz-actividades');
+
+</script>
+
+<div class="footer">
+    Desarrollado por <strong>Delanoys Tic</strong> para el aprendizaje autónomo.
+</div>
+
+</body>
+</html>
