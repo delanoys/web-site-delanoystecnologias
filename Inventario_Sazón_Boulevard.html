@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Sazón del Boulevard | Bucaramanga</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --brown: #8B4513;
+      --red: #A52A2A;
+      --beige: #F5F5DC;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; }
+
+    /* Hero con Cali */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(139, 69, 19, 0.75), rgba(165, 42, 42, 0.75)), 
+                  url('https://images.unsplash.com/photo-1583417319070-4a13d4c7f5a0?w=1920') center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    .hero-content h1 {
+      font-size: 4.5rem;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    .hero-content p {
+      font-size: 1.6rem;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 45px;
+      margin: 10px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.25rem;
+      transition: 0.3s;
+    }
+    .btn-menu {
+      background: var(--red);
+      color: white;
+    }
+    .btn:hover { transform: scale(1.08); }
+
+    /* Botón discreto de Inventario (abajo derecha) */
+    .btn-inventario {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(139, 69, 19, 0.9);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: 0.3s;
+    }
+    .btn-inventario:hover {
+      background: var(--brown);
+      transform: scale(1.05);
+    }
+
+    /* Platos */
+    .platos {
+      padding: 80px 5%;
+      background: var(--beige);
+    }
+    .platos h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--brown);
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .menu-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: 0.4s;
+    }
+    .menu-card:hover {
+      transform: translateY(-10px);
+    }
+    .menu-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .menu-card:hover img {
+      transform: scale(1.05);
+    }
+    .menu-card:active img {
+      transform: scale(1.5);
+    }
+    .menu-card h3 {
+      padding: 15px;
+      text-align: center;
+      color: var(--brown);
+    }
+
+    footer {
+      background: #3C2F2F;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>El Sazón del Boulevard</h1>
+      <p>Donde la tradición se encuentra con el sabor auténtico</p>
+      <div>
+        <a href="#platos" class="btn btn-menu">Ver Nuestro Menú</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platos Más Queridos -->
+  <section class="platos" id="platos">
+    <h2>Nuestros Platos Más Queridos</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="/imagenes/restaurante/martes.jpeg" alt="Menú">
+        <h3>Menú del Día</h3>
+      </div>
+      <div class="menu-card">
+        <img src="/imagenes/restaurante/desayunos .jpeg" alt="Desayunos">
+        <h3>Desayunos</h3>
+      </div>
+      <div class="menu-card">
+        <img src="/imagenes/restaurante/viernes.jpeg" alt="Viernes">
+        <h3>Frijolada Viernes</h3>
+      </div>
+      <div class="menu-card">
+        <img src="/imagenes/restaurante/martes.jpeg" alt="Martes">
+        <h3>Menú Martes</h3>
+      </div>
+      <div class="menu-card">
+        <img src="/imagenes/restaurante/miercoles.jpeg" alt="Miércoles">
+        <h3>Menú Miércoles</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botón discreto Inventario -->
+  <a href="https://sazon-inventario.onrender.com" target="_blank" class="btn btn-inventario">
+    <i class="fas fa-boxes"></i> Inventario
+  </a>
+
+  <footer>
+    <p><strong>El Sazón del Boulevard</strong> © 2026 • Bucaramanga, Santander</p>
+  </footer>
+
+</body>
+</html>
