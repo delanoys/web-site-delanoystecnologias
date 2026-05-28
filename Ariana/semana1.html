@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 1 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 1</div>
+        <p>Fundamentos de Computación (Ciencias Computacionales, Variables)</p>
+        <p>Febrero 2 - 8</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 1: Fundamentos de Computación</h1>
+
+            <h2>1. Conceptos Básicos</h2>
+            <div class="code-block">
+                <pre># Algoritmo: secuencia de pasos
+# Programa: implementación en Python
+
+print("¡Bienvenido al curso de Python - Ariadna!")</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Variables y Tipos de Datos</h2>
+            <div class="code-block">
+                <pre>nombre = "Ariadna"          # str
+edad = 20                    # int
+altura = 1.65                # float
+es_estudiante = True         # bool
+
+print(type(nombre))
+print(type(edad))</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Operadores Aritméticos</h2>
+            <div class="code-block">
+                <pre>a = 25
+b = 7
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a // b)
+print(a % b)
+print(a ** 2)</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <!-- Ejercicios -->
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Crea variables para almacenar tu nombre, edad y altura. Muestra un mensaje con toda la información.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>nombre = "Hever"
+edad = 22
+altura = 1.75
+print(f"Nombre: {nombre}, Edad: {edad}, Altura: {altura}m")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Calcula el área de un rectángulo (base = 12, altura = 8).</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>base = 12
+altura = 8
+area = base * altura
+perimetro = 2 * (base + altura)
+print("Área:", area)
+print("Perímetro:", perimetro)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3 (Portafolio 1)</h3>
+                <p>Convierte una temperatura de 35°C a Fahrenheit.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>celsius = 35
+fahrenheit = (celsius * 9/5) + 32
+print(f"{celsius}°C = {fahrenheit:.2f}°F")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "¡Bienvenido al curso de Python - Ariadna!",
+                2: "<class 'str'>\n<class 'int'>",
+                3: "32\n18\n175\n3.571...\n3\n4\n625"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

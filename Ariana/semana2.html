@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 2 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 2</div>
+        <p>Entrada y Salida de Datos (Lectura y Escritura)</p>
+        <p>Febrero 9 - 15</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 2: Entrada y Salida de Datos</h1>
+
+            <h2>1. Función input() y print()</h2>
+            <div class="code-block">
+                <pre>nombre = input("¿Cómo te llamas? ")
+print("¡Hola,", nombre, "! Bienvenido al curso.")</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Conversión de Tipos y f-strings</h2>
+            <div class="code-block">
+                <pre>edad = int(input("Ingresa tu edad: "))
+altura = float(input("Ingresa tu altura (m): "))
+
+print(f"Tienes {edad} años y mides {altura} metros.")
+print(f"En 5 años tendrás {edad + 5} años.")</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Formato de Salida</h2>
+            <div class="code-block">
+                <pre>nota1 = 4.2
+nota2 = 3.8
+promedio = (nota1 + nota2) / 2
+
+print("Promedio:", round(promedio, 2))
+print(f"Promedio: {promedio:.2f}")</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Pide al usuario dos números y muestra su suma, resta y multiplicación.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>num1 = int(input("Primer número: "))
+num2 = int(input("Segundo número: "))
+print("Suma:", num1 + num2)
+print("Resta:", num1 - num2)
+print("Multiplicación:", num1 * num2)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Calcula el promedio de 3 notas ingresadas por el usuario.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>nota1 = float(input("Nota 1: "))
+nota2 = float(input("Nota 2: "))
+nota3 = float(input("Nota 3: "))
+promedio = (nota1 + nota2 + nota3) / 3
+print(f"Tu promedio es: {promedio:.2f}")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3 (Portafolio)</h3>
+                <p>Pide minutos y conviértelos a horas y minutos restantes.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>total_min = int(input("Ingresa los minutos: "))
+horas = total_min // 60
+minutos = total_min % 60
+print(f"{total_min} minutos = {horas} hora(s) y {minutos} minuto(s)")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "¡Hola, Ariadna! Bienvenido al curso.",
+                2: "Tienes 20 años y mides 1.65 metros.<br>En 5 años tendrás 25 años.",
+                3: "Promedio: 4.0<br>Promedio: 4.00"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

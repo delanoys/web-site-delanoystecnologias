@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 6 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 6</div>
+        <p>Iteraciones y Uso de Ciclos (for y while)</p>
+        <p>Marzo 9 - 15</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 6: Iteraciones y Ciclos</h1>
+
+            <h2>1. Ciclo for</h2>
+            <div class="code-block">
+                <pre>for i in range(5):
+    print("Iteración:", i)
+
+print("---")
+
+for num in [10, 20, 30, 40]:
+    print(num)</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Ciclo while</h2>
+            <div class="code-block">
+                <pre>contador = 1
+while contador <= 5:
+    print("Contador:", contador)
+    contador += 1</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. break, continue y acumuladores</h2>
+            <div class="code-block">
+                <pre>suma = 0
+for i in range(1, 11):
+    if i == 5:
+        continue          # Salta el 5
+    suma += i
+print("Suma:", suma)</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Imprime los números del 1 al 20 usando un ciclo for.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>for i in range(1, 21):
+    print(i, end=" ")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Pide un número n y calcula la suma de los primeros n números naturales.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>n = int(input("Ingresa un número: "))
+suma = 0
+for i in range(1, n+1):
+    suma += i
+print("La suma es:", suma)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Imprime la tabla de multiplicar de un número ingresado por el usuario.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>num = int(input("Ingresa un número: "))
+for i in range(1, 11):
+    print(f"{num} x {i} = {num * i}")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "Iteración: 0<br>Iteración: 1<br>Iteración: 2<br>Iteración: 3<br>Iteración: 4<br>---<br>10<br>20<br>30<br>40",
+                2: "Contador: 1<br>Contador: 2<br>Contador: 3<br>Contador: 4<br>Contador: 5",
+                3: "Suma: 50"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

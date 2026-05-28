@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 4 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 4</div>
+        <p>Estructuras Selectivas (else, elif)</p>
+        <p>Febrero 23 - Marzo 1</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 4: Estructuras Selectivas (if / else / elif)</h1>
+
+            <h2>1. Condicional Doble (if - else)</h2>
+            <div class="code-block">
+                <pre>nota = 3.8
+
+if nota >= 3.0:
+    print("Aprobado")
+else:
+    print("Reprobado")</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Condicional Múltiple (elif)</h2>
+            <div class="code-block">
+                <pre>nota = 4.2
+
+if nota >= 4.5:
+    print("Excelente")
+elif nota >= 3.5:
+    print("Bueno")
+elif nota >= 3.0:
+    print("Aceptable")
+else:
+    print("Insuficiente")</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Condicionales Anidados</h2>
+            <div class="code-block">
+                <pre>edad = 16
+tiene_permiso = True
+
+if edad >= 18:
+    print("Puede entrar")
+else:
+    if tiene_permiso:
+        print("Puede entrar con permiso")
+    else:
+        print("No puede entrar")</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Pide una nota y clasifícala según rangos (Insuficiente, Aceptable, Bueno, Excelente).</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>nota = float(input("Ingresa tu nota: "))
+
+if nota >= 4.5:
+    print("Excelente")
+elif nota >= 3.5:
+    print("Bueno")
+elif nota >= 3.0:
+    print("Aceptable")
+else:
+    print("Insuficiente")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Determina si un número está en el rango de 1 a 100.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>num = int(input("Ingresa un número: "))
+
+if num >= 1 and num <= 100:
+    print("El número está dentro del rango")
+else:
+    print("El número está fuera del rango")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Crea un menú simple: 1. Sumar, 2. Restar, 3. Salir.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>opcion = int(input("1. Sumar\n2. Restar\n3. Salir\nElige: "))
+
+if opcion == 1:
+    print("Sumando...")
+elif opcion == 2:
+    print("Restando...")
+elif opcion == 3:
+    print("Saliendo...")
+else:
+    print("Opción inválida")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "Aprobado",
+                2: "Bueno",
+                3: "Puede entrar con permiso"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

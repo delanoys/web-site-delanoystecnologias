@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 5 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 5</div>
+        <p>Primer Parcial - Evaluación y Retroalimentación</p>
+        <p>Marzo 2 - 8</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 5: Primer Parcial</h1>
+            <p style="background: #fff3cd; padding: 1rem; border-radius: 8px; border-left: 5px solid #ffc107;">
+                <strong>📌 Esta semana es de evaluación.</strong><br>
+                Repasa los temas de las semanas 1 al 4.
+            </p>
+
+            <h2>Resumen de Temas del Primer Parcial</h2>
+            <ul>
+                <li>Variables y tipos de datos</li>
+                <li>Operadores aritméticos</li>
+                <li>Entrada y salida de datos (input/print)</li>
+                <li>Condicionales simples, dobles y múltiples (if, else, elif)</li>
+            </ul>
+
+            <h2>🔍 Ejemplos de Repaso</h2>
+
+            <div class="code-block">
+                <pre># Ejemplo 1: Combinación de temas
+nombre = input("Nombre: ")
+edad = int(input("Edad: "))
+
+if edad >= 18:
+    print(f"{nombre}, eres mayor de edad")
+else:
+    print(f"{nombre}, eres menor de edad")</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <div class="code-block">
+                <pre># Ejemplo 2: Clasificación por rangos
+nota = float(input("Nota final: "))
+
+if nota >= 4.5:
+    print("Excelente")
+elif nota >= 3.5:
+    print("Bueno")
+elif nota >= 3.0:
+    print("Aceptable")
+else:
+    print("Reprobado")</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>✍️ Ejercicios de Repaso para el Parcial</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Pide tres números y determina cuál es el mayor.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>a = int(input("Número 1: "))
+b = int(input("Número 2: "))
+c = int(input("Número 3: "))
+
+if a >= b and a >= c:
+    print("El mayor es", a)
+elif b >= c:
+    print("El mayor es", b)
+else:
+    print("El mayor es", c)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Calcula el promedio de 4 notas y determina si aprueba (promedio ≥ 3.0).</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>n1 = float(input("Nota 1: "))
+n2 = float(input("Nota 2: "))
+n3 = float(input("Nota 3: "))
+n4 = float(input("Nota 4: "))
+
+promedio = (n1 + n2 + n3 + n4) / 4
+print("Promedio:", round(promedio, 2))
+
+if promedio >= 3.0:
+    print("¡Aprobaste!")
+else:
+    print("Reprobaste")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3 (Nivel Parcial)</h3>
+                <p>Crea un programa que pida un número y diga si es par o impar, y si es positivo o negativo.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>num = int(input("Ingresa un número: "))
+
+if num % 2 == 0:
+    print("Es par")
+else:
+    print("Es impar")
+
+if num > 0:
+    print("Es positivo")
+elif num < 0:
+    print("Es negativo")
+else:
+    print("Es cero")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "Hever, eres mayor de edad",
+                2: "Bueno"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num] || 'Ejemplo ejecutado'}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

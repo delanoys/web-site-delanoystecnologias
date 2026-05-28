@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 3 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 3</div>
+        <p>Concepto de Lógica Básica (if)</p>
+        <p>Febrero 16 - 22</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 3: Lógica Básica - Condicional Simple (if)</h1>
+
+            <h2>1. Expresiones Booleanas y Operadores Relacionales</h2>
+            <div class="code-block">
+                <pre>edad = 18
+print(edad >= 18)        # True
+print(edad < 18)         # False
+print(edad == 20)        # False</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Condicional Simple if</h2>
+            <div class="code-block">
+                <pre>edad = 20
+
+if edad >= 18:
+    print("Eres mayor de edad")
+    print("Puedes votar")</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Operadores Lógicos (and, or, not)</h2>
+            <div class="code-block">
+                <pre>nota = 4.2
+asistencia = 85
+
+if nota >= 3.0 and asistencia >= 80:
+    print("Aprobaste el curso")
+else:
+    print("Necesitas mejorar")</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Pide la edad del usuario e indica si es mayor o menor de edad.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>edad = int(input("Ingresa tu edad: "))
+
+if edad >= 18:
+    print("Eres mayor de edad")
+else:
+    print("Eres menor de edad")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Pide una nota y determina si aprobó (nota ≥ 3.0).</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>nota = float(input("Ingresa tu nota: "))
+
+if nota >= 3.0:
+    print("¡Felicidades! Aprobaste")
+else:
+    print("Necesitas estudiar más")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Determina si un número es positivo, negativo o cero.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>num = int(input("Ingresa un número: "))
+
+if num > 0:
+    print("El número es positivo")
+elif num < 0:
+    print("El número es negativo")
+else:
+    print("El número es cero")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "True<br>False<br>False",
+                2: "Eres mayor de edad<br>Puedes votar",
+                3: "Aprobaste el curso"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
