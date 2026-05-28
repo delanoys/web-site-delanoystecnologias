@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Avanzado + Soluciones Parcial - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Resumen Avanzado + Soluciones</div>
+        <p>Temas Especiales y Tercer Parcial</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+
+            <!-- Temas Avanzados (mismo contenido anterior) -->
+            <h1>Temas Avanzados</h1>
+            <!-- ... (mantengo los temas de módulos, pandas, etc.) ... -->
+
+            <hr style="margin: 3rem 0;">
+
+            <h1>🧩 Soluciones - Tercer Parcial</h1>
+            <p><strong>Examen de Fundamentos de Programación - Grupo 1</strong></p>
+
+            <div class="exercise">
+                <h3>1. ¿Cuál es la función principal del procedimiento mostrado?</h3>
+                <p><strong>Respuesta correcta: B)</strong> Ordenar el arreglo de estudiantes según la nota de mayor a menor.</p>
+                <p><em>Explicación:</em> El código recorre la lista y compara notas para ordenar (Bubble Sort).</p>
+            </div>
+
+            <div class="exercise">
+                <h3>2. ¿Qué imprime el siguiente fragmento del programa?</h3>
+                <p><strong>Respuesta correcta: C)</strong> Los elementos de la diagonal principal.</p>
+                <p><em>Explicación:</em> `mat[i][i]` accede a la diagonal principal de la matriz.</p>
+            </div>
+
+            <div class="exercise">
+                <h3>3. ¿Cuál es el objetivo del siguiente código?</h3>
+                <p><strong>Respuesta correcta: B)</strong> Contar cuántos números pares existen en la matriz.</p>
+                <p><em>Explicación:</em> Verifica si `mat[i][j] % 2 == 0` y acumula en `pares`.</p>
+            </div>
+
+            <div class="exercise">
+                <h3>4. ¿Qué calcula el siguiente bloque del programa?</h3>
+                <p><strong>Respuesta correcta: A)</strong> La suma de la diagonal superior.</p>
+                <p><em>Explicación:</em> Suma los elementos donde `j > i` (triangular superior).</p>
+            </div>
+
+            <div class="exercise">
+                <h3>5. ¿Por qué el siguiente conjunto produce error?</h3>
+                <p><strong>Respuesta correcta: B)</strong> Porque una lista es mutable y no puede ser elemento de un conjunto.</p>
+                <p><em>Explicación:</em> Los conjuntos solo aceptan elementos inmutables (no listas).</p>
+            </div>
+
+            <div class="exercise">
+                <h3>6. ¿Qué método se utiliza para agregar varios elementos a un conjunto?</h3>
+                <p><strong>Respuesta correcta: D)</strong> `extend()` no es para conjuntos → La correcta es `update()`.</p>
+                <p><em>Explicación:</em> `update()` permite agregar múltiples elementos a un set.</p>
+            </div>
+
+            <div class="exercise">
+                <h3>7. ¿Qué operación representa el operador & entre conjuntos?</h3>
+                <p><strong>Respuesta correcta: C)</strong> Intersección</p>
+                <p><em>Explicación:</em> `A & B` devuelve los elementos comunes a ambos conjuntos.</p>
+            </div>
+
+            <div class="exercise">
+                <h3>8. ¿Cuáles de las siguientes instrucciones permiten obtener información del diccionario?</h3>
+                <p><strong>Respuesta correcta:</strong> Las tres son válidas:</p>
+                <ul>
+                    <li><code>estudiantes.keys()</code> → Devuelve las llaves</li>
+                    <li><code>estudiantes.values()</code> → Devuelve los valores</li>
+                    <li><code>estudiantes.items()</code> → Devuelve pares (clave, valor)</li>
+                </ul>
+            </div>
+
+            <div style="background: #e6f7e6; padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                <h2>✅ ¡Bien hecho!</h2>
+                <p>Si tienes dudas sobre alguna pregunta, revísala en las semanas correspondientes:</p>
+                <ul>
+                    <li>Matriz y Listas → Semana 7</li>
+                    <li>Conjuntos → Semana 9</li>
+                    <li>Diccionarios → Semana 11</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            if (sol) sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

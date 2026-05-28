@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 10 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 10</div>
+        <p>Segundo Parcial - Evaluación y Retroalimentación</p>
+        <p>Abril 13 - 19</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 10: Segundo Parcial</h1>
+            <p style="background: #fff3cd; padding: 1.2rem; border-radius: 8px; border-left: 6px solid #ffc107; font-weight: 500;">
+                <strong>📌 Semana de Segundo Parcial</strong><br>
+                Repasa los temas de las semanas 1 al 9.
+            </p>
+
+            <h2>Temas Evaluados en el Segundo Parcial</h2>
+            <ul>
+                <li>Listas y Tuplas</li>
+                <li>Conjuntos</li>
+                <li>Ciclos (for y while)</li>
+                <li>Condicionales avanzados</li>
+                <li>Entrada/Salida y manejo de datos</li>
+            </ul>
+
+            <h2>🔍 Ejemplos de Repaso Integrador</h2>
+
+            <div class="code-block">
+                <pre># Ejemplo 1: Listas + Ciclos
+notas = [4.2, 3.1, 4.8, 2.9, 4.0]
+aprobados = []
+
+for nota in notas:
+    if nota >= 3.0:
+        aprobados.append(nota)
+
+print("Aprobados:", aprobados)
+print("Promedio general:", round(sum(notas)/len(notas), 2))</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <div class="code-block">
+                <pre># Ejemplo 2: Conjuntos + Condicionales
+grupo_a = {"Ana", "Luis", "María"}
+grupo_b = {"Luis", "Pedro", "Sofía"}
+
+comunes = grupo_a & grupo_b
+print("Estudiantes en ambos grupos:", comunes)</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>✍️ Ejercicios de Repaso para el Parcial</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Pide 5 números, guárdalos en una lista y muestra el mayor y el menor.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>numeros = []
+for i in range(5):
+    num = int(input(f"Número {i+1}: "))
+    numeros.append(num)
+
+print("Mayor:", max(numeros))
+print("Menor:", min(numeros))</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Elimina los números duplicados de una lista usando conjuntos.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>datos = [1, 2, 2, 3, 4, 4, 5, 1, 6]
+unicos = list(set(datos))
+print("Sin duplicados:", unicos)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3 (Nivel Parcial)</h3>
+                <p>Crea un programa que pida números hasta que el usuario ingrese 0 y calcule su promedio.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>numeros = []
+while True:
+    num = int(input("Ingresa un número (0 para terminar): "))
+    if num == 0:
+        break
+    numeros.append(num)
+
+if numeros:
+    print("Promedio:", round(sum(numeros)/len(numeros), 2))
+else:
+    print("No se ingresaron números")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "Aprobados: [4.2, 4.8, 4.0]<br>Promedio general: 3.8",
+                2: "Estudiantes en ambos grupos: {'Luis'}"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num] || 'Ejemplo ejecutado'}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

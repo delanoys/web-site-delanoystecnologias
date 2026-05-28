@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 9 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 9</div>
+        <p>Conceptos de Conjuntos (Operaciones)</p>
+        <p>Abril 6 - 12</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 9: Conjuntos (Sets) en Python</h1>
+
+            <h2>1. Creación y Propiedades de Conjuntos</h2>
+            <div class="code-block">
+                <pre>frutas = {"manzana", "banana", "cereza", "manzana"}
+print(frutas)                    # No permite duplicados
+print(len(frutas))
+
+numeros = set([1, 2, 2, 3, 4, 4])
+print(numeros)</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Operaciones Básicas con Conjuntos</h2>
+            <div class="code-block">
+                <pre>A = {1, 2, 3, 4}
+B = {3, 4, 5, 6}
+
+print(A | B)   # Unión
+print(A & B)   # Intersección
+print(A - B)   # Diferencia
+print(A ^ B)   # Diferencia simétrica</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Métodos Útiles</h2>
+            <div class="code-block">
+                <pre>estudiantes = {"Ana", "Luis", "María"}
+estudiantes.add("Carlos")
+print(estudiantes)
+
+estudiantes.discard("Luis")   # No da error si no existe
+print("Después de discard:", estudiantes)</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Crea dos conjuntos con números y muestra su unión e intersección.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>A = {1, 2, 3, 4, 5}
+B = {4, 5, 6, 7, 8}
+
+print("Unión:", A | B)
+print("Intersección:", A & B)
+print("Diferencia A-B:", A - B)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Elimina duplicados de una lista usando un conjunto.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>lista = [1, 2, 2, 3, 4, 4, 5, 1]
+sin_duplicados = set(lista)
+print(list(sin_duplicados))</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Verifica si dos conjuntos son disjuntos (no tienen elementos en común).</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>grupo1 = {"Ana", "Luis", "Pedro"}
+grupo2 = {"María", "Sofía", "Carlos"}
+
+if grupo1.isdisjoint(grupo2):
+    print("No tienen estudiantes en común")
+else:
+    print("Tienen estudiantes en común")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "{'manzana', 'banana', 'cereza'}<br>3<br>{1, 2, 3, 4}",
+                2: "{1, 2, 3, 4, 5, 6}<br>{3, 4}<br>{1, 2}<br>{1, 2, 5, 6}",
+                3: "{'Ana', 'Luis', 'María', 'Carlos'}<br>Después de discard: {'Ana', 'María', 'Carlos'}"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

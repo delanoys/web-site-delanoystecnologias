@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 15 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 15</div>
+        <p>Técnicas Iterativas y Búsqueda en Conjuntos de Datos</p>
+        <p>Mayo 18 - 24</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 15: Técnicas Iterativas y Búsqueda</h1>
+
+            <h2>1. Búsqueda Lineal</h2>
+            <div class="code-block">
+                <pre>def busqueda_lineal(lista, objetivo):
+    for i in range(len(lista)):
+        if lista[i] == objetivo:
+            return i
+    return -1
+
+numeros = [10, 25, 45, 67, 89, 32]
+print(busqueda_lineal(numeros, 67))</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Uso de 'in', index y métodos útiles</h2>
+            <div class="code-block">
+                <pre>estudiantes = ["Ana", "Luis", "María", "Pedro"]
+
+print("Luis" in estudiantes)
+print(estudiantes.index("María"))
+
+if "Carlos" not in estudiantes:
+    print("Carlos no está en la lista")</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Búsqueda en Diccionarios</h2>
+            <div class="code-block">
+                <pre>notas = {"Ana": 4.5, "Luis": 3.8, "María": 4.2}
+
+print(notas.get("Ana", "No encontrado"))
+print(notas.get("Carlos", "No encontrado"))</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Implementa una función de búsqueda lineal que indique si un elemento existe en una lista.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>def buscar_elemento(lista, objetivo):
+    if objetivo in lista:
+        return f"{objetivo} encontrado en la posición {lista.index(objetivo)}"
+    return "Elemento no encontrado"
+
+print(buscar_elemento([10, 20, 30, 40, 50], 30))</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Busca un estudiante en un diccionario por su código.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>estudiantes = {
+    "001": "Ana López",
+    "002": "Luis Gómez",
+    "003": "María Torres"
+}
+
+codigo = "002"
+print(estudiantes.get(codigo, "Estudiante no encontrado"))</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Crea un programa que busque el número máximo y mínimo en una lista sin usar max() ni min().</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>def encontrar_max_min(lista):
+    maximo = minimo = lista[0]
+    for num in lista:
+        if num > maximo:
+            maximo = num
+        if num < minimo:
+            minimo = num
+    return maximo, minimo
+
+print(encontrar_max_min([45, 12, 89, 33, 67]))</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "3",
+                2: "True<br>2<br>Carlos no está en la lista",
+                3: "4.5<br>No encontrado"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

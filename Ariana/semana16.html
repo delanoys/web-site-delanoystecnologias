@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 16 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 16</div>
+        <p>Tercer Parcial - Evaluación y Retroalimentación</p>
+        <p>Mayo 25 - 31</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 16: Tercer Parcial</h1>
+            <p style="background: #fff3cd; padding: 1.5rem; border-radius: 10px; border-left: 6px solid #ffc107; font-size: 1.1rem;">
+                <strong>🎯 Semana de Tercer Parcial</strong><br>
+                ¡Felicitaciones por llegar hasta aquí! Esta semana es de evaluación final.
+            </p>
+
+            <h2>Temas Evaluados en el Tercer Parcial</h2>
+            <ul>
+                <li>Diccionarios y estructuras avanzadas</li>
+                <li>Funciones y modularidad</li>
+                <li>Manejo de archivos</li>
+                <li>Ordenamiento y búsqueda</li>
+                <li>Técnicas iterativas</li>
+            </ul>
+
+            <h2>🔍 Ejemplos Integradores (Repaso Final)</h2>
+
+            <div class="code-block">
+                <pre># Ejemplo 1: Sistema de Notas con Diccionario + Funciones
+def registrar_nota(estudiantes, nombre, nota):
+    estudiantes[nombre] = nota
+
+estudiantes = {}
+registrar_nota(estudiantes, "Ariadna", 4.5)
+registrar_nota(estudiantes, "Hever", 4.2)
+
+print("Registro:", estudiantes)
+print("Promedio:", round(sum(estudiantes.values())/len(estudiantes), 2))</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <div class="code-block">
+                <pre># Ejemplo 2: Guardar y leer desde archivo
+with open("final.txt", "w") as f:
+    f.write("Curso Python Fundamentos - Ariadna\n")
+    f.write("Estudiante: Hever - Nota Final: 4.8\n")
+
+with open("final.txt", "r") as f:
+    print(f.read())</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar (Simulación)</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>✍️ Ejercicios de Repaso Final</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1 (Nivel Avanzado)</h3>
+                <p>Crea un programa que gestione estudiantes con diccionario y guarde en archivo.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>estudiantes = {}
+estudiantes["Ana"] = 4.5
+estudiantes["Luis"] = 3.9
+
+with open("notas_finales.txt", "w") as f:
+    for nombre, nota in estudiantes.items():
+        f.write(f"{nombre},{nota}\n")
+
+print("Datos guardados correctamente.")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Ordena una lista de tuplas (nombre, nota) de mayor a menor nota.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>alumnos = [("Ana", 4.5), ("Pedro", 3.2), ("María", 4.8), ("Luis", 4.1)]
+ordenados = sorted(alumnos, key=lambda x: x[1], reverse=True)
+print(ordenados)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3 (Proyecto Final)</h3>
+                <p>Crea una función que busque un estudiante y muestre su información.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>def buscar_estudiante(agenda, nombre):
+    return agenda.get(nombre, "Estudiante no encontrado")
+
+agenda = {"Ariadna": 4.7, "Hever": 4.5}
+print(buscar_estudiante(agenda, "Ariadna"))</pre>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: #e6f7e6; border-radius: 12px; text-align: center;">
+                <h2>🎉 ¡Felicitaciones!</h2>
+                <p>Has completado las 16 semanas del curso de <strong>Python Fundamentos</strong>.</p>
+                <p>Ahora tienes las bases sólidas para continuar con programación avanzada.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "Registro: {'Ariadna': 4.5, 'Hever': 4.2}<br>Promedio: 4.35",
+                2: "Curso Python Fundamentos - Ariadna<br>Estudiante: Hever - Nota Final: 4.8"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

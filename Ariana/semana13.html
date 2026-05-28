@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 13 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 13</div>
+        <p>Persistencia de Datos - I/O de Archivos</p>
+        <p>Mayo 4 - 10</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 13: Manejo de Archivos (I/O)</h1>
+
+            <h2>1. Lectura y Escritura Básica</h2>
+            <div class="code-block">
+                <pre># Escritura
+with open("estudiantes.txt", "w") as archivo:
+    archivo.write("Ariadna\n")
+    archivo.write("Hever\n")
+
+# Lectura
+with open("estudiantes.txt", "r") as archivo:
+    contenido = archivo.read()
+    print(contenido)</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar (Simulación)</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Lectura Línea por Línea</h2>
+            <div class="code-block">
+                <pre>with open("estudiantes.txt", "r") as archivo:
+    for linea in archivo:
+        print("Estudiante:", linea.strip())</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar (Simulación)</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Manejo de Excepciones</h2>
+            <div class="code-block">
+                <pre>try:
+    with open("datos.txt", "r") as f:
+        print(f.read())
+except FileNotFoundError:
+    print("El archivo no existe. Creando uno nuevo...")
+    with open("datos.txt", "w") as f:
+        f.write("Primer registro")</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar (Simulación)</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Crea un programa que guarde 5 nombres en un archivo llamado "nombres.txt".</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>nombres = ["Ana", "Luis", "María", "Pedro", "Sofía"]
+
+with open("nombres.txt", "w") as archivo:
+    for nombre in nombres:
+        archivo.write(nombre + "\n")
+
+print("Nombres guardados correctamente.")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Lee el archivo "nombres.txt" y muestra cada nombre en mayúsculas.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>with open("nombres.txt", "r") as archivo:
+    for linea in archivo:
+        print(linea.strip().upper())</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3 (Portafolio)</h3>
+                <p>Crea un registro de calificaciones: pide nombre y nota, guárdalos en un archivo.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>with open("calificaciones.txt", "a") as archivo:
+    nombre = input("Nombre del estudiante: ")
+    nota = float(input("Nota: "))
+    archivo.write(f"{nombre},{nota}\n")
+print("Registro guardado.")</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "Ariadna<br>Hever",
+                2: "Estudiante: Ariadna<br>Estudiante: Hever",
+                3: "El archivo no existe. Creando uno nuevo..."
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

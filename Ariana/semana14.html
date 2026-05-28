@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 14 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 14</div>
+        <p>Manipulación de Datos (Ordenamiento)</p>
+        <p>Mayo 11 - 17</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 14: Manipulación y Ordenamiento de Datos</h1>
+
+            <h2>1. Métodos sort() y sorted()</h2>
+            <div class="code-block">
+                <pre>notas = [3.8, 4.5, 2.9, 4.1, 3.2]
+
+notas.sort()                    # Ordena la lista original
+print(notas)
+
+ordenado = sorted(notas, reverse=True)
+print("Descendente:", ordenado)</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Ordenamiento con clave (key)</h2>
+            <div class="code-block">
+                <pre>estudiantes = [("Ana", 4.2), ("Luis", 3.5), ("María", 4.8)]
+
+# Ordenar por nota (segundo elemento)
+estudiantes_ordenados = sorted(estudiantes, key=lambda x: x[1], reverse=True)
+print(estudiantes_ordenados)</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Algoritmo Básico de Ordenamiento (Burbuja)</h2>
+            <div class="code-block">
+                <pre>def bubble_sort(lista):
+    n = len(lista)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if lista[j] > lista[j+1]:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+    return lista
+
+print(bubble_sort([64, 34, 25, 12, 22, 11, 90]))</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Ordena una lista de números de forma ascendente y descendente.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>numeros = [45, 12, 78, 23, 56]
+print("Ascendente:", sorted(numeros))
+print("Descendente:", sorted(numeros, reverse=True))</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Ordena una lista de estudiantes por su nota (de mayor a menor).</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>estudiantes = [("Ana", 4.2), ("Pedro", 3.1), ("María", 4.8), ("Luis", 3.9)]
+ordenados = sorted(estudiantes, key=lambda x: x[1], reverse=True)
+print(ordenados)</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Crea una función que ordene una lista usando el algoritmo de selección.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>def selection_sort(lista):
+    for i in range(len(lista)):
+        min_idx = i
+        for j in range(i+1, len(lista)):
+            if lista[j] < lista[min_idx]:
+                min_idx = j
+        lista[i], lista[min_idx] = lista[min_idx], lista[i]
+    return lista
+
+print(selection_sort([64, 25, 12, 22, 11]))</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "[2.9, 3.2, 3.8, 4.1, 4.5]<br>Descendente: [4.5, 4.1, 3.8, 3.2, 2.9]",
+                2: "[('María', 4.8), ('Ana', 4.2), ('Luis', 3.5)]",
+                3: "[11, 12, 22, 25, 34, 64, 90]"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

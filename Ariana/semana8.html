@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 8 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 8</div>
+        <p>Fundamentos de Estructura de Datos con Tuplas</p>
+        <p>Marzo 23 - 29</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 8: Tuplas en Python</h1>
+
+            <h2>1. Creación e Inmutabilidad de Tuplas</h2>
+            <div class="code-block">
+                <pre>coordenadas = (10, 20)
+colores = ("rojo", "verde", "azul")
+print(coordenadas)
+print(type(coordenadas))
+
+# Las tuplas son inmutables
+# coordenadas[0] = 15  # Esto genera error</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Empaquetado y Desempaquetado</h2>
+            <div class="code-block">
+                <pre># Empaquetado
+persona = ("Ariadna", 20, 1.65, True)
+
+# Desempaquetado
+nombre, edad, altura, es_estudiante = persona
+
+print(f"Nombre: {nombre}")
+print(f"Edad: {edad}")</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Uso de Tuplas (Ventajas y Retornos Múltiples)</h2>
+            <div class="code-block">
+                <pre>def calcular_estadisticas(notas):
+    return (min(notas), max(notas), sum(notas)/len(notas))
+
+notas = [4.2, 3.8, 4.5]
+minimo, maximo, promedio = calcular_estadisticas(notas)
+print(f"Min: {minimo}, Max: {maximo}, Prom: {promedio:.2f}")</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Crea una tupla con los días de la semana y accede al primer y último día.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>dias = ("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+print("Primer día:", dias[0])
+print("Último día:", dias[-1])
+print("Días laborables:", dias[:5])</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Desempaqueta una tupla que contenga nombre, edad y ciudad.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>datos = ("Hever", 22, "San Pablo")
+nombre, edad, ciudad = datos
+print(f"{nombre} tiene {edad} años y vive en {ciudad}")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Crea una función que retorne una tupla con el área y perímetro de un rectángulo.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>def rectangulo(base, altura):
+    area = base * altura
+    perimetro = 2 * (base + altura)
+    return (area, perimetro)
+
+a, p = rectangulo(8, 5)
+print("Área:", a, "- Perímetro:", p)</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "(10, 20)<br>&lt;class 'tuple'&gt;",
+                2: "Nombre: Ariadna<br>Edad: 20",
+                3: "Min: 3.8, Max: 4.5, Prom: 4.17"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

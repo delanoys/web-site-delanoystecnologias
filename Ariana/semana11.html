@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 11 - Python Fundamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🐍 Semana 11</div>
+        <p>Fundamentos de Estructura de Datos con Diccionarios</p>
+        <p>Abril 20 - 26</p>
+    </header>
+
+    <nav>
+        <a href="Python_fundamentos.html">← Volver al Inicio</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="content-area">
+            <h1>Semana 11: Diccionarios (key-value)</h1>
+
+            <h2>1. Creación y Acceso a Diccionarios</h2>
+            <div class="code-block">
+                <pre>estudiante = {
+    "nombre": "Ariadna",
+    "edad": 20,
+    "carrera": "Ingeniería",
+    "notas": [4.2, 3.8, 4.5]
+}
+
+print(estudiante["nombre"])
+print(estudiante.get("edad"))</pre>
+                <button class="run-btn" onclick="runCode(1)">Ejecutar</button>
+            </div>
+            <div id="output1" class="output"></div>
+
+            <h2>2. Métodos de Diccionarios</h2>
+            <div class="code-block">
+                <pre>persona = {"nombre": "Hever", "edad": 22}
+persona["ciudad"] = "San Pablo"
+persona.update({"profesion": "Estudiante"})
+
+print(persona.keys())
+print(persona.values())
+print("edad" in persona)</pre>
+                <button class="run-btn" onclick="runCode(2)">Ejecutar</button>
+            </div>
+            <div id="output2" class="output"></div>
+
+            <h2>3. Diccionarios Anidados y Recorrido</h2>
+            <div class="code-block">
+                <pre>curso = {
+    "nombre": "Python",
+    "estudiantes": {
+        "001": {"nombre": "Ana", "nota": 4.5},
+        "002": {"nombre": "Luis", "nota": 3.9}
+    }
+}
+
+for codigo, info in curso["estudiantes"].items():
+    print(f"{codigo}: {info['nombre']} - Nota: {info['nota']}")</pre>
+                <button class="run-btn" onclick="runCode(3)">Ejecutar</button>
+            </div>
+            <div id="output3" class="output"></div>
+
+            <h2>✍️ Ejercicios Propuestos</h2>
+
+            <div class="exercise">
+                <h3>Ejercicio 1</h3>
+                <p>Crea un diccionario con información personal y muestra todos los valores.</p>
+                <button class="btn" onclick="toggleSolution(1)">Ver Solución</button>
+                <div id="sol1" class="solution">
+                    <pre>persona = {
+    "nombre": "Hever",
+    "edad": 22,
+    "ciudad": "San Pablo",
+    "carrera": "Programación"
+}
+
+print(persona["nombre"])
+for clave, valor in persona.items():
+    print(f"{clave}: {valor}")</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 2</h3>
+                <p>Crea un diccionario de notas y calcula el promedio.</p>
+                <button class="btn" onclick="toggleSolution(2)">Ver Solución</button>
+                <div id="sol2" class="solution">
+                    <pre>notas = {"matematicas": 4.2, "fisica": 3.8, "quimica": 4.5}
+promedio = sum(notas.values()) / len(notas)
+print("Promedio:", round(promedio, 2))</pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h3>Ejercicio 3</h3>
+                <p>Agenda de contactos usando diccionario.</p>
+                <button class="btn" onclick="toggleSolution(3)">Ver Solución</button>
+                <div id="sol3" class="solution">
+                    <pre>agenda = {}
+agenda["Ana"] = "3001234567"
+agenda["Luis"] = "3109876543"
+
+print(agenda)
+print("Número de Ana:", agenda.get("Ana", "No encontrado"))</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runCode(num) {
+            const outputs = {
+                1: "Ariadna<br>20",
+                2: "dict_keys(['nombre', 'edad', 'ciudad', 'profesion'])<br>dict_values([...])<br>True",
+                3: "001: Ana - Nota: 4.5<br>002: Luis - Nota: 3.9"
+            };
+            document.getElementById(`output${num}`).innerHTML = `<strong>Salida:</strong><br>${outputs[num]}`;
+        }
+
+        function toggleSolution(n) {
+            const sol = document.getElementById(`sol${n}`);
+            sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
