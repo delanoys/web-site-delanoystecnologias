@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Estrategia IA | Delanoy's Tecnologías</title>
-    <meta name="description" content="Mi stack de IA optimizado para desarrollo web: DeepSeek, Grok, Claude, GPT y Qwen. Flujo de trabajo por fases y distribución táctica.">
+    <meta name="description" content="Mi stack de IA optimizado para desarrollo web: DeepSeek, Grok, Claude, GPT y Qwen. Flujo de trabajo por fases, métricas reales y casos de uso.">
     <style>
         * {
             margin: 0;
@@ -20,13 +20,11 @@
             padding: 2rem 1.5rem;
         }
 
-        /* Contenedor principal */
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* Header / Hero */
         .hero {
             text-align: center;
             margin-bottom: 3rem;
@@ -63,7 +61,6 @@
             margin: 0 auto;
         }
 
-        /* Tarjetas de métricas (distribución) */
         .distribucion {
             display: flex;
             flex-wrap: wrap;
@@ -82,6 +79,7 @@
             border: 1px solid #2d3a5e;
             transition: all 0.2s ease;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
         }
 
         .card-metrica:hover {
@@ -102,7 +100,6 @@
             margin-top: 0.5rem;
         }
 
-        /* Gráfico de barras interactivo */
         .chart-container {
             background: #0b0f17;
             border-radius: 2rem;
@@ -154,7 +151,6 @@
             transition: width 1s ease-out;
         }
 
-        /* Grid de tarjetas de IA */
         .ia-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -225,7 +221,6 @@
             color: #7aa9ff;
         }
 
-        /* Sección fases de trabajo */
         .fases-section {
             background: #0a0f17;
             border-radius: 2rem;
@@ -279,7 +274,6 @@
             font-size: 0.85rem;
         }
 
-        /* Botones de filtro */
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -309,7 +303,6 @@
             background: #334155;
         }
 
-        /* Recomendaciones dinámicas */
         .recomendacion-box {
             background: #0f172ade;
             border-radius: 1.5rem;
@@ -319,7 +312,6 @@
             transition: 0.2s;
         }
 
-        /* Advertencia final */
         .warning-card {
             background: #3b2e1e;
             border-left: 6px solid #fbbf24;
@@ -329,6 +321,23 @@
             margin-bottom: 2rem;
         }
 
+        .metricas-reales {
+            background: #0b1120;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border: 1px solid #2a3650;
+        }
+
+        .contador-click {
+            display: inline-block;
+            background: #1e293b;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+        }
+
         footer {
             text-align: center;
             margin-top: 4rem;
@@ -336,6 +345,14 @@
             border-top: 1px solid #1f2a3e;
             font-size: 0.85rem;
             color: #8192b0;
+        }
+
+        pre {
+            background: #0a0c14;
+            padding: 1rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
         }
 
         @media (max-width: 700px) {
@@ -360,28 +377,83 @@
         <p>DeepSeek · Grok · Claude · GPT · Qwen · Un flujo de trabajo profesional basado en fases, validación y mejora continua.</p>
     </div>
 
-    <!-- Distribución porcentual -->
-    <div class="distribucion" id="distribucionCards">
-        <!-- JS llenará dinámicamente o manual -->
-    </div>
+    <div class="distribucion" id="distribucionCards"></div>
 
-    <!-- Gráfico de barras animado -->
     <div class="chart-container">
         <div class="chart-title">📊 Distribución táctica (uso semanal)</div>
         <div id="barChartContainer"></div>
     </div>
 
-    <!-- Tarjetas principales IA -->
+    <!-- MÉTRICAS REALES DE PRODUCTIVIDAD -->
+    <div class="chart-container">
+        <div class="chart-title">📈 Métricas de productividad semanal</div>
+        <ul style="margin-top:1rem; line-height:1.8;">
+            <li>✅ 1 módulo funcional terminado</li>
+            <li>🚀 1 mejora desplegada en VPS</li>
+            <li>🔍 1 revisión completa con Claude</li>
+            <li>🧠 1 sesión de aprendizaje con GPT</li>
+            <li>🧪 1 prueba opcional con Qwen</li>
+        </ul>
+        <div class="metricas-reales" id="metricasRealesPanel">
+            <strong>📊 Métricas de uso real (esta sesión)</strong><br>
+            <span id="totalConsultas">Consultas totales: 0</span><br>
+            <span id="detalleModelos">DeepSeek: 0 | Grok: 0 | Claude: 0 | GPT: 0 | Qwen: 0</span>
+        </div>
+    </div>
+
+    <!-- CASOS DE USO Y DIAGRAMAS DE FLUJO -->
+    <div class="fases-section">
+        <h2>📌 Casos de uso y diagramas de flujo</h2>
+        <p>Antes de escribir código, defino el comportamiento del sistema. Esto evita errores y acelera el desarrollo.</p>
+        <div class="fases-grid">
+            <div class="fase-card" style="border-left-color:#22c55e;">
+                <strong>🧩 Caso de uso: Inventario</strong><br>
+                Usuario registra producto → sistema guarda → se actualiza stock → se muestra en lista.
+                <div class="fase-regla">⚠️ Nunca programar sin definir flujo primero.</div>
+            </div>
+            <div class="fase-card" style="border-left-color:#38bdf8;">
+                <strong>🤖 Caso de uso: Chatbot restaurante</strong><br>
+                Usuario escribe → webhook recibe → IA interpreta → responde → guarda historial.
+                <div class="fase-regla">⚠️ Controlar errores y concurrencia.</div>
+            </div>
+            <div class="fase-card" style="border-left-color:#f97316;">
+                <strong>🖥️ Caso de uso: VPS deploy</strong><br>
+                Código → Git → servidor → PM2 → Nginx → dominio activo.
+                <div class="fase-regla">⚠️ Automatizar despliegues progresivamente.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIAGRAMA DE FLUJO VISUAL -->
+    <div class="chart-container">
+        <div class="chart-title">🔄 Flujo base de desarrollo</div>
+        <pre style="color:#7dd3fc; font-size:0.9rem; line-height:1.6;">
+[ IDEA ]
+   ↓
+[ DISEÑO - Grok ]
+   ↓
+[ CÓDIGO - DeepSeek ]
+   ↓
+[ PRUEBAS ]
+   ↓
+[ VALIDACIÓN - Claude ]
+   ↓
+[ MEJORA - GPT ]
+   ↓
+[ DEPLOY VPS ]
+   ↓
+[ PRODUCCIÓN ]
+        </pre>
+    </div>
+
     <div class="ia-grid" id="iaCardsGrid"></div>
 
-    <!-- SECCIÓN FASES (lo más relevante) -->
     <div class="fases-section">
         <h2>🔹 Ajuste práctico por fases</h2>
         <p style="margin-bottom: 1rem;">Así aplico cada IA en mi ciclo de desarrollo real — desde el diseño hasta la exploración.</p>
         <div class="fases-grid" id="fasesGrid"></div>
     </div>
 
-    <!-- Filtros interactivos por tarea -->
     <div class="filter-buttons" id="filterButtons">
         <button data-filter="all" class="filter-btn active">📌 Todas</button>
         <button data-filter="planificar" class="filter-btn">📝 Planificar / Diseño</button>
@@ -395,11 +467,29 @@
         <strong>🤖 Recomendación activa:</strong> <span id="recoTexto">Selecciona una tarea para saber qué IA usar.</span>
     </div>
 
-    <!-- Advertencia clave -->
+    <!-- REGLA DE INGENIERÍA VISIBLE -->
     <div class="warning-card">
-        <strong>⚠️ Advertencia final (muy importante):</strong> Tu sistema es potente, pero solo funciona si cumples esto:<br>
+        <strong>📌 Regla de ingeniería:</strong><br>
+        No empiezo a programar hasta tener:
+        <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+            <li>✔ Caso de uso definido</li>
+            <li>✔ Flujo claro</li>
+            <li>✔ Estructura del proyecto</li>
+        </ul>
+    </div>
+
+    <div class="warning-card" style="background:#2a1e3a; border-left-color:#f97316;">
+        <strong>⚠️ Advertencia final (muy importante):</strong><br>
+        Tu sistema es potente, pero solo funciona si cumples esto:<br>
         ➜ <strong>Cada semana debe salir algo funcional.</strong> Porque si no: te vuelves "experto en prompts", pero no en proyectos.<br>
         <span style="color:#facc15;">🎯 Conclusión directa: Tu esquema está mejor que el de la mayoría de desarrolladores. Optimizado para tu realidad, listo para producir resultados.</span>
+    </div>
+
+    <div style="background: #0b1120; padding: 1.2rem; border-radius: 1.5rem; border: 1px solid #2a3650;">
+        <strong>📊 Evaluación de tus mejoras:</strong><br>
+        🔥 Subir GPT a 7% → Excelente decisión. Te separa de quien solo "usa IA" y te convierte en desarrollador profesional.<br>
+        🧪 Qwen al 2% → Bien planteado. Solo úsalo cuando ya tienes algo funcionando.<br>
+        🚀 Lo más valioso: "Revisión de arquitectura semanal" → Esto es nivel senior. Evitas malas prácticas y subes rápido.
     </div>
 
     <footer>
@@ -409,7 +499,51 @@
 
 <script>
     // --------------------------------------------------------------
-    // 1. DATOS: distribución, modelos y fases
+    // MÉTRICAS REALES DE USO (con persistencia local)
+    // --------------------------------------------------------------
+    let metricasUso = {
+        consultas: 0,
+        porModelo: { DeepSeek: 0, Grok: 0, Claude: 0, GPT: 0, Qwen: 0 },
+        tiempoSesion: 0,
+        proyectosTerminados: 0
+    };
+
+    function cargarMetricas() {
+        const guardado = localStorage.getItem('metricasUsoIA');
+        if (guardado) {
+            try {
+                const parsed = JSON.parse(guardado);
+                metricasUso = { ...metricasUso, ...parsed };
+            } catch(e) {}
+        }
+        actualizarPanelMetricas();
+    }
+
+    function guardarMetricas() {
+        localStorage.setItem('metricasUsoIA', JSON.stringify(metricasUso));
+    }
+
+    function registrarUso(modelo) {
+        metricasUso.consultas++;
+        if (metricasUso.porModelo[modelo] !== undefined) {
+            metricasUso.porModelo[modelo]++;
+        }
+        guardarMetricas();
+        actualizarPanelMetricas();
+        console.log(`Uso registrado: ${modelo}`, metricasUso);
+    }
+
+    function actualizarPanelMetricas() {
+        const totalSpan = document.getElementById('totalConsultas');
+        const detalleSpan = document.getElementById('detalleModelos');
+        if (totalSpan) totalSpan.innerText = `Consultas totales: ${metricasUso.consultas}`;
+        if (detalleSpan) {
+            detalleSpan.innerText = `DeepSeek: ${metricasUso.porModelo.DeepSeek} | Grok: ${metricasUso.porModelo.Grok} | Claude: ${metricasUso.porModelo.Claude} | GPT: ${metricasUso.porModelo.GPT} | Qwen: ${metricasUso.porModelo.Qwen}`;
+        }
+    }
+
+    // --------------------------------------------------------------
+    // DATOS
     // --------------------------------------------------------------
     const distribucionModelos = [
         { nombre: "DeepSeek", porcentaje: 68, color: "#2dd4bf", rol: "Constructor", faseLider: "Fase 2: Construcción" },
@@ -427,7 +561,6 @@
         "Qwen": ["🧪 Exploración semanal", "🔁 Comparativa con DeepSeek", "⚙️ Nuevos patrones", "📈 2% táctico"]
     };
 
-    // FASES: información detallada según tu requerimiento
     const fasesData = [
         { fase: 1, titulo: "Fase 1: Diseño", iaPrincipal: "xAI Grok", apoyo: "OpenAI GPT", reglaOro: "No mezclar. No metas DeepSeek aquí todavía.", beneficio: "Contexto largo para planificar sin perder el hilo.", colorBorde: "#60a5fa", tarea: "planificar" },
         { fase: 2, titulo: "Fase 2: Construcción", iaPrincipal: "DeepSeek", apoyo: "Ninguno (flujo continuo)", reglaOro: "Aquí NO cambies de IA constantemente.", beneficio: "Velocidad y precisión en código · 68% del tiempo.", colorBorde: "#2dd4bf", tarea: "codificar" },
@@ -436,20 +569,16 @@
         { fase: 5, titulo: "Fase 5: Exploración", iaPrincipal: "Alibaba Qwen", apoyo: "Solo si hay tiempo", reglaOro: "Nunca interrumpas flujo principal por esto.", beneficio: "Descubrir nuevas perspectivas sin comprometer entregas.", colorBorde: "#94a3b8", tarea: "explorar" }
     ];
 
-    // --------------------------------------------------------------
-    // 2. RENDERIZAR DISTRIBUCIÓN (tarjetas pequeñas)
-    // --------------------------------------------------------------
+    // Renderización
     const distribucionDiv = document.getElementById("distribucionCards");
     distribucionModelos.forEach(m => {
         const card = document.createElement("div");
         card.className = "card-metrica";
-        card.innerHTML = `<div class="porcentaje">${m.porcentaje}%</div>
-                          <div class="modelo-nombre">${m.nombre}</div>
-                          <div style="font-size:0.7rem; margin-top:5px;">${m.rol}</div>`;
+        card.innerHTML = `<div class="porcentaje">${m.porcentaje}%</div><div class="modelo-nombre">${m.nombre}</div><div style="font-size:0.7rem; margin-top:5px;">${m.rol}</div>`;
+        card.addEventListener('click', () => registrarUso(m.nombre));
         distribucionDiv.appendChild(card);
     });
 
-    // Gráfico de barras
     const chartContainer = document.getElementById("barChartContainer");
     function renderBarras() {
         chartContainer.innerHTML = "";
@@ -460,7 +589,6 @@
                                  <div class="bar-bg"><div class="bar-fill" data-width="${m.porcentaje}" style="width:0%; background: linear-gradient(90deg, ${m.color}, #3b82f6);">${m.porcentaje}%</div></div>`;
             chartContainer.appendChild(barItem);
         });
-        // animación después de render
         setTimeout(() => {
             document.querySelectorAll('.bar-fill').forEach(bar => {
                 const width = bar.getAttribute('data-width');
@@ -470,12 +598,11 @@
     }
     renderBarras();
 
-    // Tarjetas IA Grid
     const iaGrid = document.getElementById("iaCardsGrid");
     function renderTarjetasIA() {
         iaGrid.innerHTML = "";
         distribucionModelos.forEach(m => {
-            const poderes = poderesMap[m.nombre] || ["Potente", "Especializado"];
+            const poderes = poderesMap[m.nombre] || [];
             const faseTag = m.faseLider ? `<span class="badge-fase">🏆 ${m.faseLider}</span>` : "";
             const card = document.createElement("div");
             card.className = "ia-card";
@@ -484,12 +611,12 @@
                               <div class="ia-role">🎯 Rol: ${m.rol}</div>
                               ${faseTag}
                               <ul class="ia-poderes">${poderes.map(p => `<li>✨ ${p}</li>`).join('')}</ul>`;
+            card.addEventListener('click', () => registrarUso(m.nombre));
             iaGrid.appendChild(card);
         });
     }
     renderTarjetasIA();
 
-    // FASES grid (detalle con reglas)
     const fasesGrid = document.getElementById("fasesGrid");
     function renderFases() {
         fasesGrid.innerHTML = "";
@@ -509,9 +636,7 @@
     }
     renderFases();
 
-    // --------------------------------------------------------------
-    // 3. FILTROS DINÁMICOS (Recomendaciones y tareas)
-    // --------------------------------------------------------------
+    // Recomendaciones y filtros unificados
     const recomendacionesPorTarea = {
         planificar: "📝 **Planificar / Diseño** → Usa **xAI Grok** como principal y **GPT** como apoyo puntual. No mezcles DeepSeek en esta fase. Grok te da contexto masivo y organización clara.",
         codificar: "💻 **Codificar / Implementar** → Usa **DeepSeek** de forma continua. No cambies de IA. DeepSeek escribe rápido, depura y genera código backend/frontend con alta calidad.",
@@ -520,15 +645,8 @@
         explorar: "🧪 **Exploración (beta)** → Usa **Qwen** solo si tienes tiempo extra y proyecto funcionando. Nunca interrumpas flujo principal. Compara respuestas."
     };
 
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const recoTextSpan = document.getElementById('recoTexto');
-
     function setActiveFilter(filterId) {
-        filterBtns.forEach(btn => {
-            const val = btn.getAttribute('data-filter');
-            if (val === filterId) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
+        const recoTextSpan = document.getElementById('recoTexto');
         if (filterId === 'all') {
             recoTextSpan.innerHTML = "✅ Tienes un stack completo. Usa según la fase: Grok (diseño), DeepSeek (código), Claude (validación), GPT (mejora), Qwen (exploración). Revisa el flujo por fases.";
         } else {
@@ -536,16 +654,8 @@
         }
     }
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const filterValue = btn.getAttribute('data-filter');
-            setActiveFilter(filterValue);
-        });
-    });
-
-    // resaltar fase según tarea en las cards (pequeño adicional)
     function highlightFasesByTask(task) {
-        const faseCards = document.querySelectorAll('.fase-card');
+        const faseCards = document.querySelectorAll('#fasesGrid .fase-card');
         faseCards.forEach((card, idx) => {
             const faseTarea = fasesData[idx]?.tarea;
             if (task === 'all' || faseTarea === task) {
@@ -558,64 +668,18 @@
         });
     }
 
-    // Extender comportamiento de filtros también a resaltado visual de fases
-    const originalSetActive = setActiveFilter;
-    window.setActiveFilter = function(filterId) {
-        setActiveFilter(filterId);
-        if (filterId !== 'all') {
-            highlightFasesByTask(filterId);
-        } else {
-            const faseCardsAll = document.querySelectorAll('.fase-card');
-            faseCardsAll.forEach(card => {
-                card.style.opacity = '1';
-                card.style.background = '#0f172a';
-            });
-        }
-    };
-    // reemplazar event listeners para usar el nuevo comportamiento
+    const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-        newBtn.addEventListener('click', (e) => {
-            const val = newBtn.getAttribute('data-filter');
+        btn.addEventListener('click', () => {
+            const val = btn.getAttribute('data-filter');
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            newBtn.classList.add('active');
-            if (val === 'all') {
-                document.getElementById('recoTexto').innerHTML = "✅ Tienes un stack completo. Usa según la fase: Grok (diseño), DeepSeek (código), Claude (validación), GPT (mejora), Qwen (exploración). Revisa el flujo por fases.";
-                const faseCardsAll = document.querySelectorAll('.fase-card');
-                faseCardsAll.forEach(card => { card.style.opacity = '1'; card.style.background = '#0f172a'; });
-            } else {
-                document.getElementById('recoTexto').innerHTML = recomendacionesPorTarea[val] || "Selecciona una categoría válida.";
-                const faseCardsAll = document.querySelectorAll('.fase-card');
-                faseCardsAll.forEach((card, idx) => {
-                    const faseTarea = fasesData[idx]?.tarea;
-                    if (faseTarea === val) {
-                        card.style.opacity = '1';
-                        card.style.background = '#162035';
-                    } else {
-                        card.style.opacity = '0.5';
-                        card.style.background = '#0f172a';
-                    }
-                });
-            }
+            btn.classList.add('active');
+            setActiveFilter(val);
+            highlightFasesByTask(val);
         });
     });
 
-    // evaluación de mejoras implícita
-    const evalDiv = document.createElement('div');
-    evalDiv.style.marginTop = '20px';
-    evalDiv.style.background = '#0b1120';
-    evalDiv.style.padding = '1.2rem';
-    evalDiv.style.borderRadius = '1.5rem';
-    evalDiv.style.border = '1px solid #2a3650';
-    evalDiv.innerHTML = `<strong>📊 Evaluación de tus mejoras:</strong><br>
-    🔥 Subir GPT a 7% → Excelente decisión. Te separa de quien solo “usa IA” y te convierte en desarrollador profesional.<br>
-    🧪 Qwen al 2% → Bien planteado. Solo úsalo cuando ya tienes algo funcionando.<br>
-    🚀 Lo más valioso: “Revisión de arquitectura semanal” → Esto es nivel senior. Evitas malas prácticas y subes rápido.`;
-    document.querySelector('.warning-card').insertAdjacentElement('afterend', evalDiv);
-    
-    // frase de cierre dinámica
-    console.log("Estructura IA cargada: Flujo por fases + stack táctico 68/15/10/7/2");
+    cargarMetricas();
 </script>
 </body>
 </html>
