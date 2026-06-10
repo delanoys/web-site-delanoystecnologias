@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 Bitácora - Seguridad Servidor Linux</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f9; line-height: 1.6; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #1e3a8a; }
+        pre { background: #1f2937; color: #e5e7eb; padding: 15px; border-radius: 8px; overflow-x: auto; }
+        .success { color: green; font-weight: bold; }
+        .bitacora { background: #f0f9ff; padding: 20px; border-left: 5px solid #3b82f6; margin: 20px 0; }
+        .concepto { background: #fefce8; padding: 15px; border-radius: 8px; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📘 Bitácora - Seguridad en Servidor Linux</h1>
+        <p><strong>Servidor:</strong> Ubuntu 24.04.4 LTS | IP: 2.25.151.74 | Usuario: dtecno</p>
+        <hr>
+
+        <h2>Estado Actual del Proyecto</h2>
+        <ul>
+            <li class="success">✅ Usuario seguro (dtecno con sudo)</li>
+            <li class="success">✅ Clave SSH Ed25519 configurada</li>
+            <li class="success">✅ Fail2Ban instalado + whitelist</li>
+            <li class="success">✅ Hardening SSH básico completado</li>
+            <li>🔄 Git configurado para control de versiones</li>
+        </ul>
+
+        <div class="concepto">
+            <h3>Concepto Importante: PasswordAuthentication no</h3>
+            <p>Desactiva completamente el login por contraseña. A partir de ahora solo se permite acceso mediante <strong>clave SSH</strong>. Esto elimina el riesgo de ataques de fuerza bruta por contraseña.</p>
+        </div>
+
+        <h2>Bitácora del Proyecto</h2>
+
+        <div class="bitacora">
+            <h3>📅 05 de Junio 2026 - Fase 1: Hardening Básico SSH</h3>
+            <ul>
+                <li>Desactivado <strong>PermitRootLogin</strong> (no se permite login directo como root)</li>
+                <li>Desactivado <strong>PasswordAuthentication</strong> (solo clave SSH)</li>
+                <li>Se resolvió conflicto con archivos en <code>sshd_config.d/</code></li>
+                <li>Acceso estable confirmado por puerto 22</li>
+            </ul>
+        </div>
+
+        <div class="bitacora">
+            <h3>📅 05 de Junio 2026 - Configuración de Git</h3>
+            <p>Se configuró Git en el servidor para versionar documentación y archivos de configuración crítica. Esto nos permite:</p>
+            <ul>
+                <li>Guardar el estado después de cada fase</li>
+                <li>Restaurar configuraciones anteriores si algo falla</li>
+                <li>Tener un registro educativo del proceso</li>
+            </ul>
+        </div>
+
+        <h2>Próximos Pasos</h2>
+        <ol>
+            <li>Configuración completa de Git + backup de archivos críticos</li>
+            <li>Actualizaciones automáticas de seguridad (unattended-upgrades)</li>
+            <li>Mejora de Fail2Ban</li>
+            <li>Configuración avanzada de Logs y monitoreo</li>
+            <li>Firewall avanzado + reglas recomendadas</li>
+        </ol>
+
+        <hr>
+        <p><strong>Propósito:</strong> Este documento sirve tanto como bitácora personal como material educativo para entender la seguridad en servidores Linux.</p>
+    </div>
+</body>
+</html>
+EOF
+
+echo "✅ Documentación HTML actualizada correctamente."

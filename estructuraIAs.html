@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Estrategia IA | Delanoy's Tecnologías</title>
+    <meta name="description" content="Mi stack de IA optimizado para desarrollo web: DeepSeek, Grok, Claude, GPT y Qwen. Flujo de trabajo por fases y distribución táctica.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #0a0c10 0%, #0f1219 100%);
+            color: #eef2ff;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header / Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #94a3f8, #38bdf8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: #1e293b;
+            backdrop-filter: blur(8px);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #a5f3fc;
+            border: 1px solid #334155;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e6;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Tarjetas de métricas (distribución) */
+        .distribucion {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 3rem 0 2rem;
+        }
+
+        .card-metrica {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 1rem 1.5rem;
+            min-width: 130px;
+            text-align: center;
+            border: 1px solid #2d3a5e;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-metrica:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+            background: #0f172ad9;
+        }
+
+        .porcentaje {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #7dd3fc;
+        }
+
+        .modelo-nombre {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+        }
+
+        /* Gráfico de barras interactivo */
+        .chart-container {
+            background: #0b0f17;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            border: 1px solid #262e3f;
+        }
+
+        .chart-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bar-item {
+            margin-bottom: 1rem;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .bar-bg {
+            background-color: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 2rem;
+        }
+
+        .bar-fill {
+            background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+            width: 0%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            transition: width 1s ease-out;
+        }
+
+        /* Grid de tarjetas de IA */
+        .ia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin: 3rem 0;
+        }
+
+        .ia-card {
+            background: #111827;
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            border-bottom: 3px solid;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
+        }
+
+        .ia-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+        }
+
+        .ia-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .ia-name {
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+
+        .ia-porcentaje {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: #1e293b;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .ia-role {
+            font-weight: 600;
+            margin: 0.8rem 0;
+            color: #90e0ff;
+        }
+
+        .ia-poderes {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .ia-poderes li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-fase {
+            background: #0f212e;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            display: inline-block;
+            color: #7aa9ff;
+        }
+
+        /* Sección fases de trabajo */
+        .fases-section {
+            background: #0a0f17;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .fases-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .fase-card {
+            background: #0f172a;
+            border-left: 6px solid;
+            border-radius: 1.2rem;
+            padding: 1.2rem 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .fase-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .fase-numero {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: #1e293b;
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+        }
+
+        .fase-ia-principal {
+            font-weight: 700;
+            background: #1e3a5f;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+        }
+
+        .fase-regla {
+            margin-top: 0.7rem;
+            padding: 0.4rem 0;
+            color: #facc15;
+            font-size: 0.85rem;
+        }
+
+        /* Botones de filtro */
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2rem 0 1rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: #1e293b;
+            border: none;
+            color: #cbd5e6;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 0 8px #3b82f6;
+        }
+
+        .filter-btn:hover {
+            background: #334155;
+        }
+
+        /* Recomendaciones dinámicas */
+        .recomendacion-box {
+            background: #0f172ade;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #2d3e6e;
+            transition: 0.2s;
+        }
+
+        /* Advertencia final */
+        .warning-card {
+            background: #3b2e1e;
+            border-left: 6px solid #fbbf24;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1f2a3e;
+            font-size: 0.85rem;
+            color: #8192b0;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .fase-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <div class="badge">⚡ Mi Stack Estratégico de IA | Tecnólogo en Sistemas</div>
+        <h1>Orquestación de IAs para Desarrollo Web</h1>
+        <p>DeepSeek · Grok · Claude · GPT · Qwen · Un flujo de trabajo profesional basado en fases, validación y mejora continua.</p>
+    </div>
+
+    <!-- Distribución porcentual -->
+    <div class="distribucion" id="distribucionCards">
+        <!-- JS llenará dinámicamente o manual -->
+    </div>
+
+    <!-- Gráfico de barras animado -->
+    <div class="chart-container">
+        <div class="chart-title">📊 Distribución táctica (uso semanal)</div>
+        <div id="barChartContainer"></div>
+    </div>
+
+    <!-- Tarjetas principales IA -->
+    <div class="ia-grid" id="iaCardsGrid"></div>
+
+    <!-- SECCIÓN FASES (lo más relevante) -->
+    <div class="fases-section">
+        <h2>🔹 Ajuste práctico por fases</h2>
+        <p style="margin-bottom: 1rem;">Así aplico cada IA en mi ciclo de desarrollo real — desde el diseño hasta la exploración.</p>
+        <div class="fases-grid" id="fasesGrid"></div>
+    </div>
+
+    <!-- Filtros interactivos por tarea -->
+    <div class="filter-buttons" id="filterButtons">
+        <button data-filter="all" class="filter-btn active">📌 Todas</button>
+        <button data-filter="planificar" class="filter-btn">📝 Planificar / Diseño</button>
+        <button data-filter="codificar" class="filter-btn">💻 Codificar / Implementar</button>
+        <button data-filter="revisar" class="filter-btn">🔍 Revisar / Validar</button>
+        <button data-filter="aprender" class="filter-btn">🧠 Aprender / Mejorar</button>
+        <button data-filter="explorar" class="filter-btn">🧪 Explorar (beta)</button>
+    </div>
+
+    <div id="recomendacionDinamica" class="recomendacion-box">
+        <strong>🤖 Recomendación activa:</strong> <span id="recoTexto">Selecciona una tarea para saber qué IA usar.</span>
+    </div>
+
+    <!-- Advertencia clave -->
+    <div class="warning-card">
+        <strong>⚠️ Advertencia final (muy importante):</strong> Tu sistema es potente, pero solo funciona si cumples esto:<br>
+        ➜ <strong>Cada semana debe salir algo funcional.</strong> Porque si no: te vuelves "experto en prompts", pero no en proyectos.<br>
+        <span style="color:#facc15;">🎯 Conclusión directa: Tu esquema está mejor que el de la mayoría de desarrolladores. Optimizado para tu realidad, listo para producir resultados.</span>
+    </div>
+
+    <footer>
+        🧠 Estrategia personal — 68% DeepSeek · 15% Grok · 10% Claude · 7% GPT · 2% Qwen · Flujo por fases | Proyectos reales: Sazón Inventario, Chatbot, VPS Hostinger
+    </footer>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // 1. DATOS: distribución, modelos y fases
+    // --------------------------------------------------------------
+    const distribucionModelos = [
+        { nombre: "DeepSeek", porcentaje: 68, color: "#2dd4bf", rol: "Constructor", faseLider: "Fase 2: Construcción" },
+        { nombre: "Grok", porcentaje: 15, color: "#60a5fa", rol: "Organizador", faseLider: "Fase 1: Diseño" },
+        { nombre: "Claude", porcentaje: 10, color: "#c084fc", rol: "Validador", faseLider: "Fase 3: Validación" },
+        { nombre: "GPT", porcentaje: 7, color: "#f97316", rol: "Formador profesional", faseLider: "Fase 4: Mejora profesional" },
+        { nombre: "Qwen", porcentaje: 2, color: "#94a3b8", rol: "Explorador táctico", faseLider: "Fase 5: Exploración" }
+    ];
+
+    const poderesMap = {
+        "DeepSeek": ["⚡ Código + Debug", "🧩 Implementación APIs", "🐳 Backend ágil", "📦 Rápido y gratuito"],
+        "Grok": ["📋 Contexto 2M tokens", "🖥️ Organización VPS / logs", "🗂️ Planificación proyectos grandes", "🌐 Acceso X en tiempo real"],
+        "Claude": ["🔎 Revisión de código fino", "🧠 Detección errores lógicos", "🛡️ Validación antes de producción", "📐 Análisis seguridad"],
+        "GPT": ["🎓 Buenas prácticas senior", "🏛️ Arquitectura limpia", "📚 Explicaciones profundas", "🚀 Mejora nivel profesional"],
+        "Qwen": ["🧪 Exploración semanal", "🔁 Comparativa con DeepSeek", "⚙️ Nuevos patrones", "📈 2% táctico"]
+    };
+
+    // FASES: información detallada según tu requerimiento
+    const fasesData = [
+        { fase: 1, titulo: "Fase 1: Diseño", iaPrincipal: "xAI Grok", apoyo: "OpenAI GPT", reglaOro: "No mezclar. No metas DeepSeek aquí todavía.", beneficio: "Contexto largo para planificar sin perder el hilo.", colorBorde: "#60a5fa", tarea: "planificar" },
+        { fase: 2, titulo: "Fase 2: Construcción", iaPrincipal: "DeepSeek", apoyo: "Ninguno (flujo continuo)", reglaOro: "Aquí NO cambies de IA constantemente.", beneficio: "Velocidad y precisión en código · 68% del tiempo.", colorBorde: "#2dd4bf", tarea: "codificar" },
+        { fase: 3, titulo: "Fase 3: Validación", iaPrincipal: "Claude", apoyo: "Opcional (solo revisión)", reglaOro: "Haz revisiones completas, no parciales.", beneficio: "Código robusto, seguro y sin errores lógicos.", colorBorde: "#c084fc", tarea: "revisar" },
+        { fase: 4, titulo: "Fase 4: Mejora profesional", iaPrincipal: "OpenAI GPT", apoyo: "Ninguno (aprendizaje puro)", reglaOro: "Invierte tiempo en entender mejores prácticas.", beneficio: "Revisión de arquitectura semanal (nivel senior).", colorBorde: "#f97316", tarea: "aprender" },
+        { fase: 5, titulo: "Fase 5: Exploración", iaPrincipal: "Alibaba Qwen", apoyo: "Solo si hay tiempo", reglaOro: "Nunca interrumpas flujo principal por esto.", beneficio: "Descubrir nuevas perspectivas sin comprometer entregas.", colorBorde: "#94a3b8", tarea: "explorar" }
+    ];
+
+    // --------------------------------------------------------------
+    // 2. RENDERIZAR DISTRIBUCIÓN (tarjetas pequeñas)
+    // --------------------------------------------------------------
+    const distribucionDiv = document.getElementById("distribucionCards");
+    distribucionModelos.forEach(m => {
+        const card = document.createElement("div");
+        card.className = "card-metrica";
+        card.innerHTML = `<div class="porcentaje">${m.porcentaje}%</div>
+                          <div class="modelo-nombre">${m.nombre}</div>
+                          <div style="font-size:0.7rem; margin-top:5px;">${m.rol}</div>`;
+        distribucionDiv.appendChild(card);
+    });
+
+    // Gráfico de barras
+    const chartContainer = document.getElementById("barChartContainer");
+    function renderBarras() {
+        chartContainer.innerHTML = "";
+        distribucionModelos.forEach(m => {
+            const barItem = document.createElement("div");
+            barItem.className = "bar-item";
+            barItem.innerHTML = `<div class="bar-label"><span>${m.nombre}</span><span>${m.porcentaje}%</span></div>
+                                 <div class="bar-bg"><div class="bar-fill" data-width="${m.porcentaje}" style="width:0%; background: linear-gradient(90deg, ${m.color}, #3b82f6);">${m.porcentaje}%</div></div>`;
+            chartContainer.appendChild(barItem);
+        });
+        // animación después de render
+        setTimeout(() => {
+            document.querySelectorAll('.bar-fill').forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = `${width}%`;
+            });
+        }, 150);
+    }
+    renderBarras();
+
+    // Tarjetas IA Grid
+    const iaGrid = document.getElementById("iaCardsGrid");
+    function renderTarjetasIA() {
+        iaGrid.innerHTML = "";
+        distribucionModelos.forEach(m => {
+            const poderes = poderesMap[m.nombre] || ["Potente", "Especializado"];
+            const faseTag = m.faseLider ? `<span class="badge-fase">🏆 ${m.faseLider}</span>` : "";
+            const card = document.createElement("div");
+            card.className = "ia-card";
+            card.style.borderBottomColor = m.color;
+            card.innerHTML = `<div class="ia-header"><div class="ia-name">${m.nombre}</div><div class="ia-porcentaje">${m.porcentaje}%</div></div>
+                              <div class="ia-role">🎯 Rol: ${m.rol}</div>
+                              ${faseTag}
+                              <ul class="ia-poderes">${poderes.map(p => `<li>✨ ${p}</li>`).join('')}</ul>`;
+            iaGrid.appendChild(card);
+        });
+    }
+    renderTarjetasIA();
+
+    // FASES grid (detalle con reglas)
+    const fasesGrid = document.getElementById("fasesGrid");
+    function renderFases() {
+        fasesGrid.innerHTML = "";
+        fasesData.forEach(f => {
+            const faseCard = document.createElement("div");
+            faseCard.className = "fase-card";
+            faseCard.style.borderLeftColor = f.colorBorde;
+            faseCard.innerHTML = `<div class="fase-header">
+                                        <span class="fase-numero">🔹 ${String(f.fase).padStart(2,'0')}</span>
+                                        <span class="fase-ia-principal">🧠 ${f.iaPrincipal}</span>
+                                   </div>
+                                   <div><strong>${f.titulo}</strong><br>🤝 Apoyo: ${f.apoyo}</div>
+                                   <div class="fase-regla">⚠️ ${f.reglaOro}</div>
+                                   <div style="margin-top:8px;">✅ Beneficio: ${f.beneficio}</div>`;
+            fasesGrid.appendChild(faseCard);
+        });
+    }
+    renderFases();
+
+    // --------------------------------------------------------------
+    // 3. FILTROS DINÁMICOS (Recomendaciones y tareas)
+    // --------------------------------------------------------------
+    const recomendacionesPorTarea = {
+        planificar: "📝 **Planificar / Diseño** → Usa **xAI Grok** como principal y **GPT** como apoyo puntual. No mezcles DeepSeek en esta fase. Grok te da contexto masivo y organización clara.",
+        codificar: "💻 **Codificar / Implementar** → Usa **DeepSeek** de forma continua. No cambies de IA. DeepSeek escribe rápido, depura y genera código backend/frontend con alta calidad.",
+        revisar: "🔍 **Revisar / Validar** → Usa **Claude** para análisis completo. Haz revisiones profundas de lógica, seguridad y concurrencia. No revisiones parciales.",
+        aprender: "🧠 **Aprender / Mejorar profesional** → Usa **OpenAI GPT**. Pregunta buenas prácticas, patrones de arquitectura y simula code review senior. Así subes de nivel real.",
+        explorar: "🧪 **Exploración (beta)** → Usa **Qwen** solo si tienes tiempo extra y proyecto funcionando. Nunca interrumpas flujo principal. Compara respuestas."
+    };
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const recoTextSpan = document.getElementById('recoTexto');
+
+    function setActiveFilter(filterId) {
+        filterBtns.forEach(btn => {
+            const val = btn.getAttribute('data-filter');
+            if (val === filterId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+        if (filterId === 'all') {
+            recoTextSpan.innerHTML = "✅ Tienes un stack completo. Usa según la fase: Grok (diseño), DeepSeek (código), Claude (validación), GPT (mejora), Qwen (exploración). Revisa el flujo por fases.";
+        } else {
+            recoTextSpan.innerHTML = recomendacionesPorTarea[filterId] || "Selecciona una categoría válida.";
+        }
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filterValue = btn.getAttribute('data-filter');
+            setActiveFilter(filterValue);
+        });
+    });
+
+    // resaltar fase según tarea en las cards (pequeño adicional)
+    function highlightFasesByTask(task) {
+        const faseCards = document.querySelectorAll('.fase-card');
+        faseCards.forEach((card, idx) => {
+            const faseTarea = fasesData[idx]?.tarea;
+            if (task === 'all' || faseTarea === task) {
+                card.style.opacity = '1';
+                card.style.background = '#162035';
+            } else {
+                card.style.opacity = '0.5';
+                card.style.background = '#0f172a';
+            }
+        });
+    }
+
+    // Extender comportamiento de filtros también a resaltado visual de fases
+    const originalSetActive = setActiveFilter;
+    window.setActiveFilter = function(filterId) {
+        setActiveFilter(filterId);
+        if (filterId !== 'all') {
+            highlightFasesByTask(filterId);
+        } else {
+            const faseCardsAll = document.querySelectorAll('.fase-card');
+            faseCardsAll.forEach(card => {
+                card.style.opacity = '1';
+                card.style.background = '#0f172a';
+            });
+        }
+    };
+    // reemplazar event listeners para usar el nuevo comportamiento
+    filterBtns.forEach(btn => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        newBtn.addEventListener('click', (e) => {
+            const val = newBtn.getAttribute('data-filter');
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            newBtn.classList.add('active');
+            if (val === 'all') {
+                document.getElementById('recoTexto').innerHTML = "✅ Tienes un stack completo. Usa según la fase: Grok (diseño), DeepSeek (código), Claude (validación), GPT (mejora), Qwen (exploración). Revisa el flujo por fases.";
+                const faseCardsAll = document.querySelectorAll('.fase-card');
+                faseCardsAll.forEach(card => { card.style.opacity = '1'; card.style.background = '#0f172a'; });
+            } else {
+                document.getElementById('recoTexto').innerHTML = recomendacionesPorTarea[val] || "Selecciona una categoría válida.";
+                const faseCardsAll = document.querySelectorAll('.fase-card');
+                faseCardsAll.forEach((card, idx) => {
+                    const faseTarea = fasesData[idx]?.tarea;
+                    if (faseTarea === val) {
+                        card.style.opacity = '1';
+                        card.style.background = '#162035';
+                    } else {
+                        card.style.opacity = '0.5';
+                        card.style.background = '#0f172a';
+                    }
+                });
+            }
+        });
+    });
+
+    // evaluación de mejoras implícita
+    const evalDiv = document.createElement('div');
+    evalDiv.style.marginTop = '20px';
+    evalDiv.style.background = '#0b1120';
+    evalDiv.style.padding = '1.2rem';
+    evalDiv.style.borderRadius = '1.5rem';
+    evalDiv.style.border = '1px solid #2a3650';
+    evalDiv.innerHTML = `<strong>📊 Evaluación de tus mejoras:</strong><br>
+    🔥 Subir GPT a 7% → Excelente decisión. Te separa de quien solo “usa IA” y te convierte en desarrollador profesional.<br>
+    🧪 Qwen al 2% → Bien planteado. Solo úsalo cuando ya tienes algo funcionando.<br>
+    🚀 Lo más valioso: “Revisión de arquitectura semanal” → Esto es nivel senior. Evitas malas prácticas y subes rápido.`;
+    document.querySelector('.warning-card').insertAdjacentElement('afterend', evalDiv);
+    
+    // frase de cierre dinámica
+    console.log("Estructura IA cargada: Flujo por fases + stack táctico 68/15/10/7/2");
+</script>
+</body>
+</html>
