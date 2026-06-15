@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline IA Pro - Versión Definitiva</title>
+<style>
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --accent: #38bdf8;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --purple: #a855f7;
+    --orange: #f97316;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #1e293b, #0f172a, #1e3a8a);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+  }
+  @keyframes shine { to { background-position: 200% center; } }
+  header p { color: var(--text-secondary); margin-top: 12px; font-size: 1.1rem; }
+  .version-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--success), var(--accent));
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 15px;
+  }
+  nav {
+    background: var(--bg-secondary);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+  nav a:hover { color: var(--accent); background: rgba(56,189,248,0.1); }
+  main { max-width: 1200px; margin: auto; padding: 40px 20px; }
+  section { margin-bottom: 50px; scroll-margin-top: 80px; }
+  h2 {
+    color: var(--accent);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .card {
+    background: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .card h3 { color: var(--accent); margin-bottom: 15px; }
+  .card ul { padding-left: 20px; color: var(--text-secondary); }
+  .card li { margin: 6px 0; }
+  .control-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .control-card {
+    background: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid;
+  }
+  .control-card.user { border-color: var(--success); }
+  .control-card.user h3 { color: var(--success); }
+  .control-card.orchestrator { border-color: var(--purple); }
+  .control-card.orchestrator h3 { color: var(--purple); }
+  .ias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  .ia-card {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .ia-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+  .ia-card h4 { color: var(--accent); margin-bottom: 10px; }
+  .ia-card ul { padding-left: 15px; color: var(--text-secondary); font-size: 0.95rem; }
+  .ia-card li { margin: 4px 0; }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .phase-card {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .phase-card:hover {
+    transform: translateX(5px);
+    border-color: var(--accent);
+  }
+  .phase-card h3 { color: var(--text-primary); margin: 10px 0; }
+  .phase-card .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    color: var(--text-secondary);
+  }
+  .phase-card.active .content { max-height: 500px; margin-top: 10px; }
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .ia-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .ia-tag.principal { background: rgba(56,189,248,0.2); color: var(--accent); border: 1px solid var(--accent); }
+  .ia-tag.apoyo { background: rgba(168,85,247,0.2); color: var(--purple); border: 1px dashed var(--purple); }
+  .ia-tag.validacion { background: rgba(34,197,94,0.2); color: var(--success); border: 1px solid var(--success); }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .rule-box {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid;
+  }
+  .rule-box.normal { border-color: var(--success); }
+  .rule-box.normal h4 { color: var(--success); }
+  .rule-box.collab { border-color: var(--warning); }
+  .rule-box.collab h4 { color: var(--warning); }
+  .rule-box.change { border-color: var(--danger); }
+  .rule-box.change h4 { color: var(--danger); }
+  .rule-box ul { list-style: none; padding: 0; }
+  .rule-box li {
+    padding: 6px 0 6px 25px;
+    position: relative;
+    color: var(--text-secondary);
+  }
+  .rule-box.normal li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: bold; }
+  .rule-box.collab li::before { content: '⚡'; position: absolute; left: 0; }
+  .rule-box.change li::before { content: '→'; position: absolute; left: 0; color: var(--danger); font-weight: bold; }
+  .security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .security-box {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid;
+  }
+  .security-box.danger { border-color: var(--danger); }
+  .security-box.danger h4 { color: var(--danger); }
+  .security-box.success { border-color: var(--success); }
+  .security-box.success h4 { color: var(--success); }
+  .security-box ul { list-style: none; }
+  .security-box li {
+    padding: 6px 0 6px 25px;
+    position: relative;
+    color: var(--text-secondary);
+  }
+  .security-box.danger li::before { content: '✕'; position: absolute; left: 0; color: var(--danger); font-weight: bold; }
+  .security-box.success li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: bold; }
+  .failover-flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  .failover-item {
+    background: var(--bg-secondary);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 3px solid var(--warning);
+  }
+  .failover-item .arrow { color: var(--warning); font-weight: bold; }
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .cost-table th {
+    background: linear-gradient(135deg, var(--success), var(--accent));
+    color: white;
+    padding: 15px;
+    text-align: left;
+  }
+  .cost-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .cost-table tr:hover td { background: rgba(56,189,248,0.05); color: var(--text-primary); }
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  .stack-item {
+    background: var(--bg-secondary);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .stack-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .stack-item .icon { font-size: 2rem; margin-bottom: 10px; }
+  .advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  .advantage-item {
+    background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(56,189,248,0.1));
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--success);
+    text-align: center;
+  }
+  .advantage-item .icon { font-size: 2rem; margin-bottom: 10px; }
+  .conclusion-box {
+    background: linear-gradient(135deg, #1e293b, #1e3a8a);
+    border: 2px solid var(--accent);
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+  }
+  .conclusion-box h3 { color: var(--accent); margin-bottom: 20px; font-size: 1.4rem; }
+  .conclusion-box ul { list-style: none; max-width: 600px; margin: 20px auto; text-align: left; }
+  .conclusion-box li {
+    padding: 8px 0 8px 30px;
+    position: relative;
+    color: var(--text-primary);
+  }
+  .conclusion-box li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .result-box {
+    background: rgba(56,189,248,0.1);
+    border: 1px solid var(--accent);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Pipeline IA Pro</h1>
+  <p>Versión Definitiva Balanceada</p>
+  <span class="version-badge">🚀 ORQUESTADO + DISTRIBUIDO + RESILIENTE + EDUCATIVO</span>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="/">🏠 Inicio</a></li>
+    <li><a href="#control">Control</a></li>
+    <li><a href="#roles">Roles IA</a></li>
+    <li><a href="#fases">Fases</a></li>
+    <li><a href="#reglas">Reglas</a></li>
+    <li><a href="#seguridad">Seguridad</a></li>
+    <li><a href="#failover">Failover</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#conclusion">Conclusión</a></li>
+  </ul>
+</nav>
+
+<main id="content"></main>
+
+<footer>
+  <a href="/">© 2026 Delanoys Tecnologías</a> · Pipeline IA Pro Definitivo
+</footer>
+
+<script>
+const pipelineData = {
+  control: {
+    usuario: {
+      titulo: "👤 DIRECTOR (USUARIO)",
+      items: ["Máxima autoridad", "Decide, supervisa y ejecuta", "Responsable del resultado final"]
+    },
+    orquestador: {
+      titulo: "🧠 IA ORQUESTADORA (GPT)",
+      items: ["Mantener coherencia global", "Integrar todas las IAs", "Explicar (rol tutor obligatorio)", "Decidir uso de respaldos", "Validar cada transición de fase"]
+    }
+  },
+  
+  rolesIA: [
+    { nombre: "GPT", funciones: ["Orquestador", "Arquitectura", "Tutor"] },
+    { nombre: "Claude", funciones: ["Seguridad crítica", "Validación obligatoria"] },
+    { nombre: "Qwen", funciones: ["Lógica técnica", "Soporte transversal (TODAS las fases)"] },
+    { nombre: "DeepSeek", funciones: ["Ejecución técnica", "Scripts, Docker, DB", "Debug"] },
+    { nombre: "Grok", funciones: ["Idea", "Arquitectura backend (Flask, SQLAlchemy)", "Apoyo fuerte en diseño técnico"] },
+    { nombre: "Jan (local)", funciones: ["Respaldo TOTAL (última opción)", "Uso offline"] }
+  ],
+  
+  fases: [
+    { numero: "0", nombre: "Infraestructura", principal: "GPT", apoyo: ["Claude", "Grok", "Qwen"] },
+    { numero: "1", nombre: "Idea", principal: "Grok", apoyo: ["GPT", "Qwen"] },
+    { numero: "2", nombre: "Diseño (CRÍTICA)", principal: "GPT", apoyo: ["Grok", "Qwen"], validacion: "Claude", colaborativa: true },
+    { numero: "3", nombre: "Lógica y Diagramas", principal: "Qwen", apoyo: ["GPT", "Grok"] },
+    { numero: "4", nombre: "Mockups", principal: "GPT", apoyo: ["Grok"] },
+    { numero: "5", nombre: "Validación", principal: "Claude", apoyo: ["Qwen"] },
+    { numero: "6", nombre: "Implementación", principal: "DeepSeek", apoyo: ["Qwen"], respaldo: "Jan" },
+    { numero: "7", nombre: "Validación Final", principal: "Claude", apoyo: ["Qwen"] },
+    { numero: "8", nombre: "Ejecución", principal: "Usuario", apoyo: ["Todas"] },
+    { numero: "9", nombre: "Debug", principal: "DeepSeek", flujo: "DeepSeek → Claude (VALIDA) → Qwen (respaldo)", colaborativa: true },
+    { numero: "10", nombre: "Optimización", principal: "GPT", apoyo: ["Qwen", "Claude"] },
+    { numero: "11", nombre: "Automatización", principal: "GPT", apoyo: ["DeepSeek", "Qwen"] }
+  ],
+  
+  reglas: {
+    normal: {
+      titulo: "✔ MODO NORMAL",
+      items: ["1 IA principal", "Apoyos SOLO si se necesita"]
+    },
+    colaborativo: {
+      titulo: "✔ MODO COLABORATIVO (FASES CRÍTICAS)",
+      permitidas: ["Diseño", "Arquitectura", "Debug"],
+      items: ["Colaboración entre IAs", "Validación cruzada"]
+    },
+    cambio: {
+      titulo: "✔ CAMBIO DE IA",
+      condiciones: ["Error", "Límite", "Respuesta mala", "Bloqueo"]
+    }
+  },
+  
+  documentacion: {
+    obligatorio: true,
+    formato: [
+      "📌 FASE X",
+      "✅ Resultado",
+      "⚙️ Decisiones",
+      "⚠️ Problemas",
+      "🔄 Pendientes",
+      "➡️ Input siguiente fase",
+      "🔍 Qué aprendiste (TUTOR)",
+      " Conceptos a reforzar",
+      " Transferencia real"
+    ]
+  },
+  
+  seguridad: {
+    prohibido: ["Tokens", "API Keys", "Credenciales", "Logs sensibles"],
+    obligatorio: [".env", ".gitignore", "Variables seguras"]
+  },
+  
+  failover: [
+    { de: "GPT", a: "Qwen" },
+    { de: "Claude", a: "Qwen + GPT" },
+    { de: "DeepSeek", a: "Qwen → Jan" }
+  ],
+  
+  usoInteligente: [
+    { ia: "GPT / Claude", uso: "Crítico" },
+    { ia: "Qwen / DeepSeek", uso: "Carga" },
+    { ia: "Jan", uso: "Emergencia" }
+  ],
+  
+  stack: [
+    { nombre: "Flask + Blueprints", icon: "" },
+    { nombre: "SQLAlchemy + Alembic", icon: "🗄️" },
+    { nombre: "Bootstrap / HTMX", icon: "🎨" },
+    { nombre: "Gunicorn + Nginx", icon: "⚙️" },
+    { nombre: "VPS (Hostinger)", icon: "🖥️" }
+  ],
+  
+  ventajas: [
+    { icon: "", texto: "No se bloquea" },
+    { icon: "📚", texto: "Enseña mientras construyes" },
+    { icon: "🎯", texto: "Reduce errores" },
+    { icon: "", texto: "Escala proyectos" },
+    { icon: "🆓", texto: "Funciona con planes gratis" }
+  ],
+  
+  conclusion: {
+    tienes: ["Control", "Redundancia", "Aprendizaje estructurado", "Continuidad garantizada"],
+    resultado: "Construyes + entiendes + escalas"
+  }
+};
+
+function renderPipeline() {
+  const d = pipelineData;
+  
+  return `
+    <section id="control">
+      <h2>🎯 Control del Sistema</h2>
+      <div class="control-grid">
+        <div class="control-card user">
+          <h3>${d.control.usuario.titulo}</h3>
+          <ul>${d.control.usuario.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+        <div class="control-card orchestrator">
+          <h3>${d.control.orquestador.titulo}</h3>
+          <ul>${d.control.orquestador.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="roles">
+      <h2>⚙️ Roles Reales de las IAs</h2>
+      <div class="ias-grid">
+        ${d.rolesIA.map(ia => `
+          <div class="ia-card">
+            <h4>${ia.nombre}</h4>
+            <ul>${ia.funciones.map(f => `<li>${f}</li>`).join('')}</ul>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <section id="fases">
+      <h2>🏗️ Pipeline (${d.fases.length} Fases)</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 20px;">Clic para expandir cada fase</p>
+      <div class="timeline">
+        ${d.fases.map(f => `
+          <div class="phase-card" onclick="this.classList.toggle('active')">
+            <span class="badge">FASE ${f.numero}</span>
+            <h3>${f.nombre}</h3>
+            <div style="margin: 10px 0;">
+              ${f.principal === 'Usuario' 
+                ? `<span class="ia-tag validacion">👤 ${f.principal}</span>`
+                : `<span class="ia-tag principal">⭐ ${f.principal}</span>`
+              }
+            </div>
+            <div class="content">
+              ${f.apoyo ? `<p><strong>🤝 Apoyo:</strong> ${f.apoyo.join(', ')}</p>` : ''}
+              ${f.validacion ? `<p><strong>✅ Validación:</strong> ${f.validacion}</p>` : ''}
+              ${f.respaldo ? `<p><strong>🛡️ Respaldo:</strong> ${f.respaldo}</p>` : ''}
+              ${f.flujo ? `<p><strong>🔄 Flujo:</strong> ${f.flujo}</p>` : ''}
+              ${f.colaborativa ? `<p style="color: var(--warning);"><strong>⚡ Modo Colaborativo</strong></p>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <section id="reglas">
+      <h2>🔁 Reglas de Ejecución</h2>
+      <div class="rules-grid">
+        <div class="rule-box normal">
+          <h4>${d.reglas.normal.titulo}</h4>
+          <ul>${d.reglas.normal.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+        <div class="rule-box collab">
+          <h4>${d.reglas.colaborativo.titulo}</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 10px;"><strong>Permitido en:</strong> ${d.reglas.colaborativo.permitidas.join(', ')}</p>
+          <ul>${d.reglas.colaborativo.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+        <div class="rule-box change">
+          <h4>${d.reglas.cambio.titulo}</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 10px;"><strong>Solo si:</strong></p>
+          <ul>${d.reglas.cambio.condiciones.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="documentacion">
+      <h2> Documentación Inteligente por Fase</h2>
+      <div class="card" style="border-left: 4px solid var(--warning);">
+        <h3>❗ OBLIGATORIA</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;"><strong>📌 FORMATO COMPLETO:</strong></p>
+        <div style="background: var(--bg-primary); padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; color: var(--accent);">
+          ${d.documentacion.formato.map(f => `<div style="margin: 5px 0;">${f}</div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section id="seguridad">
+      <h2>🔐 Seguridad (CRÍTICA Y CENTRAL)</h2>
+      <div class="card" style="border: 2px solid var(--danger); text-align: center; margin-bottom: 20px;">
+        <h3 style="color: var(--danger);">❗ NO NEGOCIABLE</h3>
+      </div>
+      <div class="security-grid">
+        <div class="security-box danger">
+          <h4> PROHIBIDO</h4>
+          <ul>${d.seguridad.prohibido.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+        <div class="security-box success">
+          <h4>✅ OBLIGATORIO</h4>
+          <ul>${d.seguridad.obligatorio.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="failover">
+      <h2>🔄 Continuidad (FAILOVER)</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 20px;">Si falla una IA:</p>
+      <div class="failover-flow">
+        ${d.failover.map(f => `
+          <div class="failover-item">
+            <strong>${f.de}</strong> <span class="arrow">→</span> <strong style="color: var(--accent);">${f.a}</strong>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <section id="costos">
+      <h2>💰 Uso Inteligente</h2>
+      <table class="cost-table">
+        <thead>
+          <tr><th>IA</th><th>Uso</th></tr>
+        </thead>
+        <tbody>
+          ${d.usoInteligente.map(u => `
+            <tr><td><strong>${u.ia}</strong></td><td>${u.uso}</td></tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </section>
+
+    <section id="stack">
+      <h2>🧠 Integración con Stack Real</h2>
+      <div class="stack-grid">
+        ${d.stack.map(s => `
+          <div class="stack-item">
+            <div class="icon">${s.icon}</div>
+            <div>${s.nombre}</div>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <section id="ventajas">
+      <h2>🚀 Ventaja Real</h2>
+      <div class="advantages-grid">
+        ${d.ventajas.map(v => `
+          <div class="advantage-item">
+            <div class="icon">${v.icon}</div>
+            <p>${v.texto}</p>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <h2>🔑 Conclusión Final</h2>
+      <div class="conclusion-box">
+        <h3>Ahora tienes:</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">👉 Sistema profesional real</p>
+        <ul>
+          ${d.conclusion.tienes.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+        <div class="result-box">
+          👉 Resultado: ${d.conclusion.resultado}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('content').innerHTML = renderPipeline();
+  
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
