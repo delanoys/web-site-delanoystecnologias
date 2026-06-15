@@ -4,57 +4,588 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pipeline IA Pro - Delanoys Tecnologías</title>
+<meta name="description" content="Metodología de desarrollo distribuido con IAs especializadas">
+<!-- Parser de Markdown -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
-body{font-family:Arial,sans-serif;background:#0f172a;color:#e2e8f0;margin:0}
-header{padding:40px;text-align:center;background:#1e293b}
-section{max-width:1100px;margin:auto;padding:20px}
-.card{background:#1e293b;padding:20px;margin:15px 0;border-radius:12px}
-h1,h2{color:#38bdf8}
-.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
-.badge{display:inline-block;background:#0ea5e9;padding:4px 10px;border-radius:20px}
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  /* Header con gradiente animado */
+  header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e3a8a 100%);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(56,189,248,0.1) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+  }
+  header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+    position: relative;
+    z-index: 1;
+  }
+  @keyframes shine {
+    to { background-position: 200% center; }
+  }
+  header p {
+    color: var(--text-secondary);
+    margin-top: 12px;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+  }
+  /* Navegación */
+  nav {
+    background: var(--bg-secondary);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+  }
+  nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+  nav a:hover { color: var(--accent); background: rgba(56,189,248,0.1); }
+  /* Contenido principal */
+  main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+  }
+  section { margin-bottom: 50px; scroll-margin-top: 80px; }
+  h2 {
+    color: var(--accent);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2::before {
+    content: '▸';
+    color: var(--accent);
+  }
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  /* Timeline de fases */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .phase-card {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s;
+  }
+  .phase-card:hover::before { transform: scaleY(1); }
+  .phase-card:hover {
+    background: #243447;
+    transform: translateX(5px);
+  }
+  .phase-card h3 {
+    color: var(--text-primary);
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+  .phase-card .content {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .phase-card.active .content { max-height: 500px; margin-top: 10px; }
+  .phase-card ul { padding-left: 20px; margin-top: 8px; }
+  .phase-card li { margin: 4px 0; }
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), #818cf8);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  /* Roles */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .role-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .role-card h3 {
+    color: var(--accent);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  /* Seguridad */
+  .security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .security-box {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid;
+  }
+  .security-box.danger { border-color: var(--danger); }
+  .security-box.success { border-color: var(--success); }
+  .security-box h4 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+  }
+  .security-box.danger h4 { color: var(--danger); }
+  .security-box.success h4 { color: var(--success); }
+  .security-box ul { list-style: none; }
+  .security-box li {
+    padding: 6px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--text-secondary);
+  }
+  .security-box.danger li::before { content: '✕'; position: absolute; left: 0; color: var(--danger); font-weight: bold; }
+  .security-box.success li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: bold; }
+  /* Arquitectura */
+  .architecture {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .arch-flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .arch-node {
+    background: linear-gradient(135deg, #1e3a8a, #312e81);
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    font-weight: 500;
+    transition: transform 0.3s;
+  }
+  .arch-node:hover { transform: scale(1.05); }
+  .arch-arrow { color: var(--accent); font-size: 1.5rem; }
+  /* Estado de carga */
+  .loader {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+  }
+  .spinner {
+    width: 50px; height: 50px;
+    border: 4px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  /* Responsive */
+  @media (max-width: 640px) {
+    header { padding: 40px 15px; }
+    main { padding: 20px 15px; }
+    .arch-arrow { transform: rotate(90deg); }
+  }
 </style>
 </head>
 <body>
+
 <header>
-<h1>Pipeline IA Pro</h1>
-<p>Metodología de desarrollo distribuido para Delanoys Tecnologías</p>
+  <h1>Pipeline IA Pro</h1>
+  <p>Metodología de desarrollo distribuido para Delanoys Tecnologías</p>
 </header>
 
-<section>
-<div class="card">
-<h2>Objetivo</h2>
-<p>Aprender, desarrollar y desplegar proyectos reales usando un equipo coordinado de IAs especializadas.</p>
-</div>
+<nav>
+  <ul>
+    <li><a href="#objetivo">Objetivo</a></li>
+    <li><a href="#roles">Roles</a></li>
+    <li><a href="#fases">Fases</a></li>
+    <li><a href="#seguridad">Seguridad</a></li>
+    <li><a href="#arquitectura">Arquitectura</a></li>
+  </ul>
+</nav>
 
-<div class="card">
-<h2>Fases del Proyecto</h2>
-<div class="timeline">
-<div class="card"><span class="badge">F0</span><h3>Infraestructura</h3></div>
-<div class="card"><span class="badge">F1</span><h3>Definición</h3></div>
-<div class="card"><span class="badge">F2</span><h3>Validación</h3></div>
-<div class="card"><span class="badge">F3</span><h3>Implementación</h3></div>
-<div class="card"><span class="badge">F4</span><h3>Revisión</h3></div>
-<div class="card"><span class="badge">F5</span><h3>Ejecución</h3></div>
-<div class="card"><span class="badge">F6</span><h3>Debug</h3></div>
-<div class="card"><span class="badge">F7</span><h3>Optimización</h3></div>
-<div class="card"><span class="badge">F8</span><h3>Deploy Automático</h3></div>
-</div>
-</div>
+<main id="content">
+  <div class="loader">
+    <div class="spinner"></div>
+    <p>Cargando pipeline desde el servidor...</p>
+  </div>
+</main>
 
-<div class="card">
-<h2>Seguridad Obligatoria</h2>
-<ul>
-<li>Variables .env</li>
-<li>Sin secretos en repositorios</li>
-<li>Sin tokens en logs</li>
-<li>Sin contraseñas hardcodeadas</li>
-</ul>
-</div>
+<footer>
+  <p>© 2026 Delanoys Tecnologías · Pipeline IA Pro v1.0</p>
+</footer>
 
-<div class="card">
-<h2>Arquitectura Objetivo</h2>
-<p>Internet → Nginx → Dockploy → Docker → Aplicaciones → Bases de Datos</p>
-</div>
-</section>
+<script>
+// ============================================================
+// CONFIGURACIÓN
+// ============================================================
+const MD_FILE_URL = 'MASTER_CONTEXT_PIPELINE_IA_PRO.md';
+
+// ============================================================
+// PARSER PERSONALIZADO DEL MARKDOWN
+// Convierte el .md en componentes HTML estructurados
+// ============================================================
+function parsePipelineMD(text) {
+  const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+  
+  // Estructura de datos extraída
+  const data = {
+    objetivo: '',
+    roles: { usuario: [], equipo_ia: [] },
+    fases: [],
+    seguridad: { prohibido: [], obligatorio: [] },
+    estrategia_vps: { servicios: [], arquitectura: [] },
+    objetivo_final: ''
+  };
+  
+  let currentSection = null;
+  let currentSubSection = null;
+  let currentPhase = null;
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    
+    // Detectar secciones principales
+    if (line === 'Objetivo General') { currentSection = 'objetivo'; continue; }
+    if (line === 'Roles') { currentSection = 'roles'; continue; }
+    if (line === 'Pipeline de IAs') { currentSection = 'pipeline'; continue; }
+    if (line === 'Regla Crítica de Seguridad') { currentSection = 'seguridad'; continue; }
+    if (line === 'Estrategia VPS') { currentSection = 'estrategia'; continue; }
+    if (line === 'Objetivo Final') { currentSection = 'objetivo_final'; continue; }
+    
+    // Procesar según sección activa
+    if (currentSection === 'objetivo' && !line.startsWith('Objetivo')) {
+      data.objetivo = line;
+    }
+    
+    if (currentSection === 'roles') {
+      if (line === 'Usuario') { currentSubSection = 'usuario'; continue; }
+      if (line === 'Equipo IA') { currentSubSection = 'equipo_ia'; continue; }
+      if (line.startsWith('- ') || line.startsWith('• ')) {
+        data.roles[currentSubSection].push(line.substring(2));
+      }
+    }
+    
+    if (currentSection === 'pipeline') {
+      // Detectar nueva fase (Fase 0, Fase 1, etc.)
+      const phaseMatch = line.match(/^Fase\s+(\d+)\s*-\s*(.+)$/i);
+      if (phaseMatch) {
+        currentPhase = {
+          numero: phaseMatch[1],
+          nombre: phaseMatch[2],
+          ias: [],
+          tareas: []
+        };
+        data.fases.push(currentPhase);
+        continue;
+      }
+      // Detectar IAs (líneas con + o nombres de IAs conocidas)
+      if (currentPhase) {
+        const iaMatch = line.match(/^(GPT|Claude|Grok|Qwen|DeepSeek)(\s*\+\s*\w+)?$/i);
+        if (iaMatch) {
+          currentPhase.ias.push(line);
+          continue;
+        }
+        // Todo lo demás son tareas
+        if (!line.startsWith('Fase') && line.length > 1) {
+          currentPhase.tareas.push(line);
+        }
+      }
+    }
+    
+    if (currentSection === 'seguridad') {
+      if (line === 'PROHIBIDO:') { currentSubSection = 'prohibido'; continue; }
+      if (line === 'OBLIGATORIO:') { currentSubSection = 'obligatorio'; continue; }
+      if (line.startsWith('- ') || line.startsWith('• ')) {
+        data.seguridad[currentSubSection].push(line.substring(2));
+      }
+    }
+    
+    if (currentSection === 'estrategia') {
+      if (line === 'Servicios previstos:') { currentSubSection = 'servicios'; continue; }
+      if (line === 'Arquitectura objetivo:') { currentSubSection = 'arquitectura'; continue; }
+      if (line.startsWith('- ') || line.startsWith('• ')) {
+        data.estrategia_vps[currentSubSection].push(line.substring(2));
+      }
+    }
+    
+    if (currentSection === 'objetivo_final') {
+      data.objetivo_final = line;
+    }
+  }
+  
+  return data;
+}
+
+// ============================================================
+// RENDERIZADOR DE COMPONENTES
+// ============================================================
+function renderPipeline(data) {
+  return `
+    <section id="objetivo">
+      <h2>🎯 Objetivo General</h2>
+      <div class="card">
+        <p style="font-size: 1.1rem;">${data.objetivo}</p>
+      </div>
+    </section>
+
+    <section id="roles">
+      <h2>👥 Roles del Equipo</h2>
+      <div class="roles-grid">
+        <div class="role-card">
+          <h3>👤 Usuario</h3>
+          <ul style="padding-left: 20px; color: var(--text-secondary);">
+            ${data.roles.usuario.map(r => `<li>${r}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="role-card">
+          <h3>🤖 Equipo IA</h3>
+          <ul style="padding-left: 20px; color: var(--text-secondary);">
+            ${data.roles.equipo_ia.map(r => `<li>${r}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="fases">
+      <h2>🔄 Pipeline de IAs</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 20px;">
+        Haz clic en cada fase para ver los detalles.
+      </p>
+      <div class="timeline">
+        ${data.fases.map(f => `
+          <div class="phase-card" onclick="this.classList.toggle('active')">
+            <span class="badge">F${f.numero}</span>
+            <h3>${f.nombre}</h3>
+            <div class="content">
+              ${f.ias.length ? `<p><strong>IAs:</strong> ${f.ias.join(' + ')}</p>` : ''}
+              ${f.tareas.length ? `
+                <ul>
+                  ${f.tareas.map(t => `<li>${t}</li>`).join('')}
+                </ul>
+              ` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <section id="seguridad">
+      <h2>🔒 Regla Crítica de Seguridad</h2>
+      <div class="security-grid">
+        <div class="security-box danger">
+          <h4>⛔ PROHIBIDO</h4>
+          <ul>
+            ${data.seguridad.prohibido.map(i => `<li>${i}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="security-box success">
+          <h4>✅ OBLIGATORIO</h4>
+          <ul>
+            ${data.seguridad.obligatorio.map(i => `<li>${i}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 20px; border-left: 4px solid var(--warning);">
+        <p style="color: var(--warning); font-weight: 600;">
+          ⚠️ Esta regla NO puede ser ignorada en ningún proyecto.
+        </p>
+      </div>
+    </section>
+
+    <section id="arquitectura">
+      <h2>🏗️ Estrategia VPS y Arquitectura</h2>
+      <div class="card" style="margin-bottom: 20px;">
+        <h3 style="color: var(--accent); margin-bottom: 12px;">Servicios Previstos</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          ${data.estrategia_vps.servicios.map(s => `
+            <span style="background: rgba(56,189,248,0.1); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--accent);">
+              ${s}
+            </span>
+          `).join('')}
+        </div>
+      </div>
+      <div class="architecture">
+        <h3 style="color: var(--accent);">Flujo de Arquitectura</h3>
+        <div class="arch-flow">
+          ${data.estrategia_vps.arquitectura.map((node, i, arr) => `
+            <div class="arch-node">${node.replace('->', '').trim()}</div>
+            ${i < arr.length - 1 ? '<div class="arch-arrow">→</div>' : ''}
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section id="objetivo-final">
+      <h2>🚀 Objetivo Final</h2>
+      <div class="card" style="background: linear-gradient(135deg, #1e293b, #1e3a8a); border: 1px solid var(--accent);">
+        <p style="font-size: 1.2rem; text-align: center; font-weight: 500;">
+          ${data.objetivo_final}
+        </p>
+      </div>
+    </section>
+  `;
+}
+
+// ============================================================
+// CARGA DINÁMICA DEL ARCHIVO .md
+// ============================================================
+async function loadPipeline() {
+  const content = document.getElementById('content');
+  
+  try {
+    const response = await fetch(MD_FILE_URL, { cache: 'no-cache' });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: No se pudo cargar el archivo`);
+    }
+    
+    const mdText = await response.text();
+    const data = parsePipelineMD(mdText);
+    content.innerHTML = renderPipeline(data);
+    
+    // Smooth scroll para navegación
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    
+  } catch (error) {
+    console.error('Error cargando pipeline:', error);
+    content.innerHTML = `
+      <div class="error">
+        <h3>⚠️ Error al cargar el pipeline</h3>
+        <p style="margin-top: 10px;">${error.message}</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">
+          Verifica que el archivo <code>${MD_FILE_URL}</code> exista en el servidor.
+        </p>
+      </div>
+    `;
+  }
+}
+
+// Iniciar carga cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', loadPipeline);
+</script>
+
 </body>
 </html>
