@@ -277,7 +277,7 @@
 
 <nav>
   <ul>
-    <li><a href="index.html">© 2026 Delanoys Tecnologías</a></li>
+    <li><a href="/">© 2026 Delanoys Tecnologías</a></li>
 
     <li><a href="#objetivo">Objetivo</a></li>
     <li><a href="#roles">Roles</a></li>
@@ -570,16 +570,25 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Smooth scroll para navegación
   document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', (e) => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    
+    // Solo interceptar anclas internas (#)
+    if (href && href.startsWith('#')) {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
+      const target = document.querySelector(href);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
-    });
+    }
+    // Los demás enlaces (index.html, /, externos) funcionan normal
   });
 });
+});
+
 </script>
+
+
 
 </body>
 </html>
