@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pipeline IA Pro - Delanoys Tecnologías</title>
 <meta name="description" content="Metodología de desarrollo distribuido con IAs especializadas">
-<!-- Parser de Markdown -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
   :root {
     --bg-primary: #0f172a;
@@ -30,7 +28,6 @@
     line-height: 1.6;
     min-height: 100vh;
   }
-  /* Header con gradiente animado */
   header {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e3a8a 100%);
     padding: 60px 20px;
@@ -72,7 +69,6 @@
     position: relative;
     z-index: 1;
   }
-  /* Navegación */
   nav {
     background: var(--bg-secondary);
     padding: 15px 20px;
@@ -88,8 +84,6 @@
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
   }
   nav a {
     color: var(--text-secondary);
@@ -100,7 +94,6 @@
     border-radius: 6px;
   }
   nav a:hover { color: var(--accent); background: rgba(56,189,248,0.1); }
-  /* Contenido principal */
   main {
     max-width: 1200px;
     margin: auto;
@@ -117,11 +110,7 @@
     align-items: center;
     gap: 12px;
   }
-  h2::before {
-    content: '▸';
-    color: var(--accent);
-  }
-  /* Cards */
+  h2::before { content: '▸'; color: var(--accent); }
   .card {
     background: var(--bg-card);
     padding: 25px;
@@ -134,7 +123,6 @@
     transform: translateY(-3px);
     border-color: var(--accent);
   }
-  /* Timeline de fases */
   .timeline {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -190,7 +178,6 @@
     font-weight: 700;
     letter-spacing: 0.5px;
   }
-  /* Roles */
   .roles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -209,7 +196,6 @@
     align-items: center;
     gap: 10px;
   }
-  /* Seguridad */
   .security-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -223,10 +209,7 @@
   }
   .security-box.danger { border-color: var(--danger); }
   .security-box.success { border-color: var(--success); }
-  .security-box h4 {
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-  }
+  .security-box h4 { margin-bottom: 12px; font-size: 1.1rem; }
   .security-box.danger h4 { color: var(--danger); }
   .security-box.success h4 { color: var(--success); }
   .security-box ul { list-style: none; }
@@ -238,7 +221,6 @@
   }
   .security-box.danger li::before { content: '✕'; position: absolute; left: 0; color: var(--danger); font-weight: bold; }
   .security-box.success li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: bold; }
-  /* Arquitectura */
   .architecture {
     background: var(--bg-card);
     padding: 30px;
@@ -264,21 +246,13 @@
   }
   .arch-node:hover { transform: scale(1.05); }
   .arch-arrow { color: var(--accent); font-size: 1.5rem; }
-  /* Estado de carga */
-  .loader {
+  footer {
     text-align: center;
-    padding: 60px 20px;
+    padding: 30px 20px;
     color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
   }
-  .spinner {
-    width: 50px; height: 50px;
-    border: 4px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    animation: spin 1s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
   .error {
     background: rgba(239,68,68,0.1);
     border: 1px solid var(--danger);
@@ -287,15 +261,6 @@
     border-radius: 12px;
     text-align: center;
   }
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 30px 20px;
-    color: var(--text-secondary);
-    border-top: 1px solid var(--border);
-    margin-top: 60px;
-  }
-  /* Responsive */
   @media (max-width: 640px) {
     header { padding: 40px 15px; }
     main { padding: 20px 15px; }
@@ -321,10 +286,7 @@
 </nav>
 
 <main id="content">
-  <div class="loader">
-    <div class="spinner"></div>
-    <p>Cargando pipeline desde el servidor...</p>
-  </div>
+  <!-- El contenido se genera dinámicamente con JavaScript -->
 </main>
 
 <footer>
@@ -333,110 +295,164 @@
 
 <script>
 // ============================================================
-// CONFIGURACIÓN
+// DATOS EMBEBIDOS (para sitio estático)
 // ============================================================
-const MD_FILE_URL = 'MASTER_CONTEXT_PIPELINE_IA_PRO.md';
+const pipelineData = {
+  objetivo: "Sistema de trabajo donde las IAs actúan como equipo técnico y tutor para desarrollar proyectos reales, aprender durante el proceso y desplegar soluciones en VPS propio.",
+  
+  roles: {
+    usuario: [
+      "Director del proyecto",
+      "Toma decisiones finales",
+      "Ejecuta cambios en producción",
+      "Aprende la lógica y arquitectura"
+    ],
+    equipoIA: [
+      "Tutor técnico",
+      "Arquitecto",
+      "Revisor",
+      "Documentador",
+      "Proponente de mejoras"
+    ]
+  },
+  
+  fases: [
+    {
+      numero: "0",
+      nombre: "Infraestructura",
+      ias: "GPT + Claude",
+      tareas: [
+        "Definir: VPS, Docker, Dominios, SSL, Backups",
+        "Estrategia de despliegue"
+      ]
+    },
+    {
+      numero: "1",
+      nombre: "Definición",
+      ias: "Grok + GPT",
+      tareas: [
+        "Ideas",
+        "Alcance",
+        "Roadmap"
+      ]
+    },
+    {
+      numero: "2",
+      nombre: "Validación",
+      ias: "Claude + Qwen",
+      tareas: [
+        "Seguridad",
+        "Arquitectura",
+        "Permisos",
+        "Coherencia técnica"
+      ]
+    },
+    {
+      numero: "3",
+      nombre: "Implementación",
+      ias: "DeepSeek",
+      tareas: [
+        "Dockerfile",
+        "Docker Compose",
+        "Scripts",
+        "PostgreSQL",
+        "MySQL",
+        "Automatización"
+      ]
+    },
+    {
+      numero: "4",
+      nombre: "Revisión",
+      ias: "Claude",
+      tareas: [
+        "Seguridad",
+        "Errores críticos",
+        "Riesgos"
+      ]
+    },
+    {
+      numero: "5",
+      nombre: "Ejecución",
+      ias: "Usuario",
+      tareas: [
+        "Deploy",
+        "Pruebas",
+        "Validación"
+      ]
+    },
+    {
+      numero: "6",
+      nombre: "Debug",
+      ias: "DeepSeek + Claude",
+      tareas: []
+    },
+    {
+      numero: "7",
+      nombre: "Optimización",
+      ias: "GPT",
+      tareas: [
+        "Documentación",
+        "Organización",
+        "Escalabilidad"
+      ]
+    },
+    {
+      numero: "8",
+      nombre: "Automatización",
+      ias: "Preferencia",
+      tareas: [
+        "Dockploy",
+        "Docker Compose",
+        "CI/CD"
+      ]
+    }
+  ],
+  
+  seguridad: {
+    prohibido: [
+      "Contraseñas visibles",
+      "Tokens visibles",
+      "API Keys visibles",
+      "Credenciales en código",
+      "Secretos en logs"
+    ],
+    obligatorio: [
+      "Variables .env",
+      ".gitignore",
+      "Variables de entorno en VPS",
+      "Secret managers cuando existan",
+      "Inputs protegidos"
+    ]
+  },
+  
+  estrategiaVPS: {
+    servicios: [
+      "Sitio web corporativo",
+      "Inventario",
+      "Chatbots",
+      "APIs",
+      "Bases de datos",
+      "Automatizaciones"
+    ],
+    arquitectura: [
+      "Internet",
+      "Nginx / Proxy",
+      "Dockploy",
+      "Contenedores Docker",
+      "Bases de datos",
+      "Backups"
+    ]
+  },
+  
+  objetivoFinal: "Construir un ecosistema tecnológico propio, escalable y documentado, aprendiendo durante cada etapa del desarrollo."
+};
 
 // ============================================================
-// PARSER PERSONALIZADO DEL MARKDOWN
-// Convierte el .md en componentes HTML estructurados
+// RENDERIZADOR
 // ============================================================
-function parsePipelineMD(text) {
-  const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+function renderPipeline() {
+  const data = pipelineData;
   
-  // Estructura de datos extraída
-  const data = {
-    objetivo: '',
-    roles: { usuario: [], equipo_ia: [] },
-    fases: [],
-    seguridad: { prohibido: [], obligatorio: [] },
-    estrategia_vps: { servicios: [], arquitectura: [] },
-    objetivo_final: ''
-  };
-  
-  let currentSection = null;
-  let currentSubSection = null;
-  let currentPhase = null;
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    
-    // Detectar secciones principales
-    if (line === 'Objetivo General') { currentSection = 'objetivo'; continue; }
-    if (line === 'Roles') { currentSection = 'roles'; continue; }
-    if (line === 'Pipeline de IAs') { currentSection = 'pipeline'; continue; }
-    if (line === 'Regla Crítica de Seguridad') { currentSection = 'seguridad'; continue; }
-    if (line === 'Estrategia VPS') { currentSection = 'estrategia'; continue; }
-    if (line === 'Objetivo Final') { currentSection = 'objetivo_final'; continue; }
-    
-    // Procesar según sección activa
-    if (currentSection === 'objetivo' && !line.startsWith('Objetivo')) {
-      data.objetivo = line;
-    }
-    
-    if (currentSection === 'roles') {
-      if (line === 'Usuario') { currentSubSection = 'usuario'; continue; }
-      if (line === 'Equipo IA') { currentSubSection = 'equipo_ia'; continue; }
-      if (line.startsWith('- ') || line.startsWith('• ')) {
-        data.roles[currentSubSection].push(line.substring(2));
-      }
-    }
-    
-    if (currentSection === 'pipeline') {
-      // Detectar nueva fase (Fase 0, Fase 1, etc.)
-      const phaseMatch = line.match(/^Fase\s+(\d+)\s*-\s*(.+)$/i);
-      if (phaseMatch) {
-        currentPhase = {
-          numero: phaseMatch[1],
-          nombre: phaseMatch[2],
-          ias: [],
-          tareas: []
-        };
-        data.fases.push(currentPhase);
-        continue;
-      }
-      // Detectar IAs (líneas con + o nombres de IAs conocidas)
-      if (currentPhase) {
-        const iaMatch = line.match(/^(GPT|Claude|Grok|Qwen|DeepSeek)(\s*\+\s*\w+)?$/i);
-        if (iaMatch) {
-          currentPhase.ias.push(line);
-          continue;
-        }
-        // Todo lo demás son tareas
-        if (!line.startsWith('Fase') && line.length > 1) {
-          currentPhase.tareas.push(line);
-        }
-      }
-    }
-    
-    if (currentSection === 'seguridad') {
-      if (line === 'PROHIBIDO:') { currentSubSection = 'prohibido'; continue; }
-      if (line === 'OBLIGATORIO:') { currentSubSection = 'obligatorio'; continue; }
-      if (line.startsWith('- ') || line.startsWith('• ')) {
-        data.seguridad[currentSubSection].push(line.substring(2));
-      }
-    }
-    
-    if (currentSection === 'estrategia') {
-      if (line === 'Servicios previstos:') { currentSubSection = 'servicios'; continue; }
-      if (line === 'Arquitectura objetivo:') { currentSubSection = 'arquitectura'; continue; }
-      if (line.startsWith('- ') || line.startsWith('• ')) {
-        data.estrategia_vps[currentSubSection].push(line.substring(2));
-      }
-    }
-    
-    if (currentSection === 'objetivo_final') {
-      data.objetivo_final = line;
-    }
-  }
-  
-  return data;
-}
-
-// ============================================================
-// RENDERIZADOR DE COMPONENTES
-// ============================================================
-function renderPipeline(data) {
   return `
     <section id="objetivo">
       <h2>🎯 Objetivo General</h2>
@@ -457,7 +473,7 @@ function renderPipeline(data) {
         <div class="role-card">
           <h3>🤖 Equipo IA</h3>
           <ul style="padding-left: 20px; color: var(--text-secondary);">
-            ${data.roles.equipo_ia.map(r => `<li>${r}</li>`).join('')}
+            ${data.roles.equipoIA.map(r => `<li>${r}</li>`).join('')}
           </ul>
         </div>
       </div>
@@ -474,8 +490,8 @@ function renderPipeline(data) {
             <span class="badge">F${f.numero}</span>
             <h3>${f.nombre}</h3>
             <div class="content">
-              ${f.ias.length ? `<p><strong>IAs:</strong> ${f.ias.join(' + ')}</p>` : ''}
-              ${f.tareas.length ? `
+              ${f.ias ? `<p><strong>IAs:</strong> ${f.ias}</p>` : ''}
+              ${f.tareas && f.tareas.length ? `
                 <ul>
                   ${f.tareas.map(t => `<li>${t}</li>`).join('')}
                 </ul>
@@ -514,7 +530,7 @@ function renderPipeline(data) {
       <div class="card" style="margin-bottom: 20px;">
         <h3 style="color: var(--accent); margin-bottom: 12px;">Servicios Previstos</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-          ${data.estrategia_vps.servicios.map(s => `
+          ${data.estrategiaVPS.servicios.map(s => `
             <span style="background: rgba(56,189,248,0.1); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--accent);">
               ${s}
             </span>
@@ -524,8 +540,8 @@ function renderPipeline(data) {
       <div class="architecture">
         <h3 style="color: var(--accent);">Flujo de Arquitectura</h3>
         <div class="arch-flow">
-          ${data.estrategia_vps.arquitectura.map((node, i, arr) => `
-            <div class="arch-node">${node.replace('->', '').trim()}</div>
+          ${data.estrategiaVPS.arquitectura.map((node, i, arr) => `
+            <div class="arch-node">${node}</div>
             ${i < arr.length - 1 ? '<div class="arch-arrow">→</div>' : ''}
           `).join('')}
         </div>
@@ -536,7 +552,7 @@ function renderPipeline(data) {
       <h2>🚀 Objetivo Final</h2>
       <div class="card" style="background: linear-gradient(135deg, #1e293b, #1e3a8a); border: 1px solid var(--accent);">
         <p style="font-size: 1.2rem; text-align: center; font-weight: 500;">
-          ${data.objetivo_final}
+          ${data.objetivoFinal}
         </p>
       </div>
     </section>
@@ -544,47 +560,23 @@ function renderPipeline(data) {
 }
 
 // ============================================================
-// CARGA DINÁMICA DEL ARCHIVO  .md
+// INICIALIZACIÓN
 // ============================================================
-async function loadPipeline() {
+document.addEventListener('DOMContentLoaded', function() {
   const content = document.getElementById('content');
+  content.innerHTML = renderPipeline();
   
-  try {
-    const response = await fetch(MD_FILE_URL, { cache: 'no-cache' });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: No se pudo cargar el archivo`);
-    }
-    
-    const mdText = await response.text();
-    const data = parsePipelineMD(mdText);
-    content.innerHTML = renderPipeline(data);
-    
-    // Smooth scroll para navegación
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
+  // Smooth scroll para navegación
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
-    
-  } catch (error) {
-    console.error('Error cargando pipeline:', error);
-    content.innerHTML = `
-      <div class="error">
-        <h3>⚠️ Error al cargar el pipeline</h3>
-        <p style="margin-top: 10px;">${error.message}</p>
-        <p style="margin-top: 10px; font-size: 0.9rem;">
-          Verifica que el archivo <code>${MD_FILE_URL}</code> exista en el servidor.
-        </p>
-      </div>
-    `;
-  }
-}
-
-// Iniciar carga cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', loadPipeline);
+  });
+});
 </script>
 
 </body>
