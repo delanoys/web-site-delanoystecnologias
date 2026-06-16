@@ -345,6 +345,82 @@
 
 <main id="content"></main>
 
+<section class="card">
+
+  <div class="title">📄 Pipeline IA Pro v4.1 — Contrato de Estado del Sistema</div>
+
+  <p>
+    Este bloque define el estándar oficial de comunicación entre IAs por fases.
+    Todas las implementaciones deben respetar el estado actual del sistema y validar antes de actuar.
+  </p>
+
+  <hr>
+
+  <h3>🧠 Principio central</h3>
+  <p>
+    Las IAs no deben asumir información del sistema.
+    Solo trabajan con estado documentado o verificado mediante snapshot.
+  </p>
+
+  <hr>
+
+  <h3>🚀 Fases del sistema</h3>
+
+  <ul>
+    <li><b>🟢 Fase 1 (GPT):</b> Arquitectura y estructura base del backend</li>
+    <li><b>🟡 Fase 2 (DeepSeek):</b> Implementación de lógica sin modificar arquitectura</li>
+    <li><b>🔵 Fase 3 (Claude):</b> Validación de seguridad y consistencia</li>
+    <li><b>⚙️ Fase 4:</b> Optimización y escalabilidad</li>
+  </ul>
+
+  <hr>
+
+  <h3>🧱 Arquitectura actual (LOCKED)</h3>
+
+  <pre>
+Backend: Flask en VPS
+Persistencia: JSON
+
+Rutas activas:
+GET  /api/proyectos
+POST /api/proyectos
+
+Regla crítica:
+Blueprint sin url_prefix interno
+app.py controla rutas base
+  </pre>
+
+  <hr>
+
+  <h3>🔍 State Snapshot System</h3>
+
+  <p>Comandos oficiales de verificación del sistema:</p>
+
+  <pre>
+ls -R
+cat app.py
+cat routes/proyectos.py
+curl http://localhost:5000/api/proyectos
+curl http://IP:PUERTO/api/proyectos
+sudo ss -tlnp
+  </pre>
+
+  <hr>
+
+  <h3>⚠️ Regla de verificación obligatoria</h3>
+
+  <p>
+    Si una IA detecta incertidumbre:
+  </p>
+
+  <ol>
+    <li>No asumir el estado del sistema</li>
+    <li>Solicitar snapshot real del VPS</li>
+    <li>Validar estructura antes de continuar</li>
+  </ol>
+
+</section>
+
 <footer>
   <a href="/">© 2026 Delanoys Tecnologías</a> · Pipeline IA Pro Definitivo
 </footer>
