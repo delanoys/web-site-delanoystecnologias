@@ -420,6 +420,68 @@ sudo ss -tlnp
   </ol>
 
 </section>
+<section class="card">
+
+  <div class="title">📌 CONTEXTO DE FASE — PIPELINE IA PRO</div>
+
+  <p>
+    Este bloque define el estado actual del sistema y la tarea que debe ejecutar la siguiente IA.
+    Es obligatorio para mantener coherencia entre fases del pipeline.
+  </p>
+
+  <hr>
+
+  <h3>🎯 FASE ACTUAL</h3>
+
+  <pre>
+FASE: [Número de fase]
+  </pre>
+
+  <hr>
+
+  <h3>🧱 ESTADO ACTUAL DEL SISTEMA</h3>
+
+  <ul>
+    <li>[Componentes del backend que ya funcionan]</li>
+    <li>[Endpoints o rutas activas exactas]</li>
+    <li>[Regla crítica de arquitectura que debe respetarse]</li>
+    <li>[Responsable de rutas base (ej: app.py)]</li>
+    <li>[Restricciones técnicas actuales]</li>
+  </ul>
+
+  <hr>
+
+  <h3>⚙️ TAREA DE LA SIGUIENTE FASE</h3>
+
+  <p>
+    [Descripción clara, única y verificable de lo que debe implementar la siguiente IA]
+  </p>
+
+  <hr>
+
+  <h3>🔒 REGLAS DE EJECUCIÓN OBLIGATORIAS</h3>
+
+  <ul>
+    <li>No modificar arquitectura existente sin autorización de fase superior</li>
+    <li>No cambiar rutas base definidas en fases anteriores</li>
+    <li>No duplicar prefijos ni endpoints</li>
+    <li>Solo implementar la tarea descrita en esta fase</li>
+    <li>Mantener compatibilidad con el estado actual del sistema</li>
+  </ul>
+
+  <hr>
+
+  <h3>🔍 STATE SNAPSHOT (SI HAY DUDA)</h3>
+
+  <pre>
+ls -R
+cat app.py
+cat routes/proyectos.py
+curl http://localhost:5000/api/proyectos
+sudo ss -tlnp
+  </pre>
+
+</section>
 
 <footer>
   <a href="/">© 2026 Delanoys Tecnologías</a> · Pipeline IA Pro Definitivo
