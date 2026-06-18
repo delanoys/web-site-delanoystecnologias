@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Actualización: SQLite para Expertos en Oracle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        code { font-family: 'Fira Code', 'Courier New', Courier, monospace; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-normal tracking-normal">
+
+    <header class="bg-gradient-to-r py-8 text-white shadow-md bg-slate-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-3xl font-bold">🎯 Manual de Actualización Técnica: SQLite</h1>
+            <p class="text-sm text-slate-400 mt-2">Diseñado para el Director de Proyecto — "El Sazón del Boulevard" (Entorno Local Ligero)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 max-w-5xl">
+        
+        <section class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg mb-8 shadow-sm">
+            <h2 class="text-xl font-bold text-amber-900 mb-2">🔍 Análisis de su Ejercicio Local (¡Punto de Control Crítico!)</h2>
+            <p class="mb-4 text-amber-950">
+                En sus pruebas locales ejecutó tres variantes de código en Python e imprimió los resultados usando el texto <code class="bg-amber-100 px-1 rounded text-red-700">print('Total platos:', cursor.fetchone()[0])</code>. Analicemos por qué la terminal devolvió esos valores:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow-sm border border-amber-200">
+                    <span class="font-bold text-slate-700">Consulta 1:</span> <code class="text-xs block bg-gray-100 p-1 rounded my-1 text-purple-700">SELECT COUNT(*) FROM platos</code>
+                    <p class="text-xs text-gray-600 mt-2"><strong>Resultado: 26</strong>. Correcto. La función devuelve una sola fila con una sola columna conteniendo el número total de registros.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-sm border border-amber-200">
+                    <span class="font-bold text-slate-700">Consulta 2:</span> <code class="text-xs block bg-gray-100 p-1 rounded my-1 text-purple-700">SELECT * FROM platos</code>
+                    <p class="text-xs text-gray-600 mt-2"><strong>Resultado: 1</strong>. ¿Por qué? El método <code class="bg-gray-100 px-1 text-red-600">.fetchone()</code> extrae únicamente la primera fila del cursor. La posición <code class="bg-gray-100 px-1 text-red-600">[0]</code> corresponde a la primera columna de esa fila, que es el <span class="font-bold">ID autoincremental</span> (Plato ID: 1).</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-sm border border-amber-200">
+                    <span class="font-bold text-slate-700">Consulta 3:</span> <code class="text-xs block bg-gray-100 p-1 rounded my-1 text-purple-700">SELECT nombre, descripcion FROM platos</code>
+                    <p class="text-xs text-gray-600 mt-2"><strong>Resultado: Calentado Valluno</strong>. Explicación idéntica. <code class="text-xs bg-gray-100 p-1">.fetchone()</code> extrajo la primera fila disponible, y el índice <code class="text-xs bg-gray-100 p-1">[0]</code> tomó la primera columna solicitada, que en este caso es el <span class="font-bold">nombre</span> del primer plato.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-2xl font-bold border-b pb-2 text-slate-800 mb-4">🔄 Cambio de Mentalidad: Oracle vs. SQLite</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 text-left text-sm uppercase font-semibold">
+                            <th class="py-3 px-4 border-b">Característica</th>
+                            <th class="py-3 px-4 border-b">Oracle Database</th>
+                            <th class="py-3 px-4 border-b">SQLite Local</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm text-gray-700">
+                        <tr>
+                            <td class="py-3 px-4 border-b font-semibold bg-gray-50">Arquitectura</td>
+                            <td class="py-3 px-4 border-b">Cliente-Servidor (Multi-proceso pesado en red).</td>
+                            <td class="py-3 px-4 border-b font-medium text-emerald-700">Embebida (Una biblioteca en C dentro del código, sin servidor).</td>
+                        </tr>
+                        <tr class="bg-gray-50/50">
+                            <td class="py-3 px-4 border-b font-semibold bg-gray-50">Almacenamiento</td>
+                            <td class="py-3 px-4 border-b">Esquemas complejos repartidos en archivos .DBF (Tablespaces).</td>
+                            <td class="py-3 px-4 border-b font-medium text-emerald-700">Un archivo ordinario monolítico (Ej: <code class="bg-gray-100 p-1">restaurante.db</code>).</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 border-b font-semibold bg-gray-50">Tipado de datos</td>
+                            <td class="py-3 px-4 border-b">Estricto y rígido (VARCHAR2, NUMBER, DATE, etc.).</td>
+                            <td class="py-3 px-4 border-b font-medium text-emerald-700">Dinámico (Afinitad de tipos: TEXT, NUMERIC, INTEGER, REAL, BLOB).</td>
+                        </tr>
+                        <tr class="bg-gray-50/50">
+                            <td class="py-3 px-4 border-b font-semibold bg-gray-50">Concurrencia</td>
+                            <td class="py-3 px-4 border-b">Avanzada a nivel de bloques de filas, ideal para miles de usuarios.</td>
+                            <td class="py-3 px-4 border-b font-medium text-emerald-700">Bloquea el archivo completo durante escrituras. Excelente para lectura masiva.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-2xl font-bold border-b pb-2 text-slate-800 mb-4">🐚 Módulo 1: Consultas Avanzadas desde la Terminal (Bash)</h2>
+            <p class="text-sm text-gray-600 mb-4">
+                A diferencia de Oracle SQL*Plus, el cliente de consola de SQLite permite inyectar consultas inline directas o trabajar con comandos de sistema que inician con un punto (<code class="bg-gray-100 px-1 rounded text-red-600">.</code>).
+            </p>
+            
+            <h3 class="font-bold text-slate-700 mb-2 mt-4">Comando 1: Formatear la consola para lectura humana</h3>
+            <p class="text-xs text-gray-500 mb-2">Por defecto, SQLite usa barras verticales como separadores. Cambiémoslo a un modo tabla limpio con encabezados visibles:</p>
+            <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg text-xs overflow-x-auto"><code>sqlite3 -column -header restaurante.db "SELECT nombre, precio, categoria FROM platos LIMIT 3;"</code></pre>
+
+            <h3 class="font-bold text-slate-700 mb-2 mt-4">Comando 2: Agrupamientos de negocio (Agregación)</h3>
+            <p class="text-xs text-gray-500 mb-2">¿Cuántos platos tenemos por cada categoría y cuál es el precio promedio en el menú?</p>
+            <pre class="bg-slate-900 text-emerald-400 p-4 rounded-lg text-xs overflow-x-auto"><code>sqlite3 -box restaurante.db "SELECT categoria, COUNT(*) as cantidad, AVG(precio) as precio_promedio FROM platos GROUP BY categoria;"</code></pre>
+            <span class="text-slate-400 text-[10px] block mt-1">* Nota: El parámetro -box dibuja bordes unicode de forma gráfica y elegante en distribuciones Linux modernas como Elementary OS.</span>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-2xl font-bold border-b pb-2 text-slate-800 mb-4">🐍 Módulo 2: Dominando el Cursor e Iteraciones en Python</h2>
+            <p class="text-sm text-gray-600 mb-4">
+                Para actualizar sus conocimientos, es vital aprender a extraer <span class="font-bold">múltiples filas</span> y mapear columnas. A continuación se presentan los tres patrones estándar de desarrollo en Python:
+            </p>
+
+            <div class="space-y-6">
+                <div class="bg-gray-50 p-4 rounded-lg border">
+                    <h3 class="font-bold text-purple-900 text-sm mb-2">🔥 Patrón A: Iteración Eficiente con un bucle For (Evita saturar la RAM)</h3>
+                    <p class="text-xs text-gray-600 mb-2">Ideal para listar el menú completo sin cargar todas las filas en la memoria de la laptop a la vez.</p>
+                    <pre class="bg-slate-900 text-slate-200 p-4 rounded-lg text-xs overflow-x-auto"><code>import sqlite3
+
+conn = sqlite3.connect('restaurante.db')
+cursor = conn.cursor()
+
+# Ejecutar proyección de platos a la carta
+cursor.execute("SELECT nombre, precio FROM platos WHERE categoria = 'carta'")
+
+print("📋 PLATOS A LA CARTA:")
+# El cursor es un iterador nativo, podemos recorrerlo directamente fila por fila
+for fila in cursor:
+    nombre_plato = fila[0]
+    precio_plato = fila[1]
+    print(f"➔ {nombre_plato}: ${precio_plato:,.0f} COP")
+
+conn.close()</code></pre>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg border">
+                    <h3 class="font-bold text-purple-900 text-sm mb-2">📦 Patrón B: Uso de .fetchall() (Extraer toda la matriz de datos de golpe)</h3>
+                    <p class="text-xs text-gray-600 mb-2">Útil cuando necesitas contar de forma exacta o pasarle un lote completo de registros al agente de LangChain.</p>
+                    <pre class="bg-slate-900 text-slate-200 p-4 rounded-lg text-xs overflow-x-auto"><code>import sqlite3
+
+conn = sqlite3.connect('restaurante.db')
+cursor = conn.cursor()
+
+cursor.execute("SELECT nombre FROM platos WHERE categoria = 'bebidas'")
+# fetchall() vacía el cursor y transforma todo el resultado en una Lista de tuplas
+todas_las_bebidas = cursor.fetchall()
+
+print(f"Tenemos {len(todas_las_bebidas)} bebidas registradas:")
+for bebida in todas_las_bebidas:
+    print(f"• {bebida[0]}")
+
+conn.close()</code></pre>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg border">
+                    <h3 class="font-bold text-purple-900 text-sm mb-2">🛡️ Patrón C: Consultas Blindadas con Parámetros (Evita Inyección SQL)</h3>
+                    <p class="text-xs text-gray-600 mb-2">Crucial para las herramientas de la IA. Jamás se debe usar concatenación de cadenas (<code class="bg-gray-200 px-1 text-red-600">f"..."</code>) para variables de usuario.</p>
+                    <pre class="bg-slate-900 text-slate-200 p-4 rounded-lg text-xs overflow-x-auto"><code>import sqlite3
+
+conn = sqlite3.connect('restaurante.db')
+cursor = conn.cursor()
+
+# Supongamos que esta variable llega desde el webhook de WhatsApp del cliente
+categoria_cliente = "desayunos"
+
+# Usamos el marcador de posición de SQLite (?) para sanitizar la consulta
+query = "SELECT nombre, precio FROM platos WHERE categoria = ? AND disponible = 1"
+
+# Pasamos los parámetros dentro de una TUPLA obligatoria (categoria_cliente,)
+cursor.execute(query, (categoria_cliente,))
+resultados = cursor.fetchall()
+
+print(f"🍳 RESULTADO DE BÚSQUEDA PARA: {categoria_cliente.upper()}")
+for r in resultados:
+    print(f"- {r[0]} | Precio: ${r[1]}")
+
+conn.close()</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-800 text-slate-100 rounded-lg shadow p-6">
+            <h2 class="text-xl font-bold text-emerald-400 mb-2">🚀 Laboratorio Práctico de Actualización Directa</h2>
+            <p class="text-xs text-slate-300 mb-4">Copie y pegue este comando unificado en la consola de su Elementary OS para ejecutar un script de Python avanzado que transforma las tuplas crudas en Diccionarios estructurados:</p>
+            
+            <pre class="bg-slate-950 text-amber-400 p-4 rounded border border-slate-700 text-xs overflow-x-auto"><code>python3 -c "
+import sqlite3
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+conn = sqlite3.connect('restaurante.db')
+conn.row_factory = dict_factory  # ¡MAGIA! Transforma tuplas en diccionarios
+cursor = conn.cursor()
+
+cursor.execute('SELECT nombre, precio, categoria FROM platos WHERE categoria=\"especiales\" LIMIT 2')
+for plato in cursor.fetchall():
+    print('Nombre:', plato['nombre'], '➔ Precio:', plato['precio'], 'COP [Cat:', plato['categoria'].upper(), ']')
+conn.close()
+"</code></pre>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-500 py-6 text-center text-xs mt-12 border-t border-slate-800">
+        <p>El Sazón del Boulevard S.A.S © 2026 - Guía Técnica Interna para el Manejo de Agentes Inteligentes.</p>
+    </footer>
+
+</body>
+</html>
