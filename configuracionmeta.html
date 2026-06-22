@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Token Permanente para WhatsApp Business API</title>
+    <style>
+        /* ===== RESET Y ESTILOS BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f2f5;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1c1e21;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            padding: 40px 45px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a7cff;
+            border-bottom: 4px solid #e7f3ff;
+            padding-bottom: 16px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #606770;
+            margin-left: auto;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1c1e21;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            padding-left: 12px;
+            border-left: 6px solid #0a7cff;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1c1e21;
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1c1e21;
+            margin-top: 20px;
+            margin-bottom: 6px;
+        }
+
+        p, li {
+            color: #1c1e21;
+        }
+
+        a {
+            color: #0a7cff;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(10, 124, 255, 0.3);
+        }
+
+        a:hover {
+            border-bottom: 2px solid #0a7cff;
+        }
+
+        /* ===== TARJETAS Y BLOQUES ===== */
+        .card {
+            background: #f7f9fc;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-left: 6px solid #0a7cff;
+        }
+
+        .card-warning {
+            border-left-color: #f7b731;
+            background: #fffbf0;
+        }
+
+        .card-danger {
+            border-left-color: #e74c3c;
+            background: #fdf0ef;
+        }
+
+        .card-success {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .card-dark {
+            border-left-color: #2d3748;
+            background: #edf2f7;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #e7f3ff;
+            color: #0a7cff;
+            margin-right: 6px;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* ===== CÓDIGO Y TERMINAL ===== */
+        .terminal {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 12px;
+            padding: 20px 22px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin: 16px 0;
+            border: 1px solid #313244;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .terminal .prompt {
+            color: #a6e3a1;
+        }
+
+        .terminal .cmd {
+            color: #89b4fa;
+        }
+
+        .terminal .output {
+            color: #cdd6f4;
+        }
+
+        .terminal .comment {
+            color: #6c7086;
+            font-style: italic;
+        }
+
+        .code-block {
+            background: #f0f2f5;
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border: 1px solid #e4e6eb;
+            margin: 12px 0;
+        }
+
+        /* ===== TABLAS ===== */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid #e4e6eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: #e7f3ff;
+            color: #1c1e21;
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 2px solid #d0d7de;
+        }
+
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #e4e6eb;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight-yes {
+            background: #e6f9ed;
+        }
+
+        .highlight-no {
+            background: #fde8e8;
+        }
+
+        .highlight-warning {
+            background: #fff8e7;
+        }
+
+        /* ===== LISTAS ===== */
+        ul, ol {
+            padding-left: 26px;
+            margin: 12px 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+                flex-wrap: wrap;
+            }
+
+            h1 small {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .terminal {
+                font-size: 0.8rem;
+                padding: 14px 16px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .table-wrap {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 14px;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            .terminal {
+                font-size: 0.7rem;
+                padding: 10px 12px;
+            }
+        }
+
+        /* ===== UTILIDADES ===== */
+        .mt-1 { margin-top: 8px; }
+        .mt-2 { margin-top: 16px; }
+        .mt-3 { margin-top: 24px; }
+        .mb-1 { margin-bottom: 8px; }
+        .mb-2 { margin-bottom: 16px; }
+        .mb-3 { margin-bottom: 24px; }
+
+        .text-center { text-align: center; }
+        .text-muted { color: #606770; }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gap-2 { gap: 16px; }
+
+        hr {
+            border: none;
+            border-top: 2px solid #e4e6eb;
+            margin: 32px 0;
+        }
+
+        .icon-check { color: #27ae60; }
+        .icon-cross { color: #e74c3c; }
+        .icon-warning { color: #f7b731; }
+
+        .step-number {
+            display: inline-block;
+            background: #0a7cff;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            margin-right: 10px;
+        }
+
+        .glossary-term {
+            font-weight: 600;
+            color: #0a7cff;
+            cursor: help;
+            border-bottom: 1px dashed #0a7cff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ===== ENCABEZADO ===== -->
+    <h1>
+        🧠 Token Permanente para WhatsApp Business
+        <small>Guía paso a paso — Meta Cloud API</small>
+    </h1>
+
+    <p style="font-size:1.15rem; color:#2d3748; background:#f0f7ff; padding:16px 20px; border-radius:12px;">
+        <strong>🎯 Objetivo:</strong> Configurar un <strong>Token Permanente</strong> para la API de WhatsApp Business,
+        eliminando la necesidad de renovarlo cada 24 horas.
+    </p>
+
+    <!-- ===== GLOSARIO RÁPIDO ===== -->
+    <div class="card card-dark">
+        <h4 style="margin-top:0;">📘 Glosario de conceptos</h4>
+        <ul>
+            <li><span class="glossary-term">Token de acceso</span> → Clave que autoriza a tu aplicación a hacer peticiones a la API de Meta.</li>
+            <li><span class="glossary-term">Token temporal</span> → Válido por 24 horas. Se genera desde el panel de WhatsApp.</li>
+            <li><span class="glossary-term">Token permanente</span> → No caduca (o caduca en 60+ días). Se genera desde <strong>Usuarios del sistema</strong>.</li>
+            <li><span class="glossary-term">Usuario del sistema</span> → Cuenta técnica (no personal) que permite asignar permisos fijos a una app.</li>
+            <li><span class="glossary-term">Business Settings</span> → Panel de administración de Meta Business Suite.</li>
+            <li><span class="glossary-term">Phone Number ID</span> → Identificador único del número de WhatsApp Business.</li>
+            <li><span class="glossary-term">Business Account ID</span> → Identificador de la cuenta de negocio de Meta.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ===== COMPARATIVA ===== -->
+    <h2>⚖️ Comparativa: Token Temporal vs Permanente</h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>Token Temporal</th>
+                    <th>Token Permanente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Duración</strong></td>
+                    <td class="highlight-warning">24 horas</td>
+                    <td class="highlight-yes"><strong>Indefinido / 60+ días</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Dónde se genera</strong></td>
+                    <td>WhatsApp → Configuración</td>
+                    <td><strong>Business Settings → Usuarios del sistema</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Permisos</strong></td>
+                    <td>Automáticos (heredados)</td>
+                    <td><strong>Selección manual obligatoria</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Renovación</strong></td>
+                    <td>Cada 24 horas</td>
+                    <td><strong>No necesita renovación</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Uso recomendado</strong></td>
+                    <td>Pruebas rápidas</td>
+                    <td><strong>✅ Producción</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-- ===== PRERREQUISITOS ===== -->
+    <h2>📋 Prerrequisitos</h2>
+
+    <div class="card card-dark">
+        <ul>
+            <li><span class="badge badge-success">✅</span> Cuenta de <a href="https://developers.facebook.com/" target="_blank">Meta Developers</a> activa.</li>
+            <li><span class="badge badge-success">✅</span> App creada en Meta Developers (ej: <code>agente_Restaurante</code>).</li>
+            <li><span class="badge badge-success">✅</span> Número de WhatsApp Business (real o de prueba) verificado.</li>
+            <li><span class="badge badge-success">✅</span> Cuenta de <a href="https://business.facebook.com/settings/" target="_blank">Business Meta</a>.</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>💡 Nota:</strong> Si no tienes cuenta Business, créala gratuitamente en el enlace anterior.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 1 ===== -->
+    <h2><span class="step-number">1</span> Acceder a Business Settings</h2>
+
+    <p><strong>¿Por qué?</strong> Los tokens permanentes <strong>no</strong> se generan desde el panel de WhatsApp, sino desde <strong>Business Settings → Usuarios del sistema</strong>.</p>
+
+    <div class="card">
+        <ol>
+            <li>Ve a <a href="https://business.facebook.com/settings/" target="_blank">business.facebook.com/settings/</a></li>
+            <li>Inicia sesión con tu cuenta de Meta.</li>
+            <li>En el menú izquierdo, busca <strong>Usuarios del sistema</strong> (System Users).</li>
+        </ol>
+        <p><span class="badge badge-warning">⚠️</span> Si no ves esta opción, tu cuenta puede no tener permisos de administrador.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 2 ===== -->
+    <h2><span class="step-number">2</span> Crear un Usuario del Sistema</h2>
+
+    <div class="card">
+        <ol>
+            <li>En <strong>Usuarios del sistema</strong>, haz clic en <strong>"Agregar"</strong> (Add).</li>
+            <li>Completa los campos:
+                <ul>
+                    <li><strong>Nombre:</strong> <code>agente_restaurante_bot</code> (o el que prefieras)</li>
+                    <li><strong>Rol:</strong> <code>Admin</code></li>
+                </ul>
+            </li>
+            <li>Haz clic en <strong>"Crear"</strong> (Create).</li>
+        </ol>
+        <p><span class="badge badge-success">✅</span> El usuario aparecerá en la lista con un identificador numérico.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 3 ===== -->
+    <h2><span class="step-number">3</span> Asignar permisos al usuario</h2>
+
+    <div class="card card-warning">
+        <p><strong>❕ Importante:</strong> Sin estos permisos, el token <strong>no funcionará</strong>.</p>
+    </div>
+
+    <div class="card">
+        <ol>
+            <li>En la lista de usuarios, haz clic en el que creaste.</li>
+            <li>Ve a la sección <strong>"Activos asignados"</strong> o <strong>"Apps instaladas"</strong>.</li>
+            <li>Haz clic en <strong>"Agregar"</strong> (Add).</li>
+            <li>Selecciona tu app (ej: <code>agente_Restaurante</code>).</li>
+            <li>Haz clic en <strong>"Guardar"</strong>.</li>
+        </ol>
+        <p><span class="badge badge-success">✅</span> Verifica que la app aparezca con <strong>"Acceso total"</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 4 ===== -->
+    <h2><span class="step-number">4</span> Generar el token permanente</h2>
+
+    <p><strong>⛔ PASO CRÍTICO:</strong> Si te equivocas aquí, el token no funcionará.</p>
+
+    <div class="card">
+        <ol>
+            <li>En la página del usuario del sistema, haz clic en <strong>"Generar token"</strong>.</li>
+            <li><strong>Seleccionar app:</strong> elige <code>agente_Restaurante</code>. → <strong>"Siguiente"</strong>.</li>
+            <li><strong>Definir caducidad:</strong>
+                <ul>
+                    <li>✅ <strong>"Nunca"</strong> (Never) → si está disponible.</li>
+                    <li>⚠️ Si no, selecciona <strong>"60 días"</strong> (la opción más larga).</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Asignar permisos</strong> — ⚠️ <strong>OBLIGATORIOS:</strong>
+                <ul>
+                    <li>☑️ <code>whatsapp_business_management</code></li>
+                    <li>☑️ <code>whatsapp_business_messaging</code> ← <strong>¡EL QUE MÁS FALTA!</strong></li>
+                    <li>☑️ <code>whatsapp_business_profile</code></li>
+                    <li>☑️ <code>manage_app_solution</code> (opcional pero recomendado)</li>
+                </ul>
+            </li>
+            <li>Haz clic en <strong>"Generar token"</strong> (o "Continuar").</li>
+            <li><strong>¡COPIA EL TOKEN COMPLETO!</strong> (comienza con <code>EAA...</code>). Guárdalo en un lugar seguro.</li>
+        </ol>
+    </div>
+
+    <div class="card card-danger">
+        <p><strong>❌ Error común:</strong> Si <code>whatsapp_business_messaging</code> <strong>no aparece</strong>, significa que tu app no tiene el caso de uso de WhatsApp activado. Debes activarlo en <strong>Meta Developers → Casos de uso → Conectar en WhatsApp</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 5 ===== -->
+    <h2><span class="step-number">5</span> Actualizar el archivo <code>.env</code></h2>
+
+    <div class="card">
+        <p>Ejecuta en la terminal:</p>
+        <div class="code-block">nano ~/proyectos/agente_restaurante/.env</div>
+        <p>Agrega o actualiza estas líneas (con tus valores reales):</p>
+        <div class="code-block">
+WHATSAPP_TOKEN=<strong>EL_TOKEN_PERMANENTE_QUE_COPIASTE</strong><br>
+PHONE_NUMBER_ID=1141863539007752<br>
+BUSINESS_ACCOUNT_ID=865292805902279
+        </div>
+        <p><strong>Guardar y salir:</strong> <kbd>Ctrl+O</kbd> → Enter → <kbd>Ctrl+X</kbd></p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 6 ===== -->
+    <h2><span class="step-number">6</span> Verificar el token</h2>
+
+    <div class="card">
+        <p>Prueba el token con <code>curl</code>:</p>
+        <div class="terminal">
+            <span class="prompt">$</span> <span class="cmd">curl -X GET "https://graph.facebook.com/v18.0/me?access_token=EL_TOKEN_AQUI"</span><br>
+            <span class="output">{"id":"1029103326308917","name":"agente_Restaurante"}</span>
+        </div>
+        <p>Prueba el Phone Number ID:</p>
+        <div class="terminal">
+            <span class="prompt">$</span> <span class="cmd">curl -X GET "https://graph.facebook.com/v18.0/1141863539007752?access_token=EL_TOKEN_AQUI"</span><br>
+            <span class="output">{"id":"1141863539007752","display_phone_number":"+1 555 646 5740"}</span>
+        </div>
+        <p><span class="badge badge-success">✅</span> Si ves estos resultados, el token es <strong>válido</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 7 ===== -->
+    <h2><span class="step-number">7</span> Reiniciar el servidor</h2>
+
+    <div class="terminal">
+        <span class="comment"># Detener el servidor (Ctrl+C)</span><br>
+        <span class="prompt">$</span> <span class="cmd">cd ~/proyectos/agente_restaurante</span><br>
+        <span class="prompt">$</span> <span class="cmd">export PYTHONPATH=$PWD</span><br>
+        <span class="prompt">$</span> <span class="cmd">source venv/bin/activate</span><br>
+        <span class="prompt">$</span> <span class="cmd">uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000</span>
+    </div>
+
+    <hr>
+
+    <!-- ===== PASO 8 ===== -->
+    <h2><span class="step-number">8</span> Iniciar servicios y prueba final</h2>
+
+    <h3>8.1 Iniciar Ollama</h3>
+    <div class="terminal">
+        <span class="prompt">$</span> <span class="cmd">ollama serve &</span><br>
+        <span class="prompt">$</span> <span class="cmd">sleep 3</span><br>
+        <span class="prompt">$</span> <span class="cmd">curl http://localhost:11434</span><br>
+        <span class="output">Ollama is running</span>
+    </div>
+
+    <h3>8.2 Iniciar ngrok</h3>
+    <div class="terminal">
+        <span class="comment"># En una NUEVA terminal</span><br>
+        <span class="prompt">$</span> <span class="cmd">ngrok http 8000</span><br>
+        <span class="output">Forwarding  https://nucleus-carried-natural.ngrok-free.dev -> http://localhost:8000</span>
+    </div>
+    <div class="card card-warning">
+        <p><strong>⚠️ Importante:</strong> La URL de ngrok <strong>cambia cada vez</strong> que lo inicias. Si cambia, debes actualizarla en Meta Developers.</p>
+    </div>
+
+    <h3>8.3 Verificar FastAPI</h3>
+    <div class="terminal">
+        <span class="prompt">$</span> <span class="cmd">curl http://localhost:8000/health</span><br>
+        <span class="output">{"status":"healthy","model":"qwen:7b","database":"sqlite"}</span>
+    </div>
+
+    <h3>8.4 Verificar webhook en Meta</h3>
+    <ol>
+        <li>Ve a <a href="https://developers.facebook.com/apps/" target="_blank">Meta Developers</a></li>
+        <li>Selecciona tu app → WhatsApp → Configuración</li>
+        <li>Verifica que la <strong>Callback URL</strong> sea: <code>https://[tu-url-ngrok]/webhook</code></li>
+        <li>Si cambió, actualízala y haz clic en <strong>"Verificar y guardar"</strong>.</li>
+    </ol>
+
+    <h3>8.5 Enviar mensaje desde WhatsApp</h3>
+    <div class="card card-success">
+        <p><strong>Envía este mensaje desde WhatsApp:</strong></p>
+        <div class="code-block">muéstrame el menú</div>
+    </div>
+
+    <h3>8.6 Monitorear logs</h3>
+    <div class="card">
+        <p><strong>En la terminal de FastAPI:</strong></p>
+        <div class="terminal">
+            INFO: Procesando mensaje de ***4567: muéstrame el menú<br>
+            INFO: Respuesta generada para ***4567 (1234 chars)<br>
+            INFO: Mensaje enviado a ***4567<br>
+            INFO: POST /webhook HTTP/1.1" 200 OK
+        </div>
+    </div>
+
+    <h3>8.7 Verificar respuesta en WhatsApp</h3>
+    <div class="card card-success">
+        <p><strong>Debes recibir el menú completo:</strong></p>
+        <div class="code-block">
+📋 *Nuestro menú:*<br>
+<br>
+*BEBIDAS*<br>
+• Agua: $3,000<br>
+• Café: $4,000<br>
+• Chocolate: $4,000<br>
+• Gaseosa: $4,000<br>
+• Jugo natural: $5,000<br>
+<br>
+*CARTA*<br>
+• Bandeja Paisa Completa: $28,000<br>
+• Berenjena a la parmesana: $18,000<br>
+• Chuleta Valluna: $20,000<br>
+• Mojarra Frita: $26,000<br>
+• Sancocho de Gallina: $22,000<br>
+<br>
+*DESAYUNOS*<br>
+• Calentado Valluno: $12,000<br>
+• Changua con Pan: $10,000<br>
+• Huevos Pericos: $11,000<br>
+• Tamales Vallunos: $14,000<br>
+<br>
+*ESPECIALES*<br>
+• Ajiaco: $17,000<br>
+• Arroz con Pollo: $16,000<br>
+• Bandeja Paisa: $22,000<br>
+• Frijolada: $25,000<br>
+• Lechona Tolimense: $19,000<br>
+• Mondongo: $20,000<br>
+• Sancocho de Gallina: $18,000<br>
+<br>
+*MENU_DIA*<br>
+• Menú del día - Carne: $15,000<br>
+• Menú del día - Cerdo: $15,000<br>
+• Menú del día - Pescado: $15,000<br>
+• Menú del día - Pollo: $15,000<br>
+• Menú del día - Vegetariano: $15,000<br>
+<br>
+¿Te gustaría pedir algo o necesitas más información? 😊
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ===== ERRORES COMUNES ===== -->
+    <h2>⚠️ Errores comunes y soluciones</h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Error</th>
+                    <th>Causa</th>
+                    <th>Solución</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Session has expired</code></td>
+                    <td>Token temporal expirado</td>
+                    <td>Generar token permanente siguiendo esta guía</td>
+                </tr>
+                <tr>
+                    <td><code>The access token could not be decrypted</code></td>
+                    <td>Token mal copiado o inválido</td>
+                    <td>Volver a generar y copiar <strong>completo</strong></td>
+                </tr>
+                <tr>
+                    <td><code>The access token could not be decrypted</code> + 190</td>
+                    <td>Falta permiso <code>whatsapp_business_messaging</code></td>
+                    <td>Seleccionar el permiso en el Paso 4.4</td>
+                </tr>
+                <tr>
+                    <td>El permiso <code>whatsapp_business_messaging</code> no aparece</td>
+                    <td>App sin caso de uso de WhatsApp</td>
+                    <td>Activar <strong>"Conectar en WhatsApp"</strong> en Meta Developers → Casos de uso</td>
+                </tr>
+                <tr>
+                    <td><code>curl: (7) Failed to connect</code></td>
+                    <td>Ollama o ngrok no están corriendo</td>
+                    <td>Iniciar servicios (Paso 8.1 y 8.2)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-- ===== RESUMEN FINAL ===== -->
+    <h2>✅ Resumen final</h2>
+
+    <div class="card card-success">
+        <p><strong>Elementos configurados correctamente:</strong></p>
+        <ul>
+            <li><span class="badge badge-success">✅</span> Usuario del sistema: <code>AdminDtecno</code></li>
+            <li><span class="badge badge-success">✅</span> App asignada: <code>agente_Restaurante</code> → Acceso total</li>
+            <li><span class="badge badge-success">✅</span> Token generado: válido y permanente</li>
+            <li><span class="badge badge-success">✅</span> Permisos seleccionados: <code>whatsapp_business_management</code>, <code>whatsapp_business_messaging</code>, <code>whatsapp_business_profile</code></li>
+            <li><span class="badge badge-success">✅</span> <code>WHATSAPP_TOKEN</code> actualizado en <code>.env</code></li>
+            <li><span class="badge badge-success">✅</span> Phone Number ID: <code>1141863539007752</code></li>
+            <li><span class="badge badge-success">✅</span> Servicios (Ollama, ngrok, FastAPI) corriendo</li>
+            <li><span class="badge badge-success">✅</span> Mensaje enviado y recibido correctamente desde WhatsApp</li>
+        </ul>
+        <p style="margin-top:16px;"><strong>🎉 ¡El sistema está listo para producción!</strong></p>
+    </div>
+
+    <hr>
+
+    <p style="text-align:center; color:#606770; font-size:0.9rem; margin-top:12px;">
+        📚 Guía elaborada con enfoque <strong>tutor</strong> — explicación clara, paso a paso.
+        <br>
+        Proyecto: <strong>agente_Restaurante — "El Sazón del Boulevard"</strong>
+    </p>
+
+</div>
+</body>
+</html>
