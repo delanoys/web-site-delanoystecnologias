@@ -1,0 +1,53 @@
+{
+  "restaurante": {
+    "nombre": "El Sazón del Boulevard",
+    "slogan": "Donde la tradición se encuentra con el sabor auténtico",
+    "ciudad": "Cali, Valle del Cauca",
+    "direccion": "Calle 25 # 8-70, Barrio Granada, Cali",
+    "telefono": "+57 300 123 4567",
+    "whatsapp": "+57 300 123 4567",
+    "email": "info@elsazondelboulevard.com",
+    "horario": {
+      "lunes": "7:00am - 9:00pm",
+      "martes": "7:00am - 9:00pm",
+      "miercoles": "7:00am - 9:00pm",
+      "jueves": "7:00am - 9:00pm",
+      "viernes": "7:00am - 9:00pm",
+      "sabado": "8:00am - 8:00pm",
+      "domingo": "Cerrado"
+    }
+  },
+  "especialidades": [
+    "Bandeja paisa auténtica",
+    "Frijolada del viernes con chicharrón y morcilla",
+    "Desayunos típicos colombianos",
+    "Menú ejecutivo de lunes a viernes",
+    "Sancocho de gallina",
+    "Ajiaco santafereño"
+  ],
+  "dias_especiales": {
+    "martes": "Menú ejecutivo: sopa, seco, jugo y postre",
+    "miercoles": "Menú especial de mitad de semana",
+    "viernes": "Frijolada tradicional con chicharrón, morcilla, arroz y aguacate"
+  },
+  "politicas": {
+    "domicilio_minimo": 20000,
+    "reservas": "Con mínimo 2 horas de anticipación",
+    "metodos_de_pago": [
+      "Efectivo",
+      "Transferencia",
+      "Nequi",
+      "Daviplata"
+    ],
+    "tiempo_domicilio": "30 a 45 minutos",
+    "tiempo_mesa": "15 a 20 minutos"
+  },
+  "sobre_nosotros": "Restaurante de comida tradicional colombiana ubicado en Cali. Más de 10 años llevando los sabores auténticos del Valle del Cauca a tu mesa. Nuestra cocina combina recetas tradicionales con ingredientes frescos y de alta calidad.",
+  "servicios": [
+    "Comida en el restaurante",
+    "Domicilios",
+    "Reservas",
+    "Eventos especiales",
+    "Menú ejecutivo"
+  ]
+}
