@@ -29,7 +29,104 @@
         content="Servicios de soporte técnico, desarrollo web y capacitación tecnológica profesional. Misión, Visión y Recursos Educativos de Delanoys Tecnologías.">
     
     <link rel="stylesheet" href="./estilos/estilosindex.css">
-    
+    <style>
+        #site-footer {
+            background: linear-gradient(180deg, #031627 0%, #06253c 100%);
+            color: #dff3ff;
+            padding: 44px 20px 24px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #site-footer .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(220px, 1fr));
+            gap: 24px;
+            max-width: 1180px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        #site-footer .footer-col {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 24px;
+            min-height: 180px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+        }
+
+        #site-footer h4 {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            letter-spacing: 0.03em;
+            color: #ffffff;
+        }
+
+        #site-footer p {
+            color: #d8efff;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        #site-footer .footer-links {
+            display: grid;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        #site-footer .footer-links a,
+        #site-footer .footer-col p {
+            color: #c8e9ff;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        #site-footer .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        #site-footer .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        #site-footer .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #dff3ff;
+        }
+
+        #site-footer .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            margin-top: 32px;
+            padding-top: 20px;
+            font-size: 0.94rem;
+            text-align: center;
+            color: #9ccde4;
+        }
+
+        @media (max-width: 900px) {
+            #site-footer .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            #site-footer .footer-col {
+                min-height: auto;
+            }
+
+            #site-footer .footer-bottom {
+                text-align: left;
+            }
+        }
+    </style>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -53,46 +150,41 @@
                 <span class="hamburger-line"></span>
             </button>
 
-            <div class="nav-buttons" id="nav-menu">
-                <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#servicios" class="nav-link">Servicios</a>
-                <a href="#devops-destacada" class="nav-link">Ruta DevOps</a>
-                <a href="#educacion" class="nav-link">Educación</a>
-                <a href="/programacion.html" class="nav-link">Programación</a>
-                <a href="/leyesinformaticas.html" class="nav-link">Leyes informáticas</a>
-                
-                <a href="/newagenda.html" class="nav-link">Agenda de Aprendizaje</a>
-                
+            <div class="nav-buttons" id="nav-menu" role="menu">
+                <a href="#inicio" class="nav-link" role="menuitem">Inicio</a>
+                <a href="#servicios" class="nav-link" role="menuitem">Servicios</a>
+                <a href="#devops-destacada" class="nav-link" role="menuitem">Ruta DevOps</a>
+                <a href="#educacion" class="nav-link" role="menuitem">Educación</a>
+                <a href="/programacion.html" class="nav-link" role="menuitem">Programación</a>
+                <a href="/leyesinformaticas.html" class="nav-link" role="menuitem">Leyes informáticas</a>
+                <a href="/newagenda.html" class="nav-link" role="menuitem">Agenda de Aprendizaje</a>
+
                 <div class="nav-dropdown">
                     <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="enlacesDropdown">
                         Enlaces <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="enlacesDropdown">
-                        <a href="PipelineIAProv4.html" target="_blank" class="dropdown-item">Pipeline IA Pro version 4</a>
-                        <a href="PipelineIAProv3.html" target="_blank" class="dropdown-item">Pipeline IA Pro version 3</a>
+                        <a href="PipelineIAProv4.html" target="_blank" class="dropdown-item">Pipeline IA Pro v4</a>
+                        <a href="PipelineIAProv3.html" target="_blank" class="dropdown-item">Pipeline IA Pro v3</a>
                         <a href="pipeline_ia_pro_delanoys.html" target="_blank" class="dropdown-item">Pipeline IA Pro</a>
-                        
-                        
-                        <a href="/proverbios.html" target="_blank" class="dropdown-item">Inteligencia Emocional </a>
+                        <a href="/rutaproyectoweb.html" target="_blank" class="dropdown-item">Proyecto Web Facturación</a>
+                        <a href="/basesdedatos.html" target="_blank" class="dropdown-item">Curso SQL</a>
+                        <a href="/rutadevops.html" target="_blank" class="dropdown-item">Roadmap DevOps</a>
                         <a href="/python.html" target="_blank" class="dropdown-item">Python</a>
                         <a href="/personalproyec.html" target="_blank" class="dropdown-item">Estudios 2025</a>
                         <a href="agenda.html" target="_blank" class="dropdown-item">Agenda</a>
                         <a href="plandeaprendizaje2.html" target="_blank" class="dropdown-item">Plan de Aprendizaje</a>
-                        <a href="#servicios" class="dropdown-item">Servicios</a>
-                        <a href="#educacion" class="dropdown-item">Educación</a>
-                        <a href="/tsconfigjon.html" class="dropdown-item">Configuración tsconfig.json</a>
-                        <a href="/sopa.html" class="dropdown-item">Sopa de letras - Valores</a>
-                        
-                        
-                        <a href="linuxServerVps.html" target="_blank" class="dropdown-item">Linux  Seguridad en Linux Server</a>
+                        <a href="/proverbios.html" target="_blank" class="dropdown-item">Inteligencia Emocional</a>
+                        <a href="linuxServerVps.html" target="_blank" class="dropdown-item">Linux y Seguridad</a>
                         <a href="bios.html" target="_blank" class="dropdown-item">BIOS</a>
-                        
-                        
-                       
-                         
+                        <a href="/tsconfigjon.html" target="_blank" class="dropdown-item">tsconfig.json</a>
+                        <a href="/sopa.html" target="_blank" class="dropdown-item">Sopa de letras - Valores</a>
+                        <a href="#servicios" class="dropdown-item">Ir a Servicios</a>
+                        <a href="#educacion" class="dropdown-item">Ir a Educación</a>
+                        <a href="#contacto" class="dropdown-item">Ir a Contacto</a>
                     </div>
                 </div>
-                <a href="#contacto" class="nav-link nav-cta">Contacto</a>
+                <a href="#contacto" class="nav-link nav-cta" role="menuitem">Contacto</a>
             </div>
         </div>
     </nav>
@@ -565,6 +657,15 @@
         <li><strong>Módulo 12: CI/CD</strong> — Integración y despliegue con GitHub Actions y automatización del ciclo de vida.</li>
         <li><strong>Módulo 13: DevOps y Docker</strong> — Contenedores con Docker, Docker Compose y prácticas DevOps básicas.</li>
 </ol>
+
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
 <footer id="site-footer" class="site-footer" role="contentinfo" aria-label="Información del pie de página">
     
 
@@ -581,24 +682,80 @@
 
         <div class="footer-col">
             <h4>Enlaces rápidos</h4>
-            <a href="#servicios">Servicios</a>
-            <a href="#educacion">Recursos</a>
-            <a href="/rutadevops.html" target="_blank">Ruta DevOps</a>
-            <a href="https://sites.google.com/view/delanoystecnologias/home?authuser=0" target="_blank">soportedelanoystecnologias.com.co</a>
-            <a href="ICC Central.html">Icc Central</a>
-            <a href="airesylavadoras.html">airesylavadoras</a>
+            <div class="footer-links">
+                <a href="#servicios">Servicios</a>
+                <a href="#educacion">Recursos</a>
+                <a href="/rutadevops.html" target="_blank">Ruta DevOps</a>
+                <a href="https://sites.google.com/view/delanoystecnologias/home?authuser=0" target="_blank">soportedelanoystecnologias.com.co</a>
+                <a href="ICC Central.html">Icc Central</a>
+                <a href="airesylavadoras.html">airesylavadoras</a>
+            </div>
         </div>
 
         <div class="footer-col">
             <h4>Contacto</h4>
-            <a href="mailto:contacto@delanoys.com">contacto@delanoys.com</a>
-            <a href="tel:+573001234567">+57 300 1234567</a>
+            <div class="footer-links">
+                <a href="mailto:contacto@delanoys.com">contacto@delanoys.com</a>
+                <a href="tel:+573001234567">+57 300 1234567</a>
+            </div>
             <p style="margin-top:8px;color:#dff3ff;font-size:0.9rem;">Horario: Lun-Vie 8:00 - 18:00</p>
         </div>
     </div>
 
     <div class="footer-bottom" role="note">
         © <span id="anio-actual"></span> Delanoys Tecnologías — Todos los derechos reservados.
+      <footer>
+    <figure class="verse-figure" id="verse-widget">
+        <figcaption class="verse-toolbar" role="toolbar">
+            <button id="verse-toggle" title="Mostrar / Ocultar">▾</button>
+            <button id="verse-copy" title="Copiar">Copiar</button>
+            <button id="verse-next" title="Siguiente">›</button>
+        </figcaption>
+        <blockquote class="verse" aria-live="polite">
+            <p id="verse-text">Trabajen de buena gana en todo lo que hagan, como si trabajaran para el Señor y no para la gente.</p>
+            <cite id="verse-ref">— Colosenses 3:23 (NTV)</cite>
+        </blockquote>
+    </figure>
+
+    <style>
+        .verse-figure{margin:1rem 0;padding:0.6rem;border-left:4px solid #6fd3ff;background:linear-gradient(180deg,rgba(13,60,80,0.03),transparent);border-radius:6px;color:#e9fbff}
+        .verse{margin:0;padding:0.4rem 0 0 0;font-style:italic}
+        .verse p{margin:0;font-size:1.5em;line-height:1.4}
+        .verse cite{display:block;margin-top:6px;font-size:0.85rem;opacity:0.9}
+        .verse-toolbar{display:flex;gap:6px;align-items:center;margin-bottom:6px}
+        .verse-toolbar button{background:transparent;border:1px solid rgba(203, 18, 18, 0.08);color:inherit;padding:4px 8px;border-radius:2%;cursor:pointer}
+        .verse-figure.collapsed .verse{display:none}
+        @media (prefers-color-scheme:light){.verse-figure{background:#f7fcff;color:#05424a;border-left-color:#38a9d1}.verse-toolbar button{border-color:#e1f6ff;color:#03434a}}
+    </style>
+
+    <script>
+        (function(){
+            const root = document.getElementById('verse-widget');
+            const btnToggle = document.getElementById('verse-toggle');
+            const btnCopy = document.getElementById('verse-copy');
+            const btnNext = document.getElementById('verse-next');
+            const textEl = document.getElementById('verse-text');
+            const refEl = document.getElementById('verse-ref');
+
+           
+            const verses = [
+                {t:'Trabajen de buena gana en todo lo que hagan, como si trabajaran para el Señor y no para la gente.', r:'Colosenses 3:23 (NTV)'},
+                {t:'Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.', r: 'Colosenses 3:23 (RVR1909)'},
+                {t:'La blanda respuesta quita la ira; mas la injuria hace subir el furor.', r: 'Proverbios 15:1 (RVR1909)'},
+                {t:'Encomienda a Jehová tus obras, y tus pensamientos serán afirmados.', r: 'Proverbios 16:3 (RVR1909)'},
+                {t:'Todo lo puedo en Cristo que me fortalece.', r:'Filipenses 4:13 (RVR1960)'}
+            ];
+            let idx = 0;
+
+            btnToggle.addEventListener('click', ()=>{root.classList.toggle('collapsed'); btnToggle.textContent = root.classList.contains('collapsed') ? '▸' : '▾';});
+            btnCopy.addEventListener('click', async ()=>{try{await navigator.clipboard.writeText(textEl.textContent + ' ' + refEl.textContent); btnCopy.textContent='Copiado'; setTimeout(()=>btnCopy.textContent='Copiar',1500);}catch(e){console.warn(e);}});
+            btnNext.addEventListener('click', ()=>{idx=(idx+1)%verses.length; textEl.textContent=verses[idx].t; refEl.textContent='— '+verses[idx].r});
+
+            // small entrance animation
+            root.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:450,easing:'ease-out'});
+        })();
+    </script>
+</footer>
     </div>
 
     <button id="ai-btn-open" aria-label="Abrir asistente de ayuda" title="Asistente"> 
