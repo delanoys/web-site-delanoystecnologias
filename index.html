@@ -107,7 +107,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.14);
             margin-top: 32px;
             padding-top: 20px;
-            font-size: 0.94rem;
+            font-size: 1.3rem;
             text-align: center;
             color: #9ccde4;
         }
@@ -687,8 +687,8 @@
                 <a href="#educacion">Recursos</a>
                 <a href="/rutadevops.html" target="_blank">Ruta DevOps</a>
                 <a href="https://sites.google.com/view/delanoystecnologias/home?authuser=0" target="_blank">soportedelanoystecnologias.com.co</a>
-                <a href="ICC Central.html">Icc Central</a>
-                <a href="airesylavadoras.html">airesylavadoras</a>
+                <a href="proverbios.html">inteligencia emocional</a>
+               <!--<a href="airesylavadoras.html">airesylavadoras</a> -->
             </div>
         </div>
 
@@ -718,10 +718,10 @@
     </figure>
 
     <style>
-        .verse-figure{margin:1rem 0;padding:0.6rem;border-left:4px solid #6fd3ff;background:linear-gradient(180deg,rgba(13,60,80,0.03),transparent);border-radius:6px;color:#e9fbff}
+        .verse-figure{margin:1rem 0;padding:0.6rem;border-left:4px solid #6fd3ff;background:linear-gradient(180deg,rgba(106, 190, 226, 0.03),transparent);border-radius:6px;color:#0db7de}
         .verse{margin:0;padding:0.4rem 0 0 0;font-style:italic}
-        .verse p{margin:0;font-size:1.5em;line-height:1.4}
-        .verse cite{display:block;margin-top:6px;font-size:0.85rem;opacity:0.9}
+        .verse p{margin:0;font-size:1.3em;line-height:1.4;font-family:Georgia, 'Times New Roman', Times, serif}
+        .verse cite{display:block;margin-top:6px;font-size:1.1rem;opacity:0.9}
         .verse-toolbar{display:flex;gap:6px;align-items:center;margin-bottom:6px}
         .verse-toolbar button{background:transparent;border:1px solid rgba(203, 18, 18, 0.08);color:inherit;padding:4px 8px;border-radius:2%;cursor:pointer}
         .verse-figure.collapsed .verse{display:none}
@@ -739,20 +739,56 @@
 
            
             const verses = [
-                {t:'Trabajen de buena gana en todo lo que hagan, como si trabajaran para el Señor y no para la gente.', r:'Colosenses 3:23 (NTV)'},
-                {t:'Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.', r: 'Colosenses 3:23 (RVR1909)'},
-                {t:'La blanda respuesta quita la ira; mas la injuria hace subir el furor.', r: 'Proverbios 15:1 (RVR1909)'},
-                {t:'Encomienda a Jehová tus obras, y tus pensamientos serán afirmados.', r: 'Proverbios 16:3 (RVR1909)'},
-                {t:'Todo lo puedo en Cristo que me fortalece.', r:'Filipenses 4:13 (RVR1960)'}
-            ];
+    // --- VERSÍCULOS ORIGINALES ---
+    {t:'Trabajen de buena gana en todo lo que hagan, como si trabajaran para el Señor y no para la gente.', r:'Colosenses 3:23 (NTV)'},
+    {t:'Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.', r:'Colosenses 3:23 (RVR1909)'},
+    {t:'La blanda respuesta quita la ira; mas la injuria hace subir el furor.', r:'Proverbios 15:1 (RVR1909)'},
+    {t:'Encomienda a Jehová tus obras, y tus pensamientos serán afirmados.', r:'Proverbios 16:3 (RVR1909)'},
+    {t:'Todo lo puedo en Cristo que me fortalece.', r:'Filipenses 4:13 (RVR1960)'},
+
+    // --- VIRTUDES Y ESTADOS POSITIVOS (desde proverbios.html) ---
+    {t:'Sus caminos son deleitosos, y todas sus veredas paz.', r:'Proverbios 3:17'},
+    {t:'El justo está confiado como un león.', r:'Proverbios 28:1'},
+    {t:'La luz de los ojos alegra el corazón.', r:'Proverbios 15:30'},
+    {t:'Riquezas, honra y vida son la remuneración de la humildad.', r:'Proverbios 22:4'},
+    {t:'¿Has visto hombre solicitado en su trabajo? Delante de los reyes estará.', r:'Proverbios 22:29'},
+    {t:'Porque mejor es la sabiduría que las piedras preciosas.', r:'Proverbios 8:11'},
+    {t:'El que tiene misericordia de los pobres es bienaventurado.', r:'Proverbios 14:21'},
+    {t:'Los que hacen verdad son su deleite.', r:'Proverbios 12:22'},
+    {t:'El avisado mira bien sus pasos.', r:'Proverbios 14:15'},
+    {t:'El que ama la instrucción ama la sabiduría.', r:'Proverbios 12:1'},
+
+    // --- GESTIÓN DE EMOCIONES DESAFIANTES (desde proverbios.html) ---
+    {t:'La congoja en el corazón del hombre lo abate.', r:'Proverbios 12:25'},
+    {t:'Antes del quebrantamiento es la soberbia.', r:'Proverbios 16:18'},
+    {t:'El que se apresura con los pies, peca.', r:'Proverbios 19:2'},
+    {t:'El temor del hombre pondrá lazo.', r:'Proverbios 29:25'},
+    {t:'El corazón alegre constituye buen remedio.', r:'Proverbios 17:22'},
+    {t:'Ve a la hormiga, oh perezoso.', r:'Proverbios 6:6'},
+    {t:'La envidia es carcoma de los huesos.', r:'Proverbios 14:30'},
+    {t:'El hombre que tiene amigos ha de mostrarse amigo.', r:'Proverbios 18:24'},
+    {t:'Examina la senda de tus pies.', r:'Proverbios 4:26'},
+    {t:'No digas: Yo me vengaré.', r:'Proverbios 20:22'},
+    {t:'El chismoso aparta a los mejores amigos.', r:'Proverbios 16:28'},
+    {t:'Mejor es lo poco con paz.', r:'Proverbios 15:16'},
+    {t:'Fíate de Jehová de todo tu corazón.', r:'Proverbios 3:5'},
+    {t:'Tu sueño será grato.', r:'Proverbios 3:24'},
+    {t:'El que confiesa y se aparta alcanzará misericordia.', r:'Proverbios 28:13'},
+    {t:'Jehová será tu confianza.', r:'Proverbios 3:26'},
+    {t:'Hacer justicia es mejor que sacrificio.', r:'Proverbios 21:3'},
+    {t:'Si fueres flojo en el día de trabajo, tu fuerza será reducida.', r:'Proverbios 24:10'},
+    {t:'El que camina en integridad camina confiado.', r:'Proverbios 10:9'}
+];
             let idx = 0;
 
             btnToggle.addEventListener('click', ()=>{root.classList.toggle('collapsed'); btnToggle.textContent = root.classList.contains('collapsed') ? '▸' : '▾';});
             btnCopy.addEventListener('click', async ()=>{try{await navigator.clipboard.writeText(textEl.textContent + ' ' + refEl.textContent); btnCopy.textContent='Copiado'; setTimeout(()=>btnCopy.textContent='Copiar',1500);}catch(e){console.warn(e);}});
             btnNext.addEventListener('click', ()=>{idx=(idx+1)%verses.length; textEl.textContent=verses[idx].t; refEl.textContent='— '+verses[idx].r});
 
+            setInterval(()=>{idx=(idx+1)%verses.length; textEl.textContent=verses[idx].t; refEl.textContent='— '+verses[idx].r;}, 30000);
+
             // small entrance animation
-            root.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:450,easing:'ease-out'});
+            root.animate([{opacity:-1,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:5,easing:'ease-out'});
         })();
     </script>
 </footer>
