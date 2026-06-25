@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PIPELINE IA PRO V5 - Delanoys Tecnologías</title>
+
+<style>
+:root{
+    --primary:#2563eb;
+    --secondary:#0f172a;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --light:#f8fafc;
+    --border:#e2e8f0;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+    background:#f1f5f9;
+    color:#1e293b;
+    line-height:1.6;
+}
+
+header{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    color:white;
+    padding:50px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:3rem;
+}
+
+header p{
+    margin-top:10px;
+    font-size:1.2rem;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:30px;
+}
+
+.section{
+    background:white;
+    margin-bottom:25px;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.section h2{
+    color:var(--primary);
+    margin-bottom:15px;
+}
+
+.phase{
+    border-left:6px solid var(--primary);
+    margin-bottom:20px;
+    padding:20px;
+    background:#f8fafc;
+    border-radius:8px;
+}
+
+.phase h3{
+    color:#1e3a8a;
+}
+
+.badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:20px;
+    color:white;
+    font-size:.85rem;
+    margin-left:10px;
+}
+
+.gpt{
+    background:#2563eb;
+}
+
+.deep{
+    background:#16a34a;
+}
+
+.claude{
+    background:#9333ea;
+}
+
+.qwen{
+    background:#ea580c;
+}
+
+.team{
+    background:#475569;
+}
+
+ul{
+    margin-left:20px;
+    margin-top:10px;
+}
+
+.timeline{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:15px;
+}
+
+.card h4{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.checklist{
+    background:#f8fafc;
+    border:1px solid #cbd5e1;
+    padding:15px;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+.checklist li{
+    margin-bottom:6px;
+}
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
+}
+
+.code{
+    background:#0f172a;
+    color:#e2e8f0;
+    padding:15px;
+    border-radius:8px;
+    overflow:auto;
+    margin-top:10px;
+}
+
+.highlight{
+    background:#dbeafe;
+    padding:15px;
+    border-left:5px solid #2563eb;
+    border-radius:6px;
+}
+
+@media(max-width:768px){
+    nav.site-nav .nav-container{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    nav.site-nav .menu{
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    header h1{
+        font-size:2rem;
+    }
+}
+
+nav.site-nav{
+    background:white;
+    border-bottom:1px solid rgba(15,23,42,.1);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+nav.site-nav .nav-container{
+    max-width:1400px;
+    margin:auto;
+    padding:12px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+nav.site-nav .logo{
+    font-weight:700;
+    color:var(--primary);
+}
+
+nav.site-nav .menu{
+    list-style:none;
+    display:flex;
+    gap:20px;
+}
+
+nav.site-nav .menu li a{
+    color:#1e293b;
+    text-decoration:none;
+    font-weight:600;
+    transition:color .2s;
+}
+
+nav.site-nav .menu li a:hover{
+    color:var(--primary);
+}
+</style>
+</head>
+
+<body>
+<nav class="site-nav">
+    <div class="nav-container">
+        <div class="logo">Delanoys Tecnologías</div>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#objetivo">Objetivo</a></li>
+            <li><a href="#principio">Principio</a></li>
+            <li><a href="#flujo">Flujo</a></li>
+            <li><a href="#fases">Fases</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header>
+    <h1>PIPELINE IA PRO V5</h1>
+    <p>Metodología de Ingeniería de Software + Inteligencia Artificial</p>
+    <p>Delanoys Tecnologías</p>
+</header>
+
+<div class="container">
+
+<div class="section" id="objetivo">
+<h2>Objetivo</h2>
+
+<div class="highlight">
+Establecer un proceso ordenado y repetible para convertir una idea
+en una aplicación funcional utilizando Ingeniería de Software,
+Arquitectura, Desarrollo Asistido por IA, Pruebas y Despliegue.
+</div>
+
+</div>
+
+<div class="section" id="principio">
+<h2>Principio Fundamental</h2>
+
+<p><strong>Ninguna fase puede avanzar si la anterior no está aprobada y documentada.</strong></p>
+
+</div>
+
+<div class="section">
+<h2>Flujo General del Proyecto</h2>
+
+<div class="code">
+Idea
+↓
+Análisis
+↓
+Requisitos
+↓
+Diagramas
+↓
+Arquitectura
+↓
+Implementación
+↓
+Validación
+↓
+Pruebas
+↓
+Despliegue
+↓
+Optimización
+↓
+Mantenimiento
+</div>
+
+</div>
+
+<div class="section">
+<h2>Fases del Pipeline IA PRO V5</h2>
+
+<div class="phase">
+<h3>FASE 0 - Análisis del Proyecto
+<span class="badge gpt">GPT</span>
+</h3>
+
+<p>Definir claramente el problema y los objetivos.</p>
+
+<ul>
+<li>Objetivo del proyecto</li>
+<li>Problema a resolver</li>
+<li>Usuarios objetivo</li>
+<li>Alcance</li>
+<li>Tecnologías preliminares</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 1 - Levantamiento de Requisitos
+<span class="badge gpt">GPT</span>
+</h3>
+
+<ul>
+<li>Requisitos funcionales</li>
+<li>Requisitos no funcionales</li>
+<li>Restricciones</li>
+<li>Criterios de aceptación</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 2 - Diagramas y Diseño
+<span class="badge gpt">GPT</span>
+</h3>
+
+<ul>
+<li>Diagrama de flujo</li>
+<li>Casos de uso</li>
+<li>Mapa de procesos</li>
+<li>Modelo de navegación</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 3 - Arquitectura Técnica
+<span class="badge gpt">GPT</span>
+</h3>
+
+<ul>
+<li>Estructura de carpetas</li>
+<li>Arquitectura Backend</li>
+<li>Arquitectura Frontend</li>
+<li>Base de Datos</li>
+<li>Integraciones</li>
+<li>Seguridad</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 4 - Implementación
+<span class="badge deep">DeepSeek</span>
+</h3>
+
+<ul>
+<li>Programación modular</li>
+<li>Desarrollo de APIs</li>
+<li>Servicios</li>
+<li>Controladores</li>
+<li>Base de datos</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 5 - Validación Técnica
+<span class="badge claude">Claude</span>
+</h3>
+
+<ul>
+<li>Revisión de código</li>
+<li>Buenas prácticas</li>
+<li>Seguridad</li>
+<li>Escalabilidad</li>
+<li>Consistencia arquitectónica</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 6 - Pruebas Integrales
+<span class="badge claude">Claude</span>
+</h3>
+
+<ul>
+<li>Pruebas funcionales</li>
+<li>Pruebas de integración</li>
+<li>Pruebas de usuario</li>
+<li>Corrección de errores</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 7 - Despliegue
+<span class="badge gpt">GPT</span>
+<span class="badge claude">Claude</span>
+</h3>
+
+<ul>
+<li>Docker</li>
+<li>VPS</li>
+<li>Nginx</li>
+<li>SSL</li>
+<li>Backups</li>
+<li>Monitoreo</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 8 - Optimización Continua
+<span class="badge qwen">Qwen</span>
+<span class="badge claude">Claude</span>
+</h3>
+
+<ul>
+<li>Optimización de rendimiento</li>
+<li>Consumo de recursos</li>
+<li>Logs</li>
+<li>Escalabilidad</li>
+</ul>
+
+</div>
+
+<div class="phase">
+<h3>FASE 9 - Mantenimiento Evolutivo
+<span class="badge team">Equipo</span>
+</h3>
+
+<ul>
+<li>Nuevas funcionalidades</li>
+<li>Actualizaciones</li>
+<li>Refactorización</li>
+<li>Soporte</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Documentación Obligatoria</h2>
+
+<div class="timeline">
+
+<div class="card">
+<h4>01_vision.md</h4>
+<p>Visión y objetivos.</p>
+</div>
+
+<div class="card">
+<h4>02_requisitos.md</h4>
+<p>Requisitos funcionales y no funcionales.</p>
+</div>
+
+<div class="card">
+<h4>03_casos_uso.md</h4>
+<p>Historias de usuario.</p>
+</div>
+
+<div class="card">
+<h4>04_flujos.md</h4>
+<p>Diagramas de flujo.</p>
+</div>
+
+<div class="card">
+<h4>05_arquitectura.md</h4>
+<p>Diseño técnico.</p>
+</div>
+
+<div class="card">
+<h4>06_base_datos.md</h4>
+<p>Modelo de datos.</p>
+</div>
+
+<div class="card">
+<h4>07_api.md</h4>
+<p>Endpoints y contratos.</p>
+</div>
+
+<div class="card">
+<h4>08_pruebas.md</h4>
+<p>Casos de prueba.</p>
+</div>
+
+<div class="card">
+<h4>09_despliegue.md</h4>
+<p>Infraestructura.</p>
+</div>
+
+<div class="card">
+<h4>10_mantenimiento.md</h4>
+<p>Cambios y mejoras.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Checklist de Aprobación</h2>
+
+<div class="checklist">
+<ul>
+<li>☐ Objetivo definido</li>
+<li>☐ Requisitos aprobados</li>
+<li>☐ Diagramas completos</li>
+<li>☐ Arquitectura aprobada</li>
+<li>☐ Desarrollo completado</li>
+<li>☐ Validación técnica realizada</li>
+<li>☐ Pruebas exitosas</li>
+<li>☐ Despliegue realizado</li>
+<li>☐ Documentación actualizada</li>
+<li>☐ Proyecto entregado</li>
+</ul>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Estructura Recomendada de Proyecto</h2>
+
+<div class="code">
+proyecto/
+
+├── docs/
+├── backend/
+│   ├── routes/
+│   ├── services/
+│   ├── models/
+│   ├── database/
+│   └── tests/
+│
+├── frontend/
+│   ├── css/
+│   ├── js/
+│   └── assets/
+│
+├── docker/
+├── .env
+├── docker-compose.yml
+├── README.md
+└── app.py
+</div>
+
+</div>
+
+<div class="footer">
+    <h3>PIPELINE IA PRO V5</h3>
+    <p>Ingeniería de Software + Inteligencia Artificial</p>
+    <p>Delanoys Tecnologías © 2026</p>
+</div>
+
+</div>
+
+</body>
+</html>
