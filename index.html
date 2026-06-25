@@ -737,8 +737,49 @@
             const textEl = document.getElementById('verse-text');
             const refEl = document.getElementById('verse-ref');
 
-           
-            const verses = [
+           const verses = [
+    // --- VERSÍCULOS ORIGINALES ---
+    {t:'💪 Hagan lo que hagan, trabajen de todo corazón, como si trabajaran para el Señor y no para la gente.', r:'Colosenses 3:23 (TLA)'},
+    {t:'🙏 Y todo lo que hagan, háganlo de corazón, como para el Señor y no para los hombres.', r:'Colosenses 3:23 (TLA)'},
+    {t:'🕊️ La respuesta amable calma el enojo; pero la palabra ofensiva hace crecer la furia.', r:'Proverbios 15:1 (TLA)'},
+    {t:'📝 Pon tus obras en las manos del Señor, y él hará que tus planes se cumplan.', r:'Proverbios 16:3 (TLA)'},
+    {t:'💪 Todo lo puedo en Cristo que me fortalece.', r:'Filipenses 4:13 (TLA)'},
+
+    // --- VIRTUDES Y ESTADOS POSITIVOS (desde proverbios.html) ---
+    {t:'☮️ Los caminos de la sabiduría son deleitosos, y todas sus veredas son de paz.', r:'Proverbios 3:17 (TLA)'},
+    {t:'🦁 El justo es valiente como un león.', r:'Proverbios 28:1 (TLA)'},
+    {t:'✨ La luz de los ojos alegra el corazón; las buenas noticias dan nueva vida.', r:'Proverbios 15:30 (TLA)'},
+    {t:'🙇 La humildad trae riqueza, honra y vida.', r:'Proverbios 22:4 (TLA)'},
+    {t:'👑 ¿Has visto a alguien hábil en su trabajo? Llegará a estar ante los reyes.', r:'Proverbios 22:29 (TLA)'},
+    {t:'📚 La sabiduría vale más que las piedras preciosas.', r:'Proverbios 8:11 (TLA)'},
+    {t:'❤️ El que tiene compasión de los pobres es feliz.', r:'Proverbios 14:21 (TLA)'},
+    {t:'✅ Al Señor le agradan los que dicen la verdad.', r:'Proverbios 12:22 (TLA)'},
+    {t:'👣 El prudente piensa bien cada paso que da.', r:'Proverbios 14:15 (TLA)'},
+    {t:'🎓 El que ama aprender, ama la sabiduría.', r:'Proverbios 12:1 (TLA)'},
+
+    // --- GESTIÓN DE EMOCIONES DESAFIANTES (desde proverbios.html) ---
+    {t:'💔 La tristeza abate el corazón.', r:'Proverbios 12:25 (TLA)'},
+    {t:'⚠️ El orgullo precede a la destrucción; la arrogancia, a la caída.', r:'Proverbios 16:18 (TLA)'},
+    {t:'🏃 El que se apresura sin pensar, se equivoca.', r:'Proverbios 19:2 (TLA)'},
+    {t:'😰 El miedo a los hombres pone trampas.', r:'Proverbios 29:25 (TLA)'},
+    {t:'😄 El corazón alegre es buena medicina.', r:'Proverbios 17:22 (TLA)'},
+    {t:'🐜 Perezoso, ve a la hormiga; mira lo que hace y sé sabio.', r:'Proverbios 6:6 (TLA)'},
+    {t:'😒 La envidia pudre los huesos.', r:'Proverbios 14:30 (TLA)'},
+    {t:'👥 El que tiene amigos debe mostrarse amigo.', r:'Proverbios 18:24 (TLA)'},
+    {t:'🔍 Examina bien el camino que vas a seguir.', r:'Proverbios 4:26 (TLA)'},
+    {t:'🚫 No digas: "Yo me vengaré".', r:'Proverbios 20:22 (TLA)'},
+    {t:'🗣️ El chismoso separa a los mejores amigos.', r:'Proverbios 16:28 (TLA)'},
+    {t:'☮️ Mejor es poco con paz, que mucho con congoja.', r:'Proverbios 15:16 (TLA)'},
+    {t:'🙏 Confía en el Señor de todo corazón.', r:'Proverbios 3:5 (TLA)'},
+    {t:'😴 Cuando te acuestes, no tendrás temor; dormirás tranquilo.', r:'Proverbios 3:24 (TLA)'},
+    {t:'🙏 El que confiesa sus pecados y los deja, alcanzará misericordia.', r:'Proverbios 28:13 (TLA)'},
+    {t:'💪 El Señor será tu confianza.', r:'Proverbios 3:26 (TLA)'},
+    {t:'⚖️ Hacer justicia es mejor que ofrecer sacrificios.', r:'Proverbios 21:3 (TLA)'},
+    {t:'😴 Si te da flojera trabajar, te quedará poca fuerza.', r:'Proverbios 24:10 (TLA)'},
+    {t:'🛡️ El que camina en integridad camina confiado.', r:'Proverbios 10:9 (TLA)'}
+];
+            // --- VERSÍCULOS ORIGINALES (sin emojis) ---
+        const verses1 = [
     // --- VERSÍCULOS ORIGINALES ---
     {t:'Trabajen de buena gana en todo lo que hagan, como si trabajaran para el Señor y no para la gente.', r:'Colosenses 3:23 (NTV)'},
     {t:'Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.', r:'Colosenses 3:23 (RVR1909)'},
@@ -829,6 +870,7 @@
         document.getElementById('anio-actual').textContent = new Date().getFullYear();
     </script>
     <script src="./JavaScrpt/AsistenteIA.js"></script>
+    
 </footer>
 </body>
 </html>
