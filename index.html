@@ -112,6 +112,76 @@
             color: #9ccde4;
         }
 
+        .hero-section {
+            padding: 40px 0;
+            background: #061427;
+        }
+
+        .banner-content {
+            display: grid;
+            grid-template-columns: minmax(320px, 1.4fr) minmax(320px, 1fr);
+            gap: 36px;
+            align-items: center;
+            justify-content: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .banner-slider {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .banner-video {
+            width: 100%;
+            max-width: 660px;
+            height: auto;
+            border-radius: 28px;
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+            object-fit: cover;
+        }
+
+        .hero-text {
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .hero-title {
+            margin: 0;
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            line-height: 1.02;
+        }
+
+        .section-subtitle {
+            margin: 0;
+            color: #dfe7f3;
+            font-size: clamp(1rem, 2.1vw, 1.5rem);
+            max-width: 42rem;
+        }
+
+        .intro-paragraph {
+            margin: 0;
+            max-width: 42rem;
+            color: #e8eef9;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .hero-actions .cta-button {
+            min-width: 180px;
+        }
+
         @media (max-width: 900px) {
             #site-footer .footer-container {
                 grid-template-columns: 1fr;
@@ -188,11 +258,15 @@
             </div>
         </div>
     </nav>
+ 
+  
+
 
     <main class="main-content" role="main">
-        
+         
        <section class="hero-section" id="inicio">
     <div class="banner-content">
+      
         <div class="banner-slider">
             <video class="banner-video"
                 src="video/DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).mp4" autoplay loop
@@ -219,6 +293,21 @@
                  <a href="#contacto" class="cta-button secondary-cta-hero">Contáctenos Ahora</a>
             </div>
         </div>
+        <section>
+              
+              <figure class="verse-figure" id="verse-widget">
+              <figcaption class="verse-toolbar" role="toolbar">
+                  <button id="verse-toggle" title="Mostrar / Ocultar">▾</button>
+                  <button id="verse-copy" title="Copiar">Copiar</button>
+                  <button id="verse-next" title="Siguiente">›</button>
+              </figcaption>
+              <blockquote class="verse" aria-live="polite">
+                  <p id="verse-text">Trabajen de buena gana en todo lo que hagan, como si trabajaran para el Señor y no para la gente.</p>
+                  <cite id="verse-ref">— Colosenses 3:23 (NTV)</cite>
+              </blockquote>
+          </figure>
+            
+          </section>  
     </div>
 </section>
 
