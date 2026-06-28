@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PIPELINE IA PRO V5 - Delanoys Tecnologías</title>
+<title>PIPELINE IA PRO - Delanoys Tecnologías</title>
 
 <style>
 :root{
@@ -162,6 +162,244 @@ ul{
     border-radius:6px;
 }
 
+.phase-section{
+    background:#ffffff;
+    border:1px solid rgba(15,23,42,.08);
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 22px 45px rgba(15,23,42,.06);
+    margin-top:20px;
+}
+
+.phase-header{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:18px;
+    background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(59,130,246,.08));
+    border:1px solid rgba(37,99,235,.18);
+    border-radius:18px;
+    padding:24px;
+    margin-bottom:24px;
+}
+
+.phase-header h2{
+    margin:0;
+    font-size:2rem;
+    color:#1e40af;
+}
+
+.phase-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:98px;
+    padding:12px 20px;
+    border-radius:999px;
+    background:rgba(59,130,246,.15);
+    color:#1d4ed8;
+    font-weight:700;
+    letter-spacing:.04em;
+}
+
+.phase-subtitle{
+    flex:1 1 100%;
+    color:#475569;
+    font-size:1rem;
+    margin:0;
+    max-width:760px;
+    line-height:1.75;
+}
+
+.content-card{
+    background:#ffffff;
+    border:1px solid rgba(148,163,184,.16);
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:22px;
+    box-shadow:0 8px 24px rgba(15,23,42,.04);
+}
+
+.content-card h3{
+    font-size:1.35rem;
+    margin-bottom:14px;
+    color:#1e293b;
+}
+
+.content-card p{
+    color:#475569;
+    line-height:1.75;
+    margin-bottom:12px;
+}
+
+.comparison-grid,
+.feature-grid,
+.module-grid,
+.checklist-grid,
+.benefits-grid{
+    display:grid;
+    gap:18px;
+}
+
+.comparison-grid,
+.feature-grid,
+.module-grid{
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+}
+
+.checklist-grid{
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+
+.benefits-grid{
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+}
+
+.comparison-item,
+.feature-card,
+.module-card,
+.benefit-item{
+    background:#f8fafc;
+    border:1px solid rgba(148,163,184,.16);
+    border-radius:16px;
+    padding:18px;
+}
+
+.comparison-item h4,
+.feature-card strong,
+.module-card strong{
+    margin-bottom:12px;
+    display:block;
+    color:#1e3a8a;
+}
+
+.comparison-item.bad{
+    background:rgba(248,113,113,.08);
+    border-color:rgba(248,113,113,.18);
+}
+
+.comparison-item.good{
+    background:rgba(34,197,94,.08);
+    border-color:rgba(34,197,94,.18);
+}
+
+.comparison-item ul,
+.module-card ul{
+    margin:0;
+    padding-left:18px;
+    color:#334155;
+}
+
+.feature-card p{
+    margin:0;
+    color:#475569;
+}
+
+.flow-diagram,
+.framework-diagram{
+    background:#f1f5f9;
+    border:1px solid rgba(148,163,184,.22);
+    border-radius:16px;
+    padding:18px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+    color:#0f172a;
+    overflow:auto;
+    line-height:1.65;
+    white-space:pre-wrap;
+}
+
+.checklist{
+    list-style:none;
+    background:#f8fafc;
+    border:1px solid rgba(148,163,184,.18);
+    padding:18px;
+    border-radius:16px;
+    margin:0;
+}
+
+.checklist li{
+    position:relative;
+    padding-left:24px;
+    margin-bottom:10px;
+    color:#334155;
+}
+
+.checklist li::before{
+    content:'•';
+    position:absolute;
+    left:0;
+    color:var(--primary);
+}
+
+.comparison-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0 10px;
+    margin-top:10px;
+}
+
+.comparison-table th,
+.comparison-table td{
+    padding:14px 16px;
+    text-align:left;
+}
+
+.comparison-table thead th{
+    color:#0f172a;
+    font-weight:700;
+    border-bottom:2px solid rgba(15,23,42,.1);
+}
+
+.comparison-table tbody tr{
+    background:#ffffff;
+    border:1px solid rgba(148,163,184,.14);
+    border-radius:12px;
+}
+
+.comparison-table tbody tr td:first-child{
+    width:180px;
+    font-weight:700;
+}
+
+.module-card ul{
+    list-style:none;
+    padding-left:0;
+}
+
+.module-card ul li{
+    margin-bottom:10px;
+    color:#334155;
+}
+
+.benefit-item{
+    padding:18px;
+    border-radius:16px;
+    background:#eff6ff;
+    border:1px solid rgba(37,99,235,.14);
+    color:#1d4ed8;
+    font-weight:600;
+    min-height:80px;
+    display:flex;
+    align-items:center;
+}
+
+.highlight-card{
+    background:linear-gradient(135deg,#eff6ff,#ffffff);
+    border:1px solid rgba(37,99,235,.18);
+    box-shadow:0 12px 28px rgba(37,99,235,.08);
+}
+
+.highlight-card blockquote{
+    margin:0;
+    padding:0;
+    color:#1e293b;
+}
+
+.highlight-card h3{
+    margin:0;
+}
+
 @media(max-width:768px){
     nav.site-nav .nav-container{
         flex-direction:column;
@@ -235,7 +473,7 @@ nav.site-nav .menu li a:hover{
 </nav>
 
 <header>
-    <h1>PIPELINE IA PRO V5</h1>
+    <h1>PIPELINE IA PRO</h1>
     <p>Metodología de Ingeniería de Software + Inteligencia Artificial</p>
     <p>Delanoys Tecnologías</p>
 </header>
@@ -259,12 +497,465 @@ Arquitectura, Desarrollo Asistido por IA, Pruebas y Despliegue.
 <p><strong>Ninguna fase puede avanzar si la anterior no está aprobada y documentada.</strong></p>
 
 </div>
+<div class="section">
+<p>El Pipeline IA PRO V6 incorpora la FASE 0 - Ingeniería de Reutilización y Framework Base, estableciendo una metodología donde cada proyecto comienza con el análisis de los activos tecnológicos existentes antes de desarrollar nuevas funcionalidades. Mediante la colaboración entre Inteligencia Artificial y los principios de Ingeniería de Software, se promueve la construcción de Frameworks reutilizables, la estandarización de la arquitectura y la documentación rigurosa de cada fase, permitiendo desarrollar soluciones más rápidas, escalables, mantenibles y orientadas a la evolución continua del conocimiento tecnológico.
+    <!-- ========================================================= -->
+<!-- PIPELINE IA PRO V6 - NUEVA SECCIÓN -->
+<!-- FASE 0 - INGENIERÍA DE REUTILIZACIÓN Y FRAMEWORK BASE -->
+<!-- ========================================================= -->
+</p> 
+<section id="fase0-framework" class="phase-section">
+
+    <div class="phase-header">
+        <span class="phase-number">FASE 0</span>
+        <h2>Ingeniería de Reutilización y Framework Base</h2>
+        <p class="phase-subtitle">
+            Antes de desarrollar una nueva aplicación, analizar si existe un activo de software reutilizable
+            que pueda evolucionar hacia un Framework Base.
+        </p>
+    </div>
+
+    <!-- Objetivo -->
+
+    <div class="content-card">
+        <h3>🎯 Objetivo</h3>
+
+        <p>
+            La Fase 0 incorpora un nuevo principio dentro de Pipeline IA PRO:
+            <strong>desarrollar plataformas reutilizables en lugar de aplicaciones aisladas.</strong>
+        </p>
+
+        <p>
+            Todo proyecto exitoso debe analizarse para determinar si puede convertirse
+            en un Framework reutilizable para futuros desarrollos.
+        </p>
+    </div>
+
+    <!-- Filosofía -->
+
+    <div class="content-card">
+        <h3>💡 Filosofía</h3>
+
+        <div class="comparison-grid">
+
+            <div class="comparison-item bad">
+                <h4>❌ Antes</h4>
+
+                <ul>
+                    <li>Crear una aplicación desde cero.</li>
+                    <li>Duplicar código.</li>
+                    <li>Resolver nuevamente problemas ya solucionados.</li>
+                    <li>Mantener múltiples versiones del mismo sistema.</li>
+                </ul>
+
+            </div>
+
+            <div class="comparison-item good">
+
+                <h4>✅ Ahora</h4>
+
+                <ul>
+                    <li>Crear un Framework Base.</li>
+                    <li>Reutilizar módulos existentes.</li>
+                    <li>Especializar únicamente la lógica del negocio.</li>
+                    <li>Construir activos tecnológicos permanentes.</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Flujo -->
+
+    <div class="content-card">
+
+        <h3>🔄 Nuevo Flujo del Pipeline</h3>
+
+<pre class="flow-diagram">
+Idea del Proyecto
+        │
+        ▼
+Análisis del Negocio
+        │
+        ▼
+FASE 0
+Ingeniería de Reutilización
+        │
+        ▼
+Framework Base
+        │
+        ▼
+Personalización
+        │
+        ▼
+Proyecto Final
+</pre>
+
+    </div>
+
+    <!-- Principios -->
+
+    <div class="content-card">
+
+        <h3>🏗 Principios de Ingeniería</h3>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <h4>Activo Tecnológico</h4>
+                <p>Cada proyecto desarrollado representa un activo reutilizable.</p>
+            </div>
+
+            <div class="feature-card">
+                <h4>Framework Base</h4>
+                <p>Los activos deben evolucionar hacia plataformas reutilizables.</p>
+            </div>
+
+            <div class="feature-card">
+                <h4>Especialización</h4>
+                <p>Solo se desarrolla la lógica específica de cada cliente.</p>
+            </div>
+
+            <div class="feature-card">
+                <h4>Arquitectura Unificada</h4>
+                <p>Todos los proyectos comparten la misma base tecnológica.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Checklist -->
+
+    <div class="content-card">
+
+        <h3>📋 Checklist de Ingeniería de Reutilización</h3>
+
+        <div class="checklist-grid">
+
+            <div>
+
+                <h4>Arquitectura</h4>
+
+                <ul class="checklist">
+                    <li>☐ Existe un proyecto similar.</li>
+                    <li>☐ Arquitectura reutilizable.</li>
+                    <li>☐ Base de datos reutilizable.</li>
+                    <li>☐ Dashboard reutilizable.</li>
+                    <li>☐ Sistema de reportes reutilizable.</li>
+                    <li>☐ Sistema de movimientos reutilizable.</li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Backend</h4>
+
+                <ul class="checklist">
+                    <li>☐ Flask.</li>
+                    <li>☐ SQLAlchemy.</li>
+                    <li>☐ Autenticación.</li>
+                    <li>☐ Roles.</li>
+                    <li>☐ Validaciones.</li>
+                    <li>☐ API.</li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Frontend</h4>
+
+                <ul class="checklist">
+                    <li>☐ Bootstrap.</li>
+                    <li>☐ Componentes.</li>
+                    <li>☐ Formularios.</li>
+                    <li>☐ Tablas.</li>
+                    <li>☐ Dashboard.</li>
+                    <li>☐ Reportes.</li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Infraestructura</h4>
+
+                <ul class="checklist">
+                    <li>☐ PostgreSQL.</li>
+                    <li>☐ Gunicorn.</li>
+                    <li>☐ Nginx.</li>
+                    <li>☐ SSL.</li>
+                    <li>☐ VPS.</li>
+                    <li>☐ CI/CD.</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Matriz -->
+
+    <div class="content-card">
+
+        <h3>📊 Matriz de Reutilización</h3>
+
+        <table class="comparison-table">
+
+            <thead>
+
+                <tr>
+                    <th>Estado</th>
+                    <th>Descripción</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>🟢 Reutilizar</td>
+                    <td>Se utiliza sin modificaciones.</td>
+                </tr>
+
+                <tr>
+                    <td>🟡 Generalizar</td>
+                    <td>Se adapta para múltiples proyectos.</td>
+                </tr>
+
+                <tr>
+                    <td>🔵 Extender</td>
+                    <td>Se agregan nuevas funcionalidades.</td>
+                </tr>
+
+                <tr>
+                    <td>🟠 Reemplazar</td>
+                    <td>Debe rediseñarse por completo.</td>
+                </tr>
+
+                <tr>
+                    <td>🔴 Eliminar</td>
+                    <td>No aplica al nuevo proyecto.</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Framework Inventario -->
+
+    <div class="content-card">
+
+        <h3>🏛 Framework Inventario DT</h3>
+
+<pre class="framework-diagram">
+Sistema Inventario Restaurante
+                │
+                ▼
+       Framework Inventario DT
+                │
+ ┌──────────────┼──────────────┐
+ ▼              ▼              ▼
+Restaurante  Ferretería   Papelería
+ ▼              ▼              ▼
+Boutique     Supermercado  Miscelánea
+                ▼
+      Variedades Mis Nietos
+</pre>
+
+        <p>
+            El Framework Inventario DT se convierte en el núcleo común para todos
+            los sistemas de inventario desarrollados por Delanoys Tecnologías.
+        </p>
+
+    </div>
+
+    <!-- Componentes -->
+
+    <div class="content-card">
+
+        <h3>🧩 Componentes del Framework</h3>
+
+        <div class="module-grid">
+
+            <div class="module-card">
+                <strong>Framework Base</strong>
+
+                <ul>
+                    <li>Usuarios</li>
+                    <li>Autenticación</li>
+                    <li>Roles</li>
+                    <li>Dashboard</li>
+                    <li>CRUD Genérico</li>
+                    <li>Motor de Inventario</li>
+                    <li>Motor de Movimientos</li>
+                    <li>Reportes</li>
+                    <li>Alertas</li>
+                    <li>Configuración</li>
+                    <li>API Base</li>
+                    <li>Infraestructura</li>
+                </ul>
+
+            </div>
+
+            <div class="module-card">
+
+                <strong>Módulos Especializados</strong>
+
+                <ul>
+                    <li>Restaurante</li>
+                    <li>Costura</li>
+                    <li>Telas</li>
+                    <li>Calzado</li>
+                    <li>Variantes</li>
+                    <li>Tallas</li>
+                    <li>Colores</li>
+                    <li>Lotes</li>
+                    <li>Kits</li>
+                    <li>Producción</li>
+                    <li>Servicios</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Regla -->
+
+    <div class="content-card highlight-card">
+
+        <h3>⭐ Regla de Oro</h3>
+
+        <blockquote>
+
+            <p>
+
+                <strong>
+                    Antes de escribir una sola línea de código, el equipo debe responder:
+                </strong>
+
+            </p>
+
+            <h3 style="margin-top:25px;">
+                ¿Existe un Framework que resuelva este problema?
+            </h3>
+
+            <p>
+
+                Si la respuesta es <strong>SÍ</strong>, el desarrollo inicia desde el Framework.
+
+            </p>
+
+            <p>
+
+                Si la respuesta es <strong>NO</strong>, el nuevo proyecto deberá diseñarse
+                pensando en convertirse en un Framework reutilizable para proyectos futuros.
+
+            </p>
+
+        </blockquote>
+
+    </div>
+
+    <!-- Beneficios -->
+
+    <div class="content-card">
+
+        <h3>🚀 Beneficios</h3>
+
+        <div class="benefits-grid">
+
+            <div class="benefit-item">✅ Reducción del tiempo de desarrollo.</div>
+
+            <div class="benefit-item">✅ Menor deuda técnica.</div>
+
+            <div class="benefit-item">✅ Arquitectura uniforme.</div>
+
+            <div class="benefit-item">✅ Código reutilizable.</div>
+
+            <div class="benefit-item">✅ Menor costo de mantenimiento.</div>
+
+            <div class="benefit-item">✅ Escalabilidad.</div>
+
+            <div class="benefit-item">✅ Evolución continua del Framework.</div>
+
+            <div class="benefit-item">✅ Incremento del patrimonio tecnológico de Delanoys Tecnologías.</div>
+
+        </div>
+
+    </div>
+
+</section>
+</div>
 <div>
 
 <!-- ===========================================================
  PIPELINE IA PRO V5.1
  NUEVA SECCIÓN - SISTEMA MULTI-IA CON COPILOTOS PERMANENTES
 =========================================================== -->
+
+<!-- Estilos mejorados para la sección Pipeline Multi-IA -->
+<style>
+/* Contenedor principal */
+#pipeline-multi-ia.content-section{
+    background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%);
+    border-radius:10px;
+    padding:22px;
+    box-shadow:0 8px 24px rgba(18,52,86,0.06);
+    margin:18px 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Encabezado */
+#pipeline-multi-ia .section-header h2{
+    font-size:1.45rem;
+    margin:0 0 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+#pipeline-multi-ia .section-header p{ color:#254055; margin:0 0 16px; }
+
+/* Tarjetas de información */
+#pipeline-multi-ia .info-card{
+    background: #ffffff;
+    border:1px solid #e6f0f6;
+    padding:14px 16px;
+    border-radius:8px;
+    margin-bottom:14px;
+}
+#pipeline-multi-ia .info-card.success{ border-left:4px solid #2b9f6f; }
+#pipeline-multi-ia .info-card h3{ margin-top:0; color:#173f55; }
+
+/* Tablas */
+#pipeline-multi-ia table{ width:100%; border-collapse:collapse; font-size:0.95rem; }
+#pipeline-multi-ia th, #pipeline-multi-ia td{ padding:10px 12px; border:1px solid #e9f2f7; vertical-align:top; }
+#pipeline-multi-ia th{ background:#f0f8fb; color:#0f3b52; text-align:left; }
+
+/* Preformat y diagramas */
+#pipeline-multi-ia pre{ background:#0f1720; color:#dbeafe; padding:12px; border-radius:6px; overflow:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace; font-size:0.9rem; }
+#pipeline-multi-ia code{ background:transparent; color:inherit; }
+
+/* Mejor lectura de listas y bloques */
+#pipeline-multi-ia ul{ padding-left:18px; color:#183544; }
+#pipeline-multi-ia blockquote{ border-left:3px solid #cfeaf5; padding:8px 12px; background:#fbfeff; color:#16424a; }
+
+/* Responsive */
+@media (max-width:720px){
+    #pipeline-multi-ia .section-header h2{ font-size:1.25rem; }
+    #pipeline-multi-ia th, #pipeline-multi-ia td{ padding:8px; font-size:0.9rem; }
+}
+
+</style>
 
 <article id="pipeline-multi-ia" class="content-section">
 
