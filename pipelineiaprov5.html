@@ -259,6 +259,296 @@ Arquitectura, Desarrollo Asistido por IA, Pruebas y Despliegue.
 <p><strong>Ninguna fase puede avanzar si la anterior no está aprobada y documentada.</strong></p>
 
 </div>
+<div>
+
+<!-- ===========================================================
+ PIPELINE IA PRO V5.1
+ NUEVA SECCIÓN - SISTEMA MULTI-IA CON COPILOTOS PERMANENTES
+=========================================================== -->
+
+<article id="pipeline-multi-ia" class="content-section">
+
+    <header class="section-header">
+        <h2>🤖 Sistema Multi-IA con Copilotos Permanentes</h2>
+        <p>
+            El Pipeline IA PRO V5.1 implementa una arquitectura colaborativa donde
+            cada fase del desarrollo cuenta con un responsable principal y dos
+            copilotos técnicos permanentes que garantizan continuidad, calidad
+            y documentación durante todo el ciclo de vida del proyecto.
+        </p>
+    </header>
+
+    <section class="info-card">
+        <h3>🎯 Filosofía del Modelo</h3>
+
+        <p>
+            Cada rol del Pipeline tiene un responsable principal encargado de la
+            toma de decisiones y dos copilotos especializados:
+        </p>
+
+        <ul>
+            <li><strong>Deep</strong> → Copiloto Técnico Permanente.</li>
+            <li><strong>Qwen</strong> → Copiloto Técnico Permanente.</li>
+        </ul>
+
+        <p>
+            Ambos copilotos participan durante todo el desarrollo,
+            manteniendo actualizado el contexto técnico, validando decisiones,
+            documentando cambios y permitiendo continuar el proyecto cuando el
+            contexto de otra IA llegue a su límite.
+        </p>
+    </section>
+
+    <section class="info-card">
+
+        <h3>👥 Distribución de Roles</h3>
+
+        <table class="table table-striped table-bordered">
+
+            <thead>
+
+                <tr>
+
+                    <th>Rol</th>
+
+                    <th>Responsable Principal</th>
+
+                    <th>Copilotos</th>
+
+                    <th>Responsabilidades</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>Arquitecto de Software</td>
+
+                    <td>GPT</td>
+
+                    <td>Deep + Qwen</td>
+
+                    <td>
+                        Diseño de arquitectura, módulos, estándares,
+                        revisión estructural y planificación técnica.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Implementación</td>
+
+                    <td>Desarrollador</td>
+
+                    <td>Deep + Qwen</td>
+
+                    <td>
+                        Desarrollo del código, optimización, refactorización,
+                        análisis de rendimiento y asistencia técnica.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Revisión Técnica</td>
+
+                    <td>GPT</td>
+
+                    <td>Deep + Qwen</td>
+
+                    <td>
+                        Revisión de calidad, consistencia, mantenibilidad
+                        y detección de posibles regresiones.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>QA / Testing</td>
+
+                    <td>GPT</td>
+
+                    <td>Deep + Qwen</td>
+
+                    <td>
+                        Casos de prueba, validaciones funcionales,
+                        escenarios límite y pruebas de integración.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>DevOps</td>
+
+                    <td>GPT</td>
+
+                    <td>Deep + Qwen</td>
+
+                    <td>
+                        VPS, Docker, PostgreSQL, Gunicorn,
+                        Nginx, SSL, Backups y CI/CD.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Documentación</td>
+
+                    <td>Deep</td>
+
+                    <td>Qwen</td>
+
+                    <td>
+                        Documentación técnica, arquitectura,
+                        APIs, manuales y bitácora del proyecto.
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Gestión del Contexto</td>
+
+                    <td>Deep</td>
+
+                    <td>Qwen</td>
+
+                    <td>
+                        Mantener actualizado el contexto global del proyecto
+                        para garantizar continuidad entre sesiones e IA.
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <section class="info-card">
+
+        <h3>📋 Regla de Continuidad</h3>
+
+        <blockquote>
+
+            Ninguna microfase del Pipeline podrá considerarse finalizada hasta
+            que los copilotos Deep y Qwen hayan actualizado el contexto técnico
+            y la documentación correspondiente.
+
+        </blockquote>
+
+        <p>
+
+            Esta regla garantiza que cualquier IA pueda retomar el proyecto sin
+            pérdida de información, independientemente del límite de contexto
+            o del cambio de modelo utilizado.
+
+        </p>
+
+    </section>
+
+    <section class="info-card">
+
+        <h3>📁 Documentación Viva Obligatoria</h3>
+
+<pre><code>/docs
+│
+├── CONTEXTO_PROYECTO.md
+├── ESTADO_PIPELINE.md
+├── ARQUITECTURA.md
+├── DECISIONES.md
+├── ROADMAP.md
+├── CHANGELOG.md
+├── BACKEND.md
+├── DEVOPS.md
+├── DATABASE.md
+├── API.md
+├── TESTING.md
+└── PROMPTS.md
+</code></pre>
+
+        <p>
+
+            Todos estos documentos constituyen la memoria técnica permanente del
+            proyecto y deberán mantenerse sincronizados durante todo el ciclo
+            de desarrollo.
+
+        </p>
+
+    </section>
+
+    <section class="info-card">
+
+        <h3>🔄 Flujo de Trabajo Multi-IA</h3>
+
+<pre><code>
+                 Desarrollador
+                       │
+                       ▼
+        GPT (Arquitectura y Dirección Técnica)
+                       │
+          ┌────────────┴────────────┐
+          ▼                         ▼
+      Deep                     Qwen
+ (Copiloto Técnico)      (Copiloto Técnico)
+          │                         │
+          └────────────┬────────────┘
+                       ▼
+          Documentación y Contexto
+                       │
+                       ▼
+              Validación Final
+          (Claude / Revisión IA)
+                       │
+                       ▼
+                   Git Repository
+                       │
+                       ▼
+                  VPS de Pruebas
+                       │
+                       ▼
+                 Producción
+</code></pre>
+
+    </section>
+
+    <section class="info-card success">
+
+        <h3>🎯 Objetivo Estratégico</h3>
+
+        <p>
+
+            El Sistema Multi-IA busca construir proyectos resilientes,
+            escalables y completamente documentados, donde el conocimiento no
+            dependa de una única conversación o de un solo modelo de IA.
+
+        </p>
+
+        <p>
+
+            Mediante la colaboración entre GPT como director técnico y los
+            copilotos permanentes Deep y Qwen, el Pipeline IA PRO garantiza
+            continuidad, trazabilidad, validación cruzada y una memoria técnica
+            viva que acompaña al proyecto desde la concepción hasta su
+            mantenimiento en producción.
+
+        </p>
+
+    </section>
+
+</article>
+```
+
+</div>
 
 <div class="section">
 <h2>Flujo General del Proyecto</h2>
