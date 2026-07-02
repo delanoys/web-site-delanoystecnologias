@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso Básico y Avanzado de SQL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/basesdedatos.css">
+</head>
+<body class="bg-gray-100 font-sans">
+  <header class="bg-blue-600 text-white py-6 text-center">
+    <h1 class="text-4xl font-bold">Curso Básico y Avanzado de SQL</h1>
+    <p class="mt-2 text-lg">Aprende SQL con SQLite y PostgreSQL en VS Code</p>
+  </header>
+
+  <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg p-4 rounded-r transition-transform transform -translate-x-0 z-40 flex flex-col">
+    <button id="sidebar-toggle" class="self-end mb-4 text-blue-600 hover:text-blue-800 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <nav>
+      <ul class="space-y-3">
+        <li>
+          <a href="/index.html" class="flex items-center text-blue-600 hover:underline">
+            <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h5m6-11v11a1 1 0 01-1 1h-5" />
+            </svg>
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a href="/content/educacion/basesdedatos.html" class="flex items-center text-blue-600 hover:underline">
+            <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <ellipse cx="12" cy="7" rx="9" ry="4" />
+              <path d="M3 7v10c0 2.21 4.03 4 9 4s9-1.79 9-4V7" />
+            </svg>
+            Bases de Datos
+          </a>
+        </li>
+        <li>
+          <a href="ejercicios.html" class="flex items-center text-blue-600 hover:underline">
+            <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M7 8h10M7 12h6" />
+            </svg>
+            Ejercicios
+          </a>
+        </li>
+        <li>
+          <a href="recursos.html" class="flex items-center text-blue-600 hover:underline">
+            <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16v-4M12 8h.01" />
+            </svg>
+            Recursos
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <button id="sidebar-open" class="fixed top-4 left-4 z-50 bg-blue-600 text-white p-2 rounded-full shadow-lg hidden">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+  <script>
+    // Sidebar toggle logic
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const openBtn = document.getElementById('sidebar-open');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.style.transform = 'translateX(-100%)';
+      openBtn.style.display = 'block';
+    });
+
+    openBtn.addEventListener('click', () => {
+      sidebar.style.transform = 'translateX(0)';
+      openBtn.style.display = 'none';
+    });
+
+    // Responsive: hide sidebar on small screens
+    function handleResize() {
+      if (window.innerWidth < 1024) {
+        sidebar.style.transform = 'translateX(-100%)';
+        openBtn.style.display = 'block';
+      } else {
+        sidebar.style.transform = 'translateX(0)';
+        openBtn.style.display = 'none';
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    document.addEventListener('DOMContentLoaded', handleResize);
+  </script>
+  <main class="max-w-4xl mx-auto p-6">
+    <section id="intro" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Introducción</h2>
+      <p>Este curso está diseñado para principiantes y usuarios intermedios que desean dominar SQL usando SQLite y PostgreSQL en Visual Studio Code (VS Code). Cubre desde conceptos básicos hasta temas avanzados, con ejercicios y un proyecto práctico.</p>
+    </section>
+
+    <section id="setup" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Configuración del Entorno</h2>
+      <p>Antes de empezar, asegúrate de tener:</p>
+      <ul class="list-disc pl-6">
+        <li><a href="https://code.visualstudio.com/" class="text-blue-600">VS Code</a> instalado.</li>
+        <li><a href="https://sqlite.org/download.html" class="text-blue-600">SQLite</a> instalado.</li>
+        <li><a href="https://www.postgresql.org/download/" class="text-blue-600">PostgreSQL</a> instalado.</li>
+        <li>Extensión <strong>SQLite Explorer</strong> y <strong>PostgreSQL</strong> en VS Code.</li>
+      </ul>
+      <h3 class="text-xl font-semibold mt-4">Pasos para configurar</h3>
+      <ol class="list-decimal pl-6">
+        <li>Crea un archivo <code>.db</code> para SQLite (ej. <code>biblioteca.db</code>).</li>
+        <li>Para PostgreSQL, configura un servidor local y crea una base de datos con <code>createdb biblioteca</code>.</li>
+        <li>Usa las extensiones en VS Code para ejecutar consultas.</li>
+      </ol>
+    </section>
+
+    <section id="plan" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Plan de Estudios</h2>
+      <ul class="list-disc pl-6">
+        <li><strong>Semana 1-2</strong>: Conceptos básicos (tablas, consultas, filtros).</li>
+        <li><strong>Semana 3</strong>: Relaciones y uniones.</li>
+        <li><strong>Semana 4</strong>: Temas avanzados (índices, vistas, triggers).</li>
+        <li><strong>Semana 5</strong>: Proyecto final.</li>
+      </ul>
+    </section>
+
+    <section id="basic-concepts" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Conceptos y Comandos Básicos</h2>
+      <h3 class="text-xl font-semibold">1. Crear y Modificar Tablas</h3>
+      <p><strong>Comandos</strong>: <code>CREATE TABLE</code>, <code>ALTER TABLE</code>, <code>DROP TABLE</code></p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-create-table">Ver Código</button>
+      <pre id="code-create-table" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>CREATE TABLE libros (
+  id INTEGER PRIMARY KEY,
+  titulo TEXT NOT NULL,
+  autor TEXT,
+  anio INTEGER
+);</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">2. Insertar Datos</h3>
+      <p><strong>Comando</strong>: <code>INSERT INTO</code></p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-insert">Ver Código</button>
+      <pre id="code-insert" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>INSERT INTO libros (titulo, autor, anio)
+VALUES ('Cien años de soledad', 'Gabriel García Márquez', 1967);</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">3. Consultar Datos</h3>
+      <p><strong>Comando</strong>: <code>SELECT</code></p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-select">Ver Código</button>
+      <pre id="code-select" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>SELECT * FROM libros WHERE anio > 1950;</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">4. Actualizar y Eliminar</h3>
+      <p><strong>Comandos</strong>: <code>UPDATE</code>, <code>DELETE</code></p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-update-delete">Ver Código</button>
+      <pre id="code-update-delete" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>UPDATE libros SET anio = 1970 WHERE id = 1;
+DELETE FROM libros WHERE anio < 1900;</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">5. Relaciones y Uniones</h3>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-join">Ver Código</button>
+      <pre id="code-join" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>CREATE TABLE prestamos (
+  id INTEGER PRIMARY KEY,
+  libro_id INTEGER,
+  usuario TEXT,
+  FOREIGN KEY (libro_id) REFERENCES libros(id)
+);
+SELECT libros.titulo, prestamos.usuario
+FROM libros JOIN prestamos ON libros.id = prestamos.libro_id;</code></pre>
+    </section>
+
+    <section id="advanced-concepts" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Conceptos Avanzados</h2>
+      <h3 class="text-xl font-semibold">1. Índices</h3>
+      <p>Mejoran el rendimiento de consultas en columnas frecuentemente buscadas.</p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-index">Ver Código</button>
+      <pre id="code-index" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>CREATE INDEX idx_autor ON libros(autor);
+-- PostgreSQL
+CREATE INDEX idx_autor ON libros(autor) WHERE autor IS NOT NULL;</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">2. Vistas</h3>
+      <p>Almacenan consultas como objetos reutilizables.</p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-view">Ver Código</button>
+      <pre id="code-view" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>CREATE VIEW libros_recientes AS
+SELECT * FROM libros WHERE anio > 2000;
+SELECT * FROM libros_recientes;</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">3. Triggers</h3>
+      <p>Ejecutan acciones automáticamente tras eventos (ej. inserciones).</p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-trigger">Ver Código</button>
+      <pre id="code-trigger" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>-- SQLite
+CREATE TRIGGER log_prestamo AFTER INSERT ON prestamos
+BEGIN
+  INSERT INTO log (mensaje) VALUES ('Nuevo préstamo registrado');
+END;
+
+-- PostgreSQL
+CREATE OR REPLACE FUNCTION log_prestamo_func() RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO log (mensaje) VALUES ('Nuevo préstamo registrado');
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER log_prestamo
+AFTER INSERT ON prestamos
+FOR EACH ROW EXECUTE FUNCTION log_prestamo_func();</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">4. Transacciones</h3>
+      <p>Aseguran que múltiples operaciones se ejecuten como una sola unidad.</p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-transaction">Ver Código</button>
+      <pre id="code-transaction" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>BEGIN TRANSACTION;
+INSERT INTO libros (titulo, autor, anio) VALUES ('Nuevo libro', 'Autor', 2023);
+INSERT INTO prestamos (libro_id, usuario) VALUES (LAST_INSERT_ID(), 'Usuario');
+COMMIT;</code></pre>
+    </section>
+
+    <section id="exercises" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Ejercicios Prácticos</h2>
+      <h3 class="text-xl font-semibold">1. Crear Tabla e Insertar</h3>
+      <p>Crea una tabla <code>autores</code> e inserta 3 autores.</p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-ex1">Ver Solución</button>
+      <pre id="code-ex1" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>CREATE TABLE autores (
+  id INTEGER PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  pais TEXT
+);
+INSERT INTO autores (nombre, pais) VALUES
+  ('Gabriel García Márquez', 'Colombia'),
+  ('Jane Austen', 'Reino Unido'),
+  ('Haruki Murakami', 'Japón');</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">2. Consulta con Filtros</h3>
+      <p>Consulta libros publicados después de 1950.</p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-ex2">Ver Solución</button>
+      <pre id="code-ex2" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>SELECT * FROM libros WHERE anio > 1950;</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4">3. Trigger</h3>
+      <p>Crea un trigger para registrar inserciones en <code>prestamos</code>.</p>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-ex3">Ver Solución</button>
+      <pre id="code-ex3" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>-- SQLite
+CREATE TRIGGER log_nuevo_prestamo AFTER INSERT ON prestamos
+BEGIN
+  INSERT INTO log (mensaje) VALUES ('Préstamo registrado: ' || NEW.id);
+END;
+
+-- PostgreSQL
+CREATE OR REPLACE FUNCTION log_nuevo_prestamo_func() RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO log (mensaje) VALUES ('Préstamo registrado: ' || NEW.id);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER log_nuevo_prestamo
+AFTER INSERT ON prestamos
+FOR EACH ROW EXECUTE FUNCTION log_nuevo_prestamo_func();</code></pre>
+    </section>
+
+    <section id="project" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Proyecto Final: Sistema de Gestión de Biblioteca</h2>
+      <h3 class="text-xl font-semibold">Diseño de la Base de Datos</h3>
+      <p>El sistema gestiona libros, autores, préstamos y un registro de auditoría:</p>
+      <ul class="list-disc pl-6">
+        <li><strong>autores</strong>: Almacena autores (id, nombre, país).</li>
+        <li><strong>libros</strong>: Almacena libros (id, título, autor_id, año, género).</li>
+        <li><strong>prestamos</strong>: Registra préstamos (id, libro_id, usuario, fecha_prestamo, fecha_devolucion).</li>
+        <li><strong>log</strong>: Auditoría de acciones (id, mensaje, fecha).</li>
+      </ul>
+      <h3 class="text-xl font-semibold mt-4">Implementación</h3>
+      <button class="toggle-code bg-blue-500 text-white px-4 py-2 rounded mt-2" data-target="code-project">Ver Código</button>
+      <pre id="code-project" class="code-block hidden bg-gray-800 text-white p-4 rounded"><code>-- SQLite
+CREATE TABLE autores (
+  id INTEGER PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  pais TEXT
+);
+CREATE TABLE libros (
+  id INTEGER PRIMARY KEY,
+  titulo TEXT NOT NULL,
+  autor_id INTEGER,
+  anio INTEGER,
+  genero TEXT,
+  FOREIGN KEY (autor_id) REFERENCES autores(id)
+);
+CREATE TABLE prestamos (
+  id INTEGER PRIMARY KEY,
+  libro_id INTEGER,
+  usuario TEXT,
+  fecha_prestamo TEXT,
+  fecha_devolucion TEXT,
+  FOREIGN KEY (libro_id) REFERENCES libros(id)
+);
+CREATE TABLE log (
+  id INTEGER PRIMARY KEY,
+  mensaje TEXT,
+  fecha TEXT DEFAULT (CURRENT_TIMESTAMP)
+);
+CREATE INDEX idx_libro_titulo ON libros(titulo);
+CREATE VIEW prestamos_activos AS
+SELECT libros.titulo, prestamos.usuario, prestamos.fecha_prestamo
+FROM libros JOIN prestamos ON libros.id = prestamos.libro_id
+WHERE prestamos.fecha_devolucion IS NULL;
+CREATE TRIGGER log_prestamo AFTER INSERT ON prestamos
+BEGIN
+  INSERT INTO log (mensaje) VALUES ('Nuevo préstamo: ' || NEW.id);
+END;
+INSERT INTO autores (nombre, pais) VALUES
+  ('Gabriel García Márquez', 'Colombia'),
+  ('Jane Austen', 'Reino Unido'),
+  ('Haruki Murakami', 'Japón');
+INSERT INTO libros (titulo, autor_id, anio, genero) VALUES
+  ('Cien años de soledad', 1, 1967, 'Realismo mágico'),
+  ('Orgullo y prejuicio', 2, 1813, 'Novela romántica'),
+  ('Tokio blues', 3, 1987, 'Ficción contemporánea');
+INSERT INTO prestamos (libro_id, usuario, fecha_prestamo) VALUES
+  (1, 'Ana López', '2025-07-18'),
+  (3, 'Carlos Pérez', '2025-07-19');
+SELECT * FROM prestamos_activos;
+
+-- PostgreSQL
+CREATE TABLE autores (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  pais VARCHAR(50)
+);
+CREATE TABLE libros (
+  id SERIAL PRIMARY KEY,
+  titulo VARCHAR(200) NOT NULL,
+  autor_id INTEGER,
+  anio INTEGER,
+  genero VARCHAR(50),
+  FOREIGN KEY (autor_id) REFERENCES autores(id)
+);
+CREATE TABLE prestamos (
+  id SERIAL PRIMARY KEY,
+  libro_id INTEGER,
+  usuario VARCHAR(100),
+  fecha_prestamo DATE,
+  fecha_devolucion DATE,
+  FOREIGN KEY (libro_id) REFERENCES libros(id)
+);
+CREATE TABLE log (
+  id SERIAL PRIMARY KEY,
+  mensaje TEXT,
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX idx_libro_titulo ON libros(titulo);
+CREATE VIEW prestamos_activos AS
+SELECT libros.titulo, prestamos.usuario, prestamos.fecha_prestamo
+FROM libros JOIN prestamos ON libros.id = prestamos.libro_id
+WHERE prestamos.fecha_devolucion IS NULL;
+CREATE OR REPLACE FUNCTION log_prestamo_func() RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO log (mensaje) VALUES ('Nuevo préstamo: ' || NEW.id);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER log_prestamo
+AFTER INSERT ON prestamos
+FOR EACH ROW EXECUTE FUNCTION log_prestamo_func();
+INSERT INTO autores (nombre, pais) VALUES
+  ('Gabriel García Márquez', 'Colombia'),
+  ('Jane Austen', 'Reino Unido'),
+  ('Haruki Murakami', 'Japón');
+INSERT INTO libros (titulo, autor_id, anio, genero) VALUES
+  ('Cien años de soledad', 1, 1967, 'Realismo mágico'),
+  ('Orgullo y prejuicio', 2, 1813, 'Novela romántica'),
+  ('Tokio blues', 3, 1987, 'Ficción contemporánea');
+INSERT INTO prestamos (libro_id, usuario, fecha_prestamo) VALUES
+  (1, 'Ana López', '2025-07-18'),
+  (3, 'Carlos Pérez', '2025-07-19');
+SELECT * FROM prestamos_activos;</code></pre>
+    </section>
+
+    <section id="resources" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Recursos Adicionales</h2>
+      <ul class="list-disc pl-6">
+        <li><a href="https://sqlite.org/docs.html" class="text-blue-600">Documentación de SQLite</a></li>
+        <li><a href="https://www.postgresql.org/docs/" class="text-blue-600">Documentación de PostgreSQL</a></li>
+        <li><a href="https://www.w3schools.com/sql/" class="text-blue-600">Tutoriales de SQL</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-4 text-center">
+    <p>Creado por Grok, xAI - 18 de julio de 2025</p>
+  </footer>
+  <script src="/assets/js/basesdedatos.js"></script>
+</body>
+</html>

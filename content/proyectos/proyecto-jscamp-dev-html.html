@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSCamp Dev - Rastreador de Progreso</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            /* Aumentamos el padding superior para acomodar la barra de progreso (aprox 90px) y la nueva barra de navegación (aprox 70px) */
+            padding-top: 170px; 
+        }
+        
+        /* Estilos específicos para la barra de navegación lateral en móvil */
+        @media (max-width: 640px) {
+            .nav-bar {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 8px;
+            }
+            .nav-item {
+                display: inline-block;
+                flex: none;
+            }
+        }
+
+        /* Estilo para el contenedor del checkbox */
+        .progress-checkbox {
+            cursor: pointer;
+            appearance: none;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid #6366f1; /* Indigo-500 */
+            border-radius: 0.375rem; /* rounded-md */
+            transition: all 0.2s ease-in-out;
+        }
+        /* Estilo cuando el checkbox está marcado */
+        .progress-checkbox:checked {
+            background-color: #6366f1; /* Indigo-500 */
+            border-color: #6366f1;
+            position: relative;
+        }
+        /* Simular el checkmark cuando está marcado */
+        .progress-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        /* Estilo para el título de la tarea completada */
+        .completed-task {
+            text-decoration: line-through;
+            color: #6b7280; /* Gray-500 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Progreso Global - Fija en la parte superior -->
+    <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow-xl p-4 border-b-4 border-indigo-500">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-xl font-bold text-gray-700 mb-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.974A3 3 0 0013 3h-2a3 3 0 00-3 3v.101M21 12l-2-2m0 0l-2 2m2-2v7" />
+                </svg>
+                Progreso Total del Bootcamp
+            </h2>
+            <div id="progress-container" class="space-y-2">
+                <div class="flex justify-between items-center text-sm font-medium">
+                    <span class="text-gray-600">Completado:</span>
+                    <span id="progress-percentage" class="text-indigo-600 font-bold">0%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div id="progress-bar" class="bg-indigo-500 h-3 rounded-full transition-all duration-500 ease-out" style="width: 0%;"></div>
+                </div>
+            </div>
+            
+            <button id="reset-button" class="mt-3 w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-4 rounded-lg text-sm transition duration-200 shadow-md">
+                Reiniciar Progreso
+            </button>
+        </div>
+    </div>
+    
+    <!-- 2. Barra de Navegación Rápida de Módulos - Fija justo debajo de la barra de progreso -->
+    <nav class="fixed top-[138px] left-0 right-0 z-40 bg-gray-800 shadow-xl py-2">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 nav-bar flex sm:justify-center">
+            
+            <!-- Botón de Inicio -->
+            <a href="/index.html" class="nav-item bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full mr-2 transition duration-150 shadow-md">
+                <span class="hidden sm:inline">🏠 </span>Pagina principal
+            </a>
+            <!-- Botón de Inicio -->
+            <a href="#inicio" class="nav-item bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full mr-2 transition duration-150 shadow-md">
+                <span class="hidden sm:inline">🏠 </span>Inicio
+            </a>
+
+            <!-- Botones de Módulo (Scroll horizontal en móvil) -->
+            <div id="module-nav-container" class="flex space-x-2">
+                <!-- Botones generados por JS -->
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- Header Principal (Punto de anclaje de "Inicio") -->
+        <header id="inicio" class="bg-white shadow-lg rounded-xl p-6 mb-8 border-t-4 border-indigo-500 -mt-[140px] pt-[140px]">
+            <h1 class="text-3xl font-extrabold text-gray-900 mb-2">JSCamp Dev Tracker 🚀</h1>
+            <p class="text-gray-500 text-lg">Tu guía y seguimiento detallado para el desarrollo web moderno.</p>
+        </header>
+
+        <!-- Contenedor de Módulos -->
+        <div id="modules-container" class="space-y-6">
+            <!-- Los módulos se renderizarán aquí -->
+        </div>
+
+    </div>
+
+    <script>
+        // Clave de almacenamiento local
+        const STORAGE_KEY = 'jscamp_progress';
+        
+        // Estructura del curso con IDs únicos, nombres de temas y descripciones de módulos
+        const COURSE_DATA = [
+            {
+                id: "modulo-01",
+                title: "Módulo 01: Introducción al Bootcamp",
+                description: "Establece las bases del curso, presenta la arquitectura FullStack moderna y detalla los requisitos de instalación y configuración de su entorno de desarrollo.",
+                topics: [
+                    { id: "m01-intro-bootcamp", name: "Introducción al Bootcamp" },
+                    { id: "m01-porque-programar", name: "¿Por qué Aprender Programación?" },
+                    { id: "m01-fullstack-frontend-backend", name: "Programación FullStack, Frontend y Backend" },
+                    { id: "m01-presentacion-proyecto", name: "Presentación del Proyecto" },
+                    { id: "m01-disenando-proyecto", name: "Diseñando nuestro Proyecto" },
+                    { id: "m01-requisitos-bootcamp", name: "Requisitos para el Bootcamp" },
+                    { id: "m01-que-instalar", name: "¿Qué tienes que instalar?" },
+                    { id: "m01-extension-terminal", name: "Extensión y Terminal recomendada" },
+                    { id: "m01-acceso-codigo", name: "Acceso al Código del Proyecto" }
+                ]
+            },
+            {
+                id: "modulo-02",
+                title: "Módulo 02: HTML y CSS",
+                description: "Domina la estructura de cualquier página web (HTML) y el diseño visual (CSS), incluyendo la creación de formularios y el diseño responsivo.",
+                topics: [
+                    { id: "m02-que-es-html", name: "¿Qué es HTML?" },
+                    { id: "m02-estructura-basica", name: "La estructura básica" },
+                    { id: "m02-etiqueta-body", name: "La etiqueta body y más" },
+                    { id: "m02-etiqueta-main-section-img", name: "La etiqueta main, section y img" },
+                    { id: "m02-formularios", name: "Formularios" },
+                    { id: "m02-article-footer", name: "Article y footer" },
+                    { id: "m02-curso-completo-html", name: "Curso completo de HTML" },
+                    { id: "m02-que-es-css", name: "¿Qué es CSS?" },
+                    { id: "m02-primer-css", name: "Escribiendo nuestro primer CSS" },
+                    { id: "m02-selectores-css", name: "Selectores CSS" },
+                    { id: "m02-responsive-design", name: "Responsive design" },
+                    { id: "m02-ejercicios-html-css", name: "Ejercicios y cursos HTML/CSS" },
+                    { id: "m02-enlaces-html", name: "Enlaces en HTML" },
+                    { id: "m02-comentarios-html", name: "Comentarios en HTML" },
+                    { id: "m02-multiples-paginas-html", name: "Creando múltiples páginas HTML" },
+                    { id: "m02-arreglando-logo", name: "Arreglando el logo del header" },
+                    { id: "m02-pseudo-clases", name: "Pseudo-clases en CSS" },
+                    { id: "m02-aplicar-estilos-clases", name: "Aplicar estilos con clases en HTML" },
+                    { id: "m02-important-especificidad", name: "La directiva !important y especificidad en CSS" },
+                    { id: "m02-estilizando-empleos", name: "Estilizando la página de empleos" },
+                    { id: "m02-paginacion-desde-cero", name: "Creando una paginación desde cero" },
+                    { id: "m02-entregar-ejercicios", name: "Entregar ejercicios" }
+                ]
+            },
+            {
+                id: "modulo-03",
+                title: "Módulo 03: JavaScript",
+                description: "El módulo central del desarrollo web. Aprende tipos de datos, funciones, manipulación del DOM, manejo de eventos, y cómo consumir APIs con Fetch y JSON.",
+                topics: [
+                    { id: "m03-intro-js", name: "Introducción a JavaScript" },
+                    { id: "m03-tipos-variables", name: "Tipos de datos y variables" },
+                    { id: "m03-funciones", name: "Funciones en JavaScript" },
+                    { id: "m03-curso-completo-js", name: "Aprender JavaScript, curso completo" },
+                    { id: "m03-eventos-navegador", name: "Eventos y JavaScript en el navegador" },
+                    { id: "m03-manipulacion-dom", name: "Manipulación del DOM" },
+                    { id: "m03-delegacion-eventos", name: "Delegación de Eventos" },
+                    { id: "m03-optional-chaining", name: "Optional Chaining" },
+                    { id: "m03-ejercicios-filtrando", name: "Ejercicios, filtrando resultados" },
+                    { id: "m03-manejar-evento-change", name: "Manejar evento change en JavaScript" },
+                    { id: "m03-mas-eventos-input-blur-submit", name: "Más eventos; input, blur, submit, preventDefault" },
+                    { id: "m03-recuperar-datos-html", name: "Cómo recuperar datos de los elementos HTML" },
+                    { id: "m03-estilando-select", name: "Estilando el elemento select" },
+                    { id: "m03-mejorando-optgroup", name: "Mejorando las opciones con optgroup" },
+                    { id: "m03-aplicando-clases-dinamicamente", name: "Aplicando clases CSS dinámicamente con JavaScript" },
+                    { id: "m03-intro-json", name: "Introducción a JSON" },
+                    { id: "m03-comprendiendo-fetch", name: "Comprendiendo fetch paso a paso" },
+                    { id: "m03-mostrando-datos-fetch", name: "Mostrando datos dinámicamente con fetch" },
+                    { id: "m03-evitando-inyecciones", name: "Evitando inyecciones al pintar HTML dinámico" },
+                    { id: "m03-separando-modulos", name: "Separando código en módulos de JavaScript" },
+                    { id: "m03-primer-web-component", name: "Creando tu primer Web Component" },
+                    { id: "m03-iterando-web-component", name: "Iterando nuestro Web Component con atributos" },
+                    { id: "m03-ejercicios-buscador", name: "Ejercicios prácticos con el buscador de empleos" },
+                    { id: "m03-despliegue-produccion", name: "Despliegue a producción" }
+                ]
+            },
+            {
+                id: "modulo-04",
+                title: "Módulo 04: React",
+                description: "Aprende el framework de frontend más popular. Cubre JSX, Componentes, Estado (useState), Virtual DOM, Hooks y la migración de un proyecto a React.",
+                topics: [
+                    { id: "m04-que-es-react", name: "¿Qué es React?" },
+                    { id: "m04-primeros-pasos-react", name: "Primeros pasos en React" },
+                    { id: "m04-jsx", name: "JSX: La sintaxis de React" },
+                    { id: "m04-componentes", name: "Componentes en React" },
+                    { id: "m04-componentes-vs-funciones", name: "Componentes vs Funciones normales" },
+                    { id: "m04-creando-jobcard", name: "Creando JobCard: Nuestro primer componente real" },
+                    { id: "m04-eventos-react", name: "Eventos en React" },
+                    { id: "m04-estado-usestate", name: "Estado con useState" },
+                    { id: "m04-renderizado-virtual-dom", name: "Renderizado y Virtual DOM" },
+                    { id: "m04-vite", name: "Vite: Empaquetador moderno" },
+                    { id: "m04-instalacion-vite", name: "Instalación de Vite" },
+                    { id: "m04-fast-refresh-actualizaciones", name: "Fast Refresh y Actualizaciones de Estado" },
+                    { id: "m04-migrando-devjobs-react", name: "Migrando el Proyecto DevJobs a React" },
+                    { id: "m04-ejercicios-practica", name: "Ejercicios de práctica" },
+                    { id: "m04-props-comunicacion", name: "Props - Comunicación entre Componentes" },
+                    { id: "m04-modulos-import-export", name: "Módulos JavaScript - Import y Export" },
+                    { id: "m04-paginacion-props", name: "Paginación - Props y Comunicación Padre-Hijo" },
+                    { id: "m04-callbacks-props", name: "Callbacks - Pasar Funciones como Props" },
+                    { id: "m04-estado-por-props", name: "Estado por Props - Lifting State Up" },
+                    { id: "m04-keys-renderizado-listas", name: "Keys y Renderizado de Listas" },
+                    { id: "m04-terminando-paginacion", name: "Terminando la paginación" },
+                    { id: "m04-css-modules", name: "CSS Modules" },
+                    { id: "m04-hook-useid", name: "Hook useId()" },
+                    { id: "m04-gestion-formularios", name: "Gestión de Formularios y Filtros" },
+                    { id: "m04-ejercicios-formularios-eventos", name: "Ejercicios: Formularios y Eventos" }
+                ]
+            },
+            {
+                id: "modulo-05",
+                title: "Módulo 05: Estado Global y React Router",
+                description: "Gestiona el estado complejo de la aplicación con Redux, y maneja la navegación multi-página con React Router.",
+                topics: [
+                    { id: "m05-conceptos-redux", name: "Conceptos básicos de Redux" },
+                    { id: "m05-acciones-reducers-store", name: "Acciones, reducers y store" },
+                    { id: "m05-uso-redux-react", name: "Uso de Redux con React" },
+                    { id: "m05-react-router", name: "React Router" },
+                    { id: "m05-custom-hooks", name: "Custom Hooks" }
+                ]
+            },
+            {
+                id: "modulo-06",
+                title: "Módulo 06: Comunicación con el Servidor",
+                description: "Aprende el protocolo REST, y utiliza Fetch y Axios para manejar llamadas asíncronas HTTP, errores y respuestas del servidor.",
+                topics: [
+                    { id: "m06-fundamentos-rest", name: "Fundamentos de REST" },
+                    { id: "m06-fetch-axios", name: "Fetch y Axios para llamadas HTTP" },
+                    { id: "m06-manejo-respuestas-errores", name: "Manejo de respuestas y errores" },
+                    { id: "m06-renderizado-condicional", name: "Renderizado condicional y listas en React" },
+                    { id: "m06-json-promesas", name: "JSON y Promesas" },
+                    { id: "m06-asincronicidad-js", name: "Asincronicidad en JavaScript" }
+                ]
+            },
+            {
+                id: "modulo-07",
+                title: "Módulo 07: Programación de Servidores con Node.js y Express",
+                description: "Crea tu primer backend profesional. Configura Node.js y Express, define rutas, middleware, y conecta tu API con MongoDB (Mongoose).",
+                topics: [
+                    { id: "m07-nodejs", name: "Node.js" },
+                    { id: "m07-configuracion-express", name: "Configuración básica de un servidor Express" },
+                    { id: "m07-rutas-middleware", name: "Rutas y middleware en Express" },
+                    { id: "m07-crear-consumir-api", name: "Crear y consumir una API RESTful" },
+                    { id: "m07-mongodb-mongoose", name: "MongoDB y Mongoose" }
+                ]
+            },
+            {
+                id: "modulo-08",
+                title: "Módulo 08: Testing",
+                description: "Asegura la calidad de tu código. Aprende a realizar pruebas unitarias con Jest, y pruebas de componentes con React Testing Library, incluyendo mocking.",
+                topics: [
+                    { id: "m08-pruebas-js", name: "Pruebas en JavaScript" },
+                    { id: "m08-pruebas-unitarias-jest", name: "Pruebas unitarias con Jest" },
+                    { id: "m08-pruebas-componentes-rtl", name: "Pruebas de componentes con React Testing Library" },
+                    { id: "m08-mocking-integracion", name: "Mocking y pruebas de integración" },
+                    { id: "m08-buenas-practicas-testing", name: "Buenas prácticas de testing" },
+                    { id: "m08-automatizacion-npm", name: "Automatización de tareas con npm scripts" }
+                ]
+            },
+            {
+                id: "modulo-09",
+                title: "Módulo 09: Inteligencia Artificial",
+                description: "Explora la integración de capacidades de IA en tus aplicaciones web, incluyendo el uso de la API de OpenAI y buenas prácticas éticas.",
+                topics: [
+                    { id: "m09-intro-ia", name: "Introducción a la Inteligencia Artificial en el Desarrollo" },
+                    { id: "m09-herramientas-ia-devs", name: "Herramientas de IA para Desarrolladores" },
+                    { id: "m09-conexion-openai", name: "Conexión con la API de OpenAI" },
+                    { id: "m09-model-context-protocol", name: "Model Context Protocol (MCP)" },
+                    { id: "m09-generacion-imagenes-nano-banana", name: "Generación de Imágenes con Nano Banana" },
+                    { id: "m09-integracion-ia-web", name: "Integración de IA en Aplicaciones Web" },
+                    { id: "m09-etica-ia", name: "Ética y Buenas Prácticas con IA" }
+                ]
+            },
+            {
+                id: "modulo-10",
+                title: "Módulo 10: TypeScript",
+                description: "Aprende a dotar de tipado estático a tus proyectos JavaScript para mejorar la escalabilidad, la detección temprana de errores y la mantenibilidad del código.",
+                topics: [
+                    { id: "m10-fundamentos-ts", name: "Fundamentos de TypeScript" },
+                    { id: "m10-tipos-interfaces", name: "Tipos e interfaces" },
+                    { id: "m10-integracion-ts-react", name: "Integración de TypeScript con React" },
+                    { id: "m10-beneficios-ts", name: "Beneficios de usar TypeScript en proyectos grandes" },
+                    { id: "m10-migracion-js-ts", name: "Migración de proyectos JavaScript a TypeScript" }
+                ]
+            },
+            {
+                id: "modulo-11",
+                title: "Módulo 11: SQL",
+                description: "Domina el lenguaje de consulta estructurado para bases de datos relacionales, incluyendo la manipulación de datos y el uso de ORMs como Sequelize.",
+                topics: [
+                    { id: "m11-sql", name: "SQL" },
+                    { id: "m11-creacion-bd", name: "Creación de bases de datos" },
+                    { id: "m11-manipulacion-datos", name: "Manipulación de datos con SQL" },
+                    { id: "m11-uso-orm", name: "Uso de ORM como Sequelize" },
+                    { id: "m11-migraciones-seeding", name: "Migraciones y seeding de datos" }
+                ]
+            },
+            {
+                id: "modulo-12",
+                title: "Módulo 12: CI/CD",
+                description: "Implementa la Integración Continua y el Despliegue Continuo (CI/CD) usando GitHub Actions para automatizar el ciclo de vida del software.",
+                topics: [
+                    { id: "m12-ci-cd", name: "CI/CD" },
+                    { id: "m12-configuracion-github-actions", name: "Configuración de CI/CD con GitHub Actions" },
+                    { id: "m12-desplegar-github-actions", name: "Desplegar aplicaciones con GitHub Actions" }
+                ]
+            },
+            {
+                id: "modulo-13",
+                title: "Módulo 13: DevOps y Docker",
+                description: "Introduce los conceptos de DevOps, contenedores con Docker y la orquestación con Docker Compose para gestionar entornos de desarrollo y producción.",
+                topics: [
+                    { id: "m13-devops", name: "DevOps" },
+                    { id: "m13-conceptos-docker", name: "Conceptos básicos de Docker" },
+                    { id: "m13-creacion-imagenes-docker", name: "Creación de imágenes Docker" },
+                    { id: "m13-docker-compose", name: "Uso de Docker Compose" },
+                    { id: "m13-integracion-docker-flujo", name: "Integración de Docker en el flujo de trabajo de desarrollo" }
+                ]
+            }
+        ];
+
+        let progressState = {};
+        let totalTopics = 0;
+
+        // --- FUNCIONES PRINCIPALES ---
+
+        /**
+         * Inicializa el estado de progreso global y el contador total de temas.
+         */
+        function initializeProgress() {
+            totalTopics = COURSE_DATA.reduce((count, module) => count + module.topics.length, 0);
+            loadProgress();
+            renderModules();
+            renderModuleNavigation(); // Nueva función para renderizar la navegación
+            updateGlobalProgress();
+        }
+
+        /**
+         * Carga el estado de progreso desde localStorage.
+         */
+        function loadProgress() {
+            const savedProgress = localStorage.getItem(STORAGE_KEY);
+            if (savedProgress) {
+                try {
+                    progressState = JSON.parse(savedProgress);
+                } catch (e) {
+                    console.error("Error al parsear el progreso guardado:", e);
+                    progressState = {};
+                }
+            } else {
+                progressState = {};
+            }
+        }
+
+        /**
+         * Guarda el estado de progreso en localStorage.
+         */
+        function saveProgress() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(progressState));
+        }
+
+        /**
+         * Calcula el porcentaje de progreso global y actualiza la barra.
+         */
+        function updateGlobalProgress() {
+            const completedTopics = Object.values(progressState).filter(status => status).length;
+            const percentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
+
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercentageText = document.getElementById('progress-percentage');
+
+            progressBar.style.width = `${percentage}%`;
+            progressPercentageText.textContent = `${percentage}%`;
+
+            if (percentage === 100) {
+                progressBar.classList.add('bg-green-500');
+                progressBar.classList.remove('bg-indigo-500');
+                progressPercentageText.classList.add('text-green-600');
+                progressPercentageText.classList.remove('text-indigo-600');
+            } else {
+                progressBar.classList.add('bg-indigo-500');
+                progressBar.classList.remove('bg-green-500');
+                progressPercentageText.classList.add('text-indigo-600');
+                progressPercentageText.classList.remove('text-green-600');
+            }
+        }
+        
+        /**
+         * Renderiza la barra de navegación rápida con los módulos.
+         */
+        function renderModuleNavigation() {
+            const navContainer = document.getElementById('module-nav-container');
+            navContainer.innerHTML = '';
+            
+            COURSE_DATA.forEach(module => {
+                const link = document.createElement('a');
+                link.href = `#${module.id}`;
+                link.className = 'nav-item bg-gray-700 hover:bg-indigo-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full transition duration-150 shadow-md';
+                link.textContent = module.id.split('-').pop(); // Muestra solo el número (e.g., "01", "02")
+                link.title = module.title;
+                navContainer.appendChild(link);
+            });
+            
+             // Implementar desplazamiento suave para los enlaces de anclaje
+             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Calcular la posición a la que debe desplazarse.
+                        // Restamos la altura de las barras fijas (aprox 170px) para que el módulo sea visible.
+                        const offset = 170; 
+                        const targetPosition = targetElement.offsetTop - offset;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Agregar el ID al historial para que se actualice la URL
+                        history.pushState(null, null, this.getAttribute('href'));
+                    }
+                });
+            });
+        }
+
+
+        /**
+         * Renderiza todos los módulos y temas en el DOM.
+         */
+        function renderModules() {
+            const container = document.getElementById('modules-container');
+            container.innerHTML = ''; // Limpiar contenedor
+
+            COURSE_DATA.forEach(module => {
+                const moduleElement = document.createElement('div');
+                moduleElement.className = 'bg-white rounded-xl shadow-md overflow-hidden';
+                moduleElement.id = module.id; // Añadir ID para el anclaje
+
+                // Header del Módulo
+                const header = document.createElement('div');
+                header.className = 'bg-indigo-50 p-5 border-b-2 border-indigo-200';
+                
+                // Título e Ícono (uso de íconos SVG simples ya que no cargamos Font Awesome)
+                header.innerHTML = `
+                    <h3 class="text-2xl font-bold text-indigo-700 mb-1 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                        </svg>
+                        ${module.title}
+                    </h3>
+                    <p class="text-sm text-indigo-500">${module.description}</p>
+                `;
+                moduleElement.appendChild(header);
+
+                // Lista de Temas
+                const topicList = document.createElement('ul');
+                topicList.className = 'divide-y divide-gray-200';
+
+                module.topics.forEach(topic => {
+                    const isCompleted = !!progressState[topic.id];
+                    
+                    const listItem = document.createElement('li');
+                    listItem.className = 'p-4 hover:bg-gray-50 transition duration-150';
+
+                    listItem.innerHTML = `
+                        <label for="${topic.id}" class="flex items-center justify-between cursor-pointer">
+                            <span class="flex-1 text-lg font-medium ${isCompleted ? 'completed-task' : 'text-gray-800'}">
+                                ${topic.name}
+                            </span>
+                            <input type="checkbox" id="${topic.id}" data-topic-id="${topic.id}" 
+                                class="progress-checkbox" ${isCompleted ? 'checked' : ''}>
+                        </label>
+                    `;
+                    topicList.appendChild(listItem);
+                });
+
+                moduleElement.appendChild(topicList);
+                container.appendChild(moduleElement);
+            });
+            
+            // Adjuntar event listeners
+            attachEventListeners();
+        }
+
+        /**
+         * Adjunta el listener de cambio a todos los checkboxes.
+         */
+        function attachEventListeners() {
+            document.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', handleCheckboxChange);
+            });
+
+            document.getElementById('reset-button').addEventListener('click', confirmReset);
+        }
+
+        /**
+         * Maneja el cambio de estado de un checkbox.
+         */
+        function handleCheckboxChange(event) {
+            const topicId = event.target.dataset.topicId;
+            const isChecked = event.target.checked;
+            
+            progressState[topicId] = isChecked;
+            
+            // Actualizar el estilo del texto (tachado)
+            const topicNameSpan = event.target.closest('label').querySelector('span');
+            if (isChecked) {
+                topicNameSpan.classList.add('completed-task');
+                topicNameSpan.classList.remove('text-gray-800');
+            } else {
+                topicNameSpan.classList.remove('completed-task');
+                topicNameSpan.classList.add('text-gray-800');
+            }
+
+            saveProgress();
+            updateGlobalProgress();
+        }
+        
+        /**
+         * Maneja la acción de reinicio con una confirmación simple (sin alert()).
+         */
+        function confirmReset() {
+             // Usamos window.confirm ya que no se permiten alerts, y este es un entorno de desarrollo.
+             // Para un entorno de producción se usaría un modal custom.
+             const result = window.confirm("¿Está seguro que desea borrar TODO su progreso? Esta acción no se puede deshacer.");
+             if (result) {
+                 resetProgress();
+             }
+        }
+
+        /**
+         * Resetea el progreso completo.
+         */
+        function resetProgress() {
+            localStorage.removeItem(STORAGE_KEY);
+            progressState = {};
+            // Desmarcar todos los checkboxes en la UI
+            document.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+                // Remover el estilo de completado
+                const topicNameSpan = checkbox.closest('label').querySelector('span');
+                topicNameSpan.classList.remove('completed-task');
+                topicNameSpan.classList.add('text-gray-800');
+            });
+            updateGlobalProgress();
+            
+            // Mostrar un mensaje de confirmación simple
+            document.getElementById('progress-percentage').textContent = '0%';
+            const container = document.getElementById('progress-container');
+            const existingMsg = document.getElementById('reset-msg');
+            if (existingMsg) existingMsg.remove();
+            
+            container.insertAdjacentHTML('beforebegin', '<p id="reset-msg" class="text-sm text-center text-red-600 font-semibold mb-2">¡Progreso borrado con éxito!</p>');
+            
+            // Ocultar el mensaje después de 3 segundos
+            setTimeout(() => {
+                const msg = document.getElementById('reset-msg');
+                if (msg) msg.remove();
+            }, 3000);
+        }
+
+        // --- INICIO DE LA APLICACIÓN ---
+        document.addEventListener('DOMContentLoaded', initializeProgress);
+    </script>
+</body>
+</html>

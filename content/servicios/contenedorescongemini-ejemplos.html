@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenedores con Gemini - Ejemplos de Comandos</title>
+    
+    <link rel="stylesheet" href="/assets/css/cssgenimi.css">
+    
+    <style>
+        :root {
+            --color-principal: #007bff; /* Azul de Docker */
+            --color-secundario: #f8f9fa; 
+            --color-texto: #333;
+            --color-resaltado: #28a745; /* Verde para énfasis */
+        }
+        /* Fondo de tarjetas específico para el tema Docker */
+        .card { 
+            background-color: #f1f9ff; 
+            border: 1px solid #cce5ff; 
+        }
+        /* Estilos específicos para bloques de código y explicación */
+        .codigo-bloque {
+            background-color: #f7f7f7;
+            border-left: 5px solid var(--color-principal);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Docker y Contenedores: Comandos Esenciales 🐳</h1>
+        <p>Ejemplos de **Dockerfile**, **Comandos CLI** y **Docker Compose** para la vida diaria de un desarrollador.</p>
+        <p></p>
+    </header>
+
+    <nav>
+        <a href="#dockerfile">📄 Dockerfile</a>
+        <a href="#cli">🖥️ Comandos CLI</a>
+        <a href="#compose">🔗 Docker Compose</a>
+        <a href="#limpieza">🧹 Mantenimiento</a>
+    </nav>
+
+    <section id="dockerfile" class="seccion-contenedor">
+        <h2>📄 Ejemplo 1: Creación de un Dockerfile Básico</h2>
+        <p>El *Dockerfile* es la receta para construir la imagen. Este ejemplo crea una imagen simple basada en Node.js.</p>
+
+        <div class="codigo-bloque">
+            <h3>Archivo: <code>Dockerfile</code></h3>
+            <pre><code>
+# 1. Imagen base: usa una versión oficial ligera de Node
+FROM node:18-alpine
+
+# 2. Configurar el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# 3. Copiar archivos de dependencia e instalar dependencias
+COPY package*.json ./
+RUN npm install
+
+# 4. Copiar el resto del código de la aplicación
+COPY . .
+
+# 5. Exponer el puerto que usará la aplicación
+EXPOSE 3000
+
+# 6. Comando para iniciar la aplicación cuando se ejecute el contenedor
+CMD [ "npm", "start" ]
+            </code></pre>
+            <p><strong>Explicación:</strong> Cada instrucción (`FROM`, `RUN`, `CMD`) crea una **capa** en la imagen. `WORKDIR` define la carpeta activa. `EXPOSE` es solo documentación, no publica el puerto.</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Comando para Construir la Imagen</h3>
+                <p>El punto (`.`) indica que el Dockerfile se encuentra en el directorio actual.</p>
+                <pre><code>docker build -t mi-app-web:latest .</code></pre>
+            </div>
+            <div class="card">
+                <h3>Comando para Ejecutar la Imagen</h3>
+                <p>Mapea el puerto 80 del host al puerto 3000 del contenedor y lo ejecuta en segundo plano (`-d`).</p>
+                <pre><code>docker run -d -p 80:3000 mi-app-web:latest</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="cli" class="seccion-contenedor">
+        <h2>🖥️ Ejemplo 2: Comandos de la Línea de Comandos (CLI)</h2>
+        <p>Los comandos más utilizados para el desarrollo diario con Docker.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Ver Contenedores Activos</h3>
+                <p>Muestra solo los contenedores que se están ejecutando.</p>
+                <pre><code>docker ps</code></pre>
+            </div>
+            <div class="card">
+                <h3>Ver TODOS los Contenedores (Activos e Inactivos)</h3>
+                <p>Añade la bandera `-a`.</p>
+                <pre><code>docker ps -a</code></pre>
+            </div>
+            <div class="card">
+                <h3>Detener un Contenedor por ID/Nombre</h3>
+                <p>Detiene la ejecución del proceso principal.</p>
+                <pre><code>docker stop [ID o NOMBRE]</code></pre>
+            </div>
+            <div class="card">
+                <h3>Ejecutar un Comando dentro del Contenedor</h3>
+                <p>Útil para depuración. Abre una terminal interactiva (`-it`).</p>
+                <pre><code>docker exec -it [ID] /bin/bash</code></pre>
+            </div>
+            <div class="card">
+                <h3>Ver los Logs (Salida) del Contenedor</h3>
+                <p>Muestra la salida de la consola del proceso.</p>
+                <pre><code>docker logs -f [ID o NOMBRE]</code></pre>
+            </div>
+            <div class="card">
+                <h3>Eliminar una Imagen</h3>
+                <p>Borra la imagen de tu sistema (debe estar sin contenedores que la usen).</p>
+                <pre><code>docker rmi [ID o NOMBRE]</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="compose" class="seccion-contenedor">
+        <h2>🔗 Ejemplo 3: Orquestación con Docker Compose</h2>
+        <p>Docker Compose permite definir y ejecutar aplicaciones multi-contenedor (ej. una API y su base de datos) usando un único archivo YAML.</p>
+
+        <div class="codigo-bloque">
+            <h3>Archivo: <code>docker-compose.yml</code></h3>
+            <pre><code>
+version: '3.8' # Versión de la especificación Compose
+
+services:
+  # 1. Servicio de la API (Backend)
+  api-web:
+    build: . # Construir a partir del Dockerfile en el directorio actual
+    ports:
+      - "8080:80" # Host:Contenedor
+    depends_on:
+      - base-datos # Asegura que la DB inicie primero
+    environment:
+      # Pasar la cadena de conexión a la API
+      - CONNECTION_STRING=Host=base-datos;Database=mi_db;User=postgres;Password=mypass
+
+  # 2. Servicio de la Base de Datos (PostgreSQL)
+  base-datos:
+    image: postgres:14-alpine # Imagen oficial de Docker Hub
+    environment:
+      - POSTGRES_DB=mi_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mypass
+    volumes:
+      # Persistencia de datos: guarda los datos en el host
+      - db-data:/var/lib/postgresql/data 
+
+# 3. Definición de volúmenes (para la persistencia)
+volumes:
+  db-data:
+            </code></pre>
+            <p><strong>Explicación:</strong> Los servicios en Compose usan su nombre como **hostname** dentro de la red (ej. la API se conecta a `base-datos`). Los **`volumes`** aseguran que la información de la base de datos se mantenga incluso si el contenedor se destruye.</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Comando para Levantar el Ambiente (Build y Run)</h3>
+                <p>Ejecuta todos los servicios definidos en el archivo en modo *detached* (`-d`).</p>
+                <pre><code>docker compose up -d --build</code></pre>
+            </div>
+            <div class="card">
+                <h3>Comando para Detener y Eliminar el Ambiente</h3>
+                <p>Detiene los contenedores, elimina los contenedores y las redes (pero no los volúmenes por defecto).</p>
+                <pre><code>docker compose down</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="limpieza" class="seccion-contenedor">
+        <h2>🧹 Ejemplo 4: Comandos de Limpieza y Mantenimiento</h2>
+        <p>Mantener su sistema limpio y liberar espacio es crucial cuando se trabaja con muchos contenedores e imágenes.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Eliminar Contenedores Inactivos</h3>
+                <p>Elimina todos los contenedores que están detenidos (`exited`).</p>
+                <pre><code>docker container prune</code></pre>
+            </div>
+            <div class="card">
+                <h3>Eliminar Imágenes No Utilizadas</h3>
+                <p>Elimina todas las imágenes que no están asociadas a ningún contenedor.</p>
+                <pre><code>docker image prune -a</code></pre>
+            </div>
+            <div class="card">
+                <h3>Limpieza Total (Sistema)</h3>
+                <p>Elimina contenedores, redes, imágenes y, opcionalmente, volúmenes no utilizados. **Usar con precaución.**</p>
+                <pre><code>docker system prune -a</code></pre>
+            </div>
+        </div>
+        
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprendiendo Programación · Desde Cero</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f14;
+    --bg2: #14161e;
+    --bg3: #1a1d28;
+    --surface: #20243a;
+    --border: rgba(255,255,255,0.08);
+    --text: #e8e9f0;
+    --muted: #8890b0;
+    --faint: #4a5070;
+
+    --purple: #a78bfa;
+    --purple-dim: #7c5cbf;
+    --purple-bg: rgba(167,139,250,0.08);
+
+    --teal: #34d399;
+    --teal-dim: #047857;
+    --teal-bg: rgba(52,211,153,0.08);
+
+    --amber: #fbbf24;
+    --amber-dim: #b45309;
+    --amber-bg: rgba(251,191,36,0.08);
+
+    --coral: #fb7185;
+    --coral-dim: #be123c;
+    --coral-bg: rgba(251,113,133,0.08);
+
+    --blue: #60a5fa;
+    --blue-dim: #1d4ed8;
+    --blue-bg: rgba(96,165,250,0.08);
+
+    --green: #86efac;
+    --green-dim: #166534;
+    --green-bg: rgba(134,239,172,0.08);
+
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(14,15,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--purple);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 6px 14px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: color .2s, background .2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-bg);
+    border: 1px solid rgba(167,139,250,0.25);
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    animation: fadeUp .6s ease both;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { color: var(--purple); font-style: italic; }
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--purple);
+    color: #0e0f14;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s, transform .15s;
+  }
+  .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: color .2s, border-color .2s;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--faint); }
+
+  .hero img {
+    transition: transform .25s ease, box-shadow .25s ease;
+    cursor: pointer;
+    transform: scale(1);
+  }
+  .hero img:hover { transform: scale(1.05); }
+  .hero img:active { transform: scale(1.12); }
+
+  /* progress track */
+  .progress-track {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+    animation: fadeUp .6s .4s ease both;
+  }
+  .pt-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .pt-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── CONCEPT CARD ── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .concept-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    transition: border-color .2s, transform .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 2px 2px 0 0;
+  }
+  .concept-card:hover { border-color: var(--faint); transform: translateY(-2px); }
+  .cc-icon {
+    font-size: 1.3rem;
+    margin-bottom: .8rem;
+    display: block;
+  }
+  .cc-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: .4rem;
+    color: var(--text);
+  }
+  .cc-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: #0a0b10;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1.5rem 0;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+  }
+  .code-dots { display: flex; gap: 6px; }
+  .code-dots span {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: block;
+  }
+  .code-lang {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  .code-body { padding: 1.2rem 1.4rem; overflow-x: auto; }
+  .code-body pre { white-space: pre; }
+
+  /* syntax colors */
+  .kw  { color: var(--purple); }
+  .str { color: var(--teal); }
+  .num { color: var(--amber); }
+  .cmt { color: var(--faint); font-style: italic; }
+  .fn  { color: var(--blue); }
+  .op  { color: var(--coral); }
+  .var { color: var(--text); }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 1.5rem 0;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--bg3); }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: var(--radius);
+    padding: 1.1rem 1.3rem;
+    margin: 1.5rem 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .callout-body { font-size: 14px; line-height: 1.65; }
+  .callout-body strong { font-weight: 600; }
+
+  /* ── EXERCISE ── */
+  .exercise-card {
+    border-radius: var(--radius);
+    border: 1px solid;
+    padding: 1.4rem;
+    margin: 1.5rem 0;
+    position: relative;
+  }
+  .ex-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .ex-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .ex-title { font-size: 15px; font-weight: 600; color: var(--text); }
+  .ex-body { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .ex-answer-toggle {
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 7px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ex-answer-toggle:hover { color: var(--text); border-color: var(--faint); }
+  .ex-answer {
+    display: none;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .ex-answer.show { display: block; }
+
+  /* interactive quiz */
+  .quiz-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .quiz-q {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .2s;
+    text-align: left;
+    font-family: var(--font-body);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .quiz-opt:hover { border-color: var(--faint); color: var(--text); }
+  .quiz-opt.correct { background: var(--teal-bg); border-color: var(--teal-dim); color: var(--teal); }
+  .quiz-opt.wrong { background: var(--coral-bg); border-color: var(--coral-dim); color: var(--coral); }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-feedback {
+    margin-top: 1rem;
+    font-size: 13px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    display: none;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-reset { margin-top: .75rem; font-size: 12px; color: var(--faint); cursor: pointer; text-decoration: underline; background: none; border: none; color: var(--muted); }
+  .quiz-reset:hover { color: var(--text); }
+
+  /* IPO diagram */
+  .ipo-diagram {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 2rem 0;
+    overflow-x: auto;
+  }
+  .ipo-box {
+    flex: 1;
+    min-width: 140px;
+    border-radius: var(--radius);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .ipo-arrow {
+    font-size: 1.4rem;
+    color: var(--faint);
+    flex-shrink: 0;
+    padding: 0 6px;
+  }
+  .ipo-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .3rem; }
+  .ipo-content { font-size: 13px; color: var(--muted); }
+
+  /* truth table */
+  .truth-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-family: var(--font-mono);
+    margin: 1.5rem 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .truth-table th {
+    background: var(--bg3);
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+  }
+  .truth-table td {
+    padding: 9px 16px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .truth-table tr:last-child td { border-bottom: none; }
+  .t-true  { color: var(--teal); }
+  .t-false { color: var(--coral); }
+
+  /* flowchart */
+  .flowchart { margin: 2rem 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .fc-node {
+    border-radius: var(--radius-sm);
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 180px;
+    border: 1px solid;
+  }
+  .fc-diamond {
+    transform: rotate(45deg);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    margin: 8px 0;
+    position: relative;
+  }
+  .fc-diamond-text {
+    transform: rotate(-45deg);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .fc-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 11px;
+    color: var(--faint);
+    gap: 2px;
+    padding: 4px 0;
+  }
+  .fc-arrow-line { width: 2px; height: 20px; background: var(--border); }
+  .fc-branches {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .fc-branch { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+  /* operator table */
+  .op-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin: 1.5rem 0;
+  }
+  .op-item {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    text-align: center;
+  }
+  .op-symbol {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .op-name { font-size: 12px; color: var(--muted); display: block; }
+  .op-example { font-size: 11px; color: var(--faint); font-family: var(--font-mono); display: block; margin-top: 3px; }
+
+  /* mini simulator */
+  .simulator {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .sim-header {
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sim-body { padding: 1.2rem; }
+  .sim-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .sim-label { font-size: 13px; color: var(--muted); min-width: 120px; }
+  .sim-input {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text);
+    width: 120px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .sim-input:focus { border-color: var(--purple-dim); }
+  .sim-btn {
+    background: var(--purple);
+    color: #0e0f14;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .sim-btn:hover { opacity: .85; }
+  .sim-output {
+    background: #0a0b10;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--teal);
+    min-height: 44px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+  }
+
+  /* ── MODULE NAV ── */
+  .module-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mn-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--bg2);
+    transition: all .2s;
+  }
+  .mn-num {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .mn-item:hover { color: var(--text); border-color: var(--faint); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--faint);
+    font-size: 13px;
+  }
+  footer strong { color: var(--purple); font-weight: 500; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── UTILS ── */
+  .mt-sm { margin-top: .75rem; }
+  .mt-md { margin-top: 1.5rem; }
+  .mt-lg { margin-top: 2.5rem; }
+  .mb-sm { margin-bottom: .75rem; }
+  .text-mono { font-family: var(--font-mono); }
+
+  /* color helpers */
+  .purple  { color: var(--purple); }
+  .teal    { color: var(--teal); }
+  .amber   { color: var(--amber); }
+  .coral   { color: var(--coral); }
+  .blue    { color: var(--blue); }
+  .green   { color: var(--green); }
+  .muted   { color: var(--muted); }
+
+  /* ── accordion ── */
+  details summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: '+'; color: var(--faint); font-size: 1.1rem; }
+  details[open] summary::after { content: '−'; }
+  details[open] summary { color: var(--purple); }
+  details .detail-body { padding: 1rem 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--surface); border-radius: 3px; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+
+<style>
+    .lab-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .editor-box { background: #1e1e1e; padding: 15px; border-radius: 10px; color: white; }
+    .editor-box h3 { margin-top: 0; font-size: 1rem; color: #60a5fa; }
+    textarea.code-input { 
+        width: 100%; height: 150px; background: #2d2d2d; color: #d4d4d4; 
+        border: 1px solid #444; padding: 10px; font-family: 'Courier New', monospace;
+        resize: vertical; border-radius: 5px; margin-bottom: 10px;
+    }
+    .btn-run { 
+        background: #22c55e; color: white; border: none; padding: 8px 20px; 
+        border-radius: 5px; cursor: pointer; font-weight: bold; 
+    }
+    .btn-run:hover { background: #16a34a; }
+    .console-output { 
+        background: #000; color: #0f0; padding: 10px; border-radius: 5px; 
+        height: 80px; overflow-y: auto; font-family: monospace; font-size: 0.85rem; margin-top: 10px;
+    }
+    @media (max-width: 768px) { .lab-container { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/index.html" class="nav-logo"> Delanoys Tecnologias</a>
+  <ul class="nav-links">
+    <li><a href="#algoritmos">Algoritmos</a></li>
+    <li><a href="#variables">Variables</a></li>
+    <li><a href="#aritmetica">Aritmética</a></li>
+    <li><a href="#logica">Lógica</a></li>
+    <li><a href="#condicionales">Condicionales</a></li>
+    <li><a href="#proyecto">Proyecto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="inicio" class="hero">
+  <span class="hero-badge">📚 Plan de estudio completo</span>
+  <h1>Programación<br><em>desde cero</em></h1>
+  <img src="/assets/images/programacion.jpeg" alt="Programación desde cero" style="width:100%;max-width:400px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);margin-bottom:2rem"   >
+  <p>Aprende a pensar como programador. Algoritmos, variables, expresiones y estructuras de control explicadas con ejemplos reales y ejercicios interactivos.</p>
+  <div class="hero-cta">
+    <a href="#algoritmos" class="btn-primary">Comenzar ahora</a>
+    <a href="#proyecto" class="btn-ghost">Ver proyecto final</a>
+  </div>
+  <div class="progress-track">
+    <div class="pt-item"><div class="pt-dot" style="background:var(--purple)"></div>Módulo 1 · Algoritmos</div>
+    <div class="pt-item"><div class="pt-dot" style="background:var(--teal)"></div>Módulo 2 · Variables</div>
+    <div class="pt-item"><div class="pt-dot" style="background:var(--coral)"></div>Módulo 3 · Aritmética</div>
+    <div class="pt-item"><div class="pt-dot" style="background:var(--amber)"></div>Módulo 4 · Lógica</div>
+    <div class="pt-item"><div class="pt-dot" style="background:var(--blue)"></div>Módulo 5 · Condicionales</div>
+    <div class="pt-item"><div class="pt-dot" style="background:var(--green)"></div>Módulo 6 · Proyecto</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE NAV -->
+<div class="module-nav" style="margin-top:3rem">
+  <a href="#algoritmos" class="mn-item"><span class="mn-num" style="background:var(--purple-bg);color:var(--purple)">1</span>Algoritmos</a>
+  <a href="#variables"  class="mn-item"><span class="mn-num" style="background:var(--teal-bg);color:var(--teal)">2</span>Variables</a>
+  <a href="#aritmetica" class="mn-item"><span class="mn-num" style="background:var(--coral-bg);color:var(--coral)">3</span>Aritmética</a>
+  <a href="#logica"     class="mn-item"><span class="mn-num" style="background:var(--amber-bg);color:var(--amber)">4</span>Lógica</a>
+  <a href="#condicionales" class="mn-item"><span class="mn-num" style="background:var(--blue-bg);color:var(--blue)">5</span>Condicionales</a>
+  <a href="#proyecto"   class="mn-item"><span class="mn-num" style="background:var(--green-bg);color:var(--green)">6</span>Proyecto</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MÓDULO 1 · ALGORITMOS
+═══════════════════════════════════════════════ -->
+<section id="algoritmos">
+  <div class="section-label purple">Módulo 1 · Semana 1</div>
+  <h2 class="section-title">Algoritmos y el modelo <span class="purple">IPO</span></h2>
+  <p class="section-desc">Un algoritmo es una secuencia de pasos ordenados y finitos que resuelven un problema. Todo programa de computadora es, en esencia, un algoritmo. En el contexto del plan de estudio de programación, IPO se refiere al Ciclo de la Información y es el acrónimo de los tres pasos fundamentales que realiza cualquier programa de computadora: Input (Entrada), Process (Proceso) y Output (Salida).</p>
+
+  <p class="section-desc">Aquí te detallo qué significa cada etapa según tu plan de estudio:</p>
+
+  <ul class="section-list">
+    <li><strong>Input (Entrada):</strong> Es la fase en la que el programa recibe los datos necesarios para trabajar. Estos datos pueden provenir de diversas fuentes como el teclado, sensores o archivos.</li>
+    <li><strong>Process (Proceso):</strong> Es lo que el programa hace con los datos recibidos. Incluye la ejecución de cálculos aritméticos, comparaciones lógicas y la aplicación de algoritmos para transformar la entrada en algo útil.</li>
+    <li><strong>Output (Salida):</strong> Es el resultado final que se entrega al usuario. Se puede visualizar a través de la pantalla, guardarse en archivos o generarse en forma de reportes.</li>
+  </ul>
+
+  <div class="concept-grid">
+    <div class="concept-card" style="border-top-color:var(--purple)">
+      <span class="cc-icon">🔢</span>
+      <div class="cc-title">Finito</div>
+      <div class="cc-desc">Todo algoritmo debe terminar en algún momento. No puede ejecutarse indefinidamente.</div>
+    </div>
+    <div class="concept-card" style="border-top-color:var(--purple)">
+      <span class="cc-icon">🎯</span>
+      <div class="cc-title">Preciso</div>
+      <div class="cc-desc">Cada paso debe estar definido con exactitud. Sin ambigüedad ni interpretaciones dobles.</div>
+    </div>
+    <div class="concept-card" style="border-top-color:var(--purple)">
+      <span class="cc-icon">📋</span>
+      <div class="cc-title">Ordenado</div>
+      <div class="cc-desc">Los pasos siguen una secuencia específica. El orden importa — cambiar el orden cambia el resultado.</div>
+    </div>
+    <div class="concept-card" style="border-top-color:var(--purple)">
+      <span class="cc-icon">📥</span>
+      <div class="cc-title">Tiene entrada y salida</div>
+      <div class="cc-desc">Recibe datos (entrada), los transforma (proceso) y produce un resultado (salida).</div>
+    </div>
+  </div>
+
+  <h3 class="mt-lg" style="font-size:1.2rem;font-weight:600;margin-bottom:.8rem">El modelo IPO: <span class="purple">Entrada → Proceso → Salida</span></h3>
+  <p class="muted" style="font-size:14px;margin-bottom:1.5rem">Todo programa recibe información, la transforma y produce un resultado. Este es el esquema fundamental de cualquier sistema de cómputo.</p>
+
+  <div class="ipo-diagram">
+    <div class="ipo-box" style="background:var(--purple-bg);border-color:rgba(167,139,250,0.2)">
+      <div class="ipo-label purple">Entrada</div>
+      <div class="ipo-content">Datos del usuario,<br>archivos, sensores</div>
+    </div>
+    <div class="ipo-arrow">→</div>
+    <div class="ipo-box" style="background:var(--amber-bg);border-color:rgba(251,191,36,0.2)">
+      <div class="ipo-label amber">Proceso</div>
+      <div class="ipo-content">Cálculos, decisiones,<br>transformaciones</div>
+    </div>
+    <div class="ipo-arrow">→</div>
+    <div class="ipo-box" style="background:var(--teal-bg);border-color:rgba(52,211,153,0.2)">
+      <div class="ipo-label teal">Salida</div>
+      <div class="ipo-content">Resultado en pantalla,<br>archivo, mensaje</div>
+    </div>
+  </div>
+
+  <div class="callout" style="background:var(--purple-bg);border:1px solid rgba(167,139,250,0.2)">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body">
+      <strong style="color:var(--purple)">Ejemplo cotidiano:</strong> Hacer una arepa. <strong>Entrada:</strong> harina de maíz, agua, sal. <strong>Proceso:</strong> mezclar, amasar, dar forma, cocinar. <strong>Salida:</strong> la arepa lista. ¡Eso es un algoritmo!
+    </div>
+  </div>
+
+  <h3 class="mt-lg" style="font-size:1.1rem;font-weight:600;margin-bottom:.8rem">Pseudocódigo: algoritmo para calcular el área de un rectángulo</h3>
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <span class="code-lang">Pseudocódigo</span>
+    </div>
+    <div class="code-body"><pre>
+<span class="cmt">// Algoritmo: Calcular área de un rectángulo</span>
+<span class="cmt">// ENTRADA → PROCESO → SALIDA</span>
+
+<span class="kw">INICIO</span>
+
+  <span class="cmt">// ENTRADA: pedirle datos al usuario</span>
+  <span class="fn">Leer</span>(<span class="var">base</span>)        <span class="cmt">// ancho del rectángulo</span>
+  <span class="fn">Leer</span>(<span class="var">altura</span>)      <span class="cmt">// alto del rectángulo</span>
+
+  <span class="cmt">// PROCESO: calcular el área</span>
+  <span class="var">area</span> <span class="op">←</span> <span class="var">base</span> <span class="op">*</span> <span class="var">altura</span>
+
+  <span class="cmt">// SALIDA: mostrar el resultado</span>
+  <span class="fn">Mostrar</span>(<span class="str">"El área es: "</span>, <span class="var">area</span>)
+
+<span class="kw">FIN</span>
+    </pre></div>
+  </div>
+
+  <h3 class="mt-md" style="font-size:1.1rem;font-weight:600;margin-bottom:.8rem">El mismo algoritmo en Python</h3>
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <span class="code-lang">Python</span>
+    </div>
+    <div class="code-body"><pre>
+<span class="cmt"># ENTRADA</span>
+<span class="var">base</span>   <span class="op">=</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"¿Cuál es la base? "</span>))
+<span class="var">altura</span> <span class="op">=</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"¿Cuál es la altura? "</span>))
+
+<span class="cmt"># PROCESO</span>
+<span class="var">area</span> <span class="op">=</span> <span class="var">base</span> <span class="op">*</span> <span class="var">altura</span>
+
+<span class="cmt"># SALIDA</span>
+<span class="fn">print</span>(<span class="str">f"El área del rectángulo es: </span><span class="kw">{</span><span class="var">area</span><span class="kw">}</span><span class="str"> cm²"</span>)
+    </pre></div>
+  </div>
+
+  <!-- EJERCICIOS -->
+  <div class="exercise-card" style="background:var(--purple-bg);border-color:rgba(167,139,250,0.25)">
+    <div class="ex-header">
+      <span class="ex-badge" style="background:rgba(167,139,250,0.2);color:var(--purple)">Ejercicio 1.1</span>
+      <span class="ex-title">Identifica las partes del algoritmo</span>
+    </div>
+    <div class="ex-body">
+      Un cajero automático permite retirar dinero. Describe el algoritmo identificando: ¿cuáles son las <strong style="color:var(--purple)">entradas</strong>? ¿Cuál es el <strong style="color:var(--amber)">proceso</strong>? ¿Cuáles son las <strong style="color:var(--teal)">salidas</strong>? Escríbelo en pseudocódigo con al menos 5 pasos.
+    </div>
+    <button class="ex-answer-toggle" onclick="toggleAnswer(this)">▶ Ver solución</button>
+    <div class="ex-answer">
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Solución</span></div>
+        <div class="code-body"><pre>
+<span class="kw">INICIO</span>
+  <span class="cmt">// ENTRADAS</span>
+  <span class="fn">Leer</span>(<span class="var">tarjeta</span>)       <span class="cmt">// insertar tarjeta</span>
+  <span class="fn">Leer</span>(<span class="var">pin</span>)           <span class="cmt">// ingresar PIN secreto</span>
+  <span class="fn">Leer</span>(<span class="var">monto</span>)         <span class="cmt">// cantidad a retirar</span>
+
+  <span class="cmt">// PROCESO</span>
+  <span class="kw">SI</span> <span class="var">pin</span> <span class="op">==</span> <span class="var">pin_correcto</span> <span class="kw">Y</span> <span class="var">saldo</span> <span class="op">>=</span> <span class="var">monto</span> <span class="kw">ENTONCES</span>
+    <span class="var">saldo</span> <span class="op">←</span> <span class="var">saldo</span> <span class="op">-</span> <span class="var">monto</span>
+    <span class="fn">DispensarBilletes</span>(<span class="var">monto</span>)
+
+  <span class="cmt">// SALIDA</span>
+  <span class="fn">Mostrar</span>(<span class="str">"Retire su dinero. Saldo: "</span>, <span class="var">saldo</span>)
+  <span class="fn">ExpulsarTarjeta</span>()
+<span class="kw">FIN</span>
+        </pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ 1 -->
+  <div class="quiz-card">
+    <div class="quiz-q">¿Cuál de estas NO es una característica obligatoria de un algoritmo?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'Un algoritmo SIEMPRE debe ser finito, de lo contrario no es un algoritmo válido.')">
+        <span>A.</span> Debe ser finito
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'Todo algoritmo tiene precisión — cada paso debe ser exacto.')">
+        <span>B.</span> Debe ser preciso
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, true, '¡Correcto! Un algoritmo puede ser simple o complejo, pero no tiene un requisito de velocidad. Lo que importa es que sea correcto.')">
+        <span>C.</span> Debe ejecutarse en menos de 1 segundo
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'El orden de los pasos es fundamental en todo algoritmo.')">
+        <span>D.</span> Debe tener pasos ordenados
+      </button>
+    </div>
+    <div class="quiz-feedback"></div>
+    <button class="quiz-reset" onclick="resetQuiz(this)">↺ Reintentar</button>
+  </div>
+</section>
+<section id="pseudocodigo">
+  <h2>📘 Instrucciones Básicas de Pseudocódigo</h2>
+
+  <h3>🔹 1. Estructura de un programa</h3>
+  <pre>
+Proceso NombreDelPrograma
+    // instrucciones
+FinProceso
+  </pre>
+
+  <h3>🔹 2. Mostrar información (Salida)</h3>
+  <pre>
+Escribir "Hola mundo"
+Escribir "Resultado: ", resultado
+  </pre>
+
+  <h3>🔹 3. Guardar datos (Asignación)</h3>
+  <pre>
+numero <- 10
+nombre <- "Hever"
+  </pre>
+
+  <h3>🔹 4. Leer datos del usuario (Entrada)</h3>
+  <pre>
+Leer numero
+Leer nombre
+
+Escribir "Ingrese su edad:"
+Leer edad
+  </pre>
+
+  <h3>🔹 5. Operaciones matemáticas</h3>
+  <pre>
+suma <- a + b
+resta <- a - b
+multiplicacion <- a * b
+division <- a / b
+  </pre>
+
+  <h3>🔹 6. Condicionales (Decisiones)</h3>
+  <pre>
+Si edad >= 18 Entonces
+    Escribir "Es mayor de edad"
+SiNo
+    Escribir "Es menor de edad"
+FinSi
+  </pre>
+
+  <h3>🔹 7. Ciclos (Repeticiones)</h3>
+  <p><strong>Para:</strong></p>
+  <pre>
+Para i <- 1 Hasta 5 Hacer
+    Escribir i
+FinPara
+  </pre>
+
+  <p><strong>Mientras:</strong></p>
+  <pre>
+Mientras numero < 10 Hacer
+    Escribir numero
+    numero <- numero + 1
+FinMientras
+  </pre>
+
+  <h3>🔹 8. Comentarios</h3>
+  <pre>
+// Esto es un comentario
+  </pre>
+
+  <h3>🔹 9. Ejemplo completo</h3>
+  <pre>
+Proceso CalcularArea
+    Escribir "Ingrese la base:"
+    Leer base
+
+    Escribir "Ingrese la altura:"
+    Leer altura
+
+    area <- base * altura
+
+    Escribir "El área es: ", area
+FinProceso
+  </pre>
+
+  <h3>🔹 10. Reglas importantes</h3>
+  <ul>
+    <li>Leer no lleva paréntesis</li>
+    <li>Usa &lt;- para asignar valores</li>
+    <li>Las variables se crean al usarlas</li>
+    <li>Orden: Entrada → Proceso → Salida</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════
+     MÓDULO 2 · VARIABLES Y CONSTANTES
+═══════════════════════════════════════════════ -->
+<section id="variables">
+  <div class="section-label teal">Módulo 2 · Semana 2</div>
+  <h2 class="section-title">Variables y <span class="teal">Constantes</span></h2>
+  <p class="section-desc">Las variables son cajas con nombre que guardan información. Las constantes son cajas selladas que nunca cambian su contenido.</p>
+
+  <div class="concept-grid">
+    <div class="concept-card" style="border-top-color:var(--teal)">
+      <span class="cc-icon">📦</span>
+      <div class="cc-title">Variable</div>
+      <div class="cc-desc">Espacio en memoria con un nombre. Su valor <strong>puede cambiar</strong> durante la ejecución del programa.</div>
+    </div>
+    <div class="concept-card" style="border-top-color:var(--teal)">
+      <span class="cc-icon">🔒</span>
+      <div class="cc-title">Constante</div>
+      <div class="cc-desc">Como una variable, pero su valor <strong>no puede modificarse</strong> después de ser asignado.</div>
+    </div>
+    <div class="concept-card" style="border-top-color:var(--teal)">
+      <span class="cc-icon">🏷️</span>
+      <div class="cc-title">Identificador</div>
+      <div class="cc-desc">El nombre que le damos a una variable. Debe ser descriptivo: <code style="font-family:var(--font-mono);color:var(--teal)">edad</code>, no <code style="font-family:var(--font-mono);color:var(--teal)">x</code>.</div>
+    </div>
+    <div class="concept-card" style="border-top-color:var(--teal)">
+      <span class="cc-icon">🗃️</span>
+      <div class="cc-title">Tipo de dato</div>
+      <div class="cc-desc">Define qué clase de información puede guardar: número, texto, verdadero/falso, decimal, etc.</div>
+    </div>
+  </div>
+
+  <!-- TIPOS DE DATOS -->
+  <h3 class="mt-lg" style="font-size:1.1rem;font-weight:600;margin-bottom:1rem">Tipos de datos fundamentales</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Nombre técnico</th>
+        <th>Valores posibles</th>
+        <th>Ejemplo</th>
+        <th>Tamaño típico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Número entero</td>
+        <td><span class="badge" style="background:var(--purple-bg);color:var(--purple)">int</span></td>
+        <td>Números sin decimales</td>
+        <td class="text-mono teal">edad = 25</td>
+        <td>4 bytes</td>
+      </tr>
+      <tr>
+        <td>Número decimal</td>
+        <td><span class="badge" style="background:var(--amber-bg);color:var(--amber)">float</span></td>
+        <td>Números con punto decimal</td>
+        <td class="text-mono teal">precio = 3.99</td>
+        <td>8 bytes</td>
+      </tr>
+      <tr>
+        <td>Texto</td>
+        <td><span class="badge" style="background:var(--teal-bg);color:var(--teal)">string</span></td>
+        <td>Caracteres entre comillas</td>
+        <td class="text-mono teal">nombre = "Ana"</td>
+        <td>Variable</td>
+      </tr>
+      <tr>
+        <td>Booleano</td>
+        <td><span class="badge" style="background:var(--coral-bg);color:var(--coral)">bool</span></td>
+        <td>Solo True o False</td>
+        <td class="text-mono teal">activo = True</td>
+        <td>1 byte</td>
+      </tr>
+      <tr>
+        <td>Carácter</td>
+        <td><span class="badge" style="background:var(--blue-bg);color:var(--blue)">char</span></td>
+        <td>Un solo carácter</td>
+        <td class="text-mono teal">inicial = 'A'</td>
+        <td>1 byte</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <span class="code-lang">Python · Variables y constantes</span>
+    </div>
+    <div class="code-body"><pre>
+<span class="cmt"># ── VARIABLES (pueden cambiar) ───────────────────</span>
+<span class="var">nombre</span>    <span class="op">=</span> <span class="str">"Carlos"</span>         <span class="cmt"># string</span>
+<span class="var">edad</span>      <span class="op">=</span> <span class="num">22</span>               <span class="cmt"># int</span>
+<span class="var">altura</span>    <span class="op">=</span> <span class="num">1.75</span>             <span class="cmt"># float</span>
+<span class="var">activo</span>    <span class="op">=</span> <span class="kw">True</span>             <span class="cmt"># bool</span>
+
+<span class="cmt"># ── CONSTANTES (convención: MAYÚSCULAS) ──────────</span>
+<span class="var">PI</span>        <span class="op">=</span> <span class="num">3.14159265</span>       <span class="cmt"># constante matemática</span>
+<span class="var">IVA</span>       <span class="op">=</span> <span class="num">0.19</span>             <span class="cmt"># impuesto al valor agregado</span>
+<span class="var">MAX_EDAD</span>  <span class="op">=</span> <span class="num">120</span>              <span class="cmt"># límite máximo aceptable</span>
+
+<span class="cmt"># ── OPERACIÓN DE ASIGNACIÓN ───────────────────────</span>
+<span class="var">edad</span> <span class="op">=</span> <span class="num">23</span>                     <span class="cmt"># actualizamos la variable</span>
+<span class="fn">print</span>(<span class="str">f"</span><span class="kw">{</span><span class="var">nombre</span><span class="kw">}</span><span class="str"> tiene </span><span class="kw">{</span><span class="var">edad</span><span class="kw">}</span><span class="str"> años"</span>)
+<span class="cmt"># → Carlos tiene 23 años</span>
+    </pre></div>
+  </div>
+
+  <div class="callout" style="background:var(--amber-bg);border:1px solid rgba(251,191,36,0.2)">
+    <span class="callout-icon">⚠️</span>
+    <div class="callout-body">
+      <strong style="color:var(--amber)">Reglas para nombrar variables:</strong> No pueden empezar con número · No contienen espacios (usa guión bajo: <code style="font-family:var(--font-mono)">nombre_completo</code>) · No usan tildes ni ñ en código profesional · Deben ser descriptivas: <code style="font-family:var(--font-mono);color:var(--teal)">precioTotal</code> es mejor que <code style="font-family:var(--font-mono);color:var(--coral)">pt</code>.
+    </div>
+  </div>
+
+  <!-- SIMULADOR DE VARIABLES -->
+  <div class="simulator">
+    <div class="sim-header">🧪 Simulador de variables</div>
+    <div class="sim-body">
+      <div class="sim-row">
+        <span class="sim-label">Tu nombre</span>
+        <input type="text" class="sim-input" id="sim-nombre" placeholder="Ej: María" value="María">
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Tu edad</span>
+        <input type="number" class="sim-input" id="sim-edad" placeholder="Ej: 20" value="20">
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Año de nacimiento</span>
+        <input type="number" class="sim-input" id="sim-anio" placeholder="Ej: 2024" value="2024">
+        <button class="sim-btn" onclick="simVariables()">▶ Ejecutar</button>
+      </div>
+      <div class="sim-output" id="sim-var-out">El programa mostrará el resultado aquí...</div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO VARIABLES -->
+  <div class="exercise-card" style="background:var(--teal-bg);border-color:rgba(52,211,153,0.25)">
+    <div class="ex-header">
+      <span class="ex-badge" style="background:rgba(52,211,153,0.15);color:var(--teal)">Ejercicio 2.1</span>
+      <span class="ex-title">Declara variables para una ficha de estudiante</span>
+    </div>
+    <div class="ex-body">
+      Crea las variables necesarias para guardar: nombre del estudiante, código de matrícula (número entero), promedio de notas (decimal), si está becado (sí/no) y carrera. Elige el tipo de dato correcto para cada una.
+    </div>
+    <button class="ex-answer-toggle" onclick="toggleAnswer(this)">▶ Ver solución</button>
+    <div class="ex-answer">
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="cmt"># Ficha de estudiante</span>
+<span class="var">nombre</span>     <span class="op">=</span> <span class="str">"Laura Gómez"</span>     <span class="cmt"># string</span>
+<span class="var">matricula</span>  <span class="op">=</span> <span class="num">20231045</span>         <span class="cmt"># int</span>
+<span class="var">promedio</span>   <span class="op">=</span> <span class="num">4.2</span>              <span class="cmt"># float</span>
+<span class="var">becado</span>     <span class="op">=</span> <span class="kw">True</span>             <span class="cmt"># bool</span>
+<span class="var">carrera</span>    <span class="op">=</span> <span class="str">"Ingeniería"</span>      <span class="cmt"># string</span>
+
+<span class="fn">print</span>(<span class="str">f"Estudiante: </span><span class="kw">{</span><span class="var">nombre</span><span class="kw">}</span><span class="str"> | Promedio: </span><span class="kw">{</span><span class="var">promedio</span><span class="kw">}</span><span class="str">"</span>)
+        </pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">¿Qué tipo de dato deberías usar para guardar el saldo de una cuenta bancaria como $45.780,50?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'int solo guarda números enteros. Perdería los centavos.')">
+        <span>A.</span> int (entero)
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, true, '¡Exacto! float permite guardar números con decimales, ideal para valores monetarios.')">
+        <span>B.</span> float (decimal)
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'string es para texto. No podríamos hacer operaciones matemáticas con él.')">
+        <span>C.</span> string (texto)
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'bool solo guarda verdadero o falso. No sirve para cantidades.')">
+        <span>D.</span> bool (booleano)
+      </button>
+    </div>
+    <div class="quiz-feedback"></div>
+    <button class="quiz-reset" onclick="resetQuiz(this)">↺ Reintentar</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════
+     MÓDULO 3 · ARITMÉTICA
+═══════════════════════════════════════════════ -->
+<section id="aritmetica">
+  <div class="section-label coral">Módulo 3 · Semana 3</div>
+  <h2 class="section-title">Expresiones <span class="coral">Aritméticas</span></h2>
+  <p class="section-desc">Las expresiones aritméticas combinan variables, constantes y operadores para producir un valor numérico. Son la base de todos los cálculos en programación.</p>
+
+  <div class="op-grid">
+    <div class="op-item">
+      <span class="op-symbol coral">+</span>
+      <span class="op-name">Suma</span>
+      <span class="op-example">5 + 3 = 8</span>
+    </div>
+    <div class="op-item">
+      <span class="op-symbol coral">−</span>
+      <span class="op-name">Resta</span>
+      <span class="op-example">10 − 4 = 6</span>
+    </div>
+    <div class="op-item">
+      <span class="op-symbol coral">*</span>
+      <span class="op-name">Multiplicación</span>
+      <span class="op-example">3 * 6 = 18</span>
+    </div>
+    <div class="op-item">
+      <span class="op-symbol coral">/</span>
+      <span class="op-name">División real</span>
+      <span class="op-example">7 / 2 = 3.5</span>
+    </div>
+    <div class="op-item">
+      <span class="op-symbol coral">//</span>
+      <span class="op-name">División entera</span>
+      <span class="op-example">7 // 2 = 3</span>
+    </div>
+    <div class="op-item">
+      <span class="op-symbol coral">%</span>
+      <span class="op-name">Módulo (resto)</span>
+      <span class="op-example">7 % 2 = 1</span>
+    </div>
+    <div class="op-item">
+      <span class="op-symbol coral">**</span>
+      <span class="op-name">Potencia</span>
+      <span class="op-example">2 ** 8 = 256</span>
+    </div>
+  </div>
+
+  <div class="callout" style="background:var(--coral-bg);border:1px solid rgba(251,113,133,0.2)">
+    <span class="callout-icon">📐</span>
+    <div class="callout-body">
+      <strong style="color:var(--coral)">Jerarquía de operaciones:</strong> 1º Paréntesis <code style="font-family:var(--font-mono)">()</code> → 2º Potencias <code style="font-family:var(--font-mono)">**</code> → 3º Multiplicación y división <code style="font-family:var(--font-mono)">* / // %</code> → 4º Suma y resta <code style="font-family:var(--font-mono)">+ -</code>. Cuando hay empate, se evalúa de izquierda a derecha.
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <span class="code-lang">Python · Operaciones aritméticas</span>
+    </div>
+    <div class="code-body"><pre>
+<span class="cmt"># Ejemplo: factura de compra</span>
+<span class="var">precio_unitario</span>  <span class="op">=</span> <span class="num">15000</span>
+<span class="var">cantidad</span>         <span class="op">=</span> <span class="num">6</span>
+<span class="var">IVA</span>              <span class="op">=</span> <span class="num">0.19</span>           <span class="cmt"># constante 19%</span>
+
+<span class="var">subtotal</span>         <span class="op">=</span> <span class="var">precio_unitario</span> <span class="op">*</span> <span class="var">cantidad</span>
+<span class="var">impuesto</span>         <span class="op">=</span> <span class="var">subtotal</span> <span class="op">*</span> <span class="var">IVA</span>
+<span class="var">total</span>            <span class="op">=</span> <span class="var">subtotal</span> <span class="op">+</span> <span class="var">impuesto</span>
+
+<span class="fn">print</span>(<span class="str">f"Subtotal: ${</span><span class="var">subtotal</span><span class="str">:,}"</span>)    <span class="cmt"># → $90,000</span>
+<span class="fn">print</span>(<span class="str">f"IVA 19%:  ${</span><span class="var">impuesto</span><span class="str">:,.0f}"</span>) <span class="cmt"># → $17,100</span>
+<span class="fn">print</span>(<span class="str">f"TOTAL:    ${</span><span class="var">total</span><span class="str">:,.0f}"</span>)    <span class="cmt"># → $107,100</span>
+
+<span class="cmt"># El operador módulo: ¿es par o impar?</span>
+<span class="var">numero</span> <span class="op">=</span> <span class="num">17</span>
+<span class="fn">print</span>(<span class="var">numero</span> <span class="op">%</span> <span class="num">2</span>)  <span class="cmt"># → 1  (resto ≠ 0, es impar)</span>
+
+<span class="cmt"># Potencias: área de círculo</span>
+<span class="var">radio</span>    <span class="op">=</span> <span class="num">5</span>
+<span class="var">PI</span>       <span class="op">=</span> <span class="num">3.14159</span>
+<span class="var">area</span>     <span class="op">=</span> <span class="var">PI</span> <span class="op">*</span> <span class="var">radio</span> <span class="op">**</span> <span class="num">2</span>  <span class="cmt"># → 78.539</span>
+    </pre></div>
+  </div>
+
+  <!-- CALCULADORA INTERACTIVA -->
+  <div class="simulator">
+    <div class="sim-header">🧮 Calculadora de factura</div>
+    <div class="sim-body">
+      <div class="sim-row">
+        <span class="sim-label">Precio unitario</span>
+        <input type="number" class="sim-input" id="calc-precio" value="15000">
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Cantidad</span>
+        <input type="number" class="sim-input" id="calc-cantidad" value="3">
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Descuento %</span>
+        <input type="number" class="sim-input" id="calc-desc" value="10" min="0" max="100">
+        <button class="sim-btn" onclick="simFactura()">▶ Calcular</button>
+      </div>
+      <div class="sim-output" id="sim-factura-out">Ingresa los valores y haz clic en Calcular...</div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO ARITMÉTICA -->
+  <div class="exercise-card" style="background:var(--coral-bg);border-color:rgba(251,113,133,0.25)">
+    <div class="ex-header">
+      <span class="ex-badge" style="background:rgba(251,113,133,0.15);color:var(--coral)">Ejercicio 3.1</span>
+      <span class="ex-title">Conversor de temperatura</span>
+    </div>
+    <div class="ex-body">
+      Escribe un programa que convierta grados Celsius a Fahrenheit.<br>
+      La fórmula es: <strong style="color:var(--amber)">F = (C × 9/5) + 32</strong><br>
+      Pruébalo con 0°C (debería dar 32°F), 100°C (212°F) y tu temperatura favorita.
+    </div>
+    <button class="ex-answer-toggle" onclick="toggleAnswer(this)">▶ Ver solución</button>
+    <div class="ex-answer">
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="cmt"># Conversor de temperatura</span>
+<span class="var">celsius</span>     <span class="op">=</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Ingresa temperatura en Celsius: "</span>))
+<span class="var">fahrenheit</span>  <span class="op">=</span> (<span class="var">celsius</span> <span class="op">*</span> <span class="num">9</span> <span class="op">/</span> <span class="num">5</span>) <span class="op">+</span> <span class="num">32</span>
+
+<span class="fn">print</span>(<span class="str">f"{</span><span class="var">celsius</span><span class="str">}°C equivale a {</span><span class="var">fahrenheit</span><span class="str">:.1f}°F"</span>)
+
+<span class="cmt"># Pruebas:</span>
+<span class="cmt"># 0°C   →  32.0°F  ✓</span>
+<span class="cmt"># 100°C → 212.0°F  ✓</span>
+<span class="cmt"># 37°C  →  98.6°F  ✓ (temperatura corporal)</span>
+        </pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">¿Cuál es el resultado de la expresión: <code style="font-family:var(--font-mono);color:var(--amber)">2 + 3 * 4 - 1</code> ?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'Este sería el resultado si se evaluara de izquierda a derecha sin jerarquía: (2+3)*4-1 = 19.')">
+        <span>A.</span> 19
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, true, '¡Correcto! Por jerarquía: primero 3*4=12, luego 2+12=14, luego 14-1=13.')">
+        <span>B.</span> 13
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, '20 no es correcto. Revisa la jerarquía de operadores.')">
+        <span>C.</span> 20
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, '16 no es correcto. La multiplicación se evalúa antes que la suma.')">
+        <span>D.</span> 16
+      </button>
+    </div>
+    <div class="quiz-feedback"></div>
+    <button class="quiz-reset" onclick="resetQuiz(this)">↺ Reintentar</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════
+     MÓDULO 4 · LÓGICA
+═══════════════════════════════════════════════ -->
+<section id="logica">
+  <div class="section-label amber">Módulo 4 · Semana 4</div>
+  <h2 class="section-title">Expresiones <span class="amber">Lógicas</span></h2>
+  <p class="section-desc">Las expresiones lógicas producen un resultado booleano: verdadero (True) o falso (False). Son el lenguaje con el que los programas toman decisiones.</p>
+
+  <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem">Operadores relacionales</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Operador</th><th>Significado</th><th>Ejemplo</th><th>Resultado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="text-mono amber">==</td><td>Igual a</td><td class="text-mono">5 == 5</td><td class="teal">True</td></tr>
+      <tr><td class="text-mono amber">!=</td><td>Diferente de</td><td class="text-mono">5 != 3</td><td class="teal">True</td></tr>
+      <tr><td class="text-mono amber">&gt;</td><td>Mayor que</td><td class="text-mono">8 &gt; 3</td><td class="teal">True</td></tr>
+      <tr><td class="text-mono amber">&lt;</td><td>Menor que</td><td class="text-mono">2 &lt; 1</td><td class="coral">False</td></tr>
+      <tr><td class="text-mono amber">&gt;=</td><td>Mayor o igual</td><td class="text-mono">5 &gt;= 5</td><td class="teal">True</td></tr>
+      <tr><td class="text-mono amber">&lt;=</td><td>Menor o igual</td><td class="text-mono">3 &lt;= 2</td><td class="coral">False</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="mt-lg" style="font-size:1.1rem;font-weight:600;margin-bottom:1rem">Operadores lógicos: AND, OR, NOT</h3>
+  <table class="truth-table">
+    <thead>
+      <tr>
+        <th>A</th><th>B</th>
+        <th>A AND B</th>
+        <th>A OR B</th>
+        <th>NOT A</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="t-true">V</td><td class="t-true">V</td><td class="t-true">V</td><td class="t-true">V</td><td class="t-false">F</td></tr>
+      <tr><td class="t-true">V</td><td class="t-false">F</td><td class="t-false">F</td><td class="t-true">V</td><td class="t-false">F</td></tr>
+      <tr><td class="t-false">F</td><td class="t-true">V</td><td class="t-false">F</td><td class="t-true">V</td><td class="t-true">V</td></tr>
+      <tr><td class="t-false">F</td><td class="t-false">F</td><td class="t-false">F</td><td class="t-false">F</td><td class="t-true">V</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="background:var(--amber-bg);border:1px solid rgba(251,191,36,0.2)">
+    <span class="callout-icon">🔑</span>
+    <div class="callout-body">
+      <strong style="color:var(--amber)">Para recordar:</strong> AND necesita que <em>ambas</em> condiciones sean verdaderas. OR necesita que <em>al menos una</em> sea verdadera. NOT invierte el valor: lo verdadero se vuelve falso y viceversa.
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <span class="code-lang">Python · Expresiones lógicas</span>
+    </div>
+    <div class="code-body"><pre>
+<span class="var">edad</span>        <span class="op">=</span> <span class="num">20</span>
+<span class="var">es_ciudadano</span> <span class="op">=</span> <span class="kw">True</span>
+<span class="var">tiene_cedula</span> <span class="op">=</span> <span class="kw">True</span>
+
+<span class="cmt"># AND: TODAS las condiciones deben ser verdaderas</span>
+<span class="var">puede_votar</span> <span class="op">=</span> <span class="var">edad</span> <span class="op">>=</span> <span class="num">18</span> <span class="kw">and</span> <span class="var">es_ciudadano</span> <span class="kw">and</span> <span class="var">tiene_cedula</span>
+<span class="fn">print</span>(<span class="var">puede_votar</span>)  <span class="cmt"># → True</span>
+
+<span class="cmt"># OR: Al menos UNA condición debe ser verdadera</span>
+<span class="var">descuento</span> <span class="op">=</span> <span class="var">edad</span> <span class="op">&lt;</span> <span class="num">12</span> <span class="kw">or</span> <span class="var">edad</span> <span class="op">></span> <span class="num">65</span>
+<span class="fn">print</span>(<span class="var">descuento</span>)   <span class="cmt"># → False (20 no es ni menor ni mayor)</span>
+
+<span class="cmt"># NOT: invierte el booleano</span>
+<span class="fn">print</span>(<span class="kw">not</span> <span class="var">descuento</span>)  <span class="cmt"># → True</span>
+
+<span class="cmt"># Combinaciones con paréntesis (muy importante)</span>
+<span class="var">acceso</span> <span class="op">=</span> (<span class="var">edad</span> <span class="op">>=</span> <span class="num">18</span> <span class="kw">and</span> <span class="var">tiene_cedula</span>) <span class="kw">or</span> <span class="var">edad</span> <span class="op">==</span> <span class="num">0</span>
+<span class="fn">print</span>(<span class="var">acceso</span>)  <span class="cmt"># → True</span>
+    </pre></div>
+  </div>
+
+  <div class="exercise-card" style="background:var(--amber-bg);border-color:rgba(251,191,36,0.25)">
+    <div class="ex-header">
+      <span class="ex-badge" style="background:rgba(251,191,36,0.15);color:var(--amber)">Ejercicio 4.1</span>
+      <span class="ex-title">Condiciones de acceso a un evento</span>
+    </div>
+    <div class="ex-body">
+      Un evento tiene estas reglas:<br>
+      • Acceso libre para menores de 12 años o mayores de 65 años<br>
+      • Acceso normal para personas entre 12 y 65 años con entrada comprada<br>
+      • Se prohíbe la entrada si no tiene entrada, sin importar la edad<br><br>
+      Escribe las expresiones lógicas para cada condición usando variables: <code style="font-family:var(--font-mono)">edad</code> y <code style="font-family:var(--font-mono)">tiene_entrada</code>.
+    </div>
+    <button class="ex-answer-toggle" onclick="toggleAnswer(this)">▶ Ver solución</button>
+    <div class="ex-answer">
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="var">edad</span>          <span class="op">=</span> <span class="num">8</span>
+<span class="var">tiene_entrada</span> <span class="op">=</span> <span class="kw">False</span>
+
+<span class="cmt"># Acceso libre (menores de 12 o mayores de 65)</span>
+<span class="var">acceso_libre</span> <span class="op">=</span> <span class="var">edad</span> <span class="op">&lt;</span> <span class="num">12</span> <span class="kw">or</span> <span class="var">edad</span> <span class="op">></span> <span class="num">65</span>
+
+<span class="cmt"># Acceso normal: edad entre 12 y 65 CON entrada</span>
+<span class="var">acceso_normal</span> <span class="op">=</span> (<span class="var">edad</span> <span class="op">>=</span> <span class="num">12</span> <span class="kw">and</span> <span class="var">edad</span> <span class="op">&lt;=</span> <span class="num">65</span>) <span class="kw">and</span> <span class="var">tiene_entrada</span>
+
+<span class="cmt"># Puede entrar: libre O (normal CON entrada)</span>
+<span class="var">puede_entrar</span> <span class="op">=</span> <span class="var">acceso_libre</span> <span class="kw">or</span> <span class="var">acceso_normal</span>
+
+<span class="fn">print</span>(<span class="str">f"Acceso libre: </span><span class="kw">{</span><span class="var">acceso_libre</span><span class="kw">}</span><span class="str">"</span>)    <span class="cmt"># True (tiene 8)</span>
+<span class="fn">print</span>(<span class="str">f"Puede entrar: </span><span class="kw">{</span><span class="var">puede_entrar</span><span class="kw">}</span><span class="str">"</span>)  <span class="cmt"># True</span>
+        </pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Si <code style="font-family:var(--font-mono)">a = True</code> y <code style="font-family:var(--font-mono)">b = False</code>, ¿qué devuelve <code style="font-family:var(--font-mono);color:var(--amber)">not a or b</code>?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'not a = False, luego False or False = False. No es True.')">
+        <span>A.</span> True
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, true, '¡Correcto! not a = False (invertimos True). Luego False or False = False.')">
+        <span>B.</span> False
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'El resultado es un booleano, no un error.')">
+        <span>C.</span> Error de sintaxis
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, 'not a = not True = False. Luego False or b = False or False = False.')">
+        <span>D.</span> None
+      </button>
+    </div>
+    <div class="quiz-feedback"></div>
+    <button class="quiz-reset" onclick="resetQuiz(this)">↺ Reintentar</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════
+     MÓDULO 5 · CONDICIONALES
+═══════════════════════════════════════════════ -->
+<section id="condicionales">
+  <div class="section-label blue">Módulo 5 · Semana 5</div>
+  <h2 class="section-title">Estructuras <span class="blue">Condicionales</span></h2>
+  <p class="section-desc">Las estructuras condicionales permiten que el programa tome caminos diferentes según si una condición es verdadera o falsa. Son el corazón de la toma de decisiones.</p>
+
+  <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem">Tipos de condicionales</h3>
+
+  <details>
+    <summary>if · Condicional simple</summary>
+    <div class="detail-body">
+      Ejecuta un bloque de código solo si la condición es verdadera. Si es falsa, simplemente lo salta.
+      <div class="code-block" style="margin-top:1rem">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="var">temperatura</span> <span class="op">=</span> <span class="num">38</span>
+
+<span class="kw">if</span> <span class="var">temperatura</span> <span class="op">></span> <span class="num">37.5</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"Tienes fiebre. Consulta un médico."</span>)
+<span class="cmt"># Si temperatura ≤ 37.5, no se imprime nada</span>
+        </pre></div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>if / else · Condicional doble</summary>
+    <div class="detail-body">
+      Siempre ejecuta uno de los dos bloques: si la condición es verdadera, el primer bloque; si es falsa, el segundo.
+      <div class="code-block" style="margin-top:1rem">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="var">edad</span> <span class="op">=</span> <span class="num">16</span>
+
+<span class="kw">if</span> <span class="var">edad</span> <span class="op">>=</span> <span class="num">18</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"Puedes entrar al evento."</span>)
+<span class="kw">else</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"Acceso denegado, eres menor de edad."</span>)
+<span class="cmt"># → Acceso denegado, eres menor de edad.</span>
+        </pre></div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>if / elif / else · Condicional múltiple</summary>
+    <div class="detail-body">
+      Permite evaluar múltiples condiciones en orden. Cuando una es verdadera, ejecuta su bloque y salta las demás.
+      <div class="code-block" style="margin-top:1rem">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="var">nota</span> <span class="op">=</span> <span class="num">78</span>
+
+<span class="kw">if</span> <span class="var">nota</span> <span class="op">>=</span> <span class="num">90</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"🏆 Excelente"</span>)
+<span class="kw">elif</span> <span class="var">nota</span> <span class="op">>=</span> <span class="num">70</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"✅ Bueno"</span>)
+<span class="kw">elif</span> <span class="var">nota</span> <span class="op">>=</span> <span class="num">50</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"⚠️  Regular"</span>)
+<span class="kw">else</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"❌ Reprobado"</span>)
+<span class="cmt"># → ✅ Bueno  (porque 78 ≥ 70)</span>
+        </pre></div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Condicionales anidados</summary>
+    <div class="detail-body">
+      Un condicional dentro de otro. Útil cuando necesitas verificar condiciones más específicas dentro de una condición general.
+      <div class="code-block" style="margin-top:1rem">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="var">usuario</span>  <span class="op">=</span> <span class="str">"admin"</span>
+<span class="var">password</span> <span class="op">=</span> <span class="str">"1234"</span>
+
+<span class="kw">if</span> <span class="var">usuario</span> <span class="op">==</span> <span class="str">"admin"</span><span class="op">:</span>
+    <span class="kw">if</span> <span class="var">password</span> <span class="op">==</span> <span class="str">"1234"</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"✅ Acceso al panel de administración"</span>)
+    <span class="kw">else</span><span class="op">:</span>
+        <span class="fn">print</span>(<span class="str">"❌ Contraseña incorrecta"</span>)
+<span class="kw">else</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">"❌ Usuario no reconocido"</span>)
+        </pre></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- SIMULADOR DE CALIFICACIONES -->
+  <div class="simulator mt-lg">
+    <div class="sim-header">🎓 Clasificador de calificaciones</div>
+    <div class="sim-body">
+      <div class="sim-row">
+        <span class="sim-label">Nota (0-100)</span>
+        <input type="number" class="sim-input" id="sim-nota" min="0" max="100" value="75">
+        <button class="sim-btn" onclick="simNota()">▶ Clasificar</button>
+      </div>
+      <div class="sim-output" id="sim-nota-out">Ingresa una nota entre 0 y 100...</div>
+    </div>
+  </div>
+
+  <!-- EJERCICIO CONDICIONALES -->
+  <div class="exercise-card" style="background:var(--blue-bg);border-color:rgba(96,165,250,0.25)">
+    <div class="ex-header">
+      <span class="ex-badge" style="background:rgba(96,165,250,0.15);color:var(--blue)">Ejercicio 5.1</span>
+      <span class="ex-title">Calculadora de descuentos por categoría</span>
+    </div>
+    <div class="ex-body">
+      Una tienda aplica descuentos según la categoría del cliente:<br>
+      • <strong>VIP:</strong> 30% de descuento<br>
+      • <strong>Frecuente:</strong> 15% de descuento<br>
+      • <strong>Normal:</strong> 5% de descuento<br>
+      • <strong>Nuevo:</strong> sin descuento<br>
+      Escribe el programa que lea la categoría y el precio original, y muestre el precio final.
+    </div>
+    <button class="ex-answer-toggle" onclick="toggleAnswer(this)">▶ Ver solución</button>
+    <div class="ex-answer">
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python</span></div>
+        <div class="code-body"><pre>
+<span class="var">categoria</span> <span class="op">=</span> <span class="fn">input</span>(<span class="str">"Categoría (VIP/Frecuente/Normal/Nuevo): "</span>).lower()
+<span class="var">precio</span>    <span class="op">=</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Precio original: $"</span>))
+
+<span class="kw">if</span> <span class="var">categoria</span> <span class="op">==</span> <span class="str">"vip"</span><span class="op">:</span>
+    <span class="var">descuento</span> <span class="op">=</span> <span class="num">0.30</span>
+<span class="kw">elif</span> <span class="var">categoria</span> <span class="op">==</span> <span class="str">"frecuente"</span><span class="op">:</span>
+    <span class="var">descuento</span> <span class="op">=</span> <span class="num">0.15</span>
+<span class="kw">elif</span> <span class="var">categoria</span> <span class="op">==</span> <span class="str">"normal"</span><span class="op">:</span>
+    <span class="var">descuento</span> <span class="op">=</span> <span class="num">0.05</span>
+<span class="kw">else</span><span class="op">:</span>
+    <span class="var">descuento</span> <span class="op">=</span> <span class="num">0.0</span>
+
+<span class="var">precio_final</span> <span class="op">=</span> <span class="var">precio</span> <span class="op">*</span> (<span class="num">1</span> <span class="op">-</span> <span class="var">descuento</span>)
+<span class="fn">print</span>(<span class="str">f"Descuento: {</span><span class="var">descuento</span><span class="op">*</span><span class="num">100</span><span class="str">:.0f}%"</span>)
+<span class="fn">print</span>(<span class="str">f"Precio final: ${</span><span class="var">precio_final</span><span class="str">:,.2f}"</span>)
+        </pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">¿Qué imprime el siguiente código si <code style="font-family:var(--font-mono)">nota = 50</code>?<br><code style="font-family:var(--font-mono);font-size:12px">if nota >= 90: print("A") elif nota >= 70: print("B") elif nota >= 50: print("C") else: print("F")</code></div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this, false, '50 no es ≥ 90, así que no imprime A.')">
+        <span>A.</span> A
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, '50 no es ≥ 70, así que no imprime B.')">
+        <span>B.</span> B
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, true, '¡Correcto! 50 no es ≥ 90 ni ≥ 70, pero sí es ≥ 50, así que imprime C.')">
+        <span>C.</span> C
+      </button>
+      <button class="quiz-opt" onclick="checkQuiz(this, false, '50 cumple la condición elif nota >= 50, así que no llega al else.')">
+        <span>D.</span> F
+      </button>
+    </div>
+    <div class="quiz-feedback"></div>
+    <button class="quiz-reset" onclick="resetQuiz(this)">↺ Reintentar</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════
+     MÓDULO 6 · PROYECTO
+═══════════════════════════════════════════════ -->
+<section id="proyecto">
+  <div class="section-label green">Módulo 6 · Semana 6 · Proyecto Integrador</div>
+  <h2 class="section-title">Proyecto: <span class="green">Calculadora de Nómina</span></h2>
+  <p class="section-desc">Aplicamos todo lo aprendido en un programa real. Este proyecto integra algoritmos, variables, aritmética, lógica y condicionales.</p>
+
+  <div class="callout" style="background:var(--green-bg);border:1px solid rgba(134,239,172,0.2)">
+    <span class="callout-icon">🎯</span>
+    <div class="callout-body">
+      <strong style="color:var(--green)">Objetivo:</strong> Calcular el salario neto de un empleado considerando: salario base, horas extras, bonificación por rendimiento, descuentos de salud y pensión, e impuesto de renta.
+    </div>
+  </div>
+
+  <h3 class="mt-lg" style="font-size:1.1rem;font-weight:600;margin-bottom:.8rem">Análisis IPO del problema</h3>
+  <div class="ipo-diagram">
+    <div class="ipo-box" style="background:var(--purple-bg);border-color:rgba(167,139,250,0.2)">
+      <div class="ipo-label purple">Entrada</div>
+      <div class="ipo-content" style="text-align:left;padding-left:.5rem">
+        • Nombre empleado<br>
+        • Salario base<br>
+        • Horas extras<br>
+        • % Rendimiento
+      </div>
+    </div>
+    <div class="ipo-arrow">→</div>
+    <div class="ipo-box" style="background:var(--amber-bg);border-color:rgba(251,191,36,0.2)">
+      <div class="ipo-label amber">Proceso</div>
+      <div class="ipo-content" style="text-align:left;padding-left:.5rem">
+        • Calcular extras<br>
+        • Calcular bono<br>
+        • Calcular desctos.<br>
+        • Calcular neto
+      </div>
+    </div>
+    <div class="ipo-arrow">→</div>
+    <div class="ipo-box" style="background:var(--teal-bg);border-color:rgba(52,211,153,0.2)">
+      <div class="ipo-label teal">Salida</div>
+      <div class="ipo-content" style="text-align:left;padding-left:.5rem">
+        • Resumen de nómina<br>
+        • Total devengado<br>
+        • Total descuentos<br>
+        • Salario neto
+      </div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div>
+      <span class="code-lang">Python · Proyecto completo: Calculadora de Nómina</span>
+    </div>
+    <div class="code-body"><pre>
+<span class="cmt"># ════════════════════════════════════════════════
+#   CALCULADORA DE NÓMINA · Proyecto Integrador
+# ════════════════════════════════════════════════</span>
+
+<span class="cmt"># ── CONSTANTES ──────────────────────────────────</span>
+<span class="var">SALUD</span>       <span class="op">=</span> <span class="num">0.04</span>   <span class="cmt"># 4% descuento salud</span>
+<span class="var">PENSION</span>     <span class="op">=</span> <span class="num">0.04</span>   <span class="cmt"># 4% descuento pensión</span>
+<span class="var">HORA_EXTRA</span>  <span class="op">=</span> <span class="num">1.25</span>   <span class="cmt"># hora extra vale 25% más</span>
+
+<span class="cmt"># ── ENTRADA ─────────────────────────────────────</span>
+<span class="var">nombre</span>      <span class="op">=</span> <span class="fn">input</span>(<span class="str">"Nombre del empleado: "</span>)
+<span class="var">salario_base</span> <span class="op">=</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Salario base mensual: $"</span>))
+<span class="var">horas_extras</span> <span class="op">=</span> <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Horas extras trabajadas: "</span>))
+<span class="var">rendimiento</span>  <span class="op">=</span> <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Calificación de rendimiento (1-5): "</span>))
+
+<span class="cmt"># ── PROCESO ─────────────────────────────────────</span>
+<span class="cmt"># Calcular valor hora</span>
+<span class="var">valor_hora</span>  <span class="op">=</span> <span class="var">salario_base</span> <span class="op">/</span> <span class="num">240</span>   <span class="cmt"># 240 horas al mes</span>
+<span class="var">pago_extras</span> <span class="op">=</span> <span class="var">horas_extras</span> <span class="op">*</span> <span class="var">valor_hora</span> <span class="op">*</span> <span class="var">HORA_EXTRA</span>
+
+<span class="cmt"># Bonificación según rendimiento</span>
+<span class="kw">if</span> <span class="var">rendimiento</span> <span class="op">==</span> <span class="num">5</span><span class="op">:</span>
+    <span class="var">bono</span> <span class="op">=</span> <span class="var">salario_base</span> <span class="op">*</span> <span class="num">0.20</span>
+<span class="kw">elif</span> <span class="var">rendimiento</span> <span class="op">>=</span> <span class="num">4</span><span class="op">:</span>
+    <span class="var">bono</span> <span class="op">=</span> <span class="var">salario_base</span> <span class="op">*</span> <span class="num">0.10</span>
+<span class="kw">elif</span> <span class="var">rendimiento</span> <span class="op">>=</span> <span class="num">3</span><span class="op">:</span>
+    <span class="var">bono</span> <span class="op">=</span> <span class="var">salario_base</span> <span class="op">*</span> <span class="num">0.05</span>
+<span class="kw">else</span><span class="op">:</span>
+    <span class="var">bono</span> <span class="op">=</span> <span class="num">0</span>
+
+<span class="cmt"># Total devengado (lo que gana)</span>
+<span class="var">devengado</span> <span class="op">=</span> <span class="var">salario_base</span> <span class="op">+</span> <span class="var">pago_extras</span> <span class="op">+</span> <span class="var">bono</span>
+
+<span class="cmt"># Descuentos obligatorios</span>
+<span class="var">desc_salud</span>  <span class="op">=</span> <span class="var">devengado</span> <span class="op">*</span> <span class="var">SALUD</span>
+<span class="var">desc_pension</span> <span class="op">=</span> <span class="var">devengado</span> <span class="op">*</span> <span class="var">PENSION</span>
+
+<span class="cmt"># Impuesto de renta (condicional)</span>
+<span class="kw">if</span> <span class="var">devengado</span> <span class="op">></span> <span class="num">5000000</span><span class="op">:</span>
+    <span class="var">renta</span> <span class="op">=</span> <span class="var">devengado</span> <span class="op">*</span> <span class="num">0.19</span>
+<span class="kw">elif</span> <span class="var">devengado</span> <span class="op">></span> <span class="num">2000000</span><span class="op">:</span>
+    <span class="var">renta</span> <span class="op">=</span> <span class="var">devengado</span> <span class="op">*</span> <span class="num">0.10</span>
+<span class="kw">else</span><span class="op">:</span>
+    <span class="var">renta</span> <span class="op">=</span> <span class="num">0</span>
+
+<span class="var">total_descuentos</span> <span class="op">=</span> <span class="var">desc_salud</span> <span class="op">+</span> <span class="var">desc_pension</span> <span class="op">+</span> <span class="var">renta</span>
+<span class="var">salario_neto</span>     <span class="op">=</span> <span class="var">devengado</span> <span class="op">-</span> <span class="var">total_descuentos</span>
+
+<span class="cmt"># ── SALIDA ──────────────────────────────────────</span>
+<span class="fn">print</span>(<span class="str">f"\n{'═'*40}"</span>)
+<span class="fn">print</span>(<span class="str">f"  NÓMINA DE: {</span><span class="var">nombre</span><span class="str">.upper()}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'═'*40}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Salario base:       ${</span><span class="var">salario_base</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Horas extras:       ${</span><span class="var">pago_extras</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Bonificación:       ${</span><span class="var">bono</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'─'*40}"</span>)
+<span class="fn">print</span>(<span class="str">f"  TOTAL DEVENGADO:    ${</span><span class="var">devengado</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'─'*40}"</span>)
+<span class="fn">print</span>(<span class="str">f"  (-) Salud 4%:       ${</span><span class="var">desc_salud</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  (-) Pensión 4%:     ${</span><span class="var">desc_pension</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  (-) Renta:          ${</span><span class="var">renta</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'─'*40}"</span>)
+<span class="fn">print</span>(<span class="str">f"  SALARIO NETO:       ${</span><span class="var">salario_neto</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'═'*40}"</span>)
+    </pre></div>
+  </div>
+
+  <!-- SIMULADOR DE NÓMINA -->
+  <div class="simulator mt-md">
+    <div class="sim-header">💼 Simulador de Nómina Interactivo</div>
+    <div class="sim-body">
+      <div class="sim-row">
+        <span class="sim-label">Nombre</span>
+        <input type="text" class="sim-input" id="nom-nombre" value="Juan Pérez" style="width:180px">
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Salario base ($)</span>
+        <input type="number" class="sim-input" id="nom-salario" value="2500000">
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Horas extras</span>
+        <input type="number" class="sim-input" id="nom-extras" value="8" min="0">
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Rendimiento (1-5)</span>
+        <input type="number" class="sim-input" id="nom-rendimiento" value="4" min="1" max="5">
+        <button class="sim-btn" onclick="simNomina()">▶ Calcular Nómina</button>
+      </div>
+      <div class="sim-output" id="sim-nomina-out">Completa los datos y calcula tu nómina...</div>
+    </div>
+  </div>
+
+  <div class="exercise-card" style="background:var(--green-bg);border-color:rgba(134,239,172,0.25)">
+    <div class="ex-header">
+      <span class="ex-badge" style="background:rgba(134,239,172,0.15);color:var(--green)">Proyecto Final</span>
+      <span class="ex-title">Tienda de ropa — Sistema de facturación</span>
+    </div>
+    <div class="ex-body">
+      Diseña un sistema completo que:<br>
+      1. Lea el nombre del producto, precio y cantidad<br>
+      2. Aplique descuento si la cantidad es mayor a 10 unidades (15% de descuento)<br>
+      3. Aplique descuento adicional si el precio total supera $500.000 (10% extra)<br>
+      4. Agregue el IVA del 19%<br>
+      5. Muestre la factura completa con: subtotal, descuentos, IVA y total<br><br>
+      <strong style="color:var(--green)">Usa todo lo aprendido:</strong> variables, constantes, aritmética, lógica y condicionales.
+    </div>
+    <button class="ex-answer-toggle" onclick="toggleAnswer(this)">▶ Ver solución completa</button>
+    <div class="ex-answer">
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><span style="background:#ff5f57"></span><span style="background:#ffbd2e"></span><span style="background:#28c840"></span></div><span class="code-lang">Python · Sistema de Facturación</span></div>
+        <div class="code-body"><pre>
+<span class="cmt"># ════════════════════════════════════════════
+#   SISTEMA DE FACTURACIÓN - Tienda de Ropa
+# ════════════════════════════════════════════</span>
+
+<span class="cmt"># CONSTANTES</span>
+<span class="var">IVA</span>             <span class="op">=</span> <span class="num">0.19</span>
+<span class="var">DESC_CANTIDAD</span>   <span class="op">=</span> <span class="num">0.15</span>   <span class="cmt"># 15% si cantidad > 10</span>
+<span class="var">DESC_MONTO</span>      <span class="op">=</span> <span class="num">0.10</span>   <span class="cmt"># 10% si total > 500,000</span>
+<span class="var">LIMITE_CANTIDAD</span> <span class="op">=</span> <span class="num">10</span>
+<span class="var">LIMITE_MONTO</span>    <span class="op">=</span> <span class="num">500000</span>
+
+<span class="cmt"># ENTRADA</span>
+<span class="var">producto</span>   <span class="op">=</span> <span class="fn">input</span>(<span class="str">"Nombre del producto: "</span>)
+<span class="var">precio</span>     <span class="op">=</span> <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Precio unitario: $"</span>))
+<span class="var">cantidad</span>   <span class="op">=</span> <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Cantidad: "</span>))
+
+<span class="cmt"># PROCESO</span>
+<span class="var">subtotal</span>   <span class="op">=</span> <span class="var">precio</span> <span class="op">*</span> <span class="var">cantidad</span>
+
+<span class="cmt"># Descuento por cantidad</span>
+<span class="kw">if</span> <span class="var">cantidad</span> <span class="op">></span> <span class="var">LIMITE_CANTIDAD</span><span class="op">:</span>
+    <span class="var">d1</span> <span class="op">=</span> <span class="var">subtotal</span> <span class="op">*</span> <span class="var">DESC_CANTIDAD</span>
+<span class="kw">else</span><span class="op">:</span>
+    <span class="var">d1</span> <span class="op">=</span> <span class="num">0</span>
+
+<span class="var">subtotal_d1</span> <span class="op">=</span> <span class="var">subtotal</span> <span class="op">-</span> <span class="var">d1</span>
+
+<span class="cmt"># Descuento por monto</span>
+<span class="kw">if</span> <span class="var">subtotal_d1</span> <span class="op">></span> <span class="var">LIMITE_MONTO</span><span class="op">:</span>
+    <span class="var">d2</span> <span class="op">=</span> <span class="var">subtotal_d1</span> <span class="op">*</span> <span class="var">DESC_MONTO</span>
+<span class="kw">else</span><span class="op">:</span>
+    <span class="var">d2</span> <span class="op">=</span> <span class="num">0</span>
+
+<span class="var">base_iva</span>   <span class="op">=</span> <span class="var">subtotal_d1</span> <span class="op">-</span> <span class="var">d2</span>
+<span class="var">iva_valor</span>  <span class="op">=</span> <span class="var">base_iva</span> <span class="op">*</span> <span class="var">IVA</span>
+<span class="var">total</span>      <span class="op">=</span> <span class="var">base_iva</span> <span class="op">+</span> <span class="var">iva_valor</span>
+
+<span class="cmt"># SALIDA</span>
+<span class="fn">print</span>(<span class="str">f"\n{'═'*42}"</span>)
+<span class="fn">print</span>(<span class="str">f"  FACTURA - {</span><span class="var">producto</span><span class="str">.upper()}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'═'*42}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Precio unitario:   ${</span><span class="var">precio</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Cantidad:          {</span><span class="var">cantidad</span><span class="str">:>13}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Subtotal:          ${</span><span class="var">subtotal</span><span class="str">:>12,.2f}"</span>)
+<span class="kw">if</span> <span class="var">d1</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">f"  Desc. cantidad 15%:${</span><span class="var">d1</span><span class="str">:>12,.2f}"</span>)
+<span class="kw">if</span> <span class="var">d2</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>
+    <span class="fn">print</span>(<span class="str">f"  Desc. monto 10%:   ${</span><span class="var">d2</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  IVA 19%:           ${</span><span class="var">iva_valor</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'─'*42}"</span>)
+<span class="fn">print</span>(<span class="str">f"  TOTAL A PAGAR:     ${</span><span class="var">total</span><span class="str">:>12,.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"{'═'*42}"</span>)
+        </pre></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+<section class="card">
+    <h2><i class="fas fa-flask"></i> Laboratorio Interactivo: Prueba tu Lógica</h2>
+    <p>Usa el editor de la izquierda para bocetar tu idea en <strong>Pseudocódigo</strong> y el de la derecha para ver cómo se convierte en <strong>Python</strong> real.</p>
+
+    <div class="lab-container">
+        <div class="editor-box">
+            <h3><i class="fas fa-pencil-alt"></i> Editor de Pseudocódigo</h3>
+            <textarea id="pseudocode" class="code-input" placeholder="ALGORITMO Saludador
+  LEER nombre
+  ESCRIBIR 'Hola ' + nombre
+FIN ALGORITMO"></textarea>
+            <button class="btn-run" onclick="runPseudo()">Simular</button>
+            <div id="pseudo-output" class="console-output">Esperando lógica...</div>
+        </div>
+
+        <div class="editor-box">
+            <h3><i class="fab fa-python"></i> Editor de Python 3</h3>
+            <textarea id="pythoncode" class="code-input"># Intenta calcular una suma
+a = 10
+b = 5
+print("La suma es:", a + b)
+            </textarea>
+            <button class="btn-run" onclick="runPython()">Ejecutar Python</button>
+            <pre id="python-output" class="console-output">Resultado de consola...</pre>
+        </div>
+    </div>
+</section>
+
+<footer>
+  <p>Hecho con 💜 para estudiantes que necesitan aprender sobre Programacion<strong>By Delanoys Tecnologias</strong> en toda Colombia</p>
+  <p style="margin-top:.5rem">Aprendiendo Programación desde Cero · 6 Módulos · ~30 horas</p>
+</footer>
+
+<script>
+  // ── toggle answer ──
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.toggle('show');
+    btn.textContent = isOpen ? '▼ Ocultar solución' : '▶ Ver solución';
+  }
+
+  // ── quiz ──
+  function checkQuiz(btn, correct, feedback) {
+    const card = btn.closest('.quiz-card');
+    if (card.dataset.answered) return;
+    card.dataset.answered = '1';
+    const opts = card.querySelectorAll('.quiz-opt');
+    opts.forEach(o => { o.disabled = true; o.style.cursor = 'default'; });
+    btn.classList.add(correct ? 'correct' : 'wrong');
+    if (!correct) {
+      opts.forEach(o => {
+        if (o.onclick.toString().includes('true,')) o.classList.add('correct');
+      });
+    }
+    const fb = card.querySelector('.quiz-feedback');
+    fb.textContent = (correct ? '✅ ' : '❌ ') + feedback;
+    fb.style.background = correct ? 'var(--teal-bg)' : 'var(--coral-bg)';
+    fb.style.color       = correct ? 'var(--teal)'    : 'var(--coral)';
+    fb.style.borderRadius = '8px';
+    fb.style.padding = '10px 14px';
+    fb.classList.add('show');
+  }
+
+  function resetQuiz(btn) {
+    const card = btn.closest('.quiz-card');
+    delete card.dataset.answered;
+    const opts = card.querySelectorAll('.quiz-opt');
+    opts.forEach(o => {
+      o.disabled = false;
+      o.style.cursor = 'pointer';
+      o.classList.remove('correct','wrong');
+    });
+    const fb = card.querySelector('.quiz-feedback');
+    fb.classList.remove('show');
+    fb.textContent = '';
+  }
+
+  // ── simuladores ──
+  function simVariables() {
+    const nombre = document.getElementById('sim-nombre').value || 'Estudiante';
+    const edad   = parseInt(document.getElementById('sim-edad').value) || 0;
+    const anio   = parseInt(document.getElementById('sim-anio').value) || 2024;
+    const anioNac = anio - edad;
+    const tipo = edad < 18 ? 'menor de edad' : edad < 65 ? 'adulto' : 'adulto mayor';
+    const out = document.getElementById('sim-var-out');
+    out.textContent = `# Variables asignadas:\nnombre    = "${nombre}"  # string\nedad      = ${edad}           # int\nanio_nac  = ${anioNac}        # int (calculado)\n\n# Salida:\n"Hola, ${nombre}. Tienes ${edad} años (${tipo})."\n"Naciste aproximadamente en el año ${anioNac}."`;
+  }
+
+  function simFactura() {
+    const precio   = parseFloat(document.getElementById('calc-precio').value)   || 0;
+    const cantidad = parseFloat(document.getElementById('calc-cantidad').value) || 0;
+    const descPct  = parseFloat(document.getElementById('calc-desc').value)     || 0;
+    const subtotal  = precio * cantidad;
+    const descuento = subtotal * (descPct / 100);
+    const base      = subtotal - descuento;
+    const iva       = base * 0.19;
+    const total     = base + iva;
+    const fmt = n => '$' + Math.round(n).toLocaleString('es-CO');
+    document.getElementById('sim-factura-out').textContent =
+      `precio_unitario = ${fmt(precio)}\ncantidad        = ${cantidad}\n\nsubtotal        = ${fmt(subtotal)}\ndescuento(${descPct}%) = -${fmt(descuento)}\nbase_sin_desc   = ${fmt(base)}\nIVA (19%)       = +${fmt(iva)}\n────────────────────────\nTOTAL A PAGAR   = ${fmt(total)}`;
+  }
+
+  function simNota() {
+    const nota = parseInt(document.getElementById('sim-nota').value);
+    let resultado, emoji;
+    if (isNaN(nota) || nota < 0 || nota > 100) {
+      document.getElementById('sim-nota-out').textContent = '⚠️  Ingresa una nota válida entre 0 y 100';
+      return;
+    }
+    if (nota >= 90)      { resultado = 'Excelente'; emoji = '🏆'; }
+    else if (nota >= 70) { resultado = 'Bueno';     emoji = '✅'; }
+    else if (nota >= 50) { resultado = 'Regular';   emoji = '⚠️ '; }
+    else                 { resultado = 'Reprobado'; emoji = '❌'; }
+    document.getElementById('sim-nota-out').textContent =
+      `nota = ${nota}\n\nif nota >= 90:       # ${nota >= 90 ? '✓ verdadero' : '✗ falso'}\nelif nota >= 70:     # ${nota >= 70 && nota < 90 ? '✓ verdadero' : '✗ falso'}\nelif nota >= 50:     # ${nota >= 50 && nota < 70 ? '✓ verdadero' : '✗ falso'}\nelse:               # ${nota < 50 ? '✓ se ejecuta' : '✗ no se ejecuta'}\n\n${emoji} Resultado: "${resultado}"`;
+  }
+
+  function simNomina() {
+    const nombre    = document.getElementById('nom-nombre').value || 'Empleado';
+    const salario   = parseFloat(document.getElementById('nom-salario').value)    || 0;
+    const extras    = parseInt(document.getElementById('nom-extras').value)       || 0;
+    const rend      = parseInt(document.getElementById('nom-rendimiento').value)  || 1;
+
+    const valorHora  = salario / 240;
+    const pagoExtras = extras * valorHora * 1.25;
+    let bono = 0, bonoPct = 0;
+    if      (rend === 5) { bono = salario * 0.20; bonoPct = 20; }
+    else if (rend >= 4)  { bono = salario * 0.10; bonoPct = 10; }
+    else if (rend >= 3)  { bono = salario * 0.05; bonoPct = 5;  }
+
+    const devengado    = salario + pagoExtras + bono;
+    const descSalud    = devengado * 0.04;
+    const descPension  = devengado * 0.04;
+    let renta = 0, rentaPct = 0;
+    if      (devengado > 5000000) { renta = devengado * 0.19; rentaPct = 19; }
+    else if (devengado > 2000000) { renta = devengado * 0.10; rentaPct = 10; }
+    const totalDesc    = descSalud + descPension + renta;
+    const neto         = devengado - totalDesc;
+
+    const fmt = n => '$' + Math.round(n).toLocaleString('es-CO');
+    const line = '─'.repeat(38);
+    document.getElementById('sim-nomina-out').textContent =
+`════════════════════════════════════════
+  NÓMINA DE: ${nombre.toUpperCase()}
+════════════════════════════════════════
+  Salario base:       ${fmt(salario).padStart(14)}
+  Horas extras(${extras}):    ${fmt(pagoExtras).padStart(14)}
+  Bonif. rendim.(${bonoPct}%):  ${fmt(bono).padStart(14)}
+${line}
+  TOTAL DEVENGADO:    ${fmt(devengado).padStart(14)}
+${line}
+  (-) Salud 4%:       ${fmt(descSalud).padStart(14)}
+  (-) Pensión 4%:     ${fmt(descPension).padStart(14)}
+  (-) Renta ${rentaPct}%:       ${fmt(renta).padStart(14)}
+${line}
+  SALARIO NETO:       ${fmt(neto).padStart(14)}
+════════════════════════════════════════`;
+  }
+</script>
+<script>
+    // Lógica para simular Pseudocódigo (Simulación visual simple)
+    function runPseudo() {
+        const input = document.getElementById("pseudocode").value;
+        const output = document.getElementById("pseudo-output");
+        if(input.trim() === "") {
+            output.innerText = "Error: El editor está vacío.";
+            return;
+        }
+        output.innerHTML = "Analizando lógica...<br>> " + input.split('\n')[0] + " iniciado con éxito.";
+    }
+
+    // Lógica para ejecutar Python real usando Skulpt
+    function outf(text) { 
+        var mypre = document.getElementById("python-output"); 
+        mypre.innerHTML = mypre.innerHTML + text; 
+    } 
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    function runPython() { 
+       var prog = document.getElementById("pythoncode").value; 
+       var mypre = document.getElementById("python-output"); 
+       mypre.innerHTML = ''; 
+       Sk.pre = "python-output";
+       Sk.configure({output:outf, read:builtinRead}); 
+       
+       var myPromise = Sk.misval.chain(Sk.importMainWithBody("<stdin>", false, prog), function(mod) {
+           console.log('success');
+       });
+       myPromise.then(function(mod) {
+           console.log('success');
+       }, function(err) {
+           mypre.innerHTML = "<span style='color: #ef4444'>" + err.toString() + "</span>";
+       });
+    } 
+</script>
+
+<script>
+    // Lógica para Pseudocódigo
+    function runPseudo() {
+        const input = document.getElementById("pseudocode").value;
+        const output = document.getElementById("pseudo-output");
+        if(input.trim() === "") {
+            output.innerText = "Error: El editor está vacío.";
+            return;
+        }
+        // Simulación pedagógica: extrae las líneas de ESCRIBIR para mostrarlas
+        const lineas = input.split('\n');
+        let resultado = "Iniciando algoritmo...<br>";
+        lineas.forEach(linea => {
+            if(linea.toUpperCase().includes("ESCRIBIR")) {
+                resultado += "> " + linea.split("'")[1] + "<br>";
+            }
+        });
+        output.innerHTML = resultado + "Algoritmo finalizado.";
+    }
+
+    // CONFIGURACIÓN DE PYTHON (SKULPT)
+    function outf(text) { 
+        var mypre = document.getElementById("python-output"); 
+        mypre.innerHTML = mypre.innerHTML + text; 
+    } 
+    
+    // Esta es la función CLAVE que faltaba para que input() funcione
+    function builtinRead(x) {
+        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+    }
+
+    function runPython() { 
+       var prog = document.getElementById("pythoncode").value; 
+       var mypre = document.getElementById("python-output"); 
+       mypre.innerHTML = ''; // Limpiar consola
+       
+       Sk.pre = "python-output";
+       
+       // Configuramos Skulpt con soporte para entrada de datos vía prompt
+       Sk.configure({
+           output: outf,
+           read: builtinRead,
+           inputfun: function (prompt) {
+               return window.prompt(prompt);
+           },
+           inputfunTakesPrompt: true
+       }); 
+       
+       var myPromise = Sk.misval.chain(Sk.importMainWithBody("<stdin>", false, prog), function(mod) {
+           console.log('Ejecución exitosa');
+       });
+
+       myPromise.then(function(mod) {
+           console.log('Finalizado');
+       }, function(err) {
+           mypre.innerHTML = "<span style='color: #fb7185'>" + err.toString() + "</span>";
+       });
+    } 
+</script>
+</body>
+</html>

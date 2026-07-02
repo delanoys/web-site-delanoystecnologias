@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad Web: Autenticación, Autorización y JWT</title>
+    
+    <link rel="stylesheet" href="/assets/css/estiloeducativo.css">
+    
+    <style>
+        :root {
+            --color-primario: #c0392b;     /* Rojo/Gris de seguridad */
+            --color-secundario: #e74c3c;   /* Rojo de alerta */
+            --color-accion: #3498db;       /* Azul para interactividad */
+            --color-resaltado-ejercicio: #f1c40f; /* Amarillo para desafíos */
+        }
+        .solucion-oculta {
+            border-left: 5px solid var(--color-accion);
+            background-color: #f7f9f9; /* Fondo muy claro para soluciones */
+        }
+        .modulo-card {
+            border-top: 4px solid var(--color-secundario);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Seguridad Web: Autenticación, Autorización y JWT 🔐</h1>
+        <p>Aprende a proteger tus APIs REST y asegura que solo los usuarios correctos accedan a tus recursos.</p>
+        
+    </header>
+
+    <nav>
+        <a href="#diferencia">Diferencias Clave</a>
+        <a href="#jwt">Tokens JWT</a>
+        <a href="#implementacion">Implementación en .NET</a>
+        <a href="#ejercicio">Práctica</a>
+    </nav>
+
+    <section id="diferencia" class="seccion-principal">
+        <h2>1. Autenticación vs. Autorización (El Quién y el Qué) 🧐</h2>
+        <p>Son conceptos interrelacionados pero distintos, y fundamentales para la seguridad de cualquier sistema.</p>
+
+        <div class="modulo-grid">
+            <div class="modulo-card" style="border-top: 4px solid #3498db;">
+                <h3>Autenticación (Authentication) - ¿Quién eres?</h3>
+                <p>Es el proceso de **verificar la identidad** de un usuario. Típicamente se hace con credenciales (usuario y contraseña) o tokens.</p>
+                <p class="comentario-claro">Equivale a mostrar tu **documento de identidad** en la puerta de un club. ¡Te identifica!</p>
+            </div>
+            <div class="modulo-card" style="border-top: 4px solid #27ae60;">
+                <h3>Autorización (Authorization) - ¿Qué puedes hacer?</h3>
+                <p>Es el proceso de **verificar los permisos** que tiene el usuario ya identificado. Se basa en roles (admin, editor) o políticas específicas.</p>
+                <p class="comentario-claro">Equivale a ver si tu pase (luego de identificarte) te permite entrar al **área VIP**. ¡Define tus límites!</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="jwt" class="seccion-principal">
+        <h2>2. Tokens JWT: El Estándar de la Seguridad RESTful 🔑</h2>
+        <p>JWT es el método de facto para manejar la identidad de manera **sin estado (stateless)** en APIs REST, donde el servidor no necesita guardar información de sesión.</p>
+
+        <div class="modulo-grid">
+            <div class="modulo-card">
+                <h3>Estructura del JWT (Header.Payload.Signature)</h3>
+                <p>Un JWT es una cadena de texto codificada en base64 dividida en tres partes por puntos (`.`):</p>
+                <ol>
+                    <li>**Header:** Define el tipo de token y el algoritmo de firma (Ej. HS256).</li>
+                    <li>**Payload (Cuerpo):** Contiene las **Claims** (Afirmaciones), que son los datos del usuario (ID, email, roles, tiempo de expiración).</li>
+                    <li>**Signature (Firma):** Es la parte crucial que verifica la integridad del token. Se genera con el Header, el Payload y una **Clave Secreta** que solo conoce el servidor.</li>
+                </ol>
+            </div>
+            <div class="modulo-card">
+                <h3>El Concepto Sin Estado (Stateless)</h3>
+                <p>Una vez que el cliente obtiene el token JWT, lo incluye en cada solicitud subsiguiente (generalmente en el header **Authorization: Bearer [token]**). El servidor puede validar el token usando la Firma, sin tener que consultar una base de datos para verificar la sesión. Esto hace que las APIs sean muy escalables.</p>
+                <pre><code>
+// Ejemplo de Claim
+"sub": "1234567890"  // Sujeto (ID de usuario)
+"role": "Admin"      // Rol del usuario
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="implementacion" class="seccion-principal">
+        <h2>3. Implementación Práctica en ASP.NET Core 🛠️</h2>
+        <p>ASP.NET Core facilita la integración de JWT a través de middlewares y atributos de autorización.</p>
+
+        <div class="modulo-grid">
+            <div class="modulo-card" style="border-top: 4px solid #3498db;">
+                <h3>Paso 1: Emisión del Token (Login)</h3>
+                <p>Después de validar el usuario y contraseña, el Controller de Login utiliza la clave secreta para crear un JWT que contenga las Claims (ID de usuario, roles) y la fecha de expiración.</p>
+            </div>
+            <div class="modulo-card" style="border-top: 4px solid #27ae60;">
+                <h3>Paso 2: Protección de Endpoints</h3>
+                <p>Usando atributos, podemos restringir el acceso. Los middlewares de .NET se encargan de decodificar y validar la firma del token en cada solicitud.</p>
+                <pre><code>
+// Solo usuarios autenticados
+[Authorize] 
+[HttpGet("datos-sensibles")] 
+
+// Solo usuarios con el rol 'Admin'
+[Authorize(Roles = "Admin")]
+[HttpPost("crear-recurso")]
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="ejercicio" class="seccion-principal">
+        <h2>Práctica Interactiva: Análisis de Token JWT 💪</h2>
+        <p>Analiza el propósito de las partes del JWT y cómo se usa la Firma para garantizar la integridad.</p>
+
+        <div class="desafio-bloque">
+            <h3>📝 Desafío de Integridad JWT [JWT_VALID]</h3>
+            <p>Un cliente recibe un JWT. Si un atacante intercepta el token y cambia el campo <code>"role": "User"</code> a <code>"role": "Admin"</code> en el **Payload**, ¿por qué la API REST de ASP.NET Core rechazará el token?</p>
+
+            <button onclick="toggleSolution('JWT_VALID')" class="cta-toggle">
+                Mostrar Solución y Razonamiento
+            </button>
+            
+            <div id="solucion-JWT_VALID" class="solucion-oculta">
+                <h4>✅ Solución: La Firma no Coincide</h4>
+                <p>El token será rechazado debido a que la **Firma (Signature)** ya no es válida:</p>
+                <ol>
+                    <li>La Firma se calculó originalmente usando: `BASE64(Header) + . + BASE64(Payload ORIGINAL) + ClaveSecreta`.</li>
+                    <li>Cuando el atacante modifica el Payload, el servidor lo detecta porque el **Payload que recibe** es diferente al **Payload con el que se generó la Firma**.</li>
+                    <li>El servidor recalcula la firma usando su `ClaveSecreta` y el nuevo Payload, y al ver que el resultado **no coincide** con la Firma incluida en el token, lo rechaza inmediatamente por ser manipulado.</li>
+                </ol>
+                <p>**Conclusión:** El JWT solo es seguro si la **Clave Secreta** del servidor se mantiene oculta.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="/index.html" class="footer-link">🏠 Regresar al Índice Principal</a>
+        <p>Plataforma Educativa | &copy; 2025</p>
+    </footer>
+
+    <script>
+        function toggleSolution(id) {
+            const solutionBlock = document.getElementById('solucion-' + id);
+            const button = document.querySelector(`button[onclick="toggleSolution('${id}')"]`);
+
+            if (solutionBlock.style.display === 'none' || solutionBlock.style.display === '') {
+                solutionBlock.style.display = 'block';
+                button.textContent = 'Ocultar Solución 👆';
+            } else {
+                solutionBlock.style.display = 'none';
+                button.textContent = 'Mostrar Solución y Explicación';
+            }
+        }
+    </script>
+</body>
+</html>

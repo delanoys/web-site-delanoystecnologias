@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASP.NET Core con Gemini - Ejemplos de Código</title>
+    
+    <link rel="stylesheet" href="/assets/css/cssgenimi.css">
+    
+    <style>
+        :root {
+            --color-principal: #68217A; /* Púrpura de .NET */
+            --color-resaltado: #108510; /* Verde de énfasis */
+            --color-texto: #333;
+        }
+        /* Fondo de tarjetas específico para el tema .NET */
+        .card { 
+            background-color: #f5f0ff; 
+            border: 1px solid #d4c0e8; 
+        }
+        /* Estilos específicos para bloques de código y explicación */
+        .codigo-bloque {
+            background-color: #f7f7f7;
+            border-left: 5px solid var(--color-principal);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ASP.NET Core: Ejemplos Prácticos 🚀</h1>
+        <p>Ejemplos de código funcionales y listos para usar, desde la configuración hasta la persistencia de datos.</p>
+        <p></p>
+    </header>
+
+    <nav>
+        <a href="#configuracion">⚙️ Configuración</a>
+        <a href="#routing">🗺️ Routing y Acciones</a>
+        <a href="#data">💾 Persistencia (EF Core)</a>
+        <a href="#di">💉 Inyección de Dependencias</a>
+        <a href="#seguridad">🔐 Seguridad</a>
+    </nav>
+
+    <section id="configuracion" class="seccion-contenedor">
+        <h2>⚙️ Ejemplo 1: Configuración Mínima y Middleware</h2>
+        <p>Este es el punto de partida de toda aplicación ASP.NET Core (usando el modelo minimalista de .NET 6+).</p>
+
+        <div class="codigo-bloque">
+            <h3>Archivo: <code>Program.cs</code></h3>
+            <pre><code>
+// 1. Crear el Constructor del WebApplication
+var builder = WebApplication.CreateBuilder(args);
+
+// 2. Definir servicios (Contenedor de Inyección de Dependencias)
+builder.Services.AddControllers(); // Habilita controladores API/MVC
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// 3. Construir la aplicación
+var app = builder.Build();
+
+// 4. Configurar el pipeline HTTP (Middleware)
+if (app.Environment.IsDevelopment())
+{
+    // Middleware que solo se ejecuta en modo Desarrollo
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+
+// 5. Mapear endpoints (API, MVC, etc.)
+app.MapControllers(); // Rutas automáticas para los controladores
+
+// Endpoint simple de ejemplo (Middleware personalizado)
+app.MapGet("/", () => "¡Hola, ASP.NET Core con Gemini!");
+
+// 6. Ejecutar la aplicación
+app.Run();
+            </code></pre>
+            <p><strong>Explicación:</strong> El **`builder`** configura los servicios (DI), y el objeto **`app`** configura el *pipeline* de middleware y las rutas (`Map*`).</p>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="routing" class="seccion-contenedor">
+        <h2>🗺️ Ejemplo 2: Creación de un Controlador RESTful</h2>
+        <p>Un ejemplo de un controlador simple que gestiona una colección de elementos (simulando una lista de tareas).</p>
+
+        <div class="codigo-bloque">
+            <h3>Archivo: <code>Controllers/TareasController.cs</code></h3>
+            <pre><code>
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TareasController : ControllerBase
+{
+    // Simulación de la base de datos
+    private static List&lt;string&gt; _tareas = new List&lt;string&gt; { "Comprar leche", "Aprender ASP.NET Core" };
+
+    [HttpGet] // GET: api/tareas
+    public ActionResult&lt;IEnumerable&lt;string&gt;&gt; Get()
+    {
+        return Ok(_tareas);
+    }
+
+    [HttpPost] // POST: api/tareas
+    public IActionResult Post([FromBody] string nuevaTarea)
+    {
+        if (string.IsNullOrEmpty(nuevaTarea))
+        {
+            return BadRequest("La tarea no puede estar vacía.");
+        }
+        _tareas.Add(nuevaTarea);
+        return CreatedAtAction(nameof(Get), nuevaTarea); 
+    }
+    
+    [HttpDelete("{id}")] // DELETE: api/tareas/1
+    public IActionResult Delete(int id)
+    {
+        if (id < 0 || id >= _tareas.Count)
+        {
+            return NotFound();
+        }
+        _tareas.RemoveAt(id);
+        return NoContent(); // 204 No Content (Éxito sin devolver cuerpo)
+    }
+}
+            </code></pre>
+            <p><strong>Explicación:</strong> Usamos los atributos **`[HttpGet]`**, **`[HttpPost]`**, etc., para mapear los métodos del controlador a los verbos HTTP. **`ControllerBase`** proporciona métodos de resultado HTTP (`Ok`, `NotFound`, `NoContent`).</p>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="data" class="seccion-contenedor">
+        <h2>💾 Ejemplo 3: Configuración de Entity Framework Core</h2>
+        <p>Pasos necesarios para configurar un contexto de base de datos (usando SQLite in-memory para simplificar).</p>
+        
+        <div class="codigo-bloque">
+            <h3>Archivo: <code>Program.cs</code> (Adición de servicio)</h3>
+            <pre><code>
+// ... dentro de la sección de servicios (builder.Services) ...
+
+builder.Services.AddDbContext&lt;AppDbContext&gt;(options =>
+    options.UseSqlite("Data Source=MiBaseDeDatos.db"));
+
+// Nota: Necesitas instalar el paquete Microsoft.EntityFrameworkCore.Sqlite
+            </code></pre>
+
+            <h3>Archivo: <code>Data/AppDbContext.cs</code> (Contexto y Modelo)</h3>
+            <pre><code>
+using Microsoft.EntityFrameworkCore;
+using SuProyecto.Models; // Asumiendo que Tarea.cs está aquí
+
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options)
+        : base(options)
+    {
+    }
+
+    // Un DbSet por cada tabla/entidad que quieras mapear
+    public DbSet&lt;Tarea&gt; Tareas { get; set; }
+}
+
+// Ejemplo de Modelo (Data/Tarea.cs)
+public class Tarea
+{
+    public int Id { get; set; }
+    public string Descripcion { get; set; }
+    public bool EstaCompleta { get; set; }
+}
+            </code></pre>
+            <p><strong>Explicación:</strong> **`AddDbContext`** registra el contexto en el contenedor DI. **`AppDbContext`** hereda de `DbContext` y usa `DbSet` para definir las colecciones que mapean a las tablas.</p>
+        </div>
+    </section>
+
+    <hr>
+    
+    <section id="di" class="seccion-contenedor">
+        <h2>💉 Ejemplo 4: Inyección de Dependencias en un Controlador</h2>
+        <p>Cómo consumir el contexto de base de datos o cualquier otro servicio registrado directamente en el constructor del controlador.</p>
+
+        <div class="codigo-bloque">
+            <h3>Archivo: <code>Controllers/TareasController.cs</code> (Inyección)</h3>
+            <pre><code>
+[ApiController]
+[Route("api/[controller]")]
+public class TareasController : ControllerBase
+{
+    private readonly AppDbContext _context;
+
+    // EL CONSTRUCTOR SOLICITA LA DEPENDENCIA
+    public TareasController(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    [HttpGet("{id}")]
+    public async Task&lt;ActionResult&lt;Tarea&gt;&gt; GetTarea(int id)
+    {
+        // USO DE LA DEPENDENCIA INYECTADA
+        var tarea = await _context.Tareas.FindAsync(id);
+
+        if (tarea == null)
+        {
+            return NotFound();
+        }
+
+        return tarea;
+    }
+
+    // ... otros métodos CRUD (Create, Update, Delete)
+}
+            </code></pre>
+            <p><strong>Explicación:</strong> El contenedor de Inyección de Dependencias (DI) de ASP.NET Core automáticamente resuelve y proporciona una instancia de **`AppDbContext`** al controlador cuando se necesita, siempre y cuando se haya registrado previamente en `Program.cs`.</p>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="seguridad" class="seccion-contenedor">
+        <h2>🔐 Ejemplo 5: Seguridad (JWT) y Manejo de Errores Global</h2>
+        <p>Ejemplos de cómo asegurar tu API y cómo manejar excepciones de forma centralizada.</p>
+
+        <div class="codigo-bloque">
+            <h3>Manejo de Errores Global (Middleware)</h3>
+            <p>Usaremos un middleware personalizado para capturar todas las excepciones y devolver un formato JSON estándar (500 Internal Server Error).</p>
+            
+            <pre><code>
+// En Program.cs, justo después de app.UseHttpsRedirection();
+
+if (app.Environment.IsDevelopment())
+{
+    // En desarrollo, usamos el manejo de errores detallado de ASP.NET
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    // En producción, usamos un manejador simple y consistente
+    app.UseExceptionHandler("/error"); 
+}
+
+// Endpoint que captura errores y devuelve un JSON
+app.Map("/error", (HttpContext context) =>
+{
+    var exceptionHandlerPathFeature = context.Features.Get&lt;IExceptionHandlerPathFeature&gt;();
+    
+    // Devolver un objeto de error simple
+    return Results.Problem(
+        detail: exceptionHandlerPathFeature?.Error.Message,
+        title: "Ocurrió un error inesperado en el servidor",
+        statusCode: 500
+    );
+});
+            </code></pre>
+            <p><strong>Explicación:</strong> **`UseExceptionHandler`** redirige todas las excepciones no controladas a un *endpoint* simple (`/error`), donde se extrae la información y se devuelve un objeto **`ProblemDetails`** (estándar para errores de API).</p>
+        </div>
+
+        <div class="codigo-bloque">
+            <h3>Configuración de Autenticación JWT (JSON Web Token)</h3>
+            <p>Pasos para configurar la autenticación basada en tokens, necesaria para proteger tus endpoints.</p>
+            
+            <pre><code>
+// 1. Instalar paquetes: Microsoft.AspNetCore.Authentication.JwtBearer
+// 2. En Program.cs, dentro de builder.Services.Add...
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
+// 3. Habilitar el middleware de autenticación (ANTES de app.MapControllers)
+app.UseAuthentication();
+app.UseAuthorization();
+            </code></pre>
+
+            <h3>Protegiendo un Endpoint</h3>
+            <pre><code>
+using Microsoft.AspNetCore.Authorization;
+// ... (otros using)
+
+[ApiController]
+[Route("api/[controller]")]
+public class ArticulosController : ControllerBase
+{
+    [Authorize] // Este atributo requiere un token válido en el encabezado
+    [HttpGet] 
+    public IActionResult GetArticulosProtegidos()
+    {
+        // Solo usuarios con un token JWT válido llegarán aquí.
+        return Ok(new { mensaje = "Datos sensibles del usuario autenticado." });
+    }
+}
+            </code></pre>
+            <p><strong>Explicación:</strong> **`AddAuthentication`** configura el esquema de JWT. El middleware **`UseAuthentication`** lee el token. El atributo **`[Authorize]`** en el controlador fuerza la validación de ese token. </p>
+        </div>
+    </section>
+
+    <script>
+        // Función de interactividad vacía (solo para mantener la estructura)
+        function toggleSolution(exerciseId) {
+            // Este sitio se enfoca en código, pero se mantiene la función para consistencia
+        }
+    </script>
+</body>
+</html>

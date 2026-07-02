@@ -1,0 +1,260 @@
+.
+├── Ariana
+│   ├── landing.css
+│   ├── Python_fundamentos.html
+│   ├── resumen.html
+│   ├── script.js
+│   ├── semana10.html
+│   ├── semana11.html
+│   ├── semana12.html
+│   ├── semana13.html
+│   ├── semana14.html
+│   ├── semana15.html
+│   ├── semana16.html
+│   ├── semana1.html
+│   ├── semana2.html
+│   ├── semana3.html
+│   ├── semana4.html
+│   ├── semana5.html
+│   ├── semana6.html
+│   ├── semana7.html
+│   ├── semana8.html
+│   ├── semana9.html
+│   ├── styles.css
+│   ├── WhatsApp Image 2026-05-27 at 12.55.57 AM.jpeg
+│   └── WhatsApp Image 2026-05-27 at 12.56.17 AM.jpeg
+├── assets
+│   ├── css
+│   │   ├── agenda.css
+│   │   ├── airesylavadoras.css
+│   │   ├── aprendisaje2.css
+│   │   ├── aprendisaje.css
+│   │   ├── basesdedatos.css
+│   │   ├── ccs3.css
+│   │   ├── cssgenimi.css
+│   │   ├── cursoingles.css
+│   │   ├── DevOps.css
+│   │   ├── estiloeducativo.css
+│   │   ├── estilos.css
+│   │   ├── estilosindex2.css
+│   │   ├── estilosindex.css
+│   │   ├── estilosrutas.css
+│   │   ├── GoogleDork.css
+│   │   ├── header2.css
+│   │   ├── header.css
+│   │   ├── ingles.css
+│   │   ├── leyes.css
+│   │   ├── linux.css
+│   │   ├── menu.css
+│   │   ├── newagenda.css
+│   │   ├── pedagogia1.css
+│   │   ├── pedagogia.css
+│   │   ├── proyectoDevOps.css
+│   │   ├── rutaproyectoweb.css
+│   │   ├── sopa.css
+│   │   └── submenu.css
+│   ├── fonts
+│   │   ├── batangas-font-family-fontmirror.zip
+│   │   ├── fontawesome-free-6.7.2-web
+│   │   ├── fuentes
+│   │   ├── JetBrainsMono_Complete
+│   │   ├── JetBrainsMono_Complete.zip
+│   │   ├── Satoshi_Complete.zip
+│   │   └── Zodiak_Complete.zip
+│   ├── icons
+│   │   ├── delanoys_favicon_preview.svg
+│   │   ├── favicon.svg
+│   │   └── icons
+│   ├── images
+│   │   ├── actores de amenaza.png
+│   │   ├── aires
+│   │   ├── anatomia de onda.jpeg
+│   │   ├── carta
+│   │   ├── ChatGPT Infografia DTECNO.png
+│   │   ├── como te sientes.png
+│   │   ├── DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).gif
+│   │   ├── DevOps, APIs y Arquitectura de Microservicios.png
+│   │   ├── DevOps_learning__0.jpg
+│   │   ├── Estructura de la programacion
+│   │   ├── full-stack developer.jpg
+│   │   ├── Gemini_Infografia DTECNO v ChatGpt.png
+│   │   ├── Gemini_Infografia DTECNO.png
+│   │   ├── IA
+│   │   ├── IA piramides.jpg
+│   │   ├── icc
+│   │   ├── jscomp infoJob.png
+│   │   ├── linux
+│   │   ├── Logo
+│   │   ├── MVC.jpg
+│   │   ├── ondatranversal.jpeg
+│   │   ├── programacion.jpeg
+│   │   ├── restaurante
+│   │   ├── s1.jpg
+│   │   ├── s2.jpg
+│   │   ├── s3.jpg
+│   │   ├── vagrant-logo.png
+│   │   └── websites
+│   ├── js
+│   │   ├── agenda.js
+│   │   ├── airesylavadoras.js
+│   │   ├── aprendisaje2.js
+│   │   ├── aprendisaje.js
+│   │   ├── AsistenteIA2.js
+│   │   ├── AsistenteIA.js
+│   │   ├── basesdedatos.js
+│   │   ├── cursoingles.js
+│   │   ├── DevOps.js
+│   │   ├── emociones.js
+│   │   ├── GoogleDork.js
+│   │   ├── ingles.js
+│   │   ├── leyes.js
+│   │   ├── newagenda.js
+│   │   ├── proyectoDevOps.js
+│   │   ├── rutadevops.js
+│   │   ├── rutaproyectoweb.js
+│   │   ├── script2.js
+│   │   ├── scriptindex.js
+│   │   ├── script.js
+│   │   ├── service-worker.js
+│   │   ├── servicios.js
+│   │   └── sopa.js
+│   └── video
+│       └── DELANOYS-TECNOLOGI@S (1300 x 600 px) (1300 x 600 px) (1300 x 600 px).mp4
+├── Backend
+│   ├── backend.css
+│   ├── backend.html
+│   └── backend.js
+├── content
+│   ├── educacion
+│   │   ├── agenda.html
+│   │   ├── aprendiendodevops.html
+│   │   ├── aprendiendodocker.html
+│   │   ├── basesdedatos.html
+│   │   ├── basesdedatoslinuxGrock.html
+│   │   ├── basesdedatoslinux.html
+│   │   ├── cursoingles.html
+│   │   ├── DevOps.html
+│   │   ├── dockern8n.html
+│   │   ├── dom.html
+│   │   ├── ejercicios.html
+│   │   ├── ingles.html
+│   │   ├── leyesinformaticas.html
+│   │   ├── linux.html
+│   │   ├── linuxServerVps.html
+│   │   ├── newagenda.html
+│   │   ├── pedagogia.html
+│   │   ├── plandeaccion.html
+│   │   ├── plandeaprendizaje2.html
+│   │   ├── plandeaprendizaje.html
+│   │   ├── planmaestro.html
+│   │   ├── portafolio.html
+│   │   ├── proDevOps.html
+│   │   ├── programacion.html
+│   │   ├── proyectoDevOps.html
+│   │   ├── python.html
+│   │   ├── ReactDesdeCero.html
+│   │   ├── recursos.html
+│   │   ├── rutadevops.html
+│   │   ├── rutaproyectoweb.html
+│   │   ├── sqlite.html
+│   │   ├── Superpotencias de la IA.html
+│   │   ├── tsconfigjon.html
+│   │   └── typescript.html
+│   ├── infra
+│   │   ├── diskpart.html
+│   │   ├── shutdown.html
+│   │   ├── ubuntuserver.html
+│   │   ├── vagrant.html
+│   │   └── wsl.html
+│   ├── institucional
+│   │   ├── anexo5 docente.html
+│   │   ├── anexo5.html
+│   │   ├── carta.html
+│   │   ├── configuracionmeta.html
+│   │   ├── Cuidados Acido Urico.html
+│   │   ├── index2.html
+│   │   ├── info.html
+│   │   ├── menu.html
+│   │   └── migrar_delanoystecnologias.html
+│   ├── otros
+│   │   ├── airesylavadoras.html
+│   │   ├── aritmetica.html
+│   │   ├── biblia_lectura_profunda.html
+│   │   ├── bios.html
+│   │   ├── calendarioestudios.html
+│   │   ├── Chocolatey.html
+│   │   ├── contenido_educativo.html
+│   │   ├── eden_jose.html
+│   │   ├── emociones.html
+│   │   ├── emulador.html
+│   │   ├── estadisticas.html
+│   │   ├── EstructuraBiblia.html
+│   │   ├── estructuraIAs.html
+│   │   ├── fisica.html
+│   │   ├── lectura_cronologica.html
+│   │   ├── profesionatech.html
+│   │   ├── proverbios.html
+│   │   ├── rutinas.html
+│   │   ├── sopa.html
+│   │   └── vinculacionlaboral.html
+│   ├── planeacion
+│   ├── proyectos
+│   │   ├── Automatizacion.html
+│   │   ├── ICC Central.html
+│   │   ├── Inventario_Sazón_Boulevard.html
+│   │   ├── pipeline_ia_pro_delanoys.html
+│   │   ├── PipelineIAProv3.html
+│   │   ├── PipelineIAProv4.html
+│   │   ├── pipelineiaprov5.html
+│   │   ├── proyecto-jscamp-dev-html.html
+│   │   └── reservas.html
+│   └── servicios
+│       ├── aspnetcongemini-ejemplos.html
+│       ├── aspnetcongemini.html
+│       ├── cliente.html
+│       ├── conceptoswebcongemini.html
+│       ├── concursodocente2.html
+│       ├── ConcursoDocente.html
+│       ├── contacto.html
+│       ├── contenedorescongemini-ejemplos.html
+│       ├── contenedorescongemini.html
+│       ├── desarrollodevops.html
+│       ├── desarrolloweb.html
+│       ├── dom.html
+│       ├── efcorecongemini.html
+│       ├── kubernetescongemini.html
+│       ├── mcp.html
+│       ├── mvccongemini.html
+│       ├── personalproyec.html
+│       ├── portafoliosoporte.html
+│       ├── seguridadcongemini.html
+│       ├── servicioswebcongemini.html
+│       └── soporte tecnico.html
+├── contexto.json
+├── estilos
+├── estructura_local.txt
+├── index.html
+├── JavaScrpt
+├── js
+│   └── web-site-delanoystecnologias.code-workspace
+├── manifest.json
+├── MASTER_CONTEXT_PIPELINE_IA_PRO.md
+├── pages
+│   ├── GoogleDork.html
+│   └── googleDorkinicial.html
+├── PAUTAS  CHAT GPT PROYECTO INTEGRADOR DELANOYSTECNOLOGIAS.docx
+├── PAUTAS DE UN PROYECTO INTEGRADOR DE CREACION DE UNA PAGINA WEB.docx
+├── PAUTAS DE UN PROYECTO INTEGRADOR DelanoysTecnologias.docx
+├── python
+│   ├── estilospython.css
+│   ├── estructura_biblia_estudio.pdf
+│   ├── generar_biblia_pdf.py
+│   ├── pythonclaude.html
+│   ├── pythondeppseek.html
+│   ├── pythongenimi.html
+│   ├── pythongpt.html
+│   ├── pythongrok.html
+│   └── pythonleo.html
+└── siempre.mp3
+
+35 directories, 223 files

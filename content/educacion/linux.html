@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Desde Cero | El Sistema Operativo Libre</title>
+ <link rel="stylesheet" href="/assets/css/estilosindex.css">
+    <link rel="stylesheet" href="/assets/css/linux.css">
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <style>
+     /* Estilos en línea si fuera necesario, pero la carga externa es preferida. */
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle">
+                <i class="ph-bold ph-list"></i>
+                <img src="" alt="">
+            </button>
+            <a href="#" class="nav-brand">
+                <i class="ph-bold ph-linux-logo brand-logo" style="font-size: 3rem; color: var(--primary);"></i>
+                <h1 class="text-gradient" style="font-size: 1.5rem; font-weight: 700;">Linux.Tech</h1>
+            </a>
+            <div class="nav-buttons">
+                <a href="/index.html" class="nav-link">Delanoys tecnologías</a>
+                <a href="#concepto" class="nav-link">Concepto</a>
+                <a href="#historia" class="nav-link">Historia</a>
+                <a href="#instalacion" class="nav-link">Instalación</a>
+                <a href="#terminal" class="nav-link">Terminal</a>
+                <a href="#bash-comportamiento">Bash Avanzado</a>
+
+                <a href="#usuario-root-linux" class="nav-link">Root / Sudo</a> 
+                <a href="#" class="nav-link nav-cta">¡Empieza Ahora! <i class="ph-bold ph-arrow-right"></i></a>
+            </div>
+            <button class="menu-icon">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+        <section class="hero-section" id="concepto">
+            <div class="banner-content">
+                <div class="hero-text-nuevo">
+                    <h2 class="hero-title">
+                        Linux <i class="ph-bold ph-rocket-launch"></i> <span class="text-acento">Desde Cero</span>: Tu Viaje al Sistema Operativo Libre
+                    </h2>
+                    <p class="section-subtitle">
+                        Descubre el poder, la estabilidad y la libertad del corazón del código abierto.
+                    </p>
+                    <p class="intro-paragraph">
+                        Linux es mucho más que un sistema operativo; es una filosofía y una comunidad global. Aprenderás desde sus cimientos como núcleo (Kernel) hasta dominar su interfaz y estructura interna, preparándote para un mundo de posibilidades en desarrollo, servidores y ciberseguridad. 
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#historia" class="cta-button primary-cta-hero">
+                            Ver Historia <i class="ph-bold ph-book-open"></i>
+                        </a>
+                        <a href="#terminal" class="cta-button secondary-cta-hero">
+                            Ir a Terminal <i class="ph-bold ph-terminal"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="banner-slider">
+                    <img src="https://placehold.co/600x400/0a0e27/00d4ff?text=Code+is+Freedom" alt="Interfaz de Terminal Linux con código de programación" class="banner-video">
+                </div>
+            </div>
+        </section>
+
+        <section class="education-section" id="historia">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="ph-bold ph-timeline"></i> 1. Historia y Evolución de Linux
+                </h2>
+                <p class="section-description">
+                    Para entender Linux, debemos conocer sus raíces. Todo comenzó con UNIX, el sistema operativo que sentó las bases de la informática moderna, y un estudiante finlandés con una visión de libertad.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1991</p>
+                            <h4 class="timeline-title">Nacimiento del Kernel Linux</h4>
+                            <p class="timeline-description">
+                                Linus Torvalds, un estudiante de la Universidad de Helsinki, lanza la versión 0.02 del kernel que él mismo había desarrollado, basándose en MINIX. Este fue el inicio del sistema operativo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1992</p>
+                            <h4 class="timeline-title">Licencia Pública General (GPL)</h4>
+                            <p class="timeline-description">
+                                El kernel Linux adopta la GPL, permitiendo su uso, modificación y distribución libre. Se combina con las utilidades del proyecto GNU, formando el sistema operativo GNU/Linux. 
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1993 - 1994</p>
+                            <h4 class="timeline-title">Slackware y Debian</h4>
+                            <p class="timeline-description">
+                                Surgen las primeras distribuciones robustas. Slackware se convierte en la más antigua aún en mantenimiento y Debian sienta las bases para miles de distribuciones futuras con su enfoque en la comunidad.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">1998 - 2000</p>
+                            <h4 class="timeline-title">Crecimiento Empresarial (Red Hat y SUSE)</h4>
+                            <p class="timeline-description">
+                                Grandes empresas comienzan a adoptar Linux para sus servidores. Se forman Red Hat y SUSE, ofreciendo soporte comercial y validando a Linux como una alternativa seria.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">2004</p>
+                            <h4 class="timeline-title">Nacimiento de Ubuntu</h4>
+                            <p class="timeline-description">
+                                Mark Shuttleworth lanza Ubuntu, enfocado en hacer que Linux sea fácil de usar para el usuario promedio de escritorio. Esto impulsa su popularidad masiva.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-item-content fade-in-up">
+                            <p class="timeline-date">Hoy</p>
+                            <h4 class="timeline-title">El Dominio Silencioso</h4>
+                            <p class="timeline-description">
+                                Linux impulsa el 90% de los servidores en la nube, todos los superordenadores, la vasta mayoría de dispositivos IoT, routers, y el sistema Android, confirmando su ubicuidad global.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section class="education-section" id="instalacion">
+            <div class="container">
+
+                <h2 class="section-title">
+                    <i class="ph-bold ph-monitor-arrows"></i> 2. Instalación y Sistema de Archivos
+                </h2>
+                <p class="section-description">
+                    Esta sección te guiará en los pasos esenciales para comenzar a usar Linux, desde la elección de tu "sabor" hasta la comprensión de su corazón: el sistema de archivos.
+                </p>
+
+                <div class="education-layout">
+                    <aside class="education-aside glass-effect">
+                        <h4><i class="ph-bold ph-list-numbers"></i> Contenido del Módulo</h4>
+                        <ul>
+                            <li><a href="#distribuciones">Elegir Distribución</a></li>
+                            <li><a href="#preparacion">Preparación USB Booteable</a></li>
+                            <li><a href="#archivos">Sistema de Archivos (FHS)</a></li>
+                            <li><a href="#directorios">Directorios Clave</a></li>
+                        </ul>
+                    </aside>
+
+                    <div class="education-main">
+
+                        <div class="education-group glass-effect fade-in-up" id="distribuciones">
+                            <h3 class="group-title"><i class="ph-bold ph-package"></i> 2.1 Elige tu Distribución (Distro)</h3>
+                            <p class="intro-paragraph">
+                                La principal diferencia con otros sistemas es que existen cientos de "sabores" o distribuciones. Tu elección depende de tu objetivo y nivel de experiencia.
+                            </p>
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4><i class="ph-bold ph-leaf"></i> Ubuntu/Linux Mint</h4>
+                                    <p><strong>Ideal para:</strong> Principiantes y usuarios de escritorio.</p>
+                                    <p>Son fáciles de instalar, tienen interfaces intuitivas y una gran comunidad de soporte.</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4><i class="ph-bold ph-shield-check"></i> Fedora/CentOS</h4>
+                                    <p><strong>Ideal para:</strong> Desarrolladores y entornos empresariales.</p>
+                                    <p>Utilizan paquetes RPM y son conocidos por su innovación y estabilidad a largo plazo.</p>
+                                </div>
+                                <div class="education-item highlight">
+                                    <h4><i class="ph-bold ph-code"></i> Arch Linux/Gentoo</h4>
+                                    <p><strong>Ideal para:</strong> Usuarios avanzados y entusiastas.</p>
+                                    <p>Ofrecen una máxima personalización y control, pero requieren un conocimiento más profundo del sistema.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="education-group glass-effect fade-in-up" id="preparacion">
+                            <h3 class="group-title"><i class="ph-bold ph-usb"></i> 2.2 Preparando el Terreno</h3>
+                            <p class="intro-paragraph">
+                                El proceso más común es crear un medio de instalación booteable con un archivo ISO.
+                            </p>
+                            <ul>
+                                <li>Descarga la imagen ISO de tu distribución favorita (ej. Ubuntu).</li>
+                                <li>Utiliza una herramienta (como Rufus o Balena Etcher) para "grabar" la ISO en una unidad USB.</li>
+                                <li>Configura el BIOS/UEFI de tu equipo para arrancar desde la unidad USB.</li>
+                            </ul>
+
+                            <div class="education-figure">
+                                <img src="https://placehold.co/800x300/1e3c72/4cc9f0?text=Diagrama+del+proceso+de+instalación" alt="Diagrama que muestra la descarga de ISO, creación de USB y arranque desde BIOS" class="edu-image">
+                            </div>
+                        </div>
+
+                        <div class="education-group glass-effect fade-in-up" id="archivos">
+                            <h3 class="group-title"><i class="ph-bold ph-folder-open"></i> 2.3 El Sistema de Archivos de Linux</h3>
+                            <p class="intro-paragraph">
+                                A diferencia de Windows (donde todo comienza con C:\), Linux tiene un único árbol de directorios que comienza en la raíz, representado por la barra inclinada (/). Esto se conoce como el **Estándar de Jerarquía del Sistema de Archivos (FHS)**. 
+                            </p>
+                            <p class="jscamp-lead">
+                                **Todo es un archivo:** En Linux, dispositivos, particiones, sockets y datos se manejan como archivos. Esta uniformidad es clave para su flexibilidad y potencia.
+                            </p>
+
+                            <h4 id="directorios" style="margin-top: 2rem;">Directorios Raíz Clave</h4>
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4>/bin y /sbin</h4>
+                                    <p><strong>Binarios Esenciales:</strong> Contienen programas ejecutables fundamentales para que el sistema funcione (ej. `ls`, `cp`, `mount`).</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>/home</h4>
+                                    <p><strong>Directorio Personal:</strong> Contiene las carpetas personales de cada usuario. Tus documentos y configuraciones se guardan aquí.</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>/etc</h4>
+                                    <p><strong>Archivos de Configuración:</strong> Contiene todos los archivos de configuración del sistema y de los servicios instalados.</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>/var</h4>
+                                    <p><strong>Datos Variables:</strong> Contiene datos que cambian constantemente, como logs del sistema, correos y bases de datos.</p>
+                                </div
+                            ></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="education-section" id="terminal">
+            <div class="container">
+
+                <h2 class="section-title">
+                    <i class="ph-bold ph-terminal-window"></i> 3. La Terminal y el Comando Linux
+                </h2>
+                <p class="section-description">
+                    La terminal, o línea de comandos (CLI), es la herramienta más poderosa de Linux. Aquí aprenderás los comandos esenciales para navegar, manipular archivos y administrar el sistema.
+                </p>
+
+                <div class="education-layout">
+                    <aside class="education-aside glass-effect">
+                        <h4><i class="ph-bold ph-list-numbers"></i> Contenido del Módulo</h4>
+                        <ul>
+                            <li><a href="#navegacion">Navegación y Archivos</a></li>
+                            <li><a href="#administracion">Administración del Sistema</a></li>
+                            <li><a href="#paquetes">Gestión de Paquetes (APT)</a></li>
+                            <li><a href="#usuario-root-linux">El Poder de Root/Sudo</a></li>
+                        </ul>
+                    </aside>
+
+                    <div class="education-main">
+
+                        <div class="education-group glass-effect fade-in-up" id="navegacion">
+                            <h3 class="group-title"><i class="ph-bold ph-map-pin"></i> 3.1 Navegación y Manipulación de Archivos</h3>
+                            <p class="intro-paragraph">
+                                Estos comandos te permiten moverte por el sistema de archivos y gestionar tus documentos.
+                            </p>
+                            
+                            <div class="terminal-block">
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">pwd</span> <span class="terminal-output">
+/home/user</span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">ls -l</span> <span class="terminal-output">
+total 8
+drwxr-xr-x 2 user user 4096 Nov 18 17:00 Documentos
+-rw-r--r-- 1 user user  128 Nov 18 16:55 notas.txt</span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">cd Documentos</span>
+                                <span class="terminal-prompt">user@linux:~/Documentos$</span> <span class="terminal-command">mkdir proyectos</span>
+                                <span class="terminal-prompt">user@linux:~/Documentos$</span> <span class="terminal-command">cp notas.txt proyectos/</span>
+                            </div>
+                            
+                            <div class="terminal-block"">
+                                <div class="education-item">
+                                    <h4>10 Comandos básicos</h4>
+                                    <ul>
+                                        <li><strong><code>pwd</code></strong> — Muestra el directorio actual. <code>pwd</code></li>
+                                        <li><strong><code>ls</code></strong> — Lista archivos y carpetas. <code>ls -la</code></li>
+                                        <li><strong><code>cd</code></strong> — Cambia de directorio. <code>cd /ruta</code></li>
+                                        <li><strong><code>mkdir</code></strong> — Crea directorios. <code>mkdir proyecto</code></li>
+                                        <li><strong><code>cp</code></strong> — Copia archivos/directorios. <code>cp origen destino</code></li>
+                                        <li><strong><code>mv</code></strong> — Mueve o renombra. <code>mv archivo nuevo_nombre</code></li>
+                                        <li><strong><code>rm</code></strong> — Elimina archivos/directorios. <code>rm archivo</code></li>
+                                        <li><strong><code>cat</code></strong> — Muestra contenido de archivos. <code>cat notas.txt</code></li>
+                                        <li><strong><code>less</code></strong> — Navega el contenido de forma paginada. <code>less archivo.log</code></li>
+                                        <li><strong><code>man</code></strong> — Manual de comandos. <code>man ls</code></li>
+                                    </ul>
+                                </div>
+
+                                <div class="education-item">
+                                    <h4>Utilidades comunes</h4>
+                                    <ul>
+                                        <li><strong><code>grep</code></strong> — Busca texto en archivos. <code>grep -R "error" /var/log</code></li>
+                                        <li><strong><code>find</code></strong> — Busca archivos por criterios. <code>find . -name "*.sh"</code></li>
+                                        <li><strong><code>tar</code></strong> — Comprime/descomprime paquetes. <code>tar -czvf backup.tar.gz /ruta</code></li>
+                                        <li><strong><code>wget</code></strong> — Descarga archivos desde la web. <code>wget https://ejemplo/file.zip</code></li>
+                                        <li><strong><code>curl</code></strong> — Transfiere datos desde/para servidores. <code>curl -I https://ejemplo</code></li>
+                                        <li><strong><code>df</code></strong> — Muestra uso de disco. <code>df -h</code></li>
+                                        <li><strong><code>du</code></strong> — Tamaño de directorios. <code>du -sh carpeta/</code></li>
+                                        <li><strong><code>top</code></strong> — Monitor de procesos en tiempo real. <code>top</code></li>
+                                        <li><strong><code>htop</code></strong> — Versión mejorada de top (si está instalada). <code>htop</code></li>
+                                        <li><strong><code>ssh</code></strong> — Acceso remoto seguro. <code>ssh usuario@host</code></li>
+                                    </ul>
+                                </div>
+
+                                <div class="education-item highlight">
+                                    <h4>Comandos avanzados</h4>
+                                    <ul>
+                                        <li><strong><code>awk</code></strong> — Procesamiento y extracción de texto. <code>awk '{print $1}' file</code></li>
+                                        <li><strong><code>sed</code></strong> — Edición de flujo de texto. <code>sed -n '1,10p' file</code></li>
+                                        <li><strong><code>systemctl</code></strong> — Control de servicios systemd. <code>sudo systemctl status nginx</code></li>
+                                        <li><strong><code>journalctl</code></strong> — Logs del systemd journal. <code>journalctl -u nginx -f</code></li>
+                                        <li><strong><code>tcpdump</code></strong> — Captura de paquetes de red. <code>sudo tcpdump -i eth0</code></li>
+                                        <li><strong><code>strace</code></strong> — Traza llamadas al sistema de un proceso. <code>strace -p PID</code></li>
+                                        <li><strong><code>lsof</code></strong> — Archivos abiertos y puertos en uso. <code>lsof -i :80</code></li>
+                                        <li><strong><code>ip</code></strong> — Configura interfaces de red. <code>ip addr show</code></li>
+                                        <li><strong><code>nslookup/dig</code></strong> — Consultas DNS. <code>dig ejemplo.com</code></li>
+                                        <li><strong><code>chroot</code></strong> — Ejecutar en un entorno raíz distinto. <code>sudo chroot /mnt/entorno</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4>Otros comandos útiles</h4>
+                                    <ul>
+                                        <li><strong><code>rsync</code></strong> — Sincronización eficiente de archivos. <code>rsync -av origen/ destino/</code></li>
+                                        <li><strong><code>crontab</code></strong> — Tareas programadas. <code>crontab -e</code></li>
+                                        <li><strong><code>screen</code></strong> / <strong><code>tmux</code></strong> — Sesiones persistentes en terminal. <code>tmux new -s sesion</code></li>
+                                        <li><strong><code>passwd</code></strong> — Cambiar contraseña de usuario. <code>passwd usuario</code></li>
+                                        <li><strong><code>useradd/usermod</code></strong> — Gestión de cuentas de usuario. <code>sudo useradd -m nuevo</code></li>
+                                        <li><strong><code>chmod/chown</code></strong> — Permisos y propietario. <code>sudo chown user:group archivo && chmod 644 archivo</code></li>
+                                        <li><strong><code>mount/umount</code></strong> — Montar y desmontar sistemas de archivos. <code>sudo mount /dev/sdb1 /mnt</code></li>
+                                        <li><strong><code>apt</code></strong> / <strong><code>dnf</code></strong> — Gestión de paquetes según la distro. <code>sudo apt update && sudo apt install paquete</code></li>
+                                        <li><strong><code>sudo</code></strong> — Ejecutar comandos como superusuario. <code>sudo comando</code></li>
+                                        <li><strong><code>alias</code></strong> — Atajos personalizados. <code>alias ll="ls -la"</code></li>
+                                    </ul>
+                                </div>
+
+                                <div class="education-item">
+                                    <h4>Consejos rápidos</h4>
+                                    <ul>
+                                        <li>Usa <strong><code>man</code></strong> y <strong><code>--help</code></strong> para aprender opciones: <code>comando --help</code>.</li>
+                                        <li>Combina comandos con pipes: <code>grep "error" /var/log/syslog | less</code>.</li>
+                                        <li>Prueba en un entorno seguro (máquina virtual/contener) antes de operaciones destructivas.</li>
+                                        <li>Configura <strong>SSH keys</strong> para acceso remoto sin contraseña: <code>ssh-keygen && ssh-copy-id user@host</code>.</li>
+                                        <li>Documenta alias y funciones en tu <code>~/.bashrc</code> o <code>~/.zshrc</code>.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="education-item highlight">
+                                    <h4>Ejemplo práctico</h4>
+                                    <p>Backup rápido con <code>tar</code> y <code>rsync</code>:</p>
+                                    <pre class="glass-effect" style="padding: .75rem; border-radius: 8px; white-space: pre-wrap;">
+# Crear un tar comprimido
+tar -czvf casa_backup_$(date +%F).tar.gz /home/usuario
+
+# Sincronizar a servidor remoto
+rsync -av --progress /home/usuario backup@servidor:/backups/usuario/
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="education-group glass-effect fade-in-up" id="administracion">
+                            <h3 class="group-title"><i class="ph-bold ph-cpu"></i> 3.2 Administración del Sistema</h3>
+                            <p class="intro-paragraph">
+                                Comandos para obtener información del sistema y gestionar procesos en segundo plano.
+                            </p>
+                            <div class="education-items-row">
+                                <div class="education-item">
+                                    <h4>`man`</h4>
+                                    <p>Abre el **manual** de cualquier comando. Escribe `man ls` para ver la documentación completa. </p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>`top` o `htop`</h4>
+                                    <p>Muestra el **uso de recursos** (CPU, Memoria) en tiempo real y gestiona procesos activos.</p>
+                                </div>
+                                <div class="education-item highlight">
+                                    <h4>`cat`, `grep`</h4>
+                                    <p>**Concatena/muestra** contenido de archivos (`cat`) y **filtra** texto dentro de ellos (`grep`). Esencial para la gestión de logs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="education-group glass-effect fade-in-up" id="paquetes">
+                            <h3 class="group-title"><i class="ph-bold ph-rocket-launch-fill"></i> 3.3 Gestión de Paquetes (APT)</h3>
+                            <p class="intro-paragraph">
+                                Los gestores de paquetes son la forma centralizada de instalar, actualizar y eliminar software en Linux. En distribuciones basadas en Debian (como Ubuntu), se usa **APT (Advanced Packaging Tool)**.
+                            </p>
+
+                            <div class="terminal-block" id="sudo">
+                                <p class="jscamp-lead" style="color: #ffffff;">El Comando **sudo**</p>
+                                <p style="color: var(--success);">`sudo` (SuperUser DO) es indispensable. Te permite ejecutar comandos con privilegios de administrador, necesarios para instalar software o modificar archivos críticos del sistema.</p>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">sudo apt update</span> <span class="terminal-output">
+[sudo] password for user: ********
+... Paquetes actualizados ...</span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">sudo apt install <span style="color: var(--primary);">nginx</span></span>
+                                <span class="terminal-prompt">user@linux:~$</span> <span class="terminal-command">sudo apt remove <span style="color: var(--primary);">nginx</span></span>
+                            </div>
+
+                            <p class="intro-paragraph">
+                                **Comandos APT Clave:**
+                            </p>
+                            <ul>
+                                <li>**`apt update`**: Descarga las listas de paquetes más recientes de los repositorios.</li>
+                                <li>**`apt upgrade`**: Instala las nuevas versiones de todos los paquetes instalados.</li>
+                                <li>**`apt install [paquete]`**: Instala un paquete de software.</li>
+                                <li>**`apt remove [paquete]`**: Desinstala un paquete de software.</li>
+                            </ul>
+                            
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section class="education-section" id="usuario-root-linux">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="ph-bold ph-shield-chevron"></i> 4. Trabajo con Usuario Root y Sudo
+                </h2>
+                
+                <div class="education-group glass-effect fade-in-up" style="padding: 2.5rem;">
+                    
+                    <h3 class="group-title"><i class="ph-bold ph-user-circle"></i> ¿Qué es el usuario root?</h3>
+                    <p class="section-description" style="text-align: left;">
+                        En Linux, el usuario **root** es el superusuario del sistema. Tiene **acceso total y sin restricciones** para realizar cualquier acción: instalar software, modificar archivos de configuración o eliminar componentes críticos. Su poder es útil, pero también implica grandes riesgos si se usa sin cuidado.
+                    </p>
+
+                    <h3 class="group-title" style="margin-top: 2rem;"><i class="ph-bold ph-check-circle"></i> ¿Cuándo usar root o `sudo`?</h3>
+                    <p class="section-description" style="text-align: left;">
+                        Es conveniente utilizar permisos de administrador cuando se realizan **tareas que afectan al sistema completo**.
+                    </p>
+
+                    <div class="education-items-row">
+                        <div class="education-item glass-effect">
+                            <h4><i class="ph-bold ph-cloud-arrow-up"></i> Instalación y Actualización</h4>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo apt update</span>
+                                <span class="terminal-command">sudo apt install paquete</span>
+                            </div>
+                        </div>
+                        <div class="education-item glass-effect">
+                            <h4><i class="ph-bold ph-wrench"></i> Modificación de Archivos Críticos</h4>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo nano /etc/hosts</span>
+                            </div>
+                        </div>
+                        <div class="education-item glass-effect">
+                            <h4><i class="ph-bold ph-gauge"></i> Administración de Servicios</h4>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo systemctl restart servicio</span>
+                            </div>
+                        </div>
+                        <div class="education-item glass-effect">
+                            <h4><i class="ph-bold ph-hard-drive"></i> Manejo de Discos (Montar/Desmontar)</h4>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo mount /dev/sda1 /mnt</span>
+                            </div>
+                        </div>
+                        <div class="education-item highlight">
+                            <h4><i class="ph-bold ph-user-plus"></i> Gestión de Usuarios y Grupos</h4>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo adduser usuario</span>
+                                <span class="terminal-command">sudo deluser usuario</span>
+                            </div>
+                        </div>
+                        <div class="education-item highlight">
+                            <h4><i class="ph-bold ph-code-block"></i> Permisos y Propiedad (Chmod/Chown)</h4>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo chown user:group file</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="group-title" style="margin-top: 3rem;"><i class="ph-bold ph-x-circle"></i> ¿Cuándo NO usar root?</h3>
+                    <p class="section-description" style="text-align: left;">
+                        Evita usar root para tareas cotidianas o de desarrollo. Trabajar como root en estas situaciones puede provocar errores de permisos, archivos dañados o configuraciones incorrectas.
+                    </p>
+                    <ul style="color: var(--text-secondary); margin-left: 2rem;">
+                        <li>Abrir editores de código (VSCode, PyCharm, etc.)</li>
+                        <li>Ejecutar Jupyter Notebooks o Python</li>
+                        <li>Navegar por carpetas personales (usar `cd ~` o `cd /home/user`)</li>
+                        <li>Crear o editar archivos que no son del sistema (ej. documentos o proyectos)</li>
+                    </ul>
+
+                    <h3 class="group-title" style="margin-top: 3rem;"><i class="ph-bold ph-hand-tap"></i> `sudo` vs. `sudo -i` (Entrar como Root)</h3>
+                    <div class="education-items-row">
+                        <div class="education-item">
+                            <h4><i class="ph-bold ph-check"></i> Usar `sudo`</h4>
+                            <p>Es la forma más segura. **Eleva permisos solo para un comando específico**.</p>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo apt update</span>
+                            </div>
+                        </div>
+                        <div class="education-item highlight">
+                            <h4><i class="ph-bold ph-terminal"></i> Entrar como Root (`sudo -i`)</h4>
+                            <p>Útil si necesitas ejecutar **varios comandos administrativos consecutivos**. Se recomienda salir inmediatamente después de terminar la tarea.</p>
+                            <div class="terminal-block">
+                                <span class="terminal-command">sudo -i</span>
+                                <span class="terminal-output"># ... comandos administrativos ...</span>
+                                <span class="terminal-command">exit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="group-title" style="margin-top: 3rem;"><i class="ph-bold ph-warning-circle"></i> Riesgos de trabajar como root</h3>
+                    <p class="section-description" style="text-align: left; color: var(--secondary);">
+                        El usuario root no tiene frenos. Comandos destructivos como <code style="color: var(--accent);">rm -rf /</code> pueden ejecutarse sin confirmación y causar daños críticos. Linux sigue el principio de **mínimos privilegios**: usar root solo cuando sea estrictamente necesario.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="bitlocker-linux" class="education-group fade-in-up">
+            </section>
+        <section id="cifrado-bitlocker" class="education-group fade-in-up container" aria-labelledby="cifrado-title" style="margin-top:2rem;">
+             </section>
+
+        <section class="education-section" id="bash-comportamiento">
+        <div class="container">
+
+            <h2 class="section-title">
+            <i class="ph-bold ph-terminal"></i> 5. Comportamiento del Bash y Gestión de Funciones
+            </h2>
+
+            <p class="section-description">
+            Comprender cómo Bash carga funciones, alias y variables es clave para evitar errores de sintaxis,
+            conflictos en memoria y comportamientos inesperados al modificar el archivo <code>~/.bashrc</code>.
+            </p>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                📘 ¿Qué es Bash y cómo carga configuraciones?
+            </button>
+            <div class="accordion-content">
+                <p>
+                Bash es el intérprete de comandos que ejecuta instrucciones escritas en terminal.
+                Cuando se inicia una sesión, carga configuraciones desde archivos como:
+                </p>
+                <ul>
+                <li><code>~/.bashrc</code> → configuración interactiva</li>
+                <li><code>~/.profile</code> → variables de entorno</li>
+                <li><code>/etc/bash.bashrc</code> → configuración global</li>
+                </ul>
+                <p>
+                Cada vez que ejecutas:
+                </p>
+                <div class="terminal-block">
+        source ~/.bashrc
+                </div>
+                <p>Recarga funciones, alias y variables sin cerrar la terminal.</p>
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                ⚠️ Conflictos comunes en Bash
+            </button>
+            <div class="accordion-content">
+                <ul>
+                <li>Funciones con nombres previamente cargados</li>
+                <li>Alias con el mismo nombre que funciones</li>
+                <li>Funciones antiguas aún en memoria</li>
+                <li>Errores de sintaxis previos no recargados</li>
+                </ul>
+
+                <p>Ejemplo de conflicto:</p>
+
+                <div class="terminal-block">
+        type datos
+                </div>
+
+                <p>Puede mostrar una función antigua aunque ya no exista en el archivo.</p>
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                🧠 Funciones cargadas en memoria
+            </button>
+            <div class="accordion-content">
+                <p>
+                Cuando defines una función en Bash, queda almacenada en memoria durante la sesión.
+                Aunque edites el archivo, la función sigue activa hasta reiniciar o recargar correctamente.
+                </p>
+
+                <div class="terminal-block">
+        unset -f nombre_funcion
+                </div>
+
+                <p>Elimina una función específica de la sesión actual.</p>
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                🔄 Comandos para reiniciar o limpiar Bash
+            </button>
+            <div class="accordion-content">
+
+                <p><strong>Recargar configuración:</strong></p>
+                <div class="terminal-block">
+        source ~/.bashrc
+                </div>
+
+                <p><strong>Reiniciar sesión de Bash:</strong></p>
+                <div class="terminal-block">
+        exec bash
+                </div>
+
+                <p><strong>Eliminar alias:</strong></p>
+                <div class="terminal-block">
+        unalias nombre
+                </div>
+
+                <p><strong>Ver alias activos:</strong></p>
+                <div class="terminal-block">
+        alias
+                </div>
+
+            </div>
+            </div>
+
+            <!-- ACORDEÓN ITEM -->
+            <div class="education-group glass-effect fade-in-up accordion">
+            <button class="accordion-header">
+                💡 Buenas prácticas para funciones en ~/.bashrc
+            </button>
+            <div class="accordion-content">
+
+                <ul>
+                <li>Usar prefijos en funciones personalizadas (<code>_</code> o <code>dev_</code>)</li>
+                <li>No reutilizar nombres de comandos existentes</li>
+                <li>Probar funciones antes de guardarlas definitivamente</li>
+                <li>Documentar cada función con comentarios</li>
+                </ul>
+
+                <div class="terminal-block">
+        # Ir a carpeta de proyectos
+        _proyectos() {
+        cd ~/Proyectos
+        }
+                </div>
+
+            </div>
+            </div>
+
+        </div>
+                </section>
+        <section class="devops-cta-section">
+            <div class="container devops-cta-content">
+                <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
+                    ¡Es Hora de Practicar!
+                </h2>
+                <p class="section-description" style="color: var(--text-primary); max-width: 900px;">
+                    El conocimiento de Linux solo se consolida con la práctica. Descarga una distribución y comienza a explorar la terminal.
+                </p>
+                <div class="devops-cta-actions">
+                    <a href="https://www.ubuntu.com/download" target="_blank" class="cta-button primary-cta-hero">
+                        Descargar Ubuntu <i class="ph-bold ph-download-simple"></i>
+                    </a>
+                    <a href="https://www.linuxmint.com/" target="_blank" class="cta-button secondary-cta-hero secondary-cta">
+                        Descargar Linux Mint <i class="ph-bold ph-download-simple"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+       
+
+
+  
+
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4><i class="ph-bold ph-linux-logo"></i> Linux.Tech</h4>
+                <p>
+                    Plataforma educativa dedicada a la difusión del conocimiento de Linux y el código abierto.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><i class="ph-bold ph-github-logo"></i></a>
+                    <a href="#"><i class="ph-bold ph-twitter-logo"></i></a>
+                    <a href="#"><i class="ph-bold ph-linkedin-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4><i class="ph-bold ph-link-simple"></i> Enlaces Rápidos</h4>
+                <a href="#concepto">Concepto de Linux</a>
+                <a href="#historia">Línea de Tiempo</a>
+                <a href="#instalacion">Instalación y Archivos</a>
+                <a href="#terminal">Comandos de Terminal</a>
+                <a href="#usuario-root-linux">Root / Sudo</a>
+            </div>
+            <div class="footer-col">
+                <h4><i class="ph-bold ph-envelope"></i> Contacto</h4>
+                <p>Email: info@linux.tech</p>
+                <p>Soporte: ayuda@linux.tech</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Linux.Tech | Todos los derechos reservados. | Diseñado con la comunidad Open Source.
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.querySelector('.menu-icon');
+            const navButtons = document.querySelector('.nav-buttons');
+
+            menuIcon.addEventListener('click', () => {
+                navButtons.classList.toggle('active');
+            });
+            
+            // Cerrar menú al hacer clic en un enlace (en móvil)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navButtons.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll(".accordion-header").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+            const content = btn.nextElementSibling
+            btn.classList.toggle("active")
+            content.style.maxHeight
+            ? content.style.maxHeight=null
+            : content.style.maxHeight=content.scrollHeight+"px"
+        })
+        })
+    </script>
+
+
+</body>
+</html>
