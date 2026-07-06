@@ -30,22 +30,21 @@
     
     <link rel="stylesheet" href="/src/css/estilosindex.css">
     <style>
+        /* ===== FOOTER INLINE OVERRIDES ===== */
         #site-footer {
             background: linear-gradient(180deg, #031627 0%, #06253c 100%);
             color: #dff3ff;
             padding: 44px 20px 24px;
             font-family: 'Inter', sans-serif;
         }
-
         #site-footer .footer-container {
             display: grid;
-            grid-template-columns: repeat(3, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             max-width: 1180px;
             margin: 0 auto;
             align-items: start;
         }
-
         #site-footer .footer-col {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -54,43 +53,18 @@
             min-height: 180px;
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
         }
-
         #site-footer h4 {
             margin-bottom: 16px;
             font-size: 1.05rem;
             letter-spacing: 0.03em;
             color: #ffffff;
         }
-
-        #site-footer p {
-            color: #d8efff;
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        #site-footer .footer-links {
-            display: grid;
-            gap: 10px;
-            margin-top: 8px;
-        }
-
+        #site-footer p { color: #d8efff; line-height: 1.7; margin: 0; }
+        #site-footer .footer-links { display: grid; gap: 10px; margin-top: 8px; }
         #site-footer .footer-links a,
-        #site-footer .footer-col p {
-            color: #c8e9ff;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        #site-footer .footer-links a:hover {
-            color: #ffffff;
-        }
-
-        #site-footer .social-icons {
-            display: flex;
-            gap: 12px;
-            margin-top: 18px;
-        }
-
+        #site-footer .footer-col p { color: #c8e9ff; text-decoration: none; transition: color 0.2s ease; }
+        #site-footer .footer-links a:hover { color: #ffffff; }
+        #site-footer .social-icons { display: flex; gap: 12px; margin-top: 18px; }
         #site-footer .social-icons a {
             display: inline-flex;
             align-items: center;
@@ -102,38 +76,30 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             color: #dff3ff;
         }
-
         #site-footer .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.14);
             margin-top: 32px;
             padding-top: 20px;
-            font-size: 1.3rem;
+            font-size: clamp(0.85rem, 2vw, 1rem);
             text-align: center;
             color: #9ccde4;
         }
 
+        /* ===== HERO ===== */
         .hero-section {
             padding: 40px 0;
             background: #061427;
         }
-
         .banner-content {
             display: grid;
-            grid-template-columns: minmax(220px, 2fr) minmax(500px, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 36px;
             align-items: center;
-            justify-content: center;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        .banner-slider {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
+        .banner-slider { width: 100%; display: flex; justify-content: center; }
         .banner-video {
             width: 100%;
             max-width: 660px;
@@ -142,58 +108,141 @@
             box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
             object-fit: cover;
         }
-
         .hero-text {
             padding: 0.5rem 0;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
             gap: 10px;
         }
-
         .hero-title {
             margin: 0;
             font-size: clamp(1.4rem, 5vw, 3.2rem);
             line-height: 1.02;
         }
-
         .section-subtitle {
             margin: 0;
             color: #dfe7f3;
             font-size: clamp(1rem, 2.1vw, 1.5rem);
             max-width: 42rem;
         }
-
         .intro-paragraph {
             margin: 0;
             max-width: 42rem;
             color: #e8eef9;
             line-height: 1.8;
         }
-
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
             margin-top: 12px;
         }
+        .hero-actions .cta-button { min-width: 180px; }
 
-        .hero-actions .cta-button {
-            min-width: 180px;
+        /* ===== VERSE WIDGET ===== */
+        .verse-figure {
+            margin: 1rem 0;
+            padding: 0.6rem;
+            border-left: 4px solid #6fd3ff;
+            background: linear-gradient(180deg, rgba(106,190,226,0.03), transparent);
+            border-radius: 6px;
+            color: #0db7de;
+        }
+        .verse { margin: 0; padding: 0.4rem 0 0 0; font-style: italic; }
+        .verse p { margin: 0; font-size: 1.3em; line-height: 1.4; font-family: Georgia, 'Times New Roman', Times, serif; }
+        .verse cite { display: block; margin-top: 6px; font-size: 1.1rem; opacity: 0.9; }
+        .verse-toolbar { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
+        .verse-toolbar button { background: transparent; border: 1px solid rgba(203,18,18,0.08); color: inherit; padding: 4px 8px; border-radius: 2%; cursor: pointer; }
+        .verse-figure.collapsed .verse { display: none; }
+        @media (prefers-color-scheme: light) {
+            .verse-figure { background: #f7fcff; color: #05424a; border-left-color: #38a9d1; }
+            .verse-toolbar button { border-color: #e1f6ff; color: #03434a; }
+        }
+
+        /* ===== IA STACK ===== */
+        .ia-stack-section { padding: 2rem 0; }
+        .ia-stack-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .ia-stack-title { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-bottom: 1rem; }
+        .ia-stack-lead { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+        .ia-stack-list { list-style: none; padding: 0; }
+        .ia-stack-list li { padding: 0.6rem 0; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .ia-stack-figure { margin: 0; text-align: center; }
+        .ia-stack-figcaption { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+        /* ===== ASIDE COLLAPSIBLE ON MOBILE ===== */
+        .education-aside-collapse-btn {
+            display: none;
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 1024px) {
+            .education-aside-collapse-btn { display: block; }
+            #asideLinks.collapsed { display: none; }
+            #asideLinks:not(.collapsed) { display: block; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .banner-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                text-align: center;
+            }
+            .hero-text { align-items: center; }
+            .hero-actions { justify-content: center; }
+            .ia-stack-container { grid-template-columns: 1fr; }
+            .ia-stack-figure { order: -1; }
         }
 
         @media (max-width: 900px) {
             #site-footer .footer-container {
                 grid-template-columns: 1fr;
             }
-
             #site-footer .footer-col {
                 min-height: auto;
             }
-
             #site-footer .footer-bottom {
-                text-align: left;
+                text-align: center;
             }
+        }
+
+        @media (max-width: 768px) {
+            .banner-video {
+                max-width: 100%;
+                border-radius: 16px;
+            }
+            .verse p { font-size: 1.1em; }
+            .verse cite { font-size: 0.95rem; }
+            .ia-stack-list li { font-size: 0.9rem; padding: 0.5rem 0; }
+            .education-figure.fullstack-figure { margin: 1rem 0; }
+            .jscamp-modules { padding-left: 0; }
+            .jscamp-modules li { font-size: 0.9rem; padding-left: 1.8rem; }
+            .devops-cta-content h2 { font-size: clamp(1.3rem, 4vw, 1.8rem); }
+            .education-group { padding: 1.5rem; }
+            .group-title { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-section { padding: 30px 0; }
+            .banner-content { gap: 16px; padding: 0 12px; }
+            .hero-actions .cta-button { min-width: 100%; width: 100%; }
+            .hero-actions { flex-direction: column; }
+            .hero-title { font-size: clamp(1.2rem, 7vw, 1.8rem); }
+            .verse-container { padding: 0 1rem !important; }
+            .verse-toolbar button { font-size: 0.8rem; padding: 2px 6px; }
         }
     </style>
 
@@ -361,7 +410,8 @@
 
                     <aside class="education-aside" aria-label="Guías rápidas y enlaces útiles">
                         <h3><i class="fa-solid fa-link"></i> Accesos Directos</h3>
-                        <ul>
+                        <button class="education-aside-collapse-btn" id="asideToggle" aria-expanded="false" onclick="toggleAside()">Mostrar todos los enlaces ▾</button>
+                        <ul id="asideLinks">
                             <li><a href="/content/educacion/rutaproyectoweb.html" target="_blank">Proyecto Web Facturación</a></li>
                             <li><a href="/content/educacion/basesdedatos.html" target="_blank">Curso SQL</a></li>
                             <li><a href="/content/educacion/modulo-ariana/Python_fundamentos.html" target="_blank">Python Fundamentos</a></li>
@@ -754,9 +804,9 @@
         <div class="ia-stack-container">
             <div class="ia-stack-main">
                 <h2 id="ia-stack-title" class="ia-stack-title">
-                    🚀 𝗧𝘂 "𝗦𝘁𝗮𝗰𝗸" 𝗱𝗲 𝗜𝗔 𝗲𝘀 𝘁𝘂 𝗡𝘂𝗲𝘃𝗼 𝗦𝘂𝗽𝗲𝗿𝗽𝗼𝗱𝗲𝗿. 
-                    <h3> ¿𝗣𝗼𝗿 𝗾𝘂𝗲́ 𝗹𝗮 𝗠𝗮𝘆𝗼𝗿í𝗮 𝗦𝗼𝗹𝗼 𝗨𝘀𝗮 𝗹𝗮 𝗣𝘂𝗻𝘁𝗮 𝗱𝗲 𝗹𝗮 𝗣𝗶𝗿𝗮́𝗺𝗶𝗱𝗲?</h3>
+                    🚀 𝗧𝘂 "𝗦𝘁𝗮𝗰𝗸" 𝗱𝗲 𝗜𝗔 𝗲𝘀 𝘁𝘂 𝗡𝘂𝗲𝘃𝗼 𝗦𝘂𝗽𝗲𝗿𝗽𝗼𝗱𝗲𝗿.
                 </h2>
+                <h3 class="ia-stack-subtitle" style="font-size:1.1rem;color:var(--text-secondary);margin-bottom:1rem;">¿𝗣𝗼𝗿 𝗾𝘂𝗲́ 𝗹𝗮 𝗠𝗮𝘆𝗼𝗿í𝗮 𝗦𝗼𝗹𝗼 𝗨𝘀𝗮 𝗹𝗮 𝗣𝘂𝗻𝘁𝗮 𝗱𝗲 𝗹𝗮 𝗣𝗶𝗿𝗮́𝗺𝗶𝗱𝗲?</h3>
 
                 <p class="ia-stack-lead">
                     La conversación sobre Inteligencia Artificial está obsesionada con la punta de la pirámide: ChatGPT, Claude, Perplexity...
@@ -865,7 +915,8 @@
 
     <div class="footer-bottom" role="note">
         © <span id="anio-actual"></span> Delanoys Tecnologías — Todos los derechos reservados.
-      <footer>
+      </div>
+      <div class="verse-container" style="max-width:1400px;margin:0 auto;padding:0 2rem;">
     <figure class="verse-figure" id="verse-widget">
         <figcaption class="verse-toolbar" role="toolbar">
             <button id="verse-toggle" title="Mostrar / Ocultar">▾</button>
@@ -878,16 +929,7 @@
         </blockquote>
     </figure>
 
-    <style>
-        .verse-figure{margin:1rem 0;padding:0.6rem;border-left:4px solid #6fd3ff;background:linear-gradient(180deg,rgba(106, 190, 226, 0.03),transparent);border-radius:6px;color:#0db7de}
-        .verse{margin:0;padding:0.4rem 0 0 0;font-style:italic}
-        .verse p{margin:0;font-size:1.3em;line-height:1.4;font-family:Georgia, 'Times New Roman', Times, serif}
-        .verse cite{display:block;margin-top:6px;font-size:1.1rem;opacity:0.9}
-        .verse-toolbar{display:flex;gap:6px;align-items:center;margin-bottom:6px}
-        .verse-toolbar button{background:transparent;border:1px solid rgba(203, 18, 18, 0.08);color:inherit;padding:4px 8px;border-radius:2%;cursor:pointer}
-        .verse-figure.collapsed .verse{display:none}
-        @media (prefers-color-scheme:light){.verse-figure{background:#f7fcff;color:#05424a;border-left-color:#38a9d1}.verse-toolbar button{border-color:#e1f6ff;color:#03434a}}
-    </style>
+
 
     <script>
         (function(){
@@ -993,8 +1035,8 @@
             root.animate([{opacity:-1,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:5,easing:'ease-out'});
         })();
     </script>
-</footer>
     </div>
+</div>
 
     <button id="ai-btn-open" aria-label="Abrir asistente de ayuda" title="Asistente"> 
         <i class="fa-solid fa-robot" aria-hidden="true"></i>
@@ -1028,14 +1070,33 @@
     <script src="/src/js/servicios.js"></script>
    
     <script>
-        // Footer año
         document.getElementById('anio-actual').textContent = new Date().getFullYear();
+        function toggleAside() {
+            const links = document.getElementById('asideLinks');
+            const btn = document.getElementById('asideToggle');
+            links.classList.toggle('collapsed');
+            const isCollapsed = links.classList.contains('collapsed');
+            btn.textContent = isCollapsed ? 'Mostrar todos los enlaces ▾' : 'Ocultar enlaces ▴';
+            btn.setAttribute('aria-expanded', !isCollapsed);
+        }
+        if (window.innerWidth < 1025) {
+            document.getElementById('asideLinks').classList.add('collapsed');
+        }
+        window.addEventListener('resize', function() {
+            const links = document.getElementById('asideLinks');
+            if (window.innerWidth < 1025 && !links.classList.contains('collapsed') && !links.classList.contains('manually-opened')) {
+                links.classList.add('collapsed');
+            } else if (window.innerWidth >= 1025) {
+                links.classList.remove('collapsed');
+            }
+        });
     </script>
     <script src="/src/js/AsistenteIA.js"></script>
     
     <button id="back-to-top" aria-label="Volver arriba" title="Volver arriba">
         <i class="fa-solid fa-angle-up"></i>
     </button>
+</div>
 </footer>
 </body>
 </html>
