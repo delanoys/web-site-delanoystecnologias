@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw + Docker | Guía Completa - Delanoys Tecnologías</title>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; margin:0; background: #f8f9fa; }
+        .header { background: linear-gradient(135deg, #2d3436, #00b894); color: white; padding: 4rem 0; text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        section { background: white; margin: 2.5rem 0; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        pre { background: #2d3436; color: #00ff9d; padding: 1.2rem; border-radius: 8px; overflow-x: auto; }
+        .jerarquia { background: #f1f8f7; padding: 2rem; border-radius: 12px; text-align: center; font-size: 1.1rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { padding: 14px; border: 1px solid #ddd; }
+        th { background: #00b894; color: white; }
+        .paso { background: #f8f9fa; padding: 1.5rem; border-left: 5px solid #00b894; margin: 1rem 0; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>OpenClaw + Docker en Elementary OS 8</h1>
+    <h2>Guía Educativa Completa desde Cero</h2>
+    <p>Pipeline IA PRO V6 • Delanoys Tecnologías</p>
+</div>
+
+<div class="container">
+
+    <!-- Jerarquía -->
+    <section>
+        <h2>Regla N° 1 - Estructura Jerárquica</h2>
+        <div class="jerarquia">
+            <strong>Director General</strong><br>
+            <strong>Hever Torres Delanoys</strong><br><br>
+            ↓<br>
+            Pipeline IA PRO V6<br>
+            ↓<br>
+            Consola IA Pro<br>
+            ↓<br>
+            Coordinador de Agentes<br><br>
+            <strong>GPT</strong> - Tutor | 
+            <strong>Deep</strong> - Developer | 
+            <strong>Grok</strong> - Developer | 
+            <strong>OpenClaw</strong> - Agente Personal
+        </div>
+    </section>
+
+    <!-- Instalación Elementary OS -->
+    <section>
+        <h2>Instalación Paso a Paso en Elementary OS 8 (Recomendada)</h2>
+        
+        <div class="paso">
+            <h3>Paso 1: Instalar Docker</h3>
+            <pre><code>sudo apt update
+sudo apt install docker.io docker-compose -y
+sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+        </div>
+
+        <div class="paso">
+            <h3>Paso 2: Crear estructura de carpetas</h3>
+            <pre><code>mkdir -p ~/openclaw/data
+mkdir -p ~/openclaw/projects-backup
+mkdir -p ~/openclaw/projects-active</code></pre>
+        </div>
+
+        <div class="paso">
+            <h3>Paso 3: docker-compose.yml (Seguro)</h3>
+            <pre><code>version: '3.8'
+services:
+  openclaw:
+    image: openclaw/openclaw:latest
+    user: "1000:1000"
+    ports:
+      - "18789:18789"
+    volumes:
+      - openclaw-data:/root/.openclaw
+      - ~/openclaw/projects-backup:/projects:ro
+      - ~/openclaw/projects-active:/active-projects
+    environment:
+      - TZ=America/Bogota</code></pre>
+        </div>
+    </section>
+
+    <!-- Instalación VPS -->
+    <section>
+        <h2>Instalación en VPS</h2>
+        <p>Se recomienda solo para ejecución 24/7. Usa Docker + UFW + Fail2Ban.</p>
+    </section>
+
+    <!-- Diagramas -->
+    <section>
+        <h2>Diagrama de Flujo de Seguridad</h2>
+        <pre>
+Elementary OS / VPS
+        │
+   Docker Rootless
+        │
+   UFW + Fail2Ban
+        │
+   OpenClaw (Agente Personal)
+        │
+   Pipeline IA PRO V6
+        </pre>
+    </section>
+
+    <footer style="text-align:center; padding: 2rem; color:#555;">
+        <p>Guía creada para Delanoys Tecnologías • Julio 2026</p>
+    </footer>
+</div>
+</body>
+</html>

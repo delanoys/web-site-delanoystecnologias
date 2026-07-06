@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Implementación Segura de Agentes IA</title>
+    <style>
+        /* ============================================================
+           RESET Y VARIABLES
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0d6efd;
+            --primary-dark: #0a58ca;
+            --secondary: #6c757d;
+            --success: #198754;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #0dcaf0;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #212529;
+            --text-muted: #6c757d;
+            --border: #dee2e6;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --radius: 12px;
+            --transition: 0.3s ease;
+        }
+
+        /* Modo oscuro */
+        [data-theme="dark"] {
+            --bg: #1a1a2e;
+            --card-bg: #16213e;
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border: #2a2a4a;
+            --shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        /* ============================================================
+           ESTILOS GENERALES
+           ============================================================ */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background var(--transition), color var(--transition);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ============================================================
+           HEADER SUPERIOR
+           ============================================================ */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--primary);
+            padding: 10px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: var(--shadow);
+            transition: background var(--transition);
+        }
+
+        .top-header .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .top-header .logo small {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .top-header .status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .top-header .status .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--success);
+            color: #fff;
+        }
+
+        .top-header .status .badge.warning {
+            background: var(--warning);
+            color: #000;
+        }
+
+        .top-header .status .badge.secondary {
+            background: var(--secondary);
+        }
+
+        .top-header .progress-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0deg, var(--border) 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text);
+            position: relative;
+        }
+
+        .top-header .progress-circle::after {
+            content: '';
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--card-bg);
+        }
+
+        .top-header .progress-circle span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--text);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: var(--border);
+        }
+
+        /* ============================================================
+           MENÚ LATERAL
+           ============================================================ */
+        .sidebar {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            bottom: 0;
+            width: 240px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 16px 0;
+            z-index: 999;
+            transition: transform 0.3s ease, background var(--transition);
+            transform: translateX(0);
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .sidebar .menu-title {
+            padding: 0 20px 12px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            color: var(--text);
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(13, 110, 253, 0.08);
+            border-left-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .sidebar a .phase-badge {
+            font-size: 0.6rem;
+            background: var(--border);
+            padding: 1px 8px;
+            border-radius: 10px;
+            margin-left: auto;
+            color: var(--text-muted);
+        }
+
+        .sidebar a .phase-badge.done {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .sidebar a .phase-badge.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ============================================================
+           CONTENIDO PRINCIPAL
+           ============================================================ */
+        .main-content {
+            margin-left: 240px;
+            margin-top: 70px;
+            padding: 30px 40px 60px;
+            flex: 1;
+            max-width: calc(100% - 240px);
+            transition: margin var(--transition);
+        }
+
+        .section {
+            margin-bottom: 48px;
+            scroll-margin-top: 80px;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h2 .phase-number {
+            font-size: 1rem;
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 14px;
+            border-radius: 20px;
+        }
+
+        .section .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+        }
+
+        /* ============================================================
+           TARJETAS
+           ============================================================ */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            transition: background var(--transition), border var(--transition);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card .card-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card .card-meta .tag {
+            background: var(--border);
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+
+        .card .card-meta .tag.difficulty {
+            background: var(--warning);
+            color: #000;
+        }
+
+        .card .card-meta .tag.difficulty.hard {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        /* ============================================================
+           CONSEJOS DEL TUTOR
+           ============================================================ */
+        .tip {
+            border-left: 4px solid var(--primary);
+            background: rgba(13, 110, 253, 0.05);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 12px 0;
+        }
+
+        .tip.warning {
+            border-left-color: var(--warning);
+            background: rgba(255, 193, 7, 0.05);
+        }
+
+        .tip.danger {
+            border-left-color: var(--danger);
+            background: rgba(220, 53, 69, 0.05);
+        }
+
+        .tip.success {
+            border-left-color: var(--success);
+            background: rgba(25, 135, 84, 0.05);
+        }
+
+        .tip strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ============================================================
+           CHECKLIST
+           ============================================================ */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           KANBAN
+           ============================================================ */
+        .kanban {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .kanban-column {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .kanban-column h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .kanban-item {
+            background: var(--card-bg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .kanban-item:hover {
+            border-color: var(--primary);
+        }
+
+        /* ============================================================
+           ROADMAP
+           ============================================================ */
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .roadmap-item .bar {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .roadmap-item .bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            background: var(--primary);
+            transition: width 0.6s ease;
+        }
+
+        .roadmap-item .label {
+            font-size: 0.85rem;
+            min-width: 120px;
+        }
+
+        .roadmap-item .percent {
+            font-size: 0.8rem;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: right;
+        }
+
+        /* ============================================================
+           BITÁCORA
+           ============================================================ */
+        .bitacora-entry {
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .bitacora-entry:last-child {
+            border-bottom: none;
+        }
+
+        .bitacora-entry .date {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .bitacora-entry .detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-top: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           SVG DIAGRAMAS
+           ============================================================ */
+        .diagram-container {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        .diagram-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 20px;
+            }
+            .top-header .menu-toggle {
+                display: flex !important;
+            }
+            .kanban {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           RESPONSIVE TABLAS
+           ============================================================ */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        table th,
+        table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table th {
+            background: var(--bg);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           BOTONES
+           ============================================================ */
+        .btn {
+            padding: 6px 16px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            background: var(--border);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer a {
+            color: var(--primary);
+        }
+
+        /* ============================================================
+           ANIMACIONES
+           ============================================================ */
+        .fade-in {
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* ============================================================
+           ESTADÍSTICAS DASHBOARD
+           ============================================================ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .stats-grid .stat {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stats-grid .stat .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stats-grid .stat .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           TIMELINE INTERACTIVA
+           ============================================================ */
+        .timeline-interactive {
+            position: relative;
+            padding-left: 30px;
+            margin: 16px 0;
+        }
+
+        .timeline-interactive::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-interactive .tl-item {
+            position: relative;
+            margin-bottom: 16px;
+            padding-left: 20px;
+        }
+
+        .timeline-interactive .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 3px solid var(--primary);
+        }
+
+        .timeline-interactive .tl-item.completed::before {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .timeline-interactive .tl-item.active::before {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .timeline-interactive .tl-item .tl-title {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .timeline-interactive .tl-item .tl-content {
+            display: none;
+            margin-top: 8px;
+            padding-left: 12px;
+            border-left: 2px solid var(--border);
+        }
+
+        .timeline-interactive .tl-item.open .tl-content {
+            display: block;
+        }
+
+        /* ============================================================
+           UTILIDADES
+           ============================================================ */
+        .mt-8 { margin-top: 8px; }
+        .mt-16 { margin-top: 16px; }
+        .mt-24 { margin-top: 24px; }
+        .mb-8 { margin-bottom: 8px; }
+        .mb-16 { margin-bottom: 16px; }
+        .gap-8 { gap: 8px; }
+        .gap-16 { gap: 16px; }
+        .flex { display: flex; }
+        .flex-wrap { flex-wrap: wrap; }
+        .align-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .text-sm { font-size: 0.85rem; }
+        .text-xs { font-size: 0.7rem; }
+
+        /* ============================================================
+           BADGES DE ESTADO
+           ============================================================ */
+        .status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-badge.done { background: var(--success); color: #fff; }
+        .status-badge.in-progress { background: var(--warning); color: #000; }
+        .status-badge.pending { background: var(--secondary); color: #fff; }
+        .status-badge.blocked { background: var(--danger); color: #fff; }
+    </style>
+</head>
+<body>
+    <!-- ============================================================
+    HEADER SUPERIOR
+    ============================================================ -->
+    <header class="top-header" id="topHeader">
+        <div class="logo">
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+            <h1>🛡️ Agentes IA</h1>
+            <small>Delanoys Tecnologías · Pipeline IA PRO V6</small>
+        </div>
+        <div class="status">
+            <span class="badge">Fase Activa: 5</span>
+            <span class="badge warning">Próxima: 6</span>
+            <span class="badge secondary">v1.0</span>
+            <div class="progress-circle" id="progressCircle" style="background: conic-gradient(var(--primary) 72deg, var(--border) 0deg);">
+                <span id="progressPercent">20%</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MENÚ LATERAL
+    ============================================================ -->
+    <nav class="sidebar" id="sidebar">
+        <div class="menu-title">Navegación</div>
+        <a href="#fase0" class="active"><span>🏛️</span> Fase 0 · Planeación <span class="phase-badge done">✓</span></a>
+        <a href="#fase1"><span>🐳</span> Fase 1 · Docker <span class="phase-badge done">✓</span></a>
+        <a href="#fase2"><span>🧪</span> Fase 2 · Laboratorio <span class="phase-badge">⏳</span></a>
+        <a href="#fase3"><span>📂</span> Fase 3 · Git <span class="phase-badge">⏳</span></a>
+        <a href="#fase4"><span>💻</span> Fase 4 · VS Code <span class="phase-badge">⏳</span></a>
+        <a href="#fase5"><span>🤖</span> Fase 5 · OpenClaw <span class="phase-badge active">▶</span></a>
+        <a href="#fase6"><span>⚡</span> Fase 6 · Skills <span class="phase-badge">⏳</span></a>
+        <a href="#fase7"><span>📜</span> Fase 7 · Rules <span class="phase-badge">⏳</span></a>
+        <a href="#fase8"><span>🔗</span> Fase 8 · Integración <span class="phase-badge">⏳</span></a>
+        <a href="#fase9"><span>🔌</span> Fase 9 · MCP <span class="phase-badge">⏳</span></a>
+        <a href="#fase10"><span>⚙️</span> Fase 10 · Automatización <span class="phase-badge">⏳</span></a>
+        <a href="#fase11"><span>🧪</span> Fase 11 · Pruebas <span class="phase-badge">⏳</span></a>
+        <a href="#fase12"><span>🌐</span> Fase 12 · VPS <span class="phase-badge">⏳</span></a>
+        <a href="#fase13"><span>🔬</span> Fase 13 · Preproducción <span class="phase-badge">⏳</span></a>
+        <a href="#fase14"><span>🚀</span> Fase 14 · Producción <span class="phase-badge">⏳</span></a>
+        <a href="#fase15"><span>♻️</span> Fase 15 · Mejora <span class="phase-badge">⏳</span></a>
+        <a href="#seguridad"><span>🔒</span> Seguridad <span class="phase-badge">📘</span></a>
+        <a href="#bitacora"><span>📖</span> Bitácora <span class="phase-badge">📘</span></a>
+    </nav>
+
+    <!-- ============================================================
+    CONTENIDO PRINCIPAL
+    ============================================================ -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ============================================================
+        INTRODUCCIÓN
+        ============================================================ -->
+        <section class="section fade-in" id="intro">
+            <h2>📌 Proyecto: Implementación Segura de Agentes IA</h2>
+            <p class="subtitle">Manual Oficial · Delanoys Tecnologías · Pipeline IA PRO V6</p>
+
+            <div class="card">
+                <h3>🎯 Objetivo del Proyecto</h3>
+                <p>Construir una <strong>metodología segura, documentada y repetible</strong> para integrar Agentes IA (OpenClaw, Claude Code, Cline, OpenHands, Goose, etc.) dentro del ecosistema de Delanoys Tecnologías.</p>
+                <p><strong>OpenClaw</strong> será el primer caso práctico de esta metodología.</p>
+                <div class="tip success mt-16">
+                    <strong>💡 Filosofía del Pipeline IA PRO V6</strong>
+                    "No desarrollamos aplicaciones. Desarrollamos Frameworks. Los Agentes deben adaptarse al Pipeline IA Pro. Nunca al contrario."
+                </div>
+            </div>
+
+            <!-- Dashboard de Estadísticas -->
+            <div class="stats-grid">
+                <div class="stat"><div class="number" id="totalFases">16</div><div class="label">Fases Totales</div></div>
+                <div class="stat"><div class="number" id="fasesCompletadas">2</div><div class="label">Completadas</div></div>
+                <div class="stat"><div class="number" id="fasesActivas">1</div><div class="label">Activas</div></div>
+                <div class="stat"><div class="number" id="progresoGlobal">20</div><div class="label">% Global</div></div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        ROADMAP
+        ============================================================ -->
+        <section class="section" id="roadmap">
+            <h2>🗺️ Roadmap del Proyecto</h2>
+            <div class="card">
+                <div class="roadmap" id="roadmapContainer">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        FASES
+        ============================================================ -->
+
+        <!-- FASE 0 -->
+        <section class="section" id="fase0">
+            <h2><span class="phase-number">Fase 0</span> Planeación</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 2 días</span>
+                    <span class="tag difficulty">🟢 Dificultad: Baja</span>
+                    <span class="status-badge done">✓ Completada</span>
+                </div>
+                <p><strong>Objetivo:</strong> Definir el alcance, objetivos y estructura del proyecto de implementación de Agentes IA.</p>
+                <ul>
+                    <li>📋 Definir casos de uso</li>
+                    <li>📊 Establecer métricas de éxito</li>
+                    <li>📝 Crear este documento oficial</li>
+                </ul>
+                <div class="tip">
+                    <strong>💡 Consejo del Tutor</strong>
+                    "Un proyecto bien planeado es un proyecto a mitad de camino. La documentación no es un gasto, es una inversión."
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 1 -->
+        <section class="section" id="fase1">
+            <h2><span class="phase-number">Fase 1</span> Fundamentos Docker</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 3 días</span>
+                    <span class="tag difficulty">🟡 Dificultad: Media</span>
+                    <span class="status-badge done">✓ Completada</span>
+                </div>
+                <p><strong>Objetivo:</strong> Comprender Docker como herramienta de aislamiento y portabilidad.</p>
+                <ul>
+                    <li>🐳 Instalación de Docker Engine</li>
+                    <li>📦 Creación de contenedores básicos</li>
+                    <li>📂 Gestión de volúmenes y redes</li>
+                </ul>
+                <div class="tip success">
+                    <strong>✅ Buenas Prácticas</strong>
+                    "Siempre usar imágenes oficiales y mantener los contenedores efímeros. Los datos deben vivir en volúmenes."
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 2 -->
+        <section class="section" id="fase2">
+            <h2><span class="phase-number">Fase 2</span> Laboratorio Local</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 3 días</span>
+                    <span class="tag difficulty">🟡 Dificultad: Media</span>
+                    <span class="status-badge in-progress">⏳ En Progreso</span>
+                </div>
+                <p><strong>Objetivo:</strong> Configurar un entorno de pruebas seguro para agentes IA en el equipo local.</p>
+                <ul>
+                    <li>🧪 Crear un sandbox Docker</li>
+                    <li>🔒 Configurar permisos y usuario no root</li>
+                    <li>📊 Probar herramientas básicas</li>
+                </ul>
+                <div class="tip danger">
+                    <strong>⚠️ Riesgo</strong>
+                    "Un agente IA mal configurado puede modificar archivos críticos. Siempre probar en un entorno aislado."
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 3 -->
+        <section class="section" id="fase3">
+            <h2><span class="phase-number">Fase 3</span> Git</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 2 días</span>
+                    <span class="tag difficulty">🟢 Dificultad: Baja</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Establecer control de versiones y estrategia de ramas.</p>
+                <ul>
+                    <li>📂 Repositorio centralizado</li>
+                    <li>🌿 Estrategia Git Flow</li>
+                    <li>🔐 Gestión de secrets</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 4 -->
+        <section class="section" id="fase4">
+            <h2><span class="phase-number">Fase 4</span> VS Code</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 2 días</span>
+                    <span class="tag difficulty">🟢 Dificultad: Baja</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Configurar el entorno de desarrollo con las extensiones necesarias.</p>
+                <ul>
+                    <li>🧩 Extensiones para IA</li>
+                    <li>⚙️ Configuración de Remote SSH</li>
+                    <li>📝 Snippets y atajos</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 5 -->
+        <section class="section" id="fase5">
+            <h2><span class="phase-number">Fase 5</span> OpenClaw</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 5 días</span>
+                    <span class="tag difficulty hard">🔴 Dificultad: Alta</span>
+                    <span class="status-badge active">▶ Activa</span>
+                </div>
+                <p><strong>Objetivo:</strong> Implementar OpenClaw en un entorno controlado como primer caso de prueba.</p>
+                <ul>
+                    <li>🤖 Instalación y configuración de OpenClaw</li>
+                    <li>🔌 Integración con API de IAs</li>
+                    <li>📊 Monitoreo de tokens y rendimiento</li>
+                </ul>
+                <div class="tip warning">
+                    <strong>⚠️ Importante</strong>
+                    "No instalar todavía en producción. El aprendizaje debe ser progresivo: primero entender, luego ejecutar."
+                </div>
+                <div class="tip">
+                    <strong>💡 Consejo del Tutor</strong>
+                    "Usa el sandbox de Docker para OpenClaw. Así puedes experimentar sin riesgos."
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 6 -->
+        <section class="section" id="fase6">
+            <h2><span class="phase-number">Fase 6</span> Skills</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 3 días</span>
+                    <span class="tag difficulty">🟡 Dificultad: Media</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Definir y documentar habilidades específicas del agente.</p>
+                <ul>
+                    <li>⚡ Creación de skills personalizados</li>
+                    <li>📝 Documentación de skills</li>
+                    <li>🧪 Pruebas de skills</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 7 -->
+        <section class="section" id="fase7">
+            <h2><span class="phase-number">Fase 7</span> Rules</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 2 días</span>
+                    <span class="tag difficulty">🟢 Dificultad: Baja</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Establecer reglas de comportamiento y seguridad para el agente.</p>
+                <ul>
+                    <li>📜 Reglas de seguridad</li>
+                    <li>⚖️ Límites de acción</li>
+                    <li>📋 Políticas de auditoría</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 8 -->
+        <section class="section" id="fase8">
+            <h2><span class="phase-number">Fase 8</span> Integración con Pipeline IA Pro</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 4 días</span>
+                    <span class="tag difficulty">🔴 Dificultad: Alta</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Integrar el agente IA con la metodología Pipeline IA PRO V6.</p>
+                <ul>
+                    <li>🔗 Conexión con fases del pipeline</li>
+                    <li>📊 Automatización de tareas</li>
+                    <li>📝 Documentación continua</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 9 -->
+        <section class="section" id="fase9">
+            <h2><span class="phase-number">Fase 9</span> MCP</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 3 días</span>
+                    <span class="tag difficulty">🟡 Dificultad: Media</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Implementar el Model Context Protocol para comunicación entre IAs.</p>
+                <ul>
+                    <li>🔌 Configuración de MCP</li>
+                    <li>🔄 Intercambio de contexto</li>
+                    <li>📊 Sincronización entre agentes</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 10 -->
+        <section class="section" id="fase10">
+            <h2><span class="phase-number">Fase 10</span> Automatización</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 5 días</span>
+                    <span class="tag difficulty">🔴 Dificultad: Alta</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Automatizar tareas repetitivas y flujos de trabajo.</p>
+                <ul>
+                    <li>⚙️ Scripts de automatización</li>
+                    <li>🔄 CI/CD con agente</li>
+                    <li>📊 Monitoreo automático</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 11 -->
+        <section class="section" id="fase11">
+            <h2><span class="phase-number">Fase 11</span> Pruebas</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 3 días</span>
+                    <span class="tag difficulty">🟡 Dificultad: Media</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Validar el funcionamiento del agente en diferentes escenarios.</p>
+                <ul>
+                    <li>🧪 Pruebas unitarias</li>
+                    <li>🔍 Pruebas de integración</li>
+                    <li>📊 Pruebas de rendimiento</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 12 -->
+        <section class="section" id="fase12">
+            <h2><span class="phase-number">Fase 12</span> Integración VPS</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 3 días</span>
+                    <span class="tag difficulty">🔴 Dificultad: Alta</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Desplegar el agente en el VPS de forma segura.</p>
+                <ul>
+                    <li>🌐 Configuración de VPS</li>
+                    <li>🔒 Seguridad y firewall</li>
+                    <li>📊 Monitoreo remoto</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 13 -->
+        <section class="section" id="fase13">
+            <h2><span class="phase-number">Fase 13</span> Preproducción</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 2 días</span>
+                    <span class="tag difficulty">🟡 Dificultad: Media</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Validar el agente en un entorno preproducción.</p>
+                <ul>
+                    <li>🔬 Pruebas finales</li>
+                    <li>📊 Validación de rendimiento</li>
+                    <li>📝 Documentación final</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 14 -->
+        <section class="section" id="fase14">
+            <h2><span class="phase-number">Fase 14</span> Producción</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: 2 días</span>
+                    <span class="tag difficulty">🔴 Dificultad: Alta</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Desplegar el agente en producción con todos los controles.</p>
+                <ul>
+                    <li>🚀 Go-live</li>
+                    <li>📊 Monitoreo continuo</li>
+                    <li>🔄 Plan de rollback</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FASE 15 -->
+        <section class="section" id="fase15">
+            <h2><span class="phase-number">Fase 15</span> Mejora Continua</h2>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="tag">⏱️ Duración: Continua</span>
+                    <span class="tag difficulty">🟢 Dificultad: Variable</span>
+                    <span class="status-badge pending">⏳ Pendiente</span>
+                </div>
+                <p><strong>Objetivo:</strong> Iterar y mejorar el agente basado en retroalimentación.</p>
+                <ul>
+                    <li>♻️ Retroalimentación</li>
+                    <li>📈 Optimización continua</li>
+                    <li>📚 Actualización de documentación</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        SEGURIDAD
+        ============================================================ -->
+        <section class="section" id="seguridad">
+            <h2>🔒 Seguridad en Agentes IA</h2>
+            <div class="card">
+                <h3>📋 Principios de Seguridad</h3>
+                <ul>
+                    <li><strong>Docker:</strong> Aislar el agente en contenedores.</li>
+                    <li><strong>Volúmenes:</strong> Montar solo directorios necesarios.</li>
+                    <li><strong>Usuario no root:</strong> Ejecutar con permisos limitados.</li>
+                    <li><strong>Backups:</strong> Respaldar configuraciones y datos.</li>
+                    <li><strong>Git:</strong> Control de versiones y auditoría.</li>
+                    <li><strong>SSH:</strong> Acceso seguro con llaves.</li>
+                    <li><strong>Secrets:</strong> Usar variables de entorno o vaults.</li>
+                    <li><strong>Logs:</strong> Auditoría de todas las acciones.</li>
+                    <li><strong>Rollback:</strong> Plan de reversión ante fallos.</li>
+                    <li><strong>Sandbox:</strong> Entorno de pruebas aislado.</li>
+                </ul>
+                <div class="tip warning">
+                    <strong>⚠️ Error Común</strong>
+                    "Ejecutar agentes con permisos de root. Siempre crear un usuario específico para el agente."
+                </div>
+                <div class="tip">
+                    <strong>💡 Consejo del Tutor</strong>
+                    "La seguridad no es una capa final. Es parte del diseño desde el inicio."
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        KANBAN
+        ============================================================ -->
+        <section class="section" id="kanban">
+            <h2>📊 Kanban</h2>
+            <div class="card">
+                <div class="kanban" id="kanbanContainer">
+                    <div class="kanban-column">
+                        <h4>⏳ Pendientes</h4>
+                        <div class="kanban-item" id="kanban-pending">Fase 3: Git</div>
+                        <div class="kanban-item">Fase 4: VS Code</div>
+                        <div class="kanban-item">Fase 6: Skills</div>
+                        <div class="kanban-item">Fase 7: Rules</div>
+                        <div class="kanban-item">Fase 8: Integración</div>
+                        <div class="kanban-item">Fase 9: MCP</div>
+                        <div class="kanban-item">Fase 10: Automatización</div>
+                        <div class="kanban-item">Fase 11: Pruebas</div>
+                        <div class="kanban-item">Fase 12: VPS</div>
+                        <div class="kanban-item">Fase 13: Preproducción</div>
+                        <div class="kanban-item">Fase 14: Producción</div>
+                        <div class="kanban-item">Fase 15: Mejora</div>
+                    </div>
+                    <div class="kanban-column">
+                        <h4>🔄 En Proceso</h4>
+                        <div class="kanban-item" id="kanban-progress" style="border-color: var(--warning);">Fase 2: Laboratorio Local</div>
+                        <div class="kanban-item" style="border-color: var(--primary);">Fase 5: OpenClaw</div>
+                    </div>
+                    <div class="kanban-column">
+                        <h4>✅ Completados</h4>
+                        <div class="kanban-item" style="border-color: var(--success);">Fase 0: Planeación</div>
+                        <div class="kanban-item" style="border-color: var(--success);">Fase 1: Docker</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        BITÁCORA
+        ============================================================ -->
+        <section class="section" id="bitacora">
+            <h2>📖 Bitácora del Proyecto</h2>
+            <div class="card">
+                <div id="bitacoraContainer">
+                    <div class="bitacora-entry">
+                        <div class="date">2026-07-05</div>
+                        <div class="detail">
+                            <span><strong>Objetivo:</strong> Iniciar proyecto de implementación segura de agentes IA</span>
+                            <span><strong>Logros:</strong> Estructura del documento completada, fases definidas</span>
+                            <span><strong>Problemas:</strong> Ninguno</span>
+                            <span><strong>Próximo paso:</strong> Fase 2 - Laboratorio Local</span>
+                        </div>
+                    </div>
+                    <div class="bitacora-entry">
+                        <div class="date">2026-07-06</div>
+                        <div class="detail">
+                            <span><strong>Objetivo:</strong> Configurar laboratorio Docker</span>
+                            <span><strong>Logros:</strong> Docker instalado, contenedor de prueba funcionando</span>
+                            <span><strong>Problemas:</strong> Permisos de volumen</span>
+                            <span><strong>Próximo paso:</strong> Probar OpenClaw en el contenedor</span>
+                        </div>
+                    </div>
+                    <div class="bitacora-entry">
+                        <div class="date">2026-07-07</div>
+                        <div class="detail">
+                            <span><strong>Objetivo:</strong> Evaluar OpenClaw en entorno aislado</span>
+                            <span><strong>Logros:</strong> OpenClaw instalado en sandbox</span>
+                            <span><strong>Problemas:</strong> Consumo de tokens</span>
+                            <span><strong>Próximo paso:</strong> Configurar límites y monitoreo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-16">
+                    <button class="btn btn-primary" onclick="agregarEntradaBitacora()">+ Agregar Entrada</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        DIAGRAMA DE ARQUITECTURA
+        ============================================================ -->
+        <section class="section" id="diagramas">
+            <h2>📐 Diagrama de Arquitectura</h2>
+            <div class="diagram-container">
+                <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="800" height="400" rx="8" fill="var(--card-bg)" />
+                    <!-- Usuario -->
+                    <rect x="340" y="20" width="120" height="40" rx="8" fill="var(--primary)" />
+                    <text x="400" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">👤 Usuario</text>
+                    <!-- Flecha -->
+                    <line x1="400" y1="60" x2="400" y2="90" stroke="var(--primary)" stroke-width="2" marker-end="url(#arrow)" />
+                    <!-- Frontend -->
+                    <rect x="300" y="90" width="200" height="40" rx="8" fill="var(--warning)" />
+                    <text x="400" y="115" text-anchor="middle" fill="#000" font-size="14" font-weight="600">🖥️ Interfaz Web</text>
+                    <!-- Flecha -->
+                    <line x1="400" y1="130" x2="400" y2="160" stroke="var(--primary)" stroke-width="2" marker-end="url(#arrow)" />
+                    <!-- Backend -->
+                    <rect x="300" y="160" width="200" height="40" rx="8" fill="var(--success)" />
+                    <text x="400" y="185" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">⚙️ Framework Inventario DT</text>
+                    <!-- Flecha a BD y Agente -->
+                    <line x1="350" y1="200" x2="350" y2="240" stroke="var(--primary)" stroke-width="2" marker-end="url(#arrow)" />
+                    <line x1="450" y1="200" x2="450" y2="240" stroke="var(--primary)" stroke-width="2" marker-end="url(#arrow)" />
+                    <!-- Base de Datos -->
+                    <rect x="260" y="240" width="180" height="40" rx="8" fill="var(--danger)" />
+                    <text x="350" y="265" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">🗄️ PostgreSQL</text>
+                    <!-- Agente IA -->
+                    <rect x="420" y="240" width="180" height="40" rx="8" fill="var(--info)" />
+                    <text x="510" y="265" text-anchor="middle" fill="#000" font-size="14" font-weight="600">🤖 Agente IA</text>
+                    <!-- Labels -->
+                    <text x="350" y="310" text-anchor="middle" fill="var(--text-muted)" font-size="12">Almacenamiento</text>
+                    <text x="510" y="310" text-anchor="middle" fill="var(--text-muted)" font-size="12">Automatización</text>
+
+                    <!-- Flecha de retorno Agente → Frontend -->
+                    <path d="M 510 280 L 510 330 L 400 330 L 400 130" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)" />
+
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--primary)" />
+                        </marker>
+                    </defs>
+                </svg>
+                <p class="text-muted text-sm text-center">Arquitectura del Framework con integración de Agente IA</p>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        FOOTER
+        ============================================================ -->
+        <footer class="footer">
+            <p>
+                <strong>Delanoys Tecnologías</strong> ·
+                <a href="https://delanoystecnologias.site" target="_blank">delanoystecnologias.site</a> ·
+                Pipeline IA PRO V6 ·
+                <span id="footerYear">2026</span>
+            </p>
+            <p class="text-xs">🛡️ Proyecto: Implementación Segura de Agentes IA · Documentación Oficial</p>
+        </footer>
+    </main>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // TEMA OSCURO
+            // ============================================================
+            const themeToggle = document.getElementById('themeToggle');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+            themeToggle.addEventListener('click', function() {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+            });
+
+            // ============================================================
+            // MENÚ LATERAL - TOGGLE
+            // ============================================================
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+
+            // Cerrar menú al hacer clic en enlace (mobile)
+            document.querySelectorAll('.sidebar a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 992) {
+                        sidebar.classList.remove('open');
+                    }
+                });
+            });
+
+            // ============================================================
+            // SCROLL SPY
+            // ============================================================
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar a');
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(function(section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 120) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+
+            // ============================================================
+            // ROADMAP
+            // ============================================================
+            const fases = [
+                { id: 'fase0', label: 'Planeación', progress: 100 },
+                { id: 'fase1', label: 'Docker', progress: 100 },
+                { id: 'fase2', label: 'Laboratorio', progress: 30 },
+                { id: 'fase3', label: 'Git', progress: 0 },
+                { id: 'fase4', label: 'VS Code', progress: 0 },
+                { id: 'fase5', label: 'OpenClaw', progress: 10 },
+                { id: 'fase6', label: 'Skills', progress: 0 },
+                { id: 'fase7', label: 'Rules', progress: 0 },
+                { id: 'fase8', label: 'Integración', progress: 0 },
+                { id: 'fase9', label: 'MCP', progress: 0 },
+                { id: 'fase10', label: 'Automatización', progress: 0 },
+                { id: 'fase11', label: 'Pruebas', progress: 0 },
+                { id: 'fase12', label: 'VPS', progress: 0 },
+                { id: 'fase13', label: 'Preproducción', progress: 0 },
+                { id: 'fase14', label: 'Producción', progress: 0 },
+                { id: 'fase15', label: 'Mejora', progress: 0 }
+            ];
+
+            const roadmapContainer = document.getElementById('roadmapContainer');
+            fases.forEach(function(f) {
+                const item = document.createElement('div');
+                item.className = 'roadmap-item';
+                item.innerHTML = `
+                    <span class="label">${f.label}</span>
+                    <div class="bar"><div class="fill" style="width: ${f.progress}%; background: ${f.progress === 100 ? 'var(--success)' : 'var(--primary)'};"></div></div>
+                    <span class="percent">${f.progress}%</span>
+                `;
+                roadmapContainer.appendChild(item);
+            });
+
+            // ============================================================
+            // BITÁCORA
+            // ============================================================
+            window.agregarEntradaBitacora = function() {
+                const container = document.getElementById('bitacoraContainer');
+                const date = new Date().toISOString().slice(0, 10);
+                const entry = document.createElement('div');
+                entry.className = 'bitacora-entry';
+                entry.innerHTML = `
+                    <div class="date">${date}</div>
+                    <div class="detail">
+                        <span><strong>Objetivo:</strong> <input type="text" placeholder="Escribe el objetivo" style="border: none; background: transparent; border-bottom: 1px solid var(--border); width: 200px;"></span>
+                        <span><strong>Logros:</strong> <input type="text" placeholder="Logros" style="border: none; background: transparent; border-bottom: 1px solid var(--border); width: 200px;"></span>
+                        <span><strong>Problemas:</strong> <input type="text" placeholder="Problemas" style="border: none; background: transparent; border-bottom: 1px solid var(--border); width: 200px;"></span>
+                        <span><strong>Próximo paso:</strong> <input type="text" placeholder="Próximo paso" style="border: none; background: transparent; border-bottom: 1px solid var(--border); width: 200px;"></span>
+                    </div>
+                `;
+                container.appendChild(entry);
+            };
+
+            // ============================================================
+            // PROGRESO GLOBAL
+            // ============================================================
+            const totalFases = fases.length;
+            const completadas = fases.filter(f => f.progress === 100).length;
+            const activas = fases.filter(f => f.progress > 0 && f.progress < 100).length;
+            const progresoGlobal = Math.round((completadas / totalFases) * 100);
+
+            document.getElementById('totalFases').textContent = totalFases;
+            document.getElementById('fasesCompletadas').textContent = completadas;
+            document.getElementById('fasesActivas').textContent = activas;
+            document.getElementById('progresoGlobal').textContent = progresoGlobal;
+            document.getElementById('progressPercent').textContent = progresoGlobal + '%';
+            document.getElementById('progressCircle').style.background =
+                `conic-gradient(var(--primary) ${progresoGlobal * 3.6}deg, var(--border) ${progresoGlobal * 3.6}deg)`;
+
+            // ============================================================
+            // AÑO EN FOOTER
+            // ============================================================
+            document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        })();
+    </script>
+</body>
+</html>
