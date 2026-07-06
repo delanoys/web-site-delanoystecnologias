@@ -1592,6 +1592,7 @@ section {
   }
   
   .nav-buttons {
+    display: flex;
     position: fixed;
     top: 80px;
     left: 0;
@@ -1602,12 +1603,14 @@ section {
     padding: 2rem;
     gap: 0;
     transform: translateX(-100%);
-    transition: var(--transition-normal);
+    transition: transform var(--transition-normal);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
   }
   
-  .nav-buttons.active {
+  .nav-buttons.open {
     transform: translateX(0);
+    pointer-events: auto;
   }
   
   .nav-link {
@@ -1628,8 +1631,13 @@ section {
     transition: max-height var(--transition-normal);
   }
   
-  .nav-dropdown.active .dropdown-menu {
+  .nav-dropdown.open .dropdown-menu {
     max-height: 500px;
+  }
+  
+  .nav-dropdown-accesos.open .dropdown-menu-accesos {
+    max-height: 60vh;
+    overflow-y: auto;
   }
   
   .hero-section {
