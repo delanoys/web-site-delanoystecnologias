@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contabilidad Básica Interactiva - Bachillerato</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .container { max-width: 1100px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    h1, h2 { color: #1e3a8a; }
+    .seccion { margin: 30px 0; padding: 25px; background: #f8fafc; border-radius: 10px; border-left: 6px solid #1e40af; }
+    button { background: #1e40af; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; margin: 8px 5px; }
+    button:hover { background: #1e3a8a; }
+    input { padding: 10px; margin: 6px; border: 2px solid #93c5fd; border-radius: 6px; font-size: 16px; }
+    .correcto { color: #166534; background: #dcfce7; padding: 10px; border-radius: 6px; }
+    .incorrecto { color: #991b1b; background: #fee2e2; padding: 10px; border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th, td { border: 1px solid #64748b; padding: 12px; }
+    th { background: #1e40af; color: white; }
+    .ejercicio { background: #fefce8; padding: 20px; border-radius: 8px; margin: 15px 0; }
+  </style>
+</head>
+<body>
+  <div style="text-align:center;padding:10px 0;background:#eef2ff;">
+    <a href="sarith.html" style="color:#1e40af;text-decoration:none;font-weight:600;">← Volver al inicio del Módulo Evelyn</a>
+  </div>
+  <div class="container">
+    <h1>🧾 Contabilidad Básica Interactiva</h1>
+    <p><strong>Empresa:</strong> XYZ | Nivel: Bachillerato</p>
+
+    <!-- SECCIÓN DE CONCEPTOS -->
+    <div class="seccion">
+      <h2>📘 Conceptos Básicos de Contabilidad</h2>
+      <h3>1. Ecuación Contable Fundamental</h3>
+      <p><strong>Activo = Pasivo + Patrimonio</strong></p>
+      <p><strong>Patrimonio = Activo - Pasivo</strong></p>
+
+      <h3>2. Partida Doble</h3>
+      <p>Toda transacción afecta al menos dos cuentas. El total del Debe siempre debe ser igual al total del Haber.</p>
+
+      <h3>3. Tipos de Cuentas</h3>
+      <ul>
+        <li><strong>Activo (A)</strong>: Lo que la empresa posee (Caja, Bancos, Clientes, Equipos...)</li>
+        <li><strong>Pasivo (P)</strong>: Lo que la empresa debe (Proveedores, Acreedores, Impuestos...)</li>
+        <li><strong>Patrimonio (Pat)</strong>: Recursos propios del dueño (Capital)</li>
+        <li><strong>Ingresos</strong>: Aumentan el Patrimonio (Ventas)</li>
+        <li><strong>Gastos</strong>: Disminuyen el Patrimonio</li>
+      </ul>
+
+      <h3>4. Regla del Debe y Haber</h3>
+      <p>• Activos y Gastos aumentan en el <strong>Debe</strong><br>
+         • Pasivos, Patrimonio e Ingresos aumentan en el <strong>Haber</strong></p>
+    </div>
+
+    <!-- 10 EJERCICIOS INTERACTIVOS -->
+    <div class="seccion">
+      <h2>✍️ 10 Ejercicios Básicos Interactivos</h2>
+      
+      <div id="ejerciciosContainer"></div>
+    </div>
+
+    <!-- Transacción Original + Balance -->
+    <div class="seccion">
+      <h2>Transacción Empresa XYZ + Balance Final</h2>
+      <button onclick="calcularBalance()">Ver Balance Final</button>
+      <div id="resultadoBalance"></div>
+    </div>
+  </div>
+
+  <script>
+    // Datos iniciales
+    let activo = { caja: 480000, bancos: 1350000, clientes: 3200000, equipos: 0 };
+    let pasivo = { retencion: 220000, acreedores: 350000 };
+
+    const ejercicios = [
+      {
+        id: 1,
+        pregunta: "Clasifica: Caja",
+        tipo: "clasificacion",
+        respuesta: "a",
+        feedback: "Correcto. La Caja es un Activo Corriente."
+      },
+      {
+        id: 2,
+        pregunta: "Clasifica: Proveedores",
+        tipo: "clasificacion",
+        respuesta: "p",
+        feedback: "Correcto. Los Proveedores son un Pasivo."
+      },
+      {
+        id: 3,
+        pregunta: "Clasifica: Capital",
+        tipo: "clasificacion",
+        respuesta: "pat",
+        feedback: "Correcto. El Capital es Patrimonio."
+      },
+      {
+        id: 4,
+        pregunta: "Si compramos equipo a crédito por $500.000, ¿qué cuenta aumenta en el Haber?",
+        tipo: "abierta",
+        respuesta: "acreedor",
+        feedback: "¡Bien! Se registra en Acreedores (Pasivo)."
+      },
+      {
+        id: 5,
+        pregunta: "El pago de un pasivo con banco afecta al patrimonio en:",
+        tipo: "abierta",
+        respuesta: "no cambia",
+        feedback: "Correcto. Disminuye Activo y Pasivo por igual."
+      },
+      {
+        id: 6,
+        pregunta: "Registra Débito: Venta al contado $300.000",
+        tipo: "debito",
+        respuesta: "caja",
+        feedback: "Correcto. Aumenta Caja en el Debe."
+      },
+      {
+        id: 7,
+        pregunta: "¿Cuál es la ecuación contable?",
+        tipo: "abierta",
+        respuesta: "activo = pasivo + patrimonio",
+        feedback: "¡Excelente!"
+      },
+      {
+        id: 8,
+        pregunta: "Clasifica: Ventas",
+        tipo: "clasificacion",
+        respuesta: "ingreso",
+        feedback: "Correcto. Las Ventas son Ingresos."
+      },
+      {
+        id: 9,
+        pregunta: "Si hay más Activos que Pasivos, el Patrimonio es:",
+        tipo: "abierta",
+        respuesta: "positivo",
+        feedback: "Correcto."
+      },
+      {
+        id: 10,
+        pregunta: "Compra mercancía por $200.000 al contado. Cuenta que aumenta en Débito:",
+        tipo: "debito",
+        respuesta: "mercancia",
+        feedback: "Correcto. Aumenta Mercancía (Activo)."
+      }
+    ];
+
+    function renderEjercicios() {
+      let html = '';
+      ejercicios.forEach(ej => {
+        html += `
+          <div class="ejercicio">
+            <strong>Ejercicio ${ej.id}:</strong> ${ej.pregunta}<br><br>
+            <input id="resp${ej.id}" placeholder="Tu respuesta" style="width:300px">
+            <button onclick="verificarEjercicio(${ej.id})">Verificar</button>
+            <div id="fb${ej.id}"></div>
+          </div>`;
+      });
+      document.getElementById('ejerciciosContainer').innerHTML = html;
+    }
+
+    function verificarEjercicio(id) {
+      const input = document.getElementById(`resp${id}`).value.trim().toLowerCase();
+      const ejercicio = ejercicios.find(e => e.id === id);
+      const feedbackDiv = document.getElementById(`fb${id}`);
+
+      if (input === '' || input === 'undefined') {
+        feedbackDiv.innerHTML = `<span class="incorrecto">Por favor ingresa una respuesta.</span>`;
+        return;
+      }
+
+      let esCorrecto = false;
+      if (ejercicio.tipo === "clasificacion") {
+        esCorrecto = input === ejercicio.respuesta;
+      } else {
+        esCorrecto = input.includes(ejercicio.respuesta);
+      }
+
+      if (esCorrecto) {
+        feedbackDiv.innerHTML = `<span class="correcto">✓ ${ejercicio.feedback}</span>`;
+      } else {
+        feedbackDiv.innerHTML = `
+          <span class="incorrecto">✗ Incorrecto.<br>
+          <strong>Explicación:</strong> ${ejercicio.feedback}</span>`;
+      }
+    }
+
+    function calcularBalance() {
+      activo.bancos -= 450000;
+      pasivo.acreedores -= 450000;
+
+      const totalActivo = Object.values(activo).reduce((a, b) => a + b, 0);
+      const totalPasivo = Object.values(pasivo).reduce((a, b) => a + b, 0);
+      const patrimonio = totalActivo - totalPasivo;
+
+      let html = `
+        <h3>Balance General Final - Empresa XYZ</h3>
+        <table>
+          <tr><th>ACTIVO</th><th>Valor</th></tr>
+          <tr><td>Caja</td><td>$${activo.caja.toLocaleString()}</td></tr>
+          <tr><td>Bancos</td><td>$${activo.bancos.toLocaleString()}</td></tr>
+          <tr><td>Clientes</td><td>$${activo.clientes.toLocaleString()}</td></tr>
+          <tr><td>Equipos</td><td>$${activo.equipos.toLocaleString()}</td></tr>
+          <tr><th>Total Activo</th><th>$${totalActivo.toLocaleString()}</th></tr>
+        </table>
+        <table>
+          <tr><th>PASIVO</th><th>Valor</th></tr>
+          <tr><td>Retención</td><td>$${pasivo.retencion.toLocaleString()}</td></tr>
+          <tr><td>Acreedores</td><td>$${pasivo.acreedores.toLocaleString()}</td></tr>
+          <tr><th>Total Pasivo</th><th>$${totalPasivo.toLocaleString()}</th></tr>
+        </table>
+        <h3 style="color:#166534">Patrimonio = $${patrimonio.toLocaleString()}</h3>
+      `;
+      document.getElementById('resultadoBalance').innerHTML = html;
+    }
+
+    // Inicializar
+    window.onload = () => {
+      renderEjercicios();
+    };
+  </script>
+</body>
+</html>

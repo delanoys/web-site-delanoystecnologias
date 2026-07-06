@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contabilidad Básica Interactiva - Empresa XYZ</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    h1, h2 { color: #1e3a8a; }
+    .seccion { margin: 30px 0; padding: 25px; background: #f8fafc; border-radius: 10px; border-left: 5px solid #1e40af; }
+    button { background: #1e40af; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; margin: 8px 5px; font-size: 16px; }
+    button:hover { background: #1e3a8a; }
+    input { padding: 10px; margin: 6px; width: 220px; border: 2px solid #93c5fd; border-radius: 6px; font-size: 16px; }
+    .correcto { color: #166534; background: #dcfce7; padding: 8px; border-radius: 6px; }
+    .incorrecto { color: #991b1b; background: #fee2e2; padding: 8px; border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th, td { border: 1px solid #64748b; padding: 12px; text-align: left; }
+    th { background: #1e40af; color: white; }
+    .ejercicio { background: #fefce8; padding: 20px; border-radius: 8px; margin: 15px 0; }
+  </style>
+</head>
+<body>
+  <div style="text-align:center;padding:10px 0;background:#eef2ff;">
+    <a href="sarith.html" style="color:#1e40af;text-decoration:none;font-weight:600;">← Volver al inicio del Módulo Evelyn</a>
+  </div>
+  <div class="container">
+    <h1>🧾 Contabilidad Básica Interactiva</h1>
+    <p><strong>Empresa:</strong> XYZ | <strong>Estudiante:</strong> Luisa F. Gallego Londoño</p>
+
+    <!-- Sección 1: Transacción -->
+    <div class="seccion">
+      <h2>1. Registro de Transacciones (Partida Doble)</h2>
+      <p><strong>Transacción 1:</strong> La empresa compra a crédito un archivador por <strong>$1.900.000</strong></p>
+      
+      <label>Cuenta Débito: <input id="debito1" placeholder="Ej: Equipos de Oficina"></label><br>
+      <label>Monto: <input id="montoD1" type="number"></label><br><br>
+      
+      <label>Cuenta Crédito: <input id="credito1" placeholder="Ej: Acreedores"></label><br>
+      <label>Monto: <input id="montoC1" type="number"></label><br>
+      
+      <button onclick="verificarTrans1()">Verificar Transacción 1</button>
+      <p id="feedback1"></p>
+    </div>
+
+    <!-- Ejercicio 1: Clasificación de Cuentas -->
+    <div class="seccion">
+      <h2>2. Ejercicio 1 - Identificar Tipos de Cuentas</h2>
+      <p><strong>Clasifica cada cuenta como:</strong> <strong>A</strong> (Activo), <strong>P</strong> (Pasivo) o <strong>Pat</strong> (Patrimonio)</p>
+      
+      <div class="ejercicio">
+        <p>1. Mercancías → <input id="c1" size="8"> <span id="r1"></span></p>
+        <p>2. Proveedores → <input id="c2" size="8"> <span id="r2"></span></p>
+        <p>3. Capital → <input id="c3" size="8"> <span id="r3"></span></p>
+        <p>4. Documentos por cobrar → <input id="c4" size="8"> <span id="r4"></span></p>
+        <p>5. Impuestos por pagar → <input id="c5" size="8"> <span id="r5"></span></p>
+      </div>
+      <button onclick="verificarEjercicio1()">Verificar Ejercicio 1</button>
+    </div>
+
+    <!-- Ejercicio 2: Registro en Diario -->
+    <div class="seccion">
+      <h2>3. Ejercicio 2 - Registro en Libro Diario</h2>
+      <p><strong>Operación:</strong> La empresa vende mercancía al contado por <strong>$800.000</strong> (costo de venta $500.000).</p>
+      
+      <label>Asiento Débito 1: <input id="deb2" placeholder="Cuenta"></label><br>
+      <label>Monto: <input id="montoDeb2" type="number"></label><br><br>
+      
+      <label>Asiento Crédito 1: <input id="cred2" placeholder="Cuenta"></label><br>
+      <label>Monto: <input id="montoCred2" type="number"></label><br>
+      
+      <button onclick="verificarEjercicio2()">Verificar Ejercicio 2</button>
+      <p id="feedback2"></p>
+    </div>
+
+    <!-- Balance General -->
+    <div class="seccion">
+      <h2>4. Balance General Interactivo</h2>
+      <button onclick="calcularBalance()">Calcular Balance Final</button>
+      <div id="resultadoBalance"></div>
+    </div>
+
+    <!-- Cuestionario -->
+    <div class="seccion">
+      <h2>5. Cuestionario de Conceptos Básicos</h2>
+      <div id="quiz"></div>
+    </div>
+  </div>
+
+  <script>
+    // Datos iniciales
+    let activo = { caja: 480000, bancos: 1350000, clientes: 3200000, equipos: 0, mercancia: 0 };
+    let pasivo = { retencion: 220000, acreedores: 350000 };
+
+    function verificarTrans1() {
+      const debito = document.getElementById('debito1').value.trim().toLowerCase();
+      const credito = document.getElementById('credito1').value.trim().toLowerCase();
+      const montoD = parseFloat(document.getElementById('montoD1').value);
+      const montoC = parseFloat(document.getElementById('montoC1').value);
+
+      if (debito.includes('equipo') && credito.includes('acreedor') && montoD === 1900000 && montoC === 1900000) {
+        document.getElementById('feedback1').innerHTML = `<span class="correcto">¡Excelente! Asiento correcto.</span>`;
+        activo.equipos += 1900000;
+        pasivo.acreedores += 1900000;
+      } else {
+        document.getElementById('feedback1').innerHTML = `<span class="incorrecto">Revisa: Activo aumenta en Débito y Pasivo en Crédito.</span>`;
+      }
+    }
+
+    function verificarEjercicio1() {
+      const respuestas = {
+        c1: "a", c2: "p", c3: "pat", c4: "a", c5: "p"
+      };
+      let correctas = 0;
+      for (let key in respuestas) {
+        const valor = document.getElementById(key).value.trim().toLowerCase();
+        const span = document.getElementById('r' + key.substring(1));
+        if (valor === respuestas[key]) {
+          span.innerHTML = `<span class="correcto">✓ Correcto</span>`;
+          correctas++;
+        } else {
+          span.innerHTML = `<span class="incorrecto">✗ (Respuesta: ${respuestas[key].toUpperCase()})</span>`;
+        }
+      }
+      alert(`¡${correctas}/5 correctas!`);
+    }
+
+    function verificarEjercicio2() {
+      const deb = document.getElementById('deb2').value.trim().toLowerCase();
+      const cred = document.getElementById('cred2').value.trim().toLowerCase();
+      const mDeb = parseFloat(document.getElementById('montoDeb2').value);
+      const mCred = parseFloat(document.getElementById('montoCred2').value);
+
+      if ((deb.includes('caja') || deb.includes('banco')) && mDeb === 800000 &&
+          cred.includes('venta') && mCred === 800000) {
+        document.getElementById('feedback2').innerHTML = `<span class="correcto">¡Muy bien! Registraste correctamente el ingreso por venta.</span>`;
+      } else {
+        document.getElementById('feedback2').innerHTML = `<span class="incorrecto">Recuerda: Al contado aumenta Caja/Bancos (Débito) y Ventas (Crédito). También debes registrar el costo.</span>`;
+      }
+    }
+
+    function calcularBalance() {
+      activo.bancos -= 450000;
+      pasivo.acreedores -= 450000;
+
+      const totalActivo = Object.values(activo).reduce((a, b) => a + b, 0);
+      const totalPasivo = Object.values(pasivo).reduce((a, b) => a + b, 0);
+      const patrimonio = totalActivo - totalPasivo;
+
+      let html = `
+        <h3>Balance General Final</h3>
+        <table>
+          <tr><th>ACTIVO</th><th>Valor</th></tr>
+          <tr><td>Caja</td><td>$${activo.caja.toLocaleString()}</td></tr>
+          <tr><td>Bancos</td><td>$${activo.bancos.toLocaleString()}</td></tr>
+          <tr><td>Clientes</td><td>$${activo.clientes.toLocaleString()}</td></tr>
+          <tr><td>Equipos de Oficina</td><td>$${activo.equipos.toLocaleString()}</td></tr>
+          <tr><th>Total Activo</th><th>$${totalActivo.toLocaleString()}</th></tr>
+        </table>
+        <table>
+          <tr><th>PASIVO</th><th>Valor</th></tr>
+          <tr><td>Retención en la fuente</td><td>$${pasivo.retencion.toLocaleString()}</td></tr>
+          <tr><td>Acreedores</td><td>$${pasivo.acreedores.toLocaleString()}</td></tr>
+          <tr><th>Total Pasivo</th><th>$${totalPasivo.toLocaleString()}</th></tr>
+        </table>
+        <h3 style="color:#166534">Patrimonio = $${patrimonio.toLocaleString()}</h3>
+      `;
+      document.getElementById('resultadoBalance').innerHTML = html;
+    }
+
+    // Cuestionario
+    const preguntas = [
+      { q: "¿Cuál es la ecuación contable fundamental?", a: "activo = pasivo + patrimonio" },
+      { q: "Diferencia entre Activo y Pasivo", a: "activo es lo que posee" },
+      { q: "¿Qué significa Partida Doble?", a: "cada transacción afecta al menos dos cuentas" },
+      { q: "¿En qué columna aumenta el Capital?", a: "haber" },
+      { q: "Si paga un pasivo con banco, ¿qué pasa con el patrimonio?", a: "no cambia" }
+    ];
+
+    function cargarQuiz() {
+      let html = '';
+      preguntas.forEach((p, i) => {
+        html += `
+          <p><strong>${i+1}. ${p.q}</strong><br>
+          <input id="q${i}" placeholder="Respuesta...">
+          <button onclick="verificarQuiz(${i})">Verificar</button>
+          <span id="rq${i}"></span></p>`;
+      });
+      document.getElementById('quiz').innerHTML = html;
+    }
+
+    function verificarQuiz(i) {
+      const resp = document.getElementById(`q${i}`).value.toLowerCase();
+      const feedback = document.getElementById(`rq${i}`);
+      if (resp.includes(preguntas[i].a)) {
+        feedback.innerHTML = `<span class="correcto">¡Correcto!</span>`;
+      } else {
+        feedback.innerHTML = `<span class="incorrecto">La respuesta es: ${preguntas[i].a}</span>`;
+      }
+    }
+
+    window.onload = cargarQuiz;
+  </script>
+</body>
+</html>

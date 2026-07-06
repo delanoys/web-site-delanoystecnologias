@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contabilidad Básica - Actividad Interactiva</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .container { max-width: 900px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    h1, h2 { color: #1e3a8a; }
+    .seccion { margin: 25px 0; padding: 20px; background: #f8fafc; border-radius: 8px; }
+    button { background: #1e40af; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; margin: 5px; }
+    button:hover { background: #1e3a8a; }
+    input { padding: 10px; margin: 5px; width: 200px; border: 2px solid #93c5fd; border-radius: 6px; }
+    .correcto { color: green; font-weight: bold; }
+    .incorrecto { color: red; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th, td { border: 1px solid #64748b; padding: 10px; text-align: right; }
+    th { background: #1e3a8a; color: white; }
+  </style>
+</head>
+<body>
+  <div style="text-align:center;padding:10px 0;background:#eef2ff;">
+    <a href="sarith.html" style="color:#1e40af;text-decoration:none;font-weight:600;">← Volver al inicio del Módulo Evelyn</a>
+  </div>
+  <div class="container">
+    <h1>🧾 Contabilidad Básica - Empresa XYZ</h1>
+    <p><strong>Nombre:</strong> Luisa F. Gallego Londoño</p>
+
+    <div class="seccion">
+      <h2>Ejercicio Interactivo</h2>
+      <p>1. La empresa compra a crédito un archivador por <strong>$1.900.000</strong></p>
+      <p>¿Qué cuentas se afectan y en qué sentido?</p>
+      
+      <label>Cuenta Débito: <input id="debito1" placeholder="Ej: Equipos de Oficina"></label><br>
+      <label>Monto Débito: <input id="montoD1" type="number"></label><br><br>
+      
+      <label>Cuenta Crédito: <input id="credito1" placeholder="Ej: Acreedores"></label><br>
+      <label>Monto Crédito: <input id="montoC1" type="number"></label><br>
+      
+      <button onclick="verificarTrans1()">Verificar Transacción 1</button>
+      <p id="feedback1"></p>
+    </div>
+
+    <div class="seccion">
+      <h2>Balance General Interactivo</h2>
+      <button onclick="calcularBalance()">Calcular Balance Final</button>
+      <div id="resultadoBalance"></div>
+    </div>
+
+    <div class="seccion">
+      <h2>Cuestionario Rápido</h2>
+      <div id="quiz"></div>
+    </div>
+  </div>
+
+  <script>
+    // Datos iniciales
+    let activo = { caja: 480000, bancos: 1350000, clientes: 3200000, equipos: 0 };
+    let pasivo = { retencion: 220000, acreedores: 350000 };
+
+    function verificarTrans1() {
+      const debito = document.getElementById('debito1').value.trim().toLowerCase();
+      const credito = document.getElementById('credito1').value.trim().toLowerCase();
+      const montoD = parseFloat(document.getElementById('montoD1').value);
+      const montoC = parseFloat(document.getElementById('montoC1').value);
+
+      if (debito.includes('equipo') && credito.includes('acreedor') && montoD === 1900000 && montoC === 1900000) {
+        document.getElementById('feedback1').innerHTML = `<span class="correcto">¡Excelente! Asiento correcto.</span>`;
+        activo.equipos += 1900000;
+        pasivo.acreedores += 1900000;
+      } else {
+        document.getElementById('feedback1').innerHTML = `<span class="incorrecto">Revisa el asiento. Recuerda: Activo aumenta en Débito, Pasivo en Crédito.</span>`;
+      }
+    }
+
+    function calcularBalance() {
+      // Aplicar pago de $450.000
+      activo.bancos -= 450000;
+      pasivo.acreedores -= 450000;
+
+      const totalActivo = Object.values(activo).reduce((a, b) => a + b, 0);
+      const totalPasivo = Object.values(pasivo).reduce((a, b) => a + b, 0);
+      const patrimonio = totalActivo - totalPasivo;
+
+      let html = `<h3>Balance Final</h3>
+        <table>
+          <tr><th>ACTIVO</th><th>Monto</th></tr>
+          <tr><td>Caja</td><td>$${activo.caja.toLocaleString()}</td></tr>
+          <tr><td>Bancos</td><td>$${activo.bancos.toLocaleString()}</td></tr>
+          <tr><td>Clientes</td><td>$${activo.clientes.toLocaleString()}</td></tr>
+          <tr><td>Equipos de Oficina</td><td>$${activo.equipos.toLocaleString()}</td></tr>
+          <tr><th>Total Activo</th><th>$${totalActivo.toLocaleString()}</th></tr>
+        </table>
+        <table>
+          <tr><th>PASIVO</th><th>Monto</th></tr>
+          <tr><td>Retención</td><td>$${pasivo.retencion.toLocaleString()}</td></tr>
+          <tr><td>Acreedores</td><td>$${pasivo.acreedores.toLocaleString()}</td></tr>
+          <tr><th>Total Pasivo</th><th>$${totalPasivo.toLocaleString()}</th></tr>
+        </table>
+        <h3 style="color:#1e40af">Patrimonio = $${patrimonio.toLocaleString()}</h3>`;
+      
+      document.getElementById('resultadoBalance').innerHTML = html;
+    }
+
+    // Cuestionario simple
+    const preguntas = [
+      { q: "¿Qué es el Patrimonio?", a: "Activo menos Pasivo" },
+      { q: "Si aumenta un Activo, ¿en qué columna se registra?", a: "Débito" },
+      { q: "La compra a crédito aumenta ¿qué tipo de cuenta?", a: "Pasivo" }
+    ];
+
+    function cargarQuiz() {
+      let html = '';
+      preguntas.forEach((p, i) => {
+        html += `<p><strong>${i+1}. ${p.q}</strong><br>
+        <input id="q${i}" placeholder="Tu respuesta"><button onclick="verificarQuiz(${i})">Verificar</button>
+        <span id="r${i}"></span></p>`;
+      });
+      document.getElementById('quiz').innerHTML = html;
+    }
+
+    function verificarQuiz(i) {
+      const resp = document.getElementById(`q${i}`).value.trim().toLowerCase();
+      const correcto = preguntas[i].a.toLowerCase();
+      document.getElementById(`r${i}`).innerHTML = resp.includes(correcto) ? 
+        '<span class="correcto">¡Correcto!</span>' : 
+        `<span class="incorrecto">La respuesta es: ${preguntas[i].a}</span>`;
+    }
+
+    window.onload = cargarQuiz;
+  </script>
+</body>
+</html>

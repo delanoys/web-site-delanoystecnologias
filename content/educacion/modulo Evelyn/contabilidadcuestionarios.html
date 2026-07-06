@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contabilidad Básica Interactiva - Bachillerato</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #16a085;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #dcdde1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: #ffffff;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #2980b9;
+        }
+
+        .formula-box {
+            background-color: #edf2f7;
+            border-left: 5px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .grid-accounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .account-card {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.2rem;
+            background: #fff;
+        }
+
+        .account-card.activo { border-top: 4px solid #2ecc71; }
+        .account-card.pasivo { border-top: 4px solid #e74c3c; }
+        .account-card.patrimonio { border-top: 4px solid #f1c40f; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .bg-activo { background-color: #2ecc71; }
+        .bg-pasivo { background-color: #e74c3c; }
+        .bg-patrimonio { background-color: #f1c40f; }
+
+        .t-account {
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem auto;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        .t-account th, .t-account td {
+            border: 1px solid #bdc3c7;
+            padding: 0.6rem;
+            text-align: center;
+            width: 50%;
+        }
+
+        .t-account th {
+            background-color: #34495e;
+            color: #fff;
+        }
+
+        .question-block {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .options-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .options-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        label {
+            cursor: pointer;
+            display: block;
+            padding: 0.4rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        label:hover {
+            background-color: #f0f0f0;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #117a65;
+        }
+
+        .exercise-box {
+            background: #fdfefe;
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .correct { color: #27ae60; }
+        .incorrect { color: #c0392b; }
+
+        .score-display {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="text-align:center;padding:10px 0;background:#f0f0f0;">
+      <a href="sarith.html" style="color:#2c3e50;text-decoration:none;font-weight:600;">← Volver al inicio del Módulo Evelyn</a>
+    </div>
+    <header>
+        <h1>Aprende Contabilidad Básica</h1>
+        <p>Guía Teórica, Casos Reales del Cuaderno y Ejercicios Interactivos para Bachillerato</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- SECCIÓN 1: CONCEPTOS -->
+        <section id="teoria">
+            <h2>1. Conceptos Fundamentales</h2>
+            <p>La contabilidad es el sistema que permite registrar, organizar y analizar todas las operaciones económicas de una empresa. Se basa en una regla de oro llamada la <strong>Ecuación Patrimonial</strong>:</p>
+            
+            <div class="formula-box">
+                <strong>Activo = Pasivo + Patrimonio</strong><br>
+                <small style="font-size: 0.9rem; color: #555;">O expresado de otra forma: Patrimonio = Activo - Pasivo</small>
+            </div>
+
+            <div class="grid-accounts">
+                <div class="account-card activo">
+                    <span class="badge bg-activo">CÓDIGO 1</span>
+                    <h3>Activo</h3>
+                    <p>Bienes, derechos y recursos de propiedad de la empresa (dinero en efectivo, cuentas bancarias, mercancías, vehículos, computadores).</p>
+                </div>
+                <div class="account-card pasivo">
+                    <span class="badge bg-pasivo">CÓDIGO 2</span>
+                    <h3>Pasivo</h3>
+                    <p>Deudas, compromisos y obligaciones financieras vigentes con terceros (proveedores, créditos bancarios, impuestos por pagar).</p>
+                </div>
+                <div class="account-card patrimonio">
+                    <span class="badge bg-patrimonio">CÓDIGO 3</span>
+                    <h3>Patrimonio</h3>
+                    <p>Los aportes iniciales de los socios más las utilidades retenidas; representa el valor neto real de la empresa.</p>
+                </div>
+            </div>
+
+            <h3>El Principio de Partida Doble</h3>
+            <p>Propuesto históricamente por Fray Luca Pacioli, establece que en cada transacción económica intervienen al menos dos cuentas: una que recibe (<strong>Debe / Débito</strong>) y otra que entrega (<strong>Haber / Crédito</strong>). Ambas columnas deben totalizar exactamente el mismo valor, asegurando <strong>Sumas Iguales</strong>.</p>
+        </section>
+
+        <!-- SECCIÓN 2: CUESTIONARIO -->
+        <section id="cuestionario">
+            <h2>2. Cuestionario Teórico Interactiva (20 Preguntas)</h2>
+            <p>Selecciona la respuesta correcta para evaluar tus conocimientos generales.</p>
+            <form id="quizForm">
+                <!-- Generación dinámica de 20 preguntas mediante script interno -->
+                <div id="quizContainer"></div>
+                <button type="button" class="btn" onclick="calificarQuiz()">Evaluar Cuestionario</button>
+            </form>
+            <div id="quizResultado" class="score-display"></div>
+        </section>
+
+        <!-- SECCIÓN 3: PARTIDA DOBLE -->
+        <section id="partida-doble">
+            <h2>3. Ejercicios Prácticos de Partida Doble (20 Casos)</h2>
+            <p>Analiza el enunciado y simula mentalmente o en tu cuaderno los saldos del Debe y Haber. Haz clic en "Verificar Respuesta" para analizar el impacto contable detallado de cada operación.</p>
+            <div id="ejerciciosContainer"></div>
+        </section>
+
+    </div>
+
+    <script>
+        // BANCO DE PREGUNTAS DEL CUESTIONARIO
+        const preguntas = [
+            { q: "1. ¿Cuál es el código inicial que identifica a las cuentas del Activo?", a: ["Código 1", "Código 2", "Código 3"], c: 0 },
+            { q: "2. ¿Qué componente representa las deudas u obligaciones de la organización?", a: ["Patrimonio", "Pasivo", "Activo"], c: 1 },
+            { q: "3. Si una empresa tiene Activos por $5.000.000 y Pasivos por $1.200.000, ¿cuál es su Patrimonio?", a: ["$6.200.000", "$3.800.000", "$5.000.000"], c: 1 },
+            { q: "4. ¿Cuál es el principio contable que dicta que 'no hay deudor sin acreedor'?", a: ["Costo Histórico", "Partida Doble", "Prudencia"], c: 1 },
+            { q: "5. ¿En qué columna de una Cuenta T se registran los aumentos de un Activo?", a: ["Debe (Débito)", "Haber (Crédito)", "Ninguna"], c: 0 },
+            { q: "6. La cuenta 'Proveedores / Nacionales' corresponde al grupo de:", a: ["Activo", "Pasivo", "Patrimonio"], c: 1 },
+            { q: "7. ¿Qué representa la cuenta 'Caja'?", a: ["Dinero depositado a largo plazo", "Dinero en efectivo disponible", "Deudas con los socios"], c: 1 },
+            { q: "8. Las cuentas de Pasivo aumentan su saldo en la columna del:", a: ["Debe", "Haber", "Ambas por igual"], c: 1 },
+            { q: "9. ¿Qué cuenta se utiliza habitualmente para registrar escritorios, archivadores y sillas de la empresa?", a: ["Mercancías no fabricadas", "Equipo de Oficina", "Flota y Equipo de Transporte"], c: 1 },
+            { q: "10. ¿Cuál de los siguientes elementos constituye un Activo Inmaterial o Intangible?", a: ["Un camión de reparto", "Una patente o marca registrada", "Dinero en caja menor"], c: 1 },
+            { q: "11. Si compramos mercancías al contado en efectivo, ¿cómo se afecta la cuenta Caja?", a: ["Aumenta en el Debe", "Disminuye en el Haber", "No sufre alteración"], c: 1 },
+            { q: "12. La cuenta 'Capital Social' pertenece constitucionalmente al:", a: ["Activo", "Pasivo", "Patrimonio"], c: 2 },
+            { q: "13. ¿Qué indica el término 'Sumas Iguales' al cierre de un asiento contable?", a: ["Que el total del Debe es igual al total del Haber", "Que los activos equivalen a los pasivos exactamente", "Que la empresa no obtuvo ganancias ni pérdidas"], c: 0 },
+            { q: "14. Los gastos operacionales disminuyen de manera indirecta el:", a: ["Pasivo", "Patrimonio", "Activo fijo"], c: 1 },
+            { q: "15. ¿Cuál es el destino de los registros del Haber en una cuenta de Patrimonio?", a: ["Representan una disminución del saldo", "Representan un aumento del saldo", "Indican un error operativo"], c: 1 },
+            { q: "16. La adquisición de un vehículo financiado mediante un préstamo bancario genera:", a: ["Aumento de Activo y Aumento de Pasivo", "Aumento de Activo y Disminución de Pasivo", "Disminución de Activo y Aumento de Patrimonio"], c: 0 },
+            { q: "17. ¿A qué grupo pertenece la cuenta 'Clientes' o 'Cuentas por Cobrar'?", a: ["Activo", "Pasivo", "Gastos"], c: 0 },
+            { q: "18. Un abono en efectivo hecho por la empresa a un proveedor ocasiona:", a: ["Aumento de Caja y de Pasivo", "Disminución de Pasivo y Disminución de Activo (Caja)", "Aumento de Patrimonio"], c: 1 },
+            { q: "19. ¿Cuál es la principal característica del Activo Corriente o Circulante?", a: ["Su facilidad para convertirse en dinero en menos de un año", "Que no se puede vender nunca", "Que pertenece exclusivamente a deudas de terceros"], c: 0 },
+            { q: "20. Al iniciar legalmente una empresa, el aporte inicial en efectivo de los socios se registra en:", a: ["Caja (Debe) y Capital Social (Haber)", "Bancos (Haber) y Proveedores (Debe)", "Gastos (Debe) y Caja (Haber)"], c: 0 }
+        ];
+
+        // BANCO DE 20 EJERCICIOS DE PARTIDA DOBLE
+        const ejercicios = [
+            { id: 1, e: "Aporte inicial de los socios por $10.000.000 en efectivo.", r: "DEBE: 1105 Caja ($10.000.000) | HABER: 3115 Capital Social ($10.000.000). Explicación: Ingresa dinero al activo y se crea la obligación con los dueños." },
+            { id: 2, e: "Se apertura una cuenta corriente bancaria depositando $4.500.000 en efectivo.", r: "DEBE: 1110 Bancos ($4.500.000) | HABER: 1105 Caja ($4.500.000). Explicación: Traslado interno de fondos. Aumenta un banco y disminuye el efectivo." },
+            { id: 3, e: "Compra de un computador para uso administrativo por $1.200.000 cancelado con cheque de la empresa.", r: "DEBE: 1528 Equipo de Cómputo ($1.200.000) | HABER: 1110 Bancos ($1.200.000). Explicación: Entra un bien tangible y se extrae el dinero del banco." },
+            { id: 4, e: "Compra de un archivador de oficina a crédito por valor de $700.000.", r: "DEBE: 1524 Equipo de Oficina ($700.000) | HABER: 2335 Acreedores Varios ($700.000). Explicación: Operación similar a la de Luisa en el cuaderno de la imagen. Sube activo y sube pasivo." },
+            { id: 5, e: "Venta de mercancías al contado por $2.000.000 que nos pagan directamente en efectivo.", r: "DEBE: 1105 Caja ($2.000.000) | HABER: 4135 Comercio al por mayor y menor ($2.000.000). Explicación: Ingresa dinero fresco por concepto de un ingreso operativo." },
+            { id: 6, e: "Compra de mercancías para la venta por $1.500.000 pagadas en su totalidad mediante cheque.", r: "DEBE: 1435 Mercancías no Fab. por la Empresa ($1.500.000) | HABER: 1110 Bancos ($1.500.000). Explicación: Aumenta el inventario y se reduce el saldo disponible en banco." },
+            { id: 7, e: "Venta de mercancías a crédito al cliente Juan Pérez por valor de $1.800.000.", r: "DEBE: 1305 Clientes ($1.800.000) | HABER: 4135 Comercio al por mayor y menor ($1.800.000). Explicación: Nace un derecho de cobro (Activo) y se causa la venta correspondientemente." },
+            { id: 8, e: "Recibimos un abono en efectivo de $500.000 por parte del cliente Juan Pérez.", r: "DEBE: 1105 Caja ($500.000) | HABER: 1305 Clientes ($500.000). Explicación: Entra dinero a nuestra caja y disminuye el derecho de cobro pendiente del cliente." },
+            { id: 9, e: "Se realiza un abono en efectivo de $300.000 al acreedor del archivador del ejercicio 4.", r: "DEBE: 2335 Acreedores Varios ($300.000) | HABER: 1105 Caja ($300.000). Explicación: Disminuye la deuda en el Debe y sale el recurso financiero por el Haber de Caja." },
+            { id: 10, e: "Un banco nos otorga y desembolsa un préstamo por $5.000.000 abonados directo a nuestra cuenta.", r: "DEBE: 1110 Bancos ($5.000.000) | HABER: 2105 Obligaciones Financieras ($5.000.000). Explicación: Incremento inmediato de saldos bancarios a cambio de una obligación financiera futura." },
+            { id: 11, e: "Pago de la primera cuota del préstamo bancario anterior por $250.000 mediante débito automático de cuenta.", r: "DEBE: 2105 Obligaciones Financieras ($250.000) | HABER: 1110 Bancos ($250.000). Explicación: Se mitiga parcialmente la deuda crediticia y disminuyen las reservas del banco." },
+            { id: 12, e: "Se cancela el servicio público de energía eléctrica del mes por valor de $120.000 en efectivo.", r: "DEBE: 5135 Gastos Servicios ($120.000) | HABER: 1105 Caja ($120.000). Explicación: Registro de una pérdida de beneficio económico (Gasto) pagado con recursos líquidos." },
+            { id: 13, e: "Se compra un terreno para construir una futura bodega por $15.000.000, firmando una letra de cambio.", r: "DEBE: 1504 Terrenos ($15.000.000) | HABER: 2305 Cuentas por Pagar comerciales ($15.000.000). Explicación: Adquisición de propiedad raíz incrementando compromisos documentales por pagar." },
+            { id: 14, e: "Se paga arriendo anticipado de tres meses por un valor total de $900.000 con cheque.", r: "DEBE: 1705 Gastos Pagados por Anticipado ($900.000) | HABER: 1110 Bancos ($900.000). Explicación: Es un Activo diferido, un derecho a disfrutar del local, financiado vía banco." },
+            { id: 15, e: "Se compran papelería y útiles para oficina por valor de $80.000 consumidos de inmediato en efectivo.", r: "DEBE: 5195 Gastos Diversos (Papelería) ($80.000) | HABER: 1105 Caja ($80.000). Explicación: Un egreso menor necesario para la operación diaria cargado a caja." },
+            { id: 16, e: "Compra de un vehículo de carga para repartos por $22.000.000, pagando la mitad con cheque y saldo a crédito.", r: "DEBE: 1540 Flota y Equipo de Transporte ($22.000.000) | HABER: 1110 Bancos ($11.000.000) y 2335 Acreedores Varios ($11.000.000). Explicación: Asiento compuesto. Un activo sube frente a salidas parciales y deudas conjuntas." },
+            { id: 17, e: "Se recibe la factura de honorarios del contador público del mes por $450.000, para pagar el mes entrante.", r: "DEBE: 5110 Honorarios ($450.000) | HABER: 2335 Costos y Gastos por Pagar ($450.000). Explicación: Principio de devengo. El gasto se reconoce formalmente aunque se pague después." },
+            { id: 18, e: "Un nuevo socio ingresa aportando un computador valorado en $1.500.000.", r: "DEBE: 1528 Equipo de Cómputo ($1.500.000) | HABER: 3115 Capital Social ($1.500.000). Explicación: El activo se robustece mediante aportaciones en especie incrementando el patrimonio neto." },
+            { id: 19, e: "Se retira dinero de la cuenta del banco por $600.000 para abastecer la Caja General.", r: "DEBE: 1105 Caja ($600.000) | HABER: 1110 Bancos ($600.000). Explicación: Operación contraria a la consignación; traslado de dinero electrónico a físico." },
+            { id: 20, e: "Devolución de mercancías compradas a crédito previamente por valor de $200.000.", r: "DEBE: 2205 Proveedores / Nacionales ($200.000) | HABER: 1435 Mercancías no Fab. ($200.000). Explicación: Reversa de operación; disminuye la deuda comercial y sale la mercancía rechazada del almacén." }
+        ];
+
+        // RENDERIZAR CUESTIONARIO
+        const quizContainer = document.getElementById('quizContainer');
+        preguntas.forEach((p, idx) => {
+            let optionsHTML = '';
+            p.a.forEach((opt, oIdx) => {
+                optionsHTML += `
+                    <li>
+                        <label>
+                            <input type="radio" name="q${idx}" value="${oIdx}"> ${opt}
+                        </label>
+                    </li>
+                `;
+            });
+            
+            quizContainer.innerHTML += `
+                <div class="question-block" id="block-q${idx}">
+                    <p style="font-weight:600; margin-bottom:0.5rem;">${p.q}</p>
+                    <ul class="options-list">${optionsHTML}</ul>
+                    <div class="feedback" id="feed-q${idx}"></div>
+                </div>
+            `;
+        });
+
+        // CALIFICAR CUESTIONARIO
+        function calificarQuiz() {
+            let correctas = 0;
+            preguntas.forEach((p, idx) => {
+                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                const feedbackDiv = document.getElementById(`feed-q${idx}`);
+                feedbackDiv.style.display = "block";
+                
+                if (selected && parseInt(selected.value) === p.c) {
+                    correctas++;
+                    feedbackDiv.innerHTML = "✓ ¡Correcto!";
+                    feedbackDiv.className = "feedback correct";
+                } else {
+                    feedbackDiv.innerHTML = `✗ Incorrecto. Respuesta correcta: ${p.a[p.c]}`;
+                    feedbackDiv.className = "feedback incorrect";
+                }
+            });
+            document.getElementById('quizResultado').innerHTML = `Resultado Final: ${correctas} de ${preguntas.length} correctas (${(correctas/preguntas.length*100).toFixed(0)}%)`;
+        }
+
+        // RENDERIZAR EJERCICIOS DE PARTIDA DOBLE
+        const ejerciciosContainer = document.getElementById('ejerciciosContainer');
+        ejercicios.forEach((ej) => {
+            ejerciciosContainer.innerHTML += `
+                <div class="exercise-box">
+                    <p><strong>Ejercicio ${ej.id}:</strong> ${ej.e}</p>
+                    <button class="btn" style="background-color:#34495e; padding:0.4rem 1rem; font-size:0.9rem;" onclick="toggleRespuesta(${ej.id})">Mostrar / Ocultar Solución</button>
+                    <div id="solucion-${ej.id}" style="display:none; margin-top:1rem; padding:1rem; background-color:#f4f6f7; border-left:4px solid #16a085; font-family:monospace; font-size:0.95rem;">
+                        ${ej.r}
+                    </div>
+                </div>
+            `;
+        });
+
+        function toggleRespuesta(id) {
+            const el = document.getElementById(`solucion-${id}`);
+            el.style.display = (el.style.display === "none") ? "block" : "none";
+        }
+    </script>
+</body>
+</html>

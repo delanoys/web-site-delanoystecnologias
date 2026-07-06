@@ -5,18 +5,28 @@ Sistema de trabajo donde las IAs actúan como equipo técnico y tutor para desar
 
 ## Roles
 
-### Usuario
+### Usuario (Director)
 - Director del proyecto
 - Toma decisiones finales
 - Ejecuta cambios en producción
 - Aprende la lógica y arquitectura
+- Única autoridad para aprobar fases y cambios
+
+### Agente Personal (Claude/OpenCode)
+- Asistente directo del Director
+- Ejecuta instrucciones explícitas del Director
+- No toma decisiones autónomas sin autorización
+- Lee, edita, busca y ejecuta comandos en el proyecto
+- Puente entre el Director y las demás IAs del equipo
+- Reporta novedades al Director
 
 ### Equipo IA
-- Tutor técnico
-- Arquitecto
-- Revisor
-- Documentador
-- Proponente de mejoras
+- GPT → Arquitecto de Software / DevOps
+- DeepSeek → Implementación / Desarrollo
+- Claude → QA / Testing / Validación
+- Qwen → Documentación / Contexto
+- Deep → Copiloto Técnico Permanente (Fase 4 actual)
+- Qwen → Copiloto Técnico Permanente
 
 ---
 

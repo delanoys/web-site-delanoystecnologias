@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo Evelyn - Aprendamos Contabilidad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #6c5ce7;
+      --primary-dark: #5a4bd1;
+      --secondary: #00cec9;
+      --accent: #fd79a8;
+      --bg: #f8f9fe;
+      --card-bg: #ffffff;
+      --text: #2d3436;
+      --text-light: #636e72;
+      --shadow: 0 10px 40px rgba(108,92,231,0.12);
+      --radius: 20px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      --bg: #0a0a1a;
+      --card-bg: #1a1a2e;
+      --text: #e0e0e0;
+      --text-light: #a0a0b0;
+      --shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      padding: 80px 20px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      animation: heroGlow 8s ease-in-out infinite;
+    }
+    @keyframes heroGlow {
+      0%, 100% { transform: translate(0,0); }
+      50% { transform: translate(-20px,20px); }
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .hero p {
+      color: rgba(255,255,255,0.9);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      max-width: 600px;
+      margin: 20px auto 30px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s infinite;
+    }
+    .scroll-indicator span {
+      display: block;
+      width: 24px;
+      height: 24px;
+      border-right: 3px solid rgba(255,255,255,0.7);
+      border-bottom: 3px solid rgba(255,255,255,0.7);
+      transform: rotate(45deg);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* NAV */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      padding: 0 20px;
+      border-bottom: 1px solid rgba(108,92,231,0.1);
+      transition: background 0.3s;
+    }
+    .dark .top-nav {
+      background: rgba(26,26,46,0.85);
+      border-bottom-color: rgba(255,255,255,0.05);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .theme-toggle {
+      background: none;
+      border: 2px solid var(--text-light);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* MAIN */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* INTRO */
+    .intro-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    .intro-card h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    .intro-card p {
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto 25px;
+      font-size: 1.05rem;
+    }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* ARTICLES */
+    .articles { margin: 50px 0; }
+    .article-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 35px;
+      align-items: center;
+    }
+    .article-card:nth-child(even) { direction: rtl; }
+    .article-card:nth-child(even) > * { direction: ltr; }
+    .article-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-img.purple-grad { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+    .article-img.teal-grad { background: linear-gradient(135deg, #81ecec, #00cec9); }
+    .article-img.pink-grad { background: linear-gradient(135deg, #fab1a0, #fd79a8); }
+    .article-img.blue-grad { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+    .article-img.green-grad { background: linear-gradient(135deg, #55efc4, #00b894); }
+    .article-img span { font-size: 5rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
+    .article-content h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .article-content p {
+      color: var(--text-light);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+    .article-content ul {
+      color: var(--text-light);
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    .article-content ul li { margin-bottom: 6px; }
+    .article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: gap 0.2s;
+    }
+    .article-link:hover { gap: 12px; }
+
+    /* MODULES */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title span {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 2px 14px;
+      border-radius: 50px;
+    }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .module-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(108,92,231,0.15);
+    }
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .card-icon.purple { background: rgba(108,92,231,0.12); }
+    .card-icon.teal { background: rgba(0,206,201,0.12); }
+    .card-icon.pink { background: rgba(253,121,168,0.12); }
+    .card-icon.orange { background: rgba(253,203,110,0.2); }
+
+    .module-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .module-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .card-tags span {
+      background: rgba(108,92,231,0.08);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .card-link:hover {
+      background: var(--primary-dark);
+      transform: scale(1.02);
+    }
+    .card-link.secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .card-link.secondary:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* PROGRESS */
+    .progress-section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 35px;
+      box-shadow: var(--shadow);
+      margin-top: 50px;
+    }
+    .progress-section h3 {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    .progress-bar-track {
+      background: rgba(108,92,231,0.1);
+      border-radius: 50px;
+      height: 12px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 50px;
+      transition: width 0.8s ease;
+    }
+    .progress-checkboxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .progress-checkboxes label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 10px;
+      background: rgba(108,92,231,0.05);
+      transition: background 0.2s;
+    }
+    .progress-checkboxes label:hover {
+      background: rgba(108,92,231,0.1);
+    }
+    .progress-checkboxes input[type="checkbox"] {
+      accent-color: var(--primary);
+      width: 18px;
+      height: 18px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    footer strong {
+      color: var(--primary);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { padding: 60px 20px 80px; }
+      .nav-links a { font-size: 0.75rem; padding: 4px 10px; }
+      .stats { gap: 24px; }
+      .article-card { grid-template-columns: 1fr; direction: ltr !important; }
+      .article-card:nth-child(even) > * { direction: ltr !important; }
+      .article-img { aspect-ratio: 16/9; }
+      .modules-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <div class="nav-logo">📚 Módulo Evelyn</div>
+      <div class="nav-links">
+        <a href="#historia">Historia</a>
+        <a href="#ecuacion">Ecuación</a>
+        <a href="#partida">Partida Doble</a>
+        <a href="#cuentas">Cuentas</a>
+        <a href="#importancia">Importancia</a>
+        <a href="#recursos">Recursos</a>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">🌓</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">🎓 Educación Contable</div>
+    <h1>Aprendamos Contabilidad</h1>
+    <p>Domina los principios de la partida doble, el balance general y la ecuación patrimonial con ejercicios interactivos diseñados para bachillerato.</p>
+    <div class="scroll-indicator"><span></span></div>
+  </header>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- INTRO -->
+    <div class="intro-card">
+      <h2>📖 Tu ruta de aprendizaje</h2>
+      <p>Este módulo te guía paso a paso desde los conceptos fundamentales hasta ejercicios prácticos de contabilidad. Cada recurso está diseñado para ser interactivo y autodidacta.</p>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Módulos interactivos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Ejercicios prácticos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">40</div>
+          <div class="stat-label">Preguntas de evaluación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTICLES -->
+    <div class="articles">
+
+      <div class="article-card" id="historia">
+        <div class="article-img purple-grad"><span>📜</span></div>
+        <div class="article-content">
+          <h3>Historia de la Contabilidad</h3>
+          <p>La contabilidad nace con la civilización. Desde las tablillas de arcilla en Mesopotamia (3500 a.C.) hasta los registros del Imperio Inca con los quipus, el ser humano siempre ha buscado formas de controlar sus bienes.</p>
+          <p>Fray Luca Pacioli, matemático italiano del Renacimiento, publicó en 1494 el primer libro que describe el sistema de <strong>partida doble</strong>, considerado el acta de nacimiento de la contabilidad moderna. Su obra <em>Summa de Arithmetica</em> sentó las bases que aún hoy usamos.</p>
+          <p>Con la Revolución Industrial y el auge de las grandes corporaciones en el siglo XIX, la contabilidad evolucionó hasta convertirse en una disciplina profesional indispensable para la toma de decisiones empresariales.</p>
+          <a class="article-link" href="contabilidadcuestionarios.html">Explorar teoría contable →</a>
+        </div>
+      </div>
+
+      <div class="article-card" id="ecuacion">
+        <div class="article-img teal-grad"><span>⚖️</span></div>
+        <div class="article-content">
+          <h3>La Ecuación Contable Fundamental</h3>
+          <p>Es la base de todo el sistema contable: <strong>Activo = Pasivo + Patrimonio</strong>. Esta ecuación debe cumplirse siempre, reflejando que todos los recursos de la empresa (Activo) son financiados por terceros (Pasivo) o por los dueños (Patrimonio).</p>
+          <ul>
+            <li><strong>Activo:</strong> Bienes y derechos que posee la empresa (caja, bancos, clientes, inventarios, equipos).</li>
+            <li><strong>Pasivo:</strong> Obligaciones y deudas con terceros (proveedores, impuestos por pagar, préstamos).</li>
+            <li><strong>Patrimonio:</strong> Aportes de los socios más utilidades retenidas. Representa el valor neto de la empresa.</li>
+          </ul>
+          <p>Si la empresa tiene $10.000.000 en Activos y $4.000.000 en Pasivos, entonces su Patrimonio es de $6.000.000.</p>
+          <a class="article-link" href="contabilidadcuestionarios.html#teoria">Profundizar conceptos →</a>
+        </div>
+      </div>
+
+      <div class="article-card" id="partida">
+        <div class="article-img pink-grad"><span>🔄</span></div>
+        <div class="article-content">
+          <h3>El Principio de la Partida Doble</h3>
+          <p>"No hay deudor sin acreedor." Este principio establece que cada transacción afecta al menos dos cuentas: una se debita (cargo) y otra se acredita (abono), y ambos montos deben ser iguales.</p>
+          <p>Ejemplo práctico: Si la empresa compra un archivador a crédito por $700.000:</p>
+          <ul>
+            <li><strong>Debe (Débito):</strong> Equipo de Oficina (+$700.000) — aumenta el Activo</li>
+            <li><strong>Haber (Crédito):</strong> Acreedores Varios (+$700.000) — aumenta el Pasivo</li>
+          </ul>
+          <p>Este sistema permite llevar un control preciso de cada operación y garantiza que los libros siempre estén balanceados. Domínalo con nuestros ejercicios interactivos.</p>
+          <a class="article-link" href="contabilidadcuestionarios.html#partida-doble">Practicar partida doble →</a>
+        </div>
+      </div>
+
+      <div class="article-card" id="cuentas">
+        <div class="article-img blue-grad"><span>📂</span></div>
+        <div class="article-content">
+          <h3>Tipos de Cuentas y su Clasificación</h3>
+          <p>Las cuentas contables se agrupan en categorías según su naturaleza. Conocerlas es esencial para registrar correctamente cada transacción:</p>
+          <ul>
+            <li><strong>Cuentas Reales (de Balance):</strong> Activo (Caja, Bancos, Clientes), Pasivo (Proveedores, Acreedores), Patrimonio (Capital, Utilidades).</li>
+            <li><strong>Cuentas Nominales (de Resultado):</strong> Ingresos (Ventas, Intereses) y Gastos (Servicios, Honorarios, Arriendos).</li>
+            <li><strong>Cuentas de Orden:</strong> Registran operaciones que no afectan el balance pero son importantes para la gestión.</li>
+          </ul>
+          <p>Cada cuenta tiene un código numérico según el Plan Único de Cuentas (PUC). Por ejemplo: 1105 es Caja, 2105 son Obligaciones Financieras.</p>
+          <a class="article-link" href="ejercicioscontables.html">Ejercicios de clasificación →</a>
+        </div>
+      </div>
+
+      <div class="article-card" id="importancia">
+        <div class="article-img green-grad"><span>🎯</span></div>
+        <div class="article-content">
+          <h3>Importancia de la Contabilidad</h3>
+          <p>La contabilidad es el <strong>idioma de los negocios</strong>. Sin ella, una empresa no puede saber si gana o pierde dinero, ni tomar decisiones informadas.</p>
+          <ul>
+            <li><strong>Toma de decisiones:</strong> Permite evaluar rentabilidad, liquidez y solvencia.</li>
+            <li><strong>Control financiero:</strong> Ayuda a prevenir fraudes y administrar recursos eficientemente.</li>
+            <li><strong>Cumplimiento legal:</strong> Declaración de impuestos, balances oficiales y reportes a entidades regulatorias.</li>
+            <li><strong>Atraer inversionistas:</strong> Los estados financieros son la carta de presentación de cualquier negocio.</li>
+          </ul>
+          <p>Para los estudiantes de bachillerato, entender contabilidad abre las puertas a carreras como administración, economía, finanzas y emprendimiento.</p>
+          <a class="article-link" href="contabilidad.html">Poner a prueba tus conocimientos →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MODULES -->
+    <h2 class="section-title" id="recursos">📂 Recursos del Módulo <span>4 archivos</span></h2>
+    <div class="modules-grid">
+
+      <!-- CARD 1 - contabilidadcuestionarios.html -->
+      <div class="module-card" id="cuestionarios">
+        <div class="card-icon pink">📝</div>
+        <h3>Cuestionarios y Partida Doble</h3>
+        <p>Teoría completa con 20 preguntas de opción múltiple y 20 ejercicios prácticos de partida doble con soluciones detalladas paso a paso.</p>
+        <div class="card-tags">
+          <span>20 Preguntas</span>
+          <span>20 Ejercicios</span>
+          <span>Teoría</span>
+        </div>
+        <a class="card-link" href="contabilidadcuestionarios.html" target="_blank">Abrir módulo →</a>
+      </div>
+
+      <!-- CARD 2 - ejercicioscontables.html -->
+      <div class="module-card" id="ejercicios">
+        <div class="card-icon orange">✍️</div>
+        <h3>Ejercicios Contables</h3>
+        <p>10 ejercicios básicos interactivos para practicar clasificación de cuentas, asientos contables y la ecuación fundamental con feedback inmediato.</p>
+        <div class="card-tags">
+          <span>10 Ejercicios</span>
+          <span>Clasificación</span>
+          <span>Feedback</span>
+        </div>
+        <a class="card-link" href="ejercicioscontables.html" target="_blank">Abrir módulo →</a>
+      </div>
+
+      <!-- CARD 3 - contabilidad.html -->
+      <div class="module-card" id="contabilidad">
+        <div class="card-icon purple">🧾</div>
+        <h3>Contabilidad Interactiva</h3>
+        <p>Ejercicios completos de partida doble, clasificación de cuentas, registro en libro diario, balance general y un cuestionario de conceptos básicos.</p>
+        <div class="card-tags">
+          <span>Partida Doble</span>
+          <span>Balance</span>
+          <span>Cuestionario</span>
+        </div>
+        <a class="card-link" href="contabilidad.html" target="_blank">Abrir módulo →</a>
+      </div>
+
+      <!-- CARD 4 - contabilidadbasica.html -->
+      <div class="module-card" id="basica">
+        <div class="card-icon teal">📘</div>
+        <h3>Contabilidad Básica</h3>
+        <p>Versión simplificada con ejercicio de transacción, balance general interactivo y cuestionario rápido de 3 preguntas para afianzar lo esencial.</p>
+        <div class="card-tags">
+          <span>Principiantes</span>
+          <span>Transacciones</span>
+          <span>Rápido</span>
+        </div>
+        <a class="card-link" href="contabilidadbasica.html" target="_blank">Abrir módulo →</a>
+      </div>
+
+    </div>
+
+    <!-- PROGRESS TRACKER -->
+    <div class="progress-section">
+      <h3>📊 Mi progreso</h3>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <p style="text-align:right;font-size:0.85rem;color:var(--text-light);margin-top:6px;" id="progressText">0% completado</p>
+      <div class="progress-checkboxes" id="progressCheckboxes">
+        <label><input type="checkbox" onchange="updateProgress()"> Cuestionarios y Partida Doble</label>
+        <label><input type="checkbox" onchange="updateProgress()"> Ejercicios Contables</label>
+        <label><input type="checkbox" onchange="updateProgress()"> Contabilidad Interactiva</label>
+        <label><input type="checkbox" onchange="updateProgress()"> Contabilidad Básica</label>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Hecho con ❤️ para <strong>Módulo Evelyn</strong> — Educación contable interactiva
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('#progressCheckboxes input[type="checkbox"]');
+      const total = checkboxes.length;
+      const checked = [...checkboxes].filter(c => c.checked).length;
+      const pct = Math.round((checked / total) * 100);
+      const fill = document.getElementById('progressFill');
+      fill.style.width = pct + '%';
+      document.getElementById('progressText').textContent = pct + '% completado';
+
+      localStorage.setItem('progress', JSON.stringify(
+        [...checkboxes].map(c => c.checked)
+      ));
+    }
+
+    const saved = localStorage.getItem('progress');
+    if (saved) {
+      const states = JSON.parse(saved);
+      const checkboxes = document.querySelectorAll('#progressCheckboxes input[type="checkbox"]');
+      checkboxes.forEach((c, i) => {
+        if (states[i]) c.checked = true;
+      });
+    }
+    updateProgress();
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const el = document.querySelector(a.getAttribute('href'));
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
